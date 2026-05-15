@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard | The Blacklist Alliance</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23b5001f'/%3E%3Cpath fill='%23fff' d='M9.25 8.28a4.03 4.03 0 1 1 8.06 0 4.03 4.03 0 0 1-8.06 0ZM18.02 13.01H8.14c-1.39 0-2.64 1.11-2.64 2.64v8.07c0 .7.7 1.39 1.53 1.39s1.53-.7 1.53-1.53v-6.4h.7v9.88h5.29v-.14c-1.67-1.53-2.78-3.62-2.78-6.12 0-3.9 2.64-7.1 6.26-7.79ZM26.5 20.94a6.82 6.82 0 1 1-13.64 0 6.82 6.82 0 0 1 13.64 0ZM22.75 25.39l-7.37-7.37c-.7.83-.97 1.81-.97 2.92 0 2.92 2.37 5.29 5.43 5.43 1.11 0 2.09-.42 2.92-.97ZM24.97 20.94c0-2.92-2.37-5.29-5.29-5.29-1.25 0-2.23.28-3.2.97l7.51 7.37s.97-.73.97-3.06Z'/%3E%3C/svg%3E" />
+<style>
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+  :root {
+    --bl-red: #A50100; --bl-red-hover: #8A0100; --bl-red-press: #6E0100; --bl-red-tint: #FBE5E5;
+    --bl-black: #000000; --bl-white: #FFFFFF;
+    --gray-05: #F7F7F7; --gray-10: #EFEFEF; --gray-20: #E0E0E0; --gray-40: #A8A8A8;
+    --gray-50: #8C8C8C; --gray-60: #6F6F6F; --gray-70: #525252; --gray-100: #000000;
+    --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--gray-05);
+    color: var(--gray-100);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  ::selection { background: var(--bl-red); color: var(--bl-white); }
+
+  /* ---------- Top header ---------- */
+  header.bar {
+    background: var(--bl-black);
+    color: var(--bl-white);
+    padding: 18px 32px;
+    border-bottom: 4px solid var(--bl-red);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  header.bar svg.logo { height: 22px; width: auto; display: block; }
+  header.bar .title {
+    margin-left: auto;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+  }
+
+  /* ---------- Login card ---------- */
+  .login-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+  .login-card {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 100%;
+  }
+  .risk-bar {
+    display: block;
+    width: 56px;
+    height: 4px;
+    background: var(--bl-red);
+    margin-bottom: 20px;
+  }
+  .login-card h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+  }
+  .login-card .sub {
+    font-size: 14px;
+    color: var(--gray-70);
+    margin: 0 0 32px;
+    line-height: 1.55;
+  }
+  .login-card label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gray-70);
+    margin: 0 0 8px;
+  }
+  .login-card input[type="password"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background: var(--bl-white);
+    color: var(--gray-100);
+    font-family: inherit;
+    font-size: 15px;
+    border: 1px solid var(--gray-20);
+    transition: border-color 120ms, box-shadow 120ms;
+    margin-bottom: 20px;
+  }
+  .login-card input[type="password"]:focus {
+    outline: 0;
+    border-color: var(--bl-red);
+    box-shadow: 0 0 0 3px rgba(165,1,0,0.28);
+  }
+  .login-card .err {
+    background: var(--bl-red-tint);
+    border-left: 3px solid var(--bl-red);
+    padding: 10px 14px;
+    color: var(--bl-red);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .login-card .err.show { display: block; }
+  button.b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 52px;
+    background: var(--bl-red);
+    color: var(--bl-white);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: 13px;
+    border: 0;
+    cursor: pointer;
+    transition: background 120ms;
+  }
+  button.b:hover { background: var(--bl-red-hover); }
+  button.b:active { background: var(--bl-red-press); }
+  button.b:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(165,1,0,0.28);
+  }
+  button.b--sm {
+    width: auto;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 11px;
+    letter-spacing: .12em;
+  }
+  button.b--secondary {
+    background: var(--bl-white);
+    color: var(--bl-black);
+    border: 1px solid var(--bl-black);
+  }
+  button.b--secondary:hover { background: var(--bl-black); color: var(--bl-white); }
+
+  /* ---------- Dashboard ---------- */
+  .dash {
+    flex: 1;
+    padding: 48px 32px 80px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: none;
+  }
+  .dash.show { display: block; }
+
+  .dash-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .dash-head .eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--bl-red);
+    margin-bottom: 8px;
+  }
+  .dash-head h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .dash-head .right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .stat {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    padding: 14px 18px;
+    min-width: 120px;
+  }
+  .stat .num { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; color: var(--bl-black); line-height: 1; }
+  .stat .lab {
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    font-weight: 600;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .t-wrap {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+  }
+  table.t { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .t thead th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid var(--gray-20);
+    background: var(--gray-05);
+  }
+  .t tbody td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--gray-20);
+    vertical-align: middle;
+  }
+  .t tbody tr:last-child td { border-bottom: 0; }
+  .t tbody tr:hover { background: #FAFAFA; }
+  .t-slug { font-weight: 600; letter-spacing: -0.005em; color: var(--bl-black); }
+  .t-url a {
+    color: var(--gray-70);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    transition: color 120ms;
+  }
+  .t-url a:hover { color: var(--bl-red); text-decoration: underline; text-underline-offset: 3px; }
+  .t-actions { text-align: right; white-space: nowrap; }
+  .t-actions button + button { margin-left: 8px; }
+
+  .empty {
+    padding: 64px 24px;
+    text-align: center;
+    color: var(--gray-60);
+  }
+  .empty .empty-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--bl-black);
+    margin-bottom: 8px;
+  }
+  .loading {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--gray-60);
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bl-black);
+    color: var(--bl-white);
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 180ms;
+    pointer-events: none;
+    z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+  .note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--gray-60);
+    line-height: 1.55;
+  }
+  .note code { font-family: var(--font-mono); background: var(--gray-10); padding: 1px 5px; }
+
+  footer.foot {
+    padding: 24px 32px;
+    background: var(--bl-black);
+    color: rgba(255,255,255,0.55);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <svg class="logo" viewBox="0 0 360 23.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Blacklist Alliance">
+    <g>
+      <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+      <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+      <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+      <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+      <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+      <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+      <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+      <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+    </g>
+    <g fill="#fff">
+      <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z"/>
+      <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z"/>
+      <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5"/>
+    </g>
+    <g fill="#fff">
+      <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z"/>
+      <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+      <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z"/>
+      <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+      <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z"/>
+      <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+      <path d="M160.6,23.4V.5h6v22.9h-6Z"/>
+      <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"/>
+      <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z"/>
+    </g>
+    <g>
+      <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+      <g fill="#fff">
+        <circle cx="9.4" cy="6.2" r="2.9"/>
+        <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z"/>
+        <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z"/>
+      </g>
+    </g>
+  </svg>
+  <span class="title">Internal Dashboard</span>
+</header>
+
+<!-- LOGIN VIEW -->
+<div class="login-wrap" id="loginView">
+  <div class="login-card">
+    <span class="risk-bar" aria-hidden="true"></span>
+    <h1>Dashboard access</h1>
+    <p class="sub">Enter the team password to view all published content on go.blacklistalliance.com.</p>
+    <form id="loginForm" autocomplete="off">
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" autofocus required />
+      <div class="err" id="errBox">Wrong password. Try again.</div>
+      <button class="b" type="submit">Unlock</button>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<main class="dash" id="dashView">
+  <div class="dash-head">
+    <div>
+      <span class="eyebrow">Published content</span>
+      <h1>BAPP Dashboard</h1>
+    </div>
+    <div class="right">
+      <div class="stat"><span class="num" id="statCount">—</span><span class="lab">Live pages</span></div>
+      <button class="b b--sm b--secondary" id="refreshBtn">Refresh</button>
+      <button class="b b--sm b--secondary" id="lockBtn">Lock</button>
+    </div>
+  </div>
+
+  <div class="t-wrap">
+    <table class="t">
+      <thead>
+        <tr>
+          <th style="width:30%;">Slug</th>
+          <th>URL</th>
+          <th class="t-actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="3" class="loading" id="loadingRow">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note">Document password for all published pages: <code>Plura2026!</code> — share it with the live URL.</p>
+</main>
+
+<footer class="foot">The Blacklist Alliance · Internal Dashboard · v1</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ----- password gate (client-side; team-internal only) -----
+  // Stored as hash so view-source doesn't expose the literal password.
+  const EXPECTED_HASH = "1c9d33de4fac4a92d56b40c9601b9d6daa9be93d99818fb8d7a52d96fc62a6ee"; // sha-256 of "Blacklist2026!"
+  const STORAGE_KEY = "bapp_dashboard_unlocked";
+
+  async function sha256(text) {
+    const buf = new TextEncoder().encode(text);
+    const hashBuf = await crypto.subtle.digest("SHA-256", buf);
+    return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  function showDashboard() {
+    document.getElementById("loginView").style.display = "none";
+    document.getElementById("dashView").classList.add("show");
+    loadList();
+  }
+  function showLogin() {
+    document.getElementById("dashView").classList.remove("show");
+    document.getElementById("loginView").style.display = "";
+    document.getElementById("pw").value = "";
+    document.getElementById("pw").focus();
+  }
+
+  // Auto-unlock if previously unlocked in this session
+  if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+    showDashboard();
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const input = document.getElementById("pw").value;
+    const hash = await sha256(input);
+    if (hash === EXPECTED_HASH) {
+      sessionStorage.setItem(STORAGE_KEY, "1");
+      document.getElementById("errBox").classList.remove("show");
+      showDashboard();
+    } else {
+      document.getElementById("errBox").classList.add("show");
+      document.getElementById("pw").select();
+    }
+  });
+
+  document.getElementById("lockBtn").addEventListener("click", () => {
+    sessionStorage.removeItem(STORAGE_KEY);
+    showLogin();
+  });
+
+  // ----- dashboard data -----
+  async function loadList() {
+    const body = document.getElementById("tableBody");
+    body.innerHTML = '<tr><td colspan="3" class="loading">Loading…</td></tr>';
+    try {
+      const res = await fetch("/api/list", { cache: "no-store" });
+      const json = await res.json();
+      const slugs = json.slugs || [];
+      document.getElementById("statCount").textContent = slugs.length;
+
+      if (slugs.length === 0) {
+        body.innerHTML = '<tr><td colspan="3" class="empty"><div class="empty-title">Nothing published yet</div>Use BAPP to publish your first asset.</td></tr>';
+        return;
+      }
+
+      body.innerHTML = "";
+      slugs.forEach(({ slug, url }) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="t-slug">${escapeHtml(slug)}</td>
+          <td class="t-url"><a href="${url}" target="_blank" rel="noopener">${escapeHtml(url)}</a></td>
+          <td class="t-actions">
+            <button class="b b--sm b--secondary" data-action="copy" data-url="${url}">Copy link</button>
+            <button class="b b--sm" data-action="open" data-url="${url}">Open</button>
+          </td>
+        `;
+        body.appendChild(tr);
+      });
+    } catch (err) {
+      body.innerHTML = `<tr><td colspan="3" class="empty"><div class="empty-title">Could not load</div>${escapeHtml(err.message || "Network error")}</td></tr>`;
+    }
+  }
+
+  document.getElementById("refreshBtn").addEventListener("click", loadList);
+
+  document.getElementById("tableBody").addEventListener("click", async (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    const url = btn.dataset.url;
+    if (btn.dataset.action === "copy") {
+      try {
+        await navigator.clipboard.writeText(url);
+        toast("Copied " + url);
+      } catch {
+        toast("Copy failed");
+      }
+    } else if (btn.dataset.action === "open") {
+      window.open(url, "_blank", "noopener");
+    }
+  });
+
+  function toast(msg) {
+    const el = document.getElementById("toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    clearTimeout(window._t);
+    window._t = setTimeout(() => el.classList.remove("show"), 1800);
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+</script>
+
+</body>
+</html>
