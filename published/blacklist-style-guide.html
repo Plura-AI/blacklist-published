@@ -888,7 +888,17 @@
 (function(){
   var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
   var KEY="bapp_doc_unlocked";
-  if (sessionStorage.getItem(KEY) === "1") return;
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
   document.body.classList.add("bapp-gated");
   var w = document.createElement("div");
   w.id = "bapp-doc-gate";
@@ -902,6 +912,7 @@
       sessionStorage.setItem(KEY, "1");
       document.body.classList.remove("bapp-gated");
       w.remove();
+      trackHit();
     } else {
       document.getElementById("bg-err").classList.add("show");
       document.getElementById("bg-pw").select();
