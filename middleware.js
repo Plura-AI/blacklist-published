@@ -10,11 +10,16 @@ export function middleware(request) {
 
   if (authHeader) {
     const encoded = authHeader.split(' ')[1];
-    const decoded = Buffer.from(encoded, 'base64').toString('utf-8');
-    const [user, pass] = decoded.split(':');
+    // Edge Runtime doesn't have Buffer — use atob (Web API)
+    const decoded = atob(encoded);
+    // Split on first colon only so passwords with colons aren't truncated
+    const colonIdx = decoded.indexOf(':');
+    const user = decoded.substring(0, colonIdx);
+    const pass = decoded.substring(colonIdx + 1);
 
-    const expectedUser = process.env.ADMIN_USER || 'blacklist';
-    const expectedPass = process.env.ADMIN_PASS || 'Blacklist2026!';
+    // .trim() guards against trailing newlines from env provisioning
+    const expectedUser = (process.env.ADMIN_USER || 'blacklist').trim();
+    const expectedPass = (process.env.ADMIN_PASS || 'Blacklist2026!').trim();
 
     if (user === expectedUser && pass === expectedPass) {
       return NextResponse.next();
