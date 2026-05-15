@@ -6,9 +6,22 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
-  const authHeader = request.headers.get('authorization');
+  const expectedUser = (process.env.ADMIN_USER || 'blacklist').trim();
+  const expectedPass = (process.env.ADMIN_PASS || 'Blacklist2026!').trim();
 
-  if (authHeader) {
+  // Cookie-based auth — set by /api/admin-login
+  const cookieRaw = request.cookies.get('bapp_admin')?.value;
+  if (cookieRaw) {
+    let decoded = cookieRaw;
+    try { decoded = decodeURIComponent(cookieRaw); } catch (_) {}
+    if (decoded === expectedPass) {
+      return NextResponse.next();
+    }
+  }
+
+  // HTTP Basic Auth fallback
+  const authHeader = request.headers.get('authorization');
+  if (authHeader && authHeader.startsWith('Basic ')) {
     const encoded = authHeader.split(' ')[1];
     // Edge Runtime doesn't have Buffer — use atob (Web API)
     const decoded = atob(encoded);
@@ -16,10 +29,6 @@ export function middleware(request) {
     const colonIdx = decoded.indexOf(':');
     const user = decoded.substring(0, colonIdx);
     const pass = decoded.substring(colonIdx + 1);
-
-    // .trim() guards against trailing newlines from env provisioning
-    const expectedUser = (process.env.ADMIN_USER || 'blacklist').trim();
-    const expectedPass = (process.env.ADMIN_PASS || 'Blacklist2026!').trim();
 
     if (user === expectedUser && pass === expectedPass) {
       return NextResponse.next();
