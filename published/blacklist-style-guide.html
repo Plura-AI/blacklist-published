@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Blacklist Alliance — Visual Style Guide</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23b5001f'/%3E%3Cpath fill='%23fff' d='M9.25 8.28a4.03 4.03 0 1 1 8.06 0 4.03 4.03 0 0 1-8.06 0ZM18.02 13.01H8.14c-1.39 0-2.64 1.11-2.64 2.64v8.07c0 .7.7 1.39 1.53 1.39s1.53-.7 1.53-1.53v-6.4h.7v9.88h5.29v-.14c-1.67-1.53-2.78-3.62-2.78-6.12 0-3.9 2.64-7.1 6.26-7.79ZM26.5 20.94a6.82 6.82 0 1 1-13.64 0 6.82 6.82 0 0 1 13.64 0ZM22.75 25.39l-7.37-7.37c-.7.83-.97 1.81-.97 2.92 0 2.92 2.37 5.29 5.43 5.43 1.11 0 2.09-.42 2.92-.97ZM24.97 20.94c0-2.92-2.37-5.29-5.29-5.29-1.25 0-2.23.28-3.2.97l7.51 7.37s.97-.73.97-3.06Z'/%3E%3C/svg%3E" />
+<style>
+  /* =========================================================
+     Blacklist Alliance — inlined design tokens
+     (colors_and_type.css baked in for portability)
+     ========================================================= */
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Extralight.woff2") format("woff2"); font-weight: 200; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Light.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+  :root {
+    --bl-red: #A50100; --bl-red-hover: #8A0100; --bl-red-press: #6E0100; --bl-red-tint: #FBE5E5;
+    --bl-black: #000000; --bl-white: #FFFFFF;
+    --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+    --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939;
+    --gray-90:#1F1F1F; --gray-100:#000000;
+    --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+    --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+    --bg-canvas: var(--gray-05); --bg-surface: var(--gray-00); --bg-sunken: var(--gray-10); --bg-inverse: var(--bl-black);
+    --fg-1: var(--gray-100); --fg-2: var(--gray-70); --fg-3: var(--gray-50); --fg-4: var(--gray-40);
+    --border-1: var(--gray-20); --border-2: var(--gray-30); --border-3: var(--gray-80);
+    --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  ::selection { background: var(--bl-red); color: var(--bl-white); }
+
+  /* ---------- Page chrome ---------- */
+  html, body { background: var(--bg-surface); margin: 0; }
+  body { font-family: var(--font-sans); color: var(--fg-1); -webkit-font-smoothing: antialiased; }
+  * { border-radius: 0 !important; }   /* enforce: nothing rounds, ever */
+
+  .sg-shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  .sg-side {
+    background: #000; color: #fff;
+    padding: 32px 24px; position: sticky; top: 0; align-self: flex-start;
+    height: 100vh; overflow-y: auto;
+  }
+  .sg-side__brand { display:block; margin-bottom: 28px; }
+  .sg-side__brand svg { display:block; width: 100%; height: auto; max-width: 192px; }
+  .sg-side__title {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); font-weight: 600; margin: 24px 0 10px;
+  }
+  .sg-side a {
+    display:block; font-size: 13px; padding: 7px 0; color: rgba(255,255,255,0.78);
+    text-decoration:none; transition: color 120ms;
+  }
+  .sg-side a:hover { color: var(--bl-red); }
+  .sg-side a.is-section { font-weight: 600; }
+  .sg-side__meta {
+    margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.6;
+  }
+
+  .sg-main { min-width: 0; }
+
+  /* ---------- Hero ---------- */
+  .sg-hero { background: #000; color: #fff; padding: 96px 64px 80px; position: relative; }
+  .sg-hero__eyebrow { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--bl-red); font-weight: 600; margin: 0 0 24px; }
+  .sg-hero h1 {
+    font-size: clamp(56px, 8vw, 112px); font-weight: 700;
+    letter-spacing: -0.035em; line-height: 0.9; text-transform: lowercase;
+    margin: 0 0 16px;
+  }
+  .sg-hero__sub { font-size: 18px; max-width: 580px; margin: 0; color: rgba(255,255,255,0.7); line-height: 1.5; }
+  .sg-hero__rule { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--bl-red); }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 80px 64px; border-bottom: 1px solid var(--border-1); }
+  section:nth-of-type(odd) { background: #fff; }
+  section:nth-of-type(even) { background: var(--gray-05); }
+  .sg-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--bl-red); margin: 0 0 12px; }
+  .sg-bar { display:block; width: 56px; height: 4px; background: var(--bl-red); margin-bottom: 18px; }
+  h2.sg-h { font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin: 0 0 12px; }
+  .sg-lead { font-size: 16px; color: var(--fg-2); max-width: 680px; line-height: 1.55; margin: 0 0 40px; }
+
+  .sg-grid-2 { display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .sg-grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .sg-grid-4 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .sg-grid-6 { display:grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .sg-grid-12 { display:grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+
+  .sg-card { background: #fff; border: 1px solid var(--border-1); padding: 20px; }
+  .sg-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); }
+  .sg-mono  { font-family: var(--font-mono); font-size: 12px; color: var(--fg-2); }
+
+  /* ---------- Color swatches ---------- */
+  .sw-brand { aspect-ratio: 1.6 / 1; padding: 16px; display:flex; flex-direction: column; justify-content: flex-end; border: 1px solid var(--border-1); }
+  .sw-brand .name { font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 13px; }
+  .sw-brand .hex  { font-family: var(--font-mono); font-size: 12px; opacity: .85; }
+
+  .sw-step { aspect-ratio: 1 / 1.4; padding: 8px; display:flex; flex-direction: column; justify-content: flex-end; }
+  .sw-step .n { font-weight: 600; font-size: 11px; }
+  .sw-step .h { font-family: var(--font-mono); font-size: 10px; opacity: .85; }
+  .sw-light { color: #000; } .sw-dark  { color: #fff; }
+
+  .sw-sem { display:flex; }
+  .sw-sem__chip { width: 64px; height: 64px; }
+  .sw-sem__meta { padding: 10px 14px; flex: 1; border: 1px solid var(--border-1); border-left: 0; display:flex; flex-direction: column; justify-content: center; }
+  .sw-sem__meta .name { font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+  .sw-sem__meta .hex  { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+
+  /* ---------- Type ---------- */
+  .type-row { display:grid; grid-template-columns: 160px 1fr 80px; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--border-1); }
+  .type-row:last-child { border-bottom: 0; }
+  .type-row .meta { color: var(--fg-3); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+  .type-row .px   { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); text-align: right; }
+
+  .weights table { width: 100%; border-collapse: collapse; }
+  .weights td { padding: 12px 0; border-bottom: 1px solid var(--border-1); }
+  .weights td:first-child { width: 200px; }
+
+  /* ---------- Spacing ---------- */
+  .sp-row { display:flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+  .sp-step { display:flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sp-block { background: var(--bl-red); }
+
+  /* ---------- Shadows ---------- */
+  .sh-row { display:grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+  .sh-cell { display:flex; flex-direction: column; gap: 12px; align-items: center; padding: 32px 0; background: var(--gray-05); }
+  .sh-box { width: 80%; height: 64px; background: #fff; border: 1px solid var(--border-1); }
+  .sh-0 { box-shadow: none; }
+  .sh-1 { box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 1px 1px rgba(0,0,0,0.04); }
+  .sh-2 { box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04); }
+  .sh-3 { box-shadow: 0 12px 32px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.06); }
+  .sh-focus { box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+
+  /* ---------- Buttons ---------- */
+  .b-row { display:flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .b {
+    display:inline-flex; align-items:center; gap: 8px;
+    font-family: var(--font-sans); font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; font-size: 13px; padding: 14px 22px;
+    border: 0; cursor: pointer;
+    transition: background 120ms var(--ease-out), color 120ms, border-color 120ms;
+  }
+  .b--primary { background: var(--bl-red); color: #fff; }
+  .b--primary:hover { background: var(--bl-red-hover); }
+  .b--primary:active { background: var(--bl-red-press); }
+  .b--secondary { background: #fff; color: #000; border: 1px solid #000; }
+  .b--secondary:hover { background: #000; color: #fff; }
+  .b--dark { background: #000; color: #fff; }
+  .b--dark:hover { background: var(--bl-red); }
+  .b--ghost { background: transparent; color: var(--bl-red); padding: 14px 4px; }
+  .b--ghost:hover { color: var(--bl-red-hover); }
+  .b--ghost::after { content: " →"; }
+  .b--sm { padding: 10px 16px; font-size: 12px; }
+  .b--lg { padding: 18px 28px; font-size: 14px; }
+  .b--disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ---------- Inputs ---------- */
+  .f-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 640px; }
+  .f { display:flex; flex-direction: column; gap: 6px; }
+  .f label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-2); }
+  .f input, .f select {
+    font-family: var(--font-sans); font-size: 15px;
+    padding: 12px 14px; background: #fff; color: var(--fg-1);
+    border: 1px solid var(--border-1);
+    transition: border-color 120ms, box-shadow 120ms;
+  }
+  .f input:focus, .f select:focus { outline: 0; border-color: var(--bl-red); box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  .f input::placeholder { color: var(--fg-4); }
+  .f--err input { border-color: var(--bl-red); }
+  .f--err .help { color: var(--bl-red); font-size: 12px; }
+
+  /* ---------- Pills / Badges ---------- */
+  .p-row { display:flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .p {
+    display:inline-flex; align-items:center; gap: 6px;
+    font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; padding: 5px 10px;
+  }
+  .p-dot { width: 6px; height: 6px; background: currentColor; }
+  .p--ok      { background: #E5F4EC; color: #117A3D; }
+  .p--warn    { background: #FFF3DD; color: #B36B00; }
+  .p--crit    { background: #FBE5E5; color: #A50100; }
+  .p--info    { background: #E5EEF7; color: #0F4C8A; }
+  .p--neutral { background: var(--gray-10); color: var(--fg-1); }
+  .p--solid   { background: var(--bl-red); color: #fff; padding: 5px 12px; }
+  .p--outline { background: #fff; border: 1px solid var(--border-1); color: var(--fg-1); padding: 5px 12px; }
+
+  /* ---------- Cards ---------- */
+  .c-grid { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .c { background: #fff; border: 1px solid var(--border-1); padding: 22px; }
+  .c--flag { border-top: 4px solid var(--bl-red); }
+  .c .e { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--bl-red); margin-bottom: 10px; }
+  .c h4 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .c p  { font-size: 14px; line-height: 1.5; color: var(--fg-2); margin: 0; }
+  .c .meta { display:flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
+  .c a { color: var(--bl-red); font-weight: 600; }
+
+  /* ---------- Alerts ---------- */
+  .a-stack { display:flex; flex-direction: column; gap: 10px; max-width: 720px; }
+  .a { display:grid; grid-template-columns: 32px 1fr auto; align-items: flex-start; gap: 12px; padding: 14px 16px; border-left: 3px solid; }
+  .a-icon { width: 24px; height: 24px; background: currentColor; display:flex; align-items:center; justify-content:center; }
+  .a-icon svg { color: #fff; stroke: #fff; }
+  .a-title { font-weight: 600; font-size: 14px; margin: 0 0 2px; }
+  .a-body  { font-size: 13px; color: var(--fg-2); margin: 0; line-height: 1.5; }
+  .a-close { font-size: 18px; color: var(--fg-3); cursor: pointer; background: none; border: 0; }
+  .a--crit { background: #FBE5E5; border-color: #A50100; color: #A50100; }
+  .a--warn { background: #FFF3DD; border-color: #B36B00; color: #B36B00; }
+  .a--ok   { background: #E5F4EC; border-color: #117A3D; color: #117A3D; }
+  .a--info { background: #E5EEF7; border-color: #0F4C8A; color: #0F4C8A; }
+  .a-title, .a-body { color: var(--fg-1); }
+  .a--crit .a-body, .a--warn .a-body, .a--ok .a-body, .a--info .a-body { color: var(--fg-2); }
+
+  /* ---------- Table ---------- */
+  .t-wrap { background: #fff; border: 1px solid var(--border-1); }
+  .t { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .t thead th { text-align:left; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); padding: 14px 18px 10px; border-bottom: 1px solid var(--border-1); background: #F7F7F7; }
+  .t tbody td { padding: 14px 18px; border-bottom: 1px solid var(--border-1); }
+  .t tbody tr:last-child td { border-bottom: 0; }
+  .t tbody tr:hover { background: #FAFAFA; }
+  .t-mono { font-family: var(--font-mono); }
+
+  /* ---------- Iconography ---------- */
+  .i-grid { display:grid; grid-template-columns: repeat(8, 1fr); gap: 18px; }
+  .i-cell { display:flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px; background: #fff; border: 1px solid var(--border-1); }
+  .i-cell svg { color: var(--fg-1); stroke: var(--fg-1); }
+  .i-cell .lbl { font-size: 10px; color: var(--fg-3); font-family: var(--font-mono); }
+
+  /* ---------- Logos ---------- */
+  .l-grid { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .l-cell { display:flex; flex-direction: column; align-items: stretch; }
+  .l-frame { padding: 28px; display:flex; align-items:center; justify-content:center; min-height: 100px; }
+  .l-frame--white { background: #fff; border: 1px solid var(--border-1); }
+  .l-frame--black { background: #000; }
+  .l-frame svg { max-width: 100%; display:block; height: auto; width: 100%; }
+  .l-frame .l-favicon { width: 64px; height: 64px; max-width: 64px; }
+  .l-meta { padding: 10px 0; }
+  .l-meta .name { font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+  .l-meta .path { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+
+  /* ---------- Don't / Do ---------- */
+  .dd-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .dd { padding: 22px; }
+  .dd--do   { background: #fff; border-top: 4px solid #117A3D; border: 1px solid var(--border-1); }
+  .dd--dont { background: #fff; border-top: 4px solid var(--bl-red); border: 1px solid var(--border-1); }
+  .dd .label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; }
+  .dd--do .label   { color: #117A3D; }
+  .dd--dont .label { color: var(--bl-red); }
+  .dd-tag {
+    display:block; font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+    letter-spacing: -0.025em; line-height: 1; text-transform: lowercase;
+  }
+  .dd-tag--shouty { text-transform: none; font-style: italic; opacity: .85; }
+  .dd-sub { font-size: 13px; color: var(--fg-2); margin-top: 10px; line-height: 1.5; }
+
+  /* ---------- Footer ---------- */
+  .sg-foot { padding: 64px; background: #000; color: rgba(255,255,255,0.7); }
+  .sg-foot a { color: var(--bl-red); }
+
+  @media (max-width: 1100px) {
+    .sg-shell { grid-template-columns: 1fr; }
+    .sg-side { position: static; height: auto; }
+    section { padding: 56px 32px; }
+    .sg-hero { padding: 72px 32px 64px; }
+  }
+
+  /* Lucide icon defaults — applied to all inline icon svgs */
+  .icon { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+
+<!-- Inline Lucide icon symbols. Reference via <svg class="icon"><use href="#i-X"/></svg> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-shield-alert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+    <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-phone-off" viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67"/><path d="M5.17 9A19.62 19.62 0 0 1 2.11 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/><line x1="22" x2="2" y1="2" y2="22"/></symbol>
+    <symbol id="i-message-square" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+    <symbol id="i-gavel" viewBox="0 0 24 24"><path d="m14 13-7.5 7.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L11 10"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></symbol>
+    <symbol id="i-file-check-2" viewBox="0 0 24 24"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m3 15 2 2 4-4"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-alert-triangle" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  </defs>
+</svg>
+</head>
+<body data-screen-label="Style Guide">
+
+<div class="sg-shell">
+  <aside class="sg-side">
+    <div class="sg-side__brand">
+      <!-- Blacklist Alliance wordmark on black -->
+      <svg viewBox="0 0 360 23.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Blacklist Alliance">
+        <g>
+          <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+          <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+          <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+          <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+          <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+          <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+          <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+          <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+        </g>
+        <g fill="#fff">
+          <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z"/>
+          <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z"/>
+          <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5"/>
+        </g>
+        <g fill="#fff">
+          <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z"/>
+          <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+          <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z"/>
+          <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+          <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z"/>
+          <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+          <path d="M160.6,23.4V.5h6v22.9h-6Z"/>
+          <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"/>
+          <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z"/>
+        </g>
+        <g>
+          <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+          <g fill="#fff">
+            <circle cx="9.4" cy="6.2" r="2.9"/>
+            <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z"/>
+            <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="sg-side__title">Visual Style Guide</div>
+    <div class="sg-side__title" style="margin-top: 6px;">Foundations</div>
+    <a href="#color">Color</a>
+    <a href="#type">Type</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#radii">Radii</a>
+    <a href="#elevation">Elevation</a>
+    <a href="#motion">Motion</a>
+    <div class="sg-side__title">Brand</div>
+    <a href="#logos">Logos</a>
+    <a href="#iconography">Iconography</a>
+    <a href="#voice">Voice</a>
+    <div class="sg-side__title">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#inputs">Inputs</a>
+    <a href="#pills">Pills &amp; Badges</a>
+    <a href="#cards">Cards</a>
+    <a href="#alerts">Alerts</a>
+    <a href="#tables">Tables</a>
+    <div class="sg-side__title">Patterns</div>
+    <a href="#tagline">Hero pair</a>
+    <a href="#dont">Do &amp; Don't</a>
+    <div class="sg-side__meta">
+      v1 · 2026<br/>
+      Built for Claude Code &amp; production use.
+    </div>
+  </aside>
+
+  <main class="sg-main">
+
+    <!-- HERO -->
+    <header class="sg-hero">
+      <p class="sg-hero__eyebrow">Visual style guide</p>
+      <h1>risk less.<br/>connect more.</h1>
+      <p class="sg-hero__sub">The complete visual language for The Blacklist Alliance — colors, type, components, and patterns. Sharp corners, three colors, one typeface.</p>
+      <div class="sg-hero__rule"></div>
+    </header>
+
+    <!-- COLOR -->
+    <section id="color">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">01 · Color</p>
+      <h2 class="sg-h">Three brand colors. Restrained semantics.</h2>
+      <p class="sg-lead">Red is functional, never decorative. It carries the logo, primary CTAs, the section accent rule, danger states, and selection. Cap red coverage at ~10% of any view.</p>
+
+      <div class="sg-grid-3" style="margin-bottom: 40px;">
+        <div class="sw-brand" style="background: var(--bl-red); color:#fff;"><span class="name">Brand red</span><span class="hex">#A50100</span></div>
+        <div class="sw-brand" style="background: #000; color:#fff;"><span class="name">Black</span><span class="hex">#000000</span></div>
+        <div class="sw-brand" style="background: #fff; color: var(--fg-1);"><span class="name">White</span><span class="hex">#FFFFFF</span></div>
+      </div>
+
+      <p class="sg-label" style="margin-bottom: 12px;">Neutral ramp · gray-00 → gray-100</p>
+      <div class="sg-grid-12" style="margin-bottom: 40px;">
+        <div class="sw-step sw-light" style="background:#FFFFFF; border:1px solid var(--border-1);"><span class="n">00</span><span class="h">FFF</span></div>
+        <div class="sw-step sw-light" style="background:#F7F7F7;"><span class="n">05</span><span class="h">F7</span></div>
+        <div class="sw-step sw-light" style="background:#EFEFEF;"><span class="n">10</span><span class="h">EF</span></div>
+        <div class="sw-step sw-light" style="background:#E0E0E0;"><span class="n">20</span><span class="h">E0</span></div>
+        <div class="sw-step sw-light" style="background:#C9C9C9;"><span class="n">30</span><span class="h">C9</span></div>
+        <div class="sw-step sw-light" style="background:#A8A8A8;"><span class="n">40</span><span class="h">A8</span></div>
+        <div class="sw-step sw-dark"  style="background:#8C8C8C;"><span class="n">50</span><span class="h">8C</span></div>
+        <div class="sw-step sw-dark"  style="background:#6F6F6F;"><span class="n">60</span><span class="h">6F</span></div>
+        <div class="sw-step sw-dark"  style="background:#525252;"><span class="n">70</span><span class="h">52</span></div>
+        <div class="sw-step sw-dark"  style="background:#393939;"><span class="n">80</span><span class="h">39</span></div>
+        <div class="sw-step sw-dark"  style="background:#1F1F1F;"><span class="n">90</span><span class="h">1F</span></div>
+        <div class="sw-step sw-dark"  style="background:#000000;"><span class="n">100</span><span class="h">000</span></div>
+      </div>
+
+      <p class="sg-label" style="margin-bottom: 12px;">Semantic palette</p>
+      <div class="sg-grid-4">
+        <div class="sw-sem"><div class="sw-sem__chip" style="background: #117A3D;"></div><div class="sw-sem__meta"><span class="name">Success</span><span class="hex">#117A3D · bg #E5F4EC</span></div></div>
+        <div class="sw-sem"><div class="sw-sem__chip" style="background: #B36B00;"></div><div class="sw-sem__meta"><span class="name">Warning</span><span class="hex">#B36B00 · bg #FFF3DD</span></div></div>
+        <div class="sw-sem"><div class="sw-sem__chip" style="background: #A50100;"></div><div class="sw-sem__meta"><span class="name">Danger</span><span class="hex">#A50100 · bg #FBE5E5</span></div></div>
+        <div class="sw-sem"><div class="sw-sem__chip" style="background: #0F4C8A;"></div><div class="sw-sem__meta"><span class="name">Info</span><span class="hex">#0F4C8A · bg #E5EEF7</span></div></div>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section id="type">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">02 · Type</p>
+      <h2 class="sg-h">General Sans. One family, six weights.</h2>
+      <p class="sg-lead">Headlines run tight (-0.02em to -0.035em). Eyebrows and CTAs run wide (+0.10em to +0.16em), uppercase. The signature pattern is a lowercase Bold tagline above an UPPERCASE subhead.</p>
+
+      <div style="margin-bottom: 56px;">
+        <div class="type-row"><span class="meta">Display</span><span style="font-size: 88px; font-weight: 700; letter-spacing: -0.035em; line-height: .92; text-transform: lowercase;">risk less.</span><span class="px">88px / 700</span></div>
+        <div class="type-row"><span class="meta">H1 · Headline</span><span style="font-size: 56px; font-weight: 700; letter-spacing: -0.02em; line-height: 1;">Risk less. Connect more.</span><span class="px">56px / 700</span></div>
+        <div class="type-row"><span class="meta">H2</span><span style="font-size: 40px; font-weight: 700; letter-spacing: -0.02em;">Comprehensive TCPA compliance</span><span class="px">40px / 700</span></div>
+        <div class="type-row"><span class="meta">H3</span><span style="font-size: 28px; font-weight: 600; letter-spacing: -0.01em;">Litigation Firewall, in real time</span><span class="px">28px / 600</span></div>
+        <div class="type-row"><span class="meta">H4</span><span style="font-size: 22px; font-weight: 600;">Built for contact centers</span><span class="px">22px / 600</span></div>
+        <div class="type-row"><span class="meta">Subhead · UPPER</span><span style="font-size: 20px; font-weight: 500; text-transform: uppercase; letter-spacing: .04em;">Safeguard AI-enabled communications</span><span class="px">20px / 500</span></div>
+        <div class="type-row"><span class="meta">Body large</span><span style="font-size: 18px;">A dedicated team of professionals standing by to provide the help you need.</span><span class="px">18px / 400</span></div>
+        <div class="type-row"><span class="meta">Body</span><span style="font-size: 16px;">Robust API to scrub DNC data in real time in accordance with your appetite for risk.</span><span class="px">16px / 400</span></div>
+        <div class="type-row"><span class="meta">Body small</span><span style="font-size: 14px; color: var(--fg-2);">Compatible with leading API-based carriers like Twilio, Plivo, Vonage, and RingCentral.</span><span class="px">14px / 400</span></div>
+        <div class="type-row"><span class="meta">Eyebrow / Meta</span><span style="font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3);">Updated · Mar 14, 2026</span><span class="px">12px / 600</span></div>
+      </div>
+
+      <p class="sg-label" style="margin-bottom: 12px;">Weights — General Sans</p>
+      <div class="weights">
+        <table>
+          <tbody>
+            <tr><td><span class="sg-label">200 · Extralight</span></td><td style="font-size: 22px; font-weight: 200;">General Sans — risk less, connect more</td></tr>
+            <tr><td><span class="sg-label">300 · Light</span></td><td style="font-size: 22px; font-weight: 300;">General Sans — risk less, connect more</td></tr>
+            <tr><td><span class="sg-label">400 · Regular</span></td><td style="font-size: 22px; font-weight: 400;">General Sans — risk less, connect more</td></tr>
+            <tr><td><span class="sg-label">500 · Medium</span></td><td style="font-size: 22px; font-weight: 500;">General Sans — risk less, connect more</td></tr>
+            <tr><td><span class="sg-label">600 · Semibold</span></td><td style="font-size: 22px; font-weight: 600;">General Sans — risk less, connect more</td></tr>
+            <tr><td><span class="sg-label">700 · Bold</span></td><td style="font-size: 22px; font-weight: 700;">General Sans — risk less, connect more</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section id="spacing">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">03 · Spacing</p>
+      <h2 class="sg-h">4px base. Generous breathing room.</h2>
+      <p class="sg-lead">Marketing pages use 80–128px vertical section padding. App surfaces use 24–48px. Within components, default to multiples of 4 / 8 / 16.</p>
+      <div class="sp-row">
+        <div class="sp-step"><div class="sp-block" style="width:4px; height:18px;"></div><span class="sg-mono">1 · 4</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:8px; height:24px;"></div><span class="sg-mono">2 · 8</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:12px; height:32px;"></div><span class="sg-mono">3 · 12</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:16px; height:40px;"></div><span class="sg-mono">4 · 16</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:20px; height:48px;"></div><span class="sg-mono">5 · 20</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:24px; height:56px;"></div><span class="sg-mono">6 · 24</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:32px; height:64px;"></div><span class="sg-mono">7 · 32</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:40px; height:72px;"></div><span class="sg-mono">8 · 40</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:48px; height:80px;"></div><span class="sg-mono">9 · 48</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:64px; height:92px;"></div><span class="sg-mono">10 · 64</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:80px; height:104px;"></div><span class="sg-mono">11 · 80</span></div>
+        <div class="sp-step"><div class="sp-block" style="width:96px; height:116px;"></div><span class="sg-mono">12 · 96</span></div>
+      </div>
+    </section>
+
+    <!-- RADII -->
+    <section id="radii">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">04 · Radii</p>
+      <h2 class="sg-h">No corners. Zero radii.</h2>
+      <p class="sg-lead">Every corner in this system is square. Buttons, inputs, cards, modals, badges, pills, avatars, focus rings. The brand is uncompromisingly sharp — softness reads as friendly, and we are not friendly, we are protective.</p>
+      <div class="sg-grid-4" style="max-width: 720px;">
+        <div class="sg-card" style="padding: 0;">
+          <div style="background: #000; height: 80px;"></div>
+          <div style="padding: 14px;"><span class="sg-label">Default</span><br/><span class="sg-mono">--r-0 · 0px</span></div>
+        </div>
+        <div class="sg-card" style="padding: 0;">
+          <div style="background: var(--bl-red); height: 80px;"></div>
+          <div style="padding: 14px;"><span class="sg-label">Pills · still 0</span><br/><span class="sg-mono">--r-pill · 0px</span></div>
+        </div>
+        <div class="sg-card" style="padding: 0;">
+          <div style="background: var(--gray-30); height: 80px;"></div>
+          <div style="padding: 14px;"><span class="sg-label">Avatars · 0</span><br/><span class="sg-mono">No exceptions</span></div>
+        </div>
+        <div class="sg-card" style="padding: 0;">
+          <div style="background: var(--gray-90); height: 80px;"></div>
+          <div style="padding: 14px;"><span class="sg-label">Focus ring · 0</span><br/><span class="sg-mono">box-shadow only</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELEVATION -->
+    <section id="elevation">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">05 · Elevation</p>
+      <h2 class="sg-h">Hairlines first. Shadows for menus.</h2>
+      <p class="sg-lead">Most surfaces use a 1px hairline border or a tiny shadow-1. Heavier shadows are reserved for menus, popovers, and modals.</p>
+      <div class="sh-row">
+        <div class="sh-cell"><div class="sh-box sh-0"></div><span class="sg-label">Flat</span><span class="sg-mono">shadow-0</span></div>
+        <div class="sh-cell"><div class="sh-box sh-1"></div><span class="sg-label">Raised</span><span class="sg-mono">shadow-1</span></div>
+        <div class="sh-cell"><div class="sh-box sh-2"></div><span class="sg-label">Hover</span><span class="sg-mono">shadow-2</span></div>
+        <div class="sh-cell"><div class="sh-box sh-3"></div><span class="sg-label">Menu</span><span class="sg-mono">shadow-3</span></div>
+        <div class="sh-cell"><div class="sh-box sh-focus"></div><span class="sg-label">Focus ring</span><span class="sg-mono">3px red</span></div>
+      </div>
+    </section>
+
+    <!-- MOTION -->
+    <section id="motion">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">06 · Motion</p>
+      <h2 class="sg-h">Quick. Restrained. No bounce.</h2>
+      <p class="sg-lead">120–280ms is the working range. Standard ease-out for everything. Hover swaps use ease-in-out. No springs. No parallax. No scroll-jacking.</p>
+      <div class="sg-grid-4">
+        <div class="sg-card"><span class="sg-label">dur-1</span><br/><span class="sg-mono">120ms</span><p style="font-size: 13px; color: var(--fg-2); margin: 8px 0 0;">Hover, color, opacity.</p></div>
+        <div class="sg-card"><span class="sg-label">dur-2</span><br/><span class="sg-mono">180ms</span><p style="font-size: 13px; color: var(--fg-2); margin: 8px 0 0;">Toggles, small swaps.</p></div>
+        <div class="sg-card"><span class="sg-label">dur-3</span><br/><span class="sg-mono">280ms</span><p style="font-size: 13px; color: var(--fg-2); margin: 8px 0 0;">Modals, drawers in.</p></div>
+        <div class="sg-card"><span class="sg-label">dur-4</span><br/><span class="sg-mono">480ms</span><p style="font-size: 13px; color: var(--fg-2); margin: 8px 0 0;">Hero entry only.</p></div>
+      </div>
+    </section>
+
+    <!-- LOGOS -->
+    <section id="logos">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">07 · Logos</p>
+      <h2 class="sg-h">Three official marks.</h2>
+      <p class="sg-lead">Use the on-white wordmark for marketing surfaces, on-black for dark sections and the app, the favicon as a square brand mark.</p>
+      <div class="l-grid">
+        <div class="l-cell">
+          <div class="l-frame l-frame--white">
+            <svg viewBox="0 0 360 23.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Blacklist Alliance">
+              <g>
+                <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+                <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+                <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+                <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+                <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+                <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+                <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+                <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+              </g>
+              <g>
+                <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z"/>
+                <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z"/>
+                <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5"/>
+              </g>
+              <g>
+                <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z"/>
+                <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+                <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z"/>
+                <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+                <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z"/>
+                <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+                <path d="M160.6,23.4V.5h6v22.9h-6Z"/>
+                <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"/>
+                <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z"/>
+              </g>
+              <g>
+                <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+                <g fill="#fff">
+                  <circle cx="9.4" cy="6.2" r="2.9"/>
+                  <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z"/>
+                  <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="l-meta"><span class="name">Wordmark · light</span><br/><span class="path">assets/blacklist-logo-on-white.svg</span></div>
+        </div>
+        <div class="l-cell">
+          <div class="l-frame l-frame--black">
+            <svg viewBox="0 0 360 23.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Blacklist Alliance">
+              <g>
+                <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+                <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+                <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+                <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+                <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+                <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+                <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+                <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+              </g>
+              <g fill="#fff">
+                <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z"/>
+                <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z"/>
+                <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5"/>
+              </g>
+              <g fill="#fff">
+                <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z"/>
+                <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+                <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z"/>
+                <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+                <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z"/>
+                <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+                <path d="M160.6,23.4V.5h6v22.9h-6Z"/>
+                <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"/>
+                <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z"/>
+              </g>
+              <g>
+                <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+                <g fill="#fff">
+                  <circle cx="9.4" cy="6.2" r="2.9"/>
+                  <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z"/>
+                  <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="l-meta"><span class="name">Wordmark · dark</span><br/><span class="path">assets/blacklist-logo-on-black.svg</span></div>
+        </div>
+        <div class="l-cell">
+          <div class="l-frame l-frame--white">
+            <svg class="l-favicon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Favicon">
+              <rect width="32" height="32" fill="#b5001f"/>
+              <g fill="#fff">
+                <path d="M9.25,8.28c0-2.23,1.81-4.03,4.03-4.03s4.03,1.81,4.03,4.03-1.81,4.03-4.03,4.03-4.03-1.81-4.03-4.03Z"/>
+                <path d="M18.02,13.01h-9.88c-1.39,0-2.64,1.11-2.64,2.64v8.07c0,.7.7,1.39,1.53,1.39s1.53-.7,1.53-1.53v-6.4h.7v9.88h5.29v-.14c-1.67-1.53-2.78-3.62-2.78-6.12,0-3.9,2.64-7.1,6.26-7.79Z"/>
+                <path d="M26.5,20.94c0,3.76-3.06,6.82-6.82,6.82s-6.82-3.06-6.82-6.82,3.06-6.82,6.82-6.82,6.82,3.06,6.82,6.82ZM22.75,25.39l-7.37-7.37c-.7.83-.97,1.81-.97,2.92,0,2.92,2.37,5.29,5.43,5.43,1.11,0,2.09-.42,2.92-.97ZM24.97,20.94c0-2.92-2.37-5.29-5.29-5.29-1.25,0-2.23.28-3.2.97l7.51,7.37s.97-.73.97-3.06Z"/>
+              </g>
+            </svg>
+          </div>
+          <div class="l-meta"><span class="name">Favicon · 32px</span><br/><span class="path">assets/blacklist-favicon.svg</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICONOGRAPHY -->
+    <section id="iconography">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">08 · Iconography</p>
+      <h2 class="sg-h">Lucide. 24px. 2px stroke. currentColor.</h2>
+      <p class="sg-lead">Icons inherit the surrounding text color. Never fill, never colorize. No emoji, ever. (Substitution flag: Lucide stands in until an internal Blacklist set is delivered.)</p>
+      <div class="i-grid">
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-shield-check"/></svg><span class="lbl">shield-check</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-shield-alert"/></svg><span class="lbl">shield-alert</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-ban"/></svg><span class="lbl">ban</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-phone"/></svg><span class="lbl">phone</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-phone-off"/></svg><span class="lbl">phone-off</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-message-square"/></svg><span class="lbl">message-square</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-scale"/></svg><span class="lbl">scale</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-gavel"/></svg><span class="lbl">gavel</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-file-check-2"/></svg><span class="lbl">file-check-2</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-search"/></svg><span class="lbl">search</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-filter"/></svg><span class="lbl">filter</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-bell"/></svg><span class="lbl">bell</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-settings"/></svg><span class="lbl">settings</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-users"/></svg><span class="lbl">users</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-database"/></svg><span class="lbl">database</span></div>
+        <div class="i-cell"><svg class="icon" width="24" height="24"><use href="#i-zap"/></svg><span class="lbl">zap</span></div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section id="voice">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">09 · Voice</p>
+      <h2 class="sg-h">Plain-spoken, confident, slightly punchy.</h2>
+      <p class="sg-lead">Compliance is a serious product. Voice should feel like a trusted operator who has seen every lawsuit and built the tools to prevent the next one. You-led, never we-led.</p>
+      <div class="sg-grid-2">
+        <div class="sg-card">
+          <span class="sg-label" style="color: #117A3D;">Use</span>
+          <ul style="margin: 14px 0 0; padding-left: 20px; line-height: 1.7; font-size: 14px;">
+            <li>"You / your" — the reader is the operator.</li>
+            <li>Lowercase tagline + UPPERCASE subhead pair.</li>
+            <li>Short imperative CTAs: BOOK A FREE DEMO, LEARN MORE.</li>
+            <li>Specific stakes: TCPA, FCC, FTC, state AG, class actions.</li>
+            <li>Acronyms always uppercase: TCPA, DNC, FCC, FTC, VoIP.</li>
+          </ul>
+        </div>
+        <div class="sg-card">
+          <span class="sg-label" style="color: var(--bl-red);">Avoid</span>
+          <ul style="margin: 14px 0 0; padding-left: 20px; line-height: 1.7; font-size: 14px;">
+            <li>Emoji. Ever.</li>
+            <li>Exclamation points in marketing copy.</li>
+            <li>"Leverage", "synergize", "empower" — generic SaaS verbs.</li>
+            <li>Mascots, cartoons, or playful illustration.</li>
+            <li>"Users" — say operators, agents, members, customers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">10 · Buttons</p>
+      <h2 class="sg-h">Square, ALL CAPS, tracked.</h2>
+      <p class="sg-lead">Primary is brand red on white. Secondary is white-with-black-border that flips on hover. Dark is the inverse, used in headers and on light surfaces. All buttons are square.</p>
+      <div class="b-row" style="margin-bottom: 18px;">
+        <button class="b b--primary">Book a free demo</button>
+        <button class="b b--secondary">Learn more</button>
+        <button class="b b--dark">Sign in</button>
+        <button class="b b--ghost">Read the brief</button>
+        <button class="b b--primary b--disabled" disabled>Disabled</button>
+      </div>
+      <div class="b-row">
+        <button class="b b--primary b--sm">Apply</button>
+        <button class="b b--primary">Default</button>
+        <button class="b b--primary b--lg">Large CTA</button>
+      </div>
+    </section>
+
+    <!-- INPUTS -->
+    <section id="inputs">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">11 · Inputs</p>
+      <h2 class="sg-h">Square fields, red focus.</h2>
+      <p class="sg-lead">1px gray-20 border at rest, brand red border + 3px red glow on focus. Labels are uppercase tracked-out micro-type.</p>
+      <div class="f-grid">
+        <div class="f"><label>Phone number</label><input value="+1 (619) 555-0102" /></div>
+        <div class="f"><label>Carrier</label><select><option>Twilio</option><option>Plivo</option><option>Vonage</option><option>RingCentral</option></select></div>
+        <div class="f"><label>Email</label><input placeholder="name@company.com" /></div>
+        <div class="f f--err"><label>Federal ID</label><input value="00-000" /><span class="help">Must be a 9-digit EIN.</span></div>
+      </div>
+    </section>
+
+    <!-- PILLS -->
+    <section id="pills">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">12 · Pills &amp; badges</p>
+      <h2 class="sg-h">Tinted, with a status dot. Square.</h2>
+      <p class="sg-lead">Status pills are tinted backgrounds + a leading colored dot. No rounded corners, no outlines unless explicitly the outline variant. Solid red is for "new" or "live" callouts.</p>
+      <div class="p-row">
+        <span class="p p--ok"><span class="p-dot"></span>Compliant</span>
+        <span class="p p--warn"><span class="p-dot"></span>Review</span>
+        <span class="p p--crit"><span class="p-dot"></span>Litigator</span>
+        <span class="p p--info"><span class="p-dot"></span>Verified</span>
+        <span class="p p--neutral"><span class="p-dot"></span>Pending</span>
+        <span class="p p--solid">Live</span>
+        <span class="p p--outline">Beta</span>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section id="cards">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">13 · Cards</p>
+      <h2 class="sg-h">Hairline border. Optional red top.</h2>
+      <p class="sg-lead">A 4px brand-red top accent ("flag" variant) is reserved for critical or high-priority items. Default cards are flat white on a 1px border.</p>
+      <div class="c-grid">
+        <div class="c">
+          <div class="e">Litigation Firewall</div>
+          <h4>Real-time DNC scrub</h4>
+          <p>Robust API to scrub DNC data in real time in accordance with your appetite for risk.</p>
+          <div class="meta"><span>Service</span><a>Learn more →</a></div>
+        </div>
+        <div class="c c--flag">
+          <div class="e">Critical alert</div>
+          <h4>3 numbers flagged in last hour</h4>
+          <p>Litigator-trap matches blocked before connection. Review the audit trail in Compliance.</p>
+          <div class="meta"><span>1m ago</span><a>Open case →</a></div>
+        </div>
+        <div class="c">
+          <div class="e">Compliance Resources</div>
+          <h4>Quarterly audit report</h4>
+          <p>Q1 2026 audit closed with zero open findings. Full evidence package archived to your Documents.</p>
+          <div class="meta"><span>2 days ago</span><a>Download →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALERTS -->
+    <section id="alerts">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">14 · Alerts</p>
+      <h2 class="sg-h">Tinted bg, 3px left rule, square icon.</h2>
+      <p class="sg-lead">Color carries the severity. The leading icon is a square — no circles, no rounded corners.</p>
+      <div class="a-stack">
+        <div class="a a--crit"><span class="a-icon"><svg class="icon" width="14" height="14" stroke-width="2.5"><use href="#i-shield-alert"/></svg></span><div><p class="a-title">Litigator number blocked</p><p class="a-body">+1 (310) 555-0144 matched the active litigator list. Call was prevented.</p></div><button class="a-close">×</button></div>
+        <div class="a a--warn"><span class="a-icon"><svg class="icon" width="14" height="14" stroke-width="2.5"><use href="#i-alert-triangle"/></svg></span><div><p class="a-title">Scrub coverage below 99%</p><p class="a-body">3 lists have not been re-scrubbed in 24 hours. Refresh recommended.</p></div><button class="a-close">×</button></div>
+        <div class="a a--ok"><span class="a-icon"><svg class="icon" width="14" height="14" stroke-width="2.5"><use href="#i-check"/></svg></span><div><p class="a-title">Audit complete</p><p class="a-body">Q1 compliance audit closed. Report exported to your Documents.</p></div><button class="a-close">×</button></div>
+        <div class="a a--info"><span class="a-icon"><svg class="icon" width="14" height="14" stroke-width="2.5"><use href="#i-info"/></svg></span><div><p class="a-title">FCC ruling effective May 8</p><p class="a-body">AI-generated voice calls now classified as artificial. Review your AI compliance settings.</p></div><button class="a-close">×</button></div>
+      </div>
+    </section>
+
+    <!-- TABLES -->
+    <section id="tables">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">15 · Tables</p>
+      <h2 class="sg-h">Dense, monospace numbers, hairline rows.</h2>
+      <p class="sg-lead">Phone numbers and IDs in monospace. UPPERCASE micro-headers. Row hover tints to gray-05.</p>
+      <div class="t-wrap">
+        <table class="t">
+          <thead><tr><th>Phone</th><th>Carrier</th><th>Type</th><th>Status</th><th>Last scrub</th></tr></thead>
+          <tbody>
+            <tr><td class="t-mono">+1 (619) 555-0142</td><td>Twilio</td><td>Wireless</td><td><span class="p p--ok"><span class="p-dot"></span>Compliant</span></td><td style="color: var(--fg-2);">2m ago</td></tr>
+            <tr><td class="t-mono">+1 (310) 555-0144</td><td>Plivo</td><td>Wireless</td><td><span class="p p--crit"><span class="p-dot"></span>Litigator</span></td><td style="color: var(--fg-2);">2m ago</td></tr>
+            <tr><td class="t-mono">+1 (415) 555-0190</td><td>Vonage</td><td>Landline</td><td><span class="p p--warn"><span class="p-dot"></span>Review</span></td><td style="color: var(--fg-2);">14m ago</td></tr>
+            <tr><td class="t-mono">+1 (212) 555-0103</td><td>RingCentral</td><td>VoIP</td><td><span class="p p--ok"><span class="p-dot"></span>Compliant</span></td><td style="color: var(--fg-2);">21m ago</td></tr>
+            <tr><td class="t-mono">+1 (713) 555-0177</td><td>Plivo</td><td>Wireless</td><td><span class="p p--warn"><span class="p-dot"></span>DNC</span></td><td style="color: var(--fg-2);">45m ago</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAGLINE PATTERN -->
+    <section id="tagline" style="background: #000; color: #fff; border-bottom: 4px solid var(--bl-red);">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow" style="color: var(--bl-red);">16 · Hero pair</p>
+      <h2 class="sg-h" style="color:#fff;">The signature pattern.</h2>
+      <p class="sg-lead" style="color: rgba(255,255,255,0.65);">Lowercase Bold tagline above an UPPERCASE Medium subhead. Use this for any major brand moment — homepage hero, deck title slides, campaign launches, in-product onboarding moments.</p>
+      <div style="padding: 32px 0;">
+        <p style="font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--bl-red); font-weight: 600; margin: 0 0 28px;">TCPA · DNC · FCC</p>
+        <h3 style="font-size: clamp(64px, 9vw, 144px); font-weight: 700; letter-spacing: -0.035em; line-height: 0.9; text-transform: lowercase; margin: 0 0 24px;">risk less.<br/>connect more.</h3>
+        <p style="font-size: clamp(18px, 2vw, 28px); font-weight: 500; text-transform: uppercase; letter-spacing: .04em; line-height: 1.25; max-width: 720px; margin: 0;">TCPA &amp; DNC compliance solutions to safeguard AI-enabled communications</p>
+      </div>
+    </section>
+
+    <!-- DO / DON'T -->
+    <section id="dont">
+      <span class="sg-bar"></span>
+      <p class="sg-eyebrow">17 · Do &amp; Don't</p>
+      <h2 class="sg-h">A few hard rules.</h2>
+      <p class="sg-lead">Repeat patterns from this guide. Resist the temptations below.</p>
+      <div class="dd-grid" style="margin-bottom: 18px;">
+        <div class="dd dd--do">
+          <div class="label">Do</div>
+          <span class="dd-tag">risk less.</span>
+          <p class="dd-sub">Lowercase Bold tagline, tight tracking, sharp corners, brand red on black.</p>
+        </div>
+        <div class="dd dd--dont">
+          <div class="label">Don't</div>
+          <span class="dd-tag dd-tag--shouty" style="text-transform: uppercase; letter-spacing: 0.02em;">RISK LESS!</span>
+          <p class="dd-sub">No exclamation points. No all-caps headlines (CAPS belongs to subheads/CTAs).</p>
+        </div>
+        <div class="dd dd--do">
+          <div class="label">Do</div>
+          <button class="b b--primary">Book a free demo</button>
+          <p class="dd-sub" style="margin-top: 18px;">Square, brand red, ALL CAPS, tracked.</p>
+        </div>
+        <div class="dd dd--dont">
+          <div class="label">Don't</div>
+          <button class="b b--primary" style="text-transform: none; letter-spacing: 0;">Book a free demo</button>
+          <p class="dd-sub" style="margin-top: 18px;">No pill buttons. No sentence case on CTAs.</p>
+        </div>
+        <div class="dd dd--do">
+          <div class="label">Do</div>
+          <span class="p p--crit"><span class="p-dot"></span>Litigator</span>
+          <p class="dd-sub" style="margin-top: 18px;">Square pills with a leading dot — even pills are sharp.</p>
+        </div>
+        <div class="dd dd--dont">
+          <div class="label">Don't</div>
+          <span class="p p--crit"><span class="p-dot"></span>Litigator</span>
+          <p class="dd-sub" style="margin-top: 18px;">No rounded pills. No rounded dots. We are sharp end-to-end.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="sg-foot">
+      <p style="font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 8px; color: var(--bl-red); font-weight: 600;">End of style guide</p>
+      <p style="margin: 0; font-size: 13px;">Foundations live in <a href="colors_and_type.css">colors_and_type.css</a>. Marketing kit: <a href="ui_kits/website/index.html">ui_kits/website/</a>. App kit: <a href="ui_kits/dashboard/index.html">ui_kits/dashboard/</a>. Brand guide: <a href="README.md">README.md</a>.</p>
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>
