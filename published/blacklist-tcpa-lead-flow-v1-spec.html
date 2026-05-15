@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCPA Lead Flow — v1 Spec | The Blacklist Alliance</title>
+<link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg" />
+<style>
+  /* General Sans — Blacklist Alliance brand typeface */
+  @font-face { font-family: "General Sans"; src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: "General Sans"; src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+  /* Blacklist Alliance design tokens */
+  :root {
+    /* Brand */
+    --bl-red:        #A50100;
+    --bl-red-hover:  #8A0100;
+    --bl-red-press:  #6E0100;
+    --bl-red-tint:   #FBE5E5;
+    --bl-black:      #000000;
+    --bl-white:      #FFFFFF;
+
+    /* Neutrals */
+    --gray-00: #FFFFFF;
+    --gray-05: #F7F7F7;
+    --gray-10: #EFEFEF;
+    --gray-20: #E0E0E0;
+    --gray-30: #C9C9C9;
+    --gray-40: #A8A8A8;
+    --gray-50: #8C8C8C;
+    --gray-60: #6F6F6F;
+    --gray-70: #525252;
+    --gray-80: #393939;
+    --gray-90: #1F1F1F;
+    --gray-100:#000000;
+
+    /* Semantic */
+    --success:    #117A3D;
+    --success-bg: #E5F4EC;
+    --warning:    #B36B00;
+    --warning-bg: #FFF3DD;
+    --danger:     #A50100;
+    --danger-bg:  #FBE5E5;
+    --info:       #0F4C8A;
+    --info-bg:    #E5EEF7;
+
+    /* Surfaces / type */
+    --bg:            var(--gray-05);
+    --bg-elev:       var(--gray-00);
+    --bg-hover:      var(--gray-10);
+    --border:        var(--gray-20);
+    --border-strong: var(--gray-40);
+    --text:          var(--gray-100);
+    --text-2:        var(--gray-70);
+    --text-3:        var(--gray-60);
+    --connector:     var(--gray-70);
+
+    --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+    --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+    --ease-std: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--bl-red); color: var(--bl-white); }
+
+  /* Layout */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 var(--s-6); }
+
+  header {
+    padding: var(--s-7) 0 var(--s-6);
+    background: var(--bl-white);
+    border-bottom: 4px solid var(--bl-red);
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: var(--s-6);
+  }
+  .logo svg { height: 22px; width: auto; display: block; }
+
+  .risk-bar {
+    display: block;
+    width: 56px;
+    height: 4px;
+    background: var(--bl-red);
+    margin: 0 0 var(--s-3);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--bl-red);
+    margin-bottom: var(--s-3);
+  }
+
+  h1 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--s-4);
+    color: var(--bl-black);
+  }
+  h1 strong { color: var(--bl-red); font-weight: 700; }
+
+  .lede {
+    font-size: 17px; line-height: 1.55;
+    color: var(--text-2);
+    max-width: 820px;
+    margin-bottom: var(--s-5);
+    font-weight: 400;
+  }
+
+  .meta {
+    display: flex; gap: var(--s-5); flex-wrap: wrap;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+  .meta b { color: var(--text); font-weight: 600; }
+  .meta .pill {
+    display: inline-block;
+    background: var(--bl-red);
+    color: var(--bl-white);
+    padding: 4px 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  }
+
+  main { padding: var(--s-7) 0; background: var(--bg); }
+  section { margin-bottom: var(--s-8); }
+
+  h2 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--s-5);
+    padding-bottom: var(--s-3);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); flex-wrap: wrap;
+    color: var(--bl-black);
+  }
+  h2 .tagline {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  /* Section header risk-bar */
+  .section-bar {
+    display: block;
+    width: 56px; height: 4px;
+    background: var(--bl-red);
+    margin-bottom: var(--s-3);
+  }
+
+  /* === Thesis callout === */
+  .thesis {
+    background: var(--bl-red-tint);
+    border-left: 4px solid var(--bl-red);
+    padding: var(--s-5) var(--s-6);
+    color: var(--bl-black);
+  }
+  .thesis-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--bl-red);
+    margin-bottom: var(--s-2);
+  }
+  .thesis blockquote {
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--bl-black);
+  }
+
+  /* === BUBBLE CHART === */
+  .bubble-chart-wrap {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    padding: var(--s-5);
+    overflow-x: auto;
+  }
+  .bubble-chart {
+    width: 100%;
+    height: auto;
+    max-width: 1180px;
+    display: block;
+    margin: 0 auto;
+  }
+  .bubble-chart .bubble-shape {
+    fill: var(--bl-white);
+    stroke: var(--gray-80);
+    stroke-width: 2;
+  }
+  .bubble-chart .bubble.ai       .bubble-shape { stroke: var(--warning); stroke-width: 3; }
+  .bubble-chart .bubble.manual   .bubble-shape { stroke: var(--gray-50); }
+  .bubble-chart .bubble.output   .bubble-shape { stroke: var(--success); }
+  .bubble-chart .bubble.alert    .bubble-shape { stroke: var(--bl-red); fill: var(--bl-red-tint); }
+  .bubble-chart .bubble.decision .bubble-shape { stroke: var(--info); }
+  .bubble-chart .bubble.data     .bubble-shape { stroke: var(--info); }
+  .bubble-chart .bubble.hub      .bubble-shape { stroke: var(--bl-red); stroke-width: 4; fill: var(--bl-red-tint); }
+
+  .bubble-chart .bubble text.title {
+    fill: var(--bl-black);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    letter-spacing: -0.005em;
+  }
+  .bubble-chart .bubble.hub text.title { font-size: 17px; font-weight: 700; }
+  .bubble-chart .bubble text.subtitle {
+    fill: var(--text-3);
+    font-family: var(--font-sans);
+    font-size: 9.5px;
+    font-weight: 600;
+    text-anchor: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .bubble-chart .bubble.satellite text.title { font-size: 11px; }
+  .bubble-chart .connector {
+    stroke: var(--connector);
+    stroke-width: 1.5;
+    fill: none;
+    marker-end: url(#arrow);
+  }
+  .bubble-chart .connector.thick { stroke-width: 2; }
+  .bubble-chart .connector.dashed { stroke-dasharray: 4 4; }
+  .bubble-chart .connector-label {
+    fill: var(--text-2);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-anchor: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    paint-order: stroke;
+    stroke: var(--bl-white);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+  }
+  .bubble-chart-legend {
+    display: flex; flex-wrap: wrap; gap: var(--s-4);
+    margin-top: var(--s-4);
+    padding: var(--s-3) var(--s-4);
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+  }
+  .legend-item {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--text-2);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .swatch { width: 14px; height: 14px; border: 2px solid; background: var(--bl-white); }
+  .sw-process  { border-color: var(--gray-80); }
+  .sw-ai       { border-color: var(--warning); border-width: 3px; }
+  .sw-manual   { border-color: var(--gray-50); }
+  .sw-decision { border-color: var(--info); }
+  .sw-output   { border-color: var(--success); }
+  .sw-alert    { border-color: var(--bl-red); background: var(--bl-red-tint); }
+  .sw-hub      { border-color: var(--bl-red); border-width: 4px; background: var(--bl-red-tint); }
+
+  /* === Stage-by-stage flow === */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .stage {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    padding: var(--s-4);
+  }
+  .arrow {
+    text-align: center;
+    color: var(--text-3);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    padding: var(--s-2) 0;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .stage-head {
+    display: flex; align-items: baseline; gap: var(--s-3);
+    margin-bottom: var(--s-3);
+  }
+  .stage-num {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--bl-red);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .stage-title {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .nodes { display: grid; gap: var(--s-3); }
+  .nodes-1 { grid-template-columns: 1fr; }
+  .nodes-2 { grid-template-columns: 1fr 1fr; }
+  .nodes-3 { grid-template-columns: repeat(3, 1fr); }
+  .nodes-5 { grid-template-columns: repeat(5, 1fr); }
+  .nodes-6 { grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 980px) { .nodes-6 { grid-template-columns: repeat(6, 1fr); } }
+
+  .node {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gray-80);
+    padding: var(--s-3) var(--s-4);
+  }
+  .node.ai       { border-left-color: var(--warning); }
+  .node.manual   { border-left-color: var(--gray-50); }
+  .node.data     { border-left-color: var(--info); }
+  .node.output   { border-left-color: var(--success); }
+  .node.alert    { border-left-color: var(--bl-red); }
+  .node.decision { border-left-color: var(--info); }
+  .node.rep      { border-left-color: var(--bl-red); text-align: center; }
+
+  .node-title {
+    font-weight: 700; font-size: 13px;
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap;
+    letter-spacing: -0.005em;
+    color: var(--bl-black);
+  }
+  .node-tag {
+    font-family: var(--font-sans);
+    font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 2px 6px;
+    background: var(--gray-10);
+    color: var(--text-3);
+  }
+  .node-tag.ai     { background: var(--warning); color: var(--bl-white); }
+  .node-tag.alert  { background: var(--bl-red); color: var(--bl-white); }
+  .node-tag.output { background: var(--success); color: var(--bl-white); }
+  .node-desc {
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .node-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-3);
+    margin-top: var(--s-2);
+    letter-spacing: 0.02em;
+  }
+  .node.rep .node-title { justify-content: center; font-size: 14px; }
+
+  /* === Decisions === */
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .decision-col h3 {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--s-3);
+    color: var(--text-3);
+    font-weight: 700;
+    display: flex; align-items: center; gap: var(--s-2);
+  }
+  .decision-col h3 .count {
+    background: var(--text);
+    color: var(--bg);
+    padding: 1px 8px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .decision-col.locked h3 .count { background: var(--success); color: var(--bl-white); }
+  .decision-col.open   h3 .count { background: var(--warning); color: var(--bl-white); }
+  .decision {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    padding: var(--s-4);
+    margin-bottom: var(--s-2);
+  }
+  .decision.locked { border-left: 3px solid var(--success); }
+  .decision.open   { border-left: 3px solid var(--warning); }
+  .decision-title {
+    font-weight: 700; font-size: 14px;
+    margin-bottom: var(--s-2);
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap;
+    color: var(--bl-black);
+  }
+  .decision-status {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 4px 8px;
+    font-weight: 700;
+  }
+  .decision.locked .decision-status { background: var(--success); color: var(--bl-white); }
+  .decision.open   .decision-status { background: var(--warning); color: var(--bl-white); }
+  .decision-body { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  /* === Toggles (details/summary) === */
+  details {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gray-50);
+    margin-bottom: var(--s-2);
+  }
+  details[open] { border-left-color: var(--bl-red); }
+  details summary {
+    padding: var(--s-3) var(--s-4);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex; align-items: center; gap: var(--s-2);
+    list-style: none;
+    user-select: none;
+    color: var(--bl-black);
+    letter-spacing: -0.005em;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '+';
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--bl-red);
+    width: 18px;
+  }
+  details[open] summary::before { content: '−'; }
+  details summary:hover { background: var(--gray-05); }
+  details .details-tag {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-left: auto;
+    font-weight: 600;
+  }
+  details .details-body {
+    padding: 0 var(--s-4) var(--s-4) var(--s-6);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-2);
+  }
+  details .details-body p { margin-bottom: var(--s-3); }
+  details .details-body strong { color: var(--text); font-weight: 600; }
+  details .details-body ul { margin: var(--s-3) 0 var(--s-3) var(--s-4); }
+  details .details-body li { margin-bottom: var(--s-2); }
+  details .details-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--s-3) 0;
+    font-size: 12px;
+  }
+  details .details-body th,
+  details .details-body td {
+    padding: var(--s-3);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  details .details-body th {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-strong);
+  }
+  details .details-body code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--gray-05);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    color: var(--bl-red);
+  }
+  details .details-body pre {
+    background: var(--gray-05);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--bl-red);
+    padding: var(--s-4);
+    margin: var(--s-3) 0;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  details .details-body pre code {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: var(--text);
+  }
+
+  /* === Next steps === */
+  .next-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-3); }
+  .step {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    padding: var(--s-4);
+    border-top: 3px solid var(--bl-red);
+  }
+  .step-owner {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--bl-red);
+    letter-spacing: 0.12em;
+    margin-bottom: var(--s-2);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .step-title { font-weight: 700; font-size: 15px; margin-bottom: var(--s-2); letter-spacing: -0.005em; color: var(--bl-black); }
+  .step-body { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+  footer {
+    background: var(--bl-black);
+    color: var(--gray-30);
+    padding: var(--s-7) var(--s-6);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--s-3);
+    align-items: center;
+  }
+  footer .footer-mark { display: flex; align-items: center; gap: var(--s-3); }
+  footer .footer-mark svg { height: 18px; width: auto; }
+
+  /* TOC */
+  .toc {
+    background: var(--bl-white);
+    border: 1px solid var(--border);
+    padding: var(--s-4);
+    margin-bottom: var(--s-6);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--s-3);
+  }
+  .toc a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: var(--s-2) var(--s-3);
+    border-left: 2px solid var(--border);
+    transition: border-color var(--ease-std) 120ms, background var(--ease-std) 120ms, color var(--ease-std) 120ms;
+  }
+  .toc a:hover {
+    border-left-color: var(--bl-red);
+    background: var(--gray-05);
+    color: var(--bl-red);
+  }
+  .toc a .toc-num {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    color: var(--bl-red);
+    margin-right: var(--s-2);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(165, 1, 0, 0.28);
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 36px; }
+    h2 { font-size: 24px; }
+    .nodes-2, .nodes-3, .nodes-5, .nodes-6, .decisions-grid, .next-steps {
+      grid-template-columns: 1fr;
+    }
+    .nodes-5 { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="logo" aria-label="The Blacklist Alliance">
+      <!-- Blacklist Alliance wordmark on white -->
+      <svg viewBox="0 0 360 23.8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Blacklist Alliance">
+        <g>
+          <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+          <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+          <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+          <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+          <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+          <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+          <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+          <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+        </g>
+        <g>
+          <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z"/>
+          <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z"/>
+          <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5"/>
+        </g>
+        <g>
+          <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z"/>
+          <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+          <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z"/>
+          <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+          <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z"/>
+          <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+          <path d="M160.6,23.4V.5h6v22.9h-6Z"/>
+          <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"/>
+          <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z"/>
+        </g>
+        <g>
+          <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+          <g>
+            <circle cx="9.4" cy="6.2" r="2.9" fill="#fff"/>
+            <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z" fill="#fff"/>
+            <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z" fill="#fff"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <span class="risk-bar" aria-hidden="true"></span>
+    <div class="eyebrow">TCPA Filed Case Lead Flow</div>
+    <h1>v1 Specification — from filed complaint to <strong>contacted lead.</strong></h1>
+    <p class="lede">A meeting-ready spec covering the architecture, decisions, layer-by-layer detail, sample case evidence, and field schemas. Bubble chart up top for the 30-second view; deep-dive sections collapse into toggles so the doc stays scannable.</p>
+    <div class="meta">
+      <span><span class="pill">v1 design · locked</span></span>
+      <span>Date: <b>2026-05-07</b></span>
+      <span>Owner: <b>Matt Beucler</b></span>
+      <span>Stakeholders: <b>Seth · Esteban · Sam · Nick · Jennifer</b></span>
+      <span>Decisions: <b>6 of 9 closed</b></span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- TOC -->
+    <nav class="toc" aria-label="Table of contents">
+      <a href="#chart"><span class="toc-num">01</span>Architecture at a glance</a>
+      <a href="#thesis"><span class="toc-num">02</span>Core thesis</a>
+      <a href="#flow"><span class="toc-num">03</span>End-to-end flow · 12 stages</a>
+      <a href="#decisions"><span class="toc-num">04</span>Decisions board</a>
+      <a href="#detail"><span class="toc-num">05</span>Architectural detail</a>
+      <a href="#evidence"><span class="toc-num">06</span>Sample case evidence</a>
+      <a href="#schemas"><span class="toc-num">07</span>Field schemas</a>
+      <a href="#next"><span class="toc-num">08</span>Next steps</a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- 01 · BUBBLE CHART                                              -->
+    <!-- ============================================================ -->
+    <section id="chart">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Architecture at a glance <span class="tagline">bubble chart · 30-second view</span></h2>
+
+      <div class="bubble-chart-wrap">
+        <svg class="bubble-chart" viewBox="0 0 1200 1500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TCPA Lead Flow bubble chart architecture">
+          <title>TCPA Lead Flow — bubble chart architecture</title>
+          <desc>Sources flow into Sam, who drops PDFs into Google Drive. Make.com orchestrates Claude parsing, enrichment fan-out, HubSpot push, Slack notify, and Gmail draft. Rep approves and edits, then sends from their own mailbox. Cadence and reporting close the loop.</desc>
+
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#525252" />
+            </marker>
+          </defs>
+
+          <!-- Sources → Sam -->
+          <path class="connector" d="M 200 116 Q 240 160 290 184" />
+          <text class="connector-label" x="225" y="156">alerts</text>
+          <path class="connector" d="M 440 116 Q 400 160 350 184" />
+          <text class="connector-label" x="415" y="156">alerts</text>
+
+          <!-- Sam → Drive -->
+          <path class="connector thick" d="M 320 232 L 320 296" />
+          <text class="connector-label" x="320" y="268">drops PDFs</text>
+
+          <!-- Drive → Make -->
+          <path class="connector thick" d="M 320 352 Q 320 400 510 432" />
+          <text class="connector-label" x="380" y="402">watches folder</text>
+
+          <!-- Make ↔ Claude -->
+          <path class="connector thick" d="M 510 460 L 290 460" />
+          <text class="connector-label" x="400" y="448">sends PDF</text>
+          <path class="connector dashed" d="M 290 478 L 510 478" />
+          <text class="connector-label" x="400" y="496">returns JSON</text>
+
+          <!-- Make → Enrichment hub -->
+          <path class="connector thick" d="M 690 460 L 920 460" />
+          <text class="connector-label" x="805" y="448">fan-out</text>
+
+          <!-- Enrichment hub → satellites -->
+          <path class="connector dashed" d="M 1000 432 L 1010 372" />
+          <path class="connector dashed" d="M 1010 432 L 1080 380" />
+          <path class="connector dashed" d="M 1010 488 L 1080 540" />
+          <path class="connector dashed" d="M 1000 488 L 1010 548" />
+
+          <!-- Make → HubSpot dedupe -->
+          <path class="connector thick" d="M 600 510 L 600 624" />
+          <text class="connector-label" x="600" y="572">dedupe</text>
+
+          <!-- HubSpot dedupe → 3 outcomes -->
+          <path class="connector" d="M 540 690 Q 420 740 320 776" />
+          <text class="connector-label" x="420" y="738">match: customer</text>
+          <path class="connector" d="M 600 700 L 600 776" />
+          <text class="connector-label" x="600" y="744">match: prospect</text>
+          <path class="connector" d="M 660 690 Q 780 740 880 776" />
+          <text class="connector-label" x="780" y="738">no match · continue</text>
+
+          <!-- "Continue" → Lead Brief -->
+          <path class="connector thick" d="M 880 832 Q 750 880 660 916" />
+          <text class="connector-label" x="770" y="884">compose</text>
+
+          <!-- Lead Brief → Round-robin -->
+          <path class="connector thick" d="M 600 980 L 600 1036" />
+          <text class="connector-label" x="600" y="1014">score &amp; assign</text>
+
+          <!-- Round-robin → 3 parallel pushes -->
+          <path class="connector thick" d="M 540 1090 Q 420 1140 320 1176" />
+          <text class="connector-label" x="420" y="1138">push lead</text>
+          <path class="connector thick" d="M 600 1100 L 600 1176" />
+          <text class="connector-label" x="600" y="1144">notify rep</text>
+          <path class="connector thick" d="M 660 1090 Q 780 1140 880 1176" />
+          <text class="connector-label" x="780" y="1138">draft email</text>
+
+          <!-- 3 outputs → Rep -->
+          <path class="connector" d="M 320 1232 Q 460 1280 560 1304" />
+          <path class="connector" d="M 600 1232 L 600 1296" />
+          <text class="connector-label" x="600" y="1268">rep reviews</text>
+          <path class="connector" d="M 880 1232 Q 740 1280 640 1304" />
+
+          <!-- Rep → Send -->
+          <path class="connector thick" d="M 600 1356 L 600 1416" />
+          <text class="connector-label" x="600" y="1390">approve &amp; edit</text>
+
+          <!-- Send → Reports -->
+          <path class="connector dashed" d="M 690 1442 Q 880 1448 990 1432" />
+          <text class="connector-label" x="855" y="1432">metrics</text>
+
+          <!-- HubSpot push → Reports -->
+          <path class="connector dashed" d="M 380 1186 Q 1080 1380 1040 1408" />
+
+          <!-- Bubbles -->
+
+          <!-- Sources -->
+          <g class="bubble manual">
+            <ellipse class="bubble-shape" cx="200" cy="80" rx="80" ry="36" />
+            <text class="title" x="200" y="76">LexisNexis</text>
+            <text class="subtitle" x="200" y="98">source · alerts</text>
+          </g>
+          <g class="bubble manual">
+            <ellipse class="bubble-shape" cx="440" cy="80" rx="80" ry="36" />
+            <text class="title" x="440" y="76">Westlaw</text>
+            <text class="subtitle" x="440" y="98">source · alerts</text>
+          </g>
+
+          <!-- Sam -->
+          <g class="bubble manual">
+            <ellipse class="bubble-shape" cx="320" cy="208" rx="60" ry="26" />
+            <text class="title" x="320" y="208">Sam</text>
+          </g>
+
+          <!-- Drive -->
+          <g class="bubble">
+            <ellipse class="bubble-shape" cx="320" cy="324" rx="92" ry="30" />
+            <text class="title" x="320" y="320">Google Drive</text>
+            <text class="subtitle" x="320" y="342">watched folder</text>
+          </g>
+
+          <!-- Make.com (HUB) -->
+          <g class="bubble hub">
+            <ellipse class="bubble-shape" cx="600" cy="466" rx="98" ry="46" />
+            <text class="title" x="600" y="460">Make.com</text>
+            <text class="subtitle" x="600" y="482">orchestrator</text>
+          </g>
+
+          <!-- Claude API (AI) -->
+          <g class="bubble ai">
+            <ellipse class="bubble-shape" cx="200" cy="466" rx="92" ry="34" />
+            <text class="title" x="200" y="460">Claude API</text>
+            <text class="subtitle" x="200" y="482">AI parser · vision + LLM</text>
+          </g>
+
+          <!-- Enrichment hub -->
+          <g class="bubble">
+            <ellipse class="bubble-shape" cx="1000" cy="466" rx="84" ry="32" />
+            <text class="title" x="1000" y="462">Enrichment APIs</text>
+            <text class="subtitle" x="1000" y="482">parallel calls</text>
+          </g>
+
+          <!-- Satellite enrichment vendors -->
+          <g class="bubble satellite">
+            <ellipse class="bubble-shape" cx="1010" cy="356" rx="42" ry="18" />
+            <text class="title" x="1010" y="358">Apollo</text>
+          </g>
+          <g class="bubble satellite">
+            <ellipse class="bubble-shape" cx="1102" cy="362" rx="44" ry="18" />
+            <text class="title" x="1102" y="364">Hunter</text>
+          </g>
+          <g class="bubble satellite">
+            <ellipse class="bubble-shape" cx="1102" cy="556" rx="44" ry="18" />
+            <text class="title" x="1102" y="558">LinkedIn</text>
+          </g>
+          <g class="bubble satellite">
+            <ellipse class="bubble-shape" cx="1010" cy="568" rx="56" ry="18" />
+            <text class="title" x="1010" y="570">Number Verifier</text>
+          </g>
+
+          <!-- HubSpot dedupe -->
+          <g class="bubble decision">
+            <ellipse class="bubble-shape" cx="600" cy="660" rx="92" ry="34" />
+            <text class="title" x="600" y="654">HubSpot dedupe</text>
+            <text class="subtitle" x="600" y="676">three outcomes</text>
+          </g>
+
+          <!-- Three dedupe outcomes -->
+          <g class="bubble alert">
+            <ellipse class="bubble-shape" cx="220" cy="800" rx="98" ry="28" />
+            <text class="title" x="220" y="800">Existing customer</text>
+          </g>
+          <g class="bubble output">
+            <ellipse class="bubble-shape" cx="600" cy="800" rx="92" ry="28" />
+            <text class="title" x="600" y="800">Active prospect</text>
+          </g>
+          <g class="bubble">
+            <ellipse class="bubble-shape" cx="980" cy="800" rx="100" ry="28" />
+            <text class="title" x="980" y="800">New defendant</text>
+          </g>
+
+          <!-- Lead Brief -->
+          <g class="bubble ai">
+            <ellipse class="bubble-shape" cx="600" cy="944" rx="94" ry="32" />
+            <text class="title" x="600" y="940">Lead Brief</text>
+            <text class="subtitle" x="600" y="962">AI compose · score</text>
+          </g>
+
+          <!-- Round-robin -->
+          <g class="bubble">
+            <ellipse class="bubble-shape" cx="600" cy="1064" rx="120" ry="32" />
+            <text class="title" x="600" y="1060">Round-robin · 5 reps</text>
+            <text class="subtitle" x="600" y="1082">case-level routing</text>
+          </g>
+
+          <!-- 3 parallel outputs -->
+          <g class="bubble output">
+            <ellipse class="bubble-shape" cx="220" cy="1204" rx="80" ry="28" />
+            <text class="title" x="220" y="1204">HubSpot</text>
+          </g>
+          <g class="bubble output">
+            <ellipse class="bubble-shape" cx="600" cy="1204" rx="60" ry="28" />
+            <text class="title" x="600" y="1204">Slack</text>
+          </g>
+          <g class="bubble ai">
+            <ellipse class="bubble-shape" cx="980" cy="1204" rx="84" ry="28" />
+            <text class="title" x="980" y="1200">Gmail draft</text>
+            <text class="subtitle" x="980" y="1220">on rep mailbox</text>
+          </g>
+
+          <!-- Rep approval -->
+          <g class="bubble decision">
+            <ellipse class="bubble-shape" cx="600" cy="1330" rx="120" ry="34" />
+            <text class="title" x="600" y="1324">Rep approves &amp; edits</text>
+            <text class="subtitle" x="600" y="1346">human in the loop</text>
+          </g>
+
+          <!-- Send + cadence -->
+          <g class="bubble output">
+            <ellipse class="bubble-shape" cx="600" cy="1444" rx="92" ry="28" />
+            <text class="title" x="600" y="1444">Send + cadence</text>
+          </g>
+
+          <!-- Reports -->
+          <g class="bubble output">
+            <ellipse class="bubble-shape" cx="1040" cy="1424" rx="78" ry="28" />
+            <text class="title" x="1040" y="1420">Reports</text>
+            <text class="subtitle" x="1040" y="1440">daily digest</text>
+          </g>
+
+        </svg>
+
+        <div class="bubble-chart-legend">
+          <div class="legend-item"><span class="swatch sw-process"></span>Process / system</div>
+          <div class="legend-item"><span class="swatch sw-ai"></span>AI / Claude</div>
+          <div class="legend-item"><span class="swatch sw-manual"></span>Manual / human</div>
+          <div class="legend-item"><span class="swatch sw-decision"></span>Branch / decision</div>
+          <div class="legend-item"><span class="swatch sw-output"></span>Output / write</div>
+          <div class="legend-item"><span class="swatch sw-alert"></span>Alert / halt</div>
+          <div class="legend-item"><span class="swatch sw-hub"></span>Orchestrator (Make.com)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 02 · CORE THESIS                                              -->
+    <!-- ============================================================ -->
+    <section id="thesis">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Core thesis <span class="tagline">why this lead source matters</span></h2>
+      <div class="thesis">
+        <div class="thesis-label">Core thesis · Matt · 2026-05-07</div>
+        <blockquote>"Every company or person sued for TCPA is the hottest prospect Blacklist Alliance will ever see."</blockquote>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 03 · END-TO-END FLOW                                          -->
+    <!-- ============================================================ -->
+    <section id="flow">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>End-to-end flow <span class="tagline">12 stages · Make.com orchestrated</span></h2>
+      <div class="flow">
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">01</span><span class="stage-title">Source · daily alerts</span></div>
+          <div class="nodes nodes-2">
+            <div class="node manual"><div class="node-title">LexisNexis</div><div class="node-desc">TCPA case alerts via email · login required to download the complaint PDF · no API.</div></div>
+            <div class="node manual"><div class="node-title">Westlaw</div><div class="node-desc">TCPA case alerts via email · login required to download the complaint PDF · no API.</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">02</span><span class="stage-title">Manual ingestion</span></div>
+          <div class="nodes nodes-2">
+            <div class="node manual"><div class="node-title">Sam <span class="node-tag">Manual</span></div><div class="node-desc">Logs into Lexis &amp; Westlaw daily, downloads complaint PDFs.</div></div>
+            <div class="node"><div class="node-title">Google Drive folder</div><div class="node-desc">Single watched folder · webhook fires on every file create.</div><div class="node-meta">trigger: drive.files.create</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">03</span><span class="stage-title">Orchestrator</span></div>
+          <div class="nodes nodes-1">
+            <div class="node ai"><div class="node-title">Make.com scenario <span class="node-tag ai">Orchestrator</span></div><div class="node-desc">Pulls every new file from the watched Drive folder. Routes the binary PDF into the parser, then runs the entire downstream chain — parse, dedupe, fan-out enrichment, compose, push, draft, notify. No custom backend.</div><div class="node-meta">modules: google drive · http · anthropic · hubspot · gmail · slack</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">04</span><span class="stage-title">Parse</span></div>
+          <div class="nodes nodes-2">
+            <div class="node ai"><div class="node-title">Claude API <span class="node-tag ai">AI</span></div><div class="node-desc">Vision + OCR + structured extraction in a single call. Handles state-court scans (Adame) and federal e-filings (Grant) including embedded text-message screenshots — sender phone &amp; domain pulled from screenshot pixels.</div><div class="node-meta">model: claude-opus · output: strict JSON · self-check pass</div></div>
+            <div class="node data"><div class="node-title">Structured Case JSON</div><div class="node-desc">case · plaintiff · counsel · firm · defendants · allegation type · violation count · damage exposure · sender artifacts · per-field confidence</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓ split into two tracks</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">05</span><span class="stage-title">Two tracks</span></div>
+          <div class="nodes nodes-2">
+            <div class="node decision"><div class="node-title">Defendant track</div><div class="node-desc">→ HubSpot dedupe → enrichment fan-out → lead brief → assignment → push.</div></div>
+            <div class="node decision"><div class="node-title">Plaintiff &amp; counsel track <span class="node-tag">Internal</span></div><div class="node-desc">→ prior filings · firm filing patterns · cross-ref Blacklist litigator DB → context that feeds the outreach. Internal intelligence only in v1.</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓ defendant track continues</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">06</span><span class="stage-title">HubSpot dedupe</span></div>
+          <div class="nodes nodes-3">
+            <div class="node alert"><div class="node-title">Existing customer <span class="node-tag alert">Halt</span></div><div class="node-desc">Alert account manager · litigation flag added to the customer record · do not create a new lead.</div></div>
+            <div class="node output"><div class="node-title">Active prospect <span class="node-tag output">Append</span></div><div class="node-desc">Append the new case to the existing lead record · notify the owning rep · do not double-assign.</div></div>
+            <div class="node"><div class="node-title">New defendant</div><div class="node-desc">Continue to enrichment fan-out.</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">07</span><span class="stage-title">Enrichment fan-out · parallel</span></div>
+          <div class="nodes nodes-6">
+            <div class="node"><div class="node-title">Corporate registry</div><div class="node-desc">SOS · officers · registered agent · formation date.</div><div class="node-meta">opencorporates · per-state SOS</div></div>
+            <div class="node"><div class="node-title">Firmographics</div><div class="node-desc">Domain · employee count · industry · revenue band · address.</div><div class="node-meta">apollo · zoominfo · clearbit · informium</div></div>
+            <div class="node"><div class="node-title">Decision-maker hunt</div><div class="node-desc">GC · CCO · VP Legal · CMO · Head of Lead Gen · CEO. Verified <b>work email</b>, <b>work phone</b>, <b>mobile</b>, <b>LinkedIn URL</b>, social profiles.</div><div class="node-meta">apollo · hunter · linkedin sales nav · contactout · lusha</div></div>
+            <div class="node"><div class="node-title">Sender phone reputation</div><div class="node-desc">When a sender # is in the complaint screenshot · run through Number Verifier for spam reputation + carrier.</div><div class="node-meta">number verifier · internal</div></div>
+            <div class="node"><div class="node-title">Web + news</div><div class="node-desc">Recent press · funding · executive moves · prior litigation.</div><div class="node-meta">serp · firecrawl</div></div>
+            <div class="node"><div class="node-title">Plaintiff intel</div><div class="node-desc">Prior TCPA filings by plaintiff · firm filing volume · cross-ref litigator DB.</div><div class="node-meta">blacklist litigator db</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">08</span><span class="stage-title">Compose &amp; score</span></div>
+          <div class="nodes nodes-2">
+            <div class="node ai"><div class="node-title">Lead Brief <span class="node-tag ai">AI</span></div><div class="node-desc">One-page brief · defendant profile · 1-3 verified contacts with confidence rating · case context (court, filing date, allegation type, exposure) · talking points tailored to violation type · plaintiff &amp; counsel intel.</div></div>
+            <div class="node ai"><div class="node-title">Score &amp; tag <span class="node-tag ai">AI</span></div><div class="node-desc">Urgency · damage exposure · contact confidence · fit. Drives sort order in HubSpot and routing rules.</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">09</span><span class="stage-title">Round-robin · 5-rep rotation · case-level</span></div>
+          <div class="nodes nodes-5">
+            <div class="node rep"><div class="node-title">Kristyn</div></div>
+            <div class="node rep"><div class="node-title">Dudley</div></div>
+            <div class="node rep"><div class="node-title">Cierra</div></div>
+            <div class="node rep"><div class="node-title">Maria</div></div>
+            <div class="node rep"><div class="node-title">Suzi</div></div>
+          </div>
+          <div class="node-meta" style="margin-top: var(--s-3);">routing rule: when a complaint names multiple defendants, ALL of them route to the SAME rep in this turn. Keeps related accounts clustered with one owner.</div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">10</span><span class="stage-title">Push · notify · draft</span></div>
+          <div class="nodes nodes-3">
+            <div class="node output"><div class="node-title">HubSpot</div><div class="node-desc">Contact + Company + Deal records · TCPA custom properties populated · Lead Brief PDF and source complaint PDF attached · owner = assigned rep.</div></div>
+            <div class="node output"><div class="node-title">Slack DM to rep</div><div class="node-desc">One-paragraph summary · HubSpot link · case PDF link · expected exposure.</div></div>
+            <div class="node ai"><div class="node-title">Email draft <span class="node-tag ai">AI</span></div><div class="node-desc">Allegation-aware copy · placed in the rep's Gmail drafts via OAuth · rep can edit inline.</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">11</span><span class="stage-title">Rep approval &amp; send</span></div>
+          <div class="nodes nodes-2">
+            <div class="node decision"><div class="node-title">1-click approval queue</div><div class="node-desc">Rep reviews the draft · edits inline if needed · approves and sends. Edit-before-send is required — LLMs hallucinate, this catches it before it leaves the building.</div></div>
+            <div class="node output"><div class="node-title">Send + cadence</div><div class="node-desc">Sent from the rep's own mailbox (Gmail OAuth) · tracked in HubSpot · auto follow-ups Day 3 / 7 / 14 · reply pauses cadence and notifies the rep.</div></div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="stage">
+          <div class="stage-head"><span class="stage-num">12</span><span class="stage-title">Reporting</span></div>
+          <div class="nodes nodes-1">
+            <div class="node output"><div class="node-title">Daily digest to Esteban, Matt, Seth</div><div class="node-desc">cases in · leads out · contacts found · sends · replies · meetings booked · closed-won. Drives the conversion-funnel reporting and feeds prompt + targeting refinement.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 · DECISIONS                                                -->
+    <!-- ============================================================ -->
+    <section id="decisions">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Decisions <span class="tagline">6 locked · 3 open</span></h2>
+      <div class="decisions-grid">
+
+        <div class="decision-col locked">
+          <h3>Locked <span class="count">6</span></h3>
+          <div class="decision locked"><div class="decision-title">Upload mechanism <span class="decision-status">Locked</span></div><div class="decision-body">Single watched Google Drive folder. Webhook fires on file create — Make.com routes from there.</div></div>
+          <div class="decision locked"><div class="decision-title">Send mode <span class="decision-status">Locked</span></div><div class="decision-body">1-click rep approval with edit-before-send. AI hallucinations get caught here. Auto-send revisited as v2 once we've validated quality.</div></div>
+          <div class="decision locked"><div class="decision-title">Sales rotation <span class="decision-status">Locked</span></div><div class="decision-body">Round-robin across 5 reps: Kristyn · Dudley · Cierra · Maria · Suzi. ~8-12 leads per rep per week.</div></div>
+          <div class="decision locked"><div class="decision-title">Multi-defendant cases <span class="decision-status">Locked</span></div><div class="decision-body">All defendants in a single complaint route to the SAME rep in that round-robin turn. One owner pursues the whole case.</div></div>
+          <div class="decision locked"><div class="decision-title">Plaintiff/litigator report <span class="decision-status">Locked</span></div><div class="decision-body">Internal-only intelligence. Goal is to sharpen the sales conversation — not productized in v1.</div></div>
+          <div class="decision locked"><div class="decision-title">Email sender identity <span class="decision-status">Locked</span></div><div class="decision-body">Each lead's outreach sends from the assigned rep's own mailbox via Gmail OAuth. Replies route to the rep directly.</div></div>
+        </div>
+
+        <div class="decision-col open">
+          <h3>Open <span class="count">3</span></h3>
+          <div class="decision open"><div class="decision-title">Enrichment API stack <span class="decision-status">Owner: Nick</span></div><div class="decision-body">Pick max 2 vendors. Apollo + ZoomInfo overlap; Clearbit + Apollo overlap. Confirm Informium status. Need cost-per-record at ~50 leads/week.</div></div>
+          <div class="decision open"><div class="decision-title">HubSpot custom property schema <span class="decision-status">Owner: Jennifer</span></div><div class="decision-body">Confirm we can add the TCPA property schema (case #, court, court level, filing date, violation type, exposure min/max, plaintiff firm, urgency score) and attach PDFs to lead records.</div></div>
+          <div class="decision open"><div class="decision-title">Volume planning <span class="decision-status">Open</span></div><div class="decision-body">40-60 leads/week at the case level — multi-defendant cases will push HubSpot record count higher. Drives the API cost model.</div></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 05 · ARCHITECTURAL DETAIL                                     -->
+    <!-- ============================================================ -->
+    <section id="detail">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Architectural detail <span class="tagline">click to expand each layer</span></h2>
+
+      <details>
+        <summary>Layer 01 — Source, Input &amp; Orchestrator <span class="details-tag">Make.com</span></summary>
+        <div class="details-body">
+          <p>No API access to Lexis or Westlaw — confirmed by Seth. Sam is the human-in-the-loop. She logs in daily, downloads each complaint as a PDF, and drops the files into one watched Google Drive folder.</p>
+          <p><strong>Orchestration platform: Make.com.</strong> A single Make scenario watches the Drive folder, pulls each new file, and runs the entire downstream chain — Claude parser, HubSpot dedupe, parallel enrichment HTTP requests, lead composition, HubSpot push, Gmail draft creation, Slack notify. No custom backend.</p>
+          <p><strong>Module list:</strong> Google Drive (Watch Files in a Folder) → HTTP/Anthropic (Claude API) → HubSpot (search + create/update Contact, Company, Deal) → multiple HTTP modules for enrichment vendors → Gmail (Create Draft on rep's mailbox via OAuth) → Slack (Send DM to rep).</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 02 — AI Parser Agent <span class="details-tag">Claude · Vision + LLM</span></summary>
+        <div class="details-body">
+          <p>A single Claude call per uploaded PDF that does:</p>
+          <ul>
+            <li><strong>File quality detection.</strong> State court PDFs are scanned/watermarked (Adame); federal e-filings are clean digital (Grant). OCR runs as needed — minor mangling like "Plaintift" still parses fine.</li>
+            <li><strong>Vision pass.</strong> Detects and reads embedded images in the PDF — Grant's complaint embeds a phone screenshot; we extract sender number, sender domain, and message body from the pixels.</li>
+            <li><strong>LLM extraction</strong> to a strict JSON schema (see Appendix A). One required pass + one self-check pass for accuracy.</li>
+            <li><strong>Confidence scoring.</strong> Each field gets a confidence rating; low-confidence fields are flagged for Sam or rep review.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 03 — HubSpot Dedupe <span class="details-tag">three outcomes</span></summary>
+        <div class="details-body">
+          <p>Before spending money on enrichment APIs, hit HubSpot:</p>
+          <ul>
+            <li><strong>Existing customer match</strong> → notify their account manager, flag the customer record with a <code>Litigation Filed</code> tag, do not create a new lead.</li>
+            <li><strong>Existing prospect/lead match</strong> → append the new case to the existing lead, notify the owning rep, do not double-assign.</li>
+            <li><strong>No match</strong> → continue to enrichment.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 04 — Defendant Enrichment Fan-out <span class="details-tag">parallel API calls</span></summary>
+        <div class="details-body">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Source</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Corporate registry — officers, registered agent, formation date</td><td>Secretary of State APIs (state-by-state) or OpenCorporates</td><td>Cheap. Confirms entity exists and gives officer names.</td></tr>
+              <tr><td>Firmographics — domain, employee count, industry, revenue</td><td>Apollo, ZoomInfo, Clearbit, Informium</td><td>Pick 1-2 to standardize on; cost-per-record matters at 40-60/week.</td></tr>
+              <tr><td>Decision-maker contacts — work email, work phone, <strong>mobile</strong>, <strong>LinkedIn URL</strong>, social profiles</td><td>Apollo, Hunter, LinkedIn Sales Nav, ContactOut, Lusha</td><td>Target titles: GC, Chief Compliance Officer, VP Legal, CMO, Head of Marketing/Lead Gen, CEO (small companies). Goal is every contact angle the rep can use.</td></tr>
+              <tr><td>Sender phone reputation</td><td>Number Verifier (internal)</td><td>If the complaint includes a sender phone, run it. Confirms the company's caller ID is already flagged spam — that's a strong opener for the rep.</td></tr>
+              <tr><td>Recent news / press</td><td>Web search (SERP, Firecrawl)</td><td>Funding, expansions, executive moves — useful conversation starters.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 05 — Plaintiff / Litigator Branch <span class="details-tag">internal intelligence</span></summary>
+        <div class="details-body">
+          <p>A separate lane that compounds value over time:</p>
+          <ul>
+            <li>Extract plaintiff's name, residence, counsel, and firm.</li>
+            <li>Cross-reference Blacklist's existing litigator database — is the plaintiff already known? Is the firm a serial filer (e.g., Jibrael Hindi)?</li>
+            <li>Track filing volume by firm, by week. The Adame + Grant pair (same firm, two states, two violation types, two days apart) is a real pattern that sharpens the sales conversation.</li>
+          </ul>
+          <p><strong>Decided 2026-05-07:</strong> Internal-use intelligence only in v1. Primary purpose is making the sales outreach hit harder ("we noticed Jibrael Hindi has filed three cases in the last two weeks against home-services companies — here's what they look for"). Productizing the report for clients is out of v1 scope; revisit once we have signal on data quality and demand.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 06 — Lead Composition, Scoring, Assignment <span class="details-tag">routing rules</span></summary>
+        <div class="details-body">
+          <p>The lead brief includes:</p>
+          <ul>
+            <li>Defendant company profile (one-pager).</li>
+            <li>1–3 decision-maker contacts with confidence ratings.</li>
+            <li>Case context: court, filing date, allegation type, damage exposure, plaintiff/counsel.</li>
+            <li>Tailored talking points by violation type — Federal DNC violation: lead with DNC scrubbing + litigator scrub. Internal DNC violation: lead with policies/procedures + opt-out automation. Express Consent: lead with consent capture + record retention.</li>
+            <li>Urgency score (filing date proximity, damage exposure, defendant size, contact confidence).</li>
+          </ul>
+          <p><strong>Routing:</strong> 5-rep round-robin across Kristyn, Dudley, Cierra, Maria, Suzi. <strong>Multi-defendant rule:</strong> when a complaint names multiple defendants, ALL route to the same rep in that turn — one owner pursues the whole case.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 07 — HubSpot Push <span class="details-tag">CRM write</span></summary>
+        <div class="details-body">
+          <ul>
+            <li>Create Company record (with TCPA-specific custom properties — see Appendix B).</li>
+            <li>Create Contact records for each enriched decision-maker.</li>
+            <li>Create Deal/Lead with stage <code>New TCPA Lead</code>.</li>
+            <li>Attach AI-generated Lead Brief PDF + source complaint PDF.</li>
+            <li>Set lead owner = assigned rep.</li>
+            <li>Tag <code>Source = TCPA Filed Case Lead Flow</code> for clean conversion reporting.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 08 — Outreach Email · drafted by AI, sent by rep <span class="details-tag">human in the loop</span></summary>
+        <div class="details-body">
+          <p>AI drafts the outreach email using Blacklist Alliance brand voice and an allegation-type-specific template. Tone is respectful, direct, value-led — not ambulance chasing. Open with the case (factually, no editorializing), pivot to "here's what we do for TCPA defendants," CTA to a 15-min call.</p>
+          <p><strong>v1 (locked):</strong> draft routes to a 1-click approval queue. Rep sees the draft, can edit inline, approves with one click and sends from their own mailbox.</p>
+          <p><strong>v2 (future):</strong> auto-send with guardrails — min decision-maker confidence threshold, blacklist of competitor brands, mandatory human review every Nth send.</p>
+          <p><strong>Why human-in-the-loop in v1:</strong> these are companies that just got sued. The first contact has to be excellent. One bad auto-send to the wrong person at a high-profile defendant becomes a screenshot in the wrong Slack channel. Plus: AI hallucinations (wrong damage estimate, fabricated officer name, wrong allegation type) get caught at this gate.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Layer 09 — Cadence and Reporting <span class="details-tag">measure success</span></summary>
+        <div class="details-body">
+          <p>Auto follow-up Day 3, Day 7, Day 14 — same approval queue model in v1. Reply detection pauses cadence and notifies rep.</p>
+          <p><strong>Daily digest</strong> to Esteban, Matt, and Seth: cases in / leads out / contacts found / sends / replies / meetings booked / closes.</p>
+          <p><strong>Outside the automation — Jennifer builds a HubSpot deal flow &amp; pipeline report</strong> separate from the daily digest. Standalone dashboard scoped to leads tagged <code>Source = TCPA Filed Case Lead Flow</code> so leadership can gauge whether the automation is actually working: leads created, stage distribution, contacts reached, meetings booked, deals won, win rate, time-to-first-touch, deal value.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 06 · SAMPLE CASE EVIDENCE                                     -->
+    <!-- ============================================================ -->
+    <section id="evidence">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Sample case evidence <span class="tagline">what the test PDFs told us</span></h2>
+
+      <details>
+        <summary>Two real complaints parsed during design <span class="details-tag">click to expand</span></summary>
+        <div class="details-body">
+          <p>The two test cases (<em>Adame v. Edge Fitness</em>, FL state court, internal DNC violation; <em>Grant v. TRX Windows</em>, federal DC Colorado, federal DNC Registry violation) were both filed by <strong>The Law Offices of Jibrael S. Hindi</strong> in Wilton Manors, FL. <strong>Same firm, two states, two filing courts, two violation types — in one week.</strong> That's a serial-plaintiff-firm pattern that emerges naturally from the parser output and is exactly the kind of intelligence Blacklist's litigator database is built around.</p>
+
+          <table>
+            <thead>
+              <tr><th>Field</th><th>Adame v. Edge Fitness</th><th>Grant v. TRX Windows</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Court</td><td>FL 17th Judicial Circuit (Broward Co.)</td><td>US District Court, Colorado</td></tr>
+              <tr><td>Case #</td><td>CACE-26-007429</td><td>1:26-cv-1965</td></tr>
+              <tr><td>Filed</td><td>2026-05-04</td><td>2026-05-06</td></tr>
+              <tr><td>Plaintiff</td><td>Cecilia Adame (Broward Co., FL)</td><td>Heather Grant (Lee Co., FL)</td></tr>
+              <tr><td>Plaintiff counsel</td><td>Mitchell Hansen, Zane Hedaya</td><td>Samuel Awad</td></tr>
+              <tr><td>Plaintiff firm</td><td><strong>Law Offices of Jibrael S. Hindi</strong></td><td><strong>Law Offices of Jibrael S. Hindi</strong></td></tr>
+              <tr><td>Defendant</td><td>Edge Fitness, LLC (DE LLC, HQ Orange CT)</td><td>TRX Windows LLC (HQ Fort Collins, CO)</td></tr>
+              <tr><td>Allegation type</td><td>Internal DNC violation — ignored STOP</td><td>Federal DNC Registry violation</td></tr>
+              <tr><td>Statute</td><td>47 CFR § 64.1200(d)</td><td>47 CFR § 64.1200(c)</td></tr>
+              <tr><td>Named-plaintiff exposure</td><td>23 violations × $500-$1,500 = $11.5K-$34.5K</td><td>2+ violations + class</td></tr>
+              <tr><td>Class size alleged</td><td>50+</td><td>"several thousands"</td></tr>
+              <tr><td>Sender artifacts in complaint</td><td>None</td><td>Sender # 760-248-3365, domain trxwindows.com (in screenshot)</td></tr>
+            </tbody>
+          </table>
+
+          <p><strong>Implications for the parser:</strong></p>
+          <ul>
+            <li>Must handle both <strong>state court scans</strong> (Adame is OCR'd, lower quality, watermarked) and <strong>clean federal e-filings</strong> (Grant). Modern LLMs handle this fine.</li>
+            <li>Must run <strong>vision extraction on embedded screenshots</strong> — Grant's complaint contains a phone screenshot showing the actual sender phone, sender domain, and message content. That's gold for the salesperson and feeds Number Verifier directly.</li>
+            <li>Must <strong>classify allegation type</strong> (Federal DNC vs. Internal DNC vs. Prior Express Consent vs. ATDS, etc.). The outreach pitch is materially different per type.</li>
+            <li>Must extract <strong>plaintiff counsel firm</strong> as a first-class field — that's where the litigator-firm intelligence comes from.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 07 · FIELD SCHEMAS                                            -->
+    <!-- ============================================================ -->
+    <section id="schemas">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Field schemas <span class="tagline">for engineering review</span></h2>
+
+      <details>
+        <summary>Appendix A — Parser output JSON schema <span class="details-tag">draft</span></summary>
+        <div class="details-body">
+<pre><code>{
+  "case": {
+    "case_number": "CACE-26-007429",
+    "court": "Florida 17th Judicial Circuit, Broward County",
+    "court_level": "state",
+    "jurisdiction": "FL",
+    "filing_date": "2026-05-04",
+    "is_class_action": true,
+    "class_size_alleged": "50+"
+  },
+  "plaintiff": {
+    "name": "Cecilia Adame",
+    "residence_county": "Broward",
+    "residence_state": "FL"
+  },
+  "plaintiff_counsel": [
+    {"name": "Mitchell D. Hansen", "bar_number": "1065929", "email": "mitchell@jibraellaw.com"},
+    {"name": "Zane C. Hedaya", "bar_number": "1048640", "email": "zane@jibraellaw.com"}
+  ],
+  "plaintiff_firm": {
+    "name": "The Law Offices of Jibrael S. Hindi",
+    "address": "1515 NE 26th Street, Wilton Manors, FL 33305",
+    "phone": "813-340-8838"
+  },
+  "defendants": [
+    {
+      "name": "Edge Fitness, LLC",
+      "entity_type": "Delaware LLC",
+      "hq_city": "Orange",
+      "hq_state": "CT",
+      "alleged_role": "primary"
+    }
+  ],
+  "allegations": {
+    "primary_violation": "internal_dnc",
+    "statutes": ["47 USC § 227(c)", "47 CFR § 64.1200(d)"],
+    "violation_count": 23,
+    "named_plaintiff_exposure_min_usd": 11500,
+    "named_plaintiff_exposure_max_usd": 34500,
+    "channels": ["sms"]
+  },
+  "sender_artifacts": {
+    "phones": [],
+    "domains": [],
+    "from_screenshot": false
+  },
+  "extraction_confidence": {
+    "overall": 0.97,
+    "low_confidence_fields": []
+  }
+}</code></pre>
+        </div>
+      </details>
+
+      <details>
+        <summary>Appendix B — HubSpot custom property schema <span class="details-tag">draft · owner: Jennifer</span></summary>
+        <div class="details-body">
+          <p><strong>On Company record:</strong></p>
+          <ul>
+            <li><code>tcpa_litigation_count</code> — number</li>
+            <li><code>tcpa_last_filing_date</code> — date</li>
+            <li><code>tcpa_active_cases</code> — multi-select</li>
+          </ul>
+
+          <p><strong>On Deal/Lead record:</strong></p>
+          <ul>
+            <li><code>tcpa_case_number</code> — text</li>
+            <li><code>tcpa_court</code> — text</li>
+            <li><code>tcpa_court_level</code> — state / federal</li>
+            <li><code>tcpa_filing_date</code> — date</li>
+            <li><code>tcpa_violation_type</code> — federal DNC / internal DNC / express consent / ATDS / other</li>
+            <li><code>tcpa_damage_exposure_min</code> — currency</li>
+            <li><code>tcpa_damage_exposure_max</code> — currency</li>
+            <li><code>tcpa_plaintiff_firm</code> — text</li>
+            <li><code>tcpa_lead_source_doc_url</code> — text</li>
+            <li><code>tcpa_urgency_score</code> — number 0-100</li>
+            <li><code>Source</code> — set to <code>TCPA Filed Case Lead Flow</code> on every record (drives the pipeline report scope)</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Appendix C — Make.com scenario module list <span class="details-tag">tactical · for Nick</span></summary>
+        <div class="details-body">
+          <ol style="margin: var(--s-3) 0 var(--s-3) var(--s-4);">
+            <li><strong>Google Drive</strong> — Watch Files in a Folder (trigger)</li>
+            <li><strong>HTTP / Anthropic</strong> — POST to Claude API with the binary PDF + system prompt → returns structured JSON</li>
+            <li><strong>HubSpot</strong> — Search Companies by name/domain (dedupe check)</li>
+            <li><strong>Router</strong> — three branches: existing customer, active prospect, new defendant</li>
+            <li><strong>HTTP modules in parallel</strong> — corporate registry, firmographics vendor, decision-maker vendor, Number Verifier, web search</li>
+            <li><strong>HTTP / Anthropic</strong> — POST to Claude with enriched data + sample lead brief template → returns Lead Brief markdown + email draft</li>
+            <li><strong>Round-robin variable</strong> — Make built-in counter, modulo 5, maps to one of {Kristyn, Dudley, Cierra, Maria, Suzi}</li>
+            <li><strong>HubSpot</strong> — Create Company / Contact / Deal with all custom properties + assigned owner</li>
+            <li><strong>HubSpot</strong> — Attach Lead Brief PDF and source complaint PDF</li>
+            <li><strong>Gmail</strong> (rep mailbox via OAuth) — Create Draft with the AI-generated outreach email</li>
+            <li><strong>Slack</strong> — Send DM to assigned rep with summary + HubSpot deep link</li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 08 · NEXT STEPS                                               -->
+    <!-- ============================================================ -->
+    <section id="next">
+      <span class="section-bar" aria-hidden="true"></span>
+      <h2>Next up <span class="tagline">parallel work · build on top of locked design</span></h2>
+      <div class="next-steps">
+        <div class="step">
+          <div class="step-owner">Owner · Nick Ranalli</div>
+          <div class="step-title">Lock the enrichment API stack</div>
+          <div class="step-body">Decide between Apollo / ZoomInfo / Clearbit / Hunter / Informium / ContactOut / Lusha. Maximum 2 vendors. Confirm coverage on: work email, work phone, mobile, LinkedIn URL, social profiles. Cost-per-record at ~50/week.</div>
+        </div>
+        <div class="step">
+          <div class="step-owner">Owner · Jennifer (HubSpot ops)</div>
+          <div class="step-title">Build the HubSpot schema</div>
+          <div class="step-body">Add TCPA custom properties on Company + Deal records (see Appendix B). Confirm Lead Brief PDF + source complaint PDF can be attached to the lead record. Set up a clean source tag for conversion reporting.</div>
+        </div>
+        <div class="step">
+          <div class="step-owner">Owner · Jennifer · outside the automation</div>
+          <div class="step-title">Build a deal flow &amp; pipeline report</div>
+          <div class="step-body">Standalone HubSpot dashboard scoped to <code>Source = TCPA Filed Case Lead Flow</code>. Show: leads created · stage distribution · contacts reached · meetings booked · deals won · win rate · time-to-first-touch · deal value. This is how we gauge whether the automation is actually working.</div>
+        </div>
+        <div class="step">
+          <div class="step-owner">Owner · Matt + AI</div>
+          <div class="step-title">Build the parser first</div>
+          <div class="step-body">Develop the Claude prompt against the two sample cases plus 5-10 more. Validate &gt;95% extraction accuracy on key fields before wiring up Make, enrichment, or HubSpot push. Cheap to iterate at this stage.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <span class="footer-mark">
+    <svg viewBox="0 0 360 23.8" xmlns="http://www.w3.org/2000/svg" aria-label="The Blacklist Alliance">
+      <g fill="#FFFFFF">
+        <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z"/>
+        <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+        <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+        <path d="M264.3,23.4V.5h6v22.9h-6Z"/>
+        <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z"/>
+        <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z"/>
+        <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+        <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z"/>
+        <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z"/>
+        <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z"/>
+        <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5"/>
+        <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z"/>
+        <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+        <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z"/>
+        <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z"/>
+        <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z"/>
+        <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z"/>
+        <path d="M160.6,23.4V.5h6v22.9h-6Z"/>
+        <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"/>
+        <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z"/>
+      </g>
+      <g>
+        <rect y=".4" width="22.7" height="23" fill="#A50100"/>
+        <g fill="#FFFFFF">
+          <circle cx="9.4" cy="6.2" r="2.9"/>
+          <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z"/>
+          <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z"/>
+        </g>
+      </g>
+    </svg>
+    <span>The Blacklist Alliance · TCPA Lead Flow · v1 Spec</span>
+  </span>
+  <span>Updated 2026-05-07</span>
+</footer>
+
+</body>
+</html>
