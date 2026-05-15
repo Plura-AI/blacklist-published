@@ -496,18 +496,18 @@
       </div>
       <div class="stat">
         <div class="stat-label">Total views</div>
-        <div class="stat-value muted" id="kpiViews">—</div>
-        <div class="stat-meta">Tracking pending</div>
+        <div class="stat-value" id="kpiViews">—</div>
+        <div class="stat-meta" id="kpiViewsMeta">&nbsp;</div>
       </div>
       <div class="stat">
         <div class="stat-label">Unique visitors</div>
-        <div class="stat-value muted" id="kpiUnique">—</div>
-        <div class="stat-meta">Tracking pending</div>
+        <div class="stat-value" id="kpiUnique">—</div>
+        <div class="stat-meta" id="kpiUniqueMeta">&nbsp;</div>
       </div>
       <div class="stat">
         <div class="stat-label">Views today</div>
-        <div class="stat-value brand muted" id="kpiToday">—</div>
-        <div class="stat-meta">Tracking pending</div>
+        <div class="stat-value brand" id="kpiToday">—</div>
+        <div class="stat-meta" id="kpiTodayMeta">&nbsp;</div>
       </div>
     </div>
 
@@ -528,7 +528,7 @@
           <tr>
             <th data-sort="title">Title / Slug<span class="sort-arrow" id="arrTitle"></span></th>
             <th data-sort="date">Published<span class="sort-arrow" id="arrDate">▼</span></th>
-            <th data-sort="views" class="no-sort">Views</th>
+            <th data-sort="views">Views<span class="sort-arrow" id="arrViews"></span></th>
             <th class="no-sort" style="text-align:right;">Actions</th>
           </tr>
         </thead>
@@ -562,12 +562,14 @@
   const EXPECTED_HASH = "0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 of "Blacklist2026!"
   const STORAGE_KEY = "bapp_dashboard_unlocked";
 
-  // BAPP credentials (used only after dashboard unlock; required for delete)
+  // BAPP credentials (used only after dashboard unlock; required for delete + views)
   const API_KEY = "bl_pub_b3458e5fb07b97a704c77b58c7edc0773b1cc2723a3780df";
+  const ADMIN_BASIC = "Basic " + btoa("blacklist:Blacklist2026!"); // for /api/views
   const GH_OWNER = "Plura-AI";
   const GH_REPO  = "blacklist-published";
 
   let allRows = [];
+  let viewsData = null;
   let sortKey = "date";
   let sortDir = "desc";
   let pendingDeleteSlug = null;
@@ -632,14 +634,34 @@
       return;
     }
 
+    // Fetch analytics in parallel
+    viewsData = null;
+    try {
+      const vres = await fetch("/api/views", {
+        cache: "no-store",
+        headers: { "Authorization": ADMIN_BASIC },
+      });
+      if (vres.ok) viewsData = await vres.json();
+    } catch { /* ignore — KPIs fall back to em-dash */ }
+
     // KPIs
     document.getElementById("kpiTotal").textContent = slugs.length;
     document.getElementById("kpiTotalMeta").textContent = slugs.length === 1 ? "1 live page" : `${slugs.length} live pages`;
-    document.getElementById("kpiViews").textContent = "—";
-    document.getElementById("kpiUnique").textContent = "—";
-    document.getElementById("kpiToday").textContent = "—";
+    if (viewsData) {
+      document.getElementById("kpiViews").textContent = (viewsData.total_views || 0).toLocaleString();
+      document.getElementById("kpiViewsMeta").textContent = "All-time";
+      document.getElementById("kpiUnique").textContent = (viewsData.unique_visitors || 0).toLocaleString();
+      document.getElementById("kpiUniqueMeta").textContent = "Deduped per day";
+      document.getElementById("kpiToday").textContent = (viewsData.views_today || 0).toLocaleString();
+      document.getElementById("kpiTodayMeta").textContent = new Date().toLocaleDateString(undefined, { month:"short", day:"numeric" });
+    } else {
+      document.getElementById("kpiViews").textContent = "—";
+      document.getElementById("kpiUnique").textContent = "—";
+      document.getElementById("kpiToday").textContent = "—";
+    }
 
     // Fetch dates from GitHub in parallel (public repo, no auth needed; 60 req/hr/IP)
+    const perSlugViews = (viewsData && viewsData.per_slug) || {};
     const enriched = await Promise.all(slugs.map(async ({ slug, url }) => {
       let date = null;
       try {
@@ -654,7 +676,8 @@
           }
         }
       } catch { /* ignore */ }
-      return { slug, url, date, views: null };
+      const v = perSlugViews[slug] || {};
+      return { slug, url, date, views: v.total || 0, unique: v.unique || 0, today: v.today || 0 };
     }));
 
     allRows = enriched;
@@ -680,21 +703,27 @@
     if (rows.length === 0) {
       body.innerHTML = '<tr><td colspan="4" class="empty-state"><h3>No matches</h3><p>Adjust your search or publish a new asset via BAPP.</p></td></tr>';
     } else {
-      body.innerHTML = rows.map(r => `
+      body.innerHTML = rows.map(r => {
+        const hasViews = (r.views || 0) > 0;
+        const todayLabel = r.today > 0 ? `${r.today} today` : `${r.unique || 0} unique`;
+        return `
         <tr>
           <td>
             <div class="t-slug">${escapeHtml(r.slug)}</div>
             <a href="${r.url}" target="_blank" rel="noopener">${escapeHtml(r.url)}</a>
           </td>
           <td class="t-date">${r.date ? formatDate(r.date) : "—"}</td>
-          <td><span class="t-views muted">—</span><div class="t-unique">tracking pending</div></td>
+          <td>
+            <span class="t-views${hasViews ? "" : " muted"}">${(r.views || 0).toLocaleString()}</span>
+            <div class="t-unique">${escapeHtml(todayLabel)}</div>
+          </td>
           <td class="t-actions">
             <button class="row-btn" data-action="copy" data-slug="${r.slug}" data-url="${r.url}">Copy</button>
             <button class="row-btn open" data-action="open" data-url="${r.url}">Open</button>
             <button class="row-btn delete" data-action="delete" data-slug="${r.slug}">Delete</button>
           </td>
-        </tr>
-      `).join("");
+        </tr>`;
+      }).join("");
     }
 
     // Update arrows
@@ -806,5 +835,5 @@
   }
 </script>
 
-</body>
+<script id="bapp-doc-gate-script" data-bypass="dashboard">/* dashboard has its own gate */</script></body>
 </html>
