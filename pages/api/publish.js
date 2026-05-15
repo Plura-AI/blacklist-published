@@ -10,9 +10,9 @@ export default async function handler(req, res) {
 
   const { slug, html, apiKey } = req.body;
 
-  // Auth
-  const validKey = process.env.BL_PUBLISH_API_KEY;
-  if (!apiKey || apiKey !== validKey) {
+  // Auth — trim in case env var was set with a trailing newline
+  const validKey = (process.env.BL_PUBLISH_API_KEY || '').trim();
+  if (!apiKey || apiKey.trim() !== validKey) {
     return res.status(401).json({ error: 'Invalid API key' });
   }
 
