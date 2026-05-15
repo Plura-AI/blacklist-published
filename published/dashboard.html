@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blacklist Alliance Proposal Publisher</title>
+<meta name="description" content="Proposal publishing and analytics dashboard for The Blacklist Alliance" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23b5001f'/%3E%3Cpath fill='%23fff' d='M9.25 8.28a4.03 4.03 0 1 1 8.06 0 4.03 4.03 0 0 1-8.06 0ZM18.02 13.01H8.14c-1.39 0-2.64 1.11-2.64 2.64v8.07c0 .7.7 1.39 1.53 1.39s1.53-.7 1.53-1.53v-6.4h.7v9.88h5.29v-.14c-1.67-1.53-2.78-3.62-2.78-6.12 0-3.9 2.64-7.1 6.26-7.79ZM26.5 20.94a6.82 6.82 0 1 1-13.64 0 6.82 6.82 0 0 1 13.64 0ZM22.75 25.39l-7.37-7.37c-.7.83-.97 1.81-.97 2.92 0 2.92 2.37 5.29 5.43 5.43 1.11 0 2.09-.42 2.92-.97ZM24.97 20.94c0-2.92-2.37-5.29-5.29-5.29-1.25 0-2.23.28-3.2.97l7.51 7.37s.97-.73.97-3.06Z'/%3E%3C/svg%3E" />
 <style>
   @font-face { font-family: "General Sans"; src: url("https://cdn.jsdelivr.net/gh/Plura-AI/blacklist-design-system@main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
@@ -15,36 +16,39 @@
     --bl-red: #A50100; --bl-red-hover: #8A0100; --bl-red-press: #6E0100; --bl-red-tint: #FBE5E5;
     --bl-black: #000000; --bl-white: #FFFFFF;
     --gray-05: #F7F7F7; --gray-10: #EFEFEF; --gray-20: #E0E0E0; --gray-40: #A8A8A8;
-    --gray-50: #8C8C8C; --gray-60: #6F6F6F; --gray-70: #525252; --gray-100: #000000;
+    --gray-50: #8C8C8C; --gray-60: #6F6F6F; --gray-70: #525252; --gray-90: #1F1F1F; --gray-100: #000000;
+    --danger: #A50100;
     --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
   html, body { height: 100%; }
   body {
     font-family: var(--font-sans);
     background: var(--gray-05);
     color: var(--gray-100);
+    font-size: 14px;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
   }
   ::selection { background: var(--bl-red); color: var(--bl-white); }
+  .mono { font-family: var(--font-mono); }
 
-  /* ---------- Top header ---------- */
+  /* ---------- Top bar ---------- */
   header.bar {
     background: var(--bl-black);
     color: var(--bl-white);
-    padding: 18px 32px;
+    padding: 16px 32px;
     border-bottom: 4px solid var(--bl-red);
     display: flex;
     align-items: center;
     gap: 24px;
   }
   header.bar svg.logo { height: 22px; width: auto; display: block; }
-  header.bar .title {
+  header.bar .crumb {
     margin-left: auto;
     font-size: 11px;
     letter-spacing: .14em;
@@ -53,7 +57,7 @@
     font-weight: 600;
   }
 
-  /* ---------- Login card ---------- */
+  /* ---------- Login ---------- */
   .login-wrap {
     flex: 1;
     display: flex;
@@ -68,239 +72,296 @@
     max-width: 420px;
     width: 100%;
   }
-  .risk-bar {
-    display: block;
-    width: 56px;
-    height: 4px;
-    background: var(--bl-red);
-    margin-bottom: 20px;
-  }
-  .login-card h1 {
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0 0 10px;
-  }
-  .login-card .sub {
-    font-size: 14px;
-    color: var(--gray-70);
-    margin: 0 0 32px;
-    line-height: 1.55;
-  }
-  .login-card label {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--gray-70);
-    margin: 0 0 8px;
-  }
+  .risk-bar { display: block; width: 56px; height: 4px; background: var(--bl-red); margin-bottom: 20px; }
+  .login-card h1 { font-size: 32px; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 10px; }
+  .login-card .sub { font-size: 14px; color: var(--gray-70); margin: 0 0 32px; line-height: 1.55; }
+  .login-card label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gray-70); margin: 0 0 8px; }
   .login-card input[type="password"] {
-    width: 100%;
-    height: 48px;
-    padding: 0 16px;
-    background: var(--bl-white);
-    color: var(--gray-100);
-    font-family: inherit;
-    font-size: 15px;
+    width: 100%; height: 48px; padding: 0 16px;
+    background: var(--bl-white); color: var(--gray-100);
+    font-family: inherit; font-size: 15px;
     border: 1px solid var(--gray-20);
-    transition: border-color 120ms, box-shadow 120ms;
-    margin-bottom: 20px;
+    transition: border-color 120ms, box-shadow 120ms; margin-bottom: 20px;
   }
-  .login-card input[type="password"]:focus {
-    outline: 0;
-    border-color: var(--bl-red);
-    box-shadow: 0 0 0 3px rgba(165,1,0,0.28);
-  }
+  .login-card input[type="password"]:focus { outline: 0; border-color: var(--bl-red); box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
   .login-card .err {
-    background: var(--bl-red-tint);
-    border-left: 3px solid var(--bl-red);
-    padding: 10px 14px;
-    color: var(--bl-red);
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 16px;
-    display: none;
+    background: var(--bl-red-tint); border-left: 3px solid var(--bl-red);
+    padding: 10px 14px; color: var(--bl-red); font-size: 13px; font-weight: 500;
+    margin-bottom: 16px; display: none;
   }
   .login-card .err.show { display: block; }
   button.b {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    height: 52px;
-    background: var(--bl-red);
-    color: var(--bl-white);
-    font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-size: 13px;
-    border: 0;
-    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; height: 52px;
+    background: var(--bl-red); color: var(--bl-white);
+    font-family: var(--font-sans); font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; font-size: 13px;
+    border: 0; cursor: pointer;
     transition: background 120ms;
   }
   button.b:hover { background: var(--bl-red-hover); }
   button.b:active { background: var(--bl-red-press); }
-  button.b:focus-visible {
-    outline: 0;
-    box-shadow: 0 0 0 3px rgba(165,1,0,0.28);
-  }
-  button.b--sm {
-    width: auto;
-    height: 36px;
-    padding: 0 14px;
-    font-size: 11px;
-    letter-spacing: .12em;
-  }
-  button.b--secondary {
-    background: var(--bl-white);
-    color: var(--bl-black);
-    border: 1px solid var(--bl-black);
-  }
-  button.b--secondary:hover { background: var(--bl-black); color: var(--bl-white); }
+  button.b:focus-visible { outline: 0; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
 
-  /* ---------- Dashboard ---------- */
-  .dash {
-    flex: 1;
-    padding: 48px 32px 80px;
-    max-width: 1200px;
+  /* ---------- Dashboard layout ---------- */
+  .container {
+    max-width: 1584px;
     width: 100%;
     margin: 0 auto;
-    display: none;
+    padding: 48px 32px;
+    flex: 1;
   }
+  .dash { display: none; }
   .dash.show { display: block; }
 
-  .dash-head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
+  /* Page header */
+  .page-head {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    padding-bottom: 24px; margin-bottom: 32px; border-bottom: 1px solid var(--gray-20);
     flex-wrap: wrap;
-    margin-bottom: 32px;
   }
-  .dash-head .eyebrow {
-    display: block;
+  .page-head .eyebrow {
+    display: block; font-size: 12px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--bl-red); margin-bottom: 8px;
+  }
+  .page-head h1 {
+    font-size: 32px; font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--gray-100);
+  }
+  .page-head .subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--gray-70);
+    line-height: 1.55;
+    max-width: 640px;
+  }
+  .page-head .subtitle code {
+    font-family: var(--font-mono);
+    background: var(--gray-10);
+    padding: 1px 6px;
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--bl-red);
-    margin-bottom: 8px;
+    color: var(--gray-100);
   }
-  .dash-head h1 {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0;
+  .page-head .right { display: flex; gap: 8px; align-items: center; }
+  .icon-btn {
+    background: transparent; color: var(--gray-70);
+    border: 1px solid var(--gray-20);
+    height: 40px; padding: 0 16px;
+    font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 120ms, color 120ms, border-color 120ms;
   }
-  .dash-head .right {
-    display: flex;
-    gap: 12px;
-    align-items: center;
+  .icon-btn:hover { background: var(--gray-10); color: var(--gray-100); border-color: var(--gray-40); }
+
+  /* ---------- KPI Grid ---------- */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-bottom: 32px;
+    border: 1px solid var(--gray-20);
   }
   .stat {
     background: var(--bl-white);
-    border: 1px solid var(--gray-20);
-    padding: 14px 18px;
-    min-width: 120px;
+    padding: 24px;
+    border-right: 1px solid var(--gray-20);
+    transition: background 120ms;
   }
-  .stat .num { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; color: var(--bl-black); line-height: 1; }
-  .stat .lab {
+  .stat:last-child { border-right: 0; }
+  .stat:hover { background: var(--gray-05); }
+  .stat-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gray-70); margin-bottom: 10px;
+  }
+  .stat-value {
+    font-size: 36px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1;
+    color: var(--gray-100);
+  }
+  .stat-value.brand { color: var(--bl-red); }
+  .stat-value.muted { color: var(--gray-40); }
+  .stat-meta {
+    font-family: var(--font-mono);
     font-size: 10px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
+    letter-spacing: .04em;
     color: var(--gray-60);
-    font-weight: 600;
-    margin-top: 6px;
-    display: block;
+    margin-top: 8px;
   }
 
+  /* ---------- Controls row ---------- */
+  .controls {
+    display: flex; align-items: center; gap: 4px;
+    margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .search-wrap {
+    flex: 1; min-width: 220px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    color: var(--gray-100);
+    padding: 0 16px 0 42px;
+    height: 40px;
+    font-size: 14px;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border-color 120ms, box-shadow 120ms;
+  }
+  .search-input::placeholder { color: var(--gray-60); }
+  .search-input:hover { border-color: var(--gray-40); }
+  .search-input:focus { border-color: var(--bl-red); box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  .search-wrap::before {
+    content: '';
+    position: absolute;
+    left: 14px; top: 50%;
+    width: 16px; height: 16px;
+    margin-top: -8px;
+    background: no-repeat center/contain;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236F6F6F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .sort-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--gray-70);
+    padding: 0 14px;
+    height: 40px;
+    font-size: 12px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 120ms, border-color 120ms, background 120ms;
+    white-space: nowrap;
+  }
+  .sort-btn:hover { color: var(--gray-100); background: var(--gray-10); }
+  .sort-btn.active { color: var(--bl-red); border-bottom: 2px solid var(--bl-red); }
+  .sort-arrow { display: inline-block; margin-left: 4px; font-size: 9px; }
+  .refresh-btn, .lock-btn {
+    background: transparent;
+    border: 1px solid var(--bl-red);
+    color: var(--bl-red);
+    height: 40px;
+    padding: 0 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 120ms, color 120ms;
+    font-family: var(--font-sans);
+    margin-left: 8px;
+  }
+  .refresh-btn:hover, .lock-btn:hover { background: var(--bl-red); color: var(--bl-white); }
+  .lock-btn { border-color: var(--gray-40); color: var(--gray-70); margin-left: 4px; }
+  .lock-btn:hover { background: var(--gray-100); color: var(--bl-white); border-color: var(--gray-100); }
+
+  /* ---------- Table ---------- */
   .t-wrap {
     background: var(--bl-white);
     border: 1px solid var(--gray-20);
+    overflow-x: auto;
   }
-  table.t { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.t { width: 100%; border-collapse: collapse; font-size: 14px; }
   .t thead th {
     text-align: left;
-    font-size: 10px;
+    padding: 14px 18px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--gray-60);
-    padding: 16px 20px 12px;
-    border-bottom: 1px solid var(--gray-20);
-    background: var(--gray-05);
-  }
-  .t tbody td {
-    padding: 18px 20px;
-    border-bottom: 1px solid var(--gray-20);
-    vertical-align: middle;
-  }
-  .t tbody tr:last-child td { border-bottom: 0; }
-  .t tbody tr:hover { background: #FAFAFA; }
-  .t-slug { font-weight: 600; letter-spacing: -0.005em; color: var(--bl-black); }
-  .t-url a {
     color: var(--gray-70);
+    background: var(--gray-05);
+    border-bottom: 1px solid var(--gray-20);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+  }
+  .t thead th:hover { color: var(--gray-100); }
+  .t thead th.no-sort { cursor: default; }
+  .t thead th.no-sort:hover { color: var(--gray-70); }
+  .t thead th.sorted { color: var(--bl-red); }
+  .t tbody tr {
+    background: var(--bl-white);
+    border-bottom: 1px solid var(--gray-20);
+    transition: background 120ms;
+  }
+  .t tbody tr:last-child { border-bottom: 0; }
+  .t tbody tr:hover { background: var(--gray-05); }
+  .t tbody td { padding: 16px 18px; vertical-align: middle; }
+  .t-slug {
+    font-weight: 600;
+    color: var(--gray-100);
+    letter-spacing: -0.005em;
+  }
+  .t-slug a {
+    color: var(--bl-red);
     text-decoration: none;
+    font-size: 12px;
     font-family: var(--font-mono);
-    font-size: 12px;
-    transition: color 120ms;
+    font-weight: 400;
+    display: block;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 360px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 120ms;
   }
-  .t-url a:hover { color: var(--bl-red); text-decoration: underline; text-underline-offset: 3px; }
+  .t-slug a:hover { border-bottom-color: var(--bl-red); }
+  .t-date { color: var(--gray-70); font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
+  .t-views { font-weight: 700; font-size: 18px; color: var(--gray-100); }
+  .t-views.muted { color: var(--gray-40); font-weight: 400; }
+  .t-unique { color: var(--gray-60); font-size: 11px; margin-top: 2px; font-family: var(--font-mono); }
   .t-actions { text-align: right; white-space: nowrap; }
-  .t-actions button + button { margin-left: 8px; }
+  .t-actions button { margin-left: 4px; }
+  .row-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--gray-70);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 120ms, color 120ms, border-color 120ms;
+  }
+  .row-btn:hover { background: var(--gray-10); color: var(--gray-100); }
+  .row-btn.open { color: var(--bl-red); border-color: var(--bl-red); }
+  .row-btn.open:hover { background: var(--bl-red); color: var(--bl-white); }
+  .row-btn.delete { color: var(--danger); }
+  .row-btn.delete:hover { background: var(--bl-red-tint); color: var(--bl-red-press); }
 
-  .empty {
-    padding: 64px 24px;
+  /* States */
+  .empty-state, .loading-state {
+    padding: 80px 20px;
     text-align: center;
     color: var(--gray-60);
   }
-  .empty .empty-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--bl-black);
-    margin-bottom: 8px;
-  }
-  .loading {
-    padding: 48px 24px;
-    text-align: center;
-    color: var(--gray-60);
-    font-size: 13px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
+  .empty-state h3 { font-size: 18px; font-weight: 600; color: var(--gray-100); margin-bottom: 8px; }
+  .empty-state p { font-size: 13px; max-width: 360px; margin: 0 auto; line-height: 1.55; }
+  .loading-state .mono { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+
+  /* Toast */
   .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bl-black);
-    color: var(--bl-white);
-    padding: 12px 20px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    opacity: 0;
-    transition: opacity 180ms;
-    pointer-events: none;
-    z-index: 100;
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--bl-black); color: var(--bl-white);
+    padding: 12px 20px; font-size: 12px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    opacity: 0; transition: opacity 180ms; pointer-events: none; z-index: 100;
   }
   .toast.show { opacity: 1; }
-  .note {
-    margin-top: 16px;
-    font-size: 12px;
-    color: var(--gray-60);
-    line-height: 1.55;
-  }
-  .note code { font-family: var(--font-mono); background: var(--gray-10); padding: 1px 5px; }
 
+  /* Footer */
   footer.foot {
     padding: 24px 32px;
     background: var(--bl-black);
@@ -309,6 +370,47 @@
     letter-spacing: .12em;
     text-transform: uppercase;
     font-weight: 500;
+    text-align: center;
+  }
+
+  /* Confirm modal */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000; padding: 24px;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--bl-white);
+    border-top: 4px solid var(--bl-red);
+    max-width: 440px; width: 100%;
+    padding: 32px 36px;
+  }
+  .modal h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .modal p { font-size: 14px; color: var(--gray-70); line-height: 1.55; margin-bottom: 24px; }
+  .modal code { font-family: var(--font-mono); background: var(--gray-10); padding: 1px 6px; }
+  .modal .row { display: flex; gap: 12px; }
+  .modal .row button { flex: 1; height: 44px; width: auto; }
+  .modal button.cancel {
+    background: var(--bl-white); color: var(--bl-black); border: 1px solid var(--bl-black);
+  }
+  .modal button.cancel:hover { background: var(--bl-black); color: var(--bl-white); }
+
+  /* Responsive */
+  @media (max-width: 880px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: 0; }
+    .container { padding: 32px 16px; }
+    .controls { gap: 8px; }
+    .sort-btn { flex-grow: 1; padding: 0 10px; }
+    .t-slug a { max-width: 200px; }
+  }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--gray-20); }
+    .stat:last-child { border-bottom: 0; }
+    .page-head h1 { font-size: 26px; }
   }
 </style>
 </head>
@@ -351,7 +453,7 @@
       </g>
     </g>
   </svg>
-  <span class="title">Internal Dashboard</span>
+  <span class="crumb">Proposal Publisher</span>
 </header>
 
 <!-- LOGIN VIEW -->
@@ -359,7 +461,7 @@
   <div class="login-card">
     <span class="risk-bar" aria-hidden="true"></span>
     <h1>Dashboard access</h1>
-    <p class="sub">Enter the team password to view all published content on go.blacklistalliance.com.</p>
+    <p class="sub">Enter the team password to manage all published content on go.blacklistalliance.com.</p>
     <form id="loginForm" autocomplete="off">
       <label for="pw">Password</label>
       <input id="pw" type="password" autocomplete="current-password" autofocus required />
@@ -370,46 +472,105 @@
 </div>
 
 <!-- DASHBOARD VIEW -->
-<main class="dash" id="dashView">
-  <div class="dash-head">
-    <div>
-      <span class="eyebrow">Published content</span>
-      <h1>Blacklist Alliance Proposal Publisher</h1>
+<div class="container">
+  <div class="dash" id="dashView">
+
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Live · go.blacklistalliance.com</span>
+        <h1>Blacklist Alliance Proposal Publisher</h1>
+        <p class="subtitle">Published Blacklist Alliance content from using the Claude CoWork plugin called <code>BAPP</code>.</p>
+      </div>
+      <div class="right">
+        <button class="refresh-btn" id="refreshBtn" type="button">Refresh</button>
+        <button class="lock-btn" id="lockBtn" type="button">Lock</button>
+      </div>
     </div>
-    <div class="right">
-      <div class="stat"><span class="num" id="statCount">—</span><span class="lab">Live pages</span></div>
-      <button class="b b--sm b--secondary" id="refreshBtn">Refresh</button>
-      <button class="b b--sm b--secondary" id="lockBtn">Lock</button>
+
+    <!-- KPI grid -->
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-label">Total proposals</div>
+        <div class="stat-value brand" id="kpiTotal">—</div>
+        <div class="stat-meta" id="kpiTotalMeta">&nbsp;</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Total views</div>
+        <div class="stat-value muted" id="kpiViews">—</div>
+        <div class="stat-meta">Tracking pending</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Unique visitors</div>
+        <div class="stat-value muted" id="kpiUnique">—</div>
+        <div class="stat-meta">Tracking pending</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Views today</div>
+        <div class="stat-value brand muted" id="kpiToday">—</div>
+        <div class="stat-meta">Tracking pending</div>
+      </div>
     </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search proposals…" autocomplete="off" />
+      </div>
+      <button class="sort-btn active" data-sort="date">Date<span class="sort-arrow">▼</span></button>
+      <button class="sort-btn" data-sort="title">Title<span class="sort-arrow">▼</span></button>
+      <button class="sort-btn" data-sort="views">Views<span class="sort-arrow">▼</span></button>
+    </div>
+
+    <!-- Table -->
+    <div class="t-wrap">
+      <table class="t">
+        <thead>
+          <tr>
+            <th data-sort="title">Title / Slug<span class="sort-arrow" id="arrTitle"></span></th>
+            <th data-sort="date">Published<span class="sort-arrow" id="arrDate">▼</span></th>
+            <th data-sort="views" class="no-sort">Views</th>
+            <th class="no-sort" style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr><td colspan="4" class="loading-state"><div class="mono">Loading proposals…</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
+</div>
 
-  <div class="t-wrap">
-    <table class="t">
-      <thead>
-        <tr>
-          <th style="width:30%;">Slug</th>
-          <th>URL</th>
-          <th class="t-actions">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-        <tr><td colspan="3" class="loading" id="loadingRow">Loading…</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="note">Document password for all published pages: <code>Blacklist2026!</code> — share it with the live URL.</p>
-</main>
-
-<footer class="foot">The Blacklist Alliance · Proposal Publisher · v1</footer>
+<footer class="foot">The Blacklist Alliance · Proposal Publisher · auto-refresh on Refresh click</footer>
 
 <div class="toast" id="toast"></div>
 
+<!-- Delete confirm modal -->
+<div class="modal-backdrop" id="deleteModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2>Delete proposal?</h2>
+    <p>This will permanently remove <code id="deleteSlug">—</code> from <code>go.blacklistalliance.com</code>. The action cannot be undone.</p>
+    <div class="row">
+      <button class="b cancel" type="button" id="deleteCancel">Cancel</button>
+      <button class="b" type="button" id="deleteConfirm">Delete</button>
+    </div>
+  </div>
+</div>
+
 <script>
   // ----- password gate (client-side; team-internal only) -----
-  // Stored as hash so view-source doesn't expose the literal password.
   const EXPECTED_HASH = "0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 of "Blacklist2026!"
   const STORAGE_KEY = "bapp_dashboard_unlocked";
+
+  // BAPP credentials (used only after dashboard unlock; required for delete)
+  const API_KEY = "bl_pub_b3458e5fb07b97a704c77b58c7edc0773b1cc2723a3780df";
+  const GH_OWNER = "Plura-AI";
+  const GH_REPO  = "blacklist-published";
+
+  let allRows = [];
+  let sortKey = "date";
+  let sortDir = "desc";
+  let pendingDeleteSlug = null;
 
   async function sha256(text) {
     const buf = new TextEncoder().encode(text);
@@ -420,7 +581,7 @@
   function showDashboard() {
     document.getElementById("loginView").style.display = "none";
     document.getElementById("dashView").classList.add("show");
-    loadList();
+    loadAll();
   }
   function showLogin() {
     document.getElementById("dashView").classList.remove("show");
@@ -429,7 +590,7 @@
     document.getElementById("pw").focus();
   }
 
-  // Auto-unlock if previously unlocked in this session
+  // Auto-unlock from session
   if (sessionStorage.getItem(STORAGE_KEY) === "1") {
     showDashboard();
   }
@@ -453,54 +614,176 @@
     showLogin();
   });
 
-  // ----- dashboard data -----
-  async function loadList() {
-    const body = document.getElementById("tableBody");
-    body.innerHTML = '<tr><td colspan="3" class="loading">Loading…</td></tr>';
+  document.getElementById("refreshBtn").addEventListener("click", loadAll);
+
+  // ----- DATA LOAD -----
+  async function loadAll() {
+    document.getElementById("tableBody").innerHTML =
+      '<tr><td colspan="4" class="loading-state"><div class="mono">Loading proposals…</div></td></tr>';
+
+    let slugs = [];
     try {
       const res = await fetch("/api/list", { cache: "no-store" });
       const json = await res.json();
-      const slugs = json.slugs || [];
-      document.getElementById("statCount").textContent = slugs.length;
-
-      if (slugs.length === 0) {
-        body.innerHTML = '<tr><td colspan="3" class="empty"><div class="empty-title">Nothing published yet</div>Use BAPP to publish your first asset.</td></tr>';
-        return;
-      }
-
-      body.innerHTML = "";
-      slugs.forEach(({ slug, url }) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td class="t-slug">${escapeHtml(slug)}</td>
-          <td class="t-url"><a href="${url}" target="_blank" rel="noopener">${escapeHtml(url)}</a></td>
-          <td class="t-actions">
-            <button class="b b--sm b--secondary" data-action="copy" data-url="${url}">Copy link</button>
-            <button class="b b--sm" data-action="open" data-url="${url}">Open</button>
-          </td>
-        `;
-        body.appendChild(tr);
-      });
+      slugs = json.slugs || [];
     } catch (err) {
-      body.innerHTML = `<tr><td colspan="3" class="empty"><div class="empty-title">Could not load</div>${escapeHtml(err.message || "Network error")}</td></tr>`;
+      document.getElementById("tableBody").innerHTML =
+        `<tr><td colspan="4" class="empty-state"><h3>Could not load</h3><p>${escapeHtml(err.message || "Network error")}</p></td></tr>`;
+      return;
     }
+
+    // KPIs
+    document.getElementById("kpiTotal").textContent = slugs.length;
+    document.getElementById("kpiTotalMeta").textContent = slugs.length === 1 ? "1 live page" : `${slugs.length} live pages`;
+    document.getElementById("kpiViews").textContent = "—";
+    document.getElementById("kpiUnique").textContent = "—";
+    document.getElementById("kpiToday").textContent = "—";
+
+    // Fetch dates from GitHub in parallel (public repo, no auth needed; 60 req/hr/IP)
+    const enriched = await Promise.all(slugs.map(async ({ slug, url }) => {
+      let date = null;
+      try {
+        const ghRes = await fetch(
+          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/commits?path=published/${encodeURIComponent(slug)}.html&per_page=1`,
+          { cache: "no-store" }
+        );
+        if (ghRes.ok) {
+          const arr = await ghRes.json();
+          if (Array.isArray(arr) && arr.length > 0) {
+            date = arr[0].commit?.author?.date || arr[0].commit?.committer?.date || null;
+          }
+        }
+      } catch { /* ignore */ }
+      return { slug, url, date, views: null };
+    }));
+
+    allRows = enriched;
+    render();
   }
 
-  document.getElementById("refreshBtn").addEventListener("click", loadList);
+  function render() {
+    const q = document.getElementById("searchInput").value.trim().toLowerCase();
+    let rows = allRows.slice();
+    if (q) rows = rows.filter(r => r.slug.toLowerCase().includes(q));
 
+    rows.sort((a, b) => {
+      const dir = sortDir === "asc" ? 1 : -1;
+      if (sortKey === "title") return a.slug.localeCompare(b.slug) * dir;
+      if (sortKey === "views") return ((b.views || 0) - (a.views || 0)) * dir;
+      // date
+      const at = a.date ? new Date(a.date).getTime() : 0;
+      const bt = b.date ? new Date(b.date).getTime() : 0;
+      return (bt - at) * dir;
+    });
+
+    const body = document.getElementById("tableBody");
+    if (rows.length === 0) {
+      body.innerHTML = '<tr><td colspan="4" class="empty-state"><h3>No matches</h3><p>Adjust your search or publish a new asset via BAPP.</p></td></tr>';
+    } else {
+      body.innerHTML = rows.map(r => `
+        <tr>
+          <td>
+            <div class="t-slug">${escapeHtml(r.slug)}</div>
+            <a href="${r.url}" target="_blank" rel="noopener">${escapeHtml(r.url)}</a>
+          </td>
+          <td class="t-date">${r.date ? formatDate(r.date) : "—"}</td>
+          <td><span class="t-views muted">—</span><div class="t-unique">tracking pending</div></td>
+          <td class="t-actions">
+            <button class="row-btn" data-action="copy" data-slug="${r.slug}" data-url="${r.url}">Copy</button>
+            <button class="row-btn open" data-action="open" data-url="${r.url}">Open</button>
+            <button class="row-btn delete" data-action="delete" data-slug="${r.slug}">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    // Update arrows
+    document.querySelectorAll("th[data-sort]").forEach(th => {
+      const k = th.dataset.sort;
+      th.classList.toggle("sorted", k === sortKey);
+    });
+    document.querySelectorAll(".sort-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.sort === sortKey);
+      const arr = btn.querySelector(".sort-arrow");
+      if (arr) arr.textContent = btn.dataset.sort === sortKey ? (sortDir === "asc" ? "▲" : "▼") : "";
+    });
+  }
+
+  // Search
+  document.getElementById("searchInput").addEventListener("input", () => render());
+
+  // Sort buttons
+  document.querySelectorAll(".sort-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const k = btn.dataset.sort;
+      if (sortKey === k) {
+        sortDir = sortDir === "asc" ? "desc" : "asc";
+      } else {
+        sortKey = k;
+        sortDir = "desc";
+      }
+      render();
+    });
+  });
+  document.querySelectorAll("th[data-sort]").forEach(th => {
+    if (th.classList.contains("no-sort")) return;
+    th.addEventListener("click", () => {
+      const k = th.dataset.sort;
+      if (sortKey === k) sortDir = sortDir === "asc" ? "desc" : "asc";
+      else { sortKey = k; sortDir = "desc"; }
+      render();
+    });
+  });
+
+  // Row actions (event delegation)
   document.getElementById("tableBody").addEventListener("click", async (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
+    const action = btn.dataset.action;
+    const slug = btn.dataset.slug;
     const url = btn.dataset.url;
-    if (btn.dataset.action === "copy") {
-      try {
-        await navigator.clipboard.writeText(url);
-        toast("Copied " + url);
-      } catch {
-        toast("Copy failed");
+    if (action === "open") window.open(url, "_blank", "noopener");
+    else if (action === "copy") {
+      try { await navigator.clipboard.writeText(url); toast("Copied " + url); }
+      catch { toast("Copy failed"); }
+    } else if (action === "delete") {
+      pendingDeleteSlug = slug;
+      document.getElementById("deleteSlug").textContent = slug;
+      document.getElementById("deleteModal").classList.add("show");
+    }
+  });
+
+  // Delete modal
+  document.getElementById("deleteCancel").addEventListener("click", () => {
+    document.getElementById("deleteModal").classList.remove("show");
+    pendingDeleteSlug = null;
+  });
+  document.getElementById("deleteConfirm").addEventListener("click", async () => {
+    const slug = pendingDeleteSlug;
+    if (!slug) return;
+    document.getElementById("deleteModal").classList.remove("show");
+    try {
+      const res = await fetch("/api/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, apiKey: API_KEY }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && (json.ok === undefined || json.ok)) {
+        toast(`Deleted ${slug}`);
+        loadAll();
+      } else {
+        toast(`Delete failed: ${json.error || res.status}`);
       }
-    } else if (btn.dataset.action === "open") {
-      window.open(url, "_blank", "noopener");
+    } catch (err) {
+      toast(`Delete failed: ${err.message}`);
+    }
+    pendingDeleteSlug = null;
+  });
+  document.getElementById("deleteModal").addEventListener("click", (e) => {
+    if (e.target.id === "deleteModal") {
+      document.getElementById("deleteModal").classList.remove("show");
+      pendingDeleteSlug = null;
     }
   });
 
@@ -509,16 +792,17 @@
     el.textContent = msg;
     el.classList.add("show");
     clearTimeout(window._t);
-    window._t = setTimeout(() => el.classList.remove("show"), 1800);
+    window._t = setTimeout(() => el.classList.remove("show"), 2000);
   }
-
   function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function formatDate(iso) {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return "—";
+    const opts = { year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit" };
+    return d.toLocaleString(undefined, opts);
   }
 </script>
 
