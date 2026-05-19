@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nakatani v. Honeywell International Inc. — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* Blacklist Alliance — Foundations (subset, fetched from design system) */
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:780px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:860px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--dark{ background:var(--bl-black); color:#fff; border-color:var(--bl-black); }
+.pill--gap{ background:#fff; color:var(--fg-3); border:1px dashed var(--border-2); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:10px 18px; font-size:14px; }
+.kv dt{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; color:var(--fg-1); }
+.kv dd .muted{ color:var(--fg-3); font-size:12px; }
+
+.quote{ background:var(--bl-black); color:#fff; padding:32px; margin:0; border-left:4px solid var(--bl-red); font-size:20px; font-weight:600; line-height:1.4; letter-spacing:-0.005em; }
+.quote .src{ display:block; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; margin-top:14px; }
+
+.steps{ counter-reset:step; display:grid; gap:16px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; background:var(--bg-surface); border:1px solid var(--border-1); padding:20px 24px; align-items:start; }
+.step-num{ counter-increment:step; width:40px; height:40px; background:var(--bl-black); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; }
+.step-num::before{ content:counter(step,decimal-leading-zero); }
+.step-title{ font-size:16px; font-weight:600; margin:0 0 4px; }
+.step-body{ font-size:14px; color:var(--fg-2); line-height:1.55; }
+.step-body strong{ color:var(--fg-1); }
+
+.risk-bar{ display:block; width:56px; height:4px; background:var(--bl-red); }
+
+.scrub-card{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); border-left:4px solid var(--bl-red); }
+.scrub-card-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 24px; border-bottom:1px solid #393939; flex-wrap:wrap; }
+.scrub-eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; color:#fff; }
+.scrub-eyebrow [data-lucide]{ color:var(--bl-red); }
+.scrub-card-body{ padding:24px; display:grid; grid-template-columns:1fr 1.4fr; gap:32px; align-items:center; }
+@media (max-width:760px){ .scrub-card-body{ grid-template-columns:1fr; gap:20px; } }
+.scrub-number-block{ background:#1F1F1F; padding:20px 24px; border-left:3px solid var(--bl-red); }
+.scrub-number-label{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:8px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:#fff; line-height:1.1; letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:#A8A8A8; margin-top:10px; line-height:1.5; }
+.scrub-number-sub code{ font-family:var(--font-mono); background:#000; color:#fff; padding:1px 6px; border:1px solid #393939; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:#E0E0E0; margin:0; }
+.scrub-body-text code{ font-family:var(--font-mono); background:#1F1F1F; color:#fff; padding:1px 8px; border:1px solid #393939; font-size:13px; }
+.scrub-body-text strong{ color:#fff; }
+
+.two-col{ display:grid; grid-template-columns:1.4fr 1fr; gap:32px; align-items:start; }
+@media (max-width:880px){ .two-col{ grid-template-columns:1fr; } }
+
+ul.clean{ margin:0; padding:0 0 0 18px; }
+ul.clean li{ margin:6px 0; }
+ul.tight li{ margin:2px 0; }
+
+.foot{ background:#000; color:#A8A8A8; padding:40px 0; font-size:12px; letter-spacing:0.04em; }
+.foot .container{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.foot .who{ color:#fff; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:11px; }
+.foot a{ color:#fff; }
+
+[data-lucide]{ width:18px; height:18px; stroke-width:2; vertical-align:-3px; }
+.icon-lg [data-lucide]{ width:22px; height:22px; }
+
+.src-tag{ font-size:11px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-3); border-bottom:1px dotted var(--fg-3); }
+.src-tag a:hover{ color:var(--bl-red); border-color:var(--bl-red); }
+
+@media print{
+  body{ background:#fff; }
+  .hero{ break-after:avoid; }
+  section{ break-inside:avoid-page; padding:32px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <g>
+            <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+            <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+            <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+            <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+            <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+            <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+            <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+            <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+          </g>
+          <g>
+            <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z" fill="#fff"/>
+            <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z" fill="#fff"/>
+            <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5" fill="#fff"/>
+          </g>
+          <g>
+            <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z" fill="#fff"/>
+            <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#fff"/>
+            <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z" fill="#fff"/>
+            <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#fff"/>
+            <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z" fill="#fff"/>
+            <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#fff"/>
+            <path d="M160.6,23.4V.5h6v22.9h-6Z" fill="#fff"/>
+            <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z" fill="#fff"/>
+            <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z" fill="#fff"/>
+          </g>
+          <g>
+            <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+            <g>
+              <circle cx="9.4" cy="6.2" r="2.9" fill="#fff"/>
+              <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z" fill="#fff"/>
+              <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z" fill="#fff"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-18</div>
+    </div>
+
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Fortune 100 TCPA Defendant &nbsp;·&nbsp; Serial-Plaintiff Shotgun Filing &nbsp;·&nbsp; Brand-Impersonation Domain Confirmed (alerton.ai ≠ Honeywell)</p>
+      <h1 class="hero-tagline">Nakatani v.<br>Honeywell International Inc.</h1>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-01790-JDP</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Cal. (Sacramento)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 12, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(6 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Claim</div><div class="value">47 U.S.C. § 227(c) <br>47 C.F.R. § 64.1200(c)(1) &amp; (c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Rule 23 putative (2 classes)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Faythe Gutierrez · PLG Damage Attorneys</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     1. LITIGATOR SCRUB CHECK
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Full plaintiff number recovered from the SMS click-URL — and the plaintiff just filed 4 federal TCPA cases on the same day</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint body redacts to last-4 ("ending in 7204") — but <strong>the SMS screenshot exhibit exposes the full 10 digits in the click-tracking URL</strong> (<code>https://me.alerton.ai/?pc=9168857204</code>). Pulled, scrubbed, and cross-referenced against PACER — Scott Nakatani is a <strong>professional serial plaintiff</strong> for PLG, not a one-off consumer.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="check-circle-2"></i> Scrub Status</span>
+        <span class="pill pill--red">Recovered &amp; Run · Add to Litigator DB</span>
+      </div>
+      <div class="scrub-card-body">
+        <div class="scrub-number-block">
+          <div class="scrub-number-label">Plaintiff's recipient number</div>
+          <div class="scrub-number">(916) 885-7204</div>
+          <div class="scrub-number-sub">Recovered from <code>pc=</code> click-tracking parameter in the SMS URL embedded in Exhibit A. Confirmed Sacramento-area-code wireless, consistent with plaintiff's pled residence in Sacramento, CA.</div>
+        </div>
+        <p class="scrub-body-text">
+          <code>blacklistBulk</code> result on (916) 885-7204: <strong>not currently on Blacklist's litigator suppression list</strong> — but Nakatani has just filed <strong>four federal TCPA class actions on the same day (May 12, 2026)</strong>, all with Faythe Gutierrez / PLG as counsel: Nakatani v. Honeywell, Nakatani v. Checkgonow LLC (<code>2:26-cv-01784</code>), Nakatani v. Snapcommerce Holdings (<code>2:26-cv-01789</code>), and Nakatani v. Pacific Credit Partners LLC. <strong>That is a textbook serial-plaintiff signature.</strong> Carrier: New Cingular Wireless PCS LLC (AT&amp;T Mobility) · OCN <code>6010</code> · LRN <code>9165410000</code> · CLLI <code>SCRMCA01GT1</code> · NPA-NXX 916-885 (Sacramento). <strong>Action: enroll (916) 885-7204 in Blacklist's litigator database immediately.</strong> Any defendant scrubbing against us tomorrow removes him before send.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta"><i data-lucide="link-2"></i> &nbsp;Recovery Path Used &nbsp;·&nbsp; SMS Exhibit URL</div>
+        <h4 class="card-title" style="margin-top:8px">URL click-tracking parameter <code>pc=9168857204</code></h4>
+        <div class="card-body">The SMS exhibit (Exhibit A, p. 14 of ECF #1) embeds a tappable link to <code>https://me.alerton.ai/?pc=9168857204</code> — the <code>pc</code> parameter is the recipient's phone number used for click-attribution. <strong>The sender's own URL leaks the consumer's full 10 digits even when the complaint body redacts.</strong> Add this recovery pattern to the parser playbook — every PLG filing with a screenshot exhibit is likely to expose the named plaintiff's number the same way.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta"><i data-lucide="database"></i> &nbsp;Same-Day Shotgun Filings</div>
+        <h4 class="card-title" style="margin-top:8px">Four defendants in one day</h4>
+        <div class="card-body">Scott Nakatani is the named plaintiff in all four of these E.D. Cal. filings dated May 12, 2026 (per PACER / Justia): <code>2:26-cv-01784</code> (Checkgonow), <code>2:26-cv-01789</code> (Snapcommerce), <code>2:26-cv-01790</code> (Honeywell), plus Pacific Credit Partners. <strong>This is not a consumer who happened to get spammed.</strong> This is a coordinated, recruited plaintiff feeding PLG's California campaign. Pull the other three complaints alongside Honeywell's.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta"><i data-lucide="folder-search"></i> &nbsp;Cross-Reference PLG Wave</div>
+        <h4 class="card-title" style="margin-top:8px">Pull other Gutierrez complaints</h4>
+        <div class="card-body">Faythe Gutierrez has 45+ California federal TCPA cases on file as of early May 2026 (per EIA). Geographic split: 19 C.D. Cal., 11 E.D. Cal., 10 S.D. Cal., 5 N.D. Cal. <strong>Pull every Gutierrez ECF #1 with a screenshot exhibit</strong> — most will have the same <code>pc=</code> pattern leaking the named plaintiff's number. Each one is a free addition to Blacklist's litigator database. <a href="https://www.ecomm-alliance.org/blog/the-new-wave-of-quiet-hours-litigation-is-bigger-than-we-originally-understood/">EIA wave coverage →</a></div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <span class="pill pill--ok"><i data-lucide="check"></i> SCRUB STATUS: COMPLETE — NUMBER RECOVERED</span>
+      &nbsp;
+      <span class="pill pill--danger"><i data-lucide="users"></i> Class action — 2 classes pled (After-Hours + Federal DNC Registry)</span>
+      &nbsp;
+      <span class="pill pill--danger"><i data-lucide="repeat"></i> Serial plaintiff — 4 same-day filings</span>
+      &nbsp;
+      <span class="pill pill--warn"><i data-lucide="trending-up"></i> Plaintiff firm in 45+ CA filings (Gutierrez personally)</span>
+      &nbsp;
+      <span class="pill pill--info"><i data-lucide="map-pin"></i> Venue: Sacramento, CA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. SALES OPPORTUNITY SUMMARY
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Fortune 100 named defendant · Payday-loan SMS on a confirmed third-party impersonator domain (alerton.ai) · Honeywell beat the last big TCPA in 2018 and spent 5 years doing it — preventative is the cheap path this time</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0 0 16px">
+          Honeywell International Inc. — the <strong>Fortune 100, NASDAQ-listed industrial conglomerate</strong> (HON, Charlotte NC HQ, ~$130B market cap, ~$38B 2024 revenue) — has been named as the sole defendant in a putative TCPA class action filed in the Eastern District of California on May 12, 2026. The complaint alleges two counts under 47 U.S.C. § 227(c): a <strong>quiet-hours violation</strong> (47 C.F.R. § 64.1200(c)(1) — texts before 8:00 a.m. local time) and a <strong>Federal DNC Registry violation</strong> (47 C.F.R. § 64.1200(c)(2) — texts to a number on the Federal DNC Registry since April 14, 2022). Both texts referenced in the complaint were sent on <strong>March 14, 2026 at 5:04 a.m. and 7:10 a.m. Pacific</strong> from short code <strong>41731</strong>.
+        </p>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0 0 16px">
+          <strong>The fact pattern is unusual in a way that fundamentally re-shapes the defense.</strong> The SMS link points to <code>https://me.alerton.ai/?pc=9168857204</code> — and Blacklist's WHOIS / DNS audit confirms <strong><code>alerton.ai</code> is NOT a Honeywell-owned domain</strong>. It was registered June 2, 2025 via Namecheap behind an Icelandic privacy proxy ("Withheld for Privacy ehf"), runs on Cloudflare + DigitalOcean + SparkPost / Amazon SES — a classic lead-gen affiliate stack. Honeywell's <em>real</em> Alerton brand domain is <code>alerton.com</code>, managed on Honeywell's Microsoft 365 corporate tenant with <code>mail1.honeywell.com</code> failover, same Cloudflare nameservers as <code>honeywell.com</code>. <strong>Sister subdomain <code>acc.alerton.ai</code> is currently serving a "$35,000 loan landing page"</strong> — confirmed payday-lending scam impersonating Honeywell's Alerton brand. Honeywell's brand-protection team has a problem they probably don't know they have.
+        </p>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0 0 16px">
+          The plaintiff firm is the urgency multiplier. <strong>PLG Damage Attorneys (Miramar, FL)</strong>, signed by <strong>Faythe Gutierrez (Cal Bar #310430)</strong>, has filed 77+ federal TCPA cases firm-wide since April 2, 2026, with Gutierrez personally on 45+ of them in California federal courts (19 C.D. Cal., 11 E.D. Cal., 10 S.D. Cal., 5 N.D. Cal.). This is a coordinated, templated, high-velocity filing wave specifically targeting 47 C.F.R. § 64.1200(c)(1) quiet-hours violations. Other named defendants in the wave include <strong>Fashion Nova, Marathon Petroleum, Steven Madden, Urban Outfitters, Gunner Gear</strong> — and now Honeywell. <strong>This is the highest-profile defendant the wave has named so far.</strong>
+        </p>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0">
+          Honeywell has TCPA defense memory: the company spent ~5 years defending <strong><em>Mey v. Honeywell</em> / <em>Hodgin v. UTC Fire &amp; Security</em></strong> as part of the Monitronics MDL (MDL 2493, N.D. W. Va.). Honeywell <em>won</em> — summary judgment from Judge Bailey (Dec. 2016), affirmed by the Fourth Circuit (885 F.3d 243, March 14, 2018) — but co-defendant Monitronics paid <strong>$28 million</strong> to settle separately. Honeywell's defense counsel of record on the 4th Circuit appeal was <strong>Lauri Anne Mazzuchetti of Kelley Drye &amp; Warren LLP (Parsippany, NJ)</strong>. The institutional memory of "we beat the last one but spent five years and seven figures doing it" is the strongest possible setup for a preventative-controls conversation. Product fit, in priority order: <strong>(1) Quiet-Hours Send-Window Controls + Internal DNC Policies, (2) Federal DNC Scrub, (3) Litigator Scrub (with Nakatani now enrolled), plus (4) a Brand-Impersonation / Vendor-Attribution forensics package on <code>alerton.ai</code>.</strong>
+        </p>
+      </div>
+
+      <aside class="card card--accent" style="background:var(--gray-05)">
+        <div class="card-meta">Urgency Scorecard</div>
+        <h4 class="card-title" style="margin-top:6px; margin-bottom:16px">Hottest Prospect Indicators</h4>
+        <dl class="kv">
+          <dt>Pain</dt><dd><span class="pill pill--danger">Acute</span> &nbsp;Just sued, federal class action</dd>
+          <dt>Recency</dt><dd><span class="pill pill--danger">6 days</span> &nbsp;Filed 2026-05-12</dd>
+          <dt>Plaintiff firm</dt><dd><span class="pill pill--danger">Wave filer</span> &nbsp;PLG · 77+ TCPA cases since 4/2/2026</dd>
+          <dt>Gutierrez personally</dt><dd>45+ filings, all 4 CA fed districts</dd>
+          <dt>Plaintiff status</dt><dd><span class="pill pill--danger">Serial</span> &nbsp;4 same-day filings 5/12/2026</dd>
+          <dt>Class scope</dt><dd><span class="pill pill--danger">Two classes</span> &nbsp;After-Hours + Fed DNC Registry · "dozens to thousands" pled</dd>
+          <dt>Damages exposure</dt><dd>$500–$1,500 per text × class size · $1M–$25M+ realistic range</dd>
+          <dt>Theory</dt><dd><span class="pill pill--warn">Quiet Hours + DNC</span> &nbsp;Pre-8am texts to DNC-registered #</dd>
+          <dt>Brand signal</dt><dd><span class="pill pill--danger">Impersonation CONFIRMED</span> &nbsp;alerton.ai ≠ Honeywell · Namecheap/Iceland privacy</dd>
+          <dt>Defendant size</dt><dd><span class="pill pill--info">Fortune 100</span> &nbsp;NASDAQ:HON · ~$38B revenue</dd>
+          <dt>TCPA memory</dt><dd>Hodgin / Monitronics MDL won 2018 — 5 yrs defense spend</dd>
+          <dt>Plaintiff DNC since</dt><dd>April 14, 2022 (well past 30-day threshold)</dd>
+          <dt>Sending shortcode</dt><dd>41731 (pled per Exhibit A)</dd>
+          <dt>Buying authority</dt><dd>Su Ping Lu (GC) · Billal Hammoud (Bldg Auto) · Chase Carpenter (CISO)</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:48px 0">
+
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> Pitch Angle</div>
+      <h3 class="section-title" style="font-size:28px">Lead with Quiet-Hours Send-Window Controls. Anchor with Federal DNC Scrub. Close with Litigator Scrub + Brand-Impersonation Forensics on alerton.ai.</h3>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="clock"></i> &nbsp;Product 1 &nbsp;·&nbsp; Open with this</div>
+        <h4 class="card-title" style="margin-top:8px">Quiet-Hours Send-Window Controls + Internal DNC Policies</h4>
+        <div class="card-body">
+          <p>Both texts were sent at <strong>5:04 a.m. and 7:10 a.m. Pacific</strong> — well inside the 47 C.F.R. § 64.1200(c)(1) quiet-hours window. There is no defense to this on the face of the pleadings — the time stamps are in the plaintiff's own SMS screenshot. PLG is filing this exact theory at scale across CA. <strong>Sales pitch:</strong> <em>"This class action exists because two texts went out before 8 a.m. Pacific. Blacklist's send-window controls hard-block any outbound SMS or call from leaving the queue before 8 a.m. or after 9 p.m. local time at the recipient's location — based on the recipient's area code, not the sender's. If those two texts had been queued through us, they would have been held until 8:01 a.m. and Count I would not exist. Every Honeywell business unit, affiliate, or authorized vendor touching consumer outbound traffic needs this gate in front of it before the next Gutierrez filing lands."</em></p>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="phone-off"></i> &nbsp;Product 2 &nbsp;·&nbsp; Anchor here</div>
+        <h4 class="card-title" style="margin-top:8px">Federal DNC Registry Scrubbing</h4>
+        <div class="card-body">
+          <p>Count II is the § 227(c)(5) / § 64.1200(c)(2) Federal DNC Registry count. Nakatani's number has been on the Federal DNC Registry <strong>since April 14, 2022</strong> — almost four years before the texts. Any reasonable pre-send scrub against the live DNC Registry would have removed him. The only available § 227(c)(5) safe harbor defense is "reasonable practices and procedures" — which is exactly the product. <strong>Sales pitch:</strong> <em>"The plaintiff was on the Federal DNC for four years before this text. The cheapest single control that would have stopped Count II of this case — and Count II of every other Gutierrez filing — is a live DNC scrub on every recipient before send. We do that. It costs less per recipient than one round of motion practice on this case alone, and it underwrites your safe harbor."</em></p>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="shield-check"></i> &nbsp;Product 3 &nbsp;·&nbsp; Close on this</div>
+        <h4 class="card-title" style="margin-top:8px">Litigator Scrub + Brand-Impersonation Forensics on alerton.ai</h4>
+        <div class="card-body">
+          <p>Two products in one close. <strong>Litigator scrub</strong>: Nakatani filed four TCPA cases in one day on May 12, 2026. Blacklist's litigator database catches the next Nakatani — and the next Gutierrez plaintiff — before they ever receive a marketing text. <strong>Brand-impersonation forensics</strong>: Honeywell does not own <code>alerton.ai</code>. Someone registered it through Namecheap behind an Icelandic privacy shield in June 2025 and is running consumer payday-loan SMS on it under the Alerton name. <strong>Sales pitch:</strong> <em>"You have two problems. First, you have a serial-plaintiff problem — Nakatani filed four cases the same day yours got filed. Our litigator scrub stops that pattern. Second, you have a brand-impersonation problem you may not know about — somebody outside Honeywell registered alerton.ai and is running consumer-loan SMS on a subdomain (acc.alerton.ai) that's live right now. Either way the plaintiff firm is going to discovery this. We can hand your defense team the WHOIS, DNS, and hosting trail today so when Kelley Drye walks into the first status conference, they walk in with proof that Honeywell didn't send it."</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <p class="quote">"Two texts at 5:04 a.m. and 7:10 a.m. on a Sacramento number that's been on the Federal DNC for four years, sent under a brand whose authentic domain you don't even own. The plaintiff firm just filed four cases under one named plaintiff in a single day, and they have 45 more like it across California. You beat the last MDL in 2018 and it took five years — preventative compliance is one one-hundredth of that spend, and it kills the wave at the queue before it ever leaves your SMS platform."
+        <span class="src">Sales talking point · use verbatim on the Honeywell GC / Building Automation / CISO call</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. CORPORATE FOOTPRINT
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Fortune 100 conglomerate · Building Automation segment carries the named-brand exposure · alerton.ai is a confirmed third-party lookalike</h2>
+      <p class="section-lede">Honeywell International Inc. is a Delaware corporation, NASDAQ-listed (HON), HQ in Charlotte, NC. Operations span Aerospace, Industrial Automation, Building Automation, and Energy &amp; Sustainability Solutions. The consumer-facing surface in this case is <strong>Alerton</strong> — a Honeywell building-automation brand based in Lynnwood, WA, owned via the 2005 Novar acquisition. The wrinkle: the SMS-link domain is not Honeywell-owned. Blacklist's WHOIS / DNS audit confirms <code>alerton.ai</code> is a third-party registration on a lead-gen affiliate stack, not part of Honeywell's corporate domain estate.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <h4 class="card-title">Defendant Entity</h4>
+        <dl class="kv">
+          <dt>Federal name</dt><dd>Honeywell International Inc.</dd>
+          <dt>Type</dt><dd>Delaware corporation · authorized in California</dd>
+          <dt>Public listing</dt><dd>NASDAQ: HON</dd>
+          <dt>Global HQ</dt><dd>855 S. Mint Street, Charlotte, NC 28202</dd>
+          <dt>Corporate main</dt><dd>(704) 627-6200 · alt (877) 841-2840</dd>
+          <dt>2024 revenue</dt><dd>~$38B (latest reported)</dd>
+          <dt>Market cap</dt><dd>~$130B (NASDAQ:HON, recent close)</dd>
+          <dt>Chair &amp; CEO</dt><dd>Vimal Kapur</dd>
+          <dt>General Counsel</dt><dd><strong>Su Ping Lu</strong> · SVP, GC &amp; Corporate Secretary (effective May 5, 2025)</dd>
+          <dt>Segments</dt><dd>Aerospace · Industrial Automation · Building Automation · Energy &amp; Sustainability</dd>
+          <dt>Segment restructure</dt><dd><span class="pill pill--warn">Q1 2026</span> &nbsp;HBT renamed to "Building Automation" ahead of Aerospace spin-off</dd>
+          <dt>Employees</dt><dd>~100K+ globally</dd>
+          <dt>Status</dt><dd><span class="pill pill--ok">Actively trading</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h4 class="card-title">Named Brand &mdash; Alerton</h4>
+        <dl class="kv">
+          <dt>Brand name</dt><dd>Alerton (a Honeywell brand)</dd>
+          <dt>Parent segment</dt><dd>Building Automation (formerly HBT)</dd>
+          <dt>Segment president</dt><dd>Billal M. Hammoud</dd>
+          <dt>HQ</dt><dd>Lynnwood, Washington</dd>
+          <dt>Founded</dt><dd>1981 (Bellevue, WA)</dd>
+          <dt>Acquired by Honeywell</dt><dd>2005 (via Novar Controls acquisition)</dd>
+          <dt>Authentic domain</dt><dd><code>alerton.com</code> · Cloudflare NS (same as honeywell.com) · MX → <code>alerton-com.mail.protection.outlook.com</code> + <code>mail1.honeywell.com</code> / <code>mail2.honeywell.com</code> failover</dd>
+          <dt>Authentic page</dt><dd><a href="https://buildings.honeywell.com/us/en/brands/our-brands/alerton">buildings.honeywell.com/us/en/brands/our-brands/alerton</a></dd>
+          <dt>Product line</dt><dd>BACnet building management systems · HVAC controllers · facility-management software</dd>
+          <dt>Customer base</dt><dd>Commercial buildings, hospitals, schools, government — <strong>not consumers</strong></dd>
+          <dt>Suspicious domain</dt><dd><code>alerton.ai</code> <span class="pill pill--danger">CONFIRMED LOOKALIKE</span> &nbsp;Not Honeywell</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h4 class="card-title">Consumer-SMS Surface (As Pled)</h4>
+        <dl class="kv">
+          <dt>Honeywell corporate</dt><dd><a href="https://www.honeywell.com">honeywell.com</a> · <a href="https://buildings.honeywell.com/us/en/brands/our-brands/alerton">buildings.honeywell.com (Alerton)</a></dd>
+          <dt>SMS sender ID</dt><dd>Short code <strong>41731</strong> (per Exhibit A screenshot) — common-short-code, A2P 10DLC adjacency</dd>
+          <dt>SMS content</dt><dd><span class="pill pill--danger">Payday lending</span> &nbsp;"$500 to $5,000 available" — inconsistent with Honeywell or legitimate Alerton business</dd>
+          <dt>Click URL</dt><dd><code>me.alerton.ai/?pc=9168857204</code> — phone-attributed click tracking</dd>
+          <dt>Opt-out keyword</dt><dd>"Reply Stop to OPTOUT" (pled in messages)</dd>
+          <dt>Send times</dt><dd>5:04 a.m. and 7:10 a.m. Pacific, March 14, 2026 — both inside the 47 C.F.R. § 64.1200(c)(1) quiet-hours window</dd>
+          <dt>Likely sender stack</dt><dd>Bulk-email / SMS lead-gen via Amazon SES + SparkPost (per <code>alerton.ai</code> SPF record) plus an SMS aggregator behind short code 41731</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Compliance gap callout -->
+    <div style="margin-top:32px">
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Smoking-Gun Compliance Gap</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">Time stamps + DNC status + a confirmed lookalike domain — three independent wedges</h3>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta"><i data-lucide="clock"></i> &nbsp;Quiet-Hours Violation</div>
+          <h4 class="card-title" style="margin-top:8px; font-size:16px">Texts at 5:04 AM &amp; 7:10 AM Pacific</h4>
+          <div class="card-body">Both pled texts were initiated to a Sacramento, CA recipient at times before 8:00 a.m. local time. 47 C.F.R. § 64.1200(c)(1) is per-recipient-local-time, not sender-local-time, and the screenshots in Exhibit A show the timestamps directly. <strong>The cleanest fact pattern PLG could ask for.</strong> No discovery needed to plead the violation.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta"><i data-lucide="phone-off"></i> &nbsp;Federal DNC Registry Violation</div>
+          <h4 class="card-title" style="margin-top:8px; font-size:16px">DNC since April 14, 2022</h4>
+          <div class="card-body">Plaintiff pleads the Subject Number has been on the National Do-Not-Call Registry since at least April 14, 2022 — almost four years before the March 14, 2026 texts. The 30-day threshold under 47 C.F.R. § 64.1200(c)(2) is trivially satisfied. <strong>The only § 227(c)(5) safe harbor defense is "reasonable practices and procedures."</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-meta"><i data-lucide="alert-triangle"></i> &nbsp;Brand Impersonation — Confirmed</div>
+          <h4 class="card-title" style="margin-top:8px; font-size:16px">alerton.ai is NOT Honeywell-owned</h4>
+          <div class="card-body">Blacklist WHOIS / DNS audit (2026-05-18): <code>alerton.ai</code> registered <strong>June 2, 2025</strong> via <strong>Namecheap</strong>, registrant masked by <strong>Withheld for Privacy ehf</strong> (Reykjavik, Iceland), running on Cloudflare + DigitalOcean (mx.alerton.ai → <code>137.184.191.72</code>) + Amazon SES + SparkPost. Zero shared infrastructure with <code>honeywell.com</code> or <code>alerton.com</code>. Sister subdomain <code>acc.alerton.ai</code> is currently serving a $35K loan landing page. <strong>This is not Honeywell. Honeywell's brand-protection team needs to know.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related entities -->
+    <div style="margin-top:40px">
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Related Entities (Cross-Sell Candidates)</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">Honeywell ecosystem · Building Automation portfolio · Resideo carve-out lineage</h3>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Entity</th>
+              <th>Relationship</th>
+              <th>Outbound Comms Profile</th>
+              <th>TCPA Cross-Sell Fit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Honeywell International Inc.</strong></td>
+              <td>Named defendant · Fortune 100 parent</td>
+              <td>Multi-segment · enterprise B2B primary, with Building Automation brands touching consumer adjacencies</td>
+              <td><span class="pill pill--red">Primary</span></td>
+            </tr>
+            <tr>
+              <td>Alerton (Honeywell brand)</td>
+              <td>Named in SMS link · building-automation brand · part of Building Automation segment</td>
+              <td>Enterprise B2B (commercial buildings) — outbound to facility managers, contractors, A&amp;E firms</td>
+              <td><span class="pill pill--warn">High — directly named brand · authentic domain = alerton.com</span></td>
+            </tr>
+            <tr>
+              <td>Honeywell Building Automation (segment)</td>
+              <td>Renamed Q1 2026 from "Honeywell Building Technologies (HBT)" · Hammoud-led</td>
+              <td>Mix of B2B contractor outbound + smart-building installer programs</td>
+              <td><span class="pill pill--warn">High — same compliance org owns this and Alerton</span></td>
+            </tr>
+            <tr>
+              <td>Resideo Technologies (NYSE: REZI)</td>
+              <td>Honeywell consumer-products carve-out (spun off 2018) — Honeywell Home brand, security, ADI dealer network</td>
+              <td>Heavy consumer SMS / call traffic — Honeywell Home, ADI dealer network</td>
+              <td><span class="pill pill--warn">Medium — separate public co. but historical compliance lineage; warm intro path via Honeywell GC</span></td>
+            </tr>
+            <tr>
+              <td>Whoever runs <code>alerton.ai</code></td>
+              <td><span class="pill pill--danger">Third-party lookalike</span> &nbsp;Namecheap · Withheld for Privacy ehf · DigitalOcean MX</td>
+              <td>Consumer SMS payday-loan lead-gen on a Honeywell-named domain</td>
+              <td><span class="pill pill--danger">Adversary, not prospect. Surface to Honeywell as part of the pitch.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src-tag" style="margin-top:10px">Sources: <a href="https://buildings.honeywell.com/us/en/brands/our-brands/alerton">Honeywell — Alerton brand page</a> · <a href="https://en.wikipedia.org/wiki/Alerton">Alerton (Wikipedia)</a> · <a href="https://www.honeywell.com">honeywell.com</a> · <a href="https://www.honeywell.com/us/en/press/2025/10/honeywell-announces-updated-business-segment-structure-ahead-of-aerospace-spin-off">Honeywell segment restructure press, Oct 2025</a> · WHOIS authoritative response <code>whois.nic.ai</code> 2026-05-18</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. LITIGATION CONTEXT
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">The plaintiff firm is one story · The serial plaintiff is the other · And Honeywell already beat a 5-year TCPA MDL in 2018 — the institutional memory is the close</h2>
+      <p class="section-lede">Nakatani v. Honeywell is one drop in a coordinated wave AND one of four same-day shotgun filings under a single named plaintiff. PLG Damage Attorneys filed 77+ federal TCPA actions firm-wide since April 2, 2026 — 45+ by Faythe Gutierrez personally across all four California districts. Treat this filing as both <strong>a wave-marker against a Fortune 100</strong> and as confirmation that PLG is recruiting and recycling named plaintiffs at industrial scale.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case · Filed 6 days ago</div>
+        <h3 class="card-title" style="font-size:22px; margin-top:8px">Nakatani v. Honeywell International Inc.</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Federal docket</dt><dd>2:26-cv-01790-JDP (E.D. Cal., Sacramento Division)</dd>
+          <dt>Intake / at-number</dt><dd>2:26-at-00797</dd>
+          <dt>Filed</dt><dd>May 12, 2026 — direct federal filing (not removed)</dd>
+          <dt>Magistrate</dt><dd>Jeremy D. Peterson ("JDP")</dd>
+          <dt>District judge</dt><dd><span class="pill pill--gap">Not yet assigned (consent/decline window open)</span></dd>
+          <dt>Nature of suit</dt><dd>485 — TCPA · Cause of action: 47 U.S.C. § 227</dd>
+          <dt>Filing fee</dt><dd>$405 · Receipt # ACAEDC-13313859</dd>
+          <dt>Summons issued</dt><dd>May 13, 2026 (Filing #3) — to be served on Faythe Gutierrez at PLG</dd>
+          <dt>Plaintiff</dt><dd>Scott Nakatani (Sacramento County, CA) — <strong>serial plaintiff</strong></dd>
+          <dt>Plaintiff phone</dt><dd>(916) 885-7204 <span class="pill pill--ok">Recovered from SMS URL</span></dd>
+          <dt>DNC registered</dt><dd>Since at least April 14, 2022</dd>
+          <dt>Plaintiff counsel</dt><dd><strong>Faythe Gutierrez, Esq.</strong> · Cal Bar #310430 · service@plgdamage.com<br>PLG Damage Attorneys · 2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+          <dt>Class action</dt><dd><span class="pill pill--danger">Yes — Rule 23 putative · two classes</span></dd>
+          <dt>Class 1</dt><dd>TCPA After-Hours Class — 4-year lookback · 2+ texts before 8 a.m. or after 9 p.m. local time</dd>
+          <dt>Class 2</dt><dd>TCPA National Do-Not-Call Registry Class — 4-year lookback · 2+ texts to numbers on DNC for 30+ days</dd>
+          <dt>Claim</dt><dd>47 U.S.C. § 227(c) · 47 C.F.R. § 64.1200(c)(1) and (c)(2)</dd>
+          <dt>Theory</dt><dd>Two pre-8 a.m. Pacific texts to a long-time DNC-registered Sacramento cellular number</dd>
+          <dt>Texts at issue</dt><dd>March 14, 2026 at 5:04 a.m. and 7:10 a.m. Pacific · short code 41731 · link to me.alerton.ai</dd>
+          <dt>Damages sought</dt><dd>$500/violation negligent · $1,500/violation knowing/willful · class-wide · injunctive relief · jury trial demanded</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> &nbsp;21-day answer deadline · likely Kelley Drye (Mazzuchetti) or panel firm rotation</dd>
+        </dl>
+        <p class="src-tag" style="margin-top:14px"><a href="https://www.courtlistener.com/?q=%222%3A26-cv-01790%22&type=r">CourtListener →</a> · <a href="https://www.pacermonitor.com">PacerMonitor docket →</a> · <a href="https://dockets.justia.com">Justia Dockets →</a></p>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Firm · Quiet-Hours Wave Leader</div>
+        <h3 class="card-title" style="font-size:22px; margin-top:8px">PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm HQ</dt><dd>2750 SW 145th Avenue, #509, Miramar, FL 33027 · (305) 506-4746</dd>
+          <dt>Firm domains</dt><dd><a href="https://plglawyersfl.com/">plglawyersfl.com</a> (primary) · <a href="https://www.plgdamage.com">plgdamage.com</a> (secondary)</dd>
+          <dt>Alt firm names</dt><dd>Files under multiple entities: PLG Damage Attorneys · PLG Damage Attorneys PLLC · Property Litigation Group · Property Litigation Group PLLC</dd>
+          <dt>CEO / founder</dt><dd>Mario I. Molina, Esq.</dd>
+          <dt>Managing Partner</dt><dd>Michelle L. Molina, Esq.</dd>
+          <dt>Managing Partners</dt><dd>Vinit R. Venkatesh (since Nov 2018) · Matthew S. Suls (from inception, promoted 2020)</dd>
+          <dt>Junior Partner / TCPA</dt><dd>Joseph A. Varona · Melissa Duran (Managing Attorney)</dd>
+          <dt>Public-site practice area</dt><dd>First-party residential/commercial property-damage &amp; insurance-claims litigation (claims $100M+ recovered) — <strong>TCPA is not advertised on the public site</strong></dd>
+          <dt>Lead attorney (this case)</dt><dd>Faythe Gutierrez · Cal Bar #310430 (admitted 06/30/2016) · JD Whittier Law School (magna cum laude) · MBA Hope International · BA Azusa Pacific · Lecturer at Chapman Fowler School of Law</dd>
+          <dt>Gutierrez prior career</dt><dd>Earth Friendly Products → Kemper → <strong>Potter Handy LLP</strong> (Knowledge Management Attorney; co-counsel on mass arbitration) → PFS Global → Soleiman APC → joined PLG <strong>~March 2026 remotely</strong></dd>
+          <dt>Q2 2026 volume — firm</dt><dd><span class="pill pill--danger">77+ TCPA cases</span> &nbsp;Since April 2, 2026 (first PLG TCPA filing)</dd>
+          <dt>Q2 2026 volume — Gutierrez</dt><dd>45+ TCPA cases (all California federal): <strong>19 C.D. Cal., 11 E.D. Cal., 10 S.D. Cal., 5 N.D. Cal.</strong></dd>
+          <dt>Other TCPA filers</dt><dd>Joseph A. Varona (16 cases, all S.D. Fla.) · Vinit R. Venkatesh (15 cases: 11 S.D. Fla., 2 M.D. Fla., 1 S.D. Tex., 1 N.D. Tex.)</dd>
+          <dt>Filing window</dt><dd>April 20 – May 5, 2026 (16 days) → 40+ CA federal quiet-hours class actions per EIA; firm has continued filing since</dd>
+          <dt>Template pattern</dt><dd>Rule 23 dual-class structure (After-Hours + DNC Registry) · residential cellular line · on DNC for years · 2+ texts initiated before 8 a.m. or after 9 p.m. local time</dd>
+          <dt>WebRecon ranking</dt><dd>PLG / Gutierrez has not yet appeared on WebRecon monthly top-attorney lists (wave began April 2026; reporting lag)</dd>
+          <dt>Pre-April 2026 TCPA?</dt><dd>No — first PLG TCPA filing 4/2/2026 (S.D. Fla., Varona/Venkatesh). Gutierrez hired remote ~March 2026 specifically to anchor the CA campaign.</dd>
+          <dt>Implication</dt><dd><strong>Manufactured wave. PLG didn't have a TCPA practice 60 days ago. Gutierrez is filing at maximum velocity using a single template. Honeywell is the highest-profile target so far. The next filing lands this week.</strong></dd>
+        </dl>
+        <p class="src-tag" style="margin-top:14px"><a href="https://www.ecomm-alliance.org/blog/in-depth-a-new-firm-joins-the-quiet-hours-gold-rush/">EIA — A New Firm Joins the Quiet Hours Gold Rush</a> · <a href="https://www.ecomm-alliance.org/blog/the-new-wave-of-quiet-hours-litigation-is-bigger-than-we-originally-understood/">EIA — The New Wave Is Bigger Than We Originally Understood</a> · <a href="http://members.calbar.ca.gov/fal/Licensee/Detail/310430">Cal Bar #310430 (Gutierrez)</a> · <a href="https://plglawyersfl.com/team/">PLG team page</a></p>
+      </div>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:40px 0">
+
+    <!-- Same-day filings -->
+    <div>
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Scott Nakatani — Same-Day Shotgun Filings · May 12, 2026</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">Four federal TCPA class actions, one named plaintiff, one filing day — Honeywell is the highest-profile target</h3>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Docket</th><th>District</th><th>Defendant Profile</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Nakatani v. Checkgonow LLC</strong></td><td>2:26-cv-01784</td><td>E.D. Cal.</td><td>Consumer lead-gen / check-cashing — likely payday-adjacent fact pattern</td></tr>
+            <tr><td><strong>Nakatani v. Snapcommerce Holdings Inc.</strong></td><td>2:26-cv-01789</td><td>E.D. Cal.</td><td>Mobile-commerce / push-marketing platform</td></tr>
+            <tr style="background:var(--danger-bg)"><td><strong>Nakatani v. Honeywell International Inc.</strong> <span class="src-tag">(this report)</span></td><td>2:26-cv-01790-JDP</td><td>E.D. Cal.</td><td>Fortune 100 industrial conglomerate · brand impersonation on alerton.ai</td></tr>
+            <tr><td><strong>Nakatani v. Pacific Credit Partners LLC</strong></td><td>TBD — pull from PACER</td><td>E.D. Cal.</td><td>Consumer credit / debt collection — verify docket #</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:18px; font-size:15px; color:var(--fg-2)">
+        <strong>Interpretation:</strong> Scott Nakatani is functioning as a professional named plaintiff for PLG's California campaign. Four defendants in one filing day signals that PLG either purchased a lead list of SMS-marketed numbers from Nakatani's intake and is bulk-filing on every match, or recruited Nakatani specifically to be the named plaintiff across the wave. Either way, Honeywell is the Fortune 100 anchor target in the batch — the wave's biggest scalp.
+      </p>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:40px 0">
+
+    <!-- PLG wave defendants -->
+    <div>
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> PLG / Gutierrez Quiet-Hours Template &mdash; Wave Defendants 2026</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">Sibling complaints across the four CA federal districts</h3>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case / Defendant</th><th>Docket</th><th>District</th><th>Filed</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Shavies v. Fashion Nova, Inc.</strong></td><td>3:26-cv-03523-JCS</td><td>N.D. Cal.</td><td>Apr 24, 2026</td><td>8 texts between 7:24–7:32 a.m. Pacific, summer 2025</td></tr>
+            <tr><td>Gunner Gear LLC</td><td>TBD</td><td>CA federal</td><td>Apr-May 2026</td><td>Per EIA wave coverage</td></tr>
+            <tr><td>Marathon Petroleum Company LP</td><td>TBD</td><td>CA federal</td><td>Apr-May 2026</td><td>Per EIA wave coverage · Fortune 100 prior</td></tr>
+            <tr><td>Steven Madden Ltd.</td><td>TBD</td><td>CA federal</td><td>Apr-May 2026</td><td>Per EIA wave coverage</td></tr>
+            <tr><td>Urban Outfitters</td><td>TBD</td><td>CA federal</td><td>Apr-May 2026</td><td>Per EIA wave coverage</td></tr>
+            <tr style="background:var(--danger-bg)"><td><strong>Nakatani v. Honeywell International Inc.</strong> <span class="src-tag">(this report)</span></td><td>2:26-cv-01790-JDP</td><td>E.D. Cal.</td><td>May 12, 2026</td><td>Highest-profile defendant in wave to date</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:18px; font-size:15px; color:var(--fg-2)">
+        <strong>Defense backdrop — May 1, 2026 "Quiet Hour Killer" ruling:</strong> A California court recently held that TCPA quiet-hours claims cannot be brought by a plaintiff who voluntarily provided their telephone number to the caller (TCPAWorld coverage). <strong>If Honeywell — or any authorized affiliate — can show Nakatani provided his number through a legitimate Honeywell channel, this case becomes vulnerable on a Rule 12(b)(6) or early MSJ.</strong> But the alerton.ai impersonation finding suggests Honeywell never had Nakatani's number in the first place. Worth flagging to defense counsel as a strategic angle.
+      </p>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:40px 0">
+
+    <!-- Honeywell TCPA history -->
+    <div>
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Honeywell TCPA History — Institutional Memory</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">The Monitronics MDL · Honeywell won but spent ~5 years defending</h3>
+      </div>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <h4 class="card-title">In re Monitronics International, Inc. TCPA Litigation</h4>
+          <dl class="kv" style="margin-top:12px">
+            <dt>MDL number</dt><dd>MDL No. 2493 · N.D. W. Va. · Judge John Preston Bailey</dd>
+            <dt>Honeywell case</dt><dd><em>Mey v. Honeywell International, Inc.</em>, 2:12-cv-01721 (S.D. W. Va.), transferred in</dd>
+            <dt>Co-defendants</dt><dd>Monitronics · UTC Fire &amp; Security Americas · Alarm.com · Alliance Security (VMS) · Honeywell</dd>
+            <dt>Allegation</dt><dd>Vicarious liability for autodialed home-security telemarketing by dealer network</dd>
+            <dt>SJ in Honeywell's favor</dt><dd><span class="pill pill--ok">Dec 2016</span> &nbsp;Judge Bailey granted summary judgment for Honeywell + UTC</dd>
+            <dt>4th Circuit affirmed</dt><dd><span class="pill pill--ok">Mar 14, 2018</span> &nbsp;Hodgin v. UTC Fire &amp; Security, 885 F.3d 243 — Honeywell/UTC NOT vicariously liable for dealer calls</dd>
+            <dt>Monitronics settlement</dt><dd>$28 million separately (Aug 2017) — Honeywell did NOT pay</dd>
+            <dt>Honeywell defense counsel</dt><dd><strong>Lauri Anne Mazzuchetti</strong> · Kelley Drye &amp; Warren LLP · Parsippany, NJ</dd>
+            <dt>Total defense duration</dt><dd>~5 years (2012 filing → 2018 4th Cir. affirmance)</dd>
+          </dl>
+          <p class="src-tag" style="margin-top:14px"><a href="https://www.law360.com/articles/525029">Law360 — Honeywell Can't Break Up Home Security TCPA Suit</a> · <a href="https://www.securitysales.com/news/utc-fire-security-honeywell-beat-telemarketing-class-action-suit/">Security Sales coverage</a></p>
+        </div>
+
+        <div class="card card--accent">
+          <h4 class="card-title">Why this matters for the sales narrative</h4>
+          <div class="card-body">
+            <p style="margin:0 0 12px">Honeywell beat the last big TCPA — but spent <strong>five years and significant legal spend</strong> to do it. Kelley Drye / Mazzuchetti are the institutional memory holders. Two implications for the Blacklist pitch:</p>
+            <ul class="clean tight">
+              <li><strong>Su Ping Lu's legal team will remember the cost.</strong> Five years of MDL defense, multi-firm panel coordination, and the parallel $28M Monitronics settlement are not abstract — those line items exist in Honeywell's historical legal budget. A preventative compliance stack is one one-hundredth of that spend.</li>
+              <li><strong>Kelley Drye knows TCPA defense.</strong> If they are retained on Nakatani, they will recognize the preventative-compliance narrative immediately as a "good-faith defense" lever for any future § 227(c)(5) safe harbor argument. That makes them a <em>co-buyer</em>, not a gatekeeper. Approach them as such.</li>
+              <li><strong>Mazzuchetti also has standing relationships at Honeywell.</strong> A warm intro to the Honeywell GC's TCPA point-of-contact can route through her, even if she's not retained on this specific filing.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="background:var(--gray-05); margin-top:24px; border-left:4px solid var(--bl-red)">
+        <h4 class="card-title" style="font-size:16px; margin-bottom:8px"><i data-lucide="search"></i> &nbsp;Open intel gaps to close before first dial</h4>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Pull the <strong>Pacific Credit Partners</strong> Nakatani complaint docket number from PACER E.D. Cal. May 12, 2026 filings. Round out the four-case roster.</li>
+            <li>Pull <strong>ECF #1</strong> (full filed complaint with all exhibits) from PACER for Nakatani v. Honeywell. Confirm: (a) any additional texts beyond the two on 3/14/2026 referenced; (b) any plead facts identifying the sender / aggregator behind short code 41731; (c) whether any specific Honeywell business unit or vendor is named beyond the parent entity.</li>
+            <li>Pull <strong>5–10 other Gutierrez complaints</strong> from the wave. Screenshot exhibits will likely all leak <code>pc=</code> recipient numbers in the same way. <strong>Free additions to Blacklist's litigator database.</strong></li>
+            <li>Confirm <strong>Lauri Anne Mazzuchetti / Kelley Drye</strong> is still on Honeywell's TCPA defense panel as of 2026 — Kelley Drye partner page, recent court filings.</li>
+            <li>Pull Honeywell's 2026 corporate proxy (DEF 14A) for current named executive officer roster and any recent disclosure of consumer-marketing risk exposure.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. CONTACT DIRECTORY
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell at three altitudes — CISO for the brand-impersonation hook, GC for case authority, Building Automation president for the budget</h2>
+      <p class="section-lede">Honeywell is a Fortune 100 organization. A single-point-of-contact play won't work. The unique advantage Blacklist has on this case is the alerton.ai WHOIS / DNS finding — that's a brand-protection / CISO conversation, not a "vendor selling DNC scrubbing" conversation. Lead with Chase Carpenter (CISO), pair with Su Ping Lu's office (GC) for case-level authority, and route the product purchase to Billal Hammoud's organization (Building Automation segment, which owns the Alerton brand).</p>
+    </div>
+
+    <!-- Priority 1 -->
+    <h3 style="font-size:14px; font-weight:600; margin:0 0 8px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em"><span class="risk-bar" style="display:inline-block; vertical-align:middle; margin-right:10px;"></span> Priority 1 · Honeywell Executive Leadership — Primary Buyers</h3>
+    <div class="tbl-wrap" style="margin-bottom:32px">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:18%">Person</th>
+            <th>Title / Why</th>
+            <th>Direct Phone</th>
+            <th>Work Email</th>
+            <th>LinkedIn</th>
+            <th>Notes / Skip-Trace</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--bl-red-tint)">
+            <td>
+              <strong>Chase Carpenter</strong><br>
+              <span class="pill pill--red">First Call</span>
+            </td>
+            <td><strong>VP, Chief Information &amp; Product Security Officer</strong> (CISO equivalent). Charlotte, NC. <strong>The right first call for the brand-impersonation conversation.</strong> Owns DNS / domain governance / brand-protection response. The alerton.ai WHOIS finding is concrete, actionable, and inside his lane.</td>
+            <td><span class="pill pill--gap">TO ENRICH</span> <span class="src-tag">Honeywell HQ main: (704) 627-6200</span></td>
+            <td><span class="pill pill--gap">PATTERN</span> <span class="src-tag">chase.carpenter@honeywell.com</span></td>
+            <td><a href="https://www.linkedin.com/in/chasecarp/">linkedin.com/in/chasecarp</a></td>
+            <td>2025 CarolinaCISO ORBIE Super Global Finalist. Direct LinkedIn outreach is appropriate — peer-to-peer security conversation, not vendor pitch.</td>
+          </tr>
+          <tr>
+            <td><strong>Su Ping Lu</strong><br><span class="pill">Loop in</span></td>
+            <td><strong>SVP, General Counsel &amp; Corporate Secretary</strong>. Effective May 5, 2025. Charlotte, NC. Reports to Chair &amp; CEO Vimal Kapur. Owns case-level exposure for Nakatani. Will route to consumer-protection / TCPA counsel within Legal.</td>
+            <td><span class="pill pill--gap">Per Honeywell HQ main: (704) 627-6200</span></td>
+            <td><span class="pill pill--gap">PATTERN</span> <span class="src-tag">suping.lu@honeywell.com (verify)</span></td>
+            <td><span class="pill pill--gap">TO VERIFY</span></td>
+            <td>Previously VP &amp; Corporate Secretary / GC for International; joined Honeywell 2009 as VP &amp; GC Aerospace Technologies APAC. Succeeded Anne T. Madden, who remains SVP, Portfolio Transformation &amp; Senior Advisor.</td>
+          </tr>
+          <tr>
+            <td><strong>Billal M. Hammoud</strong><br><span class="pill">Economic Buyer</span></td>
+            <td><strong>President &amp; CEO, Honeywell Building Automation segment</strong> (renamed from HBT Q1 2026). P&amp;L owner for the Alerton brand. Any remediation spend for the alerton.ai impersonation and SMS-marketing compliance budget routes through his org.</td>
+            <td><span class="pill pill--gap">Per Honeywell HQ main</span></td>
+            <td><span class="pill pill--gap">PATTERN</span> <span class="src-tag">billal.hammoud@honeywell.com</span></td>
+            <td><a href="https://www.linkedin.com/in/billalhammoud">linkedin.com/in/billalhammoud</a></td>
+            <td>Public bio: honeywell.com/us/en/company/leadership/billal-hammoud. Has named role + named M&amp;A scope. Approach via Carpenter (CISO) referral or direct LinkedIn.</td>
+          </tr>
+          <tr>
+            <td>Anne T. Madden</td>
+            <td>SVP, Portfolio Transformation &amp; Senior Advisor — formerly GC. Useful escalation point for legal-team relationship continuity, especially around the planned business separations / Aerospace spin-off context.</td>
+            <td><span class="pill pill--gap">Per Honeywell HQ main</span></td>
+            <td><span class="pill pill--gap">PATTERN</span> <span class="src-tag">anne.madden@honeywell.com</span></td>
+            <td><span class="pill pill--gap">TO VERIFY</span></td>
+            <td><a href="https://www.honeywell.com/us/en/company/leadership/anne-madden">Honeywell leadership bio</a>. Reach via the GC's office.</td>
+          </tr>
+          <tr>
+            <td>Alerton Brand Director / GM (Lynnwood, WA)</td>
+            <td>Operating lead for the Alerton brand. <strong>No public name surfaced</strong> in 2024-2026 trade press / Honeywell sources. Recommend approaching at segment level (Hammoud) given the brand-impersonation question is bigger than brand-level ops.</td>
+            <td><span class="pill pill--gap">TO ENRICH</span></td>
+            <td><span class="pill pill--gap">firstname.lastname@honeywell.com</span></td>
+            <td><span class="pill pill--gap">TO VERIFY</span></td>
+            <td>Path: LinkedIn filter — Company "Alerton"; Title "General Manager" OR "Director" OR "Brand"; Location Lynnwood, WA / Greater Seattle. Also AutomatedBuildings.com / ControlTrends press.</td>
+          </tr>
+          <tr>
+            <td>Honeywell Privacy Office</td>
+            <td>Honeywell operates a global privacy program through the Trust Center. Useful for any DPA / privacy-policy-related conversation; not the primary TCPA buyer.</td>
+            <td>(704) 627-6200</td>
+            <td>HoneywellPrivacy@honeywell.com</td>
+            <td>&mdash;</td>
+            <td><a href="https://www.honeywell.com/us/en/company/trust-center">Honeywell Trust Center</a>. Named CPO not publicly disclosed — verify.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Priority 2 -->
+    <h3 style="font-size:14px; font-weight:600; margin:0 0 8px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em"><span class="risk-bar" style="display:inline-block; vertical-align:middle; margin-right:10px;"></span> Priority 2 · Defense Counsel — Influencer Touchpoint (Likely Co-Buyer)</h3>
+    <div class="tbl-wrap" style="margin-bottom:32px">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:18%">Person / Firm</th>
+            <th>Title / Role</th>
+            <th>Direct Phone</th>
+            <th>Work Email</th>
+            <th>LinkedIn</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lauri Anne Mazzuchetti</strong></td>
+            <td>Partner, Kelley Drye &amp; Warren LLP · Parsippany, NJ. <strong>Confirmed Honeywell TCPA defense counsel of record</strong> on the 4th Circuit appeal in Hodgin v. UTC (885 F.3d 243, 2018) as part of the Monitronics MDL.</td>
+            <td><span class="pill pill--gap">Kelley Drye Parsippany main</span></td>
+            <td>lmazzuchetti@kelleydrye.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">TO VERIFY</span></td>
+            <td>Confirm she is still on Honeywell's TCPA panel as of 2026 via Kelley Drye partner page + recent court filings. <strong>Even if not retained on Nakatani specifically, she's the natural inbound channel for the Honeywell GC's office — and she'll recognize the preventative-compliance story immediately.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel — Nakatani-specific</strong></td>
+            <td>Honeywell has not yet appeared (filing is 6 days old). 21-day answer deadline ~June 2, 2026. Defense counsel will appear before then.</td>
+            <td><span class="pill pill--gap">TBD</span></td>
+            <td><span class="pill pill--gap">TBD</span></td>
+            <td>&mdash;</td>
+            <td>Monitor PACER docket for the notice of appearance. Most likely Kelley Drye (Mazzuchetti continuity) or another Honeywell panel firm (Arnold &amp; Porter and Hogan Lovells have done other Honeywell consumer-protection / environmental work; Jones Day handles Honeywell commercial). <strong>When counsel appears, treat them as a co-buyer.</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Plaintiff side, for reference -->
+    <h3 style="font-size:14px; font-weight:600; margin:0 0 8px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em"><span class="risk-bar" style="display:inline-block; vertical-align:middle; margin-right:10px;"></span> Plaintiff-Side Reference (Do Not Contact)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:22%">Person / Firm</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Faythe Gutierrez, Esq.</strong></td>
+            <td>Lead plaintiff counsel · Cal Bar #310430 (admitted 06/30/2016, active)</td>
+            <td><span class="pill pill--gap">Per PLG main: (305) 506-4746</span></td>
+            <td>service@plgdamage.com</td>
+            <td>Joined PLG ~March 2026 (remote). 45+ TCPA cases filed personally in &lt;60 days. JD Whittier (magna cum laude). Lecturer at Chapman Fowler School of Law. Prior career: trademark / insurance defense / mass arbitration (Potter Handy LLP).</td>
+          </tr>
+          <tr>
+            <td><strong>PLG Damage Attorneys</strong></td>
+            <td>Plaintiff firm · 77+ TCPA cases firm-wide since 4/2/2026</td>
+            <td>(305) 506-4746</td>
+            <td>service@plgdamage.com</td>
+            <td>Firm HQ: 2750 SW 145th Ave, #509, Miramar, FL 33027. CEO: Mario I. Molina. Managing Partner: Michelle L. Molina. Public-facing brand: property-damage practice. TCPA pivot began April 2026.</td>
+          </tr>
+          <tr>
+            <td>Joseph A. Varona</td>
+            <td>PLG Junior Partner · 16 TCPA cases (all S.D. Fla.)</td>
+            <td>&mdash;</td>
+            <td>varona@plgdamage.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>Florida-focused subset of PLG's TCPA practice.</td>
+          </tr>
+          <tr>
+            <td>Vinit R. Venkatesh</td>
+            <td>PLG Managing Partner (since Nov 2018) · 15 TCPA cases (S.D./M.D. Fla. + TX)</td>
+            <td>&mdash;</td>
+            <td>venkatesh@plgdamage.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>Multi-district subset of PLG's TCPA practice.</td>
+          </tr>
+          <tr>
+            <td><strong>Scott Nakatani</strong></td>
+            <td>Named plaintiff · serial filer (4 same-day cases 5/12/2026)</td>
+            <td>(916) 885-7204 <span class="pill pill--ok">Recovered</span></td>
+            <td><span class="pill pill--gap">Not disclosed</span></td>
+            <td>Sacramento County, CA resident. DNC-registered since 4/14/2022. <strong>Enroll in Blacklist litigator suppression list immediately — never contact directly.</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. ACTION PLAN
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move now. The 21-day answer clock + the active wave = compressed buying window. Lead with the alerton.ai WHOIS data — that's the unique-leverage hook nobody else can walk in with.</h2>
+      <p class="section-lede">Honeywell's answer is due ~June 2, 2026. Inside that window, the internal narrative at Honeywell is "we got sued, what do we do, who do we hire, how do we prevent the next one." The alerton.ai WHOIS finding is the wedge that gets Blacklist past the gatekeeper and into the CISO's office. <strong>Make first contact within 3 business days — and walk in with the WHOIS / DNS audit in hand.</strong></p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Enroll Scott Nakatani in Blacklist's litigator database · Today</h4>
+          <p class="step-body">Add <strong>(916) 885-7204</strong> to the litigator suppression list immediately. Tag with all four same-day filings (Honeywell, Checkgonow, Snapcommerce, Pacific Credit Partners) so the database carries the full serial-plaintiff context for the next defendant scrubbing against us.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Package the alerton.ai brand-impersonation finding · Today</h4>
+          <p class="step-body">Turn the WHOIS / DNS / hosting audit into a one-page brief: registrant masking via Withheld for Privacy ehf (Iceland), Namecheap registrar (vs. CSC / MarkMonitor for legitimate Honeywell), Cloudflare + DigitalOcean MX (vs. Outlook 365 tenant for honeywell.com / alerton.com), SparkPost / SES outbound (lead-gen stack), <code>acc.alerton.ai</code> serving live $35K loan landing page. <strong>This is the artifact Cierra walks in with on the first call.</strong></p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Pull the full Nakatani complaint + sibling dockets · Today</h4>
+          <p class="step-body">Buy ECF #1 from PACER (~$1.20) for 2:26-cv-01790-JDP. Also pull the three sibling Nakatani filings (Checkgonow, Snapcommerce, Pacific Credit Partners) — confirm docket numbers and confirm the same plaintiff template across all four. Update report exhibits.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">First-contact outreach · Direct to Chase Carpenter (CISO) · Within 3 business days</h4>
+          <p class="step-body">Send from <strong>Esteban Garcia's mailbox</strong> directly to Chase Carpenter (linkedin.com/in/chasecarp · likely <code>chase.carpenter@honeywell.com</code>), CC the Honeywell GC's office (Su Ping Lu via Honeywell HQ legal intake). Subject line: <em>"TCPA filing against Honeywell + brand-impersonation finding on alerton.ai — Nakatani v. Honeywell (E.D. Cal.)."</em> Open with the case caption and the two specific quiet-hours timestamps. Pivot to the alerton.ai WHOIS finding (Namecheap / Withheld for Privacy / Cloudflare + DigitalOcean stack), and attach the one-pager. Close with: <em>"We work with TCPA defendants on quiet-hours send-window controls, Federal DNC scrubbing, litigator scrubbing, and — when the fact pattern includes a domain like alerton.ai — brand-impersonation forensics. Worth a 30-minute call to walk through what we'd put in place before the answer is due and the next PLG filing lands."</em> Tone: peer-to-peer security / compliance, not vendor pitch.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Parallel reach-out · Lauri Mazzuchetti / Kelley Drye · Within 5 business days</h4>
+          <p class="step-body">If Mazzuchetti is still on Honeywell's TCPA defense panel (verify via Kelley Drye partner page and recent dockets), reach out separately on a peer-to-peer basis. Subject: <em>"TCPA panel awareness — Nakatani v. Honeywell · brand-impersonation finding."</em> Defense counsel will recognize the preventative-compliance + good-faith-safe-harbor narrative immediately. <strong>She's a co-buyer, not a gatekeeper.</strong></p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Watch the docket + the wave · Daily for the next 30 days</h4>
+          <p class="step-body">Monitor <strong>2:26-cv-01790-JDP</strong> daily for: (a) defense counsel notice of appearance (likely Kelley Drye / Mazzuchetti or another Honeywell panel firm); (b) any motion to dismiss invoking the May 1, 2026 "Quiet Hour Killer" voluntary-consent ruling; (c) any amended complaint. <strong>Separately</strong> — monitor all four CA federal district PACER feeds for any <em>second</em> PLG / Gutierrez filing naming Honeywell, Alerton, Resideo, or any Honeywell subsidiary. The wave is active.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Cross-sell warm setup · Resideo · After first call</h4>
+          <p class="step-body">If Esteban establishes a relationship with the Building Automation compliance lead, the same conversation extends to <strong>Resideo Technologies (NYSE: REZI)</strong> — Honeywell's consumer-products carve-out (Honeywell Home brand, ADI security dealer network). Resideo carries heavy consumer-SMS exposure with shared compliance lineage. Same buyer profile, same product fit, additive ARR.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Escalation path · Seth + Matt · If no engagement by Day 14</h4>
+          <p class="step-body">If neither Carpenter nor Lu's office engages within 14 days, Esteban should surface to Seth Heyman for any prior Honeywell legal relationship that could warm the intro, and to Matt Beucler for direct executive outreach if needed. Fortune 100 sales cycles are slow at the start and explosive once the first call lands. <strong>The wave clock is the urgency multiplier — persistence is the priority.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:40px 0">
+
+    <!-- Rep assignment -->
+    <div class="card card--alert" style="background:#1F1F1F">
+      <div class="card-meta" style="color:#A8A8A8"><i data-lucide="user-check"></i> &nbsp;Round-Robin Assignment</div>
+      <h3 class="card-title" style="margin-top:8px">Assigned Blacklist sales rep · <span style="color:#fff">Esteban Garcia</span></h3>
+      <div class="card-body">
+        <p style="color:#E0E0E0">Round-robin rotation override. Standard sequence would have routed this to Cierra Davis (next after Collins → Suzi, Hawkins → Kristyn, Heaney → Dudley), but Matt has assigned <strong style="color:#fff">Esteban Garcia</strong> — VP of Sales for Blacklist Alliance and Number Verifier — directly given the Fortune 100 weight of the defendant and the executive-altitude required to break into Honeywell's GC office, CISO, and Building Automation segment president in parallel. Fit notes: Esteban carries the cross-portfolio authority (Blacklist + Number Verifier) and the senior title needed to land a meeting with Chase Carpenter (CISO) and Su Ping Lu's (GC) office. The unique-leverage hook is the alerton.ai WHOIS / brand-impersonation finding — Esteban should walk in with that one-page brief and lead with Chase Carpenter (CISO), not the GC's office, to maximize the security-team open.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="foot">
+  <div class="container">
+    <div>
+      <div class="who">Blacklist Alliance &nbsp;·&nbsp; Filed Case Lead Flow</div>
+      <div style="margin-top:6px">Internal sales document — not for client distribution.</div>
+    </div>
+    <div style="text-align:right">
+      <div>Generated 2026-05-18 &nbsp;·&nbsp; Source: ECF #1 (uploaded) · blacklistBulk · PacerMonitor · CourtListener · Justia · EIA (Ecommerce Innovation Alliance) · Cal Bar · Honeywell corporate · Alerton brand page · WHOIS authoritative <code>whois.nic.ai</code> · Team Cymru AS lookup · 4th Cir. Hodgin opinion · Law360 · Kelley Drye</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
