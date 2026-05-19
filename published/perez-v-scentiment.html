@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perez v. Scentiment, LLC — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* Blacklist Alliance — Foundations (subset, fetched from design system) */
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:780px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:860px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--dark{ background:var(--bl-black); color:#fff; border-color:var(--bl-black); }
+.pill--gap{ background:#fff; color:var(--fg-3); border:1px dashed var(--border-2); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:10px 18px; font-size:14px; }
+.kv dt{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; color:var(--fg-1); }
+.kv dd .muted{ color:var(--fg-3); font-size:12px; }
+
+.quote{ background:var(--bl-black); color:#fff; padding:32px; margin:0; border-left:4px solid var(--bl-red); font-size:20px; font-weight:600; line-height:1.4; letter-spacing:-0.005em; }
+.quote .src{ display:block; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; margin-top:14px; }
+
+.steps{ counter-reset:step; display:grid; gap:16px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; background:var(--bg-surface); border:1px solid var(--border-1); padding:20px 24px; align-items:start; }
+.step-num{ counter-increment:step; width:40px; height:40px; background:var(--bl-black); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; }
+.step-num::before{ content:counter(step,decimal-leading-zero); }
+.step-title{ font-size:16px; font-weight:600; margin:0 0 4px; }
+.step-body{ font-size:14px; color:var(--fg-2); line-height:1.55; }
+.step-body strong{ color:var(--fg-1); }
+
+.risk-bar{ display:block; width:56px; height:4px; background:var(--bl-red); }
+
+.scrub-card{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); border-left:4px solid var(--bl-red); }
+.scrub-card-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 24px; border-bottom:1px solid #393939; flex-wrap:wrap; }
+.scrub-eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; color:#fff; }
+.scrub-eyebrow [data-lucide]{ color:var(--bl-red); }
+.scrub-card-body{ padding:24px; display:grid; grid-template-columns:1fr 1.4fr; gap:32px; align-items:center; }
+@media (max-width:760px){ .scrub-card-body{ grid-template-columns:1fr; gap:20px; } }
+.scrub-number-block{ background:#1F1F1F; padding:20px 24px; border-left:3px solid var(--bl-red); }
+.scrub-number-label{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:8px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:#fff; line-height:1.1; letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:#A8A8A8; margin-top:10px; line-height:1.5; }
+.scrub-number-sub code{ font-family:var(--font-mono); background:#000; color:#fff; padding:1px 6px; border:1px solid #393939; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:#E0E0E0; margin:0; }
+.scrub-body-text code{ font-family:var(--font-mono); background:#1F1F1F; color:#fff; padding:1px 8px; border:1px solid #393939; font-size:13px; }
+.scrub-body-text strong{ color:#fff; }
+
+.two-col{ display:grid; grid-template-columns:1.4fr 1fr; gap:32px; align-items:start; }
+@media (max-width:880px){ .two-col{ grid-template-columns:1fr; } }
+
+ul.clean{ margin:0; padding:0 0 0 18px; }
+ul.clean li{ margin:6px 0; }
+ul.tight li{ margin:2px 0; }
+
+.foot{ background:#000; color:#A8A8A8; padding:40px 0; font-size:12px; letter-spacing:0.04em; }
+.foot .container{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.foot .who{ color:#fff; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:11px; }
+.foot a{ color:#fff; }
+
+[data-lucide]{ width:18px; height:18px; stroke-width:2; vertical-align:-3px; }
+.icon-lg [data-lucide]{ width:22px; height:22px; }
+
+.src-tag{ font-size:11px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-3); border-bottom:1px dotted var(--fg-3); }
+.src-tag a:hover{ color:var(--bl-red); border-color:var(--bl-red); }
+
+@media print{
+  body{ background:#fff; }
+  .hero{ break-after:avoid; }
+  section{ break-inside:avoid-page; padding:32px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <g>
+            <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+            <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+            <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"/>
+            <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"/>
+            <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"/>
+            <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"/>
+            <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"/>
+            <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"/>
+          </g>
+          <g>
+            <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z" fill="#fff"/>
+            <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z" fill="#fff"/>
+            <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5" fill="#fff"/>
+          </g>
+          <g>
+            <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z" fill="#fff"/>
+            <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#fff"/>
+            <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z" fill="#fff"/>
+            <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#fff"/>
+            <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z" fill="#fff"/>
+            <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#fff"/>
+            <path d="M160.6,23.4V.5h6v22.9h-6Z" fill="#fff"/>
+            <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z" fill="#fff"/>
+            <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z" fill="#fff"/>
+          </g>
+          <g>
+            <rect y=".4" width="22.7" height="23" fill="#b5001f"/>
+            <g>
+              <circle cx="9.4" cy="6.2" r="2.9" fill="#fff"/>
+              <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z" fill="#fff"/>
+              <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z" fill="#fff"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-18</div>
+    </div>
+
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Class Action Defendant &nbsp;·&nbsp; § 227(b)(1)(A)(iii) ATDS Theory &nbsp;·&nbsp; Purchased-List / No-Consent Marketing Texts</p>
+      <h1 class="hero-tagline">Perez v.<br>Scentiment, LLC</h1>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-23371</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (Miami)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 13, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(5 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Claim</div><div class="value">47 U.S.C. § 227(b)(1)(A)(iii)<br>ATDS · No Consent</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Rule 23 putative</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alvin D. Scott Jr. <br>Consumer Protection &amp; Insurance Attorneys</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     1. LITIGATOR SCRUB CHECK
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted to last-four (2526) — scrub deferred</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Perez complaint pleads <strong>only the last four digits — "2526"</strong> — of the subject cellular number (paragraph 9). <code>blacklistBulk</code> cannot run on a partial. The pitch hook on this lead is not the individual scrub result — it is the <strong>56-text frequency</strong>, the <strong>admitted purchased-list acquisition channel in the defendant's own privacy policy</strong>, and the <strong>340,000-subscriber SMS list</strong> the defendant publicly brags about.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</span>
+        <span class="pill pill--red">Number Partially Redacted · Lookup Skipped</span>
+      </div>
+      <div class="scrub-card-body">
+        <div class="scrub-number-block">
+          <div class="scrub-number-label">Plaintiff's recipient number</div>
+          <div class="scrub-number">XXX-XXX-2526</div>
+          <div class="scrub-number-sub">Per complaint paragraph 9: <em>"Plaintiff is the regular and sole user of cellular telephone number ending in 2526 (the 'Subject Number')."</em> The full ten-digit number is not pled. Plaintiff resides in Miami-Dade County, FL — likely <code>305</code>, <code>786</code>, or <code>954</code> area code, but unconfirmed. <strong>No blacklistBulk lookup performed.</strong></div>
+        </div>
+        <p class="scrub-body-text">
+          Per protocol — <strong>partial redactions are not enough to run <code>blacklistBulk</code></strong>. We assert no litigator-list match in this report. The full number will likely surface in (a) discovery, (b) plaintiff declarations, (c) any class certification briefing, or (d) the text-message screenshots that high-volume TCPA plaintiffs typically attach to amended complaints. <strong>Sales rep should plan to rerun the scrub once the number is in hand.</strong> Far more compelling for this specific deal: the defendant's <strong>own privacy policy admits acquiring data from "data providers," "data licensors," "business partners," and "third-party platforms"</strong> — which is precisely the lead-list acquisition mechanism the complaint alleges (paragraph 14). The defendant has functionally documented the violation channel on its own website.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta"><i data-lucide="file-search"></i> &nbsp;Recovery Path 1 &nbsp;·&nbsp; PACER Pull</div>
+        <h4 class="card-title" style="margin-top:8px">Buy ECF #1 Complaint from PACER</h4>
+        <div class="card-body">The free aggregators (Justia, CourtListener, PacerMonitor) have not yet indexed <code>1:26-cv-23371</code> — typical 7–30 day lag for newly-filed S.D. Fla. cases. Pull the 10-page complaint from PACER (~$1.00). Confirm: (a) is the full plaintiff number visible in any attached SMS screenshot exhibit; (b) the specific keyword(s) used by Scentiment in the offending texts; (c) the originating sender shortcode/long-code. <a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/FLSDC">PACER FLSDC →</a></div>
+      </div>
+      <div class="card">
+        <div class="card-meta"><i data-lucide="user-search"></i> &nbsp;Recovery Path 2 &nbsp;·&nbsp; Plaintiff Skip-Trace</div>
+        <h4 class="card-title" style="margin-top:8px">Skip-trace Rosario F. Perez</h4>
+        <div class="card-body">Plaintiff is pled as a citizen and resident of Miami-Dade County, FL (paragraph 6). Run TLO / Skip Smasher on "Rosario F. Perez" + Miami-Dade. Cross-check any returned 305/786/954 number ending in 2526 against <code>blacklistBulk</code>. If hit, flag for the litigator database independent of this case.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta"><i data-lucide="search"></i> &nbsp;Recovery Path 3 &nbsp;·&nbsp; Scentiment List Match</div>
+        <h4 class="card-title" style="margin-top:8px">Match plaintiff to Scentiment's SMS list</h4>
+        <div class="card-body">Scentiment publicly reports a <strong>340,000-subscriber SMS list managed on Recart</strong>. In discovery, the defendant will be required to produce the source acquisition records for the subject number. If the list was acquired from a co-registration broker or a data-licensor (as the privacy policy admits), the broker's name will surface — and that broker is likely a recurring upstream source of TCPA exposure for other Blacklist prospects.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <span class="pill pill--gap"><i data-lucide="circle"></i> SCRUB STATUS: SKIPPED — NUMBER NOT FULLY PLED</span>
+      &nbsp;
+      <span class="pill pill--danger"><i data-lucide="users"></i> Class action — 50+ class members pled</span>
+      &nbsp;
+      <span class="pill pill--danger"><i data-lucide="message-square"></i> 56 unsolicited texts over 13 weeks</span>
+      &nbsp;
+      <span class="pill pill--warn"><i data-lucide="database"></i> Defendant admits purchased-list sourcing</span>
+      &nbsp;
+      <span class="pill pill--info"><i data-lucide="map-pin"></i> Venue: Miami-Dade County, FL</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. SALES OPPORTUNITY SUMMARY
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">$18M+ in self-reported SMS revenue · 340K subscribers built in 5 months · Privacy policy admits purchased-list sourcing · No SMS Terms page exists</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0 0 16px">
+          Scentiment, LLC is a Delaware foreign LLC operating a Shopify DTC luxury home-fragrance brand at <a href="https://www.scentiment.com">scentiment.com</a>. The brand was founded in 2022 by Los Angeles entrepreneurs <strong>Joseph Ayoub</strong> (Founder &amp; CEO) and <strong>Tamoor Shafi</strong> (co-founder) and sells hotel-inspired fragrance oils, IoT diffusers, candles, and room sprays. Florida principal place of business: <strong>8328 NW 30th Ter, Doral, FL 33122</strong> — a shared aviation-services warehouse, not a corporate office. Self-reported revenue band on ZoomInfo is &lt;$5M, but Scentiment's <strong>own SMS vendor Recart publicly publishes a case study claiming Scentiment did $18M+ in SMS revenue and grew its SMS list from 60,000 to 340,000 subscribers in five months.</strong> That single fact reframes the deal: this is not a small DTC brand — this is a high-velocity SMS operation with an aggressive list-build cadence and minimal compliance scaffolding.
+        </p>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0 0 16px">
+          On <strong>May 13, 2026</strong> — five days ago — Rosario F. Perez, a Miami-Dade resident represented by <strong>Alvin Donald Scott Jr.</strong> (Florida Bar #110432, Consumer Protection &amp; Insurance Attorneys), filed a putative TCPA class action in the Southern District of Florida (<code>1:26-cv-23371</code>) alleging violations of 47 U.S.C. § 227(b)(1)(A)(iii). The complaint pleads that Scentiment caused <strong>at least 56 unsolicited marketing text messages</strong> to be transmitted to the Subject Number between January 25, 2026 and April 27, 2026 — averaging more than four texts per week — and that the plaintiff <strong>had no prior business relationship with Scentiment, never provided her number, and never signed up for any communication</strong>. The complaint affirmatively alleges, on information and belief, that <strong>Scentiment obtained the plaintiff's number through the purchase of consumer data lists or other third-party data aggregation sources</strong> (paragraph 14). Damages: $500/violation negligent, $1,500/violation knowing/willful, class-wide; jury trial demanded.
+        </p>
+        <p style="font-size:17px; line-height:1.6; color:var(--fg-1); margin:0">
+          The compliance gap is on the website, not just in the back-end. <strong>scentiment.com has no SMS Terms page</strong> — <code>/policies/sms-terms</code>, <code>/pages/sms-terms</code>, and <code>/pages/mobile-terms</code> all return 404. No HELP/STOP keyword disclosure, no message frequency cap, no "msg &amp; data rates may apply" notice, no "consent is not a condition of purchase" language anywhere on the site. The Terms of Service tries a buried "purchase-equals-consent" theory in Section 13 — which is exactly the construct that fails the FCC's prior-express-written-consent standard for ATDS marketing. <strong>And the Privacy Policy openly admits acquiring contact data from "business partners, data providers, data licensors, public sources, and third-party platforms"</strong> — Perez's complaint paragraph 14 is functionally pre-conceded on the public-facing website. Product fit, in priority order: <strong>(1) Litigator Scrub, (2) Pre-Send List Hygiene &amp; Federal/State DNC Scrubbing, (3) RND.</strong>
+        </p>
+      </div>
+
+      <aside class="card card--accent" style="background:var(--gray-05)">
+        <div class="card-meta">Urgency Scorecard</div>
+        <h4 class="card-title" style="margin-top:6px; margin-bottom:16px">Hottest Prospect Indicators</h4>
+        <dl class="kv">
+          <dt>Pain</dt><dd><span class="pill pill--danger">Acute</span> &nbsp;Just sued, federal class action</dd>
+          <dt>Recency</dt><dd><span class="pill pill--danger">5 days</span> &nbsp;Filed 2026-05-13</dd>
+          <dt>Text volume pled</dt><dd><span class="pill pill--danger">56 texts / 13 wks</span> &nbsp;~4.3 unsolicited texts/week</dd>
+          <dt>Class scope</dt><dd><span class="pill pill--danger">Class action</span> &nbsp;50+ pled · likely 5K–50K class members given 340K SMS list</dd>
+          <dt>SMS list size</dt><dd><span class="pill pill--danger">340,000</span> &nbsp;Self-reported, grew from 60K in 5 mos.</dd>
+          <dt>SMS revenue</dt><dd><span class="pill pill--danger">$18M+</span> &nbsp;Self-reported, per Recart case study</dd>
+          <dt>Damages exposure</dt><dd>Individual: $28K negligent / $84K willful · Class floor (5,000 × $500): <strong>$2.5M+</strong> · Class ceiling: nine-figure</dd>
+          <dt>Compliance gap</dt><dd><span class="pill pill--danger">Documented</span> &nbsp;No SMS Terms page · privacy policy admits list-buying</dd>
+          <dt>Tech stack</dt><dd>Shopify + Recart SMS + Cloudflare · IoT diffusers + native iOS/Android apps</dd>
+          <dt>Litigation posture</dt><dd>Just settled <em>Aroma360 v. Scentiment</em> mid-trial 1/12/2026 — they fight to the courthouse steps, then settle under pressure</dd>
+          <dt>Buying authority</dt><dd>Founders Joseph Ayoub (CEO) &amp; Tamoor Shafi · Defense counsel of record (separate matter): Joseph William Bain</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:48px 0">
+
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> Pitch Angle</div>
+      <h3 class="section-title" style="font-size:28px">Lead with Litigator Scrub. Anchor with Pre-Send List Hygiene + DNC. Close with RND.</h3>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="shield-check"></i> &nbsp;Product 1 &nbsp;·&nbsp; Open with this</div>
+        <h4 class="card-title" style="margin-top:8px">Litigator Scrub</h4>
+        <div class="card-body">
+          <p>Scentiment loaded a number it had no consent to text — and sent it 56 marketing messages in 13 weeks. The Blacklist litigator database flags numbers belonging to known TCPA-named plaintiffs <em>before</em> they hit the send queue. If Perez's number had been scrubbed at the moment Recart accepted the list upload, this case does not exist. <strong>Sales pitch:</strong> <em>"You're running 340,000 SMS subscribers on Recart and your privacy policy openly says you buy contact data from third parties. That's not a problem until one of those purchased numbers belongs to someone who sues. We catch them upstream — before Recart loads them — so the marketing engine keeps running and the plaintiff firm has nothing to file."</em></p>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="phone-off"></i> &nbsp;Product 2 &nbsp;·&nbsp; Anchor here</div>
+        <h4 class="card-title" style="margin-top:8px">Pre-Send List Hygiene &amp; Federal/State DNC Scrubbing</h4>
+        <div class="card-body">
+          <p>The current claim is § 227(b)(1)(A)(iii) — ATDS to cell, no consent. The Perez complaint explicitly notes the Subject Number was <em>not</em> on the Federal DNC Registry (paragraph 15) — meaning the ATDS theory stands independently. <strong>But the natural amended-complaint move is to add a § 227(c)(5) Federal DNC count against the broader class</strong> the moment one DNC-registered class member surfaces. Pre-send scrubbing against Federal DNC, state-level DNC, and your own internal DNC list is the cheapest single control that closes that door. <strong>Sales pitch:</strong> <em>"Even if Perez wasn't on the Federal DNC list, plenty of the 340K names on your Recart list are. Once Scott or any other firm certifies a class, the next count they add is § 227(c)(5). The DNC scrub closes that count before they can plead it."</em></p>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="database"></i> &nbsp;Product 3 &nbsp;·&nbsp; Close on this</div>
+        <h4 class="card-title" style="margin-top:8px">Reassigned Number Database (RND) + Statutory Safe Harbor</h4>
+        <div class="card-body">
+          <p>Perez pleads she is "the regular and sole user" of the Subject Number — so this specific case is not a reassigned-number fact pattern. <strong>That's fine. The play is forward-looking.</strong> When Scentiment buys a list from a "data licensor" (their own policy admits it), some non-trivial percentage of those numbers have been reassigned to a new subscriber who never gave consent to the original advertiser. RND scrubbing — Somos-managed, FCC contract — gives Scentiment statutory Safe Harbor on those reassignments. <strong>Sales pitch:</strong> <em>"You can't audit the consent records behind every list a data provider sells you. RND assumes some of them are stale, scrubs reassigned numbers off the send, and gets you FCC Safe Harbor on the ones you miss. It's the only single control that turns a 'we didn't know' defense into a complete legal defense."</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <p class="quote">"Scentiment's own privacy policy admits they buy contact data from data providers, data licensors, business partners, and third-party platforms. Their own SMS vendor publicly brags they 5×'d the list to 340,000 in five months. Their own website has no SMS Terms page. Then they sent the wrong person 56 marketing texts in 13 weeks. This is not a defensible record. The Blacklist stack — Litigator Scrub, Pre-Send Hygiene, DNC, and RND — solves the underlying problem at a fraction of what one defense bill costs. The next class plaintiff is already on your list. Pay us to find them, or pay Alvin Scott to introduce them."
+        <span class="src">Sales talking point · use verbatim on the Joseph Ayoub / Tamoor Shafi call</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. CORPORATE FOOTPRINT
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">High-velocity DTC fragrance brand on Shopify · Recart-powered SMS engine · LA founders, Doral &amp; Houston footprint</h2>
+      <p class="section-lede">Scentiment, LLC is a 2022-founded Delaware foreign LLC operating a luxury home-fragrance e-commerce business across LA, Miami, and a Houston-area fulfillment dock. Brand thesis: hotel-inspired fragrance oils and IoT-connected diffusers sold direct-to-consumer at scentiment.com. Founders Joseph Ayoub (CEO) and Tamoor Shafi (co-founder) are LA-based. The SMS marketing engine is the growth lever and the source of the TCPA exposure.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <h4 class="card-title">Defendant Entity</h4>
+        <dl class="kv">
+          <dt>Federal name</dt><dd>Scentiment, LLC</dd>
+          <dt>State of formation</dt><dd>Delaware (confirmed foreign LLC in FL)</dd>
+          <dt>FL Sunbiz Doc #</dt><dd>M23000009009</dd>
+          <dt>FEI / EIN</dt><dd>88-3658696</dd>
+          <dt>FL filing date</dt><dd>July 12, 2023</dd>
+          <dt>Status</dt><dd><span class="pill pill--ok">ACTIVE</span> &nbsp;Annual reports filed 2024 + 2025</dd>
+          <dt>Principal address</dt><dd>8328 NW 30th Ter, Doral, FL 33122 <span class="src-tag">(changed 3/24/2026)</span></dd>
+          <dt>Manager (Sunbiz)</dt><dd>"Scentiment, LLC" (entity-as-manager) · mailing 2129 NW 86th Ave, Miami FL 33122</dd>
+          <dt>Registered Agent</dt><dd>Registered Agents Inc., 7901 4th St N, Ste 300, St. Petersburg, FL 33702</dd>
+          <dt>Primary domain</dt><dd><a href="https://www.scentiment.com">scentiment.com</a></dd>
+          <dt>Tech stack</dt><dd>Shopify + Recart SMS + Cloudflare CDN + customerdesk.io · native iOS/Android apps for IoT diffusers</dd>
+          <dt>Phone (public)</dt><dd>(323) 310-1000 <span class="src-tag">VOIP — Onvoy LLC CA per blacklistBulk</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h4 class="card-title">Brand Origin &mdash; Joseph Ayoub &amp; Tamoor Shafi</h4>
+        <dl class="kv">
+          <dt>Founded</dt><dd>2022 in Los Angeles, CA</dd>
+          <dt>Founder &amp; CEO</dt><dd><strong>Joseph Ayoub</strong> (LA) — <a href="https://www.linkedin.com/in/josephaayoub">LinkedIn</a></dd>
+          <dt>Co-founder</dt><dd><strong>Tamoor Shafi</strong> (LA) — <a href="https://www.linkedin.com/in/tamoorshafi">LinkedIn</a> · also listed as CEO on ZoomInfo; LinkedIn now shows him at Plus (post-purchase OS)</dd>
+          <dt>HR Manager</dt><dd>Melisa Campos Ayoub — first employee — <a href="https://www.linkedin.com/in/melisa-campos-ayoub-b559588a">LinkedIn</a></dd>
+          <dt>COO</dt><dd>Pritpal Virdee <span class="src-tag">(per ZoomInfo org chart)</span></dd>
+          <dt>Product Manager</dt><dd>Thaily Rivet (Miami) · Product &amp; Fragrance Merchant — <a href="https://www.linkedin.com/in/thaily-rivet-7298b6279">LinkedIn</a></dd>
+          <dt>Brand thesis</dt><dd>Hotel-inspired luxury home &amp; body fragrances — Ritz-Carlton®, Westin®, 1 Hotel® "inspired by" scents</dd>
+          <dt>Press footprint</dt><dd>South Florida Business Journal · Gritdaily · Recart case study · Law360 (Aroma360 litigation)</dd>
+          <dt>Verify</dt><dd><span class="pill pill--gap">Confirm</span> &nbsp;Whether Shafi remains active in operations after Plus.co transition</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h4 class="card-title">Consumer Marketing Surface</h4>
+        <dl class="kv">
+          <dt>Primary domain</dt><dd>scentiment.com</dd>
+          <dt>SMS vendor</dt><dd><strong>Recart</strong> — confirmed via app-proxy paths in storefront + Recart's own public case study</dd>
+          <dt>SMS list size</dt><dd><span class="pill pill--danger">340,000</span> &nbsp;Up from 60K, in 5 months</dd>
+          <dt>SMS revenue</dt><dd><span class="pill pill--danger">$18M+</span> &nbsp;Self-reported by Recart, publicly</dd>
+          <dt>Privacy policy</dt><dd><span class="pill pill--danger">Admits list-buying</span> &nbsp;"Business partners… data providers… data licensors… public sources… third-party platforms"</dd>
+          <dt>Terms of Service</dt><dd><span class="pill pill--warn">Section 13 problem</span> &nbsp;Tries "purchase = marketing consent" — fails FCC standard</dd>
+          <dt>SMS Terms page</dt><dd><span class="pill pill--danger">404</span> &nbsp;<code>/policies/sms-terms</code>, <code>/pages/sms-terms</code>, <code>/pages/mobile-terms</code> all return Not Found</dd>
+          <dt>HELP / STOP disclosure</dt><dd><span class="pill pill--danger">NONE</span> &nbsp;No keyword disclosure anywhere on site</dd>
+          <dt>Msg frequency cap</dt><dd><span class="pill pill--danger">NONE</span> &nbsp;No frequency disclosure</dd>
+          <dt>"Consent not required"</dt><dd><span class="pill pill--danger">NONE</span> &nbsp;FCC-required disclaimer absent</dd>
+          <dt>Risk profile</dt><dd>340K-subscriber SMS list, third-party-sourced data admitted, zero SMS-specific consent infrastructure on the public site. Textbook ATDS class-action target.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Compliance gap callout -->
+    <div style="margin-top:32px">
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Smoking-Gun Compliance Gap</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">The wedge: Scentiment's own website pre-concedes paragraph 14 of the complaint</h3>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta"><i data-lucide="file-x"></i> &nbsp;Missing SMS Terms Page</div>
+          <h4 class="card-title" style="margin-top:8px; font-size:16px">No <code>/sms-terms/</code> at any URL variant</h4>
+          <div class="card-body">Three standard SMS Terms URL variants tested — all return 404. No HELP/STOP keyword disclosure, no message frequency cap, no "msg &amp; data rates may apply" notice, no "consent is not a condition of purchase" — anywhere on the site. The first thing plaintiff's counsel will do in discovery is screenshot the missing pages. Under FCC rules, SMS marketing requires conspicuous standalone disclosure of all of the above at the point of opt-in — <strong>none of which exists on this site.</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-meta"><i data-lucide="file-warning"></i> &nbsp;Privacy Policy Admits the Source Channel</div>
+          <h4 class="card-title" style="margin-top:8px; font-size:16px">"Business partners… data licensors… third-party platforms"</h4>
+          <div class="card-body">Verbatim from <a href="https://www.scentiment.com/policies/privacy-policy">scentiment.com/policies/privacy-policy</a>: <em>"We may also collect information about you from: Business partners, such as advertising and joint marketing partners… Data providers, such as information services and data licensors… Public sources… Third-party platforms."</em> The complaint's paragraph 14 — that Scentiment obtained the plaintiff's number "through the purchase of consumer data lists or through other third-party data aggregation sources" — is <strong>functionally pre-conceded on the defendant's own public-facing privacy disclosure.</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-meta"><i data-lucide="message-square-x"></i> &nbsp;ToS "Purchase = Consent" Construct Fails FCC Standard</div>
+          <h4 class="card-title" style="margin-top:8px; font-size:16px">Buried Section 13 tries to bootstrap consent from purchase</h4>
+          <div class="card-body">Section 13 of the ToS: <em>"By creating a User Account or purchasing one or more of our Products and providing us your contact information, you explicitly consent to receive marketing and other electronic communications…"</em> This is precisely the construct that <strong>fails the FCC's prior-express-written-consent standard</strong> for ATDS marketing. Consent cannot be bundled into a purchase event, cannot be buried in ToS, and cannot be a condition of the transaction. The clause is the kind of language defense counsel will need to disavow, not lean on.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related entities -->
+    <div style="margin-top:40px">
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Related Entities (Cross-Sell Candidates)</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">Founder ecosystem · Co-located Doral building · Downstream SMS-vendor exposure</h3>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Entity</th>
+              <th>Relationship</th>
+              <th>Outbound Comms Profile</th>
+              <th>TCPA Cross-Sell Fit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scentiment, LLC</strong></td>
+              <td>Named defendant · operating entity for scentiment.com brand</td>
+              <td>340K SMS list on Recart · Shopify storefront · IoT diffuser app push</td>
+              <td><span class="pill pill--red">Primary</span></td>
+            </tr>
+            <tr>
+              <td>The Scentiment Group LLC</td>
+              <td>FL Sunbiz entity L25000200596 — name overlap; founder linkage unconfirmed</td>
+              <td>Unknown</td>
+              <td><span class="pill pill--gap">Verify before contact</span></td>
+            </tr>
+            <tr>
+              <td>MAP Aviation Properties LLC</td>
+              <td>Co-located at 8328 NW 30th Ter, Doral 33122 (same building) — landlord / shared warehouse, not affiliated</td>
+              <td>N/A — aviation services</td>
+              <td><span class="pill pill--gap">Not in scope</span></td>
+            </tr>
+            <tr>
+              <td>Air Accessories &amp; Avionics Inc.</td>
+              <td>FAA/EASA Part 145 repair station at the same Doral address — landlord/warehouse co-tenant, not affiliated</td>
+              <td>N/A — aviation services</td>
+              <td><span class="pill pill--gap">Not in scope</span></td>
+            </tr>
+            <tr>
+              <td>Plus.co <span class="src-tag">(co-founder destination)</span></td>
+              <td>Tamoor Shafi's current employer — "post-purchase operating system" for e-commerce</td>
+              <td>Adjacent DTC space · likely SMS-relevant</td>
+              <td><span class="pill pill--info">Low priority — warm intro vector if Shafi stays bridge</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src-tag" style="margin-top:10px">Sources: <a href="https://search.sunbiz.org/Inquiry/CorporationSearch/SearchResultDetail?inquirytype=EntityName&directionType=Initial&searchNameOrder=SCENTIMENT%20M230000090090&aggregateId=forl-m23000009009-c227e173-e1d9-4b40-be3e-9e4d30e3e14b">FL Sunbiz Scentiment LLC profile</a> · <a href="https://www.bbb.org/us/fl/miami/profile/online-retailer/scentiment-llc-0633-92032957">BBB profile (283 complaints)</a> · <a href="https://recart.com/customer-case-studies/scentiment">Recart case study ($18M+ SMS, 340K subscribers)</a> · <a href="https://www.bizjournals.com/southflorida/news/2025/09/30/aroma360-hotel-collection-scentiment-trademark.html">South Florida Business Journal</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. LITIGATION CONTEXT
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Active S.D. Fla. defendant with a pattern of fighting to the courthouse steps</h2>
+      <p class="section-lede">Perez v. Scentiment is Scentiment's first TCPA class action of record. But Scentiment is not a litigation novice: they have just come off a high-profile <em>Aroma360 v. Scentiment</em> trademark trial in the same S.D. Fla. district, which settled mid-trial in January 2026 after opening statements. The TCPA filing arrives while a <strong>second Aroma360 trademark action remains active before Judge Beth Bloom</strong>. The window for a preventative-compliance sale is the answer deadline — typically 21 days from service.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case · Filed 5 days ago</div>
+        <h3 class="card-title" style="font-size:22px; margin-top:8px">Perez v. Scentiment, LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Federal docket</dt><dd>1:26-cv-23371 (S.D. Fla., Miami Division)</dd>
+          <dt>Filed</dt><dd>May 13, 2026 — filed directly in federal court</dd>
+          <dt>Plaintiff</dt><dd>Rosario F. Perez (Miami-Dade County, FL)</dd>
+          <dt>Plaintiff counsel</dt><dd><strong>Alvin Donald Scott Jr.</strong> · FL Bar #110432<br>Consumer Protection &amp; Insurance Attorneys · 8950 SW 74th Ct, Suite 2267, Miami, FL 33156<br>(813) 733-8117 · ds@mycpia.com</dd>
+          <dt>Class action</dt><dd><span class="pill pill--danger">Yes — Rule 23 putative class</span></dd>
+          <dt>Class definition</dt><dd>All persons in the US who within 4 years received one or more telemarketing texts from Defendant on a cellular number using an ATDS without prior express consent and without a prior business relationship</dd>
+          <dt>Claim</dt><dd>47 U.S.C. § 227(b)(1)(A)(iii) — ATDS to cell without prior express consent</dd>
+          <dt>Theory</dt><dd>Defendant purchased plaintiff's number from third-party data list; no consent obtained; 56 unsolicited marketing texts sent between Jan 25 – Apr 27, 2026</dd>
+          <dt>DNC status pled</dt><dd>Plaintiff <strong>not</strong> on Federal DNC Registry (paragraph 15) — but ATDS theory independent</dd>
+          <dt>Damages sought</dt><dd>$500/violation negligent · $1,500/violation knowing/willful · class-wide · treble damages · injunctive relief · jury trial demanded</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> &nbsp;21-day answer deadline · likely Joseph William Bain (counsel of record in Aroma360 matter)</dd>
+          <dt>Docket aggregators</dt><dd>Not yet indexed on Justia / CourtListener / PacerMonitor as of 2026-05-18 (5-day lag normal)</dd>
+        </dl>
+        <p class="src-tag" style="margin-top:14px"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/FLSDC">PACER FLSDC →</a> · <a href="https://www.flsd.uscourts.gov/recent-civil-filings">S.D. Fla. recent civil filings →</a></p>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel · One-Off or Pivot</div>
+        <h3 class="card-title" style="font-size:22px; margin-top:8px">Alvin Donald Scott Jr. · Consumer Protection &amp; Insurance Attorneys</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm address (complaint)</dt><dd>8950 SW 74th Ct, Suite 2267, Miami, FL 33156</dd>
+          <dt>Firm phone (complaint)</dt><dd>(813) 733-8117 <span class="pill pill--warn">VOIP — Onvoy FL</span></dd>
+          <dt>Firm email</dt><dd>ds@mycpia.com</dd>
+          <dt>FL Bar number</dt><dd>#110432 <span class="src-tag">admitted 5/27/2014</span></dd>
+          <dt>FL Bar address of record</dt><dd>101 Lake Ave Apt 1905, Orlando, FL 32801 <span class="pill pill--warn">Does not match complaint</span></dd>
+          <dt>FL Bar phone of record</dt><dd>(256) 452-5655 <span class="pill pill--warn">AL area code · does not match complaint</span></dd>
+          <dt>Discipline</dt><dd>None in past 10 years</dd>
+          <dt>Law school</dt><dd>Samford University, Cumberland School of Law (2000) — 14-year gap before FL bar admission suggests prior bar (likely Alabama)</dd>
+          <dt>TCPA filing history</dt><dd><span class="pill pill--gap">NO PRIOR TCPA CASES FOUND</span> &nbsp;Not in CourtListener, Justia, TCPAWorld 2026 power rankings, or WebRecon monthly stats</dd>
+          <dt>Possible historical role</dt><dd>Law360 lists an "Alvin Donald Scott, Jr." at <strong>Wilson Elser</strong> (defense-side insurance/tort firm) — if same individual, this is a notable defense-to-plaintiff pivot</dd>
+          <dt>Implication</dt><dd><strong>This is likely a one-off filing or a brand-new plaintiff-side venture — not a serial-firm template.</strong> Pattern matching to "next plaintiff" is weaker than the typical Hindi/Lane firm playbook. The wedge here is the defendant's own SMS infrastructure, not the firm's filing volume.</dd>
+        </dl>
+        <p class="src-tag" style="margin-top:14px"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=110432">FL Bar profile #110432</a> · <a href="https://tcpaworld.com/2026/03/29/2026-power-rankings-ranking-the-most-dangerous-tcpa-plaintiffs-lawyers-in-the-country-who-is-really-the-best/">TCPAWorld 2026 power rankings (Scott not listed)</a> · <a href="https://www.law360.com/firms/wilson-elser/attorneys/alvin-donald-scott-jr">Law360 — Wilson Elser attorney listing</a></p>
+      </div>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:40px 0">
+
+    <div>
+      <div class="section-head" style="margin-bottom:16px">
+        <div class="section-eyebrow"><span class="bar"></span> Concurrent &amp; Recent Scentiment Litigation</div>
+        <h3 style="font-size:24px; font-weight:600; margin:0">Two trademark suits in 18 months — they fight, then settle under pressure</h3>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Aroma360 LLC v. Scentiment, LLC</strong></td>
+              <td>1:24-cv-25031 (S.D. Fla.)</td>
+              <td>Dec 20, 2024</td>
+              <td><span class="pill pill--ok">Settled mid-trial 1/12/2026</span></td>
+              <td>Trademark / trade dress · settled during lunch recess after opening statements</td>
+            </tr>
+            <tr>
+              <td><strong>Aroma360 LLC et al v. Scentiment, LLC</strong></td>
+              <td>1:25-cv-23233 (S.D. Fla.)</td>
+              <td>Jul 18, 2025</td>
+              <td><span class="pill pill--warn">Active · Judge Bloom</span></td>
+              <td>Trademark / property rights · ongoing</td>
+            </tr>
+            <tr style="background:var(--danger-bg)">
+              <td><strong>Perez v. Scentiment, LLC</strong> <span class="src-tag">(this report)</span></td>
+              <td>1:26-cv-23371 (S.D. Fla.)</td>
+              <td>May 13, 2026</td>
+              <td><span class="pill pill--danger">Just filed · 21-day answer</span></td>
+              <td>TCPA § 227(b)(1)(A)(iii) · ATDS to cell · no consent · class</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:18px; font-size:15px; color:var(--fg-2)">
+        <strong>Interpretation:</strong> Scentiment has counsel, knows how to defend, and is willing to take a case to the courthouse steps before settling — see the Aroma360 trademark trial that settled mid-opening-statements in January 2026. <strong>This is not a defendant that defaults.</strong> It is a defendant that pays for defense and settles under pressure. That posture is good for Blacklist: principals who have just paid a settlement check have an unusually high willingness to invest in preventative compliance controls in the weeks immediately following. The Perez filing arrives <strong>four months after the Aroma360 mid-trial settlement</strong> — the receptiveness window is open.
+      </p>
+
+      <div class="card" style="background:var(--gray-05); margin-top:24px; border-left:4px solid var(--bl-red)">
+        <h4 class="card-title" style="font-size:16px; margin-bottom:8px"><i data-lucide="search"></i> &nbsp;Open intel gaps to close before first dial</h4>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Pull <strong>ECF #1</strong> (Complaint) from PACER once free aggregators index. Confirm: (a) any plaintiff phone screenshot exhibits that contain a full number; (b) specific sender shortcode or long-code used by Scentiment; (c) any campaign keyword visible in attached SMS screenshots.</li>
+            <li>Verify whether Alvin Donald Scott Jr. (FL Bar #110432) is the same individual as the Wilson Elser defense-side attorney — a defense-to-plaintiff pivot would be a useful narrative on the principal call but should not be over-asserted.</li>
+            <li>Pull <strong>FL Sunbiz manager filings</strong> for Scentiment, LLC and any related entities at the Doral and Miami addresses — identify the actual signatory behind the entity-as-manager structure.</li>
+            <li>Capture a live screenshot of the <strong>Recart SMS opt-in popup</strong> on scentiment.com (cookie-clear browser session). The pop-up consent language is the single piece of evidence not captured in the desktop-Firecrawl scrape and will determine whether any consent defense survives.</li>
+            <li>Confirm whether <strong>Joseph William Bain</strong> (defense counsel of record in the Aroma360 matter) has been retained for the TCPA matter — monitor PACER for the notice of appearance.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. CONTACT DIRECTORY
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Founder-led LLC · No in-house general counsel · Buying authority sits with Ayoub directly</h2>
+      <p class="section-lede">Scentiment, LLC is a founder-led DTC operation. There is no in-house general counsel disclosed on LinkedIn, ZoomInfo, or any press release. Buying authority for compliance products sits with <strong>Joseph Ayoub (Founder &amp; CEO)</strong> and, secondarily, with co-founder <strong>Tamoor Shafi</strong>. The most effective sales motion is direct-to-founder, sized for the moment they have just been served. Defense counsel — once appointed — is the second touchpoint, because outside counsel defending an ATDS case has a clear incentive to recommend preventative scrubbing as a good-faith compliance narrative.</p>
+    </div>
+
+    <!-- Priority 1 -->
+    <h3 style="font-size:14px; font-weight:600; margin:0 0 8px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em"><span class="risk-bar" style="display:inline-block; vertical-align:middle; margin-right:10px;"></span> Priority 1 · Scentiment Founders — Primary Buyers</h3>
+    <div class="tbl-wrap" style="margin-bottom:32px">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:18%">Person</th>
+            <th>Title / Role</th>
+            <th>Direct Phone</th>
+            <th>Work Email</th>
+            <th>LinkedIn</th>
+            <th>Notes / Skip-Trace</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--bl-red-tint)">
+            <td>
+              <strong>Joseph Ayoub</strong><br>
+              <span class="pill pill--red">First Call</span>
+            </td>
+            <td><strong>Founder &amp; CEO · Scentiment, LLC</strong>. Los Angeles-based. Brand co-founder per South Florida Business Journal (9/30/2025). Holds primary buying authority. Likely signatory behind the entity-as-manager structure on Sunbiz.</td>
+            <td><span class="pill pill--gap">TO SKIP-TRACE</span> <span class="src-tag">Try main: (323) 310-1000 · ask for Joseph directly</span></td>
+            <td><span class="pill pill--gap">PATTERN UNKNOWN</span> <span class="src-tag">Try joseph@scentiment.com · joseph.ayoub@scentiment.com · jayoub@scentiment.com</span></td>
+            <td><a href="https://www.linkedin.com/in/josephaayoub">linkedin.com/in/josephaayoub</a></td>
+            <td>Founder-to-founder peer tone, not vendor-to-prospect. He has just been sued and has a 21-day clock. Lead with the Aroma360 settlement comparable: "You just paid a trademark check in January, now you're getting an ATDS class action — same court, different counsel, same defense cost. Here's the preventative stack."</td>
+          </tr>
+          <tr>
+            <td><strong>Tamoor Shafi</strong></td>
+            <td>Co-founder · Scentiment, LLC. Listed as CEO on ZoomInfo. LinkedIn shows current employment at Plus (post-purchase OS) — may be transitioned out of day-to-day ops but retains co-founder equity and influence.</td>
+            <td><span class="pill pill--gap">TO SKIP-TRACE</span></td>
+            <td><span class="pill pill--gap">PATTERN UNKNOWN</span> <span class="src-tag">Try tamoor@scentiment.com · tshafi@scentiment.com</span></td>
+            <td><a href="https://www.linkedin.com/in/tamoorshafi">linkedin.com/in/tamoorshafi</a></td>
+            <td>Secondary buyer. If Ayoub doesn't engage within 5 business days, reach Shafi as the warm vector — he was the SMS growth architect during the 60K → 340K subscriber period per Recart's case study.</td>
+          </tr>
+          <tr>
+            <td><strong>Pritpal Virdee</strong></td>
+            <td>COO · Scentiment, LLC <span class="src-tag">(per ZoomInfo org chart — confirm via LinkedIn before contact)</span></td>
+            <td><span class="pill pill--gap">TO SKIP-TRACE</span></td>
+            <td><span class="pill pill--gap">PATTERN UNKNOWN</span></td>
+            <td><span class="pill pill--gap">CONFIRM</span></td>
+            <td>Operational owner of the SMS/Recart stack and the warehouse fulfillment. If Ayoub delegates the compliance conversation, Virdee is the operator who will execute on a Blacklist scrub stack.</td>
+          </tr>
+          <tr>
+            <td><strong>Melisa Campos Ayoub</strong></td>
+            <td>HR Manager · "company's first employee" per LinkedIn. Likely-related to Joseph Ayoub. Useful warm intro vector to the CEO.</td>
+            <td><span class="pill pill--gap">TO SKIP-TRACE</span></td>
+            <td><span class="pill pill--gap">PATTERN UNKNOWN</span></td>
+            <td><a href="https://www.linkedin.com/in/melisa-campos-ayoub-b559588a">LinkedIn</a></td>
+            <td>Do not pitch directly — use only to confirm Ayoub's calendar availability if cold-outreach to the CEO stalls.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Priority 2 -->
+    <h3 style="font-size:14px; font-weight:600; margin:0 0 8px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em"><span class="risk-bar" style="display:inline-block; vertical-align:middle; margin-right:10px;"></span> Priority 2 · Defense Counsel (Once Appointed) — Influencer Touchpoint</h3>
+    <div class="tbl-wrap" style="margin-bottom:32px">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:18%">Person</th>
+            <th>Title / Role</th>
+            <th>Direct Phone</th>
+            <th>Work Email</th>
+            <th>LinkedIn</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Joseph William Bain</strong></td>
+            <td>Counsel of record for Scentiment in the prior <em>Aroma360 v. Scentiment</em> matter (1:24-cv-25031). May or may not be retained for the TCPA action — confirm via PACER once a notice of appearance is filed.</td>
+            <td><span class="pill pill--gap">TBD per PACER</span></td>
+            <td><span class="pill pill--gap">TBD</span></td>
+            <td><span class="pill pill--gap">CONFIRM</span></td>
+            <td><strong>If retained on Perez, treat as co-buyer.</strong> Outside counsel defending a § 227(b) ATDS case will be eager to point to a preventative scrub stack as evidence of good-faith compliance — cheap for them, looks proactive for the client, and gives them a Rule 23(b)(3) predominance argument on class certification.</td>
+          </tr>
+          <tr>
+            <td>Defense Counsel TBD</td>
+            <td>If Bain is not retained, Scentiment will appear via new counsel before the 21-day answer deadline (~June 3, 2026). Monitor PACER docket entries daily.</td>
+            <td><span class="pill pill--gap">TBD</span></td>
+            <td><span class="pill pill--gap">TBD</span></td>
+            <td>&mdash;</td>
+            <td>Add to this directory as soon as the notice of appearance hits.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Plaintiff side, for reference -->
+    <h3 style="font-size:14px; font-weight:600; margin:0 0 8px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em"><span class="risk-bar" style="display:inline-block; vertical-align:middle; margin-right:10px;"></span> Plaintiff-Side Reference (Do Not Contact)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:22%">Person / Firm</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Alvin Donald Scott Jr.</strong></td>
+            <td>Lead plaintiff counsel · FL Bar #110432</td>
+            <td>(813) 733-8117 <span class="pill pill--warn">VOIP — Onvoy FL</span></td>
+            <td>ds@mycpia.com</td>
+            <td>No prior TCPA filings of record. FL Bar address of record is Orlando — does not match the Miami address on the complaint. May be a new plaintiff-side venture, a one-off, or a defense-to-plaintiff pivot from Wilson Elser. <strong>Treat as a single-case opportunist filer — not a serial-firm template.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Consumer Protection &amp; Insurance Attorneys</strong></td>
+            <td>Firm of record</td>
+            <td>(813) 733-8117 <span class="pill pill--warn">VOIP</span></td>
+            <td>ds@mycpia.com</td>
+            <td>Firm address 8950 SW 74th Ct Suite 2267, Miami FL 33156 — building hosts multiple unrelated firms; Suite 2267 does not surface in Avvo, Justia, FindLaw, Lawyers.com, or Yelp directories. The mycpia.com domain is not indexed by the major lawyer directories. <strong>This is not a known TCPA shop.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Rosario F. Perez</strong></td>
+            <td>Named plaintiff</td>
+            <td><span class="pill pill--gap">Last-four: 2526</span></td>
+            <td><span class="pill pill--gap">Not disclosed</span></td>
+            <td>Miami-Dade County, FL resident per complaint paragraph 6. <strong>Skip-trace only to enrich the Blacklist litigator database — never contact directly.</strong> No prior TCPA filings of record on CourtListener or Justia.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. ACTION PLAN
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move now. The 21-day answer clock is the buying signal — first contact within 5 business days.</h2>
+      <p class="section-lede">Scentiment is on a 21-day deadline to answer. That window — from now through ~June 3, 2026 — is when Joseph Ayoub is most receptive to anything that demonstrates "we're fixing this." After defense counsel appears, the conversation shifts to procedural maneuvering and the founder steps back. <strong>Get in the door before the answer is filed.</strong></p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Pull the PACER complaint &amp; skip-trace the founders · Today</h4>
+          <p class="step-body">Buy ECF #1 from PACER (~$1.00). Confirm specific text content, SMS sender shortcode/long-code, and any visible phone screenshots that disclose the full plaintiff number. In parallel, run skip-trace on <strong>Joseph Ayoub</strong> and <strong>Tamoor Shafi</strong> via TLO / RocketReach / Apollo for direct phone + verified email. Confirm Ayoub's current LA-area phone before the first dial.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Capture the Recart opt-in popup screenshot · Today</h4>
+          <p class="step-body">Open scentiment.com in a fresh cookie-clear browser session and capture the Recart SMS opt-in popup language verbatim. This is the one piece of evidence not in the desktop scrape and the single most important thing to bring to the principal call: <em>"Joseph — your popup says X. The complaint says you sent 56 texts to someone who never saw that popup. That's the gap we close."</em> Save the screenshot to the lead record.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">First-contact email · Direct to Ayoub · Within 5 business days</h4>
+          <p class="step-body">Send from <strong>Cierra Davis's mailbox</strong> directly to Joseph Ayoub. Subject line: <em>"TCPA filing against Scentiment, LLC — preventative options before the June 3 answer deadline."</em> Open factually with the case caption (Perez v. Scentiment, 1:26-cv-23371). No editorializing. Pivot to: <em>"You just settled the Aroma360 matter in January. Now you're facing an ATDS class action on a 340K-subscriber SMS list. We work with TCPA defendants on Litigator Scrub, pre-send list hygiene, federal/state DNC scrubbing, and RND — preventative controls that defense counsel can point to as evidence of good-faith compliance and that Rule 23(b)(3) judges weigh on class certification. Worth a 15-minute call this week."</em> Founder-to-founder tone.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Watch the docket · Daily for the next 21 days</h4>
+          <p class="step-body">Monitor <strong>1:26-cv-23371</strong> daily for: (a) defense counsel notice of appearance (likely Joseph William Bain); (b) any motion to dismiss / motion to compel arbitration (arbitration clause exists in ToS but does not reach non-customer plaintiff); (c) any amended complaint adding § 227(c)(5) Federal DNC count or expanding the class definition; (d) related filings by Alvin D. Scott Jr. against other Florida defendants — confirms or refutes the "one-off vs. emerging firm" hypothesis.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Cross-sell warm setup · Recart-adjacent prospects · After first call</h4>
+          <p class="step-body">Scentiment is a publicly-published Recart case study. Recart's other "scale story" customers are likely operating on the same compliance gap. After the Scentiment conversation lands, mine the <a href="https://recart.com/customer-case-studies">Recart customer-case-studies page</a> for high-growth DTC brands with similar list-build velocity — each is a warm Blacklist prospect on the same theory. Same playbook, additive pipeline.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-num"></span>
+        <div>
+          <h4 class="step-title">Escalation path · Co-founder Tamoor Shafi · If Ayoub does not engage by Day 7</h4>
+          <p class="step-body">If Joseph Ayoub does not engage within five business days, route the same brief to <strong>Tamoor Shafi</strong> (co-founder · now at Plus.co) via LinkedIn InMail or a Plus.co-routed email pattern. Shafi was the SMS-growth architect during the 60K → 340K subscriber period and has direct knowledge of the Recart implementation — he is the right second touchpoint, not a customer-service email.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:0; border-top:1px solid var(--border-1); margin:40px 0">
+
+    <!-- Rep assignment -->
+    <div class="card card--alert" style="background:#1F1F1F">
+      <div class="card-meta" style="color:#A8A8A8"><i data-lucide="user-check"></i> &nbsp;Assignment · Manual Override</div>
+      <h3 class="card-title" style="margin-top:8px">Assigned Blacklist sales rep · <span style="color:#fff">Esteban Garcia</span></h3>
+      <div class="card-body">
+        <p style="color:#E0E0E0">Round-robin rotation (Suzi Berg → Kristyn Outlaw → Dudley Brenner → Cierra Davis next) <strong>overridden by Matt</strong>. Lead routes to <strong style="color:#fff">Esteban Garcia</strong>, VP of Sales for Blacklist Alliance and Number Verifier. Fit notes: this is a high-value, high-velocity SMS prospect ($18M+ self-reported SMS revenue · 340K subscriber list · just-filed federal class action) where founder-to-VP-of-Sales positioning is warranted. Esteban owns the strategic Blacklist accounts and is the right seat for a direct-to-CEO call into Joseph Ayoub on a 21-day answer clock. <strong>Cierra holds her round-robin position for the next filed-case lead.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="foot">
+  <div class="container">
+    <div>
+      <div class="who">Blacklist Alliance &nbsp;·&nbsp; Filed Case Lead Flow</div>
+      <div style="margin-top:6px">Internal sales document — not for client distribution.</div>
+    </div>
+    <div style="text-align:right">
+      <div>Generated 2026-05-18 &nbsp;·&nbsp; Source: PACER · FL Sunbiz · FL Bar · BBB · LinkedIn · ZoomInfo · Recart case study · South Florida Business Journal · Law360 · TCPAWorld · WebRecon · blacklistBulk · scentiment.com policy pages</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
