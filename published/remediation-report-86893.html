@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Remediation Report #86893 — Union Home Mortgage Corp</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+/* ============================================================
+   Blacklist Alliance — Embedded Foundations
+   ============================================================ */
+@font-face {
+  font-family: "General Sans";
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "General Sans";
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "General Sans";
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "General Sans";
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+:root {
+  --bl-red:        #A50100;
+  --bl-red-hover:  #8A0100;
+  --bl-red-press:  #6E0100;
+  --bl-red-tint:   #FBE5E5;
+  --bl-black:      #000000;
+  --bl-white:      #FFFFFF;
+
+  --gray-00: #FFFFFF;
+  --gray-05: #F7F7F7;
+  --gray-10: #EFEFEF;
+  --gray-20: #E0E0E0;
+  --gray-30: #C9C9C9;
+  --gray-40: #A8A8A8;
+  --gray-50: #8C8C8C;
+  --gray-60: #6F6F6F;
+  --gray-70: #525252;
+  --gray-80: #393939;
+  --gray-90: #1F1F1F;
+  --gray-100:#000000;
+
+  --bg-canvas:    var(--gray-05);
+  --bg-surface:   var(--gray-00);
+  --bg-sunken:    var(--gray-10);
+  --bg-inverse:   var(--bl-black);
+
+  --fg-1: var(--gray-100);
+  --fg-2: var(--gray-70);
+  --fg-3: var(--gray-50);
+  --fg-4: var(--gray-40);
+
+  --border-1: var(--gray-20);
+  --border-2: var(--gray-30);
+  --border-3: var(--gray-80);
+
+  --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", monospace;
+
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--gray-05); }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--fg-1);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--bl-red); color: var(--bl-white); }
+
+a { color: var(--bl-red); text-decoration: none; font-weight: 500; }
+a:hover { color: var(--bl-red-hover); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============================================================
+   App layout
+   ============================================================ */
+.bx-app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+/* --- Sidebar --- */
+.bx-side { background: #000; color: #fff; display: flex; flex-direction: column; }
+.bx-side__brand { padding: 22px 22px 24px; display: block; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.bx-side__brand-inner { display: block; width: 100%; max-width: 188px; }
+.bx-side__brand-inner svg { display: block; width: 100%; height: auto; }
+.bx-side__nav { padding: 14px 12px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.bx-side__item {
+  display: flex; align-items: center; gap: 12px;
+  background: transparent; border: 0; cursor: pointer;
+  color: rgba(255,255,255,0.7);
+  padding: 10px 12px; font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  text-align: left; border-radius: 0;
+  transition: background var(--dur-1), color var(--dur-1);
+  text-decoration: none;
+}
+.bx-side__item:hover { background: rgba(255,255,255,0.06); color: #fff; text-decoration: none; }
+.bx-side__item.is-active { background: var(--bl-red); color: #fff; }
+.bx-side__item.is-active:hover { background: var(--bl-red-hover); }
+.bx-side__foot { padding: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+.bx-side__user { display: flex; align-items: center; gap: 10px; }
+.bx-side__avatar {
+  width: 32px; height: 32px; border-radius: 0; background: var(--bl-red); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.bx-side__user-name { font-size: 13px; font-weight: 600; }
+.bx-side__user-role { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: .06em; text-transform: uppercase; }
+
+/* --- Top bar --- */
+.bx-top { background: #fff; border-bottom: 1px solid var(--border-1); padding: 18px 32px; }
+.bx-top__crumbs { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); font-weight: 600; margin-bottom: 10px; }
+.bx-top__sep { color: var(--fg-4); padding: 0 6px; }
+.bx-top__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.bx-top__title-wrap { display: flex; flex-direction: column; gap: 6px; }
+.bx-top__eyebrow {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bl-red); font-weight: 600;
+}
+.bx-top__title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+.bx-top__actions { display: flex; align-items: center; gap: 12px; }
+
+.bx-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+  padding: 10px 16px; border: 0; cursor: pointer; border-radius: 0;
+  transition: background var(--dur-1), color var(--dur-1), border-color var(--dur-1);
+  text-decoration: none;
+}
+.bx-btn--primary  { background: var(--bl-red); color: #fff; }
+.bx-btn--primary:hover { background: var(--bl-red-hover); color: #fff; text-decoration: none; }
+.bx-btn--secondary { background: #fff; color: var(--fg-1); border: 1px solid var(--border-1); }
+.bx-btn--secondary:hover { border-color: #000; color: var(--fg-1); text-decoration: none; }
+.bx-btn i { width: 16px; height: 16px; }
+
+/* --- Layout --- */
+.bx-main { padding: 28px 32px 60px; display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: flex-start; }
+.bx-content { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+/* --- Stat tiles --- */
+.bx-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.bx-stat { background: #fff; border: 1px solid var(--border-1); padding: 18px; border-radius: 0; }
+.bx-stat__label {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg-3); font-weight: 600; margin-bottom: 10px;
+}
+.bx-stat__value {
+  font-size: 32px; font-weight: 700; letter-spacing: -0.02em;
+  line-height: 1; margin-bottom: 12px; font-family: var(--font-sans);
+}
+.bx-stat__value--md { font-size: 22px; }
+.bx-stat__delta { font-size: 12px; color: var(--fg-2); display: flex; align-items: center; gap: 8px; }
+.bx-stat__chip {
+  display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 0;
+  font-size: 11px; font-weight: 600; letter-spacing: .04em;
+  background: var(--gray-10); color: var(--fg-1);
+}
+.bx-stat__chip.is-crit { background: #FBE5E5; color: #A50100; }
+.bx-stat__chip.is-info { background: #E5EEF7; color: #0F4C8A; }
+.bx-stat--crit .bx-stat__value { color: var(--bl-red); }
+
+/* --- Card --- */
+.bx-card { background: #fff; border: 1px solid var(--border-1); border-radius: 0; }
+.bx-card__head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 18px 20px 14px; border-bottom: 1px solid var(--border-1);
+}
+.bx-card__head h3 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.bx-card__head-meta { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); font-weight: 600; }
+.bx-risk-bar { display: block; width: 56px; height: 4px; background: var(--bl-red); margin-bottom: 10px; }
+
+/* --- Table --- */
+.bx-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.bx-table thead th {
+  text-align: left; font-size: 10px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3);
+  padding: 12px 20px; border-bottom: 1px solid var(--border-1);
+}
+.bx-table tbody td { padding: 14px 20px; border-bottom: 1px solid var(--border-1); vertical-align: middle; }
+.bx-table tbody tr:last-child td { border-bottom: 0; }
+.bx-table tbody tr:hover { background: #FAFAFA; }
+.bx-mono { font-family: var(--font-mono); }
+.bx-num { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--fg-1); }
+.bx-row-idx {
+  font-family: var(--font-mono); font-size: 11px; color: var(--fg-3);
+  width: 32px;
+}
+
+/* --- Pills --- */
+.bx-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 0;
+}
+.bx-pill__dot { width: 6px; height: 6px; border-radius: 0; background: currentColor; }
+.bx-pill--ok      { background: #E5F4EC; color: #117A3D; }
+.bx-pill--warn    { background: #FFF3DD; color: #B36B00; }
+.bx-pill--crit    { background: #FBE5E5; color: #A50100; }
+.bx-pill--info    { background: #E5EEF7; color: #0F4C8A; }
+.bx-pill--neutral { background: var(--gray-10); color: var(--fg-1); }
+
+/* Carrier section header inside table */
+.bx-carrier-head td {
+  background: var(--gray-05);
+  padding: 10px 20px;
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg-2); font-weight: 600;
+  border-bottom: 1px solid var(--border-1);
+  border-top: 1px solid var(--border-1);
+}
+.bx-carrier-head td .bx-carrier-count {
+  margin-left: 10px; color: var(--fg-3); font-weight: 500;
+}
+
+/* --- Detail panel --- */
+.bx-detail { background: #fff; border: 1px solid var(--border-1); border-radius: 0; padding: 22px; position: sticky; top: 24px; }
+.bx-detail__head { padding-bottom: 16px; border-bottom: 1px solid var(--border-1); margin-bottom: 16px; }
+.bx-detail__eyebrow {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bl-red); font-weight: 600; margin: 0 0 6px;
+}
+.bx-detail__num { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.bx-detail__grid {
+  display: grid; grid-template-columns: 110px 1fr; gap: 10px 14px;
+  font-size: 13px; margin: 0 0 20px;
+}
+.bx-detail__grid dt {
+  color: var(--fg-3); font-size: 11px; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 600; padding-top: 2px;
+}
+.bx-detail__grid dd { margin: 0; font-weight: 500; }
+.bx-detail__alert {
+  display: flex; gap: 12px; padding: 14px;
+  background: #FBE5E5; border-left: 3px solid var(--bl-red);
+}
+.bx-detail__alert i { width: 20px; height: 20px; color: var(--bl-red); flex-shrink: 0; margin-top: 2px; }
+.bx-detail__alert strong { display: block; font-size: 13px; margin-bottom: 4px; }
+.bx-detail__alert p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--fg-2); }
+.bx-detail__foot {
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--border-1);
+  font-size: 11px; color: var(--fg-3); line-height: 1.6;
+}
+.bx-detail__foot strong { color: var(--fg-2); font-weight: 600; display: block; margin-bottom: 4px; font-size: 12px; }
+
+/* Print + PDF render mode */
+@media print {
+  .bx-side, .bx-top__actions { display: none !important; }
+  .bx-app { grid-template-columns: 1fr; }
+  .bx-main { padding: 16px; }
+  .bx-detail { position: static; }
+  body { background: #fff; }
+}
+.is-pdf-rendering .bx-side,
+.is-pdf-rendering .bx-top__actions { display: none !important; }
+.is-pdf-rendering .bx-app { grid-template-columns: 1fr; }
+.is-pdf-rendering .bx-main { padding: 16px; grid-template-columns: 1fr; }
+.is-pdf-rendering .bx-detail { position: static; }
+.is-pdf-rendering body { background: #fff; }
+
+@media (max-width: 1100px) {
+  .bx-main { grid-template-columns: 1fr; }
+  .bx-detail { position: static; }
+}
+@media (max-width: 820px) {
+  .bx-app { grid-template-columns: 1fr; }
+  .bx-side { display: none; }
+  .bx-stats { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="bx-app">
+
+  <!-- ============================ Sidebar ============================ -->
+  <aside class="bx-side">
+    <div class="bx-side__brand">
+      <div class="bx-side__brand-inner">
+        <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8">
+          <g id="Layer_1-2" data-name="Layer 1">
+            <g id="Layer_1-3" data-name="Layer 1">
+              <g>
+                <path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"></path>
+                <path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"></path>
+                <path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"></path>
+                <path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"></path>
+                <path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"></path>
+                <path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"></path>
+                <path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"></path>
+                <path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"></path>
+              </g>
+              <g>
+                <path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z" fill="#ffffff"></path>
+                <path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z" fill="#ffffff"></path>
+                <polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5" fill="#ffffff"></polygon>
+              </g>
+              <g>
+                <path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z" fill="#ffffff"></path>
+                <path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#ffffff"></path>
+                <path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z" fill="#ffffff"></path>
+                <path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#ffffff"></path>
+                <path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z" fill="#ffffff"></path>
+                <path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#ffffff"></path>
+                <path d="M160.6,23.4V.5h6v22.9h-6Z" fill="#ffffff"></path>
+                <path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z"></path>
+                <path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z" fill="#ffffff"></path>
+              </g>
+              <g>
+                <rect y=".4" width="22.7" height="23" fill="#b5001f"></rect>
+                <g>
+                  <circle cx="9.4" cy="6.2" r="2.9" fill="#fff"></circle>
+                  <path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z" fill="#fff"></path>
+                  <path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z" fill="#fff"></path>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <nav class="bx-side__nav">
+      <a class="bx-side__item" href="#"><i data-lucide="layout-dashboard"></i>Overview</a>
+      <a class="bx-side__item" href="#"><i data-lucide="list-checks"></i>Reports</a>
+      <a class="bx-side__item is-active" href="#"><i data-lucide="shield-check"></i>Remediations</a>
+      <a class="bx-side__item" href="#"><i data-lucide="phone"></i>Numbers</a>
+      <a class="bx-side__item" href="#"><i data-lucide="building"></i>Carriers</a>
+      <a class="bx-side__item" href="#"><i data-lucide="file-text"></i>Documents</a>
+      <a class="bx-side__item" href="#"><i data-lucide="settings"></i>Settings</a>
+    </nav>
+
+    <div class="bx-side__foot">
+      <div class="bx-side__user">
+        <div class="bx-side__avatar">UH</div>
+        <div>
+          <div class="bx-side__user-name">Union Home Mortgage</div>
+          <div class="bx-side__user-role">Client account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================ Main column ============================ -->
+  <div>
+
+    <!-- Top bar -->
+    <header class="bx-top">
+      <div class="bx-top__crumbs">
+        Reports<span class="bx-top__sep">/</span>Remediations<span class="bx-top__sep">/</span>#86893
+      </div>
+      <div class="bx-top__row">
+        <div class="bx-top__title-wrap">
+          <span class="bx-top__eyebrow">Remediation Report</span>
+          <h1 class="bx-top__title">Report #86893 &mdash; Union Home Mortgage Corp</h1>
+        </div>
+        <div class="bx-top__actions">
+          <button class="bx-btn bx-btn--secondary" onclick="window.print()"><i data-lucide="printer"></i>Print</button>
+          <button class="bx-btn bx-btn--primary" onclick="downloadPdf(this)"><i data-lucide="download"></i>Download PDF</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <main class="bx-main">
+
+      <div class="bx-content">
+
+        <!-- Stat tiles -->
+        <section class="bx-stats" aria-label="Report summary">
+          <div class="bx-stat">
+            <div class="bx-stat__label">Total numbers</div>
+            <div class="bx-stat__value">4</div>
+            <div class="bx-stat__delta"><span class="bx-stat__chip">Across 2 carriers</span></div>
+          </div>
+          <div class="bx-stat">
+            <div class="bx-stat__label">AT&amp;T</div>
+            <div class="bx-stat__value">2</div>
+            <div class="bx-stat__delta"><span class="bx-stat__chip is-info">50% of total</span></div>
+          </div>
+          <div class="bx-stat">
+            <div class="bx-stat__label">Verizon</div>
+            <div class="bx-stat__value">2</div>
+            <div class="bx-stat__delta"><span class="bx-stat__chip is-info">50% of total</span></div>
+          </div>
+          <div class="bx-stat">
+            <div class="bx-stat__label">Remediation date</div>
+            <div class="bx-stat__value bx-stat__value--md">05/19/2026</div>
+            <div class="bx-stat__delta"><span class="bx-stat__chip is-crit">Action complete</span></div>
+          </div>
+        </section>
+
+        <!-- Numbers table -->
+        <section class="bx-card" aria-label="Numbers remediated">
+          <header class="bx-card__head">
+            <div>
+              <span class="bx-risk-bar" aria-hidden="true"></span>
+              <h3>Numbers remediated</h3>
+            </div>
+            <div class="bx-card__head-meta">4 total</div>
+          </header>
+
+          <table class="bx-table">
+            <thead>
+              <tr>
+                <th style="width:32px">#</th>
+                <th>Phone number</th>
+                <th>Carrier</th>
+                <th style="text-align:right">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr class="bx-carrier-head">
+                <td colspan="4">AT&amp;T<span class="bx-carrier-count">2 numbers</span></td>
+              </tr>
+              <tr>
+                <td class="bx-row-idx">01</td>
+                <td><span class="bx-num">(417) 932-2096</span></td>
+                <td>AT&amp;T</td>
+                <td style="text-align:right">
+                  <span class="bx-pill bx-pill--ok"><span class="bx-pill__dot"></span>Remediated</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="bx-row-idx">02</td>
+                <td><span class="bx-num">(646) 969-3626</span></td>
+                <td>AT&amp;T</td>
+                <td style="text-align:right">
+                  <span class="bx-pill bx-pill--ok"><span class="bx-pill__dot"></span>Remediated</span>
+                </td>
+              </tr>
+
+              <tr class="bx-carrier-head">
+                <td colspan="4">Verizon<span class="bx-carrier-count">2 numbers</span></td>
+              </tr>
+              <tr>
+                <td class="bx-row-idx">03</td>
+                <td><span class="bx-num">(979) 472-6490</span></td>
+                <td>Verizon</td>
+                <td style="text-align:right">
+                  <span class="bx-pill bx-pill--ok"><span class="bx-pill__dot"></span>Remediated</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="bx-row-idx">04</td>
+                <td><span class="bx-num">(520) 376-2509</span></td>
+                <td>Verizon</td>
+                <td style="text-align:right">
+                  <span class="bx-pill bx-pill--ok"><span class="bx-pill__dot"></span>Remediated</span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+
+      <!-- Detail panel -->
+      <aside class="bx-detail">
+        <div class="bx-detail__head">
+          <p class="bx-detail__eyebrow">Report #86893</p>
+          <h2 class="bx-detail__num">Union Home Mortgage Corp</h2>
+        </div>
+
+        <dl class="bx-detail__grid">
+          <dt>Account</dt>
+          <dd>1430__Union Home Mortgage</dd>
+
+          <dt>Report #</dt>
+          <dd>86893</dd>
+
+          <dt>Date</dt>
+          <dd>05/19/2026</dd>
+
+          <dt>Total #</dt>
+          <dd>4</dd>
+
+          <dt>Carriers</dt>
+          <dd>AT&amp;T, Verizon</dd>
+        </dl>
+
+        <div class="bx-detail__alert">
+          <i data-lucide="shield-check"></i>
+          <div>
+            <strong>Remediation complete</strong>
+            <p>All 4 numbers in this report have been processed and the remediation actions on file have been completed for the carriers listed.</p>
+          </div>
+        </div>
+
+        <div class="bx-detail__foot">
+          <strong>Verification Technologies LLC</strong>
+          177 Cassia Way, Suite B112<br>
+          Henderson, NV 89703<br>
+          <a href="https://www.numberverifer.com">www.numberverifer.com</a>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // Render Lucide icons once the script loads
+  if (window.lucide) { lucide.createIcons(); }
+
+  function downloadPdf(btn) {
+    if (!window.html2pdf) {
+      alert("PDF library still loading — try again in a second.");
+      return;
+    }
+    var originalLabel = btn ? btn.innerHTML : null;
+    if (btn) { btn.disabled = true; btn.innerHTML = "Generating..."; }
+
+    document.documentElement.classList.add("is-pdf-rendering");
+
+    var target = document.querySelector(".bx-app");
+    var opts = {
+      margin:      [10, 10, 10, 10],
+      filename:    "Remediation-Report-86893-Union-Home-Mortgage.pdf",
+      image:       { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+      jsPDF:       { unit: "mm", format: "letter", orientation: "portrait" },
+      pagebreak:   { mode: ["css", "legacy"] }
+    };
+
+    html2pdf().from(target).set(opts).save().then(function () {
+      document.documentElement.classList.remove("is-pdf-rendering");
+      if (btn) { btn.disabled = false; btn.innerHTML = originalLabel; if (window.lucide) lucide.createIcons(); }
+    }).catch(function () {
+      document.documentElement.classList.remove("is-pdf-rendering");
+      if (btn) { btn.disabled = false; btn.innerHTML = originalLabel; if (window.lucide) lucide.createIcons(); }
+      alert("Couldn't generate the PDF. Try the Print button instead and pick 'Save as PDF'.");
+    });
+  }
+</script>
+
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
