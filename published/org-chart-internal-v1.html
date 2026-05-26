@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organizational Structure — Internal Working Draft</title>
+<style>
+  /* General Sans — from Blacklist design system repo */
+  @font-face {
+    font-family: "General Sans";
+    src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "General Sans";
+    src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2");
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "General Sans";
+    src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2");
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "General Sans";
+    src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2");
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+
+  /* Tokens — pulled from colors_and_type.css */
+  :root {
+    --bl-red:       #A50100;
+    --bl-red-tint:  #FBE5E5;
+    --bl-black:     #000000;
+    --bl-white:     #FFFFFF;
+    --gray-05: #F7F7F7;
+    --gray-10: #EFEFEF;
+    --gray-20: #E0E0E0;
+    --gray-30: #C9C9C9;
+    --gray-40: #A8A8A8;
+    --gray-50: #8C8C8C;
+    --gray-60: #6F6F6F;
+    --gray-70: #525252;
+    --gray-80: #393939;
+    --gray-90: #1F1F1F;
+    --warning:    #B36B00;
+    --warning-bg: #FFF3DD;
+    --font-sans: "General Sans", ui-sans-serif, system-ui, -apple-system,
+                 "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+
+  html, body {
+    margin: 0; padding: 0;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--bl-black);
+    background: var(--gray-05);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ============ Layout ============ */
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    background: var(--bl-white);
+    border-left: 1px solid var(--gray-20);
+    border-right: 1px solid var(--gray-20);
+  }
+
+  /* ============ Hero ============ */
+  .hero {
+    background: var(--bl-black);
+    color: var(--bl-white);
+    padding: 48px 56px 56px 56px;
+  }
+  .hero-logo {
+    width: 200px;
+    max-width: 300px;
+    margin-bottom: 56px;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-30);
+    margin: 0 0 16px 0;
+  }
+  .hero-risk-bar {
+    display: block;
+    width: 56px;
+    height: 4px;
+    background: var(--bl-red);
+    margin: 0 0 20px 0;
+  }
+  .hero-title {
+    font-size: 56px;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+  }
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: var(--gray-30);
+    max-width: 760px;
+    margin: 0;
+  }
+  .hero-meta {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    border-top: 1px solid var(--gray-80);
+    padding-top: 24px;
+  }
+  .hero-meta-item .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-40);
+    margin: 0 0 6px 0;
+  }
+  .hero-meta-item .value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--bl-white);
+    margin: 0;
+  }
+
+  /* ============ Internal-only callout band ============ */
+  .internal-band {
+    background: var(--bl-red);
+    color: var(--bl-white);
+    padding: 16px 56px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .internal-band-dot {
+    width: 8px; height: 8px; background: var(--bl-white); display: inline-block;
+  }
+
+  /* ============ Section ============ */
+  section {
+    padding: 64px 56px;
+    border-bottom: 1px solid var(--gray-20);
+  }
+  section:last-of-type { border-bottom: 0; }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    margin: 0 0 12px 0;
+  }
+  .section-risk-bar {
+    display: block;
+    width: 56px;
+    height: 4px;
+    background: var(--bl-red);
+    margin: 0 0 20px 0;
+  }
+  .section-title {
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--bl-black);
+  }
+  .section-lede {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--gray-70);
+    max-width: 840px;
+    margin: 0 0 40px 0;
+  }
+
+  /* ============ At-a-glance ============ */
+  .glance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--gray-20);
+    border: 1px solid var(--gray-20);
+  }
+  .glance-cell {
+    background: var(--bl-white);
+    padding: 32px 28px;
+  }
+  .glance-cell h3 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    color: var(--bl-black);
+  }
+  .glance-cell .glance-sub {
+    font-size: 12px;
+    color: var(--gray-60);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+  .glance-stat {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px 0;
+  }
+  .glance-stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    margin: 0 0 24px 0;
+  }
+  .glance-list { margin: 0; padding: 0; list-style: none; }
+  .glance-list li {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-top: 1px solid var(--gray-10);
+    color: var(--gray-80);
+  }
+  .glance-list li:first-child { border-top: 0; padding-top: 0; }
+  .glance-list .role {
+    font-size: 11px;
+    color: var(--gray-50);
+    letter-spacing: 0.04em;
+  }
+  .glance-cross {
+    margin-top: 24px;
+    background: var(--bl-black);
+    color: var(--bl-white);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+  .glance-cross .gc-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-30);
+    margin: 0 0 6px 0;
+  }
+  .glance-cross .gc-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .glance-cross .gc-sub {
+    font-size: 13px;
+    color: var(--gray-30);
+    margin: 6px 0 0 0;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .glance-cross .gc-num {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--bl-white);
+  }
+
+  /* ============ Org diagram ============ */
+  .diagram {
+    background: var(--gray-05);
+    border: 1px solid var(--gray-20);
+    padding: 32px;
+  }
+  .diagram-row { margin-bottom: 28px; }
+  .diagram-row:last-child { margin-bottom: 0; }
+  .diagram-row-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    margin: 0 0 12px 0;
+  }
+  .diagram-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .diagram-card {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    padding: 14px 16px;
+  }
+  .diagram-card--leader {
+    background: var(--bl-black);
+    color: var(--bl-white);
+    border-color: var(--bl-black);
+  }
+  .diagram-card .name {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+  }
+  .diagram-card .title {
+    font-size: 12px;
+    color: var(--gray-60);
+    margin: 0;
+    line-height: 1.45;
+  }
+  .diagram-card--leader .title { color: var(--gray-30); }
+  .diagram-card .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .diagram-card-related { border-left: 3px solid var(--bl-red); padding-left: 13px; }
+
+  .diagram-cross {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .diagram-columns {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+  }
+  .diagram-col {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    padding: 18px 16px;
+  }
+  .diagram-col-head {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 0 12px 0;
+    margin: 0 0 12px 0;
+    border-bottom: 2px solid var(--bl-black);
+    color: var(--bl-black);
+  }
+  .diagram-col-count {
+    font-size: 10px;
+    color: var(--gray-60);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+  }
+  .diagram-group { margin-bottom: 18px; }
+  .diagram-group:last-child { margin-bottom: 0; }
+  .diagram-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    margin: 0 0 8px 0;
+  }
+  .diagram-lead {
+    background: var(--gray-05);
+    border-left: 3px solid var(--bl-black);
+    padding: 8px 12px;
+    margin: 0 0 6px 0;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .diagram-lead .lead-title {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray-60);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  .diagram-report {
+    font-size: 12px;
+    padding: 6px 12px 6px 22px;
+    border-bottom: 1px solid var(--gray-10);
+    color: var(--gray-80);
+    position: relative;
+  }
+  .diagram-report:last-child { border-bottom: 0; }
+  .diagram-report::before {
+    content: "";
+    position: absolute;
+    left: 12px; top: 14px;
+    width: 6px; height: 1px;
+    background: var(--gray-40);
+  }
+  .diagram-report .meta {
+    font-size: 10px;
+    color: var(--gray-60);
+    letter-spacing: 0.04em;
+    margin-left: 6px;
+  }
+  .diagram-report--indent { padding-left: 36px; }
+  .diagram-report--indent::before { left: 26px; }
+
+  /* Two-tone tag system: BLA (incl NV) vs Plura. Sub-tags for NV/BL inside BLA org. */
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .tag-bla   { background: var(--bl-black); color: var(--bl-white); }
+  .tag-plura { background: var(--bl-white); color: var(--bl-black); border: 1px solid var(--gray-30); }
+  .tag-nv    { background: var(--gray-20); color: var(--bl-black); }
+  .tag-bl    { background: var(--gray-80); color: var(--bl-white); }
+  .tag-rp    { background: var(--bl-red); color: var(--bl-white); letter-spacing: 0.06em; }
+  .tag-cross { background: var(--bl-red); color: var(--bl-white); }
+
+  /* ============ Cross-org narratives ============ */
+  .person {
+    border-top: 1px solid var(--gray-20);
+    padding: 36px 0;
+  }
+  .person:first-of-type { border-top: 0; padding-top: 0; }
+  .person-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  .person-head-left { flex: 1; }
+  .person-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gray-50);
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+  }
+  .person-name {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 4px 0;
+    color: var(--bl-black);
+  }
+  .person-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-70);
+    margin: 0;
+  }
+  .person-head-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+  }
+  .person-bar {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--bl-red);
+    margin-bottom: 8px;
+  }
+  .person-body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    row-gap: 14px;
+    margin-bottom: 0;
+  }
+  .person-body dt {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--gray-60);
+    margin: 0;
+    padding-top: 2px;
+  }
+  .person-body dd {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--gray-90);
+    margin: 0;
+  }
+  .person-body dd ul { margin: 0; padding-left: 16px; }
+  .person-body dd li { margin: 4px 0; }
+  .person-diligence {
+    margin-top: 18px;
+    border: 1px solid var(--bl-red);
+    background: var(--bl-red-tint);
+    padding: 14px 16px;
+  }
+  .person-diligence-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bl-red);
+    margin: 0 0 6px 0;
+  }
+  .person-diligence-body {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--gray-90);
+    margin: 0;
+  }
+  .person-diligence-body ol { margin: 4px 0 0 0; padding-left: 20px; }
+  .person-diligence-body li { margin: 4px 0; }
+
+  /* ============ Organization sections ============ */
+  .org-banner {
+    background: var(--bl-black);
+    color: var(--bl-white);
+    padding: 32px 36px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .org-banner.plura {
+    background: var(--bl-white);
+    color: var(--bl-black);
+    border: 2px solid var(--bl-black);
+  }
+  .org-banner .ob-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-30);
+    margin: 0 0 6px 0;
+  }
+  .org-banner.plura .ob-eyebrow { color: var(--gray-60); }
+  .org-banner .ob-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .org-banner .ob-sub {
+    font-size: 13px;
+    color: var(--gray-30);
+    margin: 6px 0 0 0;
+    max-width: 560px;
+    line-height: 1.5;
+  }
+  .org-banner.plura .ob-sub { color: var(--gray-60); }
+  .org-banner .ob-num {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .org-banner .ob-num-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-30);
+    margin-top: 4px;
+    text-align: right;
+  }
+  .org-banner.plura .ob-num-label { color: var(--gray-60); }
+
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .org-grid--two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .org-card {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    padding: 20px 18px;
+  }
+  .org-card-head {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--bl-black);
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--bl-black);
+  }
+  .org-lead {
+    background: var(--gray-05);
+    border-left: 3px solid var(--bl-black);
+    padding: 10px 12px;
+    margin: 0 0 8px 0;
+  }
+  .org-lead .nm {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.25;
+  }
+  .org-lead .ti {
+    font-size: 11px;
+    color: var(--gray-60);
+    margin: 2px 0 0 0;
+    letter-spacing: 0.04em;
+  }
+  .org-row {
+    font-size: 13px;
+    padding: 8px 0 8px 14px;
+    border-bottom: 1px solid var(--gray-10);
+    color: var(--gray-90);
+    position: relative;
+  }
+  .org-row:last-child { border-bottom: 0; }
+  .org-row::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 16px;
+    width: 8px; height: 1px;
+    background: var(--gray-40);
+  }
+  .org-row .role {
+    display: block;
+    font-size: 11px;
+    color: var(--gray-60);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  .org-row.indent { padding-left: 28px; }
+  .org-row.indent::before { left: 14px; }
+  .org-row .tag { margin-left: 6px; font-size: 8px; }
+  .org-row-related { border-left: 3px solid var(--bl-red); padding-left: 18px; }
+  .org-row-related::before { left: 4px; }
+
+  /* ============ Top of house cards ============ */
+  .leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .leader-card {
+    background: var(--bl-white);
+    border: 1px solid var(--gray-20);
+    padding: 24px;
+  }
+  .leader-card .ln {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+  }
+  .leader-card .lr {
+    font-size: 12px;
+    color: var(--gray-60);
+    letter-spacing: 0.04em;
+    margin: 0 0 14px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .leader-card ul { margin: 0; padding: 0; list-style: none; }
+  .leader-card li {
+    font-size: 13px;
+    color: var(--gray-80);
+    padding: 6px 0;
+    border-top: 1px solid var(--gray-10);
+  }
+  .leader-card li:first-child { border-top: 0; padding-top: 0; }
+  .leader-card li .tag { margin-right: 6px; }
+
+  /* ============ Global notes & verify list ============ */
+  .note-block {
+    background: var(--gray-05);
+    border-left: 4px solid var(--bl-black);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .note-block .nh {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bl-black);
+    margin: 0 0 6px 0;
+  }
+  .note-block .nb {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--gray-80);
+    margin: 0;
+  }
+  .verify-list {
+    border: 1px solid var(--warning);
+    background: var(--warning-bg);
+    padding: 24px;
+  }
+  .verify-list .vh {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warning);
+    margin: 0 0 4px 0;
+  }
+  .verify-list .vs {
+    font-size: 14px;
+    color: var(--gray-70);
+    margin: 0 0 16px 0;
+  }
+  .verify-list ol { margin: 0; padding-left: 22px; }
+  .verify-list li {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 6px 0;
+    color: var(--gray-90);
+  }
+
+  /* ============ Footer ============ */
+  footer {
+    background: var(--bl-black);
+    color: var(--bl-white);
+    padding: 40px 56px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  footer .f-left .ft { font-size: 18px; font-weight: 700; margin: 0 0 4px 0; }
+  footer .f-left .fs { font-size: 13px; color: var(--gray-30); margin: 0; }
+  footer .f-right {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-40);
+  }
+
+  @media print {
+    body { background: var(--bl-white); }
+    .page { max-width: none; border: 0; }
+    section, footer { padding-left: 32px; padding-right: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+
+    <!-- Blacklist Alliance favicon mark (square) — sourced from design system repo -->
+    <div class="hero-logo" style="width:72px; height:72px; margin-bottom: 48px;">
+      <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="width:100%;height:100%;display:block;">
+        <g id="Layer_1-2" data-name="Layer 1">
+          <g>
+            <rect width="32" height="32" fill="#b5001f"></rect>
+            <path d="M9.25,8.28c0-2.23,1.81-4.03,4.03-4.03s4.03,1.81,4.03,4.03-1.81,4.03-4.03,4.03-4.03-1.81-4.03-4.03ZM18.02,13.01h-9.88c-1.39,0-2.64,1.11-2.64,2.64v8.07c0,.7.7,1.39,1.53,1.39s1.53-.7,1.53-1.53v-6.4h.7v9.88h5.29v-.14c-1.67-1.53-2.78-3.62-2.78-6.12,0-3.9,2.64-7.1,6.26-7.79ZM26.5,20.94c0,3.76-3.06,6.82-6.82,6.82s-6.82-3.06-6.82-6.82,3.06-6.82,6.82-6.82,6.82,3.06,6.82,6.82ZM22.75,25.39l-7.37-7.37c-.7.83-.97,1.81-.97,2.92,0,2.92,2.37,5.29,5.43,5.43,1.11,0,2.09-.42,2.92-.97ZM24.97,20.94c0-2.92-2.37-5.29-5.29-5.29-1.25,0-2.23.28-3.2.97l7.51,7.37s.97-.73.97-3.06Z" fill="#fff"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <p class="hero-eyebrow">Internal Working Draft · Two-Organization Personnel Rundown</p>
+    <span class="hero-risk-bar"></span>
+    <h1 class="hero-title">Organizational<br>Structure</h1>
+    <p class="hero-sub">A complete personnel view of Blacklist Alliance (with Verification Technologies / Number Verifier as a wholly-owned subsidiary) and Plura.ai — with detail on every individual who works across both organizations.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <p class="label">Prepared by</p>
+        <p class="value">Matt Beucler</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="label">Prepared for</p>
+        <p class="value">Internal — shareholder review</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="label">Version</p>
+        <p class="value">v1 (Internal)</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="label">Date</p>
+        <p class="value">21 May 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ INTERNAL BAND ============ -->
+  <div class="internal-band">
+    <span class="internal-band-dot"></span>
+    Internal only · Do not share externally until shareholder-approved &amp; verified
+  </div>
+
+  <!-- ============ EXECUTIVE CONTEXT ============ -->
+  <section>
+    <p class="section-eyebrow">Section 01 · Context</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">Why this document exists</h2>
+    <p class="section-lede">This document presents personnel across two organizations: Blacklist Alliance (with Verification Technologies, DBA Number Verifier, as its wholly-owned subsidiary) and Plura.ai. The body of the document focuses on the eight individuals who work across both organizations, because that is where the most explanation is required.</p>
+
+    <div class="note-block">
+      <p class="nh">How this document is structured</p>
+      <p class="nb"><strong>Section 02</strong> — Two-organization at-a-glance. &nbsp;·&nbsp; <strong>Section 03</strong> — Reporting structure diagram. &nbsp;·&nbsp; <strong>Section 04</strong> — Cross-organization people (seven individuals, with top-of-house cards plus detailed narratives for the five non-self-explanatory roles). &nbsp;·&nbsp; <strong>Section 05</strong> — Blacklist Alliance organization (BLA group, including NV subsidiary). &nbsp;·&nbsp; <strong>Section 06</strong> — Plura.ai organization. &nbsp;·&nbsp; <strong>Section 07</strong> — Internal notes and verify list.</p>
+    </div>
+
+    <div class="note-block">
+      <p class="nh">Document arc</p>
+      <p class="nb"><strong>v1 (this document)</strong> — Internal working draft, circulated to shareholders for review. Diligence flags and verify-with-Jennifer items left in place. &nbsp;·&nbsp; <strong>v2 (after shareholder meeting)</strong> — External-ready. Internal diligence notes stripped, cap-table figures verified, related-party framing reviewed by Polsinelli before external share.</p>
+    </div>
+  </section>
+
+  <!-- ============ AT-A-GLANCE ============ -->
+  <section>
+    <p class="section-eyebrow">Section 02 · At a glance</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">Two organizations, one view</h2>
+    <p class="section-lede">Headcount and key leadership on each side, plus the cross-organization individuals who span both. Total unique headcount is 39.</p>
+
+    <div class="glance-grid">
+
+      <div class="glance-cell">
+        <h3>Blacklist Alliance</h3>
+        <p class="glance-sub">Including Verification Technologies LLC (DBA Number Verifier) — a wholly-owned subsidiary.</p>
+        <p class="glance-stat">20</p>
+        <p class="glance-stat-label">Single-organization headcount</p>
+        <ul class="glance-list">
+          <li>Esteban Garcia <span class="role">— VP of Sales</span></li>
+          <li>Dudley Brenner <span class="role">— VP of EU Sales (cross-org — see Section 04)</span></li>
+          <li>IT &amp; customer support reports up to Daniel McKeehan, CTO (cross-org — Section 04)</li>
+          <li>Plus shared sales team, legal, research, accounting support</li>
+        </ul>
+      </div>
+
+      <div class="glance-cell">
+        <h3>Plura.ai</h3>
+        <p class="glance-sub">AI Communications Platform — standalone organization.</p>
+        <p class="glance-stat">11</p>
+        <p class="glance-stat-label">Single-organization headcount</p>
+        <ul class="glance-list">
+          <li>Jesse Mullen <span class="role">— VP of Sales</span></li>
+          <li>Nick Ranalli <span class="role">— Chief Technology Officer</span></li>
+          <li>Nick Kvaratskhelia <span class="role">— Head of Sales Engineering</span></li>
+          <li>Plus engineering, sales engineering, EA &amp; marketing support</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="glance-cross">
+      <div>
+        <p class="gc-label">Cross-Organization</p>
+        <p class="gc-title">Span both organizations</p>
+        <p class="gc-sub">Eight individuals work across Blacklist Alliance and Plura.ai today. Three are self-explanatory leaders (Matt Beucler, Seth Heyman, Daniel McKeehan); five receive detailed narratives in Section 04.</p>
+      </div>
+      <div></div>
+      <div style="text-align:right;">
+        <div class="gc-num">8</div>
+      </div>
+    </div>
+
+    <p style="margin-top:32px; font-size:13px; color: var(--gray-60); max-width: 720px; line-height: 1.55;">
+      <strong>Total unique headcount:</strong> 39 people (20 BLA + 11 Plura + 8 cross-organization, with cross-org people not double-counted on either side).
+    </p>
+  </section>
+
+  <!-- ============ REPORTING-STRUCTURE DIAGRAM ============ -->
+  <section>
+    <p class="section-eyebrow">Section 03 · Reporting structure</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">Two-organization view</h2>
+    <p class="section-lede">Top-of-house leadership, the cross-organization band, and the two single-organization columns. Related-party individuals are flagged with a red accent bar.</p>
+
+    <div class="diagram">
+
+      <!-- TOP: Matt + Seth -->
+      <div class="diagram-row">
+        <p class="diagram-row-label">Top of House · Cross-Organization Leaders</p>
+        <div class="diagram-top">
+          <div class="diagram-card diagram-card--leader">
+            <p class="name">Matt Beucler</p>
+            <p class="title">CEO — Plura.ai · President — Blacklist Alliance · CEO — Verification Technologies</p>
+            <div class="tags">
+              <span class="tag" style="background:#fff;color:#000;">BLA</span>
+              <span class="tag" style="background:#A50100;color:#fff;">PLURA</span>
+            </div>
+          </div>
+          <div class="diagram-card diagram-card--leader">
+            <p class="name">Seth Heyman</p>
+            <p class="title">CEO — Blacklist Alliance · Partner &amp; Chief Legal Counsel — Plura.ai + VT</p>
+            <div class="tags">
+              <span class="tag" style="background:#fff;color:#000;">BLA</span>
+              <span class="tag" style="background:#A50100;color:#fff;">PLURA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CROSS-ORGANIZATION BAND -->
+      <div class="diagram-row">
+        <p class="diagram-row-label">Cross-Organization Band · Span Both Organizations</p>
+        <div class="diagram-cross">
+
+          <div class="diagram-card diagram-card-related">
+            <p class="name">Daniel McKeehan</p>
+            <p class="title">CTO — BLA &amp; NV · BLA shareholder · guides strategic decisions on Plura</p>
+            <div class="tags"><span class="tag tag-bla">BLA</span><span class="tag tag-plura">PLURA</span><span class="tag tag-rp">Related Party</span></div>
+          </div>
+
+          <div class="diagram-card diagram-card-related">
+            <p class="name">Ryan Rasmussen</p>
+            <p class="title">Shareholder &amp; Strategic Referrer (no operational role)</p>
+            <div class="tags"><span class="tag tag-bla">BLA</span><span class="tag tag-plura">PLURA</span><span class="tag tag-rp">Related Party</span></div>
+          </div>
+
+          <div class="diagram-card">
+            <p class="name">Jennifer Tyler</p>
+            <p class="title">Comptroller (contractor) — both organizations</p>
+            <div class="tags"><span class="tag tag-bla">BLA</span><span class="tag tag-plura">PLURA</span></div>
+          </div>
+
+          <div class="diagram-card diagram-card-related">
+            <p class="name">Matt Davidson</p>
+            <p class="title">CMO — both organizations · ~17% Plura.ai equityholder</p>
+            <div class="tags"><span class="tag tag-bla">BLA</span><span class="tag tag-plura">PLURA</span><span class="tag tag-rp">Related Party</span></div>
+          </div>
+
+          <div class="diagram-card">
+            <p class="name">Kristyn Outlaw</p>
+            <p class="title">Sales — Plura primary · existing BLA book she continues to manage</p>
+            <div class="tags"><span class="tag tag-bla">BLA</span><span class="tag tag-plura">PLURA</span></div>
+          </div>
+
+          <div class="diagram-card">
+            <p class="name">Dudley Brenner</p>
+            <p class="title">VP of EU Sales (BLA primary) · one Plura.ai account</p>
+            <div class="tags"><span class="tag tag-bla">BLA</span><span class="tag tag-plura">PLURA</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TWO-COLUMN ENTITY VIEW -->
+      <div class="diagram-row">
+        <p class="diagram-row-label">Single-Organization Reports</p>
+        <div class="diagram-columns">
+
+          <!-- COL 1: BLACKLIST ALLIANCE -->
+          <div class="diagram-col">
+            <div class="diagram-col-head">Blacklist Alliance <span style="font-size:9px; letter-spacing:0.06em; color:var(--gray-60); font-weight:500;">incl. Number Verifier subsidiary</span></div>
+            <p class="diagram-col-count">20 single-organization reports</p>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">IT — reports to Daniel McKeehan (cross-org)</p>
+              <div class="diagram-report">Cameron Franck <span class="meta">IT / Phones — Carson City (NV)</span></div>
+              <div class="diagram-report diagram-card-related" style="border-left:3px solid #A50100; padding-left:19px;">Jill Beucler <span class="meta">IT / Phones — PT (NV)</span> <span class="tag tag-rp" style="font-size:8px;margin-left:6px;">Related</span></div>
+              <div class="diagram-report diagram-card-related" style="border-left:3px solid #A50100; padding-left:19px;">Adriana Beucler <span class="meta">IT / Phones — PT (NV)</span> <span class="tag tag-rp" style="font-size:8px;margin-left:6px;">Related</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Shared Sales Team (BLA + NV)</p>
+              <div class="diagram-lead">Esteban Garcia<span class="lead-title">VP of Sales — BLA &amp; NV</span></div>
+              <div class="diagram-report">Maria Lavin <span class="meta">Sales Associate</span></div>
+              <div class="diagram-report">Cierra Davis <span class="meta">Sales Associate</span></div>
+              <div class="diagram-report">Suzi Berg <span class="meta">Sales Associate — BL only</span></div>
+              <div class="diagram-report">Tara Graeber <span class="meta">EA to Esteban (NV)</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Customer Support — NV</p>
+              <div class="diagram-report">Ana Makharashvili <span class="meta">Tbilisi</span></div>
+              <div class="diagram-report">Anna Lortkipanidze <span class="meta">Tbilisi</span></div>
+              <div class="diagram-report">Gigi Kokaia <span class="meta">Tbilisi</span></div>
+              <div class="diagram-report">Luka Tsutskiridze <span class="meta">Tbilisi</span></div>
+              <div class="diagram-report">Mariami Gaprindashvili <span class="meta">Tbilisi</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Accounting — NV</p>
+              <div class="diagram-report diagram-card-related" style="border-left:3px solid #A50100; padding-left:19px;">Avery Beucler <span class="meta">Data entry — PT</span> <span class="tag tag-rp" style="font-size:8px;margin-left:6px;">Related</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Legal — BLA</p>
+              <div class="diagram-report">Sam Heyman <span class="meta">Legal Assistant — US</span></div>
+              <div class="diagram-report">Fadi Alzaidy <span class="meta">Legal Assistant</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Research &amp; Support — BLA</p>
+              <div class="diagram-report">Lyelly Marie Manzano <span class="meta">Research — Philippines</span></div>
+              <div class="diagram-report">Flordeliza Arenas <span class="meta">Research — Philippines</span></div>
+              <div class="diagram-report">Ani Erqvanidze <span class="meta">Customer Support — Tbilisi</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Reports to Dudley (cross-org)</p>
+              <div class="diagram-report">Katy Jojua <span class="meta">EA to Dudley — Tbilisi (NV)</span></div>
+            </div>
+          </div>
+
+          <!-- COL 2: PLURA -->
+          <div class="diagram-col">
+            <div class="diagram-col-head">Plura.ai <span style="font-size:9px; letter-spacing:0.06em; color:var(--gray-60); font-weight:500;">standalone organization</span></div>
+            <p class="diagram-col-count">11 single-organization reports</p>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Sales</p>
+              <div class="diagram-lead">Jesse Mullen<span class="lead-title">VP of Sales</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Engineering &amp; Technical</p>
+              <div class="diagram-lead">Nick Ranalli<span class="lead-title">Head of AI</span></div>
+              <div class="diagram-report">Geoffe Simons <span class="meta">Sr. Software Dev</span></div>
+              <div class="diagram-report">Roman Voronstov <span class="meta">Integrations / APIs</span></div>
+              <div class="diagram-report">Lasha Makhvaidze <span class="meta">Front-End Dev</span></div>
+              <div class="diagram-report">Matthew Thomas <span class="meta">Backend Admin / RCS / 10DLC</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Sales Engineering</p>
+              <div class="diagram-lead">Nick Kvaratskhelia<span class="lead-title">Head of Sales Engineering</span></div>
+              <div class="diagram-report">Monika Kokaia <span class="meta">Sales Engineer</span></div>
+              <div class="diagram-report">Gegi Petriashvili <span class="meta">Sales Engineer</span></div>
+            </div>
+
+            <div class="diagram-group">
+              <p class="diagram-group-label">Marketing &amp; Operations</p>
+              <div class="diagram-report">Hammad Mahmood <span class="meta">Media Buyer (agency contractor — Canada)</span></div>
+              <div class="diagram-report">Rose Mitchell <span class="meta">EA to Matt — Plura payroll</span></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="diagram-row" style="margin-top:24px; padding-top:20px; border-top:1px solid var(--gray-20);">
+        <p class="diagram-row-label" style="margin-bottom:8px;">Legend</p>
+        <div style="display:flex; gap:20px; flex-wrap:wrap; font-size:11px; color:var(--gray-70);">
+          <span><span class="tag tag-bla">BLA</span> &nbsp;Blacklist Alliance (incl. NV subsidiary)</span>
+          <span><span class="tag tag-plura">PLURA</span> &nbsp;Plura.ai</span>
+          <span><span class="tag tag-rp">Related</span> &nbsp;Related party — see narrative</span>
+          <span style="display:inline-flex; align-items:center; gap:8px;"><span style="display:inline-block; width:12px; height:14px; border-left:3px solid #A50100;"></span> Red bar = related-party flag</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CROSS-ORG PEOPLE ============ -->
+  <section>
+    <p class="section-eyebrow">Section 04 · Cross-Organization People</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">The eight who span both organizations</h2>
+    <p class="section-lede">Three top-of-house leaders are presented as self-explanatory cards. The remaining five receive detailed narratives covering role, scope, compensation arrangement, reporting line, and any diligence flags carried into shareholder review.</p>
+
+    <!-- Top of house cards -->
+    <p style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-60); margin:0 0 12px 0;">Top of House — Self-Explanatory</p>
+    <div class="leaders-grid" style="margin-bottom:48px; grid-template-columns: repeat(3, 1fr);">
+      <div class="leader-card">
+        <p class="ln">Matt Beucler</p>
+        <p class="lr">Owner / Top Executive</p>
+        <ul>
+          <li><span class="tag tag-plura">PLURA</span>CEO — Plura.ai</li>
+          <li><span class="tag tag-bla">BLA</span>President — Blacklist Alliance · CEO — Verification Technologies (subsidiary)</li>
+        </ul>
+      </div>
+      <div class="leader-card">
+        <p class="ln">Seth Heyman</p>
+        <p class="lr">Partner across both organizations</p>
+        <ul>
+          <li><span class="tag tag-bla">BLA</span>CEO — Blacklist Alliance</li>
+          <li><span class="tag tag-plura">PLURA</span>Partner &amp; Chief Legal Counsel — Plura.ai</li>
+          <li><span class="tag tag-bla">BLA</span>Partner &amp; Chief Legal Counsel — Verification Technologies</li>
+        </ul>
+      </div>
+      <div class="leader-card" style="border-left:3px solid var(--bl-red);">
+        <p class="ln">Daniel McKeehan</p>
+        <p class="lr">CTO &amp; Shareholder · Related Party</p>
+        <ul>
+          <li><span class="tag tag-bla">BLA</span>CTO — Blacklist Alliance &amp; Number Verifier</li>
+          <li><span class="tag tag-bla">BLA</span>Shareholder — Blacklist Alliance (carries indirect Plura.ai exposure via BLA's ~75.5% position)</li>
+          <li><span class="tag tag-plura">PLURA</span>Guides strategic technology decisions on Plura.ai. Plura's codebase is written primarily by Nick Ranalli (CTO — Plura.ai).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Detailed narratives -->
+    <p style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-60); margin:0 0 12px 0;">Detailed Narratives — Five People</p>
+
+    <!-- 1. RYAN -->
+    <article class="person">
+      <div class="person-head">
+        <div class="person-head-left">
+          <p class="person-number">01 of 05</p>
+          <h3 class="person-name">Ryan Rasmussen</h3>
+          <p class="person-subtitle">Shareholder &amp; Strategic Referrer · No operational role</p>
+        </div>
+        <div class="person-head-right">
+          <span class="person-bar"></span>
+          <span class="tag tag-bla">BLA</span>
+          <span class="tag tag-plura">PLURA</span>
+          <span class="tag tag-rp">Related Party</span>
+        </div>
+      </div>
+      <dl class="person-body">
+        <dt>Equity</dt>
+        <dd>Shareholder across both organizations (Blacklist Alliance, including Verification Technologies subsidiary, and Plura.ai).</dd>
+        <dt>Operational involvement</dt>
+        <dd>None at either organization — does not participate in day-to-day operations.</dd>
+        <dt>What he does</dt>
+        <dd>Networks and introduces larger client relationships across both organizations. Brings prospects to the table, then hands off to the respective sales lead (Jesse Mullen at Plura, Esteban Garcia at BLA / NV) for execution and account management.</dd>
+        <dt>Compensation</dt>
+        <dd>Takes no salary from either organization. Shareholder distributions only.</dd>
+        <dt>Reporting line</dt>
+        <dd>None — peer to Matt and Seth as a shareholder/partner.</dd>
+      </dl>
+    </article>
+
+    <!-- 2. JENNIFER -->
+    <article class="person">
+      <div class="person-head">
+        <div class="person-head-left">
+          <p class="person-number">02 of 05</p>
+          <h3 class="person-name">Jennifer Tyler</h3>
+          <p class="person-subtitle">Comptroller — Contractor, both organizations</p>
+        </div>
+        <div class="person-head-right">
+          <span class="person-bar"></span>
+          <span class="tag tag-bla">BLA</span>
+          <span class="tag tag-plura">PLURA</span>
+        </div>
+      </div>
+      <dl class="person-body">
+        <dt>Title</dt>
+        <dd>Comptroller across both organizations.</dd>
+        <dt>Employment status</dt>
+        <dd>Independent contractor — paid directly by each entity (Blacklist Alliance, Verification Technologies / NV, and Plura.ai), not a W-2 employee of any.</dd>
+        <dt>Compensation</dt>
+        <dd>Each entity pays its own portion based on workload. The BLA-side entities (BLA + NV) carry the bulk of the allocation; Plura.ai pays a smaller share because the Plura accounting workload is light.</dd>
+        <dt>What she does</dt>
+        <dd>Owns the accounting function end-to-end for both organizations — bookkeeping, GL, AmEx / expense allocation, intercompany reconciliations, financial reporting, and audit support.</dd>
+        <dt>Reporting line</dt>
+        <dd>Reports to Matt across both organizations.</dd>
+        <dt>Forward plan</dt>
+        <dd>The current arrangement is appropriate while Plura.ai's accounting workload remains light. If Plura scales to where it warrants dedicated accounting headcount, Matt would bring in a Plura-direct accountant rather than expand Jennifer's Plura allocation.</dd>
+      </dl>
+    </article>
+
+    <!-- 3. MATT DAVIDSON -->
+    <article class="person">
+      <div class="person-head">
+        <div class="person-head-left">
+          <p class="person-number">03 of 05</p>
+          <h3 class="person-name">Matt Davidson</h3>
+          <p class="person-subtitle">Chief Marketing Officer · Both organizations</p>
+        </div>
+        <div class="person-head-right">
+          <span class="person-bar"></span>
+          <span class="tag tag-bla">BLA</span>
+          <span class="tag tag-plura">PLURA</span>
+          <span class="tag tag-rp">Related Party</span>
+        </div>
+      </div>
+      <dl class="person-body">
+        <dt>Title</dt>
+        <dd>CMO across both organizations.</dd>
+        <dt>Equity</dt>
+        <dd>Holds 17% of Plura.ai, held directly in his individual capacity. This interest is separate from, and not derivative of, Blacklist Alliance's position in Plura.ai (BLA holds 75.5%). Matt Davidson holds no equity in Blacklist Alliance or Verification Technologies.</dd>
+        <dt>What he does</dt>
+        <dd>Owns the marketing function across both organizations — built and maintains the Blacklist Alliance and Number Verifier websites, manages all brand sites, writes ad copy, designs and produces trade show booths, and runs creative and paid media.</dd>
+        <dt>Comp structure<br><span style="font-weight:400; font-size:10px; color:var(--gray-50);">(Proposed restructure)</span></dt>
+        <dd>One retainer with Blacklist Alliance covering both Blacklist Alliance and Number Verifier websites and web creative work, plus a separate arrangement with Plura.ai. Rationale: covering both organizations is effectively a full-time job; a shared-services structure is more cost-effective than pulling him fully onto Plura while still needing equivalent senior marketing leadership at BLA / NV. This is a proposed restructure of the current arrangement.</dd>
+        <dt>Reporting line</dt>
+        <dd>Reports to Matt Beucler across both organizations.</dd>
+      </dl>
+      <div class="person-diligence">
+        <p class="person-diligence-head">Diligence note · Internal only</p>
+        <p class="person-diligence-body">Matt Davidson is both a related party to Plura.ai (individual equityholder) and a service provider to both organizations. Polsinelli to frame the related-party disclosure before externalizing — confirm that services to BLA and NV under the retainer are documented as arm's-length and independent of his Plura.ai equity position.</p>
+      </div>
+    </article>
+
+    <!-- 4. KRISTYN -->
+    <article class="person">
+      <div class="person-head">
+        <div class="person-head-left">
+          <p class="person-number">04 of 05</p>
+          <h3 class="person-name">Kristyn Outlaw</h3>
+          <p class="person-subtitle">Sales Associate · Cross-Organization</p>
+        </div>
+        <div class="person-head-right">
+          <span class="person-bar"></span>
+          <span class="tag tag-bla">BLA</span>
+          <span class="tag tag-plura">PLURA</span>
+        </div>
+      </div>
+      <dl class="person-body">
+        <dt>Title</dt>
+        <dd>Sales Associate. Trained on and authorized to sell across both organizations (Plura.ai, Number Verifier, Blacklist Alliance).</dd>
+        <dt>Employment status</dt>
+        <dd>Independent contractor. Holds three separate Independent Contractor Agreements — one with Plura.ai, one with Number Verifier, and one with Blacklist Alliance. Each agreement carries its own commission schedule. She is paid directly by each entity, not through a single payor with cross-billing.</dd>
+        <dt>Lead context</dt>
+        <dd>All assigned / inbound lead flow at the company is currently directed to Plura.ai. BLA-side (NV and Blacklist) new business is driven through outbound effort, referrals, and cross-sell from existing accounts.</dd>
+        <dt>Scope</dt>
+        <dd>
+          <ul>
+            <li><strong>New sales focus:</strong> Plura.ai. The product she most enjoys selling and the strongest fit for her skill set.</li>
+            <li><strong>Existing client management:</strong> Maintains her existing client books across both organizations. No plan to take these accounts away from her.</li>
+            <li><strong>Cross-sell:</strong> Authorized and encouraged to cross-sell Plura clients into Number Verifier and Blacklist Alliance.</li>
+          </ul>
+        </dd>
+        <dt>Compensation</dt>
+        <dd>Paid on the life of the client per the commission schedule in each respective ICA — trailing commissions / residuals on the accounts she has brought in and continues to manage. Comp obligations sit with the entity that owns each underlying client relationship.</dd>
+        <dt>Forward plan</dt>
+        <dd>Same structure. Plura-primary for new sales, continued management of and trailing comp on her existing BLA / NV books, and ongoing cross-sell of Plura clients into NV and BLA.</dd>
+        <dt>Reporting line</dt>
+        <dd>Reports to Jesse Mullen (VP of Sales, Plura.ai) on new business; remains supported by Esteban Garcia (VP of Sales, BLA / NV) on her existing BLA-side book.</dd>
+      </dl>
+      <div class="person-diligence">
+        <p class="person-diligence-head">Diligence note · Internal only</p>
+        <p class="person-diligence-body">Life-of-client commission obligations on her BLA / NV book should be schedule-disclosed as ongoing commission liabilities of the respective entities. The three separate ICAs themselves should be included in the data room.</p>
+      </div>
+    </article>
+
+    <!-- 5. DUDLEY -->
+    <article class="person">
+      <div class="person-head">
+        <div class="person-head-left">
+          <p class="person-number">05 of 05</p>
+          <h3 class="person-name">Dudley Brenner</h3>
+          <p class="person-subtitle">VP of EU Sales · BLA primary, with one Plura.ai account · Tbilisi</p>
+        </div>
+        <div class="person-head-right">
+          <span class="person-bar"></span>
+          <span class="tag tag-bla">BLA</span>
+          <span class="tag tag-plura">PLURA</span>
+        </div>
+      </div>
+      <dl class="person-body">
+        <dt>Title</dt>
+        <dd>Vice President of EU Sales for Blacklist Alliance and Number Verifier. The most tenured salesperson on the team and a top producer across both brands.</dd>
+        <dt>Location</dt>
+        <dd>Based in Tbilisi, Georgia full-time.</dd>
+        <dt>Employment status</dt>
+        <dd>Independent contractor. Holds three separate Independent Contractor Agreements — one with Blacklist Alliance, one with Number Verifier, and one with Plura.ai (covering his single Plura account). Each agreement carries its own commission schedule. He is paid directly by each entity.</dd>
+        <dt>Primary scope</dt>
+        <dd>Full-time on BLA and NV. EU and Asia time-zone leads across both brands are routed to him because of his time-zone overlap with that client base. US inbound leads continue to flow to other associates.</dd>
+        <dt>Secondary responsibility</dt>
+        <dd><strong>Tbilisi office leadership.</strong> Manages the Number Verifier personnel based at the Tbilisi office. Acts as the on-the-ground authority figure for the office team — handles landlord and facilities relationships and provides informal leadership and mentorship to a younger crew. This responsibility is part of his role but is not separately compensated.</dd>
+        <dt>Plura involvement</dt>
+        <dd>
+          Limited.
+          <ul>
+            <li>Carries one existing Plura.ai client that he cross-sold previously. Matt is allowing him to retain and continue managing that single account.</li>
+            <li>Not fed Plura leads.</li>
+            <li>Has some Plura product knowledge but is not fully up to speed on the platform. Given the size of his BLA-side book, he does not have the bandwidth to develop deeper Plura expertise. No additional Plura cross-sell is expected from him.</li>
+          </ul>
+        </dd>
+        <dt>Compensation</dt>
+        <dd>Paid directly from Blacklist Alliance and Number Verifier on the accounts he sells and manages under each brand. Plura.ai pays him separately on his single existing Plura account. He receives no separate compensation for managing the Tbilisi office.</dd>
+        <dt>Reporting line</dt>
+        <dd>Reports to Esteban Garcia and to Matt Beucler directly.</dd>
+        <dt>Direct support</dt>
+        <dd>Katy Jojua, Sales Assistant, supporting Dudley's BLA / NV book (BLA-side single-organization — see Section 05).</dd>
+      </dl>
+      <div class="person-diligence">
+        <p class="person-diligence-head">Diligence note · Internal only</p>
+        <p class="person-diligence-body">"VP of EU Sales" title upgrade should be reflected on business cards, email signatures, and external materials before the external version goes out. The three separate ICAs should be included in the data room.</p>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============ BLACKLIST ALLIANCE ORG ============ -->
+  <section>
+    <p class="section-eyebrow">Section 05 · Blacklist Alliance Organization</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">Blacklist Alliance — single-organization roster</h2>
+    <p class="section-lede">All personnel who work exclusively for the Blacklist Alliance organization (including Verification Technologies / Number Verifier as a wholly-owned subsidiary). Cross-organization people are described in Section 04 and not repeated here.</p>
+
+    <div class="org-banner">
+      <div>
+        <p class="ob-eyebrow">Blacklist Alliance</p>
+        <p class="ob-title">Including Verification Technologies LLC (DBA Number Verifier)</p>
+        <p class="ob-sub">Sub-tags below indicate whether an individual's work sits with the BLA parent or the NV subsidiary — both roll up under the same single organization for purposes of this document.</p>
+      </div>
+      <div>
+        <p class="ob-num">20</p>
+        <p class="ob-num-label">People</p>
+      </div>
+    </div>
+
+    <div class="org-grid">
+
+      <div class="org-card">
+        <p class="org-card-head">IT — NV</p>
+        <p style="font-size:10px; letter-spacing:0.04em; color:var(--gray-60); margin:0 0 12px 0;">Reports to Daniel McKeehan, CTO (cross-org — Section 04).</p>
+        <div class="org-row">Cameron Franck<span class="role">IT / Phones — Carson City office<span class="tag tag-nv">NV</span></span></div>
+        <div class="org-row org-row-related">Jill Beucler<span class="role">IT / Phones — Henderson PT<span class="tag tag-nv">NV</span><span class="tag tag-rp">Related</span></span></div>
+        <div class="org-row org-row-related">Adriana Beucler<span class="role">IT / Phones — Henderson PT<span class="tag tag-nv">NV</span><span class="tag tag-rp">Related</span></span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Shared Sales Team</p>
+        <div class="org-lead">
+          <p class="nm">Esteban Garcia</p>
+          <p class="ti">VP of Sales — BLA &amp; NV</p>
+        </div>
+        <div class="org-row">Maria Lavin<span class="role">Sales Associate<span class="tag tag-nv">NV</span><span class="tag tag-bl">BL</span></span></div>
+        <div class="org-row">Cierra Davis<span class="role">Sales Associate<span class="tag tag-nv">NV</span><span class="tag tag-bl">BL</span></span></div>
+        <div class="org-row">Suzi Berg<span class="role">Sales Associate<span class="tag tag-bl">BL</span></span></div>
+        <div class="org-row">Tara Graeber<span class="role">Executive Assistant to Esteban<span class="tag tag-nv">NV</span></span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Customer Support — NV</p>
+        <p style="font-size:10px; letter-spacing:0.04em; color:var(--gray-60); margin:0 0 12px 0;">Tbilisi-based; office led on the ground by Dudley Brenner (cross-org — Section 04).</p>
+        <div class="org-row">Ana Makharashvili<span class="role">Customer Support<span class="tag tag-nv">NV</span></span></div>
+        <div class="org-row">Anna Lortkipanidze<span class="role">Customer Support<span class="tag tag-nv">NV</span></span></div>
+        <div class="org-row">Gigi Kokaia<span class="role">Customer Support<span class="tag tag-nv">NV</span></span></div>
+        <div class="org-row">Luka Tsutskiridze<span class="role">Customer Support<span class="tag tag-nv">NV</span></span></div>
+        <div class="org-row">Mariami Gaprindashvili<span class="role">Customer Support<span class="tag tag-nv">NV</span></span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Accounting &amp; Sales Assist</p>
+        <div class="org-row org-row-related">Avery Beucler<span class="role">Data Entry — PT (reports to Jennifer)<span class="tag tag-nv">NV</span><span class="tag tag-rp">Related</span></span></div>
+        <div class="org-row">Katy Jojua<span class="role">Sales Assistant to Dudley — Tbilisi · Independent Contractor, paid by Verification Technologies LLC (NV)<span class="tag tag-nv">NV</span></span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Legal — BLA</p>
+        <p style="font-size:10px; letter-spacing:0.04em; color:var(--gray-60); margin:0 0 12px 0;">Reports to Seth Heyman (cross-org leader).</p>
+        <div class="org-row">Sam Heyman<span class="role">Legal Assistant — US<span class="tag tag-bl">BL</span></span></div>
+        <div class="org-row">Fadi Alzaidy<span class="role">Legal Assistant<span class="tag tag-bl">BL</span></span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Research &amp; Support — BLA</p>
+        <div class="org-row">Lyelly Marie Manzano<span class="role">Research — Philippines<span class="tag tag-bl">BL</span></span></div>
+        <div class="org-row">Flordeliza Arenas<span class="role">Research — Philippines<span class="tag tag-bl">BL</span></span></div>
+        <div class="org-row">Ani Erqvanidze<span class="role">Customer Support — Tbilisi<span class="tag tag-bl">BL</span></span></div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:24px; font-size:12px; color:var(--gray-60); line-height:1.55;"><strong>Sub-tag legend:</strong> NV indicates Verification Technologies / Number Verifier (subsidiary). BL indicates Blacklist Alliance (parent). Both roll up under the single BLA organization.</p>
+  </section>
+
+  <!-- ============ PLURA ORG ============ -->
+  <section>
+    <p class="section-eyebrow">Section 06 · Plura.ai Organization</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">Plura.ai — single-organization roster</h2>
+    <p class="section-lede">All personnel who work exclusively for the Plura.ai organization. Cross-organization people are described in Section 04 and not repeated here.</p>
+
+    <div class="org-banner plura">
+      <div>
+        <p class="ob-eyebrow">Plura.ai</p>
+        <p class="ob-title">AI Communications Platform — standalone organization</p>
+        <p class="ob-sub">All headcount below works only on the Plura.ai side. None have historically worked for Blacklist Alliance or Number Verifier.</p>
+      </div>
+      <div>
+        <p class="ob-num">11</p>
+        <p class="ob-num-label">People</p>
+      </div>
+    </div>
+
+    <div class="org-grid">
+
+      <div class="org-card">
+        <p class="org-card-head">Sales</p>
+        <div class="org-lead">
+          <p class="nm">Jesse Mullen</p>
+          <p class="ti">VP of Sales</p>
+        </div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Engineering &amp; Technical</p>
+        <div class="org-lead">
+          <p class="nm">Nick Ranalli</p>
+          <p class="ti">Chief Technology Officer — Plura.ai</p>
+        </div>
+        <div class="org-row">Geoffe Simons<span class="role">Senior Software Developer</span></div>
+        <div class="org-row">Roman Voronstov<span class="role">Software Developer — Integrations / APIs</span></div>
+        <div class="org-row">Lasha Makhvaidze<span class="role">Front-End Developer</span></div>
+        <div class="org-row">Matthew Thomas<span class="role">Backend Admin / RCS / 10DLC / Provisioning</span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Sales Engineering</p>
+        <div class="org-lead">
+          <p class="nm">Nick Kvaratskhelia</p>
+          <p class="ti">Head of Sales Engineering</p>
+        </div>
+        <div class="org-row">Monika Kokaia<span class="role">Sales Engineer</span></div>
+        <div class="org-row">Gegi Petriashvili<span class="role">Sales Engineer</span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Marketing</p>
+        <p style="font-size:10px; letter-spacing:0.04em; color:var(--gray-60); margin:0 0 12px 0;">Reports to Matt Davidson (cross-org — Section 04).</p>
+        <div class="org-row">Hammad Mahmood<span class="role">Media Buyer — Agency Contractor (Canada). Contract scope covers both organizations; operational scope currently Plura-only.</span></div>
+      </div>
+
+      <div class="org-card">
+        <p class="org-card-head">Executive Support</p>
+        <p style="font-size:10px; letter-spacing:0.04em; color:var(--gray-60); margin:0 0 12px 0;">Plura payroll only.</p>
+        <div class="org-row">Rose Mitchell<span class="role">Executive Assistant to Matt Beucler. Manages Matt's calendar end-to-end; incidental scheduling support for BLA / NV is calendar-only, not operational work.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ GLOBAL NOTES + VERIFY LIST ============ -->
+  <section>
+    <p class="section-eyebrow">Section 07 · Internal Notes &amp; Open Items</p>
+    <span class="section-risk-bar"></span>
+    <h2 class="section-title">Before this goes external</h2>
+    <p class="section-lede">A global note that applies across the document, plus the consolidated verify-with-Jennifer list. These items should be cleared during shareholder review before the v2 external version is produced.</p>
+
+    <div class="note-block">
+      <p class="nh">Global note · Independent contractor coverage</p>
+      <p class="nb">Every independent contractor across both organizations — foreign or domestic — is engaged under a written Contractor Agreement that includes IP assignment and confidentiality terms. No per-person verification is required on those terms.</p>
+    </div>
+
+    <div class="note-block">
+      <p class="nh">Routing note · Polsinelli</p>
+      <p class="nb">Per the existing posture on this matter, Mike Gillette at Polsinelli should review and frame the related-party disclosure for Matt Davidson (17% Plura equityholder + service provider to both organizations) before any version of this document is shared externally.</p>
+    </div>
+
+    <div class="verify-list" style="margin-top:24px;">
+      <p class="vh">Open item for shareholder review</p>
+      <p class="vs">One item remains. Six prior items resolved by Matt during cross-entity walkthrough — see resolution log below.</p>
+      <ol>
+        <li><strong>Matt Davidson related-party framing.</strong> Polsinelli (Mike Gillette) to frame the related-party disclosure before externalizing — Matt Davidson is both a 17% individual Plura.ai equityholder and a service provider to both organizations. Services to BLA / NV under the proposed retainer must be documented as arm's-length and independent of his Plura.ai equity position.</li>
+      </ol>
+    </div>
+
+    <div class="note-block" style="margin-top:24px; border-left-color: var(--success, #117A3D); background: var(--success-bg, #E5F4EC);">
+      <p class="nh" style="color: #117A3D;">Resolution log</p>
+      <p class="nb">
+        <strong>· Matt Davidson cap table.</strong> Confirmed factual: BLA holds 75.5% of Plura.ai; Matt Davidson holds 17% individually.<br>
+        <strong>· Matt Davidson retainer arrangement.</strong> Confirmed as a proposed restructure (not current state). Structure: one BLA retainer covering both BLA and NV web work, plus a separate Plura arrangement.<br>
+        <strong>· Kristyn Outlaw classification.</strong> Confirmed: independent contractor with three separate ICAs — one each with Plura.ai, Number Verifier, and Blacklist Alliance. Different commission schedules per agreement. Paid directly by each entity.<br>
+        <strong>· Dudley Brenner classification.</strong> Confirmed: same structure as Kristyn — three separate ICAs (BLA, NV, Plura). Paid directly by each entity. Life-of-client commission per the ICA schedules.<br>
+        <strong>· Katy Jojua classification.</strong> Confirmed: independent contractor based full-time in Tbilisi.<br>
+        <strong>· Katy Jojua payor.</strong> Confirmed: paid by Verification Technologies LLC (DBA Number Verifier) only. No allocation to Blacklist Alliance.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="f-left">
+      <p class="ft">Organizational Structure · v1 (Internal)</p>
+      <p class="fs">Prepared 21 May 2026 · Two-organization view: Blacklist Alliance (incl. NV subsidiary) and Plura.ai</p>
+    </div>
+    <div class="f-right">Internal Working Draft</div>
+  </footer>
+
+</div>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
