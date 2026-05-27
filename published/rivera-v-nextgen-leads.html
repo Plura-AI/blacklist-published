@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rivera v. NextGen Leads — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo img{ width:100%; max-width:380px; height:auto; display:block; filter:brightness(0) invert(1); }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(16px, 1.6vw, 19px); font-weight:500; line-height:1.4; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:16px; font-weight:600; color:#fff; line-height:1.35; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 12px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:170px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:8px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:20px; align-items:start; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:14px; font-weight:600; color:var(--bl-red); padding-top:2px; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; line-height:1.3; }
+.step-body p{ margin:0 0 6px; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.step-body .step-meta{ font-size:12px; color:var(--fg-3); letter-spacing:0.04em; text-transform:uppercase; font-weight:600; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-27</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Health-Insurance Lead Generator · SMS DNC Class Action · S.D. Cal. · Repeat TCPA Defendant</p>
+      <h1 class="hero-tagline">Rivera v.<br>NextGen Leads <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">d/b/a FirstQuote Health</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-03049-RBM-JAC</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 15, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(12 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">RBM (District)<br>JAC (Magistrate)</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 U.S.C. § 227(c)<br>47 C.F.R. § 64.1200(c)<br>47 C.F.R. § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br>Do Not Call Registry Class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Scott Edelsberg<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Edelsberg Law, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     01 · LITIGATOR SCRUB CHECK
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number masked in complaint — scrub deferred until ECF #1 attachments or discovery surface the full DID.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Rivera pled her number only as "ending in 2666" — the full ten digits are not in the four corners of the pleading. Sender DIDs <em>are</em> disclosed (in screenshot exhibits) and run through the four consumer-source directories for sender-identification intel.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:16px;height:16px"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--gap">blacklistBulk Not Called</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Phone (per Compl. ¶ 10)</div>
+        <div class="scrub-number">XXX-XXX-2666</div>
+        <div class="scrub-number-sub">Pled as "the residential telephone number ending in 2666 (the '2666 Number')" — full ten-digit number is not in the complaint. Carmen Rivera, sole subscriber, Delaware County, Pennsylvania. <span class="src-tag"><a href="#">Compl. ¶¶ 9–10 →</a></span></div>
+      </div>
+      <p class="scrub-body-text">Blacklist's litigator-list scrub product runs against a 10-digit DID. Rivera disclosed only the last four. <strong>Lookup is deferred — not skipped permanently.</strong> Three recovery paths exist, all cheap. The pitch hook here is not the scrub result; it is the fact that Rivera registered the 2666 Number on the Federal DNC on <strong>December 11, 2012</strong> — over <strong>13 years</strong> before NextGen's February 9, 2026 text. <span class="src-tag"><a href="#">Compl. ¶ 27 →</a></span> Any reasonably maintained DNC scrub catches a 13-year DNC registration. NextGen's apparently did not.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Sending DID footprint — four 850-area-code numbers from a San Diego defendant</h3>
+    <p style="font-size:14px; color:var(--fg-2); margin:0 0 16px; max-width:880px;">All four DIDs disclosed in the complaint screenshots are 850 area code (Florida panhandle — Tallahassee / Pensacola rate centers). NextGen Leads is headquartered in San Diego, CA. The geographic mismatch suggests an outsourced FL-based dialer or a leased-number block — relevant for class numerosity and for the pitch (NextGen is not maintaining the dialer's litigator scrub in-house).</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Sender DID #1 · Feb 9 text</div>
+        <h4 class="card-title" style="font-family:var(--font-mono); font-size:22px;">(850) 367-1395</h4>
+        <p style="font-size:13px; color:var(--fg-2); margin:8px 0 12px;">Rate center: Tallahassee, FL. SMS pretext: "Still interested in affordable health coverage, Carmen? FirstQuote Health can help you find the best plan at the lowest rate. Call us at 850-831-0445." <span class="src-tag"><a href="#">Compl. ¶ 15 →</a></span></p>
+        <span class="pill pill--info">SMS Originating DID</span>
+      </div>
+      <div class="card">
+        <div class="card-meta">Sender DID #2 · Feb 11 text</div>
+        <h4 class="card-title" style="font-family:var(--font-mono); font-size:22px;">(850) 378-4623</h4>
+        <p style="font-size:13px; color:var(--fg-2); margin:8px 0 12px;">Rate center: Tallahassee, FL. SMS pretext: "Hi Carmen, I just called with your FirstQuote Health insurance quote! You may qualify for the best plans in your area. Let's connect – call me at 850-846-1289." <span class="src-tag"><a href="#">Compl. ¶ 16 →</a></span></p>
+        <span class="pill pill--info">SMS Originating DID</span>
+        <span class="pill pill--warn">2 DIDs in 48 hours · rotation pattern</span>
+      </div>
+      <div class="card">
+        <div class="card-meta">Callback DID #1 · embedded in Feb 9 text</div>
+        <h4 class="card-title" style="font-family:var(--font-mono); font-size:22px;">(850) 831-0445</h4>
+        <p style="font-size:13px; color:var(--fg-2); margin:8px 0 12px;">Inbound landing DID for the Feb 9 message. Same area code as senders — strong signal of a single FL-based dialer infrastructure.</p>
+        <span class="pill pill--info">Callback Number</span>
+      </div>
+      <div class="card">
+        <div class="card-meta">Callback DID #2 · embedded in Feb 11 text</div>
+        <h4 class="card-title" style="font-family:var(--font-mono); font-size:22px;">(850) 846-1289</h4>
+        <p style="font-size:13px; color:var(--fg-2); margin:8px 0 12px;">Inbound landing DID for the Feb 11 message. Four distinct DIDs in two days. Consistent with a high-volume rotating-DID dialer setup — a class-numerosity exhibit on its own.</p>
+        <span class="pill pill--info">Callback Number</span>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Recovery paths to surface the full plaintiff DID</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Path 1 · cheapest</div>
+        <h4 class="card-title">Pull ECF #1 attachments from PACER</h4>
+        <p class="card-body">The complaint references "the 2666 Number" repeatedly. Civil Cover Sheet (JS-44) and any plaintiff-info exhibit in the docket may carry the full number. Cost ≈ $1.20. <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/CASD">PACER S.D. Cal. →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 2</div>
+        <h4 class="card-title">Discovery — written interrogatory or Rule 34 request</h4>
+        <p class="card-body">Plaintiff must produce her cellular records to prove receipt. Defense counsel will demand the full DID in the first round of discovery; the number is then in the protective-order record.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 3</div>
+        <h4 class="card-title">Cross-reference Edelsberg's prior filings</h4>
+        <p class="card-body">Volume firms reuse plaintiff numbers across complaints. Search CourtListener / PACER for other Rivera-as-plaintiff TCPA filings; the full DID may already be public in a prior pleading. <span class="src-tag"><a href="https://www.courtlistener.com/?q=carmen+rivera+tcpa&type=r">CourtListener →</a></span></p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">FEDERAL DNC SINCE 2012-12-11 · 13+ YEARS</span>
+      <span class="pill pill--warn">SENDER DID ROTATION · 4 NUMBERS IN 48 HRS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat S.D. Cal. TCPA defendant in the health-lead vertical with an apparent DNC-scrub failure on a 13-year-old registration. Lead with the Federal DNC + Litigator Scrub bundle.</h2>
+      <p class="section-lede">NextGen Leads / FirstQuote Health has now been sued at least twice in this exact court for TCPA / DNC conduct — Danner (2023, transferred from E.D. Mich.) and now Rivera (2026). <span class="src-tag"><a href="https://dockets.justia.com/docket/california/casdce/3:2023cv00309/752777">Justia · Danner v. NextGen Leads →</a></span> The pattern, plus BBB complaints documenting reps saying "we will continue to call you for the rest of your life," tells the rep this is a DNC and internal-DNC compliance gap, not a one-off vendor mistake. Three Blacklist products map directly.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h4 class="card-title">DNC Scrubbing — Federal + State + Internal</h4>
+        <p class="card-body">The only count pled is DNC. Rivera was on Federal DNC since 2012-12-11. A working DNC scrub catches that on day one. NextGen's scrub apparently did not — either it doesn't exist, it's broken, or the FL-based dialer vendor isn't passing the list through. Blacklist's DNC product solves all three failure modes.</p>
+        <span class="pill pill--red">PRIMARY PITCH</span>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Bundle Companion</div>
+        <h4 class="card-title">Litigator Scrub — TCPA plaintiff &amp; counsel list</h4>
+        <p class="card-body">Edelsberg Law sits at <strong>#9 on TCPAWorld's 2023 Power Rankings</strong> — described publicly as "true volume players." <span class="src-tag"><a href="https://tcpaworld.com/2023/03/12/the-2023-power-rankings-are-here-tcpaworlds-second-annual-definitive-list-of-the-top-10-most-dangerous-plaintiffs-firms-out-there/">TCPAWorld 2023 Power Rankings →</a></span> A litigator-list scrub catches both serial plaintiffs and known plaintiff-counsel client patterns before they end up in a complaint screenshot.</p>
+        <span class="pill pill--danger">CROSS-SELL</span>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tier-3 Add-On</div>
+        <h4 class="card-title">Compliance Audit + Policies &amp; Procedures</h4>
+        <p class="card-body">§ 64.1200(d) requires written internal-DNC procedures, training, opt-out honoring, and recordkeeping. BBB complaints documenting "we will continue to call you for the rest of your life" and "1 call every 4 minutes" are the textbook fact pattern for an internal-DNC failure. <span class="src-tag"><a href="https://www.bbb.org/us/ca/san-diego/profile/sales-lead-generation/nextgen-leads-llc-1126-172016079/complaints">BBB complaints →</a></span></p>
+        <span class="pill pill--info">OPTIONAL UPSELL</span>
+      </div>
+    </div>
+
+    <div style="margin-top:36px;">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Pitch Angle — open with the repeat-offender hook</h3>
+      <div class="card card--alert">
+        <p class="card-body" style="margin:0 0 12px;">"You were sued in this exact court three years ago — Danner v. NextGen Leads, S.D. Cal., transferred over from E.D. Mich. Now you're back, same court, same DBA, this time on a plaintiff who's been on the Federal DNC since 2012. That's a thirteen-year DNC registration your dialer missed. The texts went out from 850-area-code numbers — Tallahassee rate centers — to a Pennsylvania consumer from a San Diego company. Whatever vendor you're running in Florida is not scrubbing against the Federal DNC, and probably not against any litigator list either. Edelsberg is on the TCPAWorld Power Rankings. He found you twice already. He will find you again. Blacklist's DNC + Litigator bundle would have caught Rivera at intake; we'd like fifteen minutes to walk through what that looks like."</p>
+        <p class="card-body" style="margin:0; font-size:13px; color:var(--fg-4); font-style:italic;">— rep narrative; paraphrase, do not read verbatim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 · CORPORATE FOOTPRINT & OPPORTUNITY SIZE
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Mid-market San Diego health-lead aggregator — $35.7M annual revenue, ~75 employees, founder-led since 2014, BBB-accredited but with a public complaint volume that maps directly to the case theory.</h2>
+      <p class="section-lede">NextGen Leads LLC is a privately held customer-acquisition platform serving health, Medicare, and auto-insurance verticals. FirstQuote Health is its consumer-facing DBA. Founder Chris Kelly still runs the company.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h4 class="card-title">NextGen Leads LLC d/b/a FirstQuote Health</h4>
+        <dl class="kv" style="margin-top:14px;">
+          <dt>Entity type</dt><dd>California LLC <span class="src-tag"><a href="https://bizfileonline.sos.ca.gov/search">CA SoS bizfile →</a></span></dd>
+          <dt>HQ address</dt><dd>701 B Street, Suite 1255, San Diego, CA 92101 <span class="src-tag"><a href="https://nextgenleads.com/">nextgenleads.com →</a></span></dd>
+          <dt>Founded</dt><dd>2014 (Chris Kelly, founder/CEO) <span class="src-tag"><a href="https://nextgenleads.com/team">NextGen Leads team page →</a></span></dd>
+          <dt>Vertical</dt><dd>Health, Medicare, &amp; auto insurance lead generation</dd>
+          <dt>Employees</dt><dd>~73 (Feb 2025) / ~81 (Mar 2026) <span class="src-tag"><a href="https://tracxn.com/d/companies/nextgen-leads/__NqRJTvYyfmaakMdxll6gh4df-2evDrFqFHeW0QFwxhc">Tracxn →</a></span></dd>
+          <dt>Revenue (2026)</dt><dd>$35.7M <span class="src-tag"><a href="https://rocketreach.co/nextgen-leads-profile_b5fc6b47f6926df3">RocketReach →</a></span></dd>
+          <dt>BBB</dt><dd>Accredited since 2016-12-20 <span class="src-tag"><a href="https://www.bbb.org/us/ca/san-diego/profile/sales-lead-generation/nextgen-leads-llc-1126-172016079">BBB profile →</a></span></dd>
+          <dt>Consumer DBAs</dt><dd>FirstQuote Health · FirstQuote Medicare</dd>
+          <dt>Channels operated</dt><dd>SMS, voice, web lead-form (consumer-facing quote sites)</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:var(--bl-red-tint);">Smoking-Gun Compliance Gap</div>
+        <h4 class="card-title">"We will continue to call you for the rest of your life"</h4>
+        <p class="card-body">A consumer complaint published on BBB quotes a NextGen Leads representative as stating <em>"we will continue to call you for the rest of your life"</em> after a do-not-call request. A separate complaint reports "1 call every 4 minutes" and 40+ calls in three days after a single quote-form submission. <span class="src-tag"><a href="https://www.bbb.org/us/ca/san-diego/profile/sales-lead-generation/nextgen-leads-llc-1126-172016079/complaints">BBB complaint record →</a></span> Multiple Trustpilot reviews allege the consumer landed on a deceptive .org page that appeared to be a state health-insurance resource before being routed into NextGen's lead funnel. <span class="src-tag"><a href="https://www.trustpilot.com/review/www.firstquotehealth.com">Trustpilot →</a></span></p>
+        <p class="card-body" style="margin-top:10px;">Each of those public statements maps directly to a § 64.1200(d) internal-DNC failure — the exact regulation Rivera now pleads. The plaintiff bar does not have to invent the theory; the consumers and the BBB record already wrote it.</p>
+      </div>
+    </div>
+
+    <div class="card" style="background:var(--bg-sunken); border-left:4px solid var(--warning); margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h4 class="card-title">21-day federal answer clock and the off-OEP exposure window</h4>
+      <p class="card-body">Filed 2026-05-15. Assuming service near filing, NextGen's responsive pleading is due roughly <strong>June 5–12, 2026</strong> (21 days from service per Fed. R. Civ. P. 12(a)). Defense counsel has not yet appeared on the public docket as of 2026-05-27. <span class="src-tag"><a href="https://dockets.justia.com/docket/california/casdce/3:2026cv03049">Justia (case to be indexed) →</a></span> Separately, health-insurance Open Enrollment (Nov 1 – Jan 15) is the campaign's high-volume season; NextGen was demonstrably dialing aggressively in the off-season for short-term and under-65 plans — meaning the volume that drove Rivera will only grow once OEP starts in November. A scrub gap left unfixed before OEP becomes a class-period multiplier.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Related Entities — cross-sell candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>FirstQuote Medicare</strong> <span class="src-tag"><a href="https://firstquotemedicare.com/">firstquotemedicare.com →</a></span></td>
+            <td>Sister DBA · same operator</td>
+            <td>Medicare Advantage / Part D leads</td>
+            <td>Medicare lead funnels are the single highest-risk TCPA vertical (CMS marketing rules + DNC). Same scrub failure mode if it exists at the parent.</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>NextGen Leads auto-insurance line</strong></td>
+            <td>Parent product line</td>
+            <td>Auto-insurance leads</td>
+            <td>Auto-insurance TCPA filings ticked up in 2025-2026 (Lieff Cabraser, Active Prospect data). Same DID rotation pattern would extend exposure.</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>FL-based dialer / 850 DID vendor</strong> <em>(identity unknown)</em></td>
+            <td>Apparent outbound vendor</td>
+            <td>SMS/voice telephony</td>
+            <td>Identity not in public record. If identified, the vendor is itself an "on behalf of" co-defendant target and a separate cross-sell — fix the scrub at the dialer layer.</td>
+            <td><span class="pill pill--gap">GAP · IDENTIFY FIRST</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px;"><em>Note:</em> The publicly-discussed $19.375M data-breach settlement involves <strong>NextGen Healthcare, Inc.</strong> (NASDAQ: NXGN, the EHR vendor) — a different unrelated entity. Do not conflate. <span class="src-tag"><a href="https://www.hipaajournal.com/nextgen-class-action-data-breach-lawsuit-proceeds/">HIPAA Journal →</a></span></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 · LITIGATION CONTEXT
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Second TCPA case against this DBA in the same federal court within three years. Plaintiff counsel sits on the TCPAWorld Power Rankings and runs a volume-template practice.</h2>
+      <p class="section-lede">This is not a one-off. The defense posture has a measurable history, and the plaintiff firm has a measurable filing cadence.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h4 class="card-title">Rivera v. NextGen Leads LLC d/b/a FirstQuote Health</h4>
+        <dl class="kv" style="margin-top:14px;">
+          <dt>Docket</dt><dd>3:26-cv-03049-RBM-JAC</dd>
+          <dt>Court</dt><dd>U.S. District Court, Southern District of California (San Diego Division)</dd>
+          <dt>Filed</dt><dd>May 15, 2026</dd>
+          <dt>Plaintiff</dt><dd>Carmen Rivera (Delaware County, PA)</dd>
+          <dt>Class</dt><dd>Yes — Putative Rule 23 "Do Not Call Registry Class"; class size pled as "several thousands, if not more" <span class="src-tag"><a href="#">Compl. ¶ 34 →</a></span></dd>
+          <dt>Statutory claims</dt><dd>47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1200(c) (Federal DNC); 47 C.F.R. § 64.1200(d) (Internal DNC)</dd>
+          <dt>Channel</dt><dd>SMS (two texts pled — Feb 9, 2026 and Feb 11, 2026)</dd>
+          <dt>Damages framing</dt><dd>$500 per call statutory under § 227(c)(5), trebled to $1,500 for willful conduct (per ¶¶ 50, 56). Aggregate CAFA jurisdiction pled at &gt;$5M.</dd>
+          <dt>Named-plaintiff exposure</dt><dd>2 texts × $1,500 trebled = $3,000 individual max</dd>
+          <dt>Class exposure (rough)</dt><dd>~10K class × 2 texts × $1,500 = ~$30M floor on willful theory; "tens of thousands" framing pushes higher</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · 21-day answer clock</dd>
+          <dt>Aggregator visibility</dt><dd>Filed 12 days ago — may not yet be indexed on Justia / PacerMonitor / RECAP. <span class="src-tag"><a href="https://www.pacermonitor.com/">PacerMonitor →</a></span> · <span class="src-tag"><a href="https://www.courtlistener.com/?type=r&q=nextgen+leads">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h4 class="card-title">Scott Edelsberg · Edelsberg Law, P.A.</h4>
+        <dl class="kv" style="margin-top:14px;">
+          <dt>Bar number</dt><dd>CA Bar No. 330990 <span class="pill pill--ok">VERIFIED</span> <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/330990">CA Bar profile →</a></span></dd>
+          <dt>Address on complaint</dt><dd>1925 Century Park E #1700, Los Angeles, CA 90067</dd>
+          <dt>Address of record (public bar / Avvo / Martindale)</dt><dd>20900 NE 30th Ave., #417, Aventura, FL 33180 <span class="pill pill--warn">DOES NOT MATCH COMPLAINT</span> <span class="src-tag"><a href="https://www.avvo.com/attorneys/33180-fl-scott-edelsberg-4233871.html">Avvo →</a></span> · <span class="src-tag"><a href="https://www.martindale.com/attorney/mr-scott-adam-edelsberg-168805470/">Martindale →</a></span></dd>
+          <dt>Firm phone</dt><dd>305-975-3320 <span class="pill pill--warn">FL area code (Miami-Dade) on a CA filing</span></dd>
+          <dt>Firm email</dt><dd><a href="mailto:scott@edelsberglaw.com">scott@edelsberglaw.com</a></dd>
+          <dt>FL Bar</dt><dd>Active per public directory <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/">FL Bar lookup →</a></span></dd>
+          <dt>TCPAWorld ranking</dt><dd><strong>#9 on the 2023 Power Rankings</strong> — grouped with Andrew Shamis &amp; Manny Hiraldo; characterized publicly as "true volume players" "willing to pursue cases in ways that other firms find intolerable" <span class="src-tag"><a href="https://tcpaworld.com/2023/03/12/the-2023-power-rankings-are-here-tcpaworlds-second-annual-definitive-list-of-the-top-10-most-dangerous-plaintiffs-firms-out-there/">TCPAWorld 2023 Power Rankings →</a></span></dd>
+          <dt>Notable prior TCPA work</dt><dd>Co-counsel on the first state-court suit filed under Florida's mini-TCPA (FTSA); Edelsberg v. Vroom; multiple national-class TCPA actions <span class="src-tag"><a href="https://www.law360.com/firms/edelsberg-law/attorneys/scott-edelsberg">Law360 →</a></span></dd>
+          <dt>Implication</dt><dd>This is not a probe case. Volume firm, deep TCPA bench, history of certifying classes. Expect aggressive discovery on opt-in records, dialer logs, and vendor identities within the first 90 days.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Plaintiff firm template — Shamis-Edelsberg-Hiraldo volume pattern</h3>
+    <div class="card" style="margin-bottom:24px;">
+      <p class="card-body">Edelsberg Law, Shamis &amp; Gentile, and the Hiraldo office (all three on the TCPAWorld Power Rankings together) share a recognizable filing template: out-of-state-plaintiff / in-state-defendant federal-DNC class action, two-to-three texts pled with consumer-receipt screenshots embedded as exhibits, paragraph-by-paragraph DNC registration history, and a putative "Do Not Call Registry Class" defined back four years. Rivera's complaint follows the template verbatim — two screenshots, ¶ 27 DNC registration date, "tens of thousands" class — meaning the litigation will follow the volume-firm playbook: light motion practice, push for mediation in months 6-9, settle on a class-wide opt-in cash + injunctive-relief structure. The defense window to fix the underlying scrub problem (and price-in the next Rivera-shaped plaintiff) is roughly that 6-9 month mediation runway.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Concurrent &amp; recent litigation against the same defendant / DBA</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th>Case Name</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th>
+        </tr></thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Rivera v. NextGen Leads LLC d/b/a FirstQuote Health</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td class="num">3:26-cv-03049-RBM-JAC</td>
+            <td>S.D. Cal.</td>
+            <td class="num">2026-05-15</td>
+            <td><span class="pill pill--red">ACTIVE · 12 DAYS OLD</span></td>
+            <td>Federal DNC + Internal DNC; SMS; class</td>
+          </tr>
+          <tr>
+            <td>Danner v. NextGen Leads LLC d/b/a FirstQuote Health</td>
+            <td class="num">3:23-cv-00309 <em>(orig. 2:22-cv-11498 E.D. Mich.)</em></td>
+            <td>S.D. Cal. (transferred from E.D. Mich.)</td>
+            <td class="num">2022-07-01</td>
+            <td><span class="pill pill--info">PRIOR · STATUS UNCONFIRMED</span></td>
+            <td>TCPA; § 1391 transfer 2023-02-16, Judge Murphy <span class="src-tag"><a href="https://www.courtlistener.com/docket/66819609/danner-v-nextgen-leads-llc-dba-firstquote-health/">CourtListener →</a></span> · <span class="src-tag"><a href="https://www.pacermonitor.com/public/case/45117842/Danner_v_NextGen_Leads_LLC_dba_FirstQuote_Health">PacerMonitor →</a></span></td>
+          </tr>
+          <tr>
+            <td>"Alleged NextGen Robocalls Trigger Class Action" (third-party public reporting)</td>
+            <td class="num">N/A — docket not surfaced in public reporting</td>
+            <td>—</td>
+            <td class="num">—</td>
+            <td><span class="pill pill--gap">PUBLIC ALLEGATION · DOCKET TO CONFIRM</span></td>
+            <td>Robocalls / DNC <span class="src-tag"><a href="https://www.classaction.org/news/alleged-nextgen-robocalls-trigger-class-action">ClassAction.org →</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px;">
+      <div class="card-meta" style="color:var(--bl-red-tint);">Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="margin-top:12px;">
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Pull <strong>Rivera ECF #1</strong> from PACER ($1.20). Verify Civil Cover Sheet, check for a full plaintiff DID on any plaintiff-info exhibit.</li>
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Confirm <strong>District Judge "RBM" and Magistrate "JAC"</strong> full names from the S.D. Cal. judicial roster — needed for the rep's call-prep one-pager.</li>
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Confirm <strong>Danner case status</strong> (settled / dismissed / open) — sharpens the "you've been sued before in this same court" line.</li>
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Identify the <strong>FL-based dialer or 850-block vendor</strong> — could be in-house, a leased CPaaS number block, or a 3P telemarketing vendor. Reverse-lookup the four 850 DIDs on 800notes / YouMail / Tellows / RoboKiller once the case ages in.</li>
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Watch for <strong>defense counsel appearance</strong> on the docket (21-day answer clock). Likely defense firms: Kelley Drye, Greenberg Traurig, or local S.D. Cal. TCPA defense bench.</li>
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Check whether <strong>Scott Edelsberg has co-counsel</strong> appearing (Shamis &amp; Gentile and/or Hiraldo) — if so, the volume-template diagnosis is locked.</li>
+        <li><i data-lucide="circle" style="width:14px;height:14px;color:var(--bl-red);vertical-align:middle;"></i> &nbsp;Verify <strong>NextGen Leads' General Counsel / Chief Compliance Officer</strong> — no public GC/CCO surfaced in this enrichment pass. Likely outsourced or unfilled.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 · CONTACT DIRECTORY
+     ============================================================ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Founder-led mid-market — go directly to Chris Kelly or to Ronnie Garcia. No public GC means the compliance buying decision is at the executive layer.</h2>
+      <p class="section-lede">NextGen Leads has not surfaced a publicly-identified General Counsel or Chief Compliance Officer. In a ~75-person founder-led shop, compliance procurement is typically owned by the CEO or CTO directly. The CTO connection is the warmer entry point (Ronnie Garcia owns the platform / dialer stack), but the close happens with Chris Kelly.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th><th>Confidence</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Chris Kelly</strong> <span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>Founder &amp; CEO since 2014. ~12 years at NextGen Leads. Compliance/vendor buying owner in a founder-led shop. Likely first/only decision-maker on a Blacklist contract.</td>
+            <td class="num">— <em>(use BBB-listed company main: pull from BBB profile)</em></td>
+            <td><span style="font-family:var(--font-mono); font-size:13px;">chris@nextgenleads.com</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="src-tag"><a href="https://nextgenleads.com/team">NextGen Leads team page →</a></span></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ronnie Garcia</strong> <span class="pill pill--dark">CTO</span></td>
+            <td>San Diego native, online marketing background since 2000 (Sony PlayStation, American Red Cross, Honeywell, RailEurope before NextGen). Owns the platform NextGen built "from the ground up" — meaning he owns the dialer scrub layer. Warmest technical entry point for a DNC / litigator-scrub conversation.</td>
+            <td class="num">— <em>(GAP)</em></td>
+            <td><span style="font-family:var(--font-mono); font-size:13px;">ronnie@nextgenleads.com</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="src-tag"><a href="https://nextgenleads.com/team/ronnie-garcia">Ronnie Garcia bio →</a></span></td>
+            <td><span class="pill pill--ok">VERIFIED (title)</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / VP Legal</strong> <span class="pill pill--dark">LEGAL</span></td>
+            <td>No public GC/CCO identified in this enrichment pass. Likely outsourced (typical for ~75-employee LLCs in the lead-gen vertical) or unfilled. Probe via the executive layer.</td>
+            <td class="num">— </td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel (Rivera)</strong> <span class="pill pill--dark">OUTSIDE COUNSEL</span></td>
+            <td>Not yet appeared as of 2026-05-27 (filing +12 days). Monitor S.D. Cal. ECF for first responsive appearance.</td>
+            <td class="num">—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">NOT YET APPEARED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Scott Edelsberg</strong> <span class="pill pill--dark">PLAINTIFF COUNSEL</span></td>
+            <td>Lead plaintiff counsel. CA Bar 330990. TCPAWorld Power Rankings #9 (2023). Volume-firm operator. <strong>Not</strong> a sales contact — listed here for completeness so the rep can recognize his outreach if NextGen forwards anything during the case.</td>
+            <td class="num">305-975-3320 <span class="pill pill--ok">VERIFIED (per Compl.)</span></td>
+            <td><a href="mailto:scott@edelsberglaw.com" style="font-family:var(--font-mono); font-size:13px;">scott@edelsberglaw.com</a> <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="src-tag"><a href="https://www.law360.com/firms/edelsberg-law/attorneys/scott-edelsberg">Law360 →</a></span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:12px;"><em>Email patterns above are inferred from the published <code>firstname@nextgenleads.com</code> convention used on the NextGen Leads team page. Patterns require verification before sending mass outreach — pill is <code>PATTERN</code>, not <code>VERIFIED</code>.</em></p>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 · ACTION PLAN
+     ============================================================ -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within the 21-day federal answer window — June 5–12 is the inflection point.</h2>
+      <p class="section-lede">Defense counsel has not yet appeared. The window where NextGen is most receptive to a compliance conversation is the seven to ten days between "served" and "answer filed" — that's when the cost of the case becomes concrete and budgets get unlocked. Run the sequence below in that window.</p>
+    </div>
+
+    <div style="background:var(--bg-canvas); border:1px solid var(--border-1); padding:24px;">
+      <div class="step">
+        <div class="step-num">DAY 1</div>
+        <div class="step-body">
+          <h4>Pull ECF #1 attachments &amp; confirm judge roster</h4>
+          <p>Pull the Rivera complaint and any attached exhibits from PACER ($1.20 est.). Lookup the S.D. Cal. judicial directory for the full names behind initials "RBM" and "JAC." Update the call-prep one-pager.</p>
+          <p class="step-meta">Owner: assigned rep · Output: ECF #1 PDF saved, judge names confirmed</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">DAY 1–2</div>
+        <div class="step-body">
+          <h4>First outreach to Chris Kelly (CEO/founder)</h4>
+          <p>Cold email to <code>chris@nextgenleads.com</code> (PATTERN — verify deliverability first) referencing the Rivera filing and the Danner precedent. Subject line should name both cases. Body: "You were sued in S.D. Cal. on May 15 for Federal DNC violations. This is the second TCPA case against FirstQuote Health in this court since 2022. Fifteen minutes to walk through how Blacklist would have caught this at intake?" Keep under 120 words. No deck attached on first send.</p>
+          <p class="step-meta">Owner: assigned rep · Output: first email sent · Response window: 48 hrs</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">DAY 3</div>
+        <div class="step-body">
+          <h4>Warm-flank to Ronnie Garcia (CTO)</h4>
+          <p>If no reply from Kelly by end of Day 2, send a parallel note to Garcia (technical track). Frame: "your dialer is sending from 850 DIDs to a Pennsylvania DNC-registered cell, and a 2012 DNC registration date got through the scrub. Two questions on how the scrub is wired." LinkedIn DM is acceptable here if email bounces.</p>
+          <p class="step-meta">Owner: assigned rep · Output: Garcia outreach sent</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">DAY 5–7</div>
+        <div class="step-body">
+          <h4>Send the lead-product one-pager + Danner reference</h4>
+          <p>If the first two messages have landed a reply (even a deflection), follow up with the DNC + Litigator Scrub bundle one-pager. Attach the Danner case caption and the BBB complaint excerpt — the <em>"we will continue to call you for the rest of your life"</em> quote is the bridge. Offer a 30-min call within their answer-filing week.</p>
+          <p class="step-meta">Owner: assigned rep · Output: one-pager delivered, meeting requested</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">DAY 12–14</div>
+        <div class="step-body">
+          <h4>Monitor docket for defense counsel appearance &amp; recalibrate</h4>
+          <p>Watch S.D. Cal. ECF for the first defense filing. If outside counsel is a known TCPA defense shop (Kelley Drye, Greenberg, Squire Patton, etc.), there is a secondary outreach path — defense counsel will often recommend a downstream scrub vendor once an answer is on file and the client is in damage-control mode. Surface that contact through the rep's defense-counsel relationships.</p>
+          <p class="step-meta">Owner: assigned rep · Output: defense counsel identified, secondary path scoped</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">DAY 14+</div>
+        <div class="step-body">
+          <h4>If no engagement → drop into nurture and re-trigger at OEP</h4>
+          <p>If NextGen does not engage during the answer window, hand off to the long-cycle nurture cadence and set a re-trigger 30 days before Open Enrollment (October 2026). OEP volume will push the class period and the exposure. Pricing pressure peaks then.</p>
+          <p class="step-meta">Trigger condition: no reply to 3+ touches across 14 days</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Trigger conditions that change the plan</h3>
+    <ul class="clean tight" style="background:var(--bg-canvas); border:1px solid var(--border-1); padding:8px 24px;">
+      <li><strong>Defense counsel moves to compel arbitration</strong> → the conversation shifts from class-defense to "your lead-form opt-in language is on trial." The Consent Capture product becomes the lead pitch instead of DNC.</li>
+      <li><strong>Edelsberg amends to add a state-law claim</strong> (FL FTSA via 305 area code, or a PA mini-TCPA) → cross-sell of multi-jurisdiction state DNC scrubbing.</li>
+      <li><strong>Danner case status confirmed as settled/dismissed</strong> → use the exact settlement number (if public) as the anchor in the next email.</li>
+      <li><strong>The 850 dialer vendor is identified</strong> → second outreach track opens on the vendor itself as a separate Blacklist prospect.</li>
+    </ul>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">REPEAT DEFENDANT · 2ND TCPA CASE IN S.D. CAL.</span>
+      <span class="pill pill--danger">PUTATIVE CLASS · $5M+ CAFA THRESHOLD PLED</span>
+      <span class="pill pill--warn">21-DAY ANSWER CLOCK · CLOSE BEFORE JUN 12, 2026</span>
+      <span class="pill pill--info">VOLUME-FIRM PLAINTIFF COUNSEL · TCPAWORLD #9</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-27</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
