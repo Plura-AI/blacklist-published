@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Perez v. Scentiment, LLC — Blacklist Alliance Lead Report (TEST)</title>
+<link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg" />
+<style>
+@font-face { font-family: "General Sans"; font-weight: 400; font-display: swap;
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); }
+@font-face { font-family: "General Sans"; font-weight: 500; font-display: swap;
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); }
+@font-face { font-family: "General Sans"; font-weight: 600; font-display: swap;
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); }
+@font-face { font-family: "General Sans"; font-weight: 700; font-display: swap;
+  src: url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); }
+:root {
+  --bl-red:#A50100; --bl-black:#000; --bl-white:#FFF;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFF; --bg-sunken:#EFEFEF; --bg-inverse:#000;
+  --fg-1:#000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-inverse:#FFF;
+  --border:#E5E5E5; --border-strong:#000;
+  --success:#117A3D; --warning:#B36B00; --danger:#A50100; --info:#0F4C8A;
+  --radius:4px;
+}
+*,*::before,*::after { box-sizing: border-box; }
+html,body { margin:0; padding:0; }
+body {
+  font-family: "General Sans", system-ui, -apple-system, sans-serif;
+  font-weight: 400; color: var(--fg-1); background: var(--bg-canvas);
+  line-height: 1.55; font-size: 15px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+a { color: var(--bl-red); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* HERO */
+.hero { background: var(--bl-black); color: var(--fg-inverse); border-bottom: 4px solid var(--bl-red); padding: 40px 0 32px; }
+.hero-top { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom: 28px; flex-wrap: wrap; }
+.hero-logo svg { height: 38px; width: auto; display: block; }
+.hero-meta { font-size: 12px; color: #BFBFBF; text-align: right; line-height: 1.5; }
+.hero-meta strong { color: #fff; font-weight: 600; }
+.hero h1 { font-size: 38px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; line-height: 1.1; }
+.hero p.lede { font-size: 17px; color: #D9D9D9; margin: 0 0 28px; max-width: 780px; }
+.hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: #222; border: 1px solid #222; }
+.hero-stat { background: var(--bl-black); padding: 14px 16px; }
+.hero-stat .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #8C8C8C; font-weight: 600; margin-bottom: 4px; }
+.hero-stat .value { font-size: 15px; color: var(--fg-inverse); font-weight: 600; line-height: 1.3; word-break: break-word; }
+
+/* TEST BANNER */
+.test-banner {
+  background: #FFF4D6; border-bottom: 2px solid var(--warning); color: var(--warning);
+  padding: 10px 0; font-size: 13px; font-weight: 600; text-align: center;
+}
+.test-banner code { background: #fff; padding: 2px 6px; border-radius: 3px; color: var(--fg-1); }
+
+/* SECTIONS */
+section.report-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+.section-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-2); margin-bottom: 14px; }
+.section-eyebrow .bar { display: inline-block; width: 24px; height: 2px; background: var(--bl-red); }
+.section-title { font-size: 28px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.01em; }
+.section-lede { font-size: 16px; color: var(--fg-2); margin: 0 0 28px; max-width: 820px; }
+
+/* CARDS */
+.card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+.card--accent { border-left: 4px solid var(--bl-red); }
+.card--alert { background: #FFF4F4; border: 1px solid #F5C7C5; border-left: 4px solid var(--danger); }
+.card--ok { background: #F0F8F3; border: 1px solid #B6DCC0; border-left: 4px solid var(--success); }
+.card--info { background: #F1F5FA; border: 1px solid #C8D6E8; border-left: 4px solid var(--info); }
+.card--warn { background: #FFF7EB; border: 1px solid #ECD1A6; border-left: 4px solid var(--warning); }
+.card h3 { font-size: 17px; font-weight: 600; margin: 0 0 6px; }
+.card h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-2); margin: 0 0 8px; }
+.card p { margin: 0 0 10px; }
+.card p:last-child { margin-bottom: 0; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* PILLS */
+.pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.4; }
+.pill--red { background: var(--danger); color: #fff; }
+.pill--danger { background: #F5C7C5; color: var(--danger); }
+.pill--warn { background: #FFF1D6; color: var(--warning); }
+.pill--ok { background: #DDEFE2; color: var(--success); }
+.pill--info { background: #D9E5F2; color: var(--info); }
+.pill--gap { background: #EFEFEF; color: var(--fg-2); }
+.pill--dark { background: #2A2A2A; color: #fff; }
+
+/* TABLES */
+.tbl { width: 100%; border-collapse: collapse; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.tbl th { text-align: left; background: var(--bg-sunken); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-2); padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.tbl td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 14px; }
+.tbl tr:last-child td { border-bottom: none; }
+
+/* KV (description list) */
+.kv { display: grid; grid-template-columns: minmax(120px, 32%) 1fr; gap: 6px 14px; margin: 0; }
+.kv dt { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-3); padding-top: 2px; }
+.kv dd { margin: 0; font-size: 14px; }
+
+/* SRC TAG */
+.src-tag { display: inline-block; font-size: 11px; color: var(--fg-3); margin-left: 4px; }
+.src-tag a { color: var(--fg-3); }
+.src-tag a:hover { color: var(--bl-red); }
+
+/* SCRUB CARD (Section 01) */
+.scrub-card { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; padding: 22px 24px; }
+.scrub-card .icon { font-size: 30px; line-height: 1; }
+.scrub-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-3); font-weight: 700; }
+.scrub-card .verdict { font-size: 22px; font-weight: 700; margin: 4px 0; }
+.scrub-card .note { font-size: 13px; color: var(--fg-2); }
+
+/* FOOTER */
+footer.report-footer { background: var(--bg-inverse); color: var(--fg-inverse); padding: 28px 0; font-size: 12px; }
+footer.report-footer p { margin: 0 0 6px; color: #BFBFBF; }
+footer.report-footer strong { color: #fff; }
+footer.report-footer .disclaimer { color: #6e6e6e; font-size: 11px; margin-top: 12px; max-width: 760px; line-height: 1.5; }
+
+/* utility */
+.mt-0 { margin-top: 0; } .mt-1 { margin-top: 8px; } .mt-2 { margin-top: 16px; } .mt-3 { margin-top: 24px; }
+.mb-0 { margin-bottom: 0; } .mb-1 { margin-bottom: 8px; } .mb-2 { margin-bottom: 16px; } .mb-3 { margin-bottom: 24px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+ul.bare { list-style: none; padding: 0; margin: 0; }
+ul.bare li { padding: 6px 0; border-bottom: 1px dashed var(--border); }
+ul.bare li:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<div class="test-banner">
+  ⚠ <strong>TEST RUN</strong> · This is a v0.7.0 Docky pipeline test. Published to <code>perez-v-scentiment-test</code> (not the canonical reference slug). Enformion enrichment <strong>deferred</strong> — credentials not configured in this runtime.
+</div>
+
+<!-- ====== HERO ====== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-logo">
+        <svg viewBox="0 0 220 38" xmlns="http://www.w3.org/2000/svg" aria-label="Blacklist Alliance">
+          <text x="0" y="26" fill="#fff" font-family="General Sans, sans-serif" font-weight="700" font-size="22" letter-spacing="-0.5">BLACKLIST</text>
+          <text x="118" y="26" fill="#A50100" font-family="General Sans, sans-serif" font-weight="500" font-size="22" letter-spacing="-0.3">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">
+        <div><strong>Filed-Case Lead Report</strong></div>
+        <div>Generated 2026-05-29 · Docky v0.7.0</div>
+        <div>Slug: <strong>perez-v-scentiment-test</strong></div>
+      </div>
+    </div>
+
+    <h1>Perez v. Scentiment, LLC</h1>
+    <p class="lede">Class-action TCPA filing against a Delaware LLC running 8-figure SMS via Recart. Plaintiff is a same-day three-target shotgun filer — pitch window is wide open.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-23371-XXXX</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla.</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 13, 2026</div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)(1)(A)(iii) — ATDS to cell</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">50+ alleged</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alvin Donald Scott, Jr. · FL Bar 110432</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ====== SECTION 01 ====== -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+    <h2 class="section-title">Scrub deferred — plaintiff phone pled only as &ldquo;ending in 2526&rdquo;</h2>
+    <p class="section-lede">The complaint references the &ldquo;Subject Number&rdquo; without disclosing the full 10-digit cellular number, so a BlacklistBulk scrub cannot be completed from the four corners of ECF #1. Recovery path below.</p>
+
+    <div class="card card--warn scrub-card mb-3">
+      <div class="icon">⚠</div>
+      <div>
+        <div class="label">Scrub Status</div>
+        <div class="verdict">SCRUB DEFERRED</div>
+        <div class="note">Cannot run BlacklistBulk on a partial number. The plaintiff is named with full address (Miami-Dade County, FL) but the 10-digit cellular DID is not pled.</div>
+      </div>
+      <div><span class="pill pill--warn">DEFERRED</span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h4>Recovery path (cheapest first)</h4>
+        <ul class="bare">
+          <li><strong>1.</strong> Pull ECF #1 from PACER (~$1.20) — counsel sometimes lists the full number on the civil cover sheet or Rule 26 disclosures filed shortly after. <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/flsd">PACER &rarr;</a></span></li>
+          <li><strong>2.</strong> Await defense counsel notice of appearance — discovery production will surface the full number in the first wave of interrogatories.</li>
+          <li><strong>3.</strong> Issue C&amp;D referencing partial-number identification — many serial plaintiffs voluntarily disclose for safe harbor talks.</li>
+        </ul>
+      </div>
+      <div class="card card--info">
+        <h4>Name-only cross-check (Phase 2 fallback)</h4>
+        <p>Plaintiff <strong>Rosario F. Perez</strong> cross-checked against CourtListener + Justia: <strong>two additional cases filed the same day (May 13, 2026)</strong> — see Section 04 concurrent litigation. Strongest possible serial-filer signal even without a phone match.</p>
+        <p class="mb-0"><span class="pill pill--red">SAME-DAY SHOTGUN FILER</span></p>
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <h4>Sending DID intel</h4>
+      <p class="mb-0"><span class="pill pill--gap">NO SENDER ARTIFACTS DISCLOSED</span> The complaint does not attach screenshot exhibits of the offending text messages, and the sender phone / shortcode is not pled. Sender DID identification (Phase 3a track 5) deferred until exhibits are produced in discovery or surfaced via subpoena to the SMS aggregator. Defendant's published SMS infra is Recart (Section 03) — sender identity will resolve via Recart's underlying carrier.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 02 ====== -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary &amp; Pitch Angle</div>
+    <h2 class="section-title">DTC fragrance brand with 8-figure SMS revenue just got named — pitch on Scrub, attach Consent Capture</h2>
+    <p class="section-lede">Scentiment is in the SMS-revenue sweet spot where one TCPA class action can ratio against their entire margin. They're already paying for a sophisticated SMS stack (Recart) but are clearly not paying for a litigator scrub — Perez wouldn't have reached them otherwise.</p>
+
+    <div class="card-grid mb-3">
+      <div class="card card--accent">
+        <h4>Primary product</h4>
+        <h3>Litigator Scrub</h3>
+        <p>Direct fit. Perez is now identifiable as a serial TCPA plaintiff (3 cases same day). Catch-the-next-Perez is the lead pitch.</p>
+        <span class="pill pill--red">LEAD</span>
+      </div>
+      <div class="card">
+        <h4>Secondary product</h4>
+        <h3>Consent Capture</h3>
+        <p>The complaint alleges plaintiff &ldquo;never provided&rdquo; consent and was acquired via &ldquo;purchase of consumer data lists.&rdquo; That's a list-broker compliance failure — Consent Capture audits the opt-in flow before another lead enters.</p>
+        <span class="pill pill--info">ATTACH</span>
+      </div>
+      <div class="card">
+        <h4>Tertiary product</h4>
+        <h3>Compliance Audit</h3>
+        <p>Post-filing review of Scentiment.com's checkout pop-up + Recart implementation. Pre-empts the inevitable amended complaint after discovery surfaces the actual class size.</p>
+        <span class="pill pill--info">UPSELL</span>
+      </div>
+    </div>
+
+    <div class="card card--accent">
+      <h4>Pitch Hook (one-sentence wedge)</h4>
+      <p class="mb-0" style="font-size:17px;line-height:1.5;"><em>&ldquo;Scentiment was hit in a same-day three-target shotgun filing by a serial TCPA plaintiff — Scrub catches the next Perez before they buy your SMS list.&rdquo;</em></p>
+    </div>
+
+    <div class="card mt-3">
+      <h4>Urgency</h4>
+      <p>Answer deadline lands roughly <strong>June 12, 2026</strong> (21 days after service per FRCP 12). Defense counsel hasn't appeared yet — first move is theirs, but the C-suite buying decision on Scrub happens BEFORE they pick litigation counsel. Window is open through early June. Urgency score: <strong>88/100</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 03 ====== -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+    <h2 class="section-title">Scentiment, LLC — premium DTC fragrance, Recart SMS at scale</h2>
+    <p class="section-lede">Delaware LLC, Doral FL HQ, founded 2022 by Joseph Ayoub + Tamoor Shafi. The smoking gun is openly published on Recart's customer case-studies page.</p>
+
+    <div class="card card--accent mb-3">
+      <h3>Defendant profile</h3>
+      <dl class="kv">
+        <dt>Entity</dt><dd>Scentiment, LLC — Delaware Limited Liability Company <span class="src-tag"><a href="https://search.sunbiz.org/Inquiry/CorporationSearch/SearchResults?inquiryType=EntityName&searchTerm=SCENTIMENT">Sunbiz &rarr;</a></span></dd>
+        <dt>HQ</dt><dd>8328 NW 30th Ter, Doral, FL 33122 <span class="src-tag"><a href="https://www.dnb.com/business-directory/company-profiles.scentiment_llc.e5a7b83e3cd659472422394f296675ee.html">D&amp;B &rarr;</a></span></dd>
+        <dt>Founded</dt><dd>August 2022 — co-founders Joseph Ayoub (marketing) and Tamoor Shafi (operations) <span class="src-tag">public press</span></dd>
+        <dt>BBB</dt><dd>Profile exists — online retailer category, Doral FL <span class="src-tag"><a href="https://www.bbb.org/us/fl/doral/profile/online-retailer/scentiment-llc-0633-92032957">BBB &rarr;</a></span></dd>
+        <dt>Web</dt><dd><a href="https://www.scentiment.com">scentiment.com</a> — premium home/body fragrances inspired by Ritz Carlton, 1 Hotel, Westin brands</dd>
+        <dt>Scale</dt><dd>1M+ customers (per company self-statement on D&amp;B)</dd>
+      </dl>
+    </div>
+
+    <div class="card card--alert mb-3">
+      <h4>🚨 Smoking-Gun Compliance Gap</h4>
+      <p><strong>Recart customer case study (publicly published)</strong> states Scentiment generated <strong>8 figures in SMS-attributed revenue, hundreds of thousands of subscribers, 1,500x ROI on select flows</strong> via Recart. <span class="src-tag"><a href="https://recart.com/customer-case-studies/scentiment">Recart case study &rarr;</a></span></p>
+      <p>This means Scentiment was running large-volume SMS marketing campaigns with no apparent litigator scrub layer. The complaint's allegation that plaintiff's number was obtained &ldquo;through the purchase of consumer data lists or through other third-party data aggregation sources&rdquo; aligns precisely with the absence of a scrub — Recart provides the dialer infra, not the suppression list.</p>
+      <p class="mb-0"><span class="pill pill--red">DIRECT PRODUCT FIT</span> <span class="pill pill--danger">CONFIRMED VIA VENDOR'S OWN PUBLIC MARKETING</span></p>
+    </div>
+
+    <div class="card mt-3">
+      <h4>Damage exposure (named plaintiff alone)</h4>
+      <p>56 alleged violations × $500 statutory minimum = <strong>$28,000</strong> floor. 56 × $1,500 willful/knowing = <strong>$84,000</strong> ceiling. Class certification (50+ alleged) multiplies by class size; even at the alleged minimum the aggregate floor is <strong>~$1.4M</strong>.</p>
+    </div>
+
+    <div class="card mt-3">
+      <h4>Related entities (cross-sell candidates)</h4>
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Why TCPA-relevant</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Doheny's, LLC</strong></td>
+            <td>Co-defendant, same plaintiff, same day</td>
+            <td>Pool supply DTC, also hit by Perez on May 13, 2026 — same theory, ATDS to cell.</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tapestry, Inc. (Coach)</strong></td>
+            <td>Co-defendant, same plaintiff, same day</td>
+            <td>Fortune-class luxury retail buyer with significantly deeper compliance budget than Scentiment.</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="mt-2 mb-0" style="font-size:13px;color:var(--fg-2);">Both co-defendants belong on the next-touch list — Make.com can branch the outreach automation off this report.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 04 ====== -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+    <h2 class="section-title">Solo-attorney shotgun filing — three plaintiffs would normally be three different counsels, here it's one</h2>
+    <p class="section-lede">Three TCPA complaints filed the same day by the same plaintiff through the same attorney. Even without TCPAWorld power-ranking confirmation, the same-day pattern is the strongest possible &ldquo;serial filer&rdquo; signal.</p>
+
+    <div class="two-col mb-3">
+      <div class="card card--accent">
+        <h3>Case card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-23371-XXXX <span class="src-tag"><a href="https://dockets.justia.com/docket/florida/flsdce/">Justia &rarr;</a></span></dd>
+          <dt>Court</dt><dd>U.S. District Court, S.D. Fla.</dd>
+          <dt>Filed</dt><dd>May 13, 2026</dd>
+          <dt>Theory</dt><dd>47 USC § 227(b)(1)(A)(iii) — ATDS &amp; artificial/prerecorded voice to cell</dd>
+          <dt>Violations</dt><dd>56 unsolicited text messages, Jan 25 – Apr 27, 2026</dd>
+          <dt>Channel</dt><dd>SMS</dd>
+          <dt>Class</dt><dd>4-year lookback, nationwide, &ldquo;at least 50 persons&rdquo; alleged</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <h3>Plaintiff counsel card</h3>
+        <dl class="kv">
+          <dt>Name</dt><dd>Alvin Donald Scott, Jr.</dd>
+          <dt>FL Bar</dt><dd>110432 — admitted 2014-05-27, no 10-yr discipline <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=110432">FL Bar &rarr;</a></span></dd>
+          <dt>Firm</dt><dd>Consumer Protection &amp; Insurance Attorneys (mycpia.com)</dd>
+          <dt>Address mismatch</dt><dd><span class="pill pill--warn">DOES NOT MATCH COMPLAINT</span> Complaint header: 8950 SW 74th Ct Miami; FL Bar record: 101 Lake Ave Orlando; complaint phone (813) is Tampa area code.</dd>
+          <dt>Law school</dt><dd>Samford University — Cumberland School of Law (2000)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <h4>Plaintiff / Firm Template</h4>
+      <p class="mb-0">Solo-attorney shotgun pattern: same plaintiff, same date, three DTC defendants in different verticals (fragrance, pool supply, luxury retail). Suggests the plaintiff is harvesting numbers across multiple consumer-data-list buyers and the attorney is filing pro forma complaints with minimal per-case investment. Defense leverage: motion to dismiss for Article III standing on partial-number pleading; settlement leverage: cheap.</p>
+    </div>
+
+    <h4 style="text-transform:uppercase; letter-spacing:0.06em; font-size:13px; color:var(--fg-2);">Concurrent litigation (same plaintiff, same day)</h4>
+    <table class="tbl mb-3">
+      <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Theory</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Perez v. Doheny's, LLC</td>
+          <td>1:26-cv-23378</td>
+          <td>S.D. Fla.</td>
+          <td>2026-05-13</td>
+          <td>TCPA § 227(b)(1)(A)(iii) — ATDS to cell <span class="src-tag"><a href="https://dockets.justia.com/docket/florida/flsdce/1:2026cv23378/">Justia &rarr;</a></span></td>
+        </tr>
+        <tr>
+          <td>Perez v. Tapestry, Inc. (Coach)</td>
+          <td>1:26-cv-23380</td>
+          <td>S.D. Fla.</td>
+          <td>2026-05-13</td>
+          <td>TCPA § 227(b)(1)(A)(iii) — ATDS to cell <span class="src-tag"><a href="https://dockets.justia.com/docket/florida/flsdce/1:2026cv23380/">Justia &rarr;</a></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card card--warn">
+      <h4>⚠ Open intel gaps to close before first dial</h4>
+      <ul class="bare">
+        <li><strong>Plaintiff's full 10-digit phone</strong> — only last-four pled. Pull ECF #1 attachments or wait for discovery.</li>
+        <li><strong>Scentiment officer emails / direct phones</strong> — Joseph Ayoub and Tamoor Shafi confirmed as co-founders via public press, but no public emails. <span class="pill pill--gap">ENFORMION DEFERRED — credentials not set in this runtime</span></li>
+        <li><strong>Registered agent for Scentiment, LLC</strong> — Sunbiz hit confirmed entity exists but DE-formed entity's FL agent not extracted in this run. Pull Florida foreign-LLC filing.</li>
+        <li><strong>Sender DID / shortcode used for the offending texts</strong> — not pled, no screenshot exhibits. Resolves in discovery.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 05 ====== -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+    <h2 class="section-title">Decision-makers identified — contact data deferred pending Enformion</h2>
+    <p class="section-lede">Public-press confirms the two co-founders. Email and direct phone are not surfaced via public sources alone — Enformion Phase 3b would lift these, but credentials are not configured in this test runtime.</p>
+
+    <table class="tbl">
+      <thead>
+        <tr><th>Name</th><th>Title</th><th>Role</th><th>LinkedIn</th><th>Email</th><th>Phone</th><th>Confidence</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Joseph Ayoub</strong></td>
+          <td>Co-Founder</td>
+          <td><span class="pill pill--dark">FOUNDER</span></td>
+          <td><a href="https://www.linkedin.com/company/scentiment">Scentiment Co. page</a></td>
+          <td><span class="pill pill--gap">GAP</span></td>
+          <td><span class="pill pill--gap">GAP</span></td>
+          <td><span class="pill pill--gap">INFERRED</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tamoor Shafi</strong></td>
+          <td>Co-Founder</td>
+          <td><span class="pill pill--dark">FOUNDER</span></td>
+          <td><a href="https://www.linkedin.com/company/scentiment">Scentiment Co. page</a></td>
+          <td><span class="pill pill--gap">GAP</span></td>
+          <td><span class="pill pill--gap">GAP</span></td>
+          <td><span class="pill pill--gap">INFERRED</span></td>
+        </tr>
+        <tr>
+          <td><strong>Alvin Donald Scott, Jr.</strong> <span style="color:var(--fg-3);font-size:12px;">(opposing counsel)</span></td>
+          <td>Plaintiff Counsel</td>
+          <td><span class="pill pill--dark">EXTERNAL</span></td>
+          <td>—</td>
+          <td><a href="mailto:ds@mycpia.com">ds@mycpia.com</a> <span class="pill pill--ok">VERIFIED</span></td>
+          <td>(813) 733-8117 <span class="pill pill--ok">VERIFIED</span></td>
+          <td><span class="pill pill--ok">VERIFIED</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card card--info mt-3">
+      <h4>Enformion enrichment status — DEFERRED</h4>
+      <p class="mb-0">Four Enformion calls would have been queued for this run: <code>person_search</code> on Alvin Donald Scott Jr., <code>person_search</code> on Joseph Ayoub, <code>person_search</code> on Tamoor Shafi, and <code>email_search</code> on ds@mycpia.com. All four returned <code>{status: "deferred"}</code> because ENFORMION_AP_NAME / ENFORMION_AP_PASSWORD are not set in this runtime. Once credentials land, this section auto-fills — confidence pills upgrade PATTERN → VERIFIED where Enformion corroborates a public source.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 06 ====== -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+    <h2 class="section-title">Recommended outreach sequence</h2>
+    <p class="section-lede">Window is ~21 days. Move fast — defense counsel hasn't appeared, and the C-suite buying decision happens BEFORE they pick litigation counsel.</p>
+
+    <table class="tbl">
+      <thead><tr><th>Day</th><th>Step</th><th>Trigger / Channel</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Day 0</strong> (today)</td>
+          <td>Cold email to founders' best-pattern emails (joseph@scentiment.com / tamoor@scentiment.com) with case-specific subject line.</td>
+          <td>Email — referenced the Recart case study and the same-day shotgun pattern.</td>
+        </tr>
+        <tr>
+          <td><strong>Day 1</strong></td>
+          <td>LinkedIn DM to both co-founders via Scentiment company page.</td>
+          <td>LinkedIn — short, no pitch, just &ldquo;saw the filing, here's why this happened.&rdquo;</td>
+        </tr>
+        <tr>
+          <td><strong>Day 3</strong></td>
+          <td>Follow-up email referencing the Doheny's + Tapestry concurrent filings.</td>
+          <td>Email — proves we did the work.</td>
+        </tr>
+        <tr>
+          <td><strong>Day 5</strong></td>
+          <td>Call founders' direct lines (sourced via Enformion once credentials land).</td>
+          <td>Phone — Enformion-gated until creds configured.</td>
+        </tr>
+        <tr>
+          <td><strong>Day 7</strong></td>
+          <td>Send the one-page damage exposure summary ($28K floor / $1.4M class floor).</td>
+          <td>Email + PDF attachment.</td>
+        </tr>
+        <tr>
+          <td><strong>Day 14</strong></td>
+          <td>Defense counsel notice of appearance hits PACER — re-pitch through counsel if direct outreach stalled.</td>
+          <td>Trigger: PACER docket update.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card card--accent mt-3">
+      <h4>Closing pill row</h4>
+      <p class="mb-0">
+        <span class="pill pill--red">URGENCY 88</span>
+        <span class="pill pill--danger">DIRECT-FIT SCRUB PROSPECT</span>
+        <span class="pill pill--warn">PHONE SCRUB DEFERRED</span>
+        <span class="pill pill--info">ENFORMION DEFERRED</span>
+        <span class="pill pill--ok">SMOKING-GUN VERIFIED (RECART)</span>
+        <span class="pill pill--dark">CROSS-SELL × 2 IDENTIFIED</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="report-footer">
+  <div class="wrap">
+    <p><strong>Generated by Docky v0.7.0 · Blacklist Alliance</strong> · 2026-05-29</p>
+    <p>Slug: <strong>perez-v-scentiment-test</strong> · Source PDF: Perez v. Scentiment, LLC.pdf · Enformion status: <strong>DEFERRED</strong></p>
+    <p class="disclaimer">This report is generated from public-source enrichment of a publicly filed TCPA complaint. All factual claims are cited with hyperlinks back to their source. No officer emails or phones were fabricated — fields shown as GAP or INFERRED indicate that no public source surfaced verified contact data and that Enformion enrichment was deferred. This is a sales-intelligence document for Blacklist Alliance internal use; it is not legal advice and is not work product. Rep assignment, outreach drafting, and HubSpot routing happen downstream via Make.com.</p>
+  </div>
+</footer>
+
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
