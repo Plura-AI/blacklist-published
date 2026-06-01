@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Martin v. Modelones — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl .row--current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--warning); font-weight:700; }
+.callout ul{ margin:8px 0 0; padding-left:20px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-2); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#FFFFFF" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="500" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Beauty SMS Marketer · Quiet-Hours + Federal DNC Class Action · Jibrael Hindi Filing · C.D. Cal.</p>
+      <h1 class="hero-tagline">Martin v.<br>Benm Inc <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">d/b/a Modelones</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01356</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Quiet Hours + DNC sub-classes</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not disclosed in complaint — but Martin is a confirmed repeat TCPA filer in the same district.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Here, the complaint does not plead the 10-digit number; it discloses only that the number has a California area code and was registered on the National DNC Registry on or about June 25, 2021. The scrub is deferred until ECF #1 is pulled from PACER and any attached call/text exhibits are mined for the full DID.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</span>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Serial Filer Flag — Martin filed v. Gillette (8:25-cv-01344) in same district 2025</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only: California area code, registered on Federal DNC since ~June 25, 2021, used as plaintiff's residential / primary cellular line. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22William+Martin%22+TCPA&type=r">CourtListener -></a></span></div>
+      </div>
+      <p class="scrub-body-text">The Jibrael Hindi firm's template intentionally omits the plaintiff phone from the pleading and forces defense to extract it through Rule 26(a) disclosures or discovery. No litigator-scrub lookup was run because a partial / absent number cannot produce a reliable match. The plaintiff's identity, however, is highly significant: <strong>William Martin (Orange County, CA) filed a near-identical TCPA action against The Gillette Company LLC (8:25-cv-01344) in C.D. Cal. roughly 11 months earlier</strong>, also represented by Gerald D. Lane Jr. of the same firm. That is a textbook serial-plaintiff pattern. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22William+Martin%22+TCPA&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending Infrastructure</div>
+        <h3 class="card-title">Sender DID: toll-free 866-341-1xxx (truncated in screenshot)</h3>
+        <div class="card-body">
+          The complaint's screenshot shows an inbound SMS thread from <code>+1 (866) 341-1...</code> — a toll-free dialer block consistent with a Shopify-integrated SMS marketing platform (Attentive / Postscript / Klaviyo SMS class). Number is truncated in the exhibit; the full 10-digit DID will need to come out of discovery or the platform's outbound report. No public 800notes / YouMail / Tellows / RoboKiller record was retrievable to identify the sender (all four sources returned 403/404 on this lookup attempt).
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">
+          ~$1.20. Pull the original complaint with full image exhibits at native resolution. The screenshot of the Dec 21 7:04 AM and Feb 8 8:06 AM / Feb 19 6:36 AM texts may reveal the complete sender DID and plaintiff caller-ID metadata.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for Rule 26(a) disclosures</h3>
+        <div class="card-body">
+          Once defense counsel appears and initial disclosures issue (typically 14 days after Rule 26(f) conference), plaintiff must produce the recipient number. That window aligns with the natural sales motion — first contact defendant within 21 days of service.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">SERIAL PLAINTIFF FLAG · 2 KNOWN TCPA FILINGS</span>
+      <span class="pill pill--info">JIBRAEL HINDI TEMPLATE — PHONE WITHHELD BY DESIGN</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">DTC nail brand with an open compliance gap, a serial-filer firm at the door, and zero published SMS terms — lead with Consent Capture + DNC Scrubbing.</h2>
+      <p class="section-lede">Modelones runs an active SMS marketing program from a toll-free 866 dialer with bit.ly links — and has no SMS Terms page (HTTP 404 at /pages/sms-terms), no autodialer/TCPA language in Terms of Service, and a privacy policy that authorizes text marketing without disclosing any opt-out mechanism or quiet-hour controls. That is the entire pitch in one sentence. <span class="src-tag"><a href="https://www.modelones.com/pages/sms-terms">modelones.com/sms-terms -></a></span></p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + State)</h3>
+        <div class="card-body">Plaintiff registered on Federal DNC since June 2021 and still received marketing texts. The DNC sub-class is the cleanest theory in the complaint. Scrubbing against Federal DNC + plaintiff-attorney litigator list is the most defensible immediate fix.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">Consent Capture / SMS Program Audit</h3>
+        <div class="card-body">No published SMS Terms, no TCPA language anywhere in TOS, signup form is JS-rendered and unverifiable. Blacklist's consent-capture stack documents express written consent at point of collection — directly cures the quiet-hours and DNC theories alleged here. <span class="src-tag"><a href="https://www.modelones.com/policies/terms-of-service">TOS -></a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Once ECF #1 yields Martin's number, run the scrub and confirm the plaintiff against Blacklist's litigator database. Use the result either way: a match validates the protective spend; a miss proves the gap and justifies the platform.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px; font-weight:600;">Pitch Angle</h3>
+    <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+      Open with the firm, not the plaintiff. "You've been sued by Jibrael Hindi's office — that's a 689-case TCPA shop that targets DTC brands at industrial scale. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span> In the last 24 months alone they've hit UrbanStems, Alphalete, Bump Boxes, Authentic Sport Specialty, Orderly Wellness, and JumpStartMD — every one of them a DTC e-commerce play just like Modelones. <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> Most settle in under a year. They are not coming for a fight; they are coming for a check."
+    </p>
+    <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+      Then pivot to the smoking gun: "Your SMS Terms page is a 404. Your TOS doesn't mention TCPA, autodialer, or text-message consent anywhere. Your privacy policy says you market by text but never discloses how a consumer opts out. <span class="src-tag"><a href="https://www.modelones.com/policies/privacy-policy">Privacy Policy -></a></span> When discovery hits, plaintiff will pull every text sent in the last four years and ask you to prove consent for each one. Today, on this stack, you can't. Blacklist fixes that before the Rule 26(f) — and gives defense counsel a paper trail to argue good-faith remediation under the FCC safe-harbor framework."
+    </p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Spokane-based U.S. distributor for a China-linked DTC nail brand with an active Shopify + 866 SMS stack.</h2>
+      <p class="section-lede">Benm Inc operates the Modelones brand from 100 N Howard St, Spokane, WA, with a secondary distribution address in City of Industry, CA. The company contact email (BENM2023@126.com) is hosted at NetEase 126.com — a Chinese provider — strongly suggesting the operational and marketing decisions are made offshore while Benm Inc serves as the U.S. distribution shell. <span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">modelones.com/contact -></a></span></p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Benm Inc</dd>
+          <dt>D/B/A</dt><dd>Modelones</dd>
+          <dt>Entity Type</dt><dd>Corporation <span class="pill pill--gap">Formation state unconfirmed</span></dd>
+          <dt>HQ</dt><dd>100 N Howard St STE R, Spokane, WA 99201 <span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">source -></a></span></dd>
+          <dt>Secondary</dt><dd>807 Lawson St, City of Industry, CA 91748 (distribution)</dd>
+          <dt>Vertical</dt><dd>DTC Beauty — Nail Care (gel polish, dip powder, poly gel, press-ons, lamps)</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Company Contact</dt><dd>BENM2023@126.com <span class="pill pill--warn">NetEase 126.com — China-hosted</span></dd>
+          <dt>Website</dt><dd><a href="https://www.modelones.com">modelones.com</a></dd>
+          <dt>Platform</dt><dd>Shopify (Eurus theme, Alpine.js) + Afterpay BNPL</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">SMS Terms page is a 404. TOS has zero TCPA language. Privacy policy admits to text marketing but never discloses an opt-out mechanism.</h3>
+        <div class="card-body">
+          Modelones operates an active SMS marketing program (sender appears on a toll-free 866 dialer, links shortened via bit.ly per the complaint exhibit) but <strong>/pages/sms-terms returns HTTP 404</strong> <span class="src-tag"><a href="https://www.modelones.com/pages/sms-terms" style="color:#FBE5E5">source -></a></span> — there is no published SMS program disclosure, no message-frequency notice, no documented STOP/HELP mechanic. The Terms of Service makes zero reference to SMS, text messaging, autodialer, TCPA, or consent to be contacted. <span class="src-tag"><a href="https://www.modelones.com/policies/terms-of-service" style="color:#FBE5E5">TOS -></a></span> The privacy policy expressly authorizes marketing "via postal mail, text message, or email" but contains no quiet-hour controls or opt-out machinery. <span class="src-tag"><a href="https://www.modelones.com/policies/privacy-policy" style="color:#FBE5E5">Privacy Policy -></a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Complaint filed</dt><dd>May 28, 2026 <span class="pill pill--red">1 day ago</span></dd>
+        <dt>Service window</dt><dd>FRCP 4(m): 90 days from filing → service deadline ~Aug 26, 2026</dd>
+        <dt>Answer window</dt><dd>21 days post-service (FRCP 12(a)) — defense counsel has not yet appeared <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01356&type=r">CourtListener -></a></span></dd>
+        <dt>Optimal outreach</dt><dd>Now through ~Jun 18, 2026 — before defense counsel is locked in and recommends "do nothing operationally pending answer"</dd>
+        <dt>Likely settlement window</dt><dd>4-10 months post-filing based on Hindi firm pattern (Curtis v. Authentic Sport Specialty ~4mo; Farsian v. Alphalete ~10mo) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener -></a></span></dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px; font-weight:600;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Modelones (brand)</td>
+            <td>D/B/A of Benm Inc</td>
+            <td>DTC Beauty / Nail Care</td>
+            <td>Direct — subject of current suit; runs the SMS program</td>
+            <td><span class="pill pill--red">High — primary target</span></td>
+          </tr>
+          <tr>
+            <td>Parent / overseas operator (unconfirmed)</td>
+            <td>Likely China-based affiliate (per 126.com contact email)</td>
+            <td>Unknown — likely OEM nail products</td>
+            <td>Indirect — operates upstream marketing; outside U.S. service of process</td>
+            <td><span class="pill pill--gap">Not in scope — offshore</span></td>
+          </tr>
+          <tr>
+            <td>City of Industry distribution arm</td>
+            <td>U.S. distribution / fulfillment node</td>
+            <td>Logistics</td>
+            <td>Indirect — same compliance umbrella as Benm Inc</td>
+            <td><span class="pill pill--info">Low — covered if parent buys Blacklist</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:var(--fg-3);">Note: Washington SoS, OpenCorporates, Bizapedia, and BBB all blocked or returned 403 on this run. The corporate-tree intel above is reconstructed from modelones.com's own contact and privacy disclosures and is best-effort, not registry-confirmed.</p>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Modelones has no prior TCPA history — but plaintiff's counsel files 689+ TCPA matters and targets DTC brands by template.</h2>
+      <p class="section-lede">This is the defendant's first known TCPA exposure, but the plaintiff firm is a top-of-power-rankings TCPA shop with a documented quiet-hours / DNC template that has hit nearly every DTC beauty, apparel, wellness, and subscription brand in their 2024-2026 docket.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">The Case</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>8:26-cv-01356</dd>
+          <dt>Court</dt><dd>C.D. Cal. (Santa Ana — Southern Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01356&type=r">CourtListener -></a></span></dd>
+          <dt>Filed</dt><dd>May 28, 2026</dd>
+          <dt>Plaintiff</dt><dd>William Martin (Orange County, CA)</dd>
+          <dt>Class Action</dt><dd>Yes — Rule 23, two sub-classes <span class="pill pill--danger">Putative class action</span></dd>
+          <dt>Class Size Pled</dt><dd>"Several thousands, if not more"; at least 50 persons alleged for numerosity</dd>
+          <dt>Claims</dt><dd>Count I: 47 USC § 227(c) + 47 CFR § 64.1200(c)(1) (Quiet Hours)<br>Count II: 47 USC § 227(c) + 47 CFR § 64.1200(c)(2) (Federal DNC)</dd>
+          <dt>Channel</dt><dd>SMS only (text marketing)</dd>
+          <dt>Date Range Pled</dt><dd>Feb 8, 2025 – Dec 21, 2025 (plaintiff's own texts); 4-year class lookback</dd>
+          <dt>Damages</dt><dd>$500 / negligent; $1,500 / knowing or willful — per text, per recipient</dd>
+          <dt>Plaintiff Exposure</dt><dd>2 texts × $500–$1,500 = $1,000–$3,000 named-plaintiff floor</dd>
+          <dt>Class Exposure</dt><dd>"Aggregate damages in the millions" per complaint ¶ 35</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared <span class="pill pill--gap">21-day clock starts at service</span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel</h3>
+        <dl class="kv">
+          <dt>Signing Attorney</dt><dd>Gerald D. Lane Jr., Esq.</dd>
+          <dt>CA Bar #</dt><dd>352470 <span class="pill pill--ok">Active</span> <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -></a></span></dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="pill pill--warn">FL firm filing in CA</span></dd>
+          <dt>Firm Phone</dt><dd>(754) 444-7539</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Lead Partner</dt><dd>Jibrael S. Hindi</dd>
+          <dt>Lane Email</dt><dd>gerald@jibraellaw.com</dd>
+          <dt>TCPA Filings</dt><dd>689 indexed TCPA matters across federal courts <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Power Ranking</dt><dd>Named in TCPAWorld 2026 Most Dangerous TCPA Plaintiff's Lawyers <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+          <dt>Public claim</dt><dd>$30M+ in TCPA settlements, $200M+ across all class action work <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">Extreme — serial filer</span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px; font-weight:600;">Plaintiff Firm Template — Hindi / Lane Quiet-Hours + DNC</h3>
+    <div class="card" style="margin-top:12px">
+      <div class="card-body">
+        <p>The Hindi firm's California-DTC template is highly stylized and now well-mapped. The signature elements visible in <em>Martin v. Modelones</em>:</p>
+        <ul>
+          <li><strong>California plaintiff</strong> in a defendant-friendly forum, even when the defendant is in WA/FL/etc — venue is selected for class-cert receptivity.</li>
+          <li><strong>Two stacked theories</strong>: Quiet Hours (§ 64.1200(c)(1)) + Federal DNC (§ 64.1200(c)(2)) — maximizes statutory damages stacking.</li>
+          <li><strong>Plaintiff phone deliberately withheld</strong> from the pleading; forces discovery cost on defendant.</li>
+          <li><strong>Boilerplate "several thousands" numerosity</strong> with a fallback "at least 50" floor for Rule 23.</li>
+          <li><strong>Screenshot exhibit only</strong> — no call logs, no carrier records, no detailed timestamps beyond what the consumer's own phone displays.</li>
+          <li><strong>Rapid settlement posture</strong> — case terminations in the 4–10 month band post-filing across the docket (Curtis v. Authentic Sport Specialty, Fleurigene v. Orderly Wellness, Farsian v. Alphalete). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener -></a></span></li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Serial plaintiff overlay:</strong> William Martin himself filed <em>Martin v. The Gillette Company LLC</em> (8:25-cv-01344, C.D. Cal., Judge Slaughter / MJ McCormick) approximately 11 months before this complaint — same firm, same Gerald Lane signature. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22William+Martin%22+TCPA&type=r">CourtListener -></a></span> That is two known TCPA actions by the same plaintiff in the same district inside one year — a serial filer profile.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px; font-weight:600;">Concurrent &amp; Recent Litigation (Plaintiff Firm)</h3>
+    <div class="tbl-wrap" style="margin-top:12px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Defendant Vertical</th><th>Court</th><th>Year</th><th>Status / Theory</th></tr></thead>
+        <tbody>
+          <tr class="row--current">
+            <td><strong>Martin v. Benm Inc d/b/a Modelones</strong></td>
+            <td>DTC Beauty / Nail</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Current</span> Quiet Hours + DNC</td>
+          </tr>
+          <tr>
+            <td>Martin v. The Gillette Company LLC (8:25-cv-01344)</td>
+            <td>Consumer goods</td>
+            <td>C.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Same plaintiff</span> TCPA</td>
+          </tr>
+          <tr>
+            <td>Lane v. UrbanStems, Inc.</td>
+            <td>DTC flowers / subscription</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span> TCPA</td>
+          </tr>
+          <tr>
+            <td>Curtis v. Authentic Sport Specialty, Inc.</td>
+            <td>Sports apparel</td>
+            <td>S.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Settled at ENE ~4mo</span></td>
+          </tr>
+          <tr>
+            <td>Farsian v. Alphalete Athletics LLC</td>
+            <td>DTC apparel</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated ~10mo</span></td>
+          </tr>
+          <tr>
+            <td>Fleurigene v. Orderly Wellness Corp.</td>
+            <td>Wellness / supplements</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated ~4mo</span></td>
+          </tr>
+          <tr>
+            <td>Andrighetto v. JumpStartMD, Inc.</td>
+            <td>Wellness / weight-loss</td>
+            <td>N.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">TCPA</span></td>
+          </tr>
+          <tr>
+            <td>Holt v. Bump Boxes, Inc.</td>
+            <td>DTC subscription box</td>
+            <td>E.D. Okla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">TCPA</span></td>
+          </tr>
+          <tr>
+            <td>Hindi firm public docket</td>
+            <td>All verticals</td>
+            <td>Multi-district</td>
+            <td>—</td>
+            <td><span class="pill pill--danger">689 TCPA matters indexed</span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline;vertical-align:-2px;"></i> Open Intel Gaps — close before first dial</h4>
+      <ul>
+        <li><strong>Plaintiff's recipient phone number</strong> — withheld from complaint; pull ECF #1 from PACER to extract from screenshot, or wait for Rule 26(a) disclosures.</li>
+        <li><strong>Article III judge + magistrate assignment</strong> — not yet visible on RECAP; PACER direct lookup returned 404 on this run.</li>
+        <li><strong>Service date and answer deadline</strong> — Doc #2 (Summons Request) filed 5/28/2026 but no return of service indexed yet.</li>
+        <li><strong>Disposition of prior Martin v. Gillette (8:25-cv-01344)</strong> — confirm settled vs. pending; informs likely settlement posture here.</li>
+        <li><strong>Benm Inc corporate registry data</strong> — WA SoS, OpenCorporates, Bizapedia, and Sunbiz all blocked/403 on this run; no confirmed officers or registered agent.</li>
+        <li><strong>Full sender DID</strong> — truncated to 8 digits in extraction; need complete 10-digit toll-free for 800notes/YouMail/Tellows/RoboKiller correlation.</li>
+        <li><strong>Defense counsel</strong> — not yet appeared. First appearance signals reps' real point of contact for the file.</li>
+        <li><strong>Signup consent flow</strong> — /account/register is JavaScript-rendered; manually browse and screenshot the consent checkbox language before the first call so the rep can speak to it.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Defendant is a thin U.S. shell — start at the published role inboxes (business@, support@), then escalate to whatever name surfaces.</h2>
+      <p class="section-lede">No C-suite, GC, or Compliance officer is publicly listed for Benm Inc. LinkedIn shows only 4 employees and 6 followers on the company page <span class="src-tag"><a href="https://www.linkedin.com/company/modelones">LinkedIn -></a></span> — consistent with a small U.S. distributor for a likely China-based parent. The fastest path to a decision-maker is the wholesale / business inbox and the LinkedIn "Modelones Partnership" contact.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>"Labudha Hafwa" <span class="pill pill--dark">Partnerships</span></td>
+            <td>Listed as "Modelones Partnership" on LinkedIn — most senior identifiable U.S.-side contact. Likely first point of escalation for vendor / compliance outreach. <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>labudha.hafwa@modelones.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/modelones-partnership-8a4902203">LinkedIn profile</a></td>
+          </tr>
+          <tr>
+            <td>Business / Brand Inquiries <span class="pill pill--dark">Role inbox</span></td>
+            <td>Published "Brands Inquiry" channel on modelones.com/contact-us — highest-yield role inbox for a compliance / litigation conversation. <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>business@modelones.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">contact-us -></a></span></td>
+          </tr>
+          <tr>
+            <td>Wholesale / Affiliate <span class="pill pill--dark">Role inbox</span></td>
+            <td>Affiliate &amp; wholesale program contact. Useful as a secondary channel for partnerships outreach. <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>wholesale@modelones.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">contact-us -></a></span></td>
+          </tr>
+          <tr>
+            <td>Customer Support <span class="pill pill--dark">Role inbox</span></td>
+            <td>Published primary support inbox. Useful only as a routing channel — not for first contact. <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>support@modelones.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">contact-us -></a></span></td>
+          </tr>
+          <tr>
+            <td>PR / Media <span class="pill pill--dark">Role inbox</span></td>
+            <td>Press contact. <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>pr@modelones.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">contact-us -></a></span></td>
+          </tr>
+          <tr>
+            <td>Corporate Contact (overseas) <span class="pill pill--dark">Parent / affiliate</span></td>
+            <td>Listed as "Company Contact" on the contact page. The 126.com domain is NetEase, indicating Chinese-hosted parent or affiliate operations. <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>BENM2023@126.com <span class="pill pill--ok">VERIFIED — published</span></td>
+            <td><span class="src-tag"><a href="https://www.modelones.com/pages/contact-us">contact-us -></a></span></td>
+          </tr>
+          <tr>
+            <td>General Counsel <span class="pill pill--dark">GC</span></td>
+            <td>No GC publicly identified for Benm Inc. <span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">Not in registry, LinkedIn, or site</span></td>
+          </tr>
+          <tr>
+            <td>Compliance Officer <span class="pill pill--dark">CCO</span></td>
+            <td>No CCO publicly identified. <span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">No compliance page on modelones.com</span></td>
+          </tr>
+          <tr>
+            <td>Defense Counsel <span class="pill pill--dark">Outside counsel</span></td>
+            <td>Not yet appeared. <span class="pill pill--gap">21-day answer clock pending service</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01356&type=r">CourtListener -></a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="card-meta">Inferred Email Pattern</div>
+      <h3 class="card-title" style="margin-top:6px;">{first}.{last}@modelones.com <span class="pill pill--warn" style="vertical-align:middle">PATTERN — inferred from role inbox structure</span></h3>
+      <div class="card-body">No individual modelones.com employee emails are publicly published. The pattern is inferred from the company's well-formed role inboxes (support@, business@, pr@, wholesale@). Treat any first-call email built from this pattern as PATTERN-grade confidence, not VERIFIED.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — before defense counsel appears and the file goes quiet.</h2>
+      <p class="section-lede">Filed yesterday. The 21-day answer clock starts the moment Benm Inc is served, and the Hindi firm template settles fast. The optimal sales window is right now, while there is no defense lawyer telling the operator "do nothing until we answer."</p>
+    </div>
+
+    <div style="background:var(--bg-surface); border:1px solid var(--border-1); padding:8px 24px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Pull ECF #1 from PACER (~$1.20)</h4>
+          <p>Extract the full screenshot exhibit. Recover the complete 10-digit sender DID. Run it through 800notes / YouMail / Tellows / RoboKiller to identify the SMS platform behind the campaign. File the result in the lead for the rep.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1–2 · First-touch email to business@modelones.com + LinkedIn DM to Modelones Partnership</h4>
+          <p>Lead with the firm, not the plaintiff. Reference the 689-case Hindi docket and the DTC-vertical hit list (UrbanStems, Alphalete, Bump Boxes, Authentic Sport). Offer a 20-minute call to walk the operator through the compliance gap before they retain defense counsel.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3–5 · Escalate to BENM2023@126.com if no response</h4>
+          <p>The China-hosted corporate inbox is the actual decision-making channel. Keep the message short, English-only, and lead with the dollar exposure ("aggregate damages in the millions" per ¶ 35 of the complaint). Attach a one-pager on Blacklist's scrub stack.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 5–10 · Once defense counsel appears, redirect</h4>
+          <p>Monitor RECAP daily. The moment defense counsel files a notice of appearance, copy them into the next outreach and reframe the pitch as a "good-faith remediation" tool for their answer and class-cert opposition.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 10–21 · Close the consent-capture + DNC scrubbing combo</h4>
+          <p>The strongest single-product close is DNC scrubbing (plaintiff alleges Federal DNC violation, registration since June 2021). Bundle with consent capture to cure the quiet-hours theory. Litigator scrub is the easy add-on once the plaintiff number is known.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline;vertical-align:-2px;"></i> Trigger Conditions — re-plan if any of these occur</h4>
+      <ul>
+        <li>Defense counsel appears and files an early Rule 12(b)(6) motion → reframe pitch around supporting the motion's good-faith narrative.</li>
+        <li>Plaintiff voluntarily dismisses (firm history shows this is common in 4-month band) → close the file, archive intel for the next Hindi DTC target.</li>
+        <li>Parallel CIPA / California state action is filed → expand pitch to include California state-DNC scrubbing.</li>
+        <li>Discovery reveals a third-party SMS vendor (Attentive / Postscript / Klaviyo) → pivot to vendor co-marketing angle through Blacklist's platform integrations.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW — CLOSES ~21 DAYS POST-SERVICE</span>
+      <span class="pill pill--danger">SERIAL-FILER FIRM · FAST-SETTLE TEMPLATE</span>
+      <span class="pill pill--info">SMOKING GUN: /pages/sms-terms = 404</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
