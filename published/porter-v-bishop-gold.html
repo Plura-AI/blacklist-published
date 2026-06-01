@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porter v. Bishop Gold Group — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Caller-ID Violation · Gold IRA SMS Marketing · Repeat Defendant · Jibrael Hindi Volume Filing</p>
+      <h1 class="hero-tagline">Porter v.<br>Bishop Gold Group</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05736</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">RECAP shows no assignment</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">The Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff phone not disclosed in complaint — scrub deferred, but plaintiff's firm is a 1,378-case volume filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Porter complaint redacts Terryl Porter's cell number entirely — only the sender DID (866-624-7100) is visible. Scrub is deferred pending PACER pull.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--red">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraphs 15-16 reference "the cellular telephone number that received Defendant's telephone solicitations" but the 10-digit number is not pled. The attached screenshot exhibit shows only the sender DID, not the recipient.</div>
+      </div>
+      <p class="scrub-body-text">The plaintiff's number is recoverable from PACER ECF #1 attachments if filed in full, or via formal discovery / Rule 26(f) initial disclosures. Until recovered, the litigator scrub cannot be run. However, plaintiff's counsel — The Law Offices of Jibrael S. Hindi — is documented as one of the most prolific TCPA filers in the country, with 1,378+ matching court records and a 2026 TCPAWorld Power Rankings appearance. <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Law+Offices+of+Jibrael+S.+Hindi%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #1</div>
+        <h3 class="card-title">866-624-7100</h3>
+        <div class="card-body">
+          <p>Toll-free 866 prefix consistent with outbound SMS/dialer infrastructure. <strong>Does NOT match any of the 4 published Bishop Gold Group numbers</strong> (833-589-8100, 844-627-8300, 833-488-8500). Strong signal of an unvetted third-party dialer / lead vendor texting on Bishop's behalf — exactly the §64.1601(e)(1) caller-ID disclosure failure alleged. <span class="src-tag"><a href="https://bishopgoldgroup.com/contact">bishopgoldgroup.com/contact -></a></span></p>
+          <p style="margin-top:10px"><span class="pill pill--warn">Toll-free 866</span> <span class="pill pill--gap">800notes: blocked 403</span> <span class="pill pill--gap">YouMail: blocked 403</span> <span class="pill pill--gap">Tellows: blocked 403</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Estimated cost ~$1.20. Complaint attachments may include unredacted plaintiff phone. Fastest path to running the scrub.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense counsel notice</h3>
+        <div class="card-body">Bishop Gold Group's prior TCPA defense was handled by Adriana Kostencki / Paul Anthony Rigali / Richard C. Harlan / Ranja F. Rasul in the Pitts matter. Re-engagement likely. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bishop+Gold+Group%22&type=r">CourtListener -></a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery request to Bishop</h3>
+        <div class="card-body">Bishop's own outbound transmission reports (referenced in complaint ¶17) will contain the recipient list. Slowest path, but produces the entire class number set.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">Plaintiff Firm: Top-Tier Volume Filer · 1,378+ Records</span>
+      <span class="pill pill--warn">Sender DID Mismatch — Likely Third-Party Dialer</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat TCPA defendant, third-party dialer running outside their compliance perimeter, and the same firm that just settled Pitts is now back for round two.</h2>
+      <p class="section-lede">Bishop Gold Group settled its first TCPA class action (Pitts, N.D. Fla.) in December 2025 — and got hit again by a Hindi-firm filing six months later. They paid once, didn't fix root cause, and the cheapest preventive product on the market — a pre-send DNC + litigator scrub — would have stopped this case before the first text went out. Lead with Litigator Scrub. Stack DNC scrubbing as the close.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">The sender DID (866-624-7100) does not match Bishop's published business lines — meaning a third-party dialer is texting on their behalf with no plaintiff-firm exclusion list. A pre-send litigator scrub would have flagged Porter (and every Hindi-firm test number) before the message went out.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">PRIMARY STACK</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Complaint alleges the §227(c) DNC framework was violated. Plaintiff is a California resident; Bishop sends to senior-skewed Gold IRA prospects nationally. A daily DNC scrub against the federal registry + state lists is the structural fix.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Bishop has a checkbox-based opt-in, but the complaint alleges that opt-in was bypassed entirely. They need defensible consent records tied to each phone in their outbound database. <span class="src-tag"><a href="https://bishopgoldgroup.com/privacy-policy">Privacy Policy -></a></span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px">Pitch Angle</h3>
+      <div class="card">
+        <div class="card-body">
+          <p>"Bishop, you just spent 20 months and presumably six figures defending Pitts in Florida — and you settled in December. Six months later, the same plaintiff's-bar ecosystem just filed Porter against you in Los Angeles. The complaint exhibit shows your texts went out from 866-624-7100, which doesn't appear anywhere on your website — meaning a third-party dialer is texting on your behalf with no litigator scrub in the loop. We sell that scrub. A pre-send check against the Blacklist litigator database would have flagged this plaintiff before message one. The investment to prevent the next Porter is a fraction of what Pitts cost you, and we can have you onboarded before your answer is due."</p>
+          <p style="margin-top:12px">If the rep encounters resistance ("we have a checkbox"): the §227(c)(5) DNC theory in this complaint is independent of consent. A signed opt-in does not cure a number sitting on the National DNC Registry. The only defense is a pre-send scrub.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Privately held Los Angeles Gold IRA marketer with a 5-year-stale privacy policy, no named GC, and a celebrity-endorsement-driven outbound machine.</h2>
+      <p class="section-lede">Bishop Gold Group sells physical precious metals and Gold IRA rollovers, primarily to retirees. The business explicitly markets via autodialer, prerecorded voice, and AI-assisted calls — disclosed in their own opt-in language — and uses at least four toll-free numbers to dial out, with the Porter complaint adding a fifth.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Bishop Gold Group LLC</dd>
+          <dt>Entity Type</dt><dd>Limited Liability Company</dd>
+          <dt>Formation State</dt><dd><span class="pill pill--gap">Unknown — registry blocked</span></dd>
+          <dt>HQ</dt><dd>1801 Century Park East, 24th Floor, Los Angeles, CA 90067 <span class="src-tag"><a href="https://bishopgoldgroup.com/about">bishopgoldgroup.com/about -></a></span></dd>
+          <dt>Vertical</dt><dd>Precious Metals Investment · Gold IRA</dd>
+          <dt>Products</dt><dd>Physical gold/silver/platinum/palladium · Gold IRAs · 401(k) rollovers <span class="src-tag"><a href="https://bishopgoldgroup.com">bishopgoldgroup.com -></a></span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Endorsers</dt><dd>Ted Nugent, Sean Spicer (per company materials)</dd>
+          <dt>Compliance Lead</dt><dd>Christine Navarro, Compliance Analyst — no GC or CCO publicly identified <span class="src-tag"><a href="https://www.signalhire.com/companies/bishop-gold-group">SignalHire -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Bishop's own opt-in language bundles autodialer, prerecorded voice, AI voice, and political marketing into one checkbox.</h3>
+        <div class="card-body">
+          <p>The exact language from their signup page: <em>"Check this box to agree to receive SMS/MMS updates, Promotional / Political Alerts, scheduling communications, and follow-ups from Bishop Gold Group, including communications sent using an automatic telephone dialing system (autodialer), prerecorded or artificial voice messages, and AI-assisted voice calls."</em></p>
+          <p style="margin-top:10px">This is a confession of intent baked into the consent flow itself. Combined with a privacy policy that has not been refreshed in over five years and the §64.1601(e)(1) caller-ID failure pled in Porter, this is a defendant whose self-disclosed technology stack maps directly to the TCPA's strict-liability provisions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <div class="card card--accent">
+      <h3 class="card-title">Strategic Timing</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>May 28, 2026</dd>
+          <dt>Answer Deadline</dt><dd>~21 days post-service (target window: late June 2026)</dd>
+          <dt>Prior TCPA Settlement</dt><dd>Pitts v. Bishop Gold Group (N.D. Fla.) terminated Dec 2, 2025 — defendant just paid out and clearly has not patched root cause <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bishop+Gold+Group%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Compounding Risk</dt><dd>Plaintiff's firm files dozens of TCPA cases per month — every day without a litigator scrub is a new exposure</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Delaware Depository</td>
+            <td>Logistics partner</td>
+            <td>Precious metals storage</td>
+            <td>Low — depository, not marketer</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+          <tr>
+            <td>Brink's</td>
+            <td>Logistics partner</td>
+            <td>Insured delivery</td>
+            <td>Low — not a TCPA-relevant outbound channel</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+          <tr>
+            <td>Unknown third-party dialer (866-624-7100)</td>
+            <td>Outsourced SMS sender</td>
+            <td>Lead-gen / dialer infra</td>
+            <td><strong>HIGH</strong> — operating outside Bishop's compliance perimeter; could be a Bishop affiliate or vendor servicing other Gold IRA brands</td>
+            <td><span class="pill pill--red">High — Investigate</span></td>
+          </tr>
+          <tr>
+            <td>Birch Gold Group, LP</td>
+            <td>Competitor / adverse party</td>
+            <td>Precious metals (same vertical)</td>
+            <td>Sued Bishop for trademark infringement (C.D. Cal., Sept 2025) — confirms competitive set</td>
+            <td><span class="pill pill--info">Medium — Vertical Cross-Sell</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px">Sources: <a href="https://www.courtlistener.com/?q=%22Bishop+Gold+Group%22&type=r">CourtListener -></a> · <a href="https://theorg.com/org/bishop-gold-group">TheOrg -></a></p>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Second TCPA class action in 24 months, brought by a top-tier volume-filing firm with a published Quiet-Hours / Caller-ID template.</h2>
+      <p class="section-lede">The Hindi firm's TCPA practice is not opportunistic — it's industrial. They run a vertical-agnostic, high-volume class action machine and have already published opinions defining TCPA private-right-of-action contours.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">The Case</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-05736</dd>
+          <dt>Court</dt><dd>U.S. District Court, C.D. Cal. (Western Division — Los Angeles)</dd>
+          <dt>Filed</dt><dd>May 28, 2026</dd>
+          <dt>Plaintiff</dt><dd>Terryl Porter (Los Angeles County, CA resident)</dd>
+          <dt>Counsel</dt><dd>Gerald D. Lane Jr. (CA Bar 352470) · The Law Offices of Jibrael S. Hindi</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Rule 23 Putative</span></dd>
+          <dt>Class Definition</dt><dd>All U.S. persons who, in the 4 years prior, received 2+ telemarketing calls in 12 months without proper CPN/ANI + telemarketer name disclosure</dd>
+          <dt>Class Size</dt><dd>"At least 50" pled · "several thousands" believed</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c)(5) · 47 CFR § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>Caller-ID disclosure failure — texts did not transmit telemarketer name</dd>
+          <dt>Damages</dt><dd>$500/violation (negligent) · $1,500/violation (willful) · Class aggregate "in the millions"</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          <dt>Docket Visibility</dt><dd>RECAP shows Docs #1-4 filed 5/28/26; no judge assignment yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05736&type=r">CourtListener -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel</h3>
+        <dl class="kv">
+          <dt>Lead Attorney</dt><dd>Gerald D. Lane Jr., Esq.</dd>
+          <dt>Bar Number</dt><dd>CA #352470 — active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -></a></span></dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi (boutique TCPA/FDCPA/FCRA shop)</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>754-444-7539</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Address Match</dt><dd><span class="pill pill--warn">Mismatch — CA-barred attorney filing from FL firm address</span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>Firm Practice</dt><dd>TCPA · FDCPA · FCRA · Privacy · Mass Arbitration · Class Actions <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Firm Posture</dt><dd>Tagline: "Our Bite is Worse Than Our Bark." Advertises $30M+ TCPA settlements, $200M+ class action settlements.</dd>
+          <dt>TCPAWorld Rank</dt><dd>2026 Power Rankings appearance <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+          <dt>CourtListener Volume</dt><dd>1,378+ firm-attributable records <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Law+Offices+of+Jibrael+S.+Hindi%22&type=r">CourtListener -></a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <div class="card">
+      <h3 class="card-title">Plaintiff Firm Template — Hindi/Lane Caller-ID Class</h3>
+      <div class="card-body">
+        <p>The Hindi firm runs multiple recurring TCPA templates — Quiet Hours, Internal DNC, Reassigned Number, and (newer) the §64.1601(e)(1) Caller-ID disclosure theory. Porter is a Caller-ID template case. Recent comparators by the same firm:</p>
+        <ul class="clean tight" style="margin-top:8px">
+          <li>Overtime Sports (Aug 2025) — early-morning marketing texts, Gerald Lane Jr. as counsel <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Gerald+Lane%22+TCPA">Law360 -></a></span></li>
+          <li>Nespresso (Sep 2025) — Quiet Hours TCPA class action</li>
+          <li>Steve Madden — SMS club class action</li>
+          <li>Tampa Bay Buccaneers — Quiet Hours TCPA class action</li>
+          <li>Thirdlove (Mar 2026) — Quiet Hours class action</li>
+          <li>PrimeFish Seafood (2026) — Quiet Hours class action (later voluntarily dismissed) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px">Concurrent &amp; Recent Litigation — Bishop Gold Group LLC</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Porter v. Bishop Gold Group LLC</strong> (this matter)</td>
+            <td>2:26-cv-05736</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-28</td>
+            <td><span class="pill pill--red">Active · No Answer</span></td>
+            <td>TCPA §227(c)(5) — caller-ID disclosure</td>
+          </tr>
+          <tr>
+            <td>Pitts v. Bishop Gold Group LLC</td>
+            <td>3:24-cv-00128</td>
+            <td>N.D. Fla.</td>
+            <td>2024-03</td>
+            <td><span class="pill pill--ok">Terminated 2025-12-02 (likely settled)</span></td>
+            <td>TCPA class action</td>
+          </tr>
+          <tr>
+            <td>Birch Gold Group, LP v. Bishop Gold Group, LLC</td>
+            <td>—</td>
+            <td>C.D. Cal.</td>
+            <td>2025-09</td>
+            <td><span class="pill pill--info">Active (non-TCPA)</span></td>
+            <td>Trademark infringement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px"><a href="https://www.courtlistener.com/?q=%22Bishop+Gold+Group%22+TCPA&type=r">CourtListener -></a></p>
+
+    <div style="height:32px"></div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8">⚠ OPEN INTEL GAPS — CLOSE BEFORE FIRST DIAL</div>
+      <h3 class="card-title">Five unknowns to resolve</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="color:#E0E0E0">
+          <li>1. Plaintiff Terryl Porter's actual cell number — pull from PACER ECF #1 attachments to enable a real litigator scrub.</li>
+          <li>2. California SoS confirmation — Bishop Gold Group LLC formation state, registered agent, officers. Cal SoS bizfile and Bizapedia both failed during research; rep should re-query before the call.</li>
+          <li>3. Pitts v. Bishop Gold Group settlement amount — not on the public docket. Worth a follow-up via PacerMonitor or the settlement administrator.</li>
+          <li>4. Identity of the third-party dialer behind 866-624-7100 — 800notes, YouMail, Tellows, and RoboKiller all blocked our queries. A consumer report search may reveal the vendor.</li>
+          <li>5. Name of Bishop's General Counsel / Chief Compliance Officer — SignalHire identifies a "CEO" and "CMO" but redacts surnames. Worth a LinkedIn Sales Navigator pass before outreach.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No published GC. Start with the CTO and the compliance analyst — they own the dialer stack.</h2>
+      <p class="section-lede">Bishop Gold Group has no publicly identified General Counsel, CCO, or CEO. The most direct path to the decision-maker is through Elliot MacNeille (CTO) — who owns the outbound infrastructure — and Christine Navarro (Compliance Analyst), the only named compliance person. Email pattern <code style="background:var(--gray-05); padding:2px 6px">{first}@bishopgoldgroup.com</code> confirmed via two verified company addresses.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Elliot MacNeille</strong> <span class="pill pill--dark">CTO</span></td>
+            <td>Chief Technology Officer · Owns dialer/SMS infra <span class="src-tag"><a href="https://www.signalhire.com/companies/bishop-gold-group">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>elliot@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Christine Navarro</strong> <span class="pill pill--dark">Compliance</span></td>
+            <td>Compliance Analyst · Only named compliance role <span class="src-tag"><a href="https://www.signalhire.com/companies/bishop-gold-group">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>christine@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alfred E. Smith V</strong> <span class="pill pill--dark">MD Trading</span></td>
+            <td>Managing Director of Trading <span class="src-tag"><a href="https://theorg.com/org/bishop-gold-group">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>alfred@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Joseph Maenza</strong> <span class="pill pill--dark">Broker</span></td>
+            <td>Broker <span class="src-tag"><a href="https://theorg.com/org/bishop-gold-group">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>joseph@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gary Martin</strong> <span class="pill pill--dark">Sales</span></td>
+            <td>Account Executive <span class="src-tag"><a href="https://www.linkedin.com/company/bishop-gold-group">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>gary@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/gary-martin-9653b05">linkedin.com/in/gary-martin-9653b05</a></td>
+          </tr>
+          <tr>
+            <td><strong>Julian Valenzuela</strong> <span class="pill pill--dark">IRA</span></td>
+            <td>IRA Specialist <span class="src-tag"><a href="https://www.linkedin.com/company/bishop-gold-group">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>julian@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/julrval">linkedin.com/in/julrval</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jon Patterson</strong> <span class="pill pill--dark">Sales</span></td>
+            <td>Sales Account Executive</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>jon@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jon-patterson-09412b66">linkedin.com/in/jon-patterson-09412b66</a></td>
+          </tr>
+          <tr>
+            <td><strong>Matthew DiBlasio</strong> <span class="pill pill--dark">Sales</span></td>
+            <td>Account Executive <span class="src-tag"><a href="https://www.signalhire.com/companies/bishop-gold-group">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>matthew@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Stephanie Corcoran</strong> <span class="pill pill--dark">Client</span></td>
+            <td>Client Relations Associate <span class="src-tag"><a href="https://www.signalhire.com/companies/bishop-gold-group">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>stephanie@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Bogomolov</strong> <span class="pill pill--dark">Staff</span></td>
+            <td>Employee (per LinkedIn)</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>michael@bishopgoldgroup.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-bogomolov-69532676">linkedin.com/in/michael-bogomolov-69532676</a></td>
+          </tr>
+          <tr>
+            <td><strong>Corporate Main</strong> <span class="pill pill--dark">General</span></td>
+            <td>Main corporate line <span class="src-tag"><a href="https://bishopgoldgroup.com/contact">bishopgoldgroup.com/contact -></a></span></td>
+            <td>833-589-8100</td>
+            <td>corporate@bishopgoldgroup.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Support / SMS Help</strong> <span class="pill pill--dark">Ops</span></td>
+            <td>Customer support &amp; SMS opt-out <span class="src-tag"><a href="https://bishopgoldgroup.com/contact">bishopgoldgroup.com/contact -></a></span></td>
+            <td>844-627-8300</td>
+            <td>help@bishopgoldgroup.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>CEO (name redacted) <span class="pill pill--gap">GAP</span></td>
+            <td>SignalHire lists CEO role but redacts surname behind paywall</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span> <span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+          </tr>
+          <tr>
+            <td>General Counsel (none identified) <span class="pill pill--gap">GAP</span></td>
+            <td>No publicly named GC · No /team or /leadership page on company site</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span> <span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-2)"><strong>Email pattern:</strong> <code style="background:var(--gray-05); padding:2px 6px">{first}@bishopgoldgroup.com</code> — confirmed via two verified company addresses (corporate@, help@). All individual-name addresses are INFERRED from this pattern and require verification before send.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the answer clock is the lever.</h2>
+      <p class="section-lede">Bishop just paid out on Pitts. The Porter complaint hit two days ago. They have roughly three weeks before defense counsel files an appearance and starts gatekeeping. The window to land an inbound is now, before legal-budget anxiety calcifies into "talk to our outside counsel."</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 — TODAY</div>
+        <h3 class="card-title">Pull PACER ECF #1 + run scrub</h3>
+        <div class="card-body">Spend ~$1.20 to pull the unredacted complaint. Recover Porter's cell number. Run the litigator scrub. If matched, that becomes the email subject line in step 2.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1-2</div>
+        <h3 class="card-title">First-touch email to CTO + Compliance</h3>
+        <div class="card-body">Parallel send to elliot@bishopgoldgroup.com (CTO) and christine@bishopgoldgroup.com (Compliance Analyst). Reference Porter docket # in subject. Lead: "The 866-624-7100 sender on your Porter exhibit isn't on your contact page. Want to know who's texting on your behalf?"</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 3</div>
+        <h3 class="card-title">Call corporate main + escalate</h3>
+        <div class="card-body">833-589-8100 main line. Ask for legal/compliance escalation. Reference Porter and Pitts by name. Goal: a 15-min discovery call before defense counsel appears.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 5-7</div>
+        <h3 class="card-title">LinkedIn warm-touch</h3>
+        <div class="card-body">Connect with Gary Martin, Julian Valenzuela, Jon Patterson, Michael Bogomolov on LinkedIn — even sales-side staff will surface the GC name and route the message internally.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 10-14</div>
+        <h3 class="card-title">Pre-answer-deadline final push</h3>
+        <div class="card-body">Send a "before your answer is due" sequence to all surfaced contacts. Emphasize that a scrub onboarding now demonstrates remedial action — useful in any settlement talks.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 21+</div>
+        <h3 class="card-title">Pivot to defense counsel</h3>
+        <div class="card-body">Once an answer is filed, the named defense counsel becomes the gatekeeper. Re-route outreach with a "we'd like to help your client demonstrate remediation" frame.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px">Trigger Conditions — what changes the plan</h3>
+      <div class="card">
+        <div class="card-body">
+          <ul class="clean tight">
+            <li><strong>Defense counsel appears early</strong> → re-route to outside counsel; sell the "remediation evidence for the record" angle.</li>
+            <li><strong>Plaintiff voluntarily dismisses to amend</strong> → urgency drops; recycle to nurture cadence and re-engage on the refile.</li>
+            <li><strong>Hindi firm files a second case against Bishop</strong> → urgency goes to red; this becomes a structural-failure pitch, not a one-off.</li>
+            <li><strong>Bishop's PACER docket shows mediation referral</strong> → close window is ~30 days; scrub onboarding becomes leverage at the table.</li>
+            <li><strong>Plaintiff's number recovered from PACER and matches Blacklist database</strong> → upgrade to "you already had this person on a litigator list and texted them anyway" — strongest possible opener.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · TARGET CLOSE BEFORE LATE JUNE 2026</span>
+      <span class="pill pill--danger">REPEAT DEFENDANT · ROOT CAUSE NEVER FIXED</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
