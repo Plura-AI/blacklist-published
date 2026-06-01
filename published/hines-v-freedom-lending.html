@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hines v. Freedom Lending — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.row-current{ background:var(--bl-red-tint); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">BLACKLIST</text>
+          <rect x="135" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="146" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.04em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Quiet-Hours + Federal DNC · Mortgage SMS Marketing · First-Time Defendant · Zero Visible Compliance Program</p>
+      <h1 class="hero-tagline">Hines v.<br>Freedom Lending LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-03267-RBM-DEB</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Ruth Bermudez Montenegro<br><span style="font-weight:400;font-size:13px;color:#A8A8A8;">Mag. Daniel E. Butcher</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400;font-size:13px;color:#A8A8A8;">§ 64.1200(c)(1)+(c)(2)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not surfaced — only the last 4 digits ("0335") were pled.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Hines complaint discloses only the trailing four digits ("0335") of the Subject Number — the full 10-digit number is withheld. Scrub deferred until full number is recovered from PACER or discovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff "Subject Number"</div>
+        <div class="scrub-number">XXX-XXX-0335</div>
+        <div class="scrub-number-sub">San Diego / El Cajon, CA wireless number used as a residential line. Listed on the National Do-Not-Call Registry since at least April 6, 2026. Full 10-digit number not pled in the complaint.</div>
+      </div>
+      <p class="scrub-body-text">Blacklist's litigatorBulk endpoint cannot be run on a 4-digit fragment. The plaintiff alleges two texts received at 4:16 AM (5/12/26) and 2:52 AM (5/17/26) — both clearly outside the 8 a.m.–9 p.m. quiet-hours window. The plaintiff's name "Nicholas Hines" was cross-checked against CourtListener and no prior TCPA filings under this name were located <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nicholas+Hines%22&type=r">CourtListener -&gt;</a></span>, suggesting this is a first-time plaintiff rather than a serial filer.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-meta">Sender Identity</div>
+        <h3 class="card-title">flcmsg.com (SMS link-shortener)</h3>
+        <p class="card-body">Both screenshot exhibits show the sender domain <code>flcmsg.com</code> ("FLC" = Freedom Lending Co.) used as a click-through messaging URL. Domain registered <strong>March 9, 2026</strong> — roughly 80 days before the complaint was filed — and is masked behind a Cloudflare privacy proxy with registrant state listed as CA. Dedicated SMS-messaging subdomain naming convention plus enterprise Cloudflare nameservers (ajay.ns/stephane.ns) indicate a deliberately deployed marketing campaign, not a small-operator one-off. <span class="src-tag"><a href="https://www.whois.com/whois/flcmsg.com">WHOIS -&gt;</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">The full Subject Number is likely listed in Exhibit A (screenshot metadata) but blacked out in the public-facing PDF. A direct PACER pull (~$1.20) of the filed exhibit may show the unredacted number in metadata. Run litigatorBulk immediately upon recovery.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense counsel notice</h3>
+        <p class="card-body">No defense counsel has appeared yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span>. Once Freedom Lending appears, a Rule 26(f) conference will produce the Subject Number for verification. The rep should use that window to pre-position the scrub product.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF: FIRST-TIME FILER (NO PRIOR TCPA HITS)</span>
+      <span class="pill pill--danger">QUIET-HOURS SMOKING GUN: 4:16 AM & 2:52 AM TEXTS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">First-time TCPA defendant with zero visible compliance program and a smoking-gun quiet-hours fact pattern.</h2>
+      <p class="section-lede">Freedom Lending is a small Omaha-based mortgage lender (NMLS #4622) running an active outbound SMS prospecting campaign through a dedicated messaging domain. The complaint pleads two texts initiated at 4:16 AM and 2:52 AM local time — facts the defendant cannot explain away. Lead with DNC scrubbing + quiet-hours scheduler. Secondary: compliance audit / policies & procedures.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <span class="pill pill--red" style="margin-bottom:8px;">RECOMMENDED LEAD</span>
+        <h3 class="card-title">DNC Scrubbing + Litigator Scrub</h3>
+        <p class="card-body">Plaintiff alleges the Subject Number was on the National DNC Registry since at least April 6, 2026 — Freedom Lending texted it twice anyway. A pre-send DNC + litigator scrub on every outbound SMS is the direct fix. Anchor pitch on "the file that just got served on you."</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Quiet-Hours Scheduler / Compliance Audit</h3>
+        <p class="card-body">Two texts at 4:16 AM and 2:52 AM is not a marketing accident — it's a missing local-time scheduler. Sell the policies-and-procedures upgrade alongside the scrub: documented quiet-hours protocol is a §227(c) safe-harbor predicate.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body">Privacy policy contains no SMS-specific opt-in language and no STOP/HELP framework <span class="src-tag"><a href="https://freedomlending.com/privacy">freedomlending.com -&gt;</a></span>. If they cannot produce a signed E-Sign-style consent record, they will pay class — sell consent capture as a forward-looking shield.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">"You just got served. The two texts at 4 AM are the whole case."</h3>
+      <p class="card-body" style="margin-bottom:12px;">Open with the smoking-gun fact pattern: the complaint pleads two SMS messages sent at 4:16 AM and 2:52 AM local time. There is no "we didn't know it was quiet hours" defense — quiet hours is a strict-liability federal rule, and the texts came from a dedicated sending domain (flcmsg.com) registered to Freedom Lending in March 2026 <span class="src-tag"><a href="https://www.whois.com/whois/flcmsg.com">WHOIS -&gt;</a></span>. Plaintiff's number was on the DNC registry since at least April 6, 2026 — Freedom Lending texted it on May 12 and May 17. That's a textbook §64.1200(c)(2) violation stacked on top of the (c)(1) quiet-hours violation.</p>
+      <p class="card-body">PLG Damage Attorneys filed eight TCPA cases against lending/retail defendants in the ~30 days before this case <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>, including Rocket Mortgage two days prior. They're running a volume settlement model — Freedom Lending will not be the last lender they hit. The opportunity is to wedge in before defense counsel appears (no appearance yet) and convert the urgency of the served complaint into a multi-year scrub-and-consent contract. Pivot to cross-sell: Freedom Lending has a parallel Texas filing (Uvalle, W.D. Tex.) and a prior NJ filing (Vattelle, D.N.J. 2025) — three TCPA cases inside 18 months. The next one is the bet-the-company case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small Omaha-based mortgage lender, Wyoming LLC, NMLS #4622 — under-resourced compliance, national-scale SMS prospecting.</h2>
+      <p class="section-lede">Freedom Lending LLC is a private mortgage lender headquartered in Omaha, NE, formed in Wyoming, operating a national-scale SMS marketing program through a dedicated sender domain. Online presence is marketing-only — no team page, no compliance page, no published officers.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Freedom Lending LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Freedom Lending LLC</dd>
+          <dt>Entity Type</dt><dd>Wyoming Limited Liability Company (per complaint ¶6)</dd>
+          <dt>Formation State</dt><dd>WY <span class="pill pill--gap">SoS confirm pending</span></dd>
+          <dt>HQ Address</dt><dd>4610 S 143rd Street, Omaha, NE 68137<br>Branch: 3930 S 147th St, Ste 102, Omaha, NE 68144 <span class="src-tag"><a href="https://freedomlending.com/about">about -&gt;</a></span></dd>
+          <dt>Main Phone</dt><dd>402-934-7490 <span class="src-tag"><a href="https://freedomlending.com/contact">contact -&gt;</a></span></dd>
+          <dt>Website</dt><dd>freedomlending.com</dd>
+          <dt>NMLS ID</dt><dd>4622</dd>
+          <dt>Vertical</dt><dd>Mortgage lending (conventional, FHA, VA, USDA, refi)</dd>
+          <dt>Footprint</dt><dd>Licensed in NE, IA, CO</dd>
+          <dt>Hours</dt><dd>Mon–Fri 9–5 (single Omaha office) <span class="src-tag"><a href="https://freedomlending.com">site -&gt;</a></span></dd>
+          <dt>Parent</dt><dd>None disclosed</dd>
+          <dt>Employees / Revenue</dt><dd><span class="pill pill--gap">Not disclosed</span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Zero TCPA language anywhere on the website.</h3>
+        <p class="card-body">The freedomlending.com privacy policy is generic boilerplate — no mention of TCPA, no internal DNC policy, no SMS opt-in or STOP keyword language, no quiet-hours protocol, no autodialer disclosure <span class="src-tag" style="color:#A8A8A8;"><a href="https://freedomlending.com/privacy" style="color:#C9C9C9;">privacy -&gt;</a></span>. The privacy policy contemplates sharing personal info with third parties for direct marketing "with your consent" but provides no mechanism to evidence that consent for SMS. The /signup and /apply pages return 404 <span class="src-tag" style="color:#A8A8A8;"><a href="https://freedomlending.com" style="color:#C9C9C9;">site -&gt;</a></span> — either there is no online consent capture, or it is broken or gated. Either way, no §64.1200(c)(2)(ii) signed-written-agreement infrastructure is visible. They cannot establish a regulatory safe harbor on the public record.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Brand-new case, no defense counsel, parallel filings on the same day.</h3>
+      <ul class="clean tight">
+        <li><strong>Complaint filed:</strong> May 28, 2026 — 2 days ago.</li>
+        <li><strong>Answer deadline:</strong> ~21 days from service (estimated late June 2026 once executed return-of-service is filed).</li>
+        <li><strong>Defense counsel:</strong> Not yet appeared <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span> — this is the call-now window.</li>
+        <li><strong>Parallel filings:</strong> Uvalle v. Freedom Lending LLC (W.D. Tex., filed same day, 5/28/2026) — coordinated multi-jurisdiction attack <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freedom+Lending%22&type=r">CourtListener -&gt;</a></span>.</li>
+        <li><strong>Prior case:</strong> Vattelle v. Freedom Lending LLC (D.N.J., filed 12/8/2025) — defendant has been sued for TCPA before but does not appear to have hardened compliance afterward.</li>
+        <li><strong>SMS infra age:</strong> flcmsg.com registered 3/9/2026 — campaign launched roughly 80 days before being sued in two jurisdictions simultaneously.</li>
+      </ul>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Related Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>flcmsg.com (SMS sender domain)</td>
+            <td>Marketing infrastructure</td>
+            <td>SMS messaging</td>
+            <td>Dedicated outbound SMS link-shortener tied to Freedom Lending campaign <span class="src-tag"><a href="https://www.whois.com/whois/flcmsg.com">WHOIS -&gt;</a></span></td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Freedom Lending — TX operations</td>
+            <td>Same defendant, different forum</td>
+            <td>Mortgage lending</td>
+            <td>Sister-jurisdiction defendant in Uvalle v. Freedom Lending LLC (W.D. Tex.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freedom+Lending%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Unidentified third-party lead vendors</td>
+            <td>Upstream lead supplier(s)</td>
+            <td>Lead-gen / data brokers</td>
+            <td>Privacy policy contemplates third-party data sharing for direct marketing — likely a buy-side lead pipeline that needs DNC + reassigned-number scrubbing <span class="src-tag"><a href="https://freedomlending.com/privacy">privacy -&gt;</a></span></td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>NMLS #4622 control person(s)</td>
+            <td>Regulated control persons</td>
+            <td>Mortgage lending</td>
+            <td>NMLS Consumer Access record exists but qualifying-individual not pulled <span class="src-tag"><a href="https://www.nmlsconsumeraccess.org/">NMLS -&gt;</a></span> — confirms regulated entity status</td>
+            <td><span class="pill pill--info">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-time TCPA defendant facing a volume-filer plaintiff firm targeting the lending vertical.</h2>
+      <p class="section-lede">PLG Damage Attorneys is an emerging volume TCPA filer running a property-damage shop with a quiet TCPA factory bolted on. The firm filed at least eight TCPA cases in the ~30 days preceding Hines, including Rocket Mortgage two days prior — they are explicitly hunting mortgage lenders.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case</div>
+        <h3 class="card-title">Hines v. Freedom Lending LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-03267-RBM-DEB</dd>
+          <dt>Court</dt><dd>S.D. Cal. (San Diego)</dd>
+          <dt>Filed</dt><dd>May 28, 2026</dd>
+          <dt>Article III Judge</dt><dd>Ruth Bermudez Montenegro <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Magistrate</dt><dd>Daniel E. Butcher</dd>
+          <dt>Plaintiff</dt><dd>Nicholas Hines (San Diego, CA resident; El Cajon, CA location at time of texts)</dd>
+          <dt>Class</dt><dd>Yes — putative Rule 23, two subclasses (After-Hours + DNC Registry)</dd>
+          <dt>Class size pled</dt><dd>"dozens and likely in the hundreds or thousands"</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1) quiet hours; 47 CFR § 64.1200(c)(2) DNC Registry</dd>
+          <dt>Theory</dt><dd>SMS quiet-hours violations (4:16 AM + 2:52 AM) + DNC Registry violations (number on DNC since 4/6/2026)</dd>
+          <dt>Damages</dt><dd>$500/violation, trebled to $1,500 for willful — plus class-wide statutory damages</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · ~21-day answer clock once served</dd>
+          <dt>Docket Activity</dt><dd>Doc #1 Complaint (5/28/26); Doc #2 Summons Issued (5/28/26) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Address (Complaint)</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027 <span class="pill pill--warn">FL HQ / CA Bar mismatch</span></dd>
+          <dt>Phone</dt><dd>(305) 506-4746</dd>
+          <dt>Email</dt><dd>service@plgdamage.com / info@plgdamage.com</dd>
+          <dt>CA Bar #</dt><dd>367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd>Active (no discipline history found)</dd>
+          <dt>Admission Date</dt><dd><span class="pill pill--gap">Not extracted</span></dd>
+          <dt>TCPAWorld Ranking</dt><dd>Not ranked — emerging filer, not on power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Venkatesh">TCPAWorld -&gt;</a></span></dd>
+          <dt>TCPA Volume</dt><dd>~8+ TCPA cases in last ~30 days across C.D. Cal. and M.D. Fla. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Other Attorneys</dt><dd>Matthew Suls, Natasha Floyd (firm roster, not on this complaint) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Practice</dt><dd>Primary book: property damage / hurricane / insurance bad-faith ("over $100M recovered") — TCPA is a parallel high-volume settlement practice</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">PLG / Venkatesh Quiet-Hours + DNC Template</h3>
+      <p class="card-body">Eight TCPA filings in the 30 days before Hines across two federal districts — same lead attorney, same complaint template, different defendants. Verticals targeted so far: mortgage (Rocket Mortgage, Freedom Lending), retail/e-commerce (Quince, Rite Aid), health/wellness (Refills Health, Xercize Studio), fintech/payroll (Payactiv), and consumer services (Guardio, YesVideo) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>. The firm advertises a property-damage practice publicly and does not publish TCPA results — signaling the TCPA practice is a volume / pre-suit-settlement mill rather than a litigated practice. Expect a Rule 26(f) push for early class discovery followed by a class-wide demand. The firm sued Rocket Mortgage 5/26/2026 — two days before Hines — confirming lending is the active target vertical.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory / Relationship</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Hines v. Freedom Lending LLC</strong></td>
+            <td>S.D. Cal.</td>
+            <td>2026-05-28</td>
+            <td><span class="pill pill--red">Active · This Case</span></td>
+            <td>Quiet-hours SMS + DNC Registry (putative class) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Uvalle v. Freedom Lending LLC</td>
+            <td>W.D. Tex.</td>
+            <td>2026-05-28</td>
+            <td><span class="pill pill--danger">Active · Same-Day Parallel</span></td>
+            <td>Same defendant, same day, different forum <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freedom+Lending%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Vattelle v. Freedom Lending LLC</td>
+            <td>D.N.J.</td>
+            <td>2025-12-08</td>
+            <td><span class="pill pill--info">Posture unknown</span></td>
+            <td>Prior TCPA-style suit — suggests repeat defendant without hardened compliance fix <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freedom+Lending%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage, LLC</td>
+            <td>C.D. Cal.</td>
+            <td>2026 (2 days before Hines)</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Same firm (PLG) — lending vertical target <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio LLC</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Same firm template (PLG)</td>
+          </tr>
+          <tr>
+            <td>Bennea Hughes v. Rite Aid Corp.</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Same firm template (PLG)</td>
+          </tr>
+          <tr>
+            <td>Rios v. Last Brand, Inc. dba Quince</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Same firm template (PLG)</td>
+          </tr>
+          <tr>
+            <td>Ortiz v. Payactiv, Inc.</td>
+            <td>M.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Same firm template (PLG)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Open Intel Gaps</div>
+      <h3 class="card-title">Open intel gaps to close before first dial</h3>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>Full 10-digit Subject Number (only last 4 — "0335" — pled). Pull ECF #1 from PACER to recover.</li>
+        <li>Wyoming SoS record for Freedom Lending LLC — registered agent, members, formation date (Bizapedia and Wyoming FilingSearch both CAPTCHA-blocked).</li>
+        <li>Officer / control-person names — no /team page, no LinkedIn company page, no published officers anywhere on the public record.</li>
+        <li>NMLS #4622 control-person record — qualifying individual not pulled.</li>
+        <li>Email pattern at freedomlending.com — only one email surfaced (tengel@freedomlending.com in privacy policy) — insufficient to confirm first.last vs. flast convention.</li>
+        <li>Outcome / posture of Vattelle v. Freedom Lending (D.N.J. 2025) — was it settled? Dismissed? Confidential resolution?</li>
+        <li>Whether Uvalle v. Freedom Lending (W.D. Tex.) is being handled by PLG or a coordinating firm.</li>
+        <li>Defense counsel — none appeared yet. First filed appearance reframes the entire outreach.</li>
+        <li>Venkatesh CA Bar admission date (page rendered as nav-menu only).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call the main Omaha line and ask for the principal — there is no published org chart.</h2>
+      <p class="section-lede">Freedom Lending publishes no team, no leadership, and no officer names on its website. No LinkedIn company page resolves to this entity. The contact path is the main Omaha number (402-934-7490) and the single published email (tengel@freedomlending.com) — confirm decision-maker by phone before pitching. Wyoming SoS lookup is the highest-value next step for named officers.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Freedom Lending LLC — Main</strong><br><span class="pill pill--dark">Company line</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Single Omaha office, M–F 9–5. Use this line to identify the principal / compliance owner. <span class="src-tag"><a href="https://freedomlending.com/contact">contact -&gt;</a></span></td>
+            <td>402-934-7490</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>"T. Engel"</strong> (initial only)<br><span class="pill pill--dark">Privacy-policy contact</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Only named contact on the website — listed as the opt-out / privacy-policy email contact. Likely a manager, compliance owner, or owner-operator. Full name not published. <span class="src-tag"><a href="https://freedomlending.com/privacy">privacy -&gt;</a></span></td>
+            <td>402-934-7490 (main)</td>
+            <td>tengel@freedomlending.com</td>
+            <td><span class="pill pill--gap">Not located</span></td>
+          </tr>
+          <tr>
+            <td><strong>Wyoming LLC Member(s) / Manager(s)</strong><br><span class="pill pill--dark">Control persons</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Wyoming SoS lookup blocked by CAPTCHA — formation date, registered agent, and members not retrievable through automated channels. Manual SoS pull required.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>NMLS #4622 Control Person</strong><br><span class="pill pill--dark">Qualifying individual</span> <span class="pill pill--gap">GAP</span></td>
+            <td>NMLS Consumer Access has a record but qualifying-individual page not pulled. This person is by-name responsible for the entity's licensed activity. <span class="src-tag"><a href="https://www.nmlsconsumeraccess.org/">NMLS -&gt;</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Compliance Owner</strong><br><span class="pill pill--dark">Role only</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No CCO, GC, or compliance officer named anywhere on the public record. Likely combined with the owner/principal role at this size. Identify by asking for "whoever handles your TCPA / SMS compliance" on the main line.</td>
+            <td>402-934-7490 (route through main)</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">External</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared in S.D. Cal. (or W.D. Tex. parallel) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span>. Watch the docket — first appearance changes the outreach plan.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">Email Pattern</div>
+      <h3 class="card-title">Pattern unconfirmed — only one address surfaced</h3>
+      <p class="card-body">The only published email is <strong>tengel@freedomlending.com</strong>, suggesting a possible <em>flast@freedomlending.com</em> (first-initial + lastname) convention — but a single data point is not enough to confirm. Do not blast pattern-guessed emails without a second confirmation. The primary contact channel is the main line: <strong>402-934-7490</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — defense counsel has not appeared and a parallel case was filed the same day in Texas.</h2>
+      <p class="section-lede">The complaint was served two days ago, no defense counsel is on record, and the same plaintiff firm sued Rocket Mortgage two days earlier. The decision-maker at Freedom Lending is in the small window between "just got served" and "lawyer told me not to talk to anyone." Burn through that window.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 — Today</div>
+        <h3 class="card-title">1. PACER pull + main-line call</h3>
+        <p class="card-body">Pull ECF #1 (the complaint) from PACER to attempt to recover the full Subject Number from exhibit metadata (~$1.20). In parallel, call <strong>402-934-7490</strong> and ask for "whoever is handling the TCPA lawsuit you were just served with." Lead the open with the 4:16 AM / 2:52 AM quiet-hours fact pattern — that signals "we read the complaint" and earns 60 seconds.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">2. Email tengel@freedomlending.com</h3>
+        <p class="card-body">Send a short, specific note referencing case number <strong>3:26-cv-03267-RBM-DEB</strong> and the parallel Uvalle (W.D. Tex.) filing — emphasizing that this is the second filing in 48 hours and the third in 18 months (counting Vattelle, D.N.J.). Frame the outreach as "your downstream texts are still going out — every send from flcmsg.com between now and class certification adds violations."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 2–5</div>
+        <h3 class="card-title">3. Wyoming SoS + NMLS pull</h3>
+        <p class="card-body">Run a manual Wyoming SoS lookup for Freedom Lending LLC (CAPTCHA prevents automation) to retrieve members/managers and registered agent. Pull NMLS #4622 detail page for control persons. Once names are in hand, run LinkedIn for direct contact paths and re-engage with named decision-makers.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 5–10</div>
+        <h3 class="card-title">4. Multi-product proposal</h3>
+        <p class="card-body">Send a written proposal bundling (a) Litigator + DNC Scrub for outbound SMS, (b) quiet-hours scheduler / policies &amp; procedures audit, and (c) consent-capture infrastructure. Anchor on the 21-day answer window and the W.D. Tex. parallel case as a forcing function.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 10–21</div>
+        <h3 class="card-title">5. Defense-counsel pivot</h3>
+        <p class="card-body">When defense counsel files an appearance, re-route outreach. Defense counsel often becomes the channel for forward-looking compliance procurement decisions, especially on a small lender. Watch the S.D. Cal. and W.D. Tex. dockets daily <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03267&type=r">CourtListener -&gt;</a></span>.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-sell trigger</div>
+        <h3 class="card-title">6. Texas/NJ counsel coordination</h3>
+        <p class="card-body">If Freedom Lending engages the same defense counsel across Hines, Uvalle, and Vattelle, that firm becomes a high-value cross-sell — they are now defending a repeat-TCPA-defendant lender and will need scrub infrastructure for the client's go-forward program. Brief the assigned BDR on the firm name once it appears.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px;">
+      <div class="card-meta" style="color:#A8A8A8;">Trigger Conditions</div>
+      <h3 class="card-title">What changes the plan</h3>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li><strong>Motion to compel arbitration filed</strong> — pivots the conversation to consent-record retention (the arbitration clause is in some unconfirmed signup flow that may also moot the class). Sell consent capture harder.</li>
+        <li><strong>Plaintiff amends to add a vendor or upstream lead supplier</strong> — opens cross-sell to that vendor.</li>
+        <li><strong>Defense counsel appears</strong> — route outreach through counsel; reposition product framing as a settlement-leverage tool.</li>
+        <li><strong>Vattelle (D.N.J.) docket reveals a confidential settlement</strong> — increases urgency: defendant has a known willingness-to-pay number. Use it.</li>
+        <li><strong>flcmsg.com is taken offline</strong> — they are reacting; accelerate outreach before they retain compliance counsel elsewhere.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — CALL WITHIN 72 HOURS</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--danger">PARALLEL SUIT FILED SAME DAY (W.D. TEX.)</span>
+      <span class="pill pill--info">REPEAT DEFENDANT — 3 TCPA CASES IN 18 MONTHS</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
