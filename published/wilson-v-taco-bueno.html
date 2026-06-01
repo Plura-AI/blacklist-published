@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wilson v. Taco Bueno — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:170px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.step{ display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ flex-shrink:0; width:40px; height:40px; background:var(--bl-red); color:#fff; font-weight:700; font-size:18px; display:flex; align-items:center; justify-content:center; }
+.step-body{ flex:1; }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="2" height="16" fill="#A50100"/>
+          <text x="126" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#FFFFFF" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">QSR SMS Marketer · Quiet-Hours Violation · Attentive-Powered Shortcode · Class Action · N.D. Tex.</p>
+      <h1 class="hero-tagline">Wilson v.<br>Taco Bueno Restaurants</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">4:26-cv-00659-O</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Tex. (Fort Worth)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Reed C. O'Connor<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousand"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — scrub deferred until PACER pull or first defense disclosure.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose Karim Wilson's 10-digit cellular number — only the sending shortcode 72829 appears in the screenshot exhibits. Litigator-list lookup is deferred.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only that Wilson received four texts to his cellular telephone — no number recited. Screenshots show only the sending shortcode (72829) and Attentive landing-link subdomain (tacobueno.attn.tv).</div>
+      </div>
+      <p class="scrub-body-text">No 10-digit recipient number means no Blacklist litigator-list lookup is possible today. Recovery requires either (a) pulling the unredacted exhibit set from PACER, (b) waiting for defense counsel's first disclosures, or (c) issuing a Rule 26(f) early-disclosure request. Wilson does not appear in CourtListener as a prior TCPA filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Karim+Wilson%22&type=r">CourtListener -&gt;</a></span> — only three unrelated hits, none of which are confirmable identity matches. Treat Wilson as a first-time named plaintiff until proven otherwise.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-meta">Sender Identification</div>
+        <h3 class="card-title">Shortcode 72829</h3>
+        <div class="card-body">
+          <p>Common short code used by Taco Bueno to broadcast promotional SMS. Landing-link subdomain <strong>tacobueno.attn.tv</strong> identifies the sending platform as <strong>Attentive Mobile</strong> — a Tier-1 SaaS SMS marketing vendor. <span class="src-tag"><a href="https://www.attentivemobile.com">attentivemobile.com -&gt;</a></span></p>
+          <p style="margin-top:10px; font-size:13px; color:var(--fg-2);">5-digit shortcodes are not indexed by consumer reputation databases (800notes, YouMail, Tellows, RoboKiller all returned no usable data). The shortcode + Attentive infrastructure is the numerosity evidence — a single broadcast hits the entire subscriber list simultaneously.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Sender Domain</div>
+        <h3 class="card-title">tacobueno.attn.tv</h3>
+        <div class="card-body">
+          <p>Branded Attentive click-tracking subdomain. Confirms the SMS program is Attentive-hosted. Every text in the exhibits routes consumers through this subdomain to claim promo codes (TORT, TUESDAY, BOGO).</p>
+          <p style="margin-top:10px; font-size:13px; color:var(--fg-2);">Vendor channel matters: Attentive sets the consent-capture posture, the quiet-hours scheduling defaults, and the time-zone logic. If quiet-hours suppression isn't enabled per recipient time zone, every blast becomes a future complaint.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path 1</div>
+        <h3 class="card-title">Pull PACER Doc #1</h3>
+        <div class="card-body">~$1.20 to pull the full complaint and any unredacted exhibits. Screenshot metadata (sender identifier, account ID) sometimes leaks the recipient line. <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-00659&type=r">CourtListener RECAP -&gt;</a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path 2</div>
+        <h3 class="card-title">Defense Counsel Disclosure</h3>
+        <div class="card-body">Once defense files an answer/appearance, recipient number will surface in Rule 26(a) initial disclosures. No defense counsel has appeared yet.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path 3</div>
+        <h3 class="card-title">Subpoena Attentive</h3>
+        <div class="card-body">Defendant can subpoena Attentive Mobile for the recipient roster and consent logs — the moment they do, every named recipient becomes a Blacklist scrub candidate.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--gap">PLAINTIFF NOT KNOWN TO COURTLISTENER</span>
+      <span class="pill pill--info">FIRST-TIME NAMED PLAINTIFF (UNCONFIRMED)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Post-bankruptcy QSR with an Attentive-powered SMS list, no public SMS-terms page, and a volume-filer plaintiff firm now camped on its doorstep.</h2>
+      <p class="section-lede">Lead with <strong>Consent Capture & Quiet-Hours Suppression</strong>. The quiet-hours theory under 47 CFR § 64.1200(c)(1) is the fastest-growing TCPA wedge of 2026 — proof requires only a screenshot and a time zone, and Taco Bueno's privacy/terms infrastructure is visibly broken (multiple 404s). Pair with a compliance audit. The 21-day federal answer clock is the urgency lever.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch · Recommended</div>
+        <h3 class="card-title">Consent Capture &amp; Quiet-Hours Suppression</h3>
+        <div class="card-body">Quiet-hours plaintiffs only need a screenshot to plead $500–$1,500 per text. Blacklist's consent-capture and time-zone-aware suppression stops the bleed before the next Attentive blast. This is the wedge product.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Compliance Audit · Policies &amp; Procedures</h3>
+        <div class="card-body">tacobueno.com/privacy-policy, /terms, /sms-terms, /text-club all return HTTP 404 <span class="src-tag"><a href="https://tacobueno.com/signup">tacobueno.com -&gt;</a></span>. Missing CTIA-required disclosures is a litigation magnet — sell the full audit (privacy policy, SMS terms, internal DNC SOP, opt-out logs).</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell Anchor</div>
+        <h3 class="card-title">Enterprise Scrub @ Sun Holdings</h3>
+        <div class="card-body">Taco Bueno is owned by Sun Holdings — a multi-brand franchise operator with 800+ locations across multiple QSR brands <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Taco_Bueno">Wikipedia -&gt;</a></span>. Land Taco Bueno, expand into the parent's full brand portfolio.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">"You were just sued in the Northern District of Texas under the TCPA's quiet-hours rule — Wilson v. Taco Bueno, 4:26-cv-00659. The complaint alleges four texts sent at 7:00 a.m. local time, and the screenshots are clean. This isn't a one-off — the plaintiff's firm, PLG Damage Attorneys, has filed at least eight TCPA cases in the last 30 days across three federal districts, hitting verticals from mortgage to pharmacy to QSR. Your Attentive shortcode 72829 is still active, your privacy policy and SMS terms pages return 404s, and a class of 'several thousand' Texans at $500-per-text statutory minimum puts your exposure north of $1.5M before trebling. The 21-day federal answer clock is running. We can stand up time-zone-aware quiet-hours suppression and pull defensible consent logs out of Attentive before the next blast goes out."</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">The angle isn't fear — it's the math. One screenshot, one violation, $500 minimum. Multiply by the Attentive subscriber list. The compliance retrofit costs less than the next discovery sanction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Mid-market Tex-Mex chain, post-bankruptcy reorganization under Sun Holdings, ~$187M revenue with 133 locations across the South-Central footprint.</h2>
+      <p class="section-lede">Taco Bueno is a 1967-vintage Tex-Mex chain headquartered in Farmers Branch, Texas. It has cycled through six private-equity owners and one Chapter 11, and now sits inside Sun Holdings' multi-brand franchise empire — a sophisticated PE-style operator who understands compliance ROI.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Taco Bueno Restaurants, L.P.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Taco Bueno Restaurants, L.P. (Texas Domestic Limited Partnership)</dd>
+            <dt>DBA</dt><dd>Taco Bueno</dd>
+            <dt>Founded</dt><dd>1967 by Bill R. Waugh <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Taco_Bueno">Wikipedia -&gt;</a></span></dd>
+            <dt>HQ</dt><dd>Farmers Branch, Texas (DFW metro)</dd>
+            <dt>Parent</dt><dd>Sun Holdings (acquired 2018–2019 out of Ch. 11)</dd>
+            <dt>Revenue</dt><dd>~$187 million</dd>
+            <dt>Employees</dt><dd>~3,856 (2021)</dd>
+            <dt>Locations</dt><dd>133 (AR, OK, TX)</dd>
+            <dt>Vertical</dt><dd>Quick-Service Restaurant (Tex-Mex)</dd>
+            <dt>Website</dt><dd>tacobueno.com</dd>
+            <dt>CEO</dt><dd>Omar Janjua</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No public SMS terms. No privacy policy. No T&amp;Cs.</h3>
+        <div class="card-body">
+          <p>Every standard compliance disclosure URL on tacobueno.com returns HTTP 404:</p>
+          <ul class="clean tight" style="margin-top:10px;">
+            <li style="color:#E0E0E0; border-color:#393939;">tacobueno.com/privacy-policy — <strong style="color:#fff;">404</strong></li>
+            <li style="color:#E0E0E0; border-color:#393939;">tacobueno.com/terms — <strong style="color:#fff;">404</strong></li>
+            <li style="color:#E0E0E0; border-color:#393939;">tacobueno.com/sms-terms — <strong style="color:#fff;">404</strong> <span class="src-tag"><a href="https://tacobueno.com/sms-terms" style="color:#A8A8A8;">verify -&gt;</a></span></li>
+            <li style="color:#E0E0E0; border-color:#393939;">tacobueno.com/text-club — <strong style="color:#fff;">404</strong> <span class="src-tag"><a href="https://tacobueno.com/text-club" style="color:#A8A8A8;">verify -&gt;</a></span></li>
+            <li style="color:#E0E0E0; border-color:#393939;">tacobueno.com/signup — <strong style="color:#fff;">404</strong> <span class="src-tag"><a href="https://tacobueno.com/signup" style="color:#A8A8A8;">verify -&gt;</a></span></li>
+            <li style="color:#E0E0E0; border-color:#393939;">tacobueno.com/about — <strong style="color:#fff;">404</strong></li>
+          </ul>
+          <p style="margin-top:12px;">A live SMS marketing program running on Attentive shortcode 72829 without a discoverable terms-of-service page is a textbook CTIA-disclosure failure and a TCPA litigation magnet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day federal answer clock + active SMS program = act this week</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Complaint Filed</dt><dd>May 28, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-00659&type=r">CourtListener RECAP -&gt;</a></span></dd>
+          <dt>Answer Deadline</dt><dd>~June 18, 2026 (21 days, federal rule) — defense counsel not yet appeared</dd>
+          <dt>SMS Program Status</dt><dd>Active — Attentive shortcode 72829, last alleged sends Feb–Mar 2026</dd>
+          <dt>M&amp;A History</dt><dd>Ch. 11 (2018) → Sun Holdings (2019). Post-bankruptcy cost discipline = compliance under-resourced.</dd>
+          <dt>Seasonal Trigger</dt><dd>QSR promotional windows (Taco Tuesday, St. Patrick's Day, Cinco de Mayo) — high-frequency blast periods stack quiet-hours risk.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Sun Holdings</strong></td>
+            <td>Parent (acquired 2019) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Taco_Bueno">Wikipedia -&gt;</a></span></td>
+            <td>Multi-brand franchise (800+ locations)</td>
+            <td>Enterprise scrub across all franchised brands; centralized marketing risk</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Attentive Mobile</strong></td>
+            <td>SMS vendor (shortcode 72829)</td>
+            <td>MarTech SaaS</td>
+            <td>Discovery target — consent logs, opt-in flow, time-zone defaults</td>
+            <td><span class="pill pill--info">Medium (referral)</span></td>
+          </tr>
+          <tr>
+            <td><strong>MyEmma (Emma)</strong></td>
+            <td>Email marketing vendor</td>
+            <td>MarTech SaaS</td>
+            <td>Parallel email-channel consent risk</td>
+            <td><span class="pill pill--gap">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA complaint against Taco Bueno of record — but plaintiff's firm is on an eight-case, three-circuit filing spree.</h2>
+      <p class="section-lede">CourtListener returns zero prior TCPA cases against Taco Bueno; the defendant's litigation history is dominated by ADA, employment, and the 2018 Chapter 11. The pressure comes from the plaintiff's-side firm — PLG Damage Attorneys is a property-damage practice that pivoted into volume TCPA work in 2026.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Wilson v. Taco Bueno Restaurants, L.P.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>4:26-cv-00659-O <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-00659&type=r">RECAP -&gt;</a></span></dd>
+            <dt>Court</dt><dd>U.S. District Court, N.D. Tex. (Fort Worth Division)</dd>
+            <dt>Filed</dt><dd>May 28, 2026</dd>
+            <dt>Judge</dt><dd>Reed Charles O'Connor (Article III; senior judge; no TCPA-specific tendency identified)</dd>
+            <dt>Plaintiff</dt><dd>Karim Wilson — Tarrant County, TX</dd>
+            <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh · PLG Damage Attorneys (TX Bar #24144674)</dd>
+            <dt>Class</dt><dd>Putative Rule 23 — "several thousand"; ≥ 50 alleged numerosity</dd>
+            <dt>Theory</dt><dd>Quiet-hours violation (47 CFR § 64.1200(c)(1)) — 4 texts pled at 7:00 a.m. local</dd>
+            <dt>Channels</dt><dd>SMS only (shortcode 72829, Attentive)</dd>
+            <dt>Damages Sought</dt><dd>$500 negligent / $1,500 willful per text + injunctive relief + costs</dd>
+            <dt>Named Exposure</dt><dd>$2,000–$6,000 (4 × $500–$1,500)</dd>
+            <dt>Class Exposure</dt><dd>$1.5M+ floor at "several thousand" × $500; trebled $4.5M+</dd>
+            <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm Address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027 <span class="src-tag"><a href="https://plglawyersfl.com">plglawyersfl.com -&gt;</a></span></dd>
+            <dt>Firm Phone</dt><dd>(305) 506-4746</dd>
+            <dt>Firm Email</dt><dd>info@plgdamage.com / vv@plglawyersfl.com</dd>
+            <dt>Website</dt><dd>plglawyersfl.com</dd>
+            <dt>TX Bar #</dt><dd>24144674 <span class="pill pill--warn">FL firm filing in TX</span></dd>
+            <dt>Address of Record</dt><dd><span class="pill pill--warn">Mismatch — FL firm address, TX bar admission, TX federal venue</span></dd>
+            <dt>Discipline</dt><dd>Unknown — TX Bar directory fetch failed</dd>
+            <dt>Practice Focus</dt><dd>Primary: property damage / first-party insurance. Secondary: emerging consumer-protection / TCPA practice <span class="src-tag"><a href="https://plglawyersfl.com/attorneys">PLG attorneys -&gt;</a></span></dd>
+            <dt>TCPA Footprint</dt><dd>8 federal TCPA complaints filed in past ~30 days (C.D. Cal., M.D. Fla., N.D. Tex.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>TCPAWorld Rank</dt><dd>Not on Czar Troutman's radar — zero hits <span class="src-tag"><a href="https://tcpaworld.com/?s=Vinit+Venkatesh">TCPAWorld -&gt;</a></span></dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--warn">Volume filer · New TCPA pivot · No published settlements</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">PLG / Venkatesh Quiet-Hours Template — vertical-agnostic, screenshot-driven</h3>
+      <div class="card-body">
+        <p>PLG Damage Attorneys' 2026 TCPA pivot is high-velocity and intentionally vertical-agnostic. In the last 30 days the firm has filed against fintech (Payactiv), mortgage (Rocket Mortgage), pharmacy (Rite Aid), DTC apparel (Quince / Last Brand), consumer software (Guardio), health/wellness (Refills Health, Xercize Studio), consumer services (Yesvideo), and now QSR (Taco Bueno) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage+Attorneys%22&type=r">CourtListener -&gt;</a></span>.</p>
+        <p style="margin-top:10px;">The template is consistent: a single named plaintiff, 2–4 screenshot exhibits, a 47 CFR § 64.1200(c)(1) quiet-hours count, a Rule 23 putative class of "several thousand," and a prayer for $500/$1,500 statutory damages plus injunction. No ATDS pleading is required, no consent-revocation history is required, and the proof is on the face of the screenshot. It is a forum-shopping, screenshot-driven volume strategy.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 16px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Wilson v. Taco Bueno Restaurants, L.P.</strong></td>
+            <td>4:26-cv-00659-O</td>
+            <td>2026-05-28</td>
+            <td><span class="pill pill--red">Active · 21-day clock</span></td>
+            <td>TCPA Quiet Hours (this case)</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Rite Aid Corporation</td>
+            <td>2:26-cv-04436 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage, LLC</td>
+            <td>2:26-cv-05599 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Ortiz v. Payactiv, Inc.</td>
+            <td>2:26-cv-01460 (M.D. Fla.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Rios v. Last Brand, Inc. dba Quince</td>
+            <td>5:26-cv-02684 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio LLC</td>
+            <td>2:26-cv-05313 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Mendez v. Refills Health, LLC</td>
+            <td>2:26-cv-04569 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo, Inc.</td>
+            <td>8:26-cv-01491 (M.D. Fla.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Fasheh v. The Xercize Studio, LLC</td>
+            <td>8:26-cv-01231 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (PLG/Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>In re Taco Bueno Restaurants, Inc. (Ch. 11)</td>
+            <td>18-33679 (Bankr. N.D. Tex.)</td>
+            <td>2018</td>
+            <td><span class="pill pill--ok">Closed · Reorganized under Sun Holdings</span></td>
+            <td>Bankruptcy</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Open Intel Gaps — Close Before First Dial</div>
+      <h3 class="card-title">Unknowns the rep should resolve</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="margin-top:10px;">
+          <li style="color:#E0E0E0; border-color:#393939;">Plaintiff's 10-digit recipient phone — not pled, no litigator-list scrub possible (pull PACER #1 or wait for Rule 26 disclosures)</li>
+          <li style="color:#E0E0E0; border-color:#393939;">Defense counsel identity — no appearance yet; answer deadline ~June 18, 2026</li>
+          <li style="color:#E0E0E0; border-color:#393939;">Texas SOS / Bizapedia entity record — blocked by CAPTCHA / paywall; registered agent and officer slate not independently verified</li>
+          <li style="color:#E0E0E0; border-color:#393939;">Vinit Venkatesh TX Bar status &amp; discipline history — directory fetch failed; treat as unknown</li>
+          <li style="color:#E0E0E0; border-color:#393939;">Attentive subscriber count and consent-flow logs — not public; will surface via discovery only</li>
+          <li style="color:#E0E0E0; border-color:#393939;">Compliance officer / GC identity at Taco Bueno — not published; CEO (Omar Janjua) is the highest confirmable contact</li>
+          <li style="color:#E0E0E0; border-color:#393939;">Whether Sun Holdings runs centralized marketing across its brand portfolio (cross-sell sizing)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open at the CEO. No published GC. Use the email pattern, route through main line, push to Sun Holdings if Janjua deflects.</h2>
+      <p class="section-lede">Taco Bueno does not publish a leadership page, an org chart, or a GC identity. The CEO is Omar Janjua (per third-party sources). Email pattern is inferred as <code style="background:var(--gray-10); padding:2px 6px; font-family:var(--font-mono);">{first.last}@tacobueno.com</code>. Main inbound number is 1-800-440-0778. Every email below is PATTERN-confidence — verify before sending.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Omar Janjua</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Chief Executive Officer, Taco Bueno Restaurants. Highest-priority decision-maker; absent a published GC, route compliance escalations here. <span class="src-tag"><a href="https://www.signalhire.com/companies/taco-bueno-restaurants">SignalHire -&gt;</a></span></td>
+            <td>1-800-440-0778 <span class="pill pill--gap">main line</span></td>
+            <td>omar.janjua@tacobueno.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Oscar Cruz</strong><br><span class="pill pill--dark">Director</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Director, Taco Bueno (function not specified in source). Possible operations or marketing director — confirm on first call. <span class="src-tag"><a href="https://www.linkedin.com/company/taco-bueno-restaurants">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>oscar.cruz@tacobueno.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Araceli Perez</strong><br><span class="pill pill--dark">Area Director</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Area Director (AD), multi-unit operations. Field-ops contact; useful for escalation routing. <span class="src-tag"><a href="https://www.linkedin.com/company/taco-bueno-restaurants">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>araceli.perez@tacobueno.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Roshanda Brown</strong><br><span class="pill pill--dark">Employee</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Listed on company LinkedIn page; title not surfaced (LinkedIn login-gated). <span class="src-tag"><a href="https://www.linkedin.com/company/taco-bueno-restaurants">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>roshanda.brown@tacobueno.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/roshanda-brown-b030941b">profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Pike</strong><br><span class="pill pill--dark">Employee</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Listed on company LinkedIn page; title not surfaced. <span class="src-tag"><a href="https://www.linkedin.com/company/taco-bueno-restaurants">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>michael.pike@tacobueno.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-pike-62433721">profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Dan Slay</strong><br><span class="pill pill--dark">Employee</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Listed on company LinkedIn page; title not surfaced. <span class="src-tag"><a href="https://www.linkedin.com/company/taco-bueno-restaurants">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>dan.slay@tacobueno.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/dan-slay-85290b23">profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No public GC identity. Recommend routing legal/compliance escalations through CEO Janjua or via Sun Holdings parent.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Main Inbound</strong><br><span class="pill pill--dark">Switchboard</span></td>
+            <td>Company main line — published on tacobueno.com/contact <span class="src-tag"><a href="https://tacobueno.com/contact">tacobueno.com -&gt;</a></span></td>
+            <td>1-800-440-0778 <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px; padding:16px 20px; background:var(--info-bg); border-left:4px solid var(--info);">
+      <div style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--info); font-weight:600; margin-bottom:6px;">Email Pattern (Inferred)</div>
+      <div style="font-family:var(--font-mono); font-size:16px; font-weight:600;">{first.last}@tacobueno.com</div>
+      <div style="font-size:13px; color:var(--fg-2); margin-top:4px;">Inferred from LinkedIn name listings and SignalHire indexing — verify with a low-risk send before mass outreach. No verified samples available.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The 21-day answer window closes ~June 18.</h2>
+      <p class="section-lede">The defendant has not appeared, the plaintiff's firm is on a filing spree, and Taco Bueno's SMS program is still live on Attentive. The fastest path to "yes" is a CEO-level call backed by the screenshot evidence and the missing-terms-page evidence.</p>
+    </div>
+
+    <div style="background:var(--bg-surface); border:1px solid var(--border-1); padding:8px 24px;">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Pull PACER ECF #1 (~$1.20)</h4>
+          <p>Grab the full complaint and any unredacted exhibits before calling. Look for plaintiff's recipient phone number in the screenshot metadata or any attached opt-in record. If recovered, run a litigator-list scrub immediately. <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-00659&type=r">RECAP -&gt;</a></span></p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1 · Call the CEO line</h4>
+          <p>Route through 1-800-440-0778 and ask for Omar Janjua's office (or whoever currently owns marketing/legal). Lead with the case caption — "We saw the Wilson complaint filed Tuesday" — and pivot to the broken SMS terms pages as proof the rep already knows the file better than internal counsel does. Goal: 15-minute call this week with whoever owns the Attentive account.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 1–3 · Parallel email to CEO + Directors</h4>
+          <p>Send {first.last}@tacobueno.com pattern email to Omar Janjua, Oscar Cruz, and Araceli Perez. Subject line referencing the Wilson docket. Attach a 1-page compliance-gap brief naming the four 404'd disclosure URLs. Patterns are unverified — start with one test send and watch for bounces.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 3–7 · LinkedIn touch on warm names</h4>
+          <p>InMail Roshanda Brown, Michael Pike, Dan Slay — they're confirmable on the company LinkedIn page. Goal isn't sale, it's GC/CCO identification. Ask "Who owns SMS/Marketing compliance over there?"</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 7–14 · Sun Holdings parent escalation</h4>
+          <p>If Taco Bueno deflects, route up to Sun Holdings. The parent operates 800+ franchise locations across multiple brands — the compliance retrofit conversation is bigger than one chain. Frame it as enterprise scrub, not single-brand.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Day 14–21 · Pre-answer urgency push</h4>
+          <p>Federal answer deadline lands ~June 18. Last sales window before defense counsel appears and the conversation routes through outside lawyers. Emphasize that mid-stream scrub remediation is admissible mitigation evidence at class-cert.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Trigger Conditions</h3>
+      <ul class="clean tight">
+        <li><strong>Defense counsel appears:</strong> Re-route messaging through outside counsel; shift pitch from prevention to mitigation/class-cert-defense.</li>
+        <li><strong>Plaintiff amends or adds counts:</strong> Re-pull complaint and resize exposure. Watch for Internal DNC, ATDS, or reassigned-number add-ons.</li>
+        <li><strong>Second TCPA case filed vs. Taco Bueno or Sun Holdings:</strong> Litigation heat flips from "cold" to "hot" — accelerate enterprise-scrub pitch.</li>
+        <li><strong>Attentive subpoenaed:</strong> Discovery is live. Pitch consent-log defensibility and bulk recipient scrub as discovery-protection.</li>
+        <li><strong>Plaintiff phone surfaces in Rule 26 disclosures:</strong> Run Blacklist litigator-list lookup immediately; if MATCH, this becomes the primary close.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 18</span>
+      <span class="pill pill--warn">VOLUME-FILER PLAINTIFF · 8 CASES IN 30 DAYS</span>
+      <span class="pill pill--info">CROSS-SELL: SUN HOLDINGS PARENT</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
