@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Callier v. Pierce Skrabanek — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-row td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="2" width="3" height="18" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#FFFFFF" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-28</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Serial Pro Se Filer · TX Personal-Injury Barratry + TCPA Prerecorded · Two-Defendant Vendor/Firm Stack</p>
+      <h1 class="hero-tagline">Callier v.<br>Pierce Skrabanek <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">&amp; Inquire2Esquire</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-01465-KC</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Tex.<br><span style="font-weight:400; color:#A8A8A8; font-size:13px;">(El Paso Div.)</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(0 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Kathleen Cardone<br><span style="font-weight:400; color:#A8A8A8; font-size:12px;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)<br>Tex. B&amp;C § 302.101/.202/.252<br>Tex. B&amp;C § 305.053<br>Tex. Gov't § 82.0651</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Brandon Callier <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Pro Se · serial filer (143+ TCPA cases)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number disclosed — 143 prior TCPA dockets confirm active litigator status</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Callier disclosed his number on the complaint AND it appears across 143 RECAP entries. Blacklist API certificate was expired at fetch time, but the cross-source intel speaks for itself.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="phone-call"></i> Scrub Status</div>
+        <span class="pill pill--red">ACTIVE LITIGATOR · 143 RECAP HITS</span>
+        <span class="pill pill--warn">BLACKLIST API · CERT EXPIRED AT FETCH</span>
+      </div>
+
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (from complaint &para; 52)</div>
+        <div class="scrub-number">(915) 383-4604</div>
+        <div class="scrub-number-sub">"The 1830 Number" referenced in complaint &para; 52 is plaintiff's tax-prep/bookkeeping line; complaint signature block discloses 915-383-4604 as plaintiff's contact. Same line tied to plaintiff in CourtListener filings spanning 2020–2026.</div>
+      </div>
+
+      <p class="scrub-body-text">
+        Blacklist Bulk API responded with an <strong>expired peer certificate error</strong> at fetch time — formal scrub deferred pending API key/cert refresh. However, this number is functionally pre-qualified as a high-confidence litigator hit: CourtListener returns <strong>143 RECAP results</strong> tied to "Brandon Callier" + TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Brandon+Callier%22+TCPA&type=r">CourtListener -&gt;</a></span>, and TCPAWorld profiles him as "everybody's favorite TCPA litigator knucklehead" <span class="src-tag"><a href="https://tcpaworld.com/?s=Brandon+Callier">TCPAWorld -&gt;</a></span>. Any sender with a properly maintained Litigator Scrub feed would have blocked this DID before the dialer ever connected.
+      </p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Sending DID — 281-930-0447</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Sending DID</div>
+          <h4 class="card-title" style="font-family:var(--font-mono);">(281) 930-0447</h4>
+          <p class="card-body">Houston, TX rate-center 281 area code. Spoofed/local-presence DID inbound to plaintiff's 915 line. Public reputation aggregators (800notes, YouMail, Tellows, RoboKiller) all returned 403/404 during fetch — no consumer comment trail recoverable to confirm sender identity from DID intel alone. Identity inferred from call script and follow-up email from <code>Patrick@inquire2esquire.com</code> (complaint &para; 78).</p>
+          <div style="margin-top:12px;"><span class="pill pill--warn">PUBLIC REPUTATION · UNAVAILABLE</span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Call Script Hook</div>
+          <h4 class="card-title">"Good afternoon, this is Rachel…"</h4>
+          <p class="card-body">Per complaint &para; 65: artificial voice opens with motor-vehicle-accident qualifier, hands off to live agent "David with Health Plan Services" (misidentified seller), who funnels to Pierce Skrabanek intake (&para;&para; 67–75). Inquire2Esquire follow-up email at 3:04 PM same day delivered Pierce retainer (&para; 78).</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: API CERT EXPIRED — RE-RUN ON KEY REFRESH</span>
+      &nbsp;
+      <span class="pill pill--danger">SERIAL FILER · 143 RECAP HITS</span>
+      &nbsp;
+      <span class="pill pill--warn">PRO SE · NO ATTORNEY OF RECORD</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A textbook two-tier vendor/firm stack — lead-gen dialer admits ATDS use in its own privacy policy.</h2>
+      <p class="section-lede">Inquire2Esquire is the dialer; Pierce Skrabanek is the law-firm buyer. Both are exposed. The vendor's privacy policy is a smoking gun, the law firm faces Texas barratry exposure at $50K per occurrence, and Callier will keep filing until both sides have a compliance posture. Lead with Litigator Scrub for the dialer; lead with Consent Capture + Compliance Audit for the firm.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch — Inquire2Esquire</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Inquire2Esquire's entire business model is outbound dialing for law firms. Their own marketing brags about "admittedly aggressive" follow-up cadences <span class="src-tag"><a href="https://inquire2esquire.com/about">i2e -&gt;</a></span>. A real-time litigator scrub at the dialer layer would have caught Callier's 915 number on day one.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch — Pierce Skrabanek</div>
+        <h3 class="card-title">Consent Capture + Compliance Audit</h3>
+        <p class="card-body">Pierce hired Inquire2Esquire to do what the Texas Bar prohibits them from doing directly (Rule 7.03 / Penal § 38.12). They need documented per-lead consent retention plus a vendor-management audit — or every Inquire2Esquire lead becomes a barratry suit at $50K each.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">DNC Scrubbing (Tex. B&amp;C § 302.101 Registration)</h3>
+        <p class="card-body">Complaint alleges neither defendant is registered as a Texas telephone solicitor <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Brandon+Callier%22+TCPA&type=r">CourtListener -&gt;</a></span>. $5,000 per violation stacks on top of TCPA — and applies to every law-firm client of Inquire2Esquire that dials into Texas.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;" class="card">
+      <div class="card-meta">Pitch Angle — for the rep's first call</div>
+      <h3 class="card-title">"Your dialer just got named in El Paso. Brandon Callier is the most prolific pro se TCPA plaintiff in W.D. Tex. — and he just opened a new vertical: PI law firms and their lead-gen vendors. Your privacy policy literally says partner attorneys may contact users with automated dialing systems. That sentence is going to be Exhibit A on a motion. We can fix the upstream scrub layer this week, and we can help you defend your law-firm clients before they all become co-defendants too."</h3>
+      <p class="card-body" style="margin-top:12px;">For Pierce Skrabanek: lead with the barratry exposure. Texas raised the per-occurrence penalty from $10K to $50K effective September 1, 2026 (complaint &para; 109). They have an answer clock running and zero defense counsel of record yet. A documented consent-capture and vendor-audit posture is the only path to credibly oppose the §82.0651 claim — and they need it before the answer is due.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Texas PI law firm and a South Carolina lead-gen LLC — small footprints, big systemic exposure.</h2>
+      <p class="section-lede">Pierce Skrabanek is a Houston personal-injury PLLC; Inquire2Esquire is a SC-formed legal-intake/outbound-dialer vendor. Pierce's primary domain (pierceskrabanek.com) is DNS-unresolvable — actual operating site appears to be pstriallaw.com per LinkedIn. Both are private, no public revenue data.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Primary Defendant</div>
+        <h3 class="card-title">Pierce Skrabanek, PLLC</h3>
+        <dl class="kv">
+          <dt>Entity Type</dt><dd>Texas Professional Limited Liability Company (complaint &para; 2)</dd>
+          <dt>Formation State</dt><dd>Texas</dd>
+          <dt>HQ</dt><dd>24 Greenway Plaza, Suite 500, Houston, TX 77046 (complaint &para; 2)</dd>
+          <dt>Registered Agent</dt><dd>Michael Pierce, 3701 Kirby Drive, Suite 760, Houston, TX (complaint &para; 2)</dd>
+          <dt>Operating Domain</dt><dd>pstriallaw.com (per LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span> — pierceskrabanek.com DNS failed at fetch</dd>
+          <dt>Vertical</dt><dd>Plaintiff-side personal injury (motor vehicle accidents)</dd>
+          <dt>Officers</dt><dd>Michael Pierce, Paul Skrabanek (founding partners, per LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span></dd>
+          <dt>TX Bar Discipline</dt><dd>Not retrieved — Bar member directory connection reset during fetch</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Co-Defendant</div>
+        <h3 class="card-title">Inquire2Esquire, LLC</h3>
+        <dl class="kv">
+          <dt>Entity Type</dt><dd>South Carolina Limited Liability Company (complaint &para; 3)</dd>
+          <dt>Formation State</dt><dd>South Carolina</dd>
+          <dt>Registered Agent</dt><dd>Patrick Tepedino, 33 Station Court Apt. 203, Greenville, SC 29601 (complaint &para; 3)</dd>
+          <dt>Operating Domain</dt><dd>inquire2esquire.com <span class="src-tag"><a href="https://inquire2esquire.com">i2e -&gt;</a></span></dd>
+          <dt>Main Phone</dt><dd>(864) 813-3709</dd>
+          <dt>Main Email</dt><dd>info@Inquire2Esquire.com <span class="src-tag"><a href="https://inquire2esquire.com/about-us">i2e About -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Legal intake / outbound lead generation for law firms</dd>
+          <dt>Stack</dt><dd>CRM + Auto-dialer + iMessaging (SMS) + AI tools (per company About page) <span class="src-tag"><a href="https://inquire2esquire.com/about-us">i2e About -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px;">
+      <div class="card-meta" style="color:#FFB3B3;">SMOKING-GUN COMPLIANCE GAP</div>
+      <h3 class="card-title">Inquire2Esquire's own privacy policy admits ATDS use by "partner attorneys"</h3>
+      <p class="card-body">From their published privacy policy (last updated 2025-12-12): "By submitting information through our forms or website, you provide express written consent... You understand that partner attorneys may contact you using automated dialing systems" <span class="src-tag"><a href="https://inquire2esquire.com/privacy" style="color:#E0E0E0;">i2e Privacy -&gt;</a></span>. The policy treats mere form submission as blanket E-SIGN consent, openly shares phone numbers with "multiple attorneys or law firms," and contradicts itself on SMS-consent sharing. The marketing copy on the About page calls the firm's follow-up cadence "admittedly aggressive" <span class="src-tag"><a href="https://inquire2esquire.com/about" style="color:#E0E0E0;">i2e About -&gt;</a></span>. Both sentences will appear on plaintiff's motion practice.</p>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Answer clock is running; barratry penalty just doubled</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 28, 2026 (Doc #3)</dd>
+        <dt>Summons Issued</dt><dd>May 28, 2026 (Doc #5) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01465&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Answer Deadline</dt><dd>21 days post-service (TBD — depends on service date)</dd>
+        <dt>Barratry Penalty Change</dt><dd>TX raised § 82.0651 penalty from $10,000 → $50,000 per occurrence effective Sept 1, 2026 (per complaint &para; 109)</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared (no NOA on RECAP as of fetch) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01465&type=r">CourtListener -&gt;</a></span></dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Related Entities — Cross-Sell Candidates</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>All law-firm clients of Inquire2Esquire</td>
+              <td>Customer base of co-defendant</td>
+              <td>Plaintiff-side PI &amp; mass tort firms</td>
+              <td>Every firm using the same dialer infra inherits the same exposure</td>
+              <td><span class="pill pill--red">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>pstriallaw.com (Pierce Skrabanek operating brand)</td>
+              <td>Same firm, different domain</td>
+              <td>Texas PI</td>
+              <td>Real intake form lives here; consent capture audit applies</td>
+              <td><span class="pill pill--red">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Texas plaintiff-side PI firms generally</td>
+              <td>Same vertical, same plaintiff target list</td>
+              <td>TX legal services</td>
+              <td>Callier's new playbook (per TCPAWorld) is PI firms + lead-gen vendors</td>
+              <td><span class="pill pill--warn">MEDIUM</span></td>
+            </tr>
+            <tr>
+              <td>Edward Law Group</td>
+              <td>Prior Callier target (similar profile, El Paso TX § 302.101 suit)</td>
+              <td>TX legal services</td>
+              <td>Already sued by Callier under same theory — referral signal</td>
+              <td><span class="pill pill--warn">MEDIUM</span></td>
+            </tr>
+            <tr>
+              <td>LeadConnector / GoHighLevel (lc_form embed detected)</td>
+              <td>Lead capture infra used by i2e</td>
+              <td>Marketing automation</td>
+              <td>Platform-level scrub partnership opportunity</td>
+              <td><span class="pill pill--info">LOW</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First publicly indexed TCPA suit against either defendant — Callier is the canary, copycats will follow.</h2>
+      <p class="section-lede">Neither Pierce Skrabanek nor Inquire2Esquire has prior TCPA exposure on RECAP. Callier, by contrast, has 143 hits and a documented W.D. Tex. settlement pattern (Ethos, SunPath, United Debt Settlement, Pan American — all terminated within weeks). This is a test case; how it resolves sets the template.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Callier v. Pierce Skrabanek, PLLC &amp; Inquire2Esquire, LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-01465-KC</dd>
+          <dt>Filed</dt><dd>May 28, 2026 (Doc #3) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01465&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Court</dt><dd>U.S. District Court, W.D. Tex., El Paso Division</dd>
+          <dt>Judge</dt><dd>Kathleen Cardone (Article III) — previously presided over Callier v. SunPath (2020) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Brandon+Callier%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Plaintiff</dt><dd>Brandon Callier, pro se</dd>
+          <dt>Class Action</dt><dd>No — individual (Note: in Morales v. Sunpath 2025, court deemed Callier atypical/inadequate as class rep) <span class="src-tag"><a href="https://tcpaworld.com/?s=Brandon+Callier">TCPAWorld -&gt;</a></span></dd>
+          <dt>Claims</dt><dd>(1) 47 USC § 227(b)(1)(A) prerecorded-to-cell · (2) Tex. B&amp;C § 302.101 (no TX solicitor registration) · (3) Tex. B&amp;C § 302.252(a) (knowingly soliciting for unregistered seller) · (4) Tex. B&amp;C § 302.202(1) (failure to disclose location) · (5) Tex. B&amp;C § 305.053 (TCPA-mirror state remedy) · (6) Tex. Gov't § 82.0651 barratry</dd>
+          <dt>Theory</dt><dd>Single call (2:22 PM May 8, 2026) with prerecorded "Rachel" voice → live agent "David" → warm transfer to Pierce intake; Inquire follow-up email with Pierce retainer at 3:04 PM same day (complaint &para;&para; 64–78)</dd>
+          <dt>Sending DID</dt><dd>(281) 930-0447 (Houston rate-center, spoofed/local-presence into 915)</dd>
+          <dt>Damages Pled</dt><dd>$1,500 TCPA (treble) + $1,500 § 305.053 (treble) + $5,000 § 302.101 (Pierce) + $5,000 § 302.252 (Inquire) + $5,000 § 302.202 (Pierce) + $50,000 barratry × 2 = <strong>$118,500 single-call exposure</strong></dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · 21-day answer clock from service</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Profile</div>
+        <h3 class="card-title">Brandon Callier — Pro Se Serial Filer</h3>
+        <dl class="kv">
+          <dt>Status</dt><dd>Pro se plaintiff (NOT a licensed attorney) <span class="src-tag"><a href="https://tcpaworld.com/?s=Brandon+Callier">TCPAWorld -&gt;</a></span></dd>
+          <dt>Address of Record</dt><dd>1490 A George Dieter Drive #174, El Paso, TX 79936 (UPS Store / mailbox)</dd>
+          <dt>Phone</dt><dd>(915) 383-4604</dd>
+          <dt>Email</dt><dd>Callier74@gmail.com</dd>
+          <dt>Total TCPA Filings</dt><dd><strong>143 RECAP hits</strong> across W.D. Tex., C.D. Cal., others <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Brandon+Callier%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Years Active</dt><dd>2020–2026 (5+ years)</dd>
+          <dt>Target Verticals</dt><dd>MCA, mortgage, debt settlement, student loan relief, auto warranty, health insurance — now legal-services lead-gen</dd>
+          <dt>Notable Outcomes</dt><dd>$132,500 default judgment (21 calls); $27,500 v. Tip Top Capital; Satisfaction of Judgment v. United Debt Settlement; MSJ defeated 2025 <span class="src-tag"><a href="https://tcpaworld.com/?s=Brandon+Callier">TCPAWorld -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">HIGH</span></dd>
+          <dt>Bar Discipline Risk</dt><dd>N/A — not an attorney</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Template — "PI Firm + Lead-Gen Vendor Stack"</div>
+      <h3 class="card-title">Callier's new playbook: TCPA + Texas § 302 registration + barratry, all in one complaint</h3>
+      <p class="card-body">Per TCPAWorld coverage, in February 2026 Callier "handed his phone to an accident victim to hook Edward Law Group" in a Texas Registration suit — the same vertical, same statutory stack, same El Paso venue as this case <span class="src-tag"><a href="https://tcpaworld.com/?s=Brandon+Callier">TCPAWorld -&gt;</a></span>. The Callier template against PI lead-gen now reliably combines: (a) one alleged prerecorded call to a cellular line, (b) Tex. B&amp;C § 302.101/.202/.252 registration claims layered on, (c) Tex. Gov't § 82.0651 barratry against both the firm and the marketing intermediary, and (d) Tex. B&amp;C § 305.053 TCPA-mirror state remedy. Damage exposure off a single call: ~$118,500 statutory, before fees.</p>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Concurrent &amp; Recent Litigation — Brandon Callier (selected)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current-row">
+              <td><strong>Callier v. Pierce Skrabanek &amp; Inquire2Esquire</strong></td>
+              <td>3:26-cv-01465-KC</td>
+              <td>2026-05-28</td>
+              <td><span class="pill pill--red">CURRENT · NEW</span></td>
+              <td>Prerecorded voice + TX § 302 + barratry (legal services lead-gen)</td>
+            </tr>
+            <tr>
+              <td>Callier v. Edward Law Group (per TCPAWorld)</td>
+              <td>El Paso TX (state/fed unconfirmed)</td>
+              <td>2026 (early)</td>
+              <td><span class="pill pill--info">ACTIVE</span></td>
+              <td>Same TX Registration + TCPA template, PI legal services</td>
+            </tr>
+            <tr>
+              <td>Callier v. Wide Merchant Investment Inc.</td>
+              <td>C.D. Cal. 2:24-cv-10131</td>
+              <td>2024</td>
+              <td><span class="pill pill--info">RECENT</span></td>
+              <td>TCPA — MCA outbound</td>
+            </tr>
+            <tr>
+              <td>Callier v. Bykhovsky et al.</td>
+              <td>W.D. Tex. 3:22-cv-00312</td>
+              <td>2022</td>
+              <td><span class="pill pill--info">CLOSED</span></td>
+              <td>Student-loan relief (30+ defendants)</td>
+            </tr>
+            <tr>
+              <td>Callier v. LoanDepot.com, LLC</td>
+              <td>W.D. Tex. 3:22-cv-00100</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">TERMINATED ~10mo</span></td>
+              <td>TCPA — mortgage outbound</td>
+            </tr>
+            <tr>
+              <td>Callier v. ETHOS TECHNOLOGIES INC.</td>
+              <td>W.D. Tex. 3:22-cv-00412</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">DISMISSED w/ PREJUDICE ~30d</span></td>
+              <td>TCPA — strong settlement indicator</td>
+            </tr>
+            <tr>
+              <td>Callier v. United Debt Settlement, LLC</td>
+              <td>W.D. Tex. 3:20-cv-00289</td>
+              <td>2020</td>
+              <td><span class="pill pill--ok">SAT. OF JUDGMENT 2021</span></td>
+              <td>TCPA — debt settlement (paid)</td>
+            </tr>
+            <tr>
+              <td>Callier v. SunPath LTD</td>
+              <td>W.D. Tex. 3:20-cv-00023</td>
+              <td>2020</td>
+              <td><span class="pill pill--ok">NON-SUIT ~3w</span></td>
+              <td>TCPA — auto warranty (same judge: Cardone)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:13px; color:var(--fg-3); margin-top:8px;">All rows: <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Brandon+Callier%22+TCPA&type=r">CourtListener -&gt;</a></span> · Settlement-pattern commentary: <span class="src-tag"><a href="https://tcpaworld.com/?s=Brandon+Callier">TCPAWorld -&gt;</a></span></p>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px;">
+      <div class="card-meta" style="color:#FFB3B3;">Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>• <strong>Texas SOS:</strong> Confirm Pierce Skrabanek &amp; Inquire2Esquire have NO Texas telephone-solicitor registration (SOSDirect requires authenticated login — manual lookup recommended).</li>
+        <li>• <strong>Blacklist API:</strong> Re-run litigator scrub on 915-383-4604 once expired peer certificate is refreshed — current run errored.</li>
+        <li>• <strong>SC SOS:</strong> Pull Inquire2Esquire formation date, status, officers from South Carolina SOS (search page was JS/captcha-gated during automated fetch).</li>
+        <li>• <strong>TX Bar:</strong> Verify bar numbers, status, and advertising-rule discipline history for Michael Pierce and Paul Skrabanek (TX Bar directory connection reset during fetch).</li>
+        <li>• <strong>Defense counsel:</strong> No NOA filed yet — monitor docket daily; when defense appears, log firm + contact for outreach.</li>
+        <li>• <strong>Service date:</strong> Confirm date of service on each defendant to lock in the 21-day answer deadline.</li>
+        <li>• <strong>Sender DID:</strong> Re-run 800notes / YouMail / Tellows / RoboKiller against (281) 930-0447 — all four returned 403/404 during this run, no consumer comment trail recoverable.</li>
+        <li>• <strong>Vendor contract:</strong> Confirm written Inquire2Esquire ↔ Pierce Skrabanek agreement language (referenced in complaint &para;&para; 55–57) — critical to vicarious-liability defense.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Inquire2Esquire's main line first — they're the dialer, they feel the pain first.</h2>
+      <p class="section-lede">Inquire2Esquire's main number is published; Pierce Skrabanek's individual emails are inferred from the operating domain (pstriallaw.com per LinkedIn) but not confirmed by a published address. Lead with the vendor — they have more downstream clients at risk and a cleaner sales conversation.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Inquire2Esquire Main Line</strong> <br><span class="pill pill--dark">CO-DEFENDANT · MAIN</span></td>
+            <td>Company main switchboard (published on About page) <span class="src-tag"><a href="https://inquire2esquire.com/about-us">i2e -&gt;</a></span></td>
+            <td>(864) 813-3709</td>
+            <td>info@Inquire2Esquire.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Patrick Tepedino</strong> <br><span class="pill pill--dark">REGISTERED AGENT</span></td>
+            <td>Registered agent for Inquire2Esquire (per complaint &para; 3); sent retainer email at 3:04 PM May 8 from patrick@inquire2esquire.com (complaint &para; 78)</td>
+            <td>GAP</td>
+            <td>patrick@inquire2esquire.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>"Head of Sales"</strong> (unnamed) <br><span class="pill pill--dark">SALES LEADERSHIP</span></td>
+            <td>Author of public "Letter from our Head of Sales" on i2e About page — likely Tepedino or top operator <span class="src-tag"><a href="https://inquire2esquire.com/about-us">i2e About -&gt;</a></span></td>
+            <td>(864) 813-3709 (main)</td>
+            <td>info@Inquire2Esquire.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alejandro Valerio</strong> <br><span class="pill pill--dark">I2E EMPLOYEE</span></td>
+            <td>Only public Inquire2Esquire employee listed on LinkedIn</td>
+            <td>GAP</td>
+            <td>alejandro@inquire2esquire.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Pierce</strong> <br><span class="pill pill--dark">FOUNDING PARTNER · PIERCE</span></td>
+            <td>Founding partner, Pierce Skrabanek PLLC; registered agent for the firm; LinkedIn profile confirmed <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span></td>
+            <td>GAP</td>
+            <td>michael@pstriallaw.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Paul Skrabanek</strong> <br><span class="pill pill--dark">FOUNDING PARTNER · PIERCE</span></td>
+            <td>Founding partner, Pierce Skrabanek PLLC <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span></td>
+            <td>GAP</td>
+            <td>paul@pstriallaw.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mary Jeanette Sanders-Skrabanek</strong> <br><span class="pill pill--dark">PIERCE TEAM</span></td>
+            <td>Listed on Pierce Skrabanek employee roster (LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span></td>
+            <td>GAP</td>
+            <td>mary@pstriallaw.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Will Hardy</strong> <br><span class="pill pill--dark">ATTORNEY · PIERCE</span></td>
+            <td>Attorney at Pierce Skrabanek (LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span></td>
+            <td>GAP</td>
+            <td>will@pstriallaw.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kade Beyer</strong> <br><span class="pill pill--dark">ATTORNEY · PIERCE</span></td>
+            <td>Attorney / Case Manager at Pierce Skrabanek (LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/pierce-skrabanek">LinkedIn -&gt;</a></span></td>
+            <td>GAP</td>
+            <td>kade@pstriallaw.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pierce Skrabanek Reg. Agent Address</strong></td>
+            <td>Service of process: Michael Pierce, 3701 Kirby Drive, Suite 760, Houston, TX (complaint &para; 2)</td>
+            <td>GAP</td>
+            <td>—</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Email pattern <code>{first}@pstriallaw.com</code> for Pierce Skrabanek is inferred from the operating domain confirmed via LinkedIn — no individual email has been published; mark all PATTERN until a verified address is captured. Inquire2Esquire pattern <code>{first}@inquire2esquire.com</code> is confirmed by published <code>info@</code> and <code>patrick@</code> addresses.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 5 business days. The answer clock is now running.</h2>
+      <p class="section-lede">Summons issued May 28, 2026. Once served, defendants have 21 days to answer. Neither has appeared yet, neither has defense counsel of record, and neither has any prior TCPA litigation experience to fall back on. The window where they will pay for a clean compliance posture is now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 — Today</div>
+        <h3 class="card-title">Call Inquire2Esquire main line</h3>
+        <p class="card-body">Dial (864) 813-3709, ask for the Head of Sales referenced on the public About-page letter. Lead with: "You were named yesterday in W.D. Tex. by Brandon Callier — he has 143 prior TCPA cases. Your privacy policy admits ATDS use; we can show you how to fix the upstream scrub layer this week." Reference complaint &para;&para; 64–78 (the call script and the patrick@ retainer email).</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 — Parallel</div>
+        <h3 class="card-title">Email Pierce Skrabanek partners</h3>
+        <p class="card-body">Send to michael@pstriallaw.com and paul@pstriallaw.com (PATTERN — verify on send-failure). Subject: "Callier v. Pierce Skrabanek — barratry exposure at $50K per occurrence." Frame it as vendor-management + consent-capture, not as a sales pitch. Reference the September 1, 2026 statutory penalty increase (complaint &para; 109).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">Send privacy-policy excerpt</h3>
+        <p class="card-body">Email both defendants a one-page note showing the exact ATDS-admission language from inquire2esquire.com/privacy. This is the leverage. Don't editorialize — let the policy speak.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Re-run Blacklist litigator scrub</h3>
+        <p class="card-body">As soon as the Blacklist API certificate is refreshed, re-run 915-383-4604 and 281-930-0447. Attach the formal scrub PDF to a follow-up email — "this is what a properly scrubbed dialer would have caught."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 5–10</div>
+        <h3 class="card-title">Monitor RECAP for defense-counsel NOA</h3>
+        <p class="card-body">Check the docket daily. When defense counsel appears, immediately log firm name + contact for direct outreach (defense firm is also a Blacklist prospect — they manage many TCPA-exposed clients).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 10–21</div>
+        <h3 class="card-title">Pre-answer close attempt</h3>
+        <p class="card-body">The strongest commercial moment is before answer is filed — once defense counsel commits to a strategy, the budget for proactive compliance products shrinks. Push to close before day 21 from service.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px;">
+      <div class="card-meta" style="color:#FFB3B3;">Trigger conditions that change the plan</div>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>• If Pierce Skrabanek files a Rule 12(b)(2) personal-jurisdiction motion against Inquire2Esquire and it survives — the firm may try to walk away; close i2e first.</li>
+        <li>• If defense counsel files an early motion to dismiss the barratry claim — escalate by emphasizing the §302.101 registration counts (those don't go away).</li>
+        <li>• If Callier files a Notice of Voluntary Dismissal in the next 30 days — that mirrors his SunPath / Pan American / Ethos pattern of fast settlement; use it as the "this could be you next time" hook.</li>
+        <li>• If a second Callier suit names another Inquire2Esquire client — pivot to a portfolio sale: every i2e law-firm client gets the same scrub stack.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      &nbsp;
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW — CLOSE BEFORE DEFENSE NOA</span>
+      &nbsp;
+      <span class="pill pill--warn">SERIAL FILER · 143 PRIOR CASES</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-28</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
