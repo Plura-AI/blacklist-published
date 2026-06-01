@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blacklist Alliance — Homepage Optimization Workbook</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root{
+    --red:#A50100; --red-hover:#8a0100; --red-press:#6f0100;
+    --black:#000; --white:#fff;
+    --g00:#fff; --g05:#f6f6f6; --g10:#ededed; --g20:#dcdcdc; --g30:#c7c7c7;
+    --g40:#a8a8a8; --g50:#8a8a8a; --g60:#6b6b6b; --g70:#4f4f4f; --g80:#333; --g90:#1a1a1a; --g100:#000;
+    --ok:#2f6b3a; --ok-bg:#eaf3ec; --warn:#9a6b00; --warn-bg:#fbf3e2;
+    --info:#13315c; --info-bg:#e9eef6; --danger:var(--red); --danger-bg:#fbeaea;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;border-radius:0!important}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"General Sans",Arial,sans-serif;color:var(--g100);background:var(--g05);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-weight:700;letter-spacing:-.02em;line-height:1.08;margin:0}
+  p{margin:0 0 1em}
+  a{color:var(--red);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g60)}
+  .riskbar{width:56px;height:4px;background:var(--red);display:block;margin:0 0 18px}
+  .riskbar.center{margin-left:auto;margin-right:auto}
+
+  /* ---- top control bar ---- */
+  .topbar{position:sticky;top:0;z-index:50;background:#000;color:#fff;border-bottom:1px solid var(--g80)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
+  .brandmark{font-weight:700;letter-spacing:-.02em;font-size:18px;color:#fff;display:flex;align-items:center;gap:8px}
+  .brandmark b{color:var(--red)}
+  .toggle{display:flex;border:1px solid var(--g70)}
+  .toggle button{font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:11px 20px;background:transparent;color:var(--g40);border:0;cursor:pointer}
+  .toggle button.active{background:var(--red);color:#fff}
+  .topnote{font-size:12px;color:var(--g40);letter-spacing:.04em}
+
+  /* ---- review mode ---- */
+  .review section{padding:54px 0;border-bottom:1px solid var(--g20)}
+  .review .lead{background:#fff}
+  h2.sec{font-size:30px;margin-bottom:10px}
+  .sub{color:var(--g60);max-width:760px;margin-bottom:8px}
+  .callout{background:#fff;border:1px solid var(--g20);border-top:4px solid var(--red);padding:22px 24px;margin:22px 0}
+  .callout h3{font-size:16px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+  .callout.dark{background:#000;color:#fff;border-top-color:var(--red)}
+  .callout.dark .sub{color:var(--g30)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+  .panel{background:#fff;border:1px solid var(--g20);padding:0}
+  .panel .ph{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:9px 16px;border-bottom:1px solid var(--g20)}
+  .panel.cur .ph{background:var(--g10);color:var(--g60)}
+  .panel.rec .ph{background:var(--red);color:#fff}
+  .panel .pb{padding:16px 18px}
+  .panel .pb .k{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g50);margin:14px 0 3px}
+  .panel .pb .k:first-child{margin-top:0}
+  .hl{font-weight:700;font-size:21px;letter-spacing:-.02em;line-height:1.12}
+  .tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g60)}
+  .why{background:var(--info-bg);border-left:0;border-top:1px solid var(--g20);padding:12px 18px;font-size:14px;color:var(--g80)}
+  .why b{color:#000}
+  .why .kw{display:inline-block;background:#fff;border:1px solid var(--g30);padding:1px 7px;margin:2px 3px 0 0;font-size:12px;color:var(--g80);font-weight:500}
+
+  /* option cards */
+  .opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  @media(max-width:900px){.opts{grid-template-columns:1fr}}
+  .opt{background:#fff;border:1px solid var(--g20);padding:20px;position:relative}
+  .opt.best{border-color:var(--red);border-top:4px solid var(--red)}
+  .opt .badge{position:absolute;top:-1px;right:-1px;background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px}
+  .opt .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--g50);margin-bottom:10px}
+  .opt .txt{font-weight:700;font-size:19px;letter-spacing:-.02em;line-height:1.14;margin-bottom:12px}
+  .opt .rat{font-size:13px;color:var(--g70);line-height:1.5}
+  .opt .kws{margin-top:12px}
+  .opt .kws .kw{display:inline-block;background:var(--g05);border:1px solid var(--g20);padding:1px 7px;margin:2px 3px 0 0;font-size:11px;color:var(--g70)}
+
+  /* keyword table */
+  table{width:100%;border-collapse:collapse;background:#fff;font-size:14px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--g15,#e6e6e6)}
+  th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--g60);background:var(--g05);border-bottom:1px solid var(--g20)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px}
+  .pill.gap{background:var(--danger-bg);color:var(--red)}
+  .pill.partial{background:var(--warn-bg);color:var(--warn)}
+  .pill.ok{background:var(--ok-bg);color:var(--ok)}
+  .legend{font-size:13px;color:var(--g60);margin-top:10px}
+  .legend .pill{margin-right:6px}
+
+  ul.clean{margin:6px 0 0;padding-left:0;list-style:none}
+  ul.clean li{padding:8px 0 8px 26px;border-bottom:1px solid var(--g15,#e6e6e6);position:relative}
+  ul.clean li:before{content:"";position:absolute;left:0;top:15px;width:10px;height:2px;background:var(--red)}
+  .faqrow{background:#fff;border:1px solid var(--g20);padding:16px 18px;margin-bottom:10px}
+  .faqrow .q{font-weight:600;margin-bottom:6px}
+  .faqrow .a{color:var(--g70);font-size:14px}
+
+  /* flag box */
+  .flag{background:var(--warn-bg);border:1px solid #eccf8f;border-top:4px solid var(--warn);padding:18px 22px;margin-top:22px}
+  .flag h3{font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--warn);margin-bottom:8px}
+  .flag p{color:#5f4500;font-size:14px}
+
+  /* ---- preview mode (production page) ---- */
+  #preview{display:none}
+  .pv-hero{background:#000;color:#fff;padding:90px 0 84px;position:relative;overflow:hidden}
+  .pv-hero .tagline{font-size:14px;font-weight:600;letter-spacing:0;color:var(--g30);margin-bottom:18px}
+  .pv-hero h1{font-size:54px;line-height:1.04;max-width:920px;margin-bottom:20px}
+  .pv-hero h1 .accent{color:var(--red)}
+  .pv-hero .h2{font-size:19px;font-weight:400;color:var(--g30);max-width:720px;margin-bottom:30px;line-height:1.5}
+  .pv-hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-family:inherit;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:15px 26px;cursor:pointer;border:1px solid transparent;display:inline-block}
+  .btn.primary{background:var(--red);color:#fff}
+  .btn.primary:hover{background:var(--red-hover)}
+  .btn.ghost{background:transparent;color:#fff;border-color:var(--g70)}
+  .btn.ghost:hover{border-color:#fff}
+  .pv-proof{background:#000;color:var(--g40);border-top:1px solid var(--g80);padding:20px 0}
+  .pv-proof .wrap{display:flex;flex-wrap:wrap;gap:14px 36px;align-items:center;font-size:13px;letter-spacing:.04em}
+  .pv-proof b{color:#fff;font-weight:600}
+  .pv-proof .dot{color:var(--red)}
+
+  .pv-products{background:#fff;padding:72px 0}
+  .pv-products .head{text-align:center;margin-bottom:42px}
+  .pv-products h2{font-size:34px}
+  .pcards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:900px){.pcards{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.pcards{grid-template-columns:1fr}}
+  .pcard{border:1px solid var(--g20);padding:26px 22px;background:#fff}
+  .pcard .ic{color:var(--red);margin-bottom:14px}
+  .pcard h3{font-size:18px;margin-bottom:8px}
+  .pcard p{font-size:14px;color:var(--g60);margin:0}
+
+  .pv-sol{padding:0}
+  .solrow{padding:64px 0;border-bottom:1px solid var(--g20)}
+  .solrow:nth-child(even){background:var(--g05)}
+  .solrow .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:820px){.solrow .wrap{grid-template-columns:1fr;gap:24px}}
+  .solrow.flip .txtcol{order:2}
+  .solrow h3{font-size:26px;margin-bottom:6px}
+  .solrow .ksub{font-size:15px;font-weight:600;color:var(--red);margin-bottom:14px}
+  .solrow p{color:var(--g70);margin-bottom:18px}
+  .imgph{aspect-ratio:4/3;background:#111;color:var(--g50);display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--g20)}
+  .imgph.lt{background:var(--g10);color:var(--g50)}
+  .lrn{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:inline-flex;align-items:center;gap:6px}
+
+  .pv-why{background:#000;color:#fff;padding:72px 0}
+  .pv-why .head{text-align:center;margin-bottom:40px}
+  .pv-why h2{font-size:34px}
+  .pv-why .sub{color:var(--g30);margin:0 auto}
+  .whycards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.whycards{grid-template-columns:1fr}}
+  .whycard{border:1px solid var(--g80);padding:24px}
+  .whycard .ic{color:var(--red);margin-bottom:12px}
+  .whycard h3{font-size:17px;margin-bottom:8px}
+  .whycard p{font-size:14px;color:var(--g40);margin:0}
+
+  .pv-faq{background:#fff;padding:72px 0}
+  .pv-faq h2{font-size:34px;margin-bottom:30px}
+  .acc{border:1px solid var(--g20);margin-bottom:-1px;background:#fff}
+  .acc summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary .pl{color:var(--red);font-weight:700;font-size:20px;line-height:1}
+  .acc[open] summary .pl{transform:rotate(45deg)}
+  .acc .body{padding:0 20px 20px;color:var(--g70);font-size:15px}
+
+  .pv-cta{background:var(--red);color:#fff;padding:72px 0;text-align:center}
+  .pv-cta h2{font-size:38px;margin-bottom:8px}
+  .pv-cta .tg{font-size:15px;color:#ffd9d9;margin-bottom:24px}
+  .pv-cta .btn.primary{background:#000}
+  .pv-cta .btn.primary:hover{background:#1a1a1a}
+
+  .editnote{background:#fff;border:1px dashed var(--g30);padding:10px 16px;font-size:12px;color:var(--g60);margin:0 auto;max-width:var(--maxw)}
+  .footnote{padding:30px 0 60px;color:var(--g50);font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span><b>■</b> BLACKLIST<span style="font-weight:400">ALLIANCE</span></span></div>
+    <div class="toggle">
+      <button id="btnReview" class="active" onclick="setMode('review')">Review mode</button>
+      <button id="btnPreview" onclick="setMode('preview')">Preview mode</button>
+    </div>
+    <div class="topnote">Homepage optimization · built for quality score &amp; relevance</div>
+  </div>
+</div>
+
+<!-- ============================ REVIEW MODE ============================ -->
+<div id="review" class="review">
+
+  <section class="lead">
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <span class="eyebrow">Review mode — what's changing and why</span>
+      <h2 class="sec" style="margin-top:10px">Homepage rebuild for the campaigns that point here</h2>
+      <p class="sub">Every live search campaign except the blog/SKAG test drives to this one homepage: <b>Brand</b>, <b>General</b> (TCPA + DNC + litigator scrub), <b>Verticals</b> (Contact Centers, VoIP, Insurance, Digital Marketers, AI), and <b>Competitors</b> (DNC.com, Gryphon, PossibleNOW). With no dedicated landers, this page has to earn the Quality Score for all of them.</p>
+
+      <div class="callout">
+        <h3>The core problem</h3>
+        <p style="margin:0;color:var(--g70)">The current H1 — <b>"Risk less. Connect more."</b> — is a brand tagline with <b>zero keyword relevance</b>. Google's Quality Score rewards the landing page reflecting the search term in its visible headline and copy. Over all of 2026, <b>"tcpa" dominates impressions</b> while <b>DNC scrubbing drives the most non-brand clicks</b> (469), with <b>litigator scrub</b> and <b>STIR/SHAKEN</b> close behind — almost none of which appear above the fold today.</p>
+      </div>
+
+      <div class="callout dark">
+        <h3 style="color:#fff">The fix (and how we keep Seth's tagline)</h3>
+        <p class="sub" style="margin:0">Keep <b style="color:#fff">"risk less. connect more."</b> as the lowercase brand line — it stays on the page and can still carry the trademark. Put a <b style="color:#fff">keyword-rich H1 directly beneath it</b>. That's actually the brand's own signature pattern: lowercase tagline + a bigger headline. We get the trademark <em>and</em> the relevance. Below are the H1/H2 options, a block-by-block rewrite, the keyword gaps, and an FAQ section — then flip to Preview to see it built.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEYWORD REALITY -->
+  <section>
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">What people actually search (all of 2026 — Jan 1 to Jun 1)</h2>
+      <p class="sub">Full year-to-date search-terms report for every campaign pointing at the homepage — blog/SKAG test excluded. <b>2,225 clicks · 178 conversions · ~$11.2K spend.</b> Grouped into themes, ranked by clicks, with whether the current live page covers it.</p>
+
+      <div class="callout" style="border-top-color:var(--info)">
+        <h3 style="color:var(--info)">What changed vs. the 30-day view</h3>
+        <p style="margin:0;color:var(--g70)">The longer window reordered the priorities: <b>DNC scrubbing is the single biggest non-brand theme</b> (469 clicks, 253 query variations) — it was easy to undercount on 30 days. <b>STIR/SHAKEN</b> is a real driver (55 clicks), not a footnote. And <b>"tcpa defense attorney" is the best-converting non-brand term on the account</b> (7 conversions), which means defense intent should be embraced on the page — only plaintiff/"find-a-lawyer" terms stay negatives.</p>
+      </div>
+
+      <table>
+        <thead><tr><th>Search theme (top real queries, full-year)</th><th class="num">Clicks</th><th class="num">Conv.</th><th>On page today?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Brand</b> — blacklist alliance, the blacklist alliance, blacklist alliance api/pricing</td><td class="num">1,200</td><td class="num">136</td><td><span class="pill ok">Covered</span></td></tr>
+          <tr><td><b>DNC scrubbing</b> <span class="pill gap" style="margin-left:4px">#1 non-brand</span><br>dnc checker usa (88) · dnc scrubber · us dnc checker · dncscrub · do not call list api</td><td class="num">469</td><td class="num">19</td><td><span class="pill gap">Missing</span></td></tr>
+          <tr><td><b>TCPA (head / general)</b> — tcpa (66) · tcpa compliance · telephone consumer protection act · tcpa violations · tcpa world</td><td class="num">220</td><td class="num">5</td><td><span class="pill partial">Weak — not in H1</span></td></tr>
+          <tr><td><b>Litigator scrub / firewall</b> — tcpa litigator list (25) · litigator scrub · tcpa litigator scrub · known litigator list · batch litigator scrub</td><td class="num">114</td><td class="num">3</td><td><span class="pill gap">Missing</span></td></tr>
+          <tr><td><b>TCPA tools / software / API</b> — tcpa tools (15) · tcpa tool · tcpa compliance software <span class="tag">(also pulls junk: "call tracking software")</span></td><td class="num">65</td><td class="num">0</td><td><span class="pill partial">Says "solutions"</span></td></tr>
+          <tr><td><b>STIR/SHAKEN</b> — stir shaken (42) · shaken stir · stir shaken authentication / registration / certificate</td><td class="num">55</td><td class="num">1</td><td><span class="pill gap">Missing</span></td></tr>
+          <tr><td><b>TCPA Defense (attorney)</b> <span class="pill ok" style="margin-left:4px">converts</span><br>tcpa defense attorney (7 conv) · tcpa attorneys · tcpa compliance attorney</td><td class="num">48</td><td class="num">10</td><td><span class="pill gap">No defense angle</span></td></tr>
+          <tr><td><b>Caller ID / spam</b> — spam/scam flag, robocall flag lookups</td><td class="num">8</td><td class="num">0</td><td><span class="pill gap">Missing</span></td></tr>
+          <tr><td><b>Verticals</b> — tcpa insurance, contact center compliance, text/sms marketing compliance, florida/california mini-TCPA</td><td class="num">~11</td><td class="num">0</td><td><span class="pill ok">Sections exist</span></td></tr>
+          <tr><td><b>Competitor</b> — dnc.com, gryphon dnc, possiblenow, tcpa litigator list</td><td class="num">routed here</td><td class="num">—</td><td><span class="pill gap">No comparison</span></td></tr>
+        </tbody>
+      </table>
+      <div class="legend">
+        <span class="pill ok">Covered</span> on page today &nbsp;
+        <span class="pill partial">Partial</span> present but weak &nbsp;
+        <span class="pill gap">Missing</span> gap to fill
+      </div>
+      <p class="footnote" style="padding-bottom:0">Source: Google Ads search-terms report, acct 6049745074, Jan 1 – Jun 1 2026, blog/SKAG campaign excluded, ordered by clicks (top 500 terms). Conversions per Cometly offline-conversion attribution. Clicks rounded.</p>
+    </div>
+  </section>
+
+  <!-- H1 OPTIONS -->
+  <section>
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">H1 options — pick one</h2>
+      <p class="sub">All three keep the lowercase <b>"risk less. connect more."</b> tagline above them. Each front-loads the money terms so the headline matches the query.</p>
+      <div class="opts">
+        <div class="opt best">
+          <span class="badge">Recommended</span>
+          <div class="lbl">Option A</div>
+          <div class="txt">TCPA &amp; DNC Compliance to Protect Every Call and Text</div>
+          <div class="rat">Leads with the exact #1 head term ("tcpa compliance"), pulls in DNC, and stretches to SMS/text — broadest match to what's actually searched.</div>
+          <div class="kws"><span class="kw">tcpa compliance</span><span class="kw">dnc</span><span class="kw">text marketing compliance</span></div>
+        </div>
+        <div class="opt">
+          <div class="lbl">Option B</div>
+          <div class="txt">TCPA Compliance &amp; Litigation Firewall for High-Volume Callers</div>
+          <div class="rat">Product-forward. Names the flagship "Litigation Firewall" and the buyer (contact centers / lead-gen at scale). Strong if we lean into the product brand.</div>
+          <div class="kws"><span class="kw">tcpa compliance</span><span class="kw">litigation firewall</span></div>
+        </div>
+        <div class="opt">
+          <div class="lbl">Option C</div>
+          <div class="txt">Scrub Litigators &amp; DNC Numbers Before You Dial</div>
+          <div class="rat">Action-led, plain English. Matches "litigator scrub" / "scrub dnc list" intent directly. Punchiest, but narrower on the head "tcpa" term.</div>
+          <div class="kws"><span class="kw">litigator scrub</span><span class="kw">scrub dnc list</span><span class="kw">do not call</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- H2 OPTIONS -->
+  <section>
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">H2 / sub-headline options</h2>
+      <p class="sub">The supporting line under the H1. This is where the gap keywords (litigator scrubbing, DNC registry, real-time, state DNC) get folded in naturally.</p>
+      <div class="opts">
+        <div class="opt best">
+          <span class="badge">Recommended</span>
+          <div class="lbl">Option A</div>
+          <div class="txt" style="font-size:16px;font-weight:600">Real-time litigator scrubbing, federal and state DNC checks, and a litigation firewall that blocks risky numbers before your agents ever dial.</div>
+          <div class="rat">Packs the three biggest missing themes into one sentence and states the benefit in operator language.</div>
+        </div>
+        <div class="opt">
+          <div class="lbl">Option B</div>
+          <div class="txt" style="font-size:16px;font-weight:600">Scrub the DNC registry, flag known TCPA litigators, and document every call — built for contact centers, insurers, and lead-gen at scale.</div>
+          <div class="rat">Adds the vertical names (helps the Verticals campaign) and the "document every call" audit angle.</div>
+        </div>
+        <div class="opt">
+          <div class="lbl">Option C</div>
+          <div class="txt" style="font-size:16px;font-weight:600">The compliance platform that scrubs do-not-call and litigator lists in real time, so you can keep calling without inviting the next lawsuit.</div>
+          <div class="rat">Uses "platform" (matches "tcpa software/tools" intent) and the risk-then-remedy voice.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK BY BLOCK -->
+  <section>
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">Block-by-block — current vs. recommended</h2>
+      <p class="sub">Left is what's on the page now. Right is the rewrite. The blue note explains the relevance/quality-score reasoning and the keywords it captures.</p>
+
+      <!-- HERO -->
+      <div class="grid2" style="margin-top:8px">
+        <div class="panel cur">
+          <div class="ph">Current — Hero</div>
+          <div class="pb">
+            <span class="k">H1</span><div class="hl">RISK LESS. CONNECT MORE.</div>
+            <span class="k">H2</span><div>TCPA &amp; DNC COMPLIANCE SOLUTIONS TO SAFEGUARD AI-ENABLED COMMUNICATIONS</div>
+            <span class="k">CTAs</span><div class="tag">Book a free demo · Learn more</div>
+          </div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — Hero</div>
+          <div class="pb">
+            <span class="k">Tagline (kept, lowercase)</span><div class="tag" style="text-transform:none;font-size:14px">risk less. connect more.</div>
+            <span class="k">H1 (Option A)</span><div class="hl">TCPA &amp; DNC Compliance to Protect Every Call and Text</div>
+            <span class="k">H2 (Option A)</span><div>Real-time litigator scrubbing, federal and state DNC checks, and a litigation firewall that blocks risky numbers before your agents ever dial.</div>
+            <span class="k">CTAs</span><div class="tag">Book a free demo · See the Litigation Firewall</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> The page now answers the exact head terms — "tcpa compliance," "dnc," "litigator scrub" — in the first thing the visitor and Google read. Tagline survives for the trademark.
+        <div><span class="kw">tcpa compliance</span><span class="kw">dnc scrub</span><span class="kw">litigator scrubbing</span><span class="kw">litigation firewall</span></div></div>
+
+      <!-- NEW PRODUCT BAND -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — (nothing here)</div>
+          <div class="pb"><div class="tag" style="text-transform:none">No section names the actual products. "Litigation Firewall" only appears as a small icon at the very bottom of the page.</div></div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — NEW: Product band (4 tiles)</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:18px">One platform, four ways we keep you out of court</div>
+            <span class="k">Tiles</span>
+            <div class="tag" style="text-transform:none;line-height:1.7">• <b>Litigator Scrub</b> — flag known TCPA litigators against our proprietary database before you dial<br>• <b>DNC Registry Scrub</b> — federal + all state do-not-call lists, real-time API or batch<br>• <b>Litigation Firewall</b> — block risky numbers automatically inside your dialer<br>• <b>Caller ID Reputation</b> — keep your numbers from being flagged as spam</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> This is the single biggest gap. High-intent searchers want the named product, not "solutions." Directly captures the litigator-scrub and DNC-scrub themes that currently land on a page that never mentions them.
+        <div><span class="kw">litigator list</span><span class="kw">batch litigator scrub</span><span class="kw">dnc checker usa</span><span class="kw">do not call registry</span><span class="kw">caller id reputation</span></div></div>
+
+      <!-- CONTACT CENTERS -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — Contact Centers</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">ROBUST TCPA COMPLIANCE SOLUTIONS FOR CONTACT CENTERS</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Protect your operations with compliance training and real-time risk mitigation… mitigates the risk of costly TCPA lawsuits.</div>
+          </div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — Contact Centers</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">TCPA Compliance for Contact Centers</div>
+            <span class="k">Sub (red)</span><div class="tag" style="color:var(--red)">Real-time scrubbing built into your dialer</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Scrub every number against the DNC registry and our litigator list before the call connects. Document consent and call outcomes automatically, so an FCC or Attorney General inquiry is a non-event instead of a fire drill.</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> Tighter, audience-first headline (matches "contact center compliance"), and the body now names the mechanism instead of vague "training."
+        <div><span class="kw">contact center compliance</span><span class="kw">dnc registry</span><span class="kw">real-time scrub</span></div></div>
+
+      <!-- VOIP -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — VoIP Carriers</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">COMPREHENSIVE RISK MANAGEMENT SOLUTIONS FOR VOIP CARRIERS</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Compatible with leading API-based carriers like Twilio, Plivo, Vonage, and Ring Central.</div>
+          </div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — VoIP Carriers</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">TCPA &amp; STIR/SHAKEN Compliance for VoIP Carriers</div>
+            <span class="k">Sub (red)</span><div class="tag" style="color:var(--red)">Drop-in API for Twilio, Plivo, Vonage, RingCentral</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Add real-time DNC and litigator scrubbing to your platform with a single API call, and keep your numbers clean with caller-ID reputation monitoring across the major carriers.</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> Adds the searched "stir shaken" term and a concrete API hook, instead of generic "risk management."
+        <div><span class="kw">stir shaken</span><span class="kw">dnc api</span><span class="kw">voip compliance</span></div></div>
+
+      <!-- INSURANCE -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — Insurance</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">ESSENTIAL TCPA COMPLIANCE FOR INSURANCE COMPANIES</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Insurance brokers, agents, and the carriers they represent… highest risk of TCPA litigation.</div>
+          </div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — Insurance</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">TCPA Compliance for Insurance &amp; Medicare</div>
+            <span class="k">Sub (red)</span><div class="tag" style="color:var(--red)">Built for AEP/OEP call volume</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Health, Medicare, and final-expense outreach are prime TCPA targets. Scrub leads in real time, honor DNC and state rules, and keep a clean record for every agent and downline.</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> The Verticals ad group is "Insurance — Health &amp; Medicare." Naming Medicare + AEP/OEP matches the actual ad group and the "tcpa insurance" query.
+        <div><span class="kw">tcpa insurance</span><span class="kw">medicare compliance</span><span class="kw">aep</span></div></div>
+
+      <!-- DIGITAL MARKETERS -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — Digital Marketers</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">COMPREHENSIVE TCPA COMPLIANCE FOR DIGITAL MARKETERS</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Digital marketers, including mortgage companies, personal loan companies, home services, HVAC…</div>
+          </div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — Lead-Gen &amp; Digital Marketers</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">TCPA &amp; Text-Marketing Compliance for Lead-Gen</div>
+            <span class="k">Sub (red)</span><div class="tag" style="color:var(--red)">Calls and SMS, scrubbed at the source</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">Mortgage, solar, home services, and lead-gen networks live in the litigators' crosshairs. Scrub calls and texts in real time, verify consent, and stop reselling numbers that put your buyers at risk.</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> Captures "text marketing compliance" (an actual paid search term here) and the SMS angle the current copy ignores.
+        <div><span class="kw">text marketing compliance</span><span class="kw">sms compliance</span><span class="kw">lead gen tcpa</span></div></div>
+
+      <!-- AI -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — AI &amp; Automation</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">AI AND AUTOMATION: NAVIGATING TCPA COMPLIANCE IN THE NEW ERA</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">References the February 2024 FCC Declaratory Ruling on AI voice calls.</div>
+          </div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — AI &amp; Automation (keep, tighten)</div>
+          <div class="pb">
+            <span class="k">Heading</span><div class="hl" style="font-size:17px">TCPA Compliance for AI &amp; Automated Calling</div>
+            <span class="k">Sub (red)</span><div class="tag" style="color:var(--red)">After the FCC's 2024 AI-voice ruling</div>
+            <span class="k">Body</span><div class="tag" style="text-transform:none">The FCC's February 2024 ruling put AI-generated voice calls squarely under the TCPA. Keep your automated and AI-driven outreach compliant with real-time scrubbing and consent tracking built for high volume.</div>
+          </div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> This block is already strong and timely — just sharpen the headline to lead with "TCPA compliance" and keep the FCC ruling as proof of expertise.
+        <div><span class="kw">ai voice tcpa</span><span class="kw">fcc ai ruling</span><span class="kw">automated calling compliance</span></div></div>
+
+      <!-- LITIGATION SOLUTIONS GRID -->
+      <div class="grid2" style="margin-top:26px">
+        <div class="panel cur">
+          <div class="ph">Current — "TCPA Litigation Solutions" (5 icons)</div>
+          <div class="pb"><div class="tag" style="text-transform:none">Legal Support · Compliance Resources · Compliance Support · Litigation Firewall · Data Optimization — generic labels, buried at the bottom.</div></div>
+        </div>
+        <div class="panel rec">
+          <div class="ph">Recommended — promote &amp; rename</div>
+          <div class="pb"><div class="tag" style="text-transform:none">Move the <b>Litigation Firewall</b> + <b>Litigator Scrub</b> up into the product band (above). Keep this row for the support layer with clearer labels: <b>Litigator Database</b> · <b>DNC &amp; State-List Scrubbing</b> · <b>Litigation Monitoring &amp; Alerts</b> · <b>Attorney Consultations</b> · <b>Data Optimization API</b>.</div></div>
+        </div>
+      </div>
+      <div class="why"><b>Why:</b> The product people search for shouldn't be a footnote. Renaming the tiles to noun-phrases people actually type lifts on-page relevance.
+        <div><span class="kw">litigator database</span><span class="kw">dnc scrubbing</span><span class="kw">litigation monitoring</span></div></div>
+
+    </div>
+  </section>
+
+  <!-- NEW SECTIONS / GAPS -->
+  <section>
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">New sections to add (filling the gaps)</h2>
+      <p class="sub">These don't exist on the page today and each maps to a campaign that's already paying to land here.</p>
+      <ul class="clean">
+        <li><b>Product band</b> — Litigator Scrub · DNC Registry Scrub · Litigation Firewall · Caller ID Reputation. <span class="tag">Captures the litigator-scrub &amp; DNC themes (currently 0% on page).</span></li>
+        <li><b>Proof bar</b> — FCC-aware · federal + all 50 state DNC · ~1,000 clients · real-time API. <span class="tag">Trust signals lift conversion and dwell time, which feeds Quality Score.</span></li>
+        <li><b>"Why operators choose Blacklist over DNC.com, Gryphon &amp; PossibleNOW"</b> — three differentiators, no bashing. <span class="tag">The Competitors campaign routes here with no comparison content to convert on.</span></li>
+        <li><b>FAQ block</b> — answers "what is TCPA," litigator scrub, state mini-TCPA, real-time, integration time, free demo. <span class="tag">Captures informational queries and adds crawlable, relevant copy.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MISSING KEYWORDS -->
+  <section>
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">Keywords we're missing on the page</h2>
+      <p class="sub">Searched for (and paid for) but absent or buried in the current copy. The rewrite folds each of these in naturally — no stuffing.</p>
+      <div class="why" style="border-top:0;background:#fff;border:1px solid var(--g20);padding:18px">
+        <span class="kw">litigator scrub</span><span class="kw">tcpa litigator list</span><span class="kw">batch litigator scrub</span><span class="kw">litigation firewall</span><span class="kw">dnc scrub</span><span class="kw">do not call scrubbing</span><span class="kw">dnc checker usa</span><span class="kw">dnc api</span><span class="kw">do not call registry for businesses</span><span class="kw">federal and state dnc</span><span class="kw">tcpa compliance software</span><span class="kw">tcpa tools</span><span class="kw">stir/shaken</span><span class="kw">caller id reputation</span><span class="kw">text marketing compliance</span><span class="kw">sms compliance</span><span class="kw">florida mini-tcpa / ftsa</span><span class="kw">tcpa california</span><span class="kw">tcpa insurance</span><span class="kw">medicare / aep</span><span class="kw">litigator database</span><span class="kw">litigation monitoring</span>
+      </div>
+
+      <div class="flag">
+        <h3>Flag for Matt — not page copy, campaign hygiene</h3>
+        <p style="margin-bottom:8px">Two things showed up in the search terms that the <b>page</b> shouldn't chase — they're negative-keyword / intent calls:</p>
+        <p style="margin-bottom:8px"><b>1. "Free" intent.</b> free dnc scrub, free dnc checker, free dnc list, free litigator scrub — meaningful impressions, ~0 clicks and 0 conversions. Tire-kickers. Add as negatives rather than writing "free" copy.</p>
+        <p style="margin:0"><b>2. Attorney-seeking intent.</b> tcpa attorney near me, tcpa law firm, tcpa lawyers. Per your defense-vs-plaintiff rule: TCPA <em>defense</em> intent is a hot prospect (keep), but "find a lawyer / sue" intent is the wrong audience. Verify these are routed/negated correctly — the page stays defense-focused.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ COPY -->
+  <section style="border-bottom:0">
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2 class="sec">Recommended FAQ copy</h2>
+      <p class="sub">Drafted to answer real informational queries from the search-terms report. Rendered live in Preview mode.</p>
+      <div class="faqrow"><div class="q">What is the TCPA?</div><div class="a">The Telephone Consumer Protection Act is the federal law governing calls and texts to consumers. Violations run $500–$1,500 per call or message, which is why a single campaign can turn into a class action. The Blacklist Alliance helps you stay on the right side of it.</div></div>
+      <div class="faqrow"><div class="q">What's a litigator scrub?</div><div class="a">Before you dial, we check each number against our proprietary database of known TCPA litigators and serial plaintiffs and flag the risky ones — so you don't call the people most likely to sue.</div></div>
+      <div class="faqrow"><div class="q">Do you scrub state do-not-call lists too?</div><div class="a">Yes. We scrub the federal DNC registry plus all state lists, and we track state mini-TCPA rules like Florida's FTSA and the stricter California requirements.</div></div>
+      <div class="faqrow"><div class="q">Is the scrub real-time?</div><div class="a">Yes. Use our API for real-time scrubbing inside your dialer or platform, or run lists in batch. Most teams are integrated in days, not weeks.</div></div>
+      <div class="faqrow"><div class="q">How is this different from DNC.com, Gryphon, or PossibleNOW?</div><div class="a">One platform covering litigator scrubbing, DNC and state lists, a litigation firewall, and caller-ID reputation — backed by a proprietary litigator database and used by roughly 1,000 clients in the calling space.</div></div>
+      <div class="faqrow"><div class="q">Can I see it first?</div><div class="a">Yes — book a free demo and we'll show you the Litigation Firewall against your own call flow.</div></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============================ PREVIEW MODE ============================ -->
+<div id="preview">
+
+  <div class="editnote">Preview — the recommended copy built on the Blacklist Alliance design system (General Sans · #A50100 red · square corners · risk-bar accent). Footer omitted per request. H1/H2 shown using Option A.</div>
+
+  <!-- HERO -->
+  <div class="pv-hero">
+    <div class="wrap">
+      <div class="tagline">risk less. connect more.</div>
+      <h1>TCPA &amp; DNC Compliance to Protect <span class="accent">Every Call and Text</span></h1>
+      <div class="h2">Real-time litigator scrubbing, federal and state DNC checks, and a litigation firewall that blocks risky numbers before your agents ever dial.</div>
+      <div class="ctas">
+        <a class="btn primary" href="#">Book a free demo</a>
+        <a class="btn ghost" href="#">See the Litigation Firewall</a>
+      </div>
+    </div>
+  </div>
+  <div class="pv-proof">
+    <div class="wrap">
+      <span><b>FCC-aware</b> compliance</span><span class="dot">■</span>
+      <span><b>Federal + all 50 state</b> DNC</span><span class="dot">■</span>
+      <span><b>~1,000</b> clients in the calling space</span><span class="dot">■</span>
+      <span><b>Real-time API</b> &amp; batch scrubbing</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT BAND -->
+  <div class="pv-products">
+    <div class="wrap">
+      <div class="head">
+        <span class="riskbar center"></span>
+        <h2>One platform, four ways we keep you out of court</h2>
+      </div>
+      <div class="pcards">
+        <div class="pcard"><div class="ic"><i data-lucide="scan-search"></i></div><h3>Litigator Scrub</h3><p>Flag known TCPA litigators and serial plaintiffs against our proprietary database before you dial.</p></div>
+        <div class="pcard"><div class="ic"><i data-lucide="list-checks"></i></div><h3>DNC Registry Scrub</h3><p>Federal and all state do-not-call lists, in real time by API or in batch.</p></div>
+        <div class="pcard"><div class="ic"><i data-lucide="shield-check"></i></div><h3>Litigation Firewall</h3><p>Block risky numbers automatically, right inside your dialer or platform.</p></div>
+        <div class="pcard"><div class="ic"><i data-lucide="phone-call"></i></div><h3>Caller ID Reputation</h3><p>Keep your numbers from getting flagged as spam across the major carriers.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLUTIONS -->
+  <div class="pv-sol">
+    <div class="solrow">
+      <div class="wrap">
+        <div class="txtcol">
+          <span class="riskbar"></span>
+          <h3>TCPA Compliance for Contact Centers</h3>
+          <div class="ksub">Real-time scrubbing built into your dialer</div>
+          <p>Scrub every number against the DNC registry and our litigator list before the call connects. Document consent and call outcomes automatically, so an FCC or Attorney General inquiry is a non-event instead of a fire drill.</p>
+          <a class="lrn" href="#">Learn more <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="imgph">Contact-center floor</div>
+      </div>
+    </div>
+    <div class="solrow flip">
+      <div class="wrap">
+        <div class="imgph lt">VoIP / carrier rack</div>
+        <div class="txtcol">
+          <span class="riskbar"></span>
+          <h3>TCPA &amp; STIR/SHAKEN Compliance for VoIP Carriers</h3>
+          <div class="ksub">Drop-in API for Twilio, Plivo, Vonage, RingCentral</div>
+          <p>Add real-time DNC and litigator scrubbing to your platform with a single API call, and keep your numbers clean with caller-ID reputation monitoring across the major carriers.</p>
+          <a class="lrn" href="#">Learn more <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="solrow">
+      <div class="wrap">
+        <div class="txtcol">
+          <span class="riskbar"></span>
+          <h3>TCPA Compliance for Insurance &amp; Medicare</h3>
+          <div class="ksub">Built for AEP/OEP call volume</div>
+          <p>Health, Medicare, and final-expense outreach are prime TCPA targets. Scrub leads in real time, honor DNC and state rules, and keep a clean record for every agent and downline.</p>
+          <a class="lrn" href="#">Learn more <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="imgph">Insurance agent at desk</div>
+      </div>
+    </div>
+    <div class="solrow flip">
+      <div class="wrap">
+        <div class="imgph lt">Lead-gen / mobile</div>
+        <div class="txtcol">
+          <span class="riskbar"></span>
+          <h3>TCPA &amp; Text-Marketing Compliance for Lead-Gen</h3>
+          <div class="ksub">Calls and SMS, scrubbed at the source</div>
+          <p>Mortgage, solar, home services, and lead-gen networks live in the litigators' crosshairs. Scrub calls and texts in real time, verify consent, and stop reselling numbers that put your buyers at risk.</p>
+          <a class="lrn" href="#">Learn more <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="solrow">
+      <div class="wrap">
+        <div class="txtcol">
+          <span class="riskbar"></span>
+          <h3>TCPA Compliance for AI &amp; Automated Calling</h3>
+          <div class="ksub">After the FCC's 2024 AI-voice ruling</div>
+          <p>The FCC's February 2024 ruling put AI-generated voice calls squarely under the TCPA. Keep your automated and AI-driven outreach compliant with real-time scrubbing and consent tracking built for high volume.</p>
+          <a class="lrn" href="#">Learn more <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="imgph">AI / automation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div class="pv-why">
+    <div class="wrap">
+      <div class="head">
+        <span class="riskbar center"></span>
+        <h2>Why operators choose The Blacklist Alliance</h2>
+        <p class="sub">Compared to single-point tools like DNC.com, Gryphon, and PossibleNOW.</p>
+      </div>
+      <div class="whycards">
+        <div class="whycard"><div class="ic"><i data-lucide="database"></i></div><h3>Proprietary litigator database</h3><p>Not just the DNC list — we maintain our own database of known TCPA litigators and serial plaintiffs, updated continuously.</p></div>
+        <div class="whycard"><div class="ic"><i data-lucide="layers"></i></div><h3>One platform, not five tools</h3><p>Litigator scrub, DNC and state lists, litigation firewall, and caller-ID reputation in a single integration.</p></div>
+        <div class="whycard"><div class="ic"><i data-lucide="users"></i></div><h3>~1,000 clients trust it</h3><p>Used across contact centers, insurance, lead-gen, and VoIP carriers operating at serious call volume.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="pv-faq">
+    <div class="wrap">
+      <span class="riskbar"></span>
+      <h2>Frequently asked questions</h2>
+      <details class="acc" open><summary>What is the TCPA?<span class="pl">+</span></summary><div class="body">The Telephone Consumer Protection Act is the federal law governing calls and texts to consumers. Violations run $500–$1,500 per call or message, which is why a single campaign can turn into a class action. The Blacklist Alliance helps you stay on the right side of it.</div></details>
+      <details class="acc"><summary>What's a litigator scrub?<span class="pl">+</span></summary><div class="body">Before you dial, we check each number against our proprietary database of known TCPA litigators and serial plaintiffs and flag the risky ones — so you don't call the people most likely to sue.</div></details>
+      <details class="acc"><summary>Do you scrub state do-not-call lists too?<span class="pl">+</span></summary><div class="body">Yes. We scrub the federal DNC registry plus all state lists, and we track state mini-TCPA rules like Florida's FTSA and the stricter California requirements.</div></details>
+      <details class="acc"><summary>Is the scrub real-time?<span class="pl">+</span></summary><div class="body">Yes. Use our API for real-time scrubbing inside your dialer or platform, or run lists in batch. Most teams are integrated in days, not weeks.</div></details>
+      <details class="acc"><summary>How is this different from DNC.com, Gryphon, or PossibleNOW?<span class="pl">+</span></summary><div class="body">One platform covering litigator scrubbing, DNC and state lists, a litigation firewall, and caller-ID reputation — backed by a proprietary litigator database and used by roughly 1,000 clients in the calling space.</div></details>
+      <details class="acc"><summary>Can I see it first?<span class="pl">+</span></summary><div class="body">Yes — book a free demo and we'll show you the Litigation Firewall against your own call flow.</div></details>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="pv-cta">
+    <div class="wrap">
+      <h2>get started · get protected</h2>
+      <div class="tg">Put TCPA litigation worries to rest and start sleeping better at night.</div>
+      <a class="btn primary" href="#">Book a free demo</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footnote wrap">Built from live Google Ads search-terms data (Blacklist Alliance, acct 6049745074, last 30 days, blog/SKAG test excluded) and the Blacklist Alliance design system. Copy and metrics to be verified before publishing.</div>
+
+<script>
+  function setMode(m){
+    document.getElementById('review').style.display = m==='review'?'block':'none';
+    document.getElementById('preview').style.display = m==='preview'?'block':'none';
+    document.getElementById('btnReview').classList.toggle('active', m==='review');
+    document.getElementById('btnPreview').classList.toggle('active', m==='preview');
+    window.scrollTo(0,0);
+    if(window.lucide) lucide.createIcons();
+  }
+  if(window.lucide) lucide.createIcons();
+</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
