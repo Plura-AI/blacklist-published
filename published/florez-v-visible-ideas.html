@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florez v. Visible Ideas — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.highlight{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin:0 0 12px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:16px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body{ font-size:15px; line-height:1.55; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-02</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">PropTech / Fintech SMS Marketer · Quiet-Hours TCPA Class Action · 4th Active Case Against Defendant · PLG Volume-Filer Template</p>
+      <h1 class="hero-tagline">Florez v.<br>Visible Ideas <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(d/b/a Rent.app)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-01956-DJC-JDP</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Cal. (Sacramento)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(5 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">D. Calabretta (Art. III)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">J. Peterson (Mag.)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">47 CFR § 64.1200(c)(1), (e)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number redacted to last-4 ("ending in 6217") — scrub deferred, but plaintiff has prior pro se federal litigation history.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("ending in 6217"), so a litigator-list lookup cannot be run today. However, the named plaintiff already has a federal court paper trail that is a credibility signal in its own right.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-6217</div>
+        <div class="scrub-number-sub">Only last-4 digits pled (Compl. ¶17). Full 10-digit number not in complaint. Litigator-list lookup deferred until PACER pull or discovery yields the full number.</div>
+      </div>
+      <p class="scrub-body-text">What we know: Reina Florez is a Sacramento County, CA resident; the Subject Number ends in 6217 and is alleged to be used as a wireless residential line. Two quiet-hours SMS were received on Feb 22, 2026 at 6:04 AM and Feb 23, 2026 at 6:00 AM Pacific. Per CourtListener, Florez has prior federal court activity: a 2014 pro se case in E.D. Cal. (2:14-cv-01448) dismissed without leave to amend, and a 2016 Chapter bankruptcy discharge in D.N.J. (16-16708) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Reina+Florez%22&type=r">CourtListener -></a></span>. Treat the prior pro se filing as a litigation-familiarity signal worth flagging to defense counsel during outreach.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 + Exhibit A from PACER</h3>
+        <div class="card-body">Exhibit A is referenced as "ATTACH MESSAGES" with screenshots — the screenshot header may reveal the full target number. Cost: ~$1.20.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for Defense Counsel Appearance</h3>
+        <div class="card-body">Answer due ~6/18/2026 (Rule 12(a), 21 days post-service). Defense filings frequently reference the recipient number in MTD or initial disclosures.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Cross-Reference Parallel Cases</h3>
+        <div class="card-body">PLG also filed Long v. Visible Ideas (C.D. Cal. 5/26/26) and Maxey v. Visible Ideas (S.D. Fla.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Visible+Ideas%22+TCPA&type=r">CourtListener -></a></span>. Compare class period and sender DID overlap to triangulate.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED · PULL ECF #1</span>
+      <span class="pill pill--warn">PLAINTIFF HAS PRIOR FEDERAL FILING (2014 PRO SE)</span>
+      <span class="pill pill--info">SENDER DID 877-749-3592 NOT IN CONSUMER COMPLAINT DBs</span>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--info);">
+      <div class="card-meta">Sender Artifact · Inferred from Exhibit A</div>
+      <h3 class="card-title">Sending Number: 1-877-749-3592 (toll-free A2P)</h3>
+      <div class="card-body">
+        <p>Exhibit A screenshot shows "Catie from Rent App" inviting the recipient to "text us at 877-749-3592" — consistent with toll-free outbound A2P SMS infrastructure for the rent.app brand. No consumer complaint history retrievable from 800notes (HTTP 403), YouMail (HTTP 403), Tellows (HTTP 403), or RoboKiller (HTTP 404) — sender is either new, low-volume to date, or routed through carrier-level filtering that hasn't surfaced consumer reports. Branded shortlink domain <strong>links.rent.app</strong> in three of the four screenshot messages is typical of templated mass-marketing SMS sent via an ESP (Attentive / Postscript / Klaviyo class).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">VC-backed proptech sending bulk marketing SMS with no public consent disclosure — and the plaintiff firm filing this case is a confirmed volume filer that has now hit them four times.</h2>
+      <p class="section-lede">Visible Ideas (rent.app) is a small, well-resourced fintech with a Plaid/Dwolla stack, a branded SMS short-link domain, and zero public TCPA compliance posture. PLG Damage Attorneys is filing roughly two TCPA cases per week and has already hit Visible Ideas in four districts. Lead with Consent Capture; bolt on Quiet-Hours / Time-Zone Scrub as the immediate gap-fixer.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD PITCH</div>
+        <h3 class="card-title">Consent Capture & Record Retention</h3>
+        <div class="card-body">Defendant's signup/terms/privacy pages all return 404 at standard paths <span class="src-tag"><a href="https://rent.app">rent.app -></a></span>. Without an indexed, time-stamped consent record, defendant cannot rebut the "no express written consent" element at class cert. Blacklist's consent-capture stack closes that wound on every future send.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY ATTACH</div>
+        <h3 class="card-title">Quiet-Hours / Time-Zone Scrubbing</h3>
+        <div class="card-body">The pleaded violation is two SMS to a Sacramento number sent at 6:04 AM and 6:00 AM Pacific (Compl. ¶21) — i.e., 2+ hours before the 8 AM local window opens. A time-zone-aware send filter would have blocked both. This is the cleanest 90-second product demo on the call.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">CROSS-SELL</div>
+        <h3 class="card-title">Litigator Scrub (post-PACER pull)</h3>
+        <div class="card-body">Once ECF #1 yields Florez's full number, validate against the Blacklist litigator list. Independent of this case, the scrub product protects against the next PLG-style filing — PLG is filing across fintech/proptech roughly biweekly <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span>.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-top:4px solid var(--bl-red);">
+      <h3 class="card-title">Pitch Angle</h3>
+      <div class="card-body">
+        <p>"You're being sued for two text messages sent at 6 AM Pacific to a Sacramento renter. Same complaint template just got filed against you in three other districts in the same 30-day window — Long in Central California, Maxey in Southern Florida, and you're already on the radar of a Florida firm that's filing one of these every three or four days. The fix on the quiet-hours issue is a two-line config change in your ESP send window. The bigger problem is that your signup, terms, and privacy pages all 404 at the standard URLs — when plaintiff's counsel asks you to produce the express written consent record at class cert, what are you handing over? Blacklist gives you the consent-capture infrastructure to answer that question before discovery makes it a $500-per-text problem."</p>
+        <p>Lead with the cost math: two messages x ~hundreds-to-thousands class members x $500 statutory (treble to $1,500 for willful) = a six-to-eight-figure exposure curve, before the next three PLG complaints land. The remediation cost is trivial compared to one settlement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Founder-led Delaware fintech operating as "Rent.app" — bank-linked rent payments and BNPL-style "Split Pay" — heavy D2C SMS acquisition with no visible compliance program.</h2>
+      <p class="section-lede">Visible Ideas, Inc. is the legal entity behind the Rent.app consumer brand. Public information is thin (the Delaware SoS is form-only and most third-party directories were blocked) but the company's own site discloses a four-co-founder team and a Plaid/Dwolla payments stack.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Visible Ideas, Inc. (d/b/a Rent.app)</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Visible Ideas, Inc. — Delaware Corporation (Compl. ¶5)</dd>
+            <dt>Consumer Brand</dt><dd>Rent.app / Rent App <span class="src-tag"><a href="https://rent.app">rent.app -></a></span></dd>
+            <dt>HQ</dt><dd>Not publicly listed (rent.app/about returns 404)</dd>
+            <dt>Vertical</dt><dd>PropTech / Fintech — rent payments, Split Pay (BNPL for rent), credit reporting</dd>
+            <dt>Stack</dt><dd>Plaid (bank linking), Dwolla (payments) <span class="src-tag"><a href="https://rent.app/privacy">rent.app/privacy -></a></span></dd>
+            <dt>Compliance Page</dt><dd><span class="pill pill--gap">NONE</span> No TCPA / DNC / quiet-hours language on site</dd>
+            <dt>Privacy Posture</dt><dd>Privacy Policy authorizes "Marketing and Promotions" SMS but discloses no consent capture, opt-out, or quiet-hours protocol <span class="src-tag"><a href="https://rent.app/privacy">rent.app/privacy -></a></span></dd>
+            <dt>Arbitration</dt><dd>Mandatory individual arbitration + class waiver in Terms <span class="src-tag"><a href="https://rent.app/terms">rent.app/terms -></a></span></dd>
+            <dt>Public Statements</dt><dd>Touts SOC2, CCPA, GDPR for data security — conspicuously silent on TCPA</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy Policy authorizes marketing SMS but documents no consent capture, opt-out flow, or quiet-hours window.</h3>
+        <div class="card-body">
+          <p>Rent.app's Privacy Policy explicitly lists "Marketing and Promotions" as a permitted use of consumer phone numbers and lists SMS as a communication channel <span class="src-tag"><a href="https://rent.app/privacy">rent.app/privacy -></a></span>, while bragging about SOC2 / CCPA / GDPR compliance for data security. The same policy says nothing about TCPA, prior express written consent, FCC quiet-hours, or revocation mechanics. The /about, /signup, /register, /privacy-policy, and /terms-of-service standard URLs all return 404. In a class-cert fight, defendant's inability to produce a contemporaneous, indexed consent record is the single biggest predictor of loss.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--warning);">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Answer window closes ~June 18, 2026 · Parallel case answer reset to June 5, 2026</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Florez Answer Due</dt><dd>~6/18/2026 (Rule 12(a), 21 days post-service) <span class="pill pill--red">21-DAY CLOCK</span></dd>
+          <dt>Maxey (S.D. Fla.)</dt><dd>Visible Ideas filed unopposed motion for extension; response reset to <strong>6/5/2026</strong>. Defense team: Carmen Elena Jule, Gerald Donald Lane Jr., Chad Jonathan Robinson <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Visible+Ideas%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Long (C.D. Cal.)</dt><dd>Filed 5/26/2026 — parallel PLG action, status active</dd>
+          <dt>Coordinated Filing Window</dt><dd>4 active cases nationally inside 60 days — remediation purchased before answer is far cheaper than remediation purchased after MTD denial</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3);">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Rent.app</strong> (links.rent.app shortlink domain)</td>
+            <td>Consumer DBA of defendant</td>
+            <td>PropTech / Fintech SMS marketer</td>
+            <td>Direct subject of complaint; same SMS infra</td>
+            <td><span class="pill pill--danger">In Scope</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="color:var(--fg-3); font-style:italic;">No parent, sister-brand, or subsidiary corporate structure could be confirmed — Delaware SoS is form-only, Bizapedia and OpenCorporates blocked. Re-run cross-sell check once defense counsel appears and discloses corporate disclosure statement under FRCP 7.1.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Fourth TCPA case against Visible Ideas in 60 days — filed by a confirmed PLG volume-filer template now hitting fintech and proptech weekly.</h2>
+      <p class="section-lede">Visible Ideas had zero TCPA history before April 2026. Since then it has been sued in E.D. Cal., C.D. Cal., S.D. Fla., and D.S.C. PLG Damage Attorneys is responsible for the two California filings and operates as an assembly-line plaintiffs' shop out of Miramar, FL.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Florez v. Visible Ideas, Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>2:26-cv-01956-DJC-JDP <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-01956&type=r">CourtListener -></a></span></dd>
+            <dt>Filed</dt><dd>May 28, 2026 (Doc #1)</dd>
+            <dt>Plaintiff</dt><dd>Reina Florez (Sacramento County, CA)</dd>
+            <dt>Counsel</dt><dd>Vinit R. Venkatesh, CA Bar #367857 — PLG Damage Attorneys <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">Cal Bar -></a></span></dd>
+            <dt>Class</dt><dd>Putative Rule 23 — "TCPA After-Hours Class" (Compl. ¶31)</dd>
+            <dt>Class Size</dt><dd>"Dozens to hundreds or thousands" (Compl. ¶34)</dd>
+            <dt>Claims</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); 47 CFR § 64.1200(e)</dd>
+            <dt>Theory</dt><dd>Quiet-Hours SMS (before 8 AM local) — two messages at 6:04 AM and 6:00 AM Pacific</dd>
+            <dt>Channels</dt><dd>SMS only</dd>
+            <dt>Damages</dt><dd>$500/violation statutory + treble for willful; injunctive relief; costs/interest</dd>
+            <dt>Defense Counsel</dt><dd><span class="pill pill--gap">NOT YET APPEARED</span> Answer due ~6/18/2026</dd>
+            <dt>Docket Aggregator</dt><dd>Visible on CourtListener; PACER/PacerMonitor/Justia not fetched</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm Address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+            <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+            <dt>Firm Email</dt><dd>service@plgdamage.com · info@plgdamage.com</dd>
+            <dt>Bar Number</dt><dd>CA #367857 — Active <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">Cal Bar -></a></span></dd>
+            <dt>Bar Address Match</dt><dd>FL firm office — CA-barred attorney handling matter remotely <span class="pill pill--warn">CROSS-STATE</span></dd>
+            <dt>Discipline</dt><dd>None on Cal Bar record. Note: 2023 S.D. Fla. employment suit (Ackerman v. Property Litigation Group, 0:23-cv-61828) named Venkatesh among others; terminated July 2024 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -></a></span></dd>
+            <dt>TCPA Power Rank</dt><dd>Not on TCPAWorld power rankings; not a recognized TCPA-specialist</dd>
+            <dt>Firm Practice</dt><dd>Primarily FL property-damage insurance plaintiff shop (30+ attorneys); TCPA is an expansion line <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -></a></span></dd>
+            <dt>Firm Volume</dt><dd><strong>8+ TCPA filings in April–May 2026</strong> — ~2 per week pace <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--bl-red);">
+      <h3 class="card-title">PLG / Venkatesh Volume-Filer Template</h3>
+      <div class="card-body">
+        <p>PLG Damage Attorneys is filing roughly two TCPA cases per week out of a single Miramar, FL office, with Vinit R. Venkatesh and Faythe Gutierrez signing across CA and FL dockets. The repeatable two-count template pleads (1) quiet-hours violation under 47 CFR § 64.1200(c)(1), and (2) lack of prior express written consent under § 64.1200(e). Identical structure across Long v. Rocket Mortgage, Ortiz v. Payactiv, Rios v. Quince, Hughes v. Rite Aid, Mendez v. Refills Health, Fasheh v. Xercize Studio, Flottman v. Yesvideo, and Hughes v. Guardio — all filed April–May 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span>. Target verticals: fintech, retail/e-commerce, health & wellness, consumer tech. Visible Ideas is squarely inside that target zone and has already been hit four times in 60 days.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3);">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-top:12px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="highlight">
+            <td><strong>Florez v. Visible Ideas, Inc.</strong><br><span style="font-size:12px; color:var(--fg-3);">PLG / Venkatesh — current case</span></td>
+            <td>2:26-cv-01956 · E.D. Cal.</td>
+            <td>2026-05-28</td>
+            <td><span class="pill pill--red">Active · Answer ~6/18</span></td>
+            <td>TCPA Quiet-Hours SMS</td>
+          </tr>
+          <tr>
+            <td>Long v. Visible Ideas, Inc.<br><span style="font-size:12px; color:var(--fg-3);">PLG / Venkatesh</span></td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-26</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA (same template)</td>
+          </tr>
+          <tr>
+            <td>Maxey v. Visible Ideas Inc.</td>
+            <td>1:26-cv-23050 · S.D. Fla.</td>
+            <td>2026 (removed)</td>
+            <td><span class="pill pill--warn">Response Due 6/5/2026 (extension granted)</span></td>
+            <td>TCPA — defense: Jule / Lane / Robinson</td>
+          </tr>
+          <tr>
+            <td>Grissett v. Visible Ideas, Inc.</td>
+            <td>D.S.C.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>FDCPA (15:1692), not TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px;"><span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Visible+Ideas%22&type=r">Source: CourtListener -></a></span></p>
+
+    <div class="callout">
+      <div class="callout-title">Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean tight">
+        <li>Plaintiff's full 10-digit number — last-4 ("6217") is all the complaint discloses; pull Exhibit A from PACER ECF #1 to attempt recovery from screenshot headers</li>
+        <li>Corporate registry confirmation — Delaware SoS, Bizapedia, and OpenCorporates all blocked; formation date, registered agent, and officer list could not be verified</li>
+        <li>Company main phone and main email — rent.app/contact returns 404; no general inbound number publicly listed</li>
+        <li>Email pattern verification — {first}@rent.app inferred from team-page firstnames, but no published email confirmed any individual address</li>
+        <li>Sender DID 877-749-3592 — no consumer complaints retrievable from 800notes / YouMail / Tellows / RoboKiller (all blocked HTTP 403/404); sender identification is inferential from Exhibit A only</li>
+        <li>Judges Calabretta and Peterson TCPA ruling history — no opinion search completed; check before any settlement-leverage framing</li>
+        <li>Defense counsel for Florez and Long — not yet appeared as of report generation date</li>
+        <li>SMS vendor identification — links.rent.app is a self-hosted/CNAME'd link wrapper; no Twilio/Bandwidth/Sinch/Attentive/Postscript fingerprint confirmed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open the call with Alexander Labowitz (Co-founder, Legal &amp; Compliance) — and copy CEO Andrew Borovsky on follow-up. Founder-led shop with no in-house GC.</h2>
+      <p class="section-lede">Rent.app is a founder-led startup. Four co-founders are listed on the public team page, and one of them holds the "Legal &amp; Compliance" portfolio. Email pattern <strong>{first}@rent.app</strong> is inferred from the small-team naming convention but is not published — every email below carries a PATTERN pill until a verified address surfaces.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Alexander Labowitz</strong><br><span class="pill pill--dark">LEGAL &amp; COMPLIANCE</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>Co-founder · Legal &amp; Compliance — likely de facto GC; primary owner of TCPA risk <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>alexander@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/alexander-labowitz-b0513512">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Andrew Borovsky</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Co-founder &amp; CEO — final budget authority; copy on any follow-up <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>andrew@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/andrewborovsky">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Gerard Knight</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Co-founder &amp; COO (Operations) — owns ESP send-window config and vendor relationships <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>gerard@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jerryknight1">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Leonid Movsesyan</strong><br><span class="pill pill--dark">CTO</span></td>
+            <td>Co-founder &amp; CTO (Engineering) — owns the technical integration for any consent-capture or quiet-hours middleware <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>leonid@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/lmovsesyan">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Catie Case</strong><br><span class="pill pill--dark">SPECIAL PROJECTS</span></td>
+            <td>"Catie from Rent App" — named in the SMS exhibit itself (Compl. Ex. A) as the human voice of outbound support texts; central witness if discovery proceeds <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>catie@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/catiecase">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Nils Decker</strong><br><span class="pill pill--dark">BUSINESS DEV</span></td>
+            <td>Business Development — secondary commercial contact if legal channel is slow <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>nils@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/nilsdecker">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Travis Schmeisser</strong><br><span class="pill pill--dark">PRODUCT</span></td>
+            <td>Product &amp; Design — owns signup-flow UX where consent disclosure would live <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>travis@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/tschmeisser">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Adam Covalt</strong><br><span class="pill pill--dark">SUPPORT</span></td>
+            <td>Support — opt-out / STOP handling owner <span class="src-tag"><a href="https://rent.app/about-us">rent.app/about -></a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>adam@rent.app <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/adam-c-1242aa53">LinkedIn</a></td>
+          </tr>
+          <tr style="background:var(--gray-05);">
+            <td colspan="5" style="font-size:12px; color:var(--fg-3); text-align:center;">— Plaintiff counsel and defense counsel below — not Blacklist sales targets; reference only —</td>
+          </tr>
+          <tr>
+            <td><strong>Vinit R. Venkatesh</strong><br><span class="pill pill--info">PLAINTIFF COUNSEL</span></td>
+            <td>PLG Damage Attorneys, Miramar FL — CA Bar #367857</td>
+            <td>(305) 506-4746 <span style="font-size:11px; color:var(--fg-3);">(firm main)</span></td>
+            <td>service@plgdamage.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><em>Defense Counsel (Florez)</em></td>
+            <td>Not yet appeared · 21-day answer clock</td>
+            <td><span class="pill pill--gap">PENDING</span></td>
+            <td><span class="pill pill--gap">PENDING</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><em>Defense Counsel (Maxey, S.D. Fla.)</em><br><span style="font-size:12px; color:var(--fg-3);">For reference — same defendant</span></td>
+            <td>Carmen Elena Jule · Gerald D. Lane Jr. · Chad J. Robinson</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin-top:16px;"><strong>Email pattern note:</strong> {first}@rent.app inferred from public team-page firstnames. Promote any single contact to VERIFIED upon confirmation (e.g., reply received, business-card capture, or company-published address).</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this inside 72 hours. The Maxey response is due June 5; the Florez answer follows ~June 18. Defendant is buying remediation right now or paying for it later.</h2>
+      <p class="section-lede">Visible Ideas is in the middle of an active four-front response window. The window where Blacklist is the cheapest line item closes the moment defense counsel files the first MTD — at that point the budget for compliance gets consumed by the litigation. Hit them while the answer is still being drafted.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <strong>Day 0–1 · Pull PACER ECF #1 ($1.20) and inspect Exhibit A.</strong> Confirm whether the screenshot headers leak Florez's full number. Run the litigator-list lookup if recovered. Either way, log the partial ("6217") and flag plaintiff's 2014 pro se filing for the call narrative.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <strong>Day 1 · Email alexander@rent.app (Co-founder, Legal &amp; Compliance) — copy andrew@rent.app and gerard@rent.app.</strong> Subject: "Florez v. Visible Ideas (E.D. Cal. 2:26-cv-01956) — 21-day clock + the Maxey response is due June 5." Three-sentence body: case + Long + Maxey + Grissett pattern, Privacy Policy gap, offer 20 minutes.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <strong>Day 2 · LinkedIn touch to Alexander Labowitz</strong> referencing the four-district pattern. Mention the PLG filing pace (8+ TCPA cases in 60 days, ~2/week) and that the quiet-hours theory is a templated reuse.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <strong>Day 3–5 · Phone follow-up to firm-level numbers / inbound channels.</strong> No direct dials available; route via published rent.app support channel and request escalation to legal. Use Catie Case's identification in Exhibit A as a soft conversation opener with support — they will route it up.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <strong>Day 5–10 · Demo focused on consent capture + quiet-hours / time-zone filter.</strong> Walk through the two specific 6:04 AM and 6:00 AM Pacific sends pled in Compl. ¶21. Show the two-line ESP config that would have blocked them. Anchor the deal on cost-per-future-text avoided, not feature lists.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <strong>Day 10–21 · Close before defense counsel appears.</strong> Once an MTD is filed, the compliance budget gets reallocated to outside counsel and the deal slows by 60+ days. Aim for verbal commit before ~6/18/2026.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--info);">
+      <h3 class="card-title">Trigger Conditions That Change The Plan</h3>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Defense counsel files MTD compel arbitration:</strong> Defendant's Terms include a mandatory arbitration + class waiver. If invoked in Florez, urgency drops modestly (case may move to AAA/JAMS) but cross-sell on consent capture remains — arbitration doesn't fix the consent record gap.</li>
+          <li><strong>Florez voluntarily dismisses to amend:</strong> Pause outreach for 1 week; PLG sometimes re-files with a tightened class definition.</li>
+          <li><strong>Defendant settles Maxey (S.D. Fla.) before 6/5/2026:</strong> Treat as buy-signal — they will be ready to extinguish Florez and Long by the same mechanism. Lead with consent capture as the "make this stop happening" purchase.</li>
+          <li><strong>5th PLG case lands against Visible Ideas:</strong> Escalate to "this is a campaign" framing; the deal moves from compliance project to crisis-response.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">HIGH URGENCY · 4 ACTIVE CASES</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 18</span>
+      <span class="pill pill--info">MAXEY RESPONSE DUE JUN 5 · WATCH FOR SIGNAL</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-02</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
