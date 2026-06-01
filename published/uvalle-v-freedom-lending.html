@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uvalle v. Freedom Lending — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl .row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout .callout-title{ font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+.callout ul{ margin:0; padding-left:20px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Wyoming-Shell Consumer Lender · SMS Short-Code Quiet-Hours Class Action · Serial PLG Filing Campaign</p>
+      <h1 class="hero-tagline">Uvalle v.<br>Freedom Lending LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03471</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Tex. (San Antonio)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred until PACER pull or first defense filing.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Uvalle complaint identifies the plaintiff as a Bexar County, TX resident and includes screenshots of the inbound short-code traffic, but never discloses the 10-digit recipient number. Scrub is deferred.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><span class="pill pill--red">Scrub Status</span> <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span></div>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint identifies plaintiff Vangie Uvalle as a Bexar County, TX resident and the "regular user" of an unidentified cellular line. Screenshots show only the inbound short code (51797). No 10-digit recipient number is pled.</div>
+      </div>
+      <p class="scrub-body-text">No blacklistBulk lookup was run because there is no number to query. CourtListener returned zero prior filings under the name "Vangie Uvalle" <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vangie+Uvalle%22&type=r">CourtListener →</a></span> — meaning the plaintiff appears to be a first-time filer rather than a known serial litigant. That cuts both ways: she's not pre-flagged on any litigator list, but the firm carrying her case (PLG Damage Attorneys) very much is — see Section 04.</p>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card-meta" style="margin-bottom:12px">SENDING INFRASTRUCTURE IDENTIFIED IN COMPLAINT</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Sender · Short Code</div>
+          <h3 class="card-title" style="font-family:var(--font-mono)">51797</h3>
+          <p class="card-body">Five-digit CTIA-registered common short code used for the "FLC: Welcome!" marketing blasts shown in the complaint screenshots. Short codes are leased through CSCA/TCR-registered aggregators (Twilio, Sinch, Bandwidth, Infobip) and are inherently mass-messaging infrastructure — not 1:1 communication.</p>
+          <p style="margin-top:12px"><span class="pill pill--warn">Not Indexed · 800notes / YouMail / Tellows / RoboKiller</span></p>
+          <p class="card-body" style="margin-top:8px; font-size:13px; color:var(--fg-2)">Public reverse-lookup directories do not index 5-digit short codes the way they index 10-digit DIDs. Numerosity proof for this campaign will need to come from CSCA/TCR lessee records and the defendant's aggregator send logs in discovery.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Sender Domains (link rotation)</div>
+          <h3 class="card-title" style="font-family:var(--font-mono); font-size:16px">flc47.com<br>flcmsg.com<br>cf.freedomlender.co</h3>
+          <p class="card-body">Three distinct domains embedded in the three pled messages — a classic A/B link-rotation or anti-filter cycling pattern consistent with a high-volume lead-gen funnel rather than a single branded SMS program.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card-meta" style="margin-bottom:12px">RECOVERY PATH FOR PLAINTIFF NUMBER</div>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <h3 class="card-title">1. Pull ECF #1 from PACER</h3>
+          <p class="card-body">The complaint exhibits (Doc #1, filed 5/28/26) include screenshots — review the full filed copy for any redacted/unredacted number variant or civil cover sheet detail. ~$1.20 PACER fee.</p>
+        </div>
+        <div class="card card--accent">
+          <h3 class="card-title">2. Wait for Initial Disclosures</h3>
+          <p class="card-body">FRCP 26(a)(1)(A)(iii) requires plaintiff to disclose computation of damages — that filing typically includes the specific recipient number tied to the three pled texts.</p>
+        </div>
+        <div class="card card--accent">
+          <h3 class="card-title">3. Defense Counsel Notice of Appearance</h3>
+          <p class="card-body">Defense counsel appearance + scheduling order will frequently surface the plaintiff number as part of the parties' early stipulations. Monitor docket weekly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS · DEFERRED</span>
+      <span class="pill pill--info">RECOVERY · PACER #1</span>
+      <span class="pill pill--ok">PLAINTIFF · NO PRIOR TCPA FILINGS</span>
+      <span class="pill pill--danger">FIRM · 8 TCPA FILINGS IN 30 DAYS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Wyoming-shell consumer lender with rotating SMS sender infrastructure and a serial-filer firm now hunting their vertical.</h2>
+      <p class="section-lede">Freedom Lending is a low-transparency Wyoming LLC running a CTIA short-code marketing program (51797) through at least three disposable sender domains. PLG Damage Attorneys just sued Rocket Mortgage two days before this filing — the consumer-lending vertical is being actively harvested. Lead with Consent Capture + Compliance Audit. RND/DNC scrubbing is the natural cross-sell once they realize they don't have one.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">The complaint alleges no prior express invitation or permission for ANY of the three texts <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03471&type=r">CourtListener →</a></span>. Freedom Lending almost certainly cannot produce a TCPA-compliant opt-in record tied to the recipient number — that's the case-killer Blacklist solves with a system of record.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">Quiet-hours violations (47 CFR § 64.1200(c)(1)) pled at 02:49 AM, 04:47 AM, and 09:51 PM local time signal zero time-zone-aware send-window controls. A documented written policy plus suppression-list governance is table stakes for any short-code program.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">CROSS-SELL</div>
+        <h3 class="card-title">DNC Scrubbing + Litigator Scrub</h3>
+        <p class="card-body">Three rotating sender domains + a single shared short code is a textbook pattern for defeating internal DNC controls. Plug their outbound into Blacklist scrubbing pre-send to break the repeat-plaintiff cycle PLG is actively exploiting.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="card-meta" style="margin-bottom:12px">PITCH ANGLE</div>
+      <div class="card card--alert">
+        <p class="card-body">"Freedom Lending got sued in San Antonio yesterday by a firm that filed eight TCPA class actions in the last thirty days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage+Attorneys%22+TCPA&type=r" style="color:#C9C9C9">CourtListener →</a></span> — including Rocket Mortgage two days before yours. The complaint pleads three texts at 2:49 AM, 4:47 AM, and 9:51 PM with no consent and no quiet-hours guardrails. The named-plaintiff exposure is $1,500–$4,500. The class exposure — pled as 'several thousands' of recipients at $500 to $1,500 each — is seven figures minimum. Blacklist gives you the consent system of record, the time-zone-aware send gate, and the litigator scrub that would have stopped all three of those texts from going out. The same firm is going to keep picking off lenders in this vertical until somebody plugs the leak — be the one that closes it before suit #2 hits."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Wyoming LLC with no public team, no LinkedIn presence, and a website that 403s every crawler.</h2>
+      <p class="section-lede">Freedom Lending operates as "FreedomLender" out of freedomlender.co. Public-source intelligence on ownership, leadership, founding date, employee count, or revenue is essentially zero — by design. Wyoming LLC formation is the standard anonymity vehicle for opaque consumer-lending operators.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Freedom Lending LLC</dd>
+          <dt>DBA</dt><dd>FreedomLender (per SMS branding in complaint)</dd>
+          <dt>Formation State</dt><dd>Wyoming</dd>
+          <dt>Texas Status</dt><dd>"Authorized to do business in Texas" per complaint ¶5</dd>
+          <dt>HQ</dt><dd><span class="pill pill--gap">Unknown</span></dd>
+          <dt>Website</dt><dd>freedomlender.co · cf.freedomlender.co</dd>
+          <dt>Vertical</dt><dd>Consumer lending / lead-gen</dd>
+          <dt>Officers</dt><dd><span class="pill pill--gap">None identified — WY SoS blocked</span></dd>
+          <dt>Registered Agent</dt><dd><span class="pill pill--gap">Unknown</span></dd>
+          <dt>Revenue / Employees</dt><dd><span class="pill pill--gap">No public footprint</span></dd>
+          <dt>BBB / Trustpilot</dt><dd>No accessible profile (all sources HTTP 403)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Three rotating sender domains for one short-code program</h3>
+        <p class="card-body">The three pled messages use three different click-through domains — <span style="font-family:var(--font-mono)">flc47.com</span>, <span style="font-family:var(--font-mono)">flcmsg.com</span>, and <span style="font-family:var(--font-mono)">cf.freedomlender.co</span> — all routed through the same short code (51797). That is the operational signature of a lead-gen funnel built to evade single-domain spam-filter blocks, not a centralized consent-of-record SMS program. There is no plausible "we suppressed properly" story when the suppression infrastructure itself is fragmented across throwaway domains.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Strategic Timing</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Filed</dt><dd>May 28, 2026 (W.D. Tex., San Antonio Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03471&type=r">CourtListener →</a></span></dd>
+          <dt>Answer Deadline</dt><dd>~21 days from service per FRCP 12(a) — service date not yet on docket</dd>
+          <dt>Same-Day Filing</dt><dd>Hines v. Freedom Lending LLC filed 5/28/26 in S.D. Cal. (3:26-cv-03267) — strong indicator of a coordinated multi-jurisdiction campaign <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freedom+Lending%22&type=r">CourtListener →</a></span></dd>
+          <dt>Window to Close</dt><dd>Pitch before defense counsel appears and before initial disclosures — typically 30–60 days from filing</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="card-meta" style="margin-bottom:12px">RELATED ENTITIES (CROSS-SELL CANDIDATES)</div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>flc47.com / flcmsg.com domain owners</td>
+              <td>Sender-domain operator(s)</td>
+              <td>SMS lead-gen infra</td>
+              <td>If same registrant as Freedom Lending, bundles into single account. If separate, that's a third-party affiliate using the same shortcode — own scrub need.</td>
+              <td><span class="pill pill--warn">Medium — pull WHOIS</span></td>
+            </tr>
+            <tr>
+              <td>Short code 51797 lessee (TCR/CSCA)</td>
+              <td>SMS aggregator account holder</td>
+              <td>A2P messaging</td>
+              <td>Lessee of record is on the hook for campaign-level compliance — separate sales conversation with the aggregator's customer.</td>
+              <td><span class="pill pill--info">Low — confirm via CSCA</span></td>
+            </tr>
+            <tr>
+              <td>WY SoS-listed members/managers</td>
+              <td>Beneficial owners</td>
+              <td>Same</td>
+              <td>If same individuals operate other lending or fintech entities, those are direct cross-sell — common pattern in lead-gen.</td>
+              <td><span class="pill pill--warn">Medium — pull WY filing</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PLG Damage Attorneys is on an 8-cases-in-30-days TCPA spree. Freedom Lending is one of two same-day filings.</h2>
+      <p class="section-lede">Vinit Venkatesh and PLG Damage Attorneys are running a templated quiet-hours + lack-of-consent campaign across consumer lending, mortgage, retail, fitness, EWA, and health verticals. The Uvalle complaint mirrors the boilerplate they used against Rocket Mortgage two days earlier and Quince/Rite Aid earlier in the month.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Facts</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>5:26-cv-03471 (W.D. Tex.)</dd>
+          <dt>Filed</dt><dd>May 28, 2026</dd>
+          <dt>Division</dt><dd>San Antonio</dd>
+          <dt>Plaintiff</dt><dd>Vangie Uvalle (Bexar County, TX)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, TX Bar #24144674</dd>
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Miramar, FL)</dd>
+          <dt>Class Status</dt><dd><span class="pill pill--danger">Putative Rule 23 class</span></dd>
+          <dt>Class Definition</dt><dd>U.S. persons who received &gt;1 marketing text from defendant in any 12-month period before 8:00 AM or after 9:00 PM local time, 4 years pre-filing through certification</dd>
+          <dt>Class Size Pled</dt><dd>"At least 50 persons" / "in the several thousands"</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-hours violation (texts at 02:49 AM, 04:47 AM, 09:51 PM local time) without prior express invitation or permission</dd>
+          <dt>Damages</dt><dd>$500 negligent / $1,500 willful per violation + injunction + fees</dd>
+          <dt>Named PL Exposure</dt><dd class="num">$1,500 (negligent) — $4,500 (willful), 3 violations pled</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          <dt>Docket Notes</dt><dd>Doc #1 Complaint · Doc #2 Summons Request, both filed 5/28/26 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03471&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Lead Attorney</dt><dd>Vinit R. Venkatesh, Esq.</dd>
+          <dt>TX Bar No.</dt><dd>24144674</dd>
+          <dt>Email</dt><dd>vv@plglawyersfl.com</dd>
+          <dt>Phone</dt><dd>(305) 506-4746 (per PACER signature block)</dd>
+          <dt>Firm</dt><dd>PLG Damage Attorneys</dd>
+          <dt>Firm Address</dt><dd>2750 SW 145th Ave, Miramar, FL 33027</dd>
+          <dt>Address Mismatch</dt><dd><span class="pill pill--warn">TX Bar attorney with FL firm address</span> — TX bar directory unreachable for cross-check; FL bar directory returned no Venkatesh in fetched content <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?searchTerm=Venkatesh">FL Bar →</a></span></dd>
+          <dt>Bar Discipline</dt><dd><span class="pill pill--gap">Unknown — TX bar lookup blocked</span></dd>
+          <dt>TCPAWorld / Law360</dt><dd>No hits for attorney or firm <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage+Attorneys">TCPAWorld →</a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Vinit+Venkatesh%22+TCPA">Law360 →</a></span></dd>
+          <dt>Firm Website</dt><dd>plglawyersfl.com (DNS failed at scan time)</dd>
+          <dt>TCPA Volume</dt><dd><span class="pill pill--danger">8 TCPA class actions filed Apr 27 – May 28, 2026</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="card-meta" style="margin-bottom:12px">PLG DAMAGE ATTORNEYS · 30-DAY FILING SPREE</div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Court</th><th>Filed</th><th>Vertical</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row-current">
+              <td><strong>Uvalle v. Freedom Lending LLC</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span></td>
+              <td>W.D. Tex. (5:26-cv-03471)</td>
+              <td>May 28, 2026</td>
+              <td>Consumer lending</td>
+              <td>Quiet hours · § 227(c)</td>
+            </tr>
+            <tr>
+              <td>Hines v. Freedom Lending LLC <span class="pill pill--danger" style="margin-left:6px">Same defendant · Same day</span></td>
+              <td>S.D. Cal. (3:26-cv-03267)</td>
+              <td>May 28, 2026</td>
+              <td>Consumer lending</td>
+              <td>Quiet hours / § 227(c)</td>
+            </tr>
+            <tr>
+              <td>Long v. Rocket Mortgage, LLC</td>
+              <td>C.D. Cal. (2:26-cv-05599)</td>
+              <td>May 26, 2026</td>
+              <td>Mortgage</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Hughes v. Guardio LLC</td>
+              <td>C.D. Cal. (2:26-cv-05313)</td>
+              <td>May 2026</td>
+              <td>Consumer software</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Mendez v. Refills Health, LLC</td>
+              <td>C.D. Cal. (2:26-cv-04569)</td>
+              <td>May 2026</td>
+              <td>Health / wellness</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Hughes v. Rite Aid Corp.</td>
+              <td>C.D. Cal. (2:26-cv-04436)</td>
+              <td>May 2026</td>
+              <td>Retail / pharmacy</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Rios v. Last Brand, Inc. (Quince)</td>
+              <td>C.D. Cal. (5:26-cv-02684)</td>
+              <td>May 2026</td>
+              <td>E-commerce</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Flottman v. Yesvideo, Inc.</td>
+              <td>M.D. Fla. (8:26-cv-01491)</td>
+              <td>May 2026</td>
+              <td>Consumer software</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Fasheh v. The Xercize Studio, LLC</td>
+              <td>C.D. Cal. (8:26-cv-01231)</td>
+              <td>May 2026</td>
+              <td>Fitness</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Ortiz v. Payactiv, Inc.</td>
+              <td>M.D. Fla. (2:26-cv-01460)</td>
+              <td>April 2026</td>
+              <td>Earned wage access</td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>VATTELLE v. Freedom Lending LLC</td>
+              <td>D.N.J.</td>
+              <td>Dec 8, 2025</td>
+              <td>Consumer lending</td>
+              <td>TCPA (different counsel)</td>
+            </tr>
+            <tr>
+              <td>Epke v. Freedom Lending</td>
+              <td>D. Neb.</td>
+              <td>2005</td>
+              <td>Consumer lending</td>
+              <td>Dismissed w/ prejudice 3/27/2006 (likely settlement)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--fg-3); margin-top:8px">Sources: <a href="https://www.courtlistener.com/?q=%22PLG+Damage+Attorneys%22+TCPA&type=r">CourtListener — PLG Damage Attorneys</a> · <a href="https://www.courtlistener.com/?q=%22Freedom+Lending%22&type=r">CourtListener — Freedom Lending</a> · <a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener — Venkatesh</a></p>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="card-meta" style="margin-bottom:12px">FIRM TEMPLATE</div>
+      <div class="card">
+        <h3 class="card-title">PLG / Venkatesh Quiet-Hours Template</h3>
+        <p class="card-body">PLG Damage Attorneys is running the Florida-flavored quiet-hours boilerplate now common after the FCC's 2024 clarifications on § 227(c) cell-phone applicability. The template: identify 2–3 timestamped marketing texts outside the 8 AM – 9 PM window, attach screenshots, plead "no prior express invitation or permission," demand $500–$1,500 per text + a Rule 23 class spanning four years back. The plaintiff is typically a first-time named filer (consistent with Uvalle — zero prior TCPA filings on CourtListener). Volume run-rate of ~8 cases per month confirms volume-filer status even though the firm has no TCPAWorld power-rankings footprint and a website that fails DNS.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul>
+        <li>Plaintiff's recipient 10-digit number is not pled — pull PACER #1 for any unredacted variant, or wait for FRCP 26(a) disclosures.</li>
+        <li>Wyoming SoS filing for Freedom Lending LLC is blocked behind captcha — pull manually to surface organizer, registered agent, and member/manager names.</li>
+        <li>Texas Bar status / discipline history for Vinit Venkatesh (Bar #24144674) — TX bar directory was unreachable; confirm active status and admit date before any direct counsel outreach.</li>
+        <li>Identity of CSCA/TCR lessee for short code 51797 — confirms whether Freedom Lending or a third-party affiliate is the SMS account holder.</li>
+        <li>WHOIS on flc47.com and flcmsg.com — confirms whether these are owned by Freedom Lending or by an affiliate lead-gen partner.</li>
+        <li>Defense counsel appearance — not yet on docket; monitor for entry of appearance and any early MTC arbitration.</li>
+        <li>Judge assignment — not yet visible; W.D. Tex. San Antonio bench TCPA disposition history will inform settlement-vs-litigate posture.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Freedom Lending is a contact desert. WY SoS filing is the only known path to a named principal.</h2>
+      <p class="section-lede">freedomlender.co returns HTTP 403 on every page. There is no LinkedIn company page, no TheOrg entry, no Crunchbase profile, no BBB record. Zero individuals have been recovered from public sources. The Wyoming Secretary of State filing — currently captcha-blocked — is the highest-yield next move for the sales team or a paralegal.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Source / Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Unknown</strong> <span class="pill pill--dark" style="margin-left:6px">Member / Manager</span></td>
+            <td>Wyoming LLC member/manager(s) of record. WY SoS filing not yet retrieved — captcha blocked at scan time.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — Pull WY SoS</span></td>
+          </tr>
+          <tr>
+            <td><strong>Unknown</strong> <span class="pill pill--dark" style="margin-left:6px">Registered Agent</span></td>
+            <td>WY registered agent of record. Service of process for the W.D. Tex. summons will flow through this party — they can identify counsel.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — Pull WY SoS</span></td>
+          </tr>
+          <tr>
+            <td><strong>Main Line</strong> <span class="pill pill--dark" style="margin-left:6px">Switchboard</span></td>
+            <td>freedomlender.co main contact. Website returns HTTP 403 on /contact and /about; no publicly listed switchboard recovered.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">GAP — Site blocks crawlers</span></td>
+          </tr>
+          <tr>
+            <td><strong>SMS Aggregator AE</strong> <span class="pill pill--dark" style="margin-left:6px">Vendor</span></td>
+            <td>Account executive at the CSCA/TCR aggregator that leases short code 51797 to Freedom Lending. Identity not yet confirmed.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — Confirm via CSCA</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong> <span class="pill pill--dark" style="margin-left:6px">TBD</span></td>
+            <td>Not yet appeared on the W.D. Tex. docket. ~21-day FRCP 12(a) answer clock begins on service. Likely outside TX counsel given WY entity status.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — Monitor docket</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px; background:var(--info-bg); border-left-color:var(--info)">
+      <div class="callout-title" style="color:var(--info)">Highest-yield next move</div>
+      <ul>
+        <li><strong>Pull WY Secretary of State filing for Freedom Lending LLC</strong> — this is the only published source likely to surface the organizer, registered agent, and member/manager names. Every other enrichment source (LinkedIn, TheOrg, ZoomInfo, Apollo, RocketReach, BBB, Trustpilot, Crunchbase, Glassdoor) returned 403/404/gated content. The WY filing is captcha-locked but accessible manually for ~$0–$5.</li>
+        <li><strong>WHOIS lookup on flc47.com, flcmsg.com, freedomlender.co</strong> — if any of these is registered to a non-privacy-shielded email, that's a direct line to the operator.</li>
+        <li><strong>Service-of-process trail</strong> — once plaintiff's counsel serves the WY registered agent, the proof-of-service filing on the docket will name the individual who accepted service.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card-meta" style="margin-bottom:12px">PLAINTIFF COUNSEL (REFERENCE ONLY — DO NOT PITCH)</div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Source</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Vinit R. Venkatesh, Esq. <span class="pill pill--dark" style="margin-left:6px">Plaintiff Counsel</span></td>
+              <td>TX Bar #24144674 · PLG Damage Attorneys, Miramar FL · 8 TCPA class actions filed in 30 days</td>
+              <td>(305) 506-4746 <span class="pill pill--info" style="margin-left:4px">per PACER</span></td>
+              <td>vv@plglawyersfl.com</td>
+              <td><span class="pill pill--ok">VERIFIED — complaint signature</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — defense counsel will appear inside 21 days and the same firm is filing again next week.</h2>
+      <p class="section-lede">Two same-day filings (Uvalle in W.D. Tex., Hines in S.D. Cal.) and a 30-day cadence of 8 TCPA class actions from PLG mean this defendant is in active triage mode. The window for cold outreach closes the moment defense counsel appears — get in before that.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 — TODAY</div>
+        <h3 class="card-title">Pull WY SoS filing + WHOIS</h3>
+        <p class="card-body">Have the assigned BDR or a paralegal pull (a) the Wyoming SoS filing for Freedom Lending LLC and (b) WHOIS records on flc47.com, flcmsg.com, freedomlender.co. Target output: a named member/manager and a non-privacy-shielded contact email. Cost: under $20.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1–2</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <p class="card-body">Download the full complaint + exhibits + civil cover sheet from PACER (~$1.20). Confirm there is no unredacted plaintiff number in any exhibit. Update the litigator-scrub status if a number surfaces.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2–3</div>
+        <h3 class="card-title">First-touch email + call</h3>
+        <p class="card-body">Use the WY SoS-recovered name and any WHOIS email. Lead with: "You and Rocket Mortgage got hit by the same firm 48 hours apart — here's the consent system of record that would have stopped this." Reference both Uvalle (TX) and Hines (CA) by docket number to demonstrate this isn't a one-off.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 4–7</div>
+        <h3 class="card-title">Aggregator-side conversation</h3>
+        <p class="card-body">Identify the CSCA/TCR lessee for short code 51797. If the lessee is a third-party aggregator, parallel-track a conversation with their compliance team — Freedom Lending's program likely runs on a shared compliance posture the aggregator already has exposure on.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 7–14</div>
+        <h3 class="card-title">Second-touch after defense counsel appears</h3>
+        <p class="card-body">Monitor PACER weekly. Once defense counsel appears, pivot the pitch from "stop the bleed" to "build the record for class certification opposition." Consent-capture documentation and DNC scrub logs are evidence; that's the framing once litigation posture is set.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 14–21</div>
+        <h3 class="card-title">Pre-answer push</h3>
+        <p class="card-body">FRCP 12(a) answer is due ~21 days from service. Final outreach window before defendant is locked into litigation posture and Blacklist becomes a "post-mortem" rather than "stop the bleed" conversation.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="card-meta" style="margin-bottom:12px">TRIGGER CONDITIONS — RECALIBRATE IF</div>
+      <ul class="clean tight">
+        <li><strong>Defense counsel files MTC arbitration</strong> → pivot to consent-capture-as-evidence pitch; arbitration clauses are only as good as the consent records they sit inside.</li>
+        <li><strong>Plaintiff files an amended complaint</strong> → expect new defendants (parent/affiliate/aggregator). Re-run the cross-sell table.</li>
+        <li><strong>A third PLG case lands against Freedom Lending</strong> → escalate urgency tier; defendant will be in panic-buy mode.</li>
+        <li><strong>WY SoS pull surfaces a familiar operator name</strong> → check for cross-sell into their other consumer-lending LLCs.</li>
+        <li><strong>WHOIS shows flc47.com / flcmsg.com owned by an affiliate</strong> → that affiliate is its own sales opportunity, sold separately.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY · HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 18</span>
+      <span class="pill pill--warn">SERIAL-FILER FIRM · ~8 CASES / MONTH</span>
+      <span class="pill pill--info">LEAD PRODUCT · CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
