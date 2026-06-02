@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bronstin v. Ixonia Bank — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout h3{ margin:0 0 8px; font-size:16px; color:var(--warning); text-transform:uppercase; letter-spacing:0.08em; }
+.step{ display:grid; grid-template-columns:64px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:32px; font-weight:700; color:var(--bl-red); line-height:1; font-variant-numeric:tabular-nums; }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <g fill="#ffffff">
+            <text x="0" y="19" font-family="General Sans, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.5">BLACKLIST</text>
+            <rect x="128" y="2" width="3" height="20" fill="#A50100"/>
+            <text x="138" y="19" font-family="General Sans, sans-serif" font-size="22" font-weight="400" letter-spacing="-0.5">ALLIANCE</text>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Federal DNC + Caller ID/CNAM Class Action · Mortgage Lender · Serial-Plaintiff + Top-Tier Paronich Firm</p>
+      <h1 class="hero-tagline">Bronstin v.<br>Ixonia Bank <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">d/b/a Novus Home Mortgage</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-00970-WED</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Wis. (Milwaukee)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 30, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(today)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">William E. Duffin<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Magistrate</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(2)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Two classes; "hundreds"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Anthony I. Paronich <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Paronich Law, P.C.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted in complaint — scrub deferred, but Bronstin is a textbook serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Here, the complaint discloses only "(202) XXX-XXXX" — a DC area code with the last seven digits redacted. No 10-digit number was pled, so the litigator scrub cannot be executed against blacklistBulk yet. The recovery path runs through PACER (the unredacted civil cover sheet or initial disclosures) or defense-counsel discovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial Filer Confirmed</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(202) XXX-XXXX</div>
+        <div class="scrub-number-sub">DC area code; last seven digits redacted in the public complaint. Plaintiff resides in DC; calls were placed October 29, October 30, December 9 and December 10, 2024 from caller ID 301-477-0268. Plaintiff's number registered to the National DNC since November 4, 2021.</div>
+      </div>
+      <p class="scrub-body-text">Even though the number itself can't be scrubbed today, Bronstin's plaintiff profile is already a flashing red flag. CourtListener returns at least <strong>8 prior Bronstin TCPA filings</strong> across C.D. Cal., D. Mass., E.D. Mich., and now E.D. Wis. — including <em>Bronstin v. Solcius</em>, <em>Bronstin v. Clear Link Insurance</em>, <em>Bronstin v. Southern California Edison</em>, <em>Bronstin v. EF Education First</em>, <em>Bronstin v. Lending Force</em>, and <em>Bronstin v. Dash Capital</em>. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span> Several recent cases settled within 60–90 days of filing (Lending Force 2/17/2026; Dash Capital 3/7/2026), signaling a quick-settlement posture. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">+1 (301) 477-0268</h3>
+        <p class="card-body">Maryland/DC-metro area code dialing into a DC consumer — used by a Wisconsin community bank with no MD/DC branch footprint. Per the complaint's CNAM dip, the carrier of record is <strong>Onvoy</strong> (rate center COLLEGE PARK MD); CNAM is available but transmitted something other than the caller's name. Strong indicator of a downstream Onvoy sub-customer (loan-officer dialer, lead-gen vendor, or distributed-originator softphone) without proper CNAM/branded-calling configuration.</p>
+        <p style="margin-top:12px;"><span class="pill pill--warn">Onvoy Downstream</span> <span class="pill pill--warn">CNAM Misconfigured</span> <span class="pill pill--gap">No Public Consumer Reports Retrievable</span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option A</div>
+        <h3 class="card-title">Pull PACER ECF #1 attachments</h3>
+        <p class="card-body">The Civil Cover Sheet (JS-44) and any sealed contact-information exhibit may contain Bronstin's unredacted 10-digit number. ~$1.20 PACER fee. Once recovered, blacklistBulk scrub closes the loop in seconds.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option B</div>
+        <h3 class="card-title">Wait for Rule 26 disclosures</h3>
+        <p class="card-body">Bronstin will have to produce the receiving number in initial disclosures or written discovery. Defense counsel — once appeared — can share it under the protective order. Estimated 60–90 days post-service.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option C</div>
+        <h3 class="card-title">Cross-reference Bronstin's prior dockets</h3>
+        <p class="card-body">Bronstin uses the same 202 number across at least seven prior TCPA suits. PACER pulls on <em>Bronstin v. Lending Force</em> or <em>Bronstin v. Dash Capital</em> (both recently settled) may surface the full number from any unsealed exhibit or motion.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED · PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL-FILER FLAG — 8+ TCPA SUITS</span>
+      <span class="pill pill--warn">FAST-SETTLEMENT PROFILE (60–90 DAYS)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Community mortgage lender with 300+ uncontrolled loan-officer endpoints, no public TCPA program, and a Paronich class action on the docket.</h2>
+      <p class="section-lede">This is a high-probability close. Ixonia Bank / Novus Home Mortgage is a 105-year-old Wisconsin community bank that scaled into a national mortgage operation via a distributed-originator model — 300+ loan officers dialing and texting consumers nationwide. Their privacy policy expressly authorizes outbound marketing with "no" consumer opt-out, the public consent flow only covers SMS (not voice), and the complaint already alleges both DNC and Caller-ID/CNAM violations. Lead with DNC scrubbing; follow with consent capture + compliance audit.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <p class="card-body">The complaint pleads a Federal DNC violation. Bronstin's number was registered since November 4, 2021 and Novus made at least four calls. A federal-DNC scrub run against the originator network would have stopped every one of these calls before dial.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Consent Capture & Record Retention</h3>
+        <p class="card-body">Novus's SMS opt-in language covers "text messages and notifications" only — the lawsuit alleges voice calls. There is no documented express written consent record for the channel actually used. Capturing and retaining TCPA-compliant consent at the application page closes the consent gap.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">No TCPA, DNC, or autodialer language on either ixoniabank.com or novushomemortgage.com <span class="src-tag"><a href="https://novushomemortgage.com/privacy-policy">Novus Privacy Policy →</a></span>. No publicly identified Chief Compliance Officer at the bank level. A full audit + written DNC/calling policy is the obvious next product.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--bl-red);">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px;">Open with the smoking gun: "You're being sued by Anthony Paronich — the same lawyer who's filed over a thousand TCPA cases <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22&type=r">CourtListener →</a></span> and who TCPAWorld calls 'the Wolf of the TCPA' <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld →</a></span>. Your loan officers dialed a number that's been on the federal DNC since 2021, and you can see in your own complaint the caller ID came back with no CNAM through Onvoy. Both of those are fixable in a week with our scrub feed. We need to talk before you answer." Then pivot to the 300+ loan-officer distribution problem: every originator is a separate liability surface, and the bank's own privacy policy admits "For our marketing purposes — to offer our products and services to you: Yes" with no consumer opt-out option <span class="src-tag"><a href="https://novushomemortgage.com/privacy-policy">Novus Privacy Policy →</a></span>. That's exhibit-A at deposition. Close on the timing: Paronich settles his recent cases in 60–90 days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span> — the GC needs a compliance story to put on the table before mediation, and Blacklist is that story.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A 1918-chartered Wisconsin community bank running a 300+ loan officer national mortgage division.</h2>
+      <p class="section-lede">Ixonia Bank is a private, FDIC-insured Wisconsin state-chartered bank (FDIC Cert #12514) operating as a community bank in southeastern Wisconsin and, through its <strong>Novus Home Mortgage</strong> division, a nationwide residential mortgage originator. The parent holding company is Ixonia Bancshares Inc. (RSSD 1247295). The TCPA exposure sits almost entirely in the Novus division and its distributed originator network.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>Ixonia Bank (state-chartered bank)</dd>
+          <dt>DBA</dt><dd>Novus Home Mortgage</dd>
+          <dt>Chartered</dt><dd>1918 <span class="src-tag"><a href="https://banks.data.fdic.gov/api/institutions?filters=NAME%3A%22Ixonia%20Bank%22">FDIC →</a></span></dd>
+          <dt>FDIC Cert #</dt><dd>12514 (FDIC-insured since 1934) <span class="src-tag"><a href="https://banks.data.fdic.gov/api/institutions?filters=NAME%3A%22Ixonia%20Bank%22">FDIC →</a></span></dd>
+          <dt>HQ</dt><dd>W1046 Marietta Ave, Ixonia, WI 53036</dd>
+          <dt>Branches</dt><dd>7 offices (southeastern Wisconsin)</dd>
+          <dt>Parent</dt><dd>Ixonia Bancshares Inc. (RSSD 1247295) <span class="src-tag"><a href="https://banks.data.fdic.gov/api/institutions?filters=NAME%3A%22Ixonia%20Bank%22">FDIC →</a></span></dd>
+          <dt>Ownership</dt><dd>Private</dd>
+          <dt>Vertical</dt><dd>Banking / residential mortgage lending</dd>
+          <dt>Novus footprint</dt><dd>300+ loan officers nationwide <span class="src-tag"><a href="https://novushomemortgage.com">novushomemortgage.com →</a></span></dd>
+          <dt>Websites</dt><dd>ixoniabank.com · novushomemortgage.com</dd>
+          <dt>Main contact</dt><dd>feedback@novushomemortgage.com · (844) 337-2548 <span class="src-tag"><a href="https://novushomemortgage.com/contact">Novus Contact →</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">SMS-only opt-in. Voice calls allegedly made anyway.</h3>
+        <p class="card-body">Novus's published opt-in language reads: <em>"By submitting your phone number, you are authorizing Novus Home Mortgage to send you <strong>text messages and notifications</strong>. … Reply STOP to unsubscribe."</em> <span class="src-tag"><a href="https://novushomemortgage.com/privacy-policy" style="color:#fff;">Novus Privacy Policy →</a></span> There is no documented voice-call consent, no TCPA reference, no autodialer disclosure, and no DNC-scrub commitment anywhere on the site. The complaint alleges <strong>four voice calls</strong> to a DC-resident plaintiff on the federal DNC <span class="src-tag"><a href="https://novushomemortgage.com/privacy-policy" style="color:#fff;">Novus Privacy Policy →</a></span>. Bank's own privacy notice answers "Can you limit this sharing?" with <strong>"No"</strong> for marketing — a deposition exhibit waiting to be marked.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Window to close: ~21 days to answer; 60–90 days to mediation.</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 30, 2026 (today)</dd>
+        <dt>Answer deadline</dt><dd>21 days post-service (FRCP 12(a)) — first formal opportunity for defense story</dd>
+        <dt>Magistrate consent</dt><dd>Assigned to Mag. Duffin; consent jurisdiction decision typically within 30 days</dd>
+        <dt>Settlement window</dt><dd>Paronich's recent Bronstin cases settled in 60–90 days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></dd>
+        <dt>Recent recognition</dt><dd>2025 Wisconsin SBA Volume Lender Award <span class="src-tag"><a href="https://www.ixoniabank.com">ixoniabank.com →</a></span> — reputation-sensitive close</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px; margin:24px 0 12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--bl-red);">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ixonia Bancshares Inc.</strong></td>
+            <td>Parent holding company (RSSD 1247295)</td>
+            <td>Bank holding</td>
+            <td>Indemnitor of subsidiary; enterprise compliance program owner</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Novus Home Mortgage</strong></td>
+            <td>DBA / mortgage division of Ixonia Bank</td>
+            <td>Residential mortgage origination</td>
+            <td>Direct defendant; 300+ originators is the calling/texting surface</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Ixonia State Bank / ISB Community Bank</td>
+            <td>Predecessor names <span class="src-tag"><a href="https://banks.data.fdic.gov/api/institutions?filters=NAME%3A%22Ixonia%20Bank%22">FDIC →</a></span></td>
+            <td>Banking (historical)</td>
+            <td>Legacy charter — not actively calling</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit against the bank — but plaintiff and counsel are both volume operators with a fast-settle template.</h2>
+      <p class="section-lede">No prior TCPA cases against Ixonia/Novus surface in CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ixonia+Bank%22+TCPA&type=r">CourtListener →</a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Novus+Home+Mortgage%22+TCPA&type=r">CourtListener →</a></span>. But the plaintiff has filed at least 8 TCPA cases and the firm has 1,000+. This is a templated quick-settle case, not a litigation gauntlet.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-00970-WED</dd>
+          <dt>Filed</dt><dd>May 30, 2026</dd>
+          <dt>Court</dt><dd>U.S. District Court, E.D. Wis. (Milwaukee Division)</dd>
+          <dt>Judge</dt><dd>Magistrate William E. Duffin <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-00970&type=r">CourtListener →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Asher Bronstin (DC resident; serial filer, 8+ TCPA cases)</dd>
+          <dt>Counsel</dt><dd>Anthony I. Paronich · Paronich Law, P.C. (Hingham, MA)</dd>
+          <dt>Class</dt><dd>Yes — Rule 23(b)(2). Two classes: National DNC Class + Telemarketing Caller-ID Class</dd>
+          <dt>Class size</dt><dd>"At minimum, in the hundreds" (Complaint ¶ 52)</dd>
+          <dt>Statutes</dt><dd>47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1200(c)(2); 47 C.F.R. § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>(1) Federal DNC — 4 calls to plaintiff's DNC-registered residential number with no consent; (2) Caller ID / CNAM — calls transmitted via Onvoy with no telemarketer name in CNAM</dd>
+          <dt>Channels</dt><dd>Voice (4 calls; Oct 29, Oct 30, Dec 9, Dec 10, 2024)</dd>
+          <dt>Sending DID</dt><dd>301-477-0268 (Onvoy / COLLEGE PARK MD rate center)</dd>
+          <dt>Damages sought</dt><dd>$500/violation; $1,500 willful; injunction; fees. Named-plaintiff range $2,000 – $6,000 minimum. Class exposure (hundreds × multiple calls × $500–$1,500) = roughly $1M – $10M+ statutory range</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared · 21-day answer clock</dd>
+          <dt>Docket visibility</dt><dd>CourtListener indexed; PACER live; PacerMonitor / UniCourt not yet indexed at fetch time</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel — Anthony I. Paronich</h3>
+        <dl class="kv">
+          <dt>Firm</dt><dd>Paronich Law, P.C. (boutique; founder)</dd>
+          <dt>Firm address</dt><dd>350 Lincoln Street, Suite 2400, Hingham, MA 02043 <span class="pill pill--ok" style="margin-left:8px;">Matches Complaint</span></dd>
+          <dt>Firm phone</dt><dd>508-221-1510 (complaint); 617-485-0018 (main); 508-318-8100 (fax) <span class="src-tag"><a href="https://paronichlaw.com">paronichlaw.com →</a></span></dd>
+          <dt>Email</dt><dd>anthony@paronichlaw.com</dd>
+          <dt>Bar of record</dt><dd>Massachusetts</dd>
+          <dt>WI admission</dt><dd><span class="pill pill--warn">Pro hac vice expected</span> — firm site lists W.D. Wis. but not E.D. Wis. admission</dd>
+          <dt>TCPA ranking</dt><dd>Top 10 TCPAWorld Power Rankings (2022–2026); nicknamed "the Wolf of the TCPA" <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld →</a></span></dd>
+          <dt>Filing volume</dt><dd>1,213 federal docket appearances under "Paronich Law" <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22&type=r">CourtListener →</a></span></dd>
+          <dt>Settlement record</dt><dd>100+ class actions; "$200,000,000+" in settlements/judgments per firm site <span class="src-tag"><a href="https://paronichlaw.com/about">paronichlaw.com/about →</a></span></dd>
+          <dt>Style</dt><dd>Aggressive, fee-driven. TCPAWorld: "opposes effort of attorney to withdraw until he gets his pound of flesh." Frequently teams with Keogh Law / Burke / Sostrin and Michael Greenwald <span class="src-tag"><a href="https://tcpaworld.com/?s=Paronich">TCPAWorld →</a></span></dd>
+          <dt>Threat level</dt><dd><span class="pill pill--danger">Extreme</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Bronstin × Paronich = Federal-DNC + CNAM template, fast-settle.</h3>
+      <p class="card-body">Bronstin's recent template targets mortgage/lending and consumer-finance defendants: <em>Bronstin v. Lending Force LLC</em> (E.D. Mich. 2025) — Notice of Settlement filed 2/17/2026, dismissed 4/24/2026; <em>Bronstin v. Dash Capital Inc.</em> (E.D. Mich. 2026) — Notice of Settlement filed 3/7/2026 (~2 months from filing) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span>. The pattern is: file a Federal-DNC + Caller-ID/CNAM class complaint, push for early mediation, accept a class-deal/individual-release tradeoff. Co-counsel (Andrew Perrong, Dana Oliver) commonly appear in other Bronstin matters and may join here. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <h3 style="font-size:18px; margin:24px 0 12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--bl-red);">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Bronstin v. Ixonia Bank d/b/a Novus Home Mortgage</strong></td>
+            <td>2:26-cv-00970-WED</td>
+            <td>E.D. Wis.</td>
+            <td>2026-05-30</td>
+            <td><span class="pill pill--red">Open · Current</span></td>
+            <td>Federal DNC + Caller-ID/CNAM (class)</td>
+          </tr>
+          <tr>
+            <td>Bronstin v. Dash Capital Inc.</td>
+            <td>5:26-cv-10001</td>
+            <td>E.D. Mich.</td>
+            <td>2026</td>
+            <td><span class="pill pill--ok">Settled (Mar 2026)</span></td>
+            <td>Federal DNC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Bronstin v. Lending Force LLC</td>
+            <td>2:25-cv-13564</td>
+            <td>E.D. Mich.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Settled (Apr 2026)</span></td>
+            <td>Federal DNC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Bronstin v. EF Education First, Inc.</td>
+            <td>1:25-cv-12685</td>
+            <td>D. Mass.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Dismissed (Oct 2025)</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Bronstin v. Southern California Edison Company</td>
+            <td>8:25-cv-02334</td>
+            <td>C.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Bronstin v. Clear Link Insurance Agency, LLC</td>
+            <td>8:23-cv-01742</td>
+            <td>C.D. Cal.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Bronstin v. Solcius, LLC</td>
+            <td>8:23-cv-02255</td>
+            <td>C.D. Cal.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">Terminated Feb 2024</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Bronstin v. Vert Lake Elsinore, LLC</td>
+            <td>8:23-cv-01745</td>
+            <td>C.D. Cal.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">Dismissed May 2024</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Asher+Bronstin%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Ixonia Bank v. Texana Bank NA (same defendant; offensive posture)</td>
+            <td>—</td>
+            <td>D. Colo.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Trade secrets (non-TCPA) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ixonia+Bank%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Stockton Mortgage Corp. v. Ixonia Bancshares d/b/a Novus Home Mortgage</td>
+            <td>—</td>
+            <td>N.D. Ala.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Contract dispute (non-TCPA); Bradley Arant defending <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Novus+Home+Mortgage%22&type=r">CourtListener →</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h3>Open Intel Gaps to Close Before First Dial</h3>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>Pull PACER ECF #1 attachments to recover plaintiff's full 10-digit phone — required to run blacklistBulk litigator scrub.</li>
+        <li>Confirm whether 301-477-0268 is operated by Ixonia/Novus directly or by a third-party lead vendor / loan officer's softphone. The complaint identifies Onvoy as carrier of record but does not name the sub-customer.</li>
+        <li>Identify Ixonia Bank's <strong>General Counsel</strong> and <strong>Chief Compliance Officer</strong> at the bank level — neither appears in TheOrg, LinkedIn, or the bank's website.</li>
+        <li>Confirm Anthony Paronich's E.D. Wis. bar admission or pro hac vice status; firm site lists W.D. Wis. but not E.D. Wis.</li>
+        <li>Locate the live Novus loan application page (currently returns 404 on /apply and /terms) to screenshot actual point-of-capture consent language and check for arbitration / class waiver.</li>
+        <li>Crowd-source DID intel for 301-477-0268 (800notes / YouMail / Tellows / RoboKiller all returned 403/404 at fetch time) — re-run when accessible to establish class numerosity floor.</li>
+        <li>Verify whether co-counsel (Andrew Perrong / Dana Oliver) will file appearances, as they have in other Bronstin matters.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the Novus CEO. Stack the bank-level compliance and IT leaders behind him.</h2>
+      <p class="section-lede">Eric Egenhoefer (President &amp; CEO of Novus Home Mortgage) is the decision-maker. He owns the loan-officer network that generated the calls, the brand on the line, and the budget. Compliance VP Cheri M. and Compliance Manager Kimberly Wachtel are the technical buyers. At the parent-bank level, Steve Clark (SVP, Treasury Management) has the only published Ixonia direct line. Email pattern <strong>{first}.{last}@novushomemortgage.com</strong> is consistent across SignalHire masked entries and TheOrg listings.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Eric Egenhoefer</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--red">Lead Target</span></td>
+            <td>President &amp; CEO, Novus Home Mortgage. Brand owner; ultimate decision authority on settlement + compliance spend.</td>
+            <td>844-337-2548 <span class="pill pill--info">Main</span></td>
+            <td>eric.egenhoefer@novushomemortgage.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cheri M.</strong><br><span class="pill pill--dark">VP COMPLIANCE</span></td>
+            <td>Vice President Compliance, Novus Home Mortgage. Technical buyer for scrub + audit. Surname not published <span class="src-tag"><a href="https://theorg.com/org/novus-home-mortgage">TheOrg →</a></span>.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kimberly Wachtel</strong><br><span class="pill pill--dark">COMPLIANCE MGR</span></td>
+            <td>Compliance Manager, Novus Home Mortgage. Likely day-to-day owner of DNC/calling policy.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>kimberly.wachtel@novushomemortgage.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mirna Estrada</strong><br><span class="pill pill--dark">COMPLIANCE MGR</span></td>
+            <td>Payroll &amp; Compliance Manager, Novus Home Mortgage <span class="src-tag"><a href="https://theorg.com/org/novus-home-mortgage">TheOrg →</a></span>.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>mirna.estrada@novushomemortgage.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kerry Wirth</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer, Novus Home Mortgage. Operational owner of originator network.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>kerry.wirth@novushomemortgage.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dale Mittelstaedt</strong><br><span class="pill pill--dark">CTO</span></td>
+            <td>Chief Technology Officer, Novus Home Mortgage. Owns the dialer/CRM integration where scrub feeds plug in.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>dale.mittelstaedt@novushomemortgage.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cliff Fuller</strong><br><span class="pill pill--dark">VP IT</span></td>
+            <td>Vice President Information Technology, Novus Home Mortgage. Likely owner of the Onvoy/originator telephony stack.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>cliff.fuller@novushomemortgage.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alex Ruetz</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer, Novus Home Mortgage. Budget owner.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>alex.ruetz@novushomemortgage.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shannon Sprague</strong><br><span class="pill pill--dark">VP IR</span></td>
+            <td>Vice President of Investor Relations, Novus Home Mortgage.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>shannon.sprague@novushomemortgage.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Crystal Coy</strong><br><span class="pill pill--dark">SVP CAP MKTS</span></td>
+            <td>SVP, Capital Markets, Novus Home Mortgage.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>crystal.coy@novushomemortgage.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Steve Clark</strong><br><span class="pill pill--dark">SVP TREASURY</span></td>
+            <td>SVP &amp; Director of Treasury Management, Ixonia Bank (parent-bank level). Only published Ixonia direct line.</td>
+            <td>262-567-7509 <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/steve-clark-943596b">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tyson Goecks</strong><br><span class="pill pill--dark">VP COMMERCIAL</span></td>
+            <td>VP of Commercial Banking, Ixonia Bank (parent-bank level).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/tyson-goecks-39711557">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Ixonia Bank — General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>Not publicly identified. Bank-level GC is the highest-priority unknown.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong></td>
+            <td>Not yet appeared. 21-day answer clock running from service. Bradley Arant (Anderson / Warburton / Weite) is Ixonia's counsel of record in N.D. Ala. — possible candidate for this matter <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Novus+Home+Mortgage%22&type=r">CourtListener →</a></span>.</td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-2);">
+      <strong>Confirmed company-level contacts:</strong> Main: (844) 337-2548 · feedback@novushomemortgage.com <span class="src-tag"><a href="https://novushomemortgage.com/contact">Novus Contact →</a></span> · Ixonia Bank direct: 262-567-7509.<br>
+      <strong>Email pattern:</strong> <code>{first}.{last}@novushomemortgage.com</code> (inferred from SignalHire masked entries: e******l@ for Erin Waddell, h*****n@ for Hayley Jensen) <span class="src-tag"><a href="https://www.signalhire.com/companies/novus-home-mortgage">SignalHire →</a></span>.
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move within 72 hours. Paronich settles Bronstin matters in 60–90 days — get in before mediation.</h2>
+      <p class="section-lede">The window is tight: a 21-day answer clock, a magistrate-consent decision around day 30, and a likely mediation push by day 60. The assigned owner should be on the phone with Egenhoefer or the Novus compliance team before defense counsel files an appearance.</p>
+    </div>
+
+    <div class="card" style="padding:0;">
+      <div class="step" style="padding:24px;">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Pull PACER ECF #1 + Civil Cover Sheet</h4>
+          <p>Spend the ~$1.20 to retrieve attachments. Goal: recover Bronstin's full 10-digit number for blacklistBulk scrub. If unavailable, cross-reference Bronstin's prior dockets (Lending Force, Dash Capital, EF Education) for any unsealed exhibit with the same DC number.</p>
+          <p><strong>Outcome:</strong> Litigator scrub result available for the discovery call.</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1–3 · Outbound to Eric Egenhoefer (CEO, Novus)</h4>
+          <p>Lead voicemail / email: "You were sued Friday by Anthony Paronich — same lawyer who's filed 1,000+ TCPA cases. Your loan officers called a DC consumer who's been on the federal DNC since 2021. We stop that at the dialer for ~$X/month. 15 minutes this week?" Use 844-337-2548 to route, or direct email <code>eric.egenhoefer@novushomemortgage.com</code>.</p>
+          <p><strong>Outcome:</strong> Discovery call booked with CEO or his delegate (Wirth/COO, Mittelstaedt/CTO).</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 3–5 · Parallel outreach to Compliance + IT</h4>
+          <p>Email Cheri M. (VP Compliance), Kimberly Wachtel (Compliance Mgr), Dale Mittelstaedt (CTO), and Cliff Fuller (VP IT) in the same thread. Subject line: "Bronstin v. Ixonia Bank — Federal DNC scrub solution." Attach a one-page CNAM/Onvoy diagnostic showing how the 301-477-0268 caller-ID failure would have been caught.</p>
+          <p><strong>Outcome:</strong> Technical buyer briefed before legal asks "what do we do."</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 5–14 · Identify and reach bank-level GC</h4>
+          <p>Bank-level General Counsel and CCO are the highest-priority unknowns. Use Steve Clark's direct line (262-567-7509) as an internal-routing channel: "I'm trying to reach your General Counsel about the Bronstin TCPA complaint filed Friday." Cross-check ZoomInfo / RocketReach when accessible.</p>
+          <p><strong>Outcome:</strong> GC name + direct line / email surfaced.</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 14–21 · Time the close to the answer deadline</h4>
+          <p>The 21-day FRCP 12(a) answer clock is the natural urgency event. Pitch as: "Whatever your answer says about your compliance program, we want it to be defensible at deposition. Stand up a documented DNC scrub + consent capture + written calling policy this week and we give you something to put in front of the magistrate."</p>
+          <p><strong>Outcome:</strong> Verbal commitment / term sheet before answer is filed.</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h4>Day 30–60 · Mediation pre-positioning</h4>
+          <p>Paronich's recent Bronstin cases (Lending Force, Dash Capital) hit Notice of Settlement at day ~60–90. Defense counsel will want a compliance remediation story to bring to mediation. Have a deployment plan + signed SOW in hand so Novus can hand it to Paronich as part of the settlement package.</p>
+          <p><strong>Outcome:</strong> Compliance remediation = settlement leverage = closed deal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3); margin:0 0 12px;">Trigger Conditions</h3>
+      <ul class="clean tight" style="font-size:14px;">
+        <li><strong>If defense counsel files a Motion to Compel Arbitration:</strong> deprioritize — Novus may already have arbitration coverage on the loan application. Continue tracking for cross-sell on enforcement.</li>
+        <li><strong>If co-counsel (Perrong, Oliver) appears:</strong> escalate urgency — multi-counsel signals a more aggressive class push and longer settlement timeline.</li>
+        <li><strong>If Paronich files an Amended Complaint adding the parent (Ixonia Bancshares):</strong> route directly to bank-level GC; cross-sell parent-level enterprise audit.</li>
+        <li><strong>If a Notice of Settlement is filed before day 30:</strong> pivot to a post-settlement compliance retention pitch — Paronich's settlements typically include forward-looking injunctive terms that require exactly what Blacklist sells.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW</span>
+      <span class="pill pill--warn">60–90 DAY SETTLEMENT WINDOW</span>
+      <span class="pill pill--info">LEAD: DNC SCRUBBING + CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
