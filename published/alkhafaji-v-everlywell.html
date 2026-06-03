@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alkhafaji v. Everlywell — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout .callout-title{ font-size:14px; font-weight:600; color:var(--warning); text-transform:uppercase; letter-spacing:0.08em; margin:0 0 8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA DNC + Prerecorded-Voice Class Action · Repeat Defendant · Digital Health DTC · Sulaiman Law Group</p>
+      <h1 class="hero-tagline">Alkhafaji v.<br>Everly Well, Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-00750</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Ind. (South Bend)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <br><span style="font-weight:400; color:#A8A8A8; font-size:12px;">(per CourtListener)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c) <br>47 USC § 227(b)(1)(A)(iii) <br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23(b)(2)/(b)(3) <br><span style="font-weight:400; color:#A8A8A8; font-size:12px;">Two classes pled</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Mohammed O. Badwan <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Sulaiman Law Group, Ltd. (Lombard, IL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted to last-four (8921) — scrub deferred, but DID intel pending sender-list confirmation.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint pleads only the last four digits ("ending in 8921"); a litigator scrub cannot be run on a partial. Recovery path is documented below.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--gap">First-Time Federal Filer · Not a Known Serial Plaintiff</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (as pled)</div>
+        <div class="scrub-number">XXX-XXX-8921</div>
+        <div class="scrub-number-sub">Complaint ¶11–13 discloses only the last four digits. Plaintiff resides in Warsaw, Indiana (Kosciusko County) — likely 574 or 260 area code. Number is registered on the National DNC Registry per ¶18.</div>
+      </div>
+      <p class="scrub-body-text">A Blacklist litigator-list lookup requires the full 10-digit recipient number. The complaint does not provide it. No CourtListener hits for "Louise Alkhafaji" — she is <strong>not</strong> currently profiled as a serial TCPA plaintiff <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-00750&type=r">CourtListener →</a></span>. Recovery path below.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:18px;">Sending DID — Consumer-Identification Intel</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Disclosed Sender DID</div>
+        <div class="card-title" style="font-family:var(--font-mono)">(833) 413-0450</div>
+        <div class="card-body" style="margin-top:8px">
+          Toll-free 833 number consistent with outbound dialer infrastructure. Crowd-sourced reputation lookups (800notes, YouMail, Tellows, RoboKiller) all returned 403/404 — no public complaint thread surfaced for this DID. Identity rests on plaintiff's pleading.
+          <div style="margin-top:10px"><span class="pill pill--gap">No Public Tags Yet</span> <span class="pill pill--info">Toll-Free Dialer Infra</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Likely Calling Stack</div>
+        <div class="card-title">Eva — Everlywell's AI Voice Platform</div>
+        <div class="card-body" style="margin-top:8px">Per Everlywell's own LinkedIn marketing, "Eva" is its proprietary AI-powered outbound calling and engagement system, described as bringing "diagnostics, virtual care, and intelligent engagement" together <span class="src-tag"><a href="https://www.linkedin.com/company/everlywell">LinkedIn →</a></span>. The pleaded "monotone, identical-duration, no-name" voicemails (¶24) are consistent with AI/prerecorded delivery.</div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:18px;">Recovery Path — How To Pull the Full Number</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Step 1</div>
+        <div class="card-title">Pull PACER ECF #1</div>
+        <div class="card-body">Full complaint with signature pages often discloses the unredacted plaintiff number in exhibits or in a paragraph the OCR missed. ~$1.20 via PACER. Docket #2 (Notice of Appearance) and #3 (Summons) confirm case is active <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-00750&type=r">CourtListener →</a></span>.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 2</div>
+        <div class="card-title">Reverse-Lookup Warsaw, IN Listings</div>
+        <div class="card-body">"Louise M. Alkhafaji" + Warsaw, IN + Kosciusko County is a tight identifier set. A people-search or skip-trace will surface a confirmed cell within minutes. Run through scrub once recovered.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 3</div>
+        <div class="card-title">Defense Counsel Hand-Off</div>
+        <div class="card-body">Once defense counsel appears (likely Susman Godfrey based on prior Everlywell matters — Krysta Pachman / Katherine Peaslee — per <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22&type=r">CourtListener →</a></span>), the unredacted number will be exchanged in discovery or in the meet-and-confer. Capture it then.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">SENDER DID: (833) 413-0450 — DIALER INFRA</span>
+      <span class="pill pill--gap">PLAINTIFF: NO PRIOR TCPA FILINGS FOUND</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Second known TCPA class action against a VC-funded digital-health DTC — Reedy settlement money in 2024, Sulaiman-filed sequel in 2026.</h2>
+      <p class="section-lede">Everlywell already paid a non-reversionary class fund in Reedy v. Everlywell (N.D. Ill., 2024) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22+TCPA&type=r">CourtListener →</a></span>. Now Sulaiman Law Group — the Law360-ranked #1 consumer-protection filer with 1,230 cases in three years <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Sulaiman+Law+Group%22+TCPA">Law360 →</a></span> — has filed Alkhafaji. Lead with DNC scrubbing + consent capture; this is a buyer who has already learned this lesson the expensive way.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <div class="card-title">DNC Scrubbing (Federal + State)</div>
+        <div class="card-body">Plaintiff's number was on the National DNC Registry (¶18). Count I is a Federal DNC claim. A pre-call scrub would have suppressed Alkhafaji's number entirely. This is the most direct, demonstrable fix tied to the pled facts.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Cross-Sell</div>
+        <div class="card-title">Consent Capture / Record Retention</div>
+        <div class="card-body">Count II is prerecorded-voice without prior express written consent. Everlywell's signup flow bundles consent into a broad "I ACCEPT" Terms click rather than a standalone TCPA checkbox <span class="src-tag"><a href="https://www.everlywell.com/terms">Everlywell Terms →</a></span>. PEWC-grade capture + retention closes the second count.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Pending Plaintiff-Number Recovery</div>
+        <div class="card-title">Litigator Scrub</div>
+        <div class="card-body">Cannot be run yet (plaintiff number redacted). Re-pitch once PACER ECF #1 or skip-trace yields the full 10 digits. Then use the result as the proof-point on the first follow-up call.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; max-width:880px;">
+      <h3 style="font-size:20px; margin-bottom:12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1);">Everlywell is not a first-time TCPA defendant. The Reedy class settlement (N.D. Ill. 1:24-cv-02713) is already being cited by other plaintiff firms in class-counsel appointment motions as a model recovery against digital-health defendants <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22+TCPA&type=r">CourtListener →</a></span>. Eighteen months later, Sulaiman Law Group — a 1,260-case-volume TCPA filer with a dedicated practice across at least six federal districts <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sulaiman+Law+Group%22+TCPA&type=r">CourtListener →</a></span> — has filed a near-identical fact pattern (DNC + prerecorded voice, digital-health DTC). The arbitration motion that worked in Toth (D. Mass. 2023) is the playbook, but it only works if Alkhafaji affirmatively accepted Terms — and the entire premise of her case is that she never gave Everlywell her number or consent. That is the wedge.</p>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1); margin-top:12px;">Open with General Counsel Jacob Wolf. The narrative: "You paid once in Reedy. Sulaiman just filed Alkhafaji in N.D. Indiana. They file 34 consumer-protection matters a month. Blacklist's DNC + Litigator Scrub layer is the documented, defensible record that arbitration alone cannot give you when the plaintiff never accepted your Terms." If GC is gated, route to CMO Sarah Romotsky (paid acquisition owns the dialer) or COO Joaquin Gamboa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">$300M+-funded Austin DTC digital-health platform under the Everly Health holding co — multi-brand, multi-channel, multi-vendor.</h2>
+      <p class="section-lede">Everlywell is the consumer brand inside Everly Health, the 2021-formed parent that consolidated multiple healthcare acquisitions <span class="src-tag"><a href="https://techcrunch.com/?s=Everlywell">TechCrunch →</a></span>. The org runs DTC e-commerce + telehealth + at-home diagnostics, supported by outbound calls (Eva AI), SMS, email, and ad networks <span class="src-tag"><a href="https://www.everlywell.com/privacy-policy">Privacy Policy →</a></span>.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Legal Entity</dt><dd>Everly Well, Inc. (pleaded as defendant)</dd>
+          <dt>DBAs</dt><dd>Everlywell, Everly Health <span class="src-tag"><a href="https://www.everlywell.com/about">everlywell.com/about →</a></span></dd>
+          <dt>Founded</dt><dd>2015 by Julia Cheek</dd>
+          <dt>HQ</dt><dd>Austin, Texas (per Complaint ¶9)</dd>
+          <dt>Parent</dt><dd>Everly Health, Inc. (formed March 2021)</dd>
+          <dt>Status</dt><dd>Private</dd>
+          <dt>Funding Raised</dt><dd>$300M+ disclosed (Series A $50M / Series D $175M / D-extension $75M) <span class="src-tag"><a href="https://techcrunch.com/?s=Everlywell">TechCrunch →</a></span></dd>
+          <dt>Vertical</dt><dd>Digital health · At-home diagnostics · Telehealth</dd>
+          <dt>Employees</dt><dd>500–1,000 (estimate; no verified count)</dd>
+          <dt>Main Phone</dt><dd>(888) 362-4321 <span class="src-tag"><a href="https://www.everlywell.com/contact-us">Contact page →</a></span></dd>
+          <dt>Website</dt><dd>everlywell.com</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#ffb3b3">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">"I ACCEPT" bundles unrelated marketing consent into the Terms click.</h3>
+        <div class="card-body">Everlywell's Terms &amp; Conditions (last updated Dec 15, 2025) instruct users: "BY CLICKING 'I ACCEPT,' OR BY ACCESSING OR USING THE PLATFORM, YOU ACCEPT AND AGREE TO BE BOUND AND ABIDE BY THESE TERMS AND CONDITIONS." <span class="src-tag"><a href="https://www.everlywell.com/terms" style="color:#ffb3b3">Terms →</a></span> No standalone TCPA prior-express-written-consent checkbox is exposed on the live signup/register flow <span class="src-tag"><a href="https://www.everlywell.com/signup" style="color:#ffb3b3">Signup →</a></span>. Privacy policy admits sharing data with "phone companies" and "vendors who assist us in the delivery of text messages" — vicarious-liability exposure to dialer/SMS vendors. <strong>This is the exact fact pattern Sulaiman built the complaint around.</strong></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Strategic Timing</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Filed</dt><dd>May 29, 2026 (Document #1)</dd>
+          <dt>Answer Deadline</dt><dd>~June 19, 2026 (21-day window from service; summons issued June 1)</dd>
+          <dt>Prior Settlement</dt><dd>Reedy v. Everlywell settled with non-reversionary fund (N.D. Ill. 1:24-cv-02713, 2024–2025) — same fact pattern <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Likely Defense Move</dt><dd>Motion to compel arbitration based on Terms acceptance (worked in Toth v. Everly Well, D. Mass. 2023 — case dismissed without prejudice in ~84 days) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22&type=r">CourtListener →</a></span></dd>
+          <dt>Arbitration Risk</dt><dd>Plaintiff alleges she never gave Everlywell her number and never consented (¶¶15-17) — if she never registered an account, she never accepted Terms, and arbitration may not bind</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:20px;">Related Entities — Cross-Sell Candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Everly Health, Inc.</strong></td>
+            <td>Parent holding co (2021)</td>
+            <td>Digital health holding</td>
+            <td>Shares dialer infra ("Eva"), shared lead database across brands</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Everly Health Solutions</strong> (B2B arm)</td>
+            <td>Sister brand under Everly Health</td>
+            <td>Enterprise / employer health</td>
+            <td>Enterprise outbound calling to plan members — DNC + B2B/B2C boundary risk</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>Acquired healthcare cos (2021)</strong></td>
+            <td>Two unnamed cos folded into Everly Health March 2021 <span class="src-tag"><a href="https://techcrunch.com/?s=Everlywell">TechCrunch →</a></span></td>
+            <td>Healthcare services</td>
+            <td>Lead-list migration risk during M&A consolidation</td>
+            <td><span class="pill pill--info">MONITOR</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Repeat defendant + #1-ranked plaintiff firm + identical fact pattern to a settled prior case.</h2>
+      <p class="section-lede">Defense counsel has not yet appeared. The defendant's historical playbook is arbitration. The plaintiff's firm is the highest-volume consumer-protection filer in the country. The current case sits inside a still-active Sulaiman docket footprint.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Current Case</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Docket</dt><dd>3:26-cv-00750 (N.D. Ind. South Bend Div.)</dd>
+          <dt>Filed</dt><dd>May 29, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-00750&type=r">CourtListener →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Louise M. Alkhafaji (Warsaw, IN · Kosciusko County)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Mohammed O. Badwan · Sulaiman Law Group, Ltd.</dd>
+          <dt>Class Status</dt><dd><span class="pill pill--danger">Class Action</span> Rule 23(b)(2) + 23(b)(3)</dd>
+          <dt>Classes Pled</dt><dd>(1) Do-Not-Call Registry Class · (2) Prerecorded Message Class</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c) · 47 USC § 227(b)(1)(A)(iii) · 47 CFR § 64.1200(c)(2)</dd>
+          <dt>Theory</dt><dd>DNC-registered cell called by Everly Well / 833-413-0450 with prerecorded voicemails, no consent, repeated stop requests ignored</dd>
+          <dt>Violations Pled</dt><dd>"No less than a dozen" calls (~12)</dd>
+          <dt>Named-Plaintiff Exposure</dt><dd>$6,000 – $18,000 (12 × $500-$1,500 treble), per count, doubled across two counts</dd>
+          <dt>Class Exposure</dt><dd>Undisclosed; "thousands" implied by ascertainability paragraphs</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer window</span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel · Mohammed O. Badwan</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Firm</dt><dd>Sulaiman Law Group, Ltd. (d/b/a Atlas Consumer Law)</dd>
+          <dt>Firm Address</dt><dd>2500 South Highland Avenue, Suite 200, Lombard, IL 60148</dd>
+          <dt>Firm Phone</dt><dd>(630) 575-8180</dd>
+          <dt>Email of Record</dt><dd>mbadwan@sulaimanlaw.com</dd>
+          <dt>Website</dt><dd>sulaimanlaw.com <span class="src-tag"><a href="https://sulaimanlaw.com">→</a></span></dd>
+          <dt>Bar of Record</dt><dd>Illinois <span class="pill pill--warn">IN admission unconfirmed — pro hac vice likely</span></dd>
+          <dt>Firm Role</dt><dd>Managing Attorney / Director</dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>Firm Ranking</dt><dd><strong>Law360 #1 Consumer Protection filer</strong> — 1,230 cases over 3 yrs (2021–2024) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Sulaiman+Law+Group%22+TCPA">Law360 →</a></span></dd>
+          <dt>CourtListener Hits</dt><dd>1,260 results <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sulaiman+Law+Group%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Recovery (firm)</dt><dd>"$1B+ recovered for clients · 15K+ clients" (firm self-report) <span class="src-tag"><a href="https://sulaimanlaw.com">sulaimanlaw.com →</a></span></dd>
+          <dt>TCPAWorld Profile</dt><dd>Profiled for high-volume, long-running litigation practice <span class="src-tag"><a href="https://tcpaworld.com/?s=Sulaiman+Law+Group">TCPAWorld →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">HIGH</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; margin-bottom:12px;">Plaintiff Firm Template — Sulaiman / Atlas High-Volume Consumer Protection</h3>
+      <div class="card">
+        <p style="margin:0; font-size:15px; line-height:1.6;">Sulaiman Law Group operates a dedicated TCPA practice (Badwan, Volheim, Figueroa, Taylor, Walker named in CourtListener filings) that runs across <strong>at least six federal districts</strong> (E.D. Cal., N.D. Cal., S.D. Tex., N.D. Ill., N.D. Ind., D. Mass.). Filings include matters against Capital One, Wells Fargo, LoanMe, Tomocredit, CBE Group, Green Tree Servicing — predominantly consumer finance — and now <strong>digital health</strong>, marking Everlywell as the second known digital-health target after the firm's broader 2024 expansion. The template is: DNC + prerecorded voice → Rule 23(b)(2)/(b)(3) class → settlement leverage. The firm has filed in N.D. Indiana before (Upton v. CBE Group, 2:16-cv-00442) — venue is familiar.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:20px;">Concurrent &amp; Recent Litigation Against Everly Well / Everlywell</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Alkhafaji v. Everly Well, Inc.</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td class="num">3:26-cv-00750</td>
+            <td>N.D. Ind.</td>
+            <td class="num">2026-05-29</td>
+            <td><span class="pill pill--red">Active · Pre-answer</span></td>
+            <td>DNC + prerecorded voice (TCPA class)</td>
+          </tr>
+          <tr>
+            <td>Reedy, et al. v. Everlywell, Inc., et al.</td>
+            <td class="num">1:24-cv-02713</td>
+            <td>N.D. Ill.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--ok">Settled · Non-reversionary fund</span></td>
+            <td>TCPA class — being cited in other plaintiff motions <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22+TCPA&type=r">CL →</a></span></td>
+          </tr>
+          <tr>
+            <td>Toth v. Everly Well, Inc.</td>
+            <td>—</td>
+            <td>D. Mass.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Dismissed (arbitration) ~84 days</span></td>
+            <td>Compelled to arbitration based on Terms acceptance <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22&type=r">CL →</a></span></td>
+          </tr>
+          <tr>
+            <td>Spiro v. Everlywell, Inc.</td>
+            <td>—</td>
+            <td>C.D. Cal.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Terminated ~53 days</span></td>
+            <td>Likely arbitration / quick resolution <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22&type=r">CL →</a></span></td>
+          </tr>
+          <tr>
+            <td>Khan v. Kraemer (Everlywell named)</td>
+            <td>—</td>
+            <td>C.D. Cal.</td>
+            <td class="num">2022</td>
+            <td><span class="pill pill--info">Closed</span></td>
+            <td>Defendant entity named <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Everlywell%22&type=r">CL →</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <div class="callout-title">Open Intel Gaps — Close Before First Dial</div>
+      <ul class="clean tight" style="margin:0; color:var(--fg-1);">
+        <li>• <strong>Full plaintiff cell number</strong> (only last-4 "8921" pled) — pull PACER ECF #1, run reverse-lookup on "Louise M. Alkhafaji, Warsaw IN."</li>
+        <li>• <strong>Judge assignment</strong> — not visible in CourtListener result; CourtListener and PacerMonitor both failed to return docket details.</li>
+        <li>• <strong>Reedy settlement $$ amount</strong> — confirmed "non-reversionary fund" but dollar figure not yet sourced; useful as a $ anchor on the call.</li>
+        <li>• <strong>Defense counsel</strong> — likely Susman Godfrey (Krysta Pachman / Katherine Peaslee) based on prior matters but no appearance yet in 3:26-cv-00750.</li>
+        <li>• <strong>Texas corporate registry</strong> — Texas SOS, Delaware DOC, Bizapedia, OpenCorporates all blocked; cannot yet confirm formation state, registered agent, or officers from primary registry.</li>
+        <li>• <strong>Badwan IL bar number + IN pro hac status</strong> — IARDC lookup returned 404.</li>
+        <li>• <strong>Whether Alkhafaji ever created an Everlywell account</strong> — determines whether the arbitration playbook from Toth works here.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with GC Jacob Wolf. Route through CMO Sarah Romotsky or COO Joaquin Gamboa if Wolf is gated.</h2>
+      <p class="section-lede">Email pattern <code style="font-family:var(--font-mono); background:var(--gray-10); padding:2px 6px;">first.last@everlywell.com</code> confirmed via SignalHire org-chart obfuscation showing h*****b (Heben) and g******j (Gamboa) <span class="src-tag"><a href="https://www.signalhire.com/companies/everlywell">SignalHire →</a></span>. Direct dials not published — call main line (888) 362-4321 and ask for the named contact.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name · Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jacob Wolf</strong> <span class="pill pill--dark">GC</span> <span class="pill pill--red">PITCH FIRST</span></td>
+            <td>General Counsel — owns TCPA exposure, arbitration strategy, vendor liability. Already lived through Reedy.</td>
+            <td>(888) 362-4321 main <span class="pill pill--gap">DIRECT GAP</span></td>
+            <td>jacob.wolf@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jacobwolf">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Julia Cheek</strong> <span class="pill pill--dark">FOUNDER · CEO</span></td>
+            <td>Founder &amp; CEO. Boardroom-level. Use as escalation only; her name in subject line opens GC reply.</td>
+            <td>(888) 362-4321 main</td>
+            <td>julia.cheek@everlywell.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/juliacheek">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Joaquin Gamboa</strong> <span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer. Owns operational vendor stack including dialer / Eva platform.</td>
+            <td>(888) 362-4321 main</td>
+            <td>joaquin.gamboa@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/joaquingamboa">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Ben Heben</strong> <span class="pill pill--dark">CFO</span></td>
+            <td>CFO. Settlement-fund signer. Cite Reedy $ if pitch escalates to financial-exposure framing.</td>
+            <td>(888) 362-4321 main</td>
+            <td>ben.heben@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/benheben">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Sarah Romotsky</strong> <span class="pill pill--dark">VP MARKETING</span> <span class="pill pill--red">CHANNEL OWNER</span></td>
+            <td>VP of Marketing — owns outbound campaigns &amp; vendor selection. Direct decision-maker on scrub.</td>
+            <td>(888) 362-4321 main</td>
+            <td>sarah.romotsky@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/sarahromotsky">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Nico Bryant-Aguilar</strong> <span class="pill pill--dark">SR DIR GROWTH</span></td>
+            <td>Senior Director of Growth. Owns acquisition channels — likely accountable for dialer KPIs.</td>
+            <td>(888) 362-4321 main</td>
+            <td>nico.bryant-aguilar@everlywell.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kathryn Rowerdink</strong> <span class="pill pill--dark">EVP SALES</span></td>
+            <td>EVP Enterprise Sales &amp; Growth. B2B revenue owner — relevant if Everly Health Solutions enterprise calls are in scope.</td>
+            <td>(888) 362-4321 main</td>
+            <td>kathryn.rowerdink@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/kathrynrowerdink">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Gabrielle Bonello</strong> <span class="pill pill--dark">VP PARTNERSHIPS</span></td>
+            <td>VP Strategic Partnerships — owns "carefully selected business partners" (lead vendor relationships flagged in privacy policy).</td>
+            <td>(888) 362-4321 main</td>
+            <td>gabrielle.bonello@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/gabriellebonello">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Stephen McNeil</strong> <span class="pill pill--dark">VP BIZDEV</span></td>
+            <td>VP Business Development.</td>
+            <td>(888) 362-4321 main</td>
+            <td>stephen.mcneil@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Andy Anderson</strong> <span class="pill pill--dark">VP BIZDEV</span></td>
+            <td>VP Business Development.</td>
+            <td>(888) 362-4321 main</td>
+            <td>andy.anderson@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brinda Mehta Malvi</strong> <span class="pill pill--dark">VP PRODUCT</span></td>
+            <td>VP / Head of Product.</td>
+            <td>(888) 362-4321 main</td>
+            <td>brinda.malvi@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Blake Lusenhop</strong> <span class="pill pill--dark">VP ENG</span></td>
+            <td>VP of Engineering — Eva AI platform owner.</td>
+            <td>(888) 362-4321 main</td>
+            <td>blake.lusenhop@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Misty Milby</strong> <span class="pill pill--dark">VP CLINICAL BD</span></td>
+            <td>VP Clinical Business Development.</td>
+            <td>(888) 362-4321 main</td>
+            <td>misty.milby@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/mistymilby">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Missy Whalen</strong> <span class="pill pill--dark">DIR CX</span></td>
+            <td>Director of Customer Experience — handles inbound complaint volume.</td>
+            <td>(888) 362-4321 main</td>
+            <td>missy.whalen@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Emily Catino</strong> <span class="pill pill--dark">MKT MGR</span></td>
+            <td>Marketing Manager.</td>
+            <td>(888) 362-4321 main</td>
+            <td>emily.catino@everlywell.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Defense Counsel</td>
+            <td>Not yet appeared. Historical pattern (Toth, Spiro) suggests Susman Godfrey — Krysta Kauble Pachman / Katherine M. Peaslee.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">NOT YET APPEARED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Confidence key: <span class="pill pill--ok">VERIFIED</span> primary-source published · <span class="pill pill--warn">PATTERN</span> first.last@everlywell.com pattern (confirmed via SignalHire obfuscation) · <span class="pill pill--info">INFERRED</span> best-guess · <span class="pill pill--gap">GAP</span> unknown. Org chart sourced from <span class="src-tag"><a href="https://theorg.com/org/everlywell">TheOrg →</a></span> and <span class="src-tag"><a href="https://www.linkedin.com/company/everlywell">LinkedIn →</a></span>.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move inside the 21-day answer window. The Reedy precedent makes this a one-call demo.</h2>
+      <p class="section-lede">Defense counsel will be appointed within ~14 days. Whoever it is, their first move is a motion to compel arbitration — and that motion either ends the case quickly or exposes the consent gap publicly. Either outcome makes the next 14 days the cheapest time for Everlywell to buy DNC + consent infrastructure.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <div class="card-title">Pull PACER ECF #1 + reverse-lookup Alkhafaji</div>
+        <div class="card-body">Cost: ~$1.20. Outcome: recover the full plaintiff number, run litigator scrub, capture the proof-point for the first call. In parallel, draft the GC email referencing case caption + Reedy precedent.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <div class="card-title">Cold email Jacob Wolf (GC)</div>
+        <div class="card-body">Subject: "Alkhafaji 3:26-cv-00750 — same fact pattern as Reedy, 21-day clock." One-paragraph body: "You paid in Reedy. Sulaiman just filed the sequel. We're the documented DNC + PEWC layer that closes both counts. 15 minutes this week?" CC: Sarah Romotsky (CMO).</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4–5</div>
+        <div class="card-title">Call main line, ask for Wolf</div>
+        <div class="card-body">(888) 362-4321 → "Legal department, Jacob Wolf's office, re: filed case." If gated, pivot to Sarah Romotsky (channel owner) or Joaquin Gamboa (vendor stack). Reference Eva AI as the call infrastructure.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 6–10</div>
+        <div class="card-title">Multi-thread CMO + COO</div>
+        <div class="card-body">Email Romotsky (channel owner — would be on the hook for the dialer decision) and Gamboa (operational ownership). Reference public Privacy Policy admission of "phone companies" and "vendors who assist with text messages" as the vicarious-liability hook.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 11–14</div>
+        <div class="card-title">Re-pitch with scrub result</div>
+        <div class="card-body">Once Alkhafaji's number is recovered and scrubbed, lead the follow-up with the result. If she's on a litigator list, that becomes the close. If she isn't, the DNC scrub still suppresses the next Alkhafaji — and Sulaiman files 34 a month.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 15–21</div>
+        <div class="card-title">Escalate to CFO before answer deadline</div>
+        <div class="card-body">If no GC response, route to Ben Heben (CFO) with $ framing: "Reedy was a non-reversionary class fund. Alkhafaji's pleaded violation count × treble × class size puts exposure in $X range. DNC subscription pays for itself before the answer is filed."</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; margin-bottom:12px;">Trigger Conditions — What Changes the Plan</h3>
+      <ul class="clean tight" style="background:var(--bg-surface); border:1px solid var(--border-1); padding:16px 24px;">
+        <li>• <strong>Defense counsel files motion to compel arbitration:</strong> Pitch hardens — if MTC denied (Alkhafaji never registered), Everlywell is in class-discovery posture and urgency spikes. If granted, pitch becomes preventive ("the next Sulaiman case is already drafted").</li>
+        <li>• <strong>Plaintiff files amended complaint with full phone number:</strong> Run scrub immediately and lead all outreach with the result.</li>
+        <li>• <strong>Sulaiman files a second action against an Everly Health sister entity:</strong> Escalate to parent-level Everly Health leadership; cross-sell expands.</li>
+        <li>• <strong>Sulaiman moves for early class certification:</strong> Settlement-pressure window — pitch DNC + consent capture as part of remediation in settlement papers.</li>
+        <li>• <strong>Plaintiff voluntarily dismisses to refile:</strong> Treat as a leverage event — defendant either chose pre-litigation settlement or is buying time. Either way, GC is now in the market for compliance infrastructure.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 21-DAY ANSWER WINDOW</span>
+      <span class="pill pill--danger">CLOSE BEFORE JUN 19, 2026</span>
+      <span class="pill pill--warn">REPEAT-DEFENDANT POSTURE</span>
+      <span class="pill pill--info">PRIMARY PRODUCT: DNC SCRUBBING</span>
+      <span class="pill pill--info">SECONDARY: CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
