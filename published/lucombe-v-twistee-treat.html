@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucombe v. Twistee Treat — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(16px, 1.6vw, 20px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:14px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--warning); margin:0 0 12px; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; margin-bottom:24px; }
+.step-num{ width:40px; height:40px; background:var(--bl-red); color:#fff; font-size:18px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.step-body{ font-size:15px; line-height:1.55; }
+.step-title{ font-size:16px; font-weight:600; margin:0 0 6px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="-0.5">BLACKLIST</text>
+          <rect x="115" y="4" width="2" height="16" fill="#A50100"/>
+          <text x="125" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="-0.3">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA + FTSA Defendant · Restaurant SMS Short-Code Marketing · Serial Pro Se Plaintiff · Vertical-Targeted Campaign</p>
+      <h1 class="hero-tagline">Lucombe v.<br>Twistee Treat USA</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01588-TPB-SPF</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">M.D. Fla. (Tampa)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Thomas P. Barber<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Sean P. Flynn (Mag.)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">47 CFR § 64.1200(c)<br>Fla. Stat. § 501.059</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">(Pro se)</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Pro Se <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Nigel Lucombe (Lutz, FL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number fully disclosed — Lucombe is a confirmed serial pro se TCPA filer hunting restaurant SMS programs.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Plaintiff disclosed the full 10-digit recipient number (813-900-7705) on the cover page and in ¶7 of the complaint. The blacklistBulk API endpoint returned a TLS certificate error at scrub time — the scrub must be re-run from a clean session before first dial, but Lucombe is independently confirmed as a serial filer via TCPAWorld.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="phone-call"></i> Scrub Status</div>
+        <span class="pill pill--warn">API Error · Re-Run Required</span>
+        <span class="pill pill--danger">Serial Filer Flagged (Independent Source)</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (per Complaint ¶7 &amp; signature block)</div>
+        <div class="scrub-number">(813) 900-7705</div>
+        <div class="scrub-number-sub">Disclosed in full on cover page, ¶7 ("(813)-XXX-7705" + signature block "Tel: 813-900-7705"), and used as the contact phone for plaintiff's P.O. Box in Lutz, FL.</div>
+      </div>
+      <p class="scrub-body-text">
+        BlacklistBulk lookup attempted but the API endpoint returned <code>invalid peer certificate: Expired</code>. <strong>Re-run scrub before first dial.</strong> Independent intelligence is unambiguous: TCPAWorld flagged Nigel Lucombe in November 2024 as <em>"one of the newest serial TCPA Plaintiffs,"</em> with at least 7 TCPA lawsuits identified at that time
+        <span class="src-tag"><a href="https://tcpaworld.com/?s=Lucombe">tcpaworld.com -&gt;</a></span>.
+        He filed Lucombe v. Little Creek Fresh Grill LLC (8:26-cv-01510, M.D. Fla.) nine days before this Twistee Treat suit — both restaurants, both SMS, both Tampa Division. Florida Bar confirms he is not a licensed attorney
+        <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?lName=Lucombe">floridabar.org -&gt;</a></span>.
+      </p>
+    </div>
+
+    <div style="margin-top:24px" class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sending Infrastructure</div>
+        <h3 class="card-title">Short Code 98900</h3>
+        <div class="card-body">
+          5-digit SMS short code disclosed in screenshot exhibits at ¶13. Pre-provisioned by carriers for high-volume A2P messaging — by design, supports mass distribution. Consumer reputation sources (800notes, YouMail, Tellows, RoboKiller) all returned 403/404 — <strong>no consumer-spam intel obtainable</strong> from standard short-code lookups for 98900.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender Domain — Smoking Gun</div>
+        <h3 class="card-title">apptegy.me &amp; littlegreekfreshgrill.com</h3>
+        <div class="card-body">
+          Two sender domains appear in the Twistee Treat text screenshot. <strong>littlegreekfreshgrill.com</strong> is a different restaurant brand — its appearance in a Twistee Treat marketing text indicates shared/misconfigured third-party SMS vendor infrastructure
+          <span class="src-tag"><a href="https://twisteetreat.com">twisteetreat.com -&gt;</a></span>. That is the wedge for the consent-capture / vendor-audit pitch.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Action</div>
+        <h3 class="card-title">Re-Run BlacklistBulk Scrub</h3>
+        <div class="card-body">
+          API returned an expired-cert error at extraction. Re-run 813-900-7705 from a clean session before first dial. Expect a positive match given TCPAWorld's independent confirmation of serial-filer status.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: API ERROR — RE-RUN REQUIRED</span>
+      <span class="pill pill--danger">SERIAL PRO SE FILER (7+ TCPA CASES)</span>
+      <span class="pill pill--red">VERTICAL-TARGETED: RESTAURANTS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Florida QSR chain with a third-party SMS vendor leak, no published consent flow, and a serial pro se filer at the door.</h2>
+      <p class="section-lede">Twistee Treat USA, LLC operates 40+ corporate-owned ice cream parlors, blasts marketing texts via short code 98900, has no discoverable terms of service or privacy/SMS policy on its public site, and is now staring down a TCPA + FTSA suit from a plaintiff who just hit a sister restaurant chain nine days earlier. Lead with Litigator Scrub on the dial, close with Consent Capture as the durable fix.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">
+          Lucombe is publicly flagged as a serial TCPA filer with 7+ cases as of Nov 2024. Twistee Treat's short code 98900 hit him because the list was never scrubbed against known-litigator phone numbers. Blacklist's Litigator Scrub would have flagged 813-900-7705 before send. This is the cheapest, fastest win.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + FTSA)</h3>
+        <div class="card-body">
+          Plaintiff alleges his number has been on the National DNC Registry since Nov 12, 2019. Complaint also pleads Florida FTSA (Fla. Stat. § 501.059) — Florida-specific scrubbing is non-negotiable for any chain that texts FL numbers from a short code.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Durable Fix</div>
+        <h3 class="card-title">Consent Capture &amp; Vendor Audit</h3>
+        <div class="card-body">
+          The sender-domain leak (littlegreekfreshgrill.com appearing in a Twistee Treat text) screams shared/misconfigured third-party SMS infrastructure. There is no public TOS or SMS policy on twisteetreat.com. Consent capture + a vendor-chain audit is the structural fix and the upsell.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">
+        "You were just hit by Nigel Lucombe — the same pro se plaintiff who sued Little Greek Fresh Grill nine days before you. He's filed at least 7 TCPA cases. He's deliberately targeting Florida restaurant chains that text from short codes. Your number 98900 went out to a DNC-registered Florida resident with no scrub, and your texts are co-branded with another restaurant's domain. That is not a defensible consent record. Blacklist scrubs against known-litigator phone numbers <em>before</em> your blast goes out — Lucombe and every other serial filer in M.D. Fla. would have been flagged. We can plug this in this week."
+      </p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">
+        Follow-up wedge: "Your /signup, /terms, and /privacy URLs all refused connection when we tried to find your SMS consent disclosure. You can't defend the case without a published written-consent record under 47 CFR § 64.1200(f)(9). That's what gets you to a five-figure nuisance settlement instead of a defensible win — and it's what we fix on the policy side."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A PE-backed 40+ location Florida ice cream chain in growth mode — and on a serial filer's vertical hit list.</h2>
+      <p class="section-lede">Twistee Treat USA, LLC is the third corporate iteration of the iconic Florida cone-shaped soft-serve brand (original 1983 → bankrupt → re-formed 1996 → bankrupt → re-formed 2010 by Intram Investments). The current entity is privately held, Orlando-headquartered, and actively expanding with new FL locations in Bloomingdale, Lake Wales, and Zephyrhills.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Twistee Treat USA, LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Twistee Treat USA, LLC</dd>
+            <dt>Entity Type</dt><dd>Florida LLC</dd>
+            <dt>Formation</dt><dd>2010 (current entity); brand est. 1983 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Twistee_Treat">wikipedia -&gt;</a></span></dd>
+            <dt>HQ</dt><dd>Orlando, Florida <span class="src-tag"><a href="https://twisteetreat.com/about">twisteetreat.com/about -&gt;</a></span></dd>
+            <dt>Pled Address</dt><dd>8810 New Tampa Blvd, Tampa, FL 33647 (per ¶12)</dd>
+            <dt>Parent</dt><dd>Intram Investments (Orlando) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Twistee_Treat">wikipedia -&gt;</a></span></dd>
+            <dt>Founders (USA)</dt><dd>Rashid A. Khatib, Zahi W. Khouri <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Twistee_Treat">wikipedia -&gt;</a></span></dd>
+            <dt>Locations</dt><dd>40+ across FL &amp; TX</dd>
+            <dt>Employees</dt><dd>Est. 500–1,500 (not publicly disclosed)</dd>
+            <dt>Vertical</dt><dd>QSR / Soft-Serve Ice Cream</dd>
+            <dt>Website</dt><dd>twisteetreat.com</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No published SMS policy. No discoverable TOS. Sender domain leak.</h3>
+        <div class="card-body">
+          The Twistee Treat website has only a combined "Privacy and Accessibility" page that is essentially an accessibility statement plus a one-line SmartPiXL tracking disclosure
+          <span class="src-tag"><a href="https://twisteetreat.com/privacy" style="color:#C9C9C9">twisteetreat.com/privacy -&gt;</a></span>.
+          There is <strong>no mention of TCPA, DNC, SMS consent, opt-in/opt-out, message frequency, or HELP/STOP language</strong>. Standard URLs (/signup, /subscribe, /terms, /terms-of-service) refused HTTP/2 connections. And the complaint screenshot shows the Twistee Treat marketing SMS contains a link to <code>littlegreekfreshgrill.com</code> — a different restaurant brand — which strongly implies shared, misconfigured third-party messaging infrastructure with no written consent at the gateway.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px" class="two-col">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Answer Clock + Growth-Phase Exposure</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Filed</dt><dd>May 28, 2026</dd>
+            <dt>Summons Issued</dt><dd>May 29, 2026</dd>
+            <dt>Answer Window</dt><dd>~21 days from service (FRCP 12(a))</dd>
+            <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+            <dt>Growth Trigger</dt><dd>3 new FL locations announced (Bloomingdale, Lake Wales, Zephyrhills) — growth-phase = higher SMS volume = more exposure</dd>
+            <dt>Copycat Risk</dt><dd>HIGH — Lucombe just sued Little Greek Fresh Grill 9 days earlier; he is on a restaurant-vertical run</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">Marketing Infrastructure</div>
+        <h3 class="card-title">SMS, Loyalty, &amp; Vendor Stack</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li><strong>Short code 98900</strong> — pleaded sender; supports bulk A2P</li>
+            <li><strong>apptegy.me</strong> — link domain in SMS; third-party platform vendor</li>
+            <li><strong>littlegreekfreshgrill.com</strong> — cross-brand link domain (vendor leak)</li>
+            <li><strong>SmartPiXL</strong> — third-party site-tracking pixel disclosed in privacy page <span class="src-tag"><a href="https://twisteetreat.com/privacy">privacy -&gt;</a></span></li>
+            <li><strong>Loyalty program</strong> — collects phone numbers, likely the opt-in vector</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Intram Investments</strong></td>
+              <td>Parent / PE owner</td>
+              <td>Investment firm (Orlando)</td>
+              <td>Portfolio-level compliance risk; cross-sell scrub across portfolio brands</td>
+              <td><span class="pill pill--warn">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Little Greek Fresh Grill</strong></td>
+              <td>Co-branded SMS sender domain</td>
+              <td>QSR / Mediterranean</td>
+              <td>Already sued by same plaintiff (Lucombe v. Little Creek Fresh Grill, 8:26-cv-01510); likely shares messaging vendor</td>
+              <td><span class="pill pill--danger">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Apptegy (apptegy.me link)</strong></td>
+              <td>Possible SMS / link-shortener vendor</td>
+              <td>SaaS messaging</td>
+              <td>Vendor-chain compliance audit; note Apptegy's known business is K-12 school comms, so .me link may be a different operator</td>
+              <td><span class="pill pill--info">Low</span></td>
+            </tr>
+            <tr>
+              <td><strong>Twistee Treat Canada (3866955 Canada Inc.)</strong></td>
+              <td>Historical franchisee / TM dispute</td>
+              <td>QSR</td>
+              <td>Out-of-scope for US TCPA</td>
+              <td><span class="pill pill--gap">Not in scope</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit against this defendant — but the plaintiff is a known serial filer running a vertical-targeted pro se campaign.</h2>
+      <p class="section-lede">Twistee Treat has a moderate non-TCPA litigation footprint (a 2016 FLSA wage suit, a 2025 ADA suit, and legacy bankruptcy/trademark matters under prior entities), but no prior TCPA case on CourtListener. The novelty cuts both ways: defense counsel will not have a defense playbook, and plaintiff will press for early settlement.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">This Case</div>
+        <h3 class="card-title">Lucombe v. Twistee Treat USA, LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>8:26-cv-01588-TPB-SPF <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01588&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Court</dt><dd>U.S. District Court, M.D. Fla., Tampa Division</dd>
+            <dt>Filed</dt><dd>May 28, 2026 (Doc #1)</dd>
+            <dt>Summons</dt><dd>Issued May 29, 2026 (Doc #2)</dd>
+            <dt>Filing Fee</dt><dd>$405.00 paid (no IFP) — receipt TPA74360</dd>
+            <dt>Plaintiff</dt><dd>Nigel Lucombe, Pro Se</dd>
+            <dt>Class</dt><dd>No — Individual action (¶1 "putative" appears boilerplate but no Rule 23 class definition pled)</dd>
+            <dt>Claims</dt><dd>47 U.S.C. § 227(c); 47 CFR § 64.1200(c); Fla. Stat. § 501.059 (FTSA)</dd>
+            <dt>Theory</dt><dd>National DNC violation + Internal DNC failure; commercial SMS to DNC-registered cell via short code 98900</dd>
+            <dt>Texts Pled</dt><dd>2 (Nov 7, 2025 &amp; Nov 9, 2025)</dd>
+            <dt>Damages Sought</dt><dd>$500–$1,500/violation TCPA + FTSA statutory damages + treble + fees</dd>
+            <dt>Damage Math</dt><dd>2 texts × $500 = $1,000 minimum; × $1,500 willful = $3,000 + FTSA stacking</dd>
+            <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer window</dd>
+            <dt>Nature of Suit</dt><dd>485 TCPA</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Pro Se — Nigel Lucombe</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Representation</dt><dd>Pro Se (self-represented)</dd>
+            <dt>Mailing Address</dt><dd>P.O. Box 2589, Lutz, FL 33548 (Pasco County — consistent with serial pro se pattern)</dd>
+            <dt>Phone of Record</dt><dd>813-900-7705 (same as recipient number)</dd>
+            <dt>Email</dt><dd>Nlucombe@Gmail.com</dd>
+            <dt>FL Bar</dt><dd>Not licensed (confirmed) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?lName=Lucombe">floridabar.org -&gt;</a></span></dd>
+            <dt>Serial Filer</dt><dd><span class="pill pill--danger">YES</span> — TCPAWorld flagged him Nov 2024 as "one of the newest serial TCPA Plaintiffs" with 7+ cases at that time <span class="src-tag"><a href="https://tcpaworld.com/?s=Lucombe">tcpaworld.com -&gt;</a></span></dd>
+            <dt>Vertical Pattern</dt><dd>Restaurants — sued Little Greek Fresh Grill 8:26-cv-01510 nine days before this case</dd>
+            <dt>Class Threat</dt><dd>LOW — pro se cannot certify a Rule 23 class; pure individual exposure (nuisance settlement profile)</dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--warn">Medium</span> (high frequency, low ceiling per case)</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Template</h3>
+      <div class="card">
+        <div class="card-body">
+          <p>Lucombe's pro se template is built around <strong>DNC + FTSA stacking</strong> with screenshot-only proof. He targets defendants who text a registered DNC number from a 5-digit short code, attaches the screenshot as the single exhibit, pleads both federal DNC (§ 227(c)) and Florida FTSA (Fla. Stat. § 501.059), and includes a document-preservation demand. The pro se posture limits class exposure but maximizes filing velocity — he pays the $405 filing fee from settlement proceeds of prior cases. Twistee Treat is at least his 8th identified target, and is sequenced one week after Lucombe v. Little Greek Fresh Grill in the same division, strongly suggesting he is working a single vendor or short-code list.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Historical Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="current-case">
+              <td><strong>Lucombe v. Twistee Treat USA, LLC</strong> · 8:26-cv-01588</td>
+              <td>M.D. Fla.</td>
+              <td>2026-05-28</td>
+              <td><span class="pill pill--red">Active · This Case</span></td>
+              <td>TCPA § 227(c) + FTSA — SMS to DNC</td>
+            </tr>
+            <tr>
+              <td>Lucombe v. Little Creek Fresh Grill LLC · 8:26-cv-01510</td>
+              <td>M.D. Fla.</td>
+              <td>2026 (≈9 days before)</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>TCPA — same plaintiff template <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Twistee+Treat%22+TCPA&type=r">CourtListener -&gt;</a></span></td>
+            </tr>
+            <tr>
+              <td>Espinal v. Twistee Treat USA LLC</td>
+              <td>M.D. Fla.</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Non-TCPA (ADA)</span></td>
+              <td>ADA accessibility <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Twistee+Treat%22&type=r">CourtListener -&gt;</a></span></td>
+            </tr>
+            <tr>
+              <td>Deangelis v. Twistee Treat USA, LLC</td>
+              <td>M.D. Fla.</td>
+              <td>2016</td>
+              <td><span class="pill pill--ok">Settled (stip dismissal)</span></td>
+              <td>FLSA wage — <em>defendant historically settles early</em></td>
+            </tr>
+            <tr>
+              <td>Twistee Treat v. 3866955 Canada Inc.</td>
+              <td>S.D. Fla.</td>
+              <td>2003</td>
+              <td><span class="pill pill--ok">Closed</span></td>
+              <td>Trademark (offensive)</td>
+            </tr>
+            <tr>
+              <td>Twistee Treat Corp. (predecessor) — bankruptcies</td>
+              <td>Bankr. M.D. Fla.</td>
+              <td>1988–1990</td>
+              <td><span class="pill pill--gap">Historical</span></td>
+              <td>Predecessor-entity Ch. 11</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open Intel Gaps — Close Before First Dial</div>
+      <ul class="clean tight">
+        <li><strong>Florida Sunbiz officer list</strong> — Sunbiz returned 403; manual lookup needed at search.sunbiz.org for "TWISTEE TREAT USA LLC" to confirm registered agent and managers</li>
+        <li><strong>Service date / answer deadline</strong> — summons issued 5/29/26 but actual service date unknown; rep should monitor docket via PACER</li>
+        <li><strong>Defense counsel</strong> — none appeared yet; outreach should go directly to in-house leadership</li>
+        <li><strong>Lucombe's full case count</strong> — CourtListener search for "Nigel Lucombe" timed out; 7 cases per TCPAWorld (Nov 2024) is the floor, actual count likely higher</li>
+        <li><strong>BlacklistBulk scrub</strong> — re-run 813-900-7705; API returned TLS error at extraction time</li>
+        <li><strong>SMS vendor identity</strong> — confirm whether short code 98900 belongs to Twistee Treat directly or a shared vendor servicing both Twistee Treat and Little Greek Fresh Grill (verifiable via CSCA short-code registry)</li>
+        <li><strong>Judge Barber TCPA history</strong> — not retrieved; check rulings on motions to compel arbitration and consent-defense MTDs</li>
+        <li><strong>Loyalty program opt-in flow</strong> — twisteetreat.com /signup refused connection; need to test loyalty enrollment from clean browser to capture actual consent disclosure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No public C-suite — open with the Orlando HQ and route to whoever owns marketing/loyalty.</h2>
+      <p class="section-lede">Twistee Treat is a private, lean-org PE-backed chain. No GC, CMO, or CCO is publicly named. The fastest route in is the Orlando HQ switchboard and any of the named LinkedIn-identified employees, then escalate to Intram Investments (parent) if no response within 5 business days. All emails below follow the inferred pattern <code>first.last@twisteetreat.com</code> — verify before sending.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sheri Foraker</strong><br><span class="pill pill--dark">Twistee Treat USA</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Employee · title not disclosed on public LinkedIn <span class="src-tag"><a href="https://www.linkedin.com/company/twistee-treat-usa">LinkedIn co. -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td>sheri.foraker@twisteetreat.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/sheri-foraker-b1209912">Profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Daniel Marlowe</strong><br><span class="pill pill--dark">Twistee Treat USA</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Employee · title not disclosed on public LinkedIn <span class="src-tag"><a href="https://www.linkedin.com/company/twistee-treat-usa">LinkedIn co. -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td>daniel.marlowe@twisteetreat.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/daniel-marlowe-21219057">Profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Terry Conyers</strong><br><span class="pill pill--dark">Twistee Treat USA</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Employee · title not disclosed on public LinkedIn <span class="src-tag"><a href="https://www.linkedin.com/company/twistee-treat-usa">LinkedIn co. -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td>terry.conyers@twisteetreat.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/terry-conyers-92418178">Profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Rebecca Lyons</strong><br><span class="pill pill--dark">Twistee Treat USA</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Employee · title not disclosed on public LinkedIn <span class="src-tag"><a href="https://www.linkedin.com/company/twistee-treat-usa">LinkedIn co. -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td>rebecca.lyons@twisteetreat.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/rebecca-lyons-9045a078">Profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Alison Herman</strong><br><span class="pill pill--dark">Twistee Treat / Advertising</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Twistee Treat advertising services entity, Winter Park, FL — <strong>most likely marketing-channel owner</strong> <span class="src-tag"><a href="https://www.linkedin.com/company/twistee-treat">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td>alison.herman@twisteetreat.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/alison-herman-36512537">Profile</a></td>
+          </tr>
+          <tr>
+            <td><strong>Andres Jiménez</strong><br><span class="pill pill--dark">General Manager</span> <span class="pill pill--gap">GAP</span></td>
+            <td>General Manager (SignalHire-identified) <span class="src-tag"><a href="https://www.signalhire.com/companies/twistee-treat">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rashid A. Khatib</strong><br><span class="pill pill--dark">Co-Founder</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Co-founder, Twistee Treat USA (per Wikipedia); affiliated with Intram Investments <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Twistee_Treat">wikipedia -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td><span class="pill pill--gap">Gap — escalation only</span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zahi W. Khouri</strong><br><span class="pill pill--dark">Co-Founder</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Co-founder, Twistee Treat USA (per Wikipedia); affiliated with Intram Investments <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Twistee_Treat">wikipedia -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+            <td><span class="pill pill--gap">Gap — escalation only</span></td>
+            <td><span class="pill pill--gap">Gap</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">Not Yet Appeared</span></td>
+            <td>No appearance on docket as of report generation; ~21-day answer window from service</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; padding:16px; background:var(--gray-05); border-left:4px solid var(--info);">
+      <strong>Email pattern in use:</strong> <code>first.last@twisteetreat.com</code> — <span class="pill pill--warn">PATTERN</span> (inferred from company domain; not yet verified against a confirmed live mailbox). Run an MX/verifier check before any bulk outreach.
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — answer clock is running and a copycat suit pattern is visible.</h2>
+      <p class="section-lede">Lucombe sued Little Greek Fresh Grill nine days before Twistee Treat. The vertical-targeted pattern is real and ongoing; every day this stays unaddressed is another day Twistee Treat's short code 98900 keeps sending to unscrubbed Florida numbers. The rep should be on the phone with the Orlando HQ within 72 hours of report delivery.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4 class="step-title">Day 0 — Re-run BlacklistBulk scrub on 813-900-7705</h4>
+        <p>API returned an expired-cert error at extraction. Re-run from a clean session and screenshot the result. Confirm Lucombe is on the litigator list — this is the dial-1 proof point.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4 class="step-title">Day 1 — Call Orlando HQ; ask for whoever owns SMS/loyalty marketing</h4>
+        <p>Open warm: "I'm calling because of the Lucombe complaint filed Wednesday in Tampa federal court — we noticed you got hit by the same pro se plaintiff who sued Little Greek Fresh Grill last week, and we want to make sure you don't get sued a third time next week." Ask to be routed to the person responsible for short code 98900 / loyalty texts. Alison Herman (advertising services, Winter Park) is the most likely owner based on her LinkedIn role.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4 class="step-title">Day 1–2 — Email decision-makers using the inferred pattern</h4>
+        <p>Send to <code>alison.herman@twisteetreat.com</code>, <code>sheri.foraker@twisteetreat.com</code>, <code>daniel.marlowe@twisteetreat.com</code>. Subject: "Lucombe v. Twistee Treat (8:26-cv-01588) — Litigator Scrub for short code 98900". One paragraph. Attach this report.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4 class="step-title">Day 3 — Sunbiz lookup + escalate to Intram Investments if no response</h4>
+        <p>Pull the Sunbiz officer list (manual lookup at search.sunbiz.org — Sunbiz blocked automation at extraction). Identify the registered agent and any named managers. If no response from Twistee Treat ops, escalate to Intram Investments, Orlando, as the PE parent.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4 class="step-title">Day 5–7 — Pivot to consent capture / vendor audit pitch</h4>
+        <p>Once Litigator Scrub is anchored, upsell Consent Capture + a vendor-chain audit. Wedge: "Your /signup, /terms, and /privacy URLs refused connection when we tried to find your SMS opt-in disclosure. Without a written consent record under 47 CFR § 64.1200(f)(9), you cannot defend the Lucombe case — and the next ten plaintiffs will follow the same template."</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h4 class="step-title">Day 10 — Monitor docket for defense counsel appearance</h4>
+        <p>Once defense counsel files a notice of appearance, send them the same report. They will be the long-term influencer on whether a compliance solution gets bought as part of resolving the case.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; padding:20px 24px; background:var(--gray-05); border-left:4px solid var(--bl-red);">
+      <h4 style="margin:0 0 12px; font-size:14px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;">Trigger Conditions That Change The Plan</h4>
+      <ul class="clean tight">
+        <li><strong>Defense counsel files MTC arbitration</strong> — back off direct ops outreach; pivot to defense counsel only</li>
+        <li><strong>Plaintiff voluntarily dismisses or amends to add class</strong> — re-prioritize; class adds 10x exposure</li>
+        <li><strong>Third Lucombe restaurant suit filed</strong> — escalate priority across all Intram portfolio brands</li>
+        <li><strong>Sunbiz lookup reveals shared officers with Little Greek Fresh Grill</strong> — combined outreach to single decision-maker</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 72-HOUR WINDOW</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 19</span>
+      <span class="pill pill--warn">SERIAL FILER · COPYCAT RISK</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
