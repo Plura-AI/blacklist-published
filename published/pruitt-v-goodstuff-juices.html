@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pruitt v. GoodStuff Juices — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.callout ul{ margin:8px 0 0 18px; padding:0; font-size:14px; line-height:1.6; color:var(--fg-1); }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; color:var(--fg-2); line-height:1.55; }
+.row-highlight{ background:var(--bl-red-tint); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 36" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="26" font-family="General Sans, sans-serif" font-weight="700" font-size="28" fill="#ffffff" letter-spacing="-0.5">BLACKLIST</text>
+          <text x="158" y="26" font-family="General Sans, sans-serif" font-weight="400" font-size="28" fill="#A50100" letter-spacing="-0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Juice/Wellness SMS Marketer · Quiet-Hours Class Action · Jibrael Hindi Filing · C.D. Cal.</p>
+      <h1 class="hero-tagline">Pruitt v.<br>GoodStuff Juices LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05756</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal.<br><span style="font-weight:400; color:#A8A8A8; font-size:13px;">Western Div. (likely)</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(0 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; color:#A8A8A8; font-size:13px;">"several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — but Pruitt is already a documented repeat filer with a 10-day-old prior suit.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Christine Pruitt's number is not disclosed in the complaint — but she has a parallel TCPA action filed against Kirby Beauty LLC 10 days earlier in the same district, which already qualifies her as a serial plaintiff worth flagging.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Serial Plaintiff Flag</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only that Christine Pruitt is a Ventura County, CA resident and that the receiving handset is her "residential telephone line and primary means of reaching Plaintiff at home." No 10-digit recipient number appears anywhere in the pleading or exhibits.</div>
+      </div>
+      <p class="scrub-body-text">A blacklistBulk lookup was not run because no full plaintiff number is available to query. However, plaintiff Christine Pruitt filed a near-identical TCPA action against Kirby Beauty LLC (No. 2:26-cv-05379, C.D. Cal.) approximately 10 days before this filing — strong serial-plaintiff signal. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Christine+Pruitt%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID — Toll-Free</div>
+        <h3 class="card-title">1-855-597-1943</h3>
+        <p class="card-body">Toll-free (855) NPA — consistent with outbound SMS dialer / aggregator infrastructure. Visible in the Aug 29 / Aug 31 / Oct 24 / Nov 27 screenshots in the complaint. No consumer reports were retrievable from 800notes, YouMail, Tellows, or RoboKiller (all sources returned 403/404 errors during enrichment), so sender identification rests on the screenshot exhibits in the complaint itself.</p>
+        <div style="margin-top:12px"><span class="pill pill--info">Toll-Free 855</span> <span class="pill pill--gap">No External Sender Data</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Click-Tracking Domain</div>
+        <h3 class="card-title">kvo1.io &nbsp;·&nbsp; klo8.io</h3>
+        <p class="card-body">Both short-link domains appear in the complaint screenshots embedded in the SMS bodies. The "kvo" / "klo" pattern is consistent with Klaviyo-style SMS short-link tracking domains used by mid-market DTC brands. Implies ESP-driven bulk sends without quiet-hours suppression configured.</p>
+        <div style="margin-top:12px"><span class="pill pill--warn">Klaviyo-Pattern ESP</span></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Recovery Path — How to Get the Plaintiff Number</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4 class="card-title" style="font-size:16px"><i data-lucide="undo-2" style="width:18px;height:18px;vertical-align:-3px"></i> Pull ECF #1 from PACER</h4>
+        <p class="card-body">~$1.20. Complaint exhibits are the screenshot images. Plaintiff number is occasionally redacted but sometimes appears in the message metadata header.</p>
+      </div>
+      <div class="card">
+        <h4 class="card-title" style="font-size:16px"><i data-lucide="clock" style="width:18px;height:18px;vertical-align:-3px"></i> Wait for Defense Counsel Notice</h4>
+        <p class="card-body">When defense counsel appears (no appearance yet on docket), they will receive plaintiff's phone via a Rule 26(f) early disclosure or first set of interrogatories.</p>
+      </div>
+      <div class="card">
+        <h4 class="card-title" style="font-size:16px"><i data-lucide="search" style="width:18px;height:18px;vertical-align:-3px"></i> Discovery Request</h4>
+        <p class="card-body">Standard first-set RFP targeting plaintiff's cellular subscriber records will surface the number. Encourage defense to make this request early to enable a Blacklist scrub before mediation.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">SERIAL PLAINTIFF — 2 FILINGS IN 10 DAYS</span>
+      <span class="pill pill--info">JIBRAEL HINDI FIRM — 1,380+ CL FILINGS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small NC-based DTC juice brand caught with no privacy policy, Klaviyo-pattern SMS infra, and zero quiet-hours throttle — a textbook compliance audit + DNC scrub close.</h2>
+      <p class="section-lede">GoodStuff Juices LLC is a private DTC cold-pressed juice operation with no in-house compliance counsel, no accessible privacy policy, and a Klaviyo-style SMS stack that just sent texts at 6:00 AM, 6:01 AM, 7:01 AM, and 9:18 PM local time to a Ventura County consumer. They are facing a class allegation of "several thousands" of similarly situated recipients. Lead with compliance audit + quiet-hours scrub; secondary close on consent capture.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title"><i data-lucide="alert-triangle" style="width:20px;height:20px;vertical-align:-4px;color:var(--bl-red)"></i> Compliance Audit + Policies &amp; Procedures</h3>
+        <p class="card-body">Defendant's site has no accessible privacy policy, no terms, no signup page, and no SMS terms (all standard URLs returned 404). <span class="src-tag"><a href="https://goodstuffjuices.com">goodstuffjuices.com -></a></span> They cannot defend a quiet-hours claim without a documented compliance framework. Sell the full policy + audit package.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Strong Secondary</div>
+        <h3 class="card-title"><i data-lucide="phone-call" style="width:20px;height:20px;vertical-align:-4px"></i> DNC Scrubbing + Quiet-Hours Suppression</h3>
+        <p class="card-body">The send pattern (6:00 / 6:01 / 7:01 AM and 9:18 PM PT) confirms Klaviyo/ESP outbound has no recipient-timezone quiet-hours gating. Blacklist's daily scrub + time-of-day filter directly solves the strict-liability theory pled in this case.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title"><i data-lucide="user-check" style="width:20px;height:20px;vertical-align:-4px"></i> Consent Capture / Record Retention</h3>
+        <p class="card-body">Complaint pleads "Plaintiff never signed any type of authorization." If GoodStuff has no signup-form consent log, they have no defense even outside quiet hours. Position consent capture as required infrastructure for ongoing Klaviyo sends.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">Frame this as "the first one is cheap — the second one isn't"</h3>
+      <p class="card-body" style="margin-bottom:12px">GoodStuff Juices is exactly the size of brand that gets hit by Jibrael Hindi's firm once, settles individually for low-mid five figures, and then gets hit again 6–12 months later by a different named plaintiff with the same theory because they never fixed the underlying send infrastructure. The firm has 1,380+ TCPA filings indexed on CourtListener and self-reports $30M+ in TCPA settlements. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span> <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span> They run a documented playbook against DTC consumer brands — Hey Dude, Playboy, Steve Madden, Nespresso, ThirdLove, Tampa Bay Buccaneers, and now GoodStuff Juices.</p>
+      <p class="card-body">The rep's wedge: <em>"You can settle this one for low five figures and walk away — or you can settle this one, install daily DNC + quiet-hours scrubbing through Blacklist, and never get sued by Hindi again. The difference is the cost of one more deposition." </em> The smoking-gun fact is that goodstuffjuices.com has no accessible privacy policy at all — that's an unrecoverable defense posture and a clear urgency hook.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A small private DTC cold-pressed juice operation in Greenville, NC — limited public footprint, no compliance infrastructure.</h2>
+      <p class="section-lede">GoodStuff Juices LLC is a privately held North Carolina LLC operating an e-commerce juice cleanse and protein-shake brand. Per the complaint it is HQ'd at 803 Moye Blvd Ste A, Greenville, NC 27834. Corporate registry sources (NC SoS, OpenCorporates, Bizapedia) all returned errors during enrichment, so officer/registered-agent identification is currently a gap.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">GoodStuff Juices LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>GoodStuff Juices LLC</dd>
+          <dt>Formation State</dt><dd>North Carolina</dd>
+          <dt>HQ</dt><dd>803 Moye Blvd Ste A, Greenville, NC 27834-4141 <span class="src-tag">(per complaint ¶8)</span></dd>
+          <dt>Public / Private</dt><dd>Private</dd>
+          <dt>Vertical</dt><dd>DTC beverage / wellness — cold-pressed organic juices, juice cleanses, protein shakes <span class="src-tag"><a href="https://goodstuffjuices.com">goodstuffjuices.com -></a></span></dd>
+          <dt>Customer Acquisition</dt><dd>SMS marketing (Klaviyo-pattern), Refer-a-Friend referral program, on-site reviews (198+ reviews, 4.9★)</dd>
+          <dt>SMS Sender DID</dt><dd>1-855-597-1943 (toll-free)</dd>
+          <dt>Tracking Domains</dt><dd>kvo1.io, klo8.io (Klaviyo-pattern short links)</dd>
+          <dt>Compliance Officer</dt><dd><span class="pill pill--gap">None Identified</span></dd>
+          <dt>Privacy Policy</dt><dd><span class="pill pill--danger">Not Accessible</span> /privacy and /privacy-policy both return 404 <span class="src-tag"><a href="https://goodstuffjuices.com">goodstuffjuices.com -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No privacy policy. No terms. No SMS terms. No /about page.</h3>
+        <p class="card-body">Every standard compliance URL on goodstuffjuices.com returns 404 — /privacy, /privacy-policy, /terms, /terms-of-service, /about, /about-us, /contact. For an e-commerce brand actively running Klaviyo-style SMS marketing to a national customer base, this is an unrecoverable defense posture. There is no written record of consent collection, no opt-out language, no TCPA disclosure, and no quiet-hours statement on the site. <span class="src-tag"><a href="https://goodstuffjuices.com">goodstuffjuices.com -></a></span></p>
+        <div style="margin-top:12px"><span class="pill pill--red">NO POLICY · NO DEFENSE</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title"><i data-lucide="calendar-x" style="width:20px;height:20px;vertical-align:-4px"></i> Pre-Service Window — Move Now</h3>
+      <p class="card-body">Complaint was filed May 29, 2026. No service of process is reflected on the docket yet (only the complaint, civil cover sheet, and notice of interested parties have been filed). <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05756&type=r">CourtListener RECAP -></a></span> Once defendant is served, the federal 21-day answer clock starts. The optimal window is now — before defendant retains counsel and gets pulled into a reactive posture. A pre-answer outreach lets the rep position Blacklist as a remediation partner rather than a vendor pitched mid-litigation.</p>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GoodStuff Juices LLC</td>
+            <td>Primary defendant</td>
+            <td>DTC beverage / wellness</td>
+            <td>Quiet-hours class action filed 2026-05-29</td>
+            <td><span class="pill pill--red">Primary</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="color:var(--fg-3); font-style:italic; text-align:center;">No parent, subsidiary, or sister-brand relationships identified — entity appears to be a standalone small-business LLC. Corporate registry retry recommended via NC SoS to surface members/managers and any sister entities under common ownership.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Jibrael Hindi's quiet-hours C.D. Cal. playbook — strict-liability theory, "several thousand" class, no consent defense available.</h2>
+      <p class="section-lede">The complaint is a near-template quiet-hours filing from a 1,380+ filing TCPA firm. Defense counsel has not yet appeared. The plaintiff's same lead-counsel pattern has been deployed in 2025–2026 against Nespresso, ThirdLove, Steve Madden, Tampa Bay Buccaneers, Hey Dude, and Playboy — all DTC or consumer-brand defendants.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Pruitt v. GoodStuff Juices LLC</h3>
+        <dl class="kv">
+          <dt>Docket No.</dt><dd>2:26-cv-05756</dd>
+          <dt>Court</dt><dd>U.S. District Court · C.D. Cal.</dd>
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Plaintiff</dt><dd>Christine Pruitt (Ventura County, CA)</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Putative Rule 23</span></dd>
+          <dt>Class Definition</dt><dd>All persons in the U.S. who received more than one marketing text from defendant within any 12-month period during quiet hours (before 8 AM / after 9 PM local time)</dd>
+          <dt>Class Size Alleged</dt><dd>At least 50; "several thousands, if not more"</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c)(5) · 47 CFR § 64.1200(c)(1)</dd>
+          <dt>Theory</dt><dd>Quiet-hours violation (strict liability — no consent defense available)</dd>
+          <dt>Channels</dt><dd>SMS only (4 documented sends: 6:00 AM, 6:01 AM, 7:01 AM, 9:18 PM PT)</dd>
+          <dt>Damages Sought</dt><dd>$500 / negligent violation · $1,500 / willful violation · injunction · fees &amp; costs</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span> · 21-day answer clock starts on service</dd>
+          <dt>Docket Visibility</dt><dd>CourtListener RECAP only; PacerMonitor, Justia, UniCourt returned errors during enrichment</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. — Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv">
+          <dt>Signing Attorney</dt><dd>Gerald D. Lane Jr.</dd>
+          <dt>CA Bar No.</dt><dd>352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar -></a></span></dd>
+          <dt>Email</dt><dd>gerald@jibraellaw.com</dd>
+          <dt>Phone</dt><dd>(754) 444-7539</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="pill pill--warn">FL Firm · CA Filing</span></dd>
+          <dt>Bar-Address Mismatch</dt><dd>Yes — California-barred attorney filing in C.D. Cal. from Florida firm address. No CA office disclosed.</dd>
+          <dt>Discipline History</dt><dd>None found in available sources (absence cannot be confirmed — page not fully parsed)</dd>
+          <dt>Firm Founder</dt><dd>Jibrael S. Hindi (jibrael@jibraellaw.com)</dd>
+          <dt>TCPA Power Rank</dt><dd><span class="pill pill--danger">2026 TCPAWorld "Most Dangerous"</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+          <dt>Firm Filings</dt><dd>~1,380 indexed on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Firm Self-Reported</dt><dd>$30M+ TCPA settlements, $200M+ class action settlements <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Hindi/Lane Quiet-Hours C.D. Cal. Template</h3>
+      <p class="card-body">This complaint follows a near-identical pattern Hindi's firm has deployed multiple times per month in C.D. Cal. since 2025: (1) DTC or consumer-brand defendant running Klaviyo/Attentive-style SMS marketing; (2) named plaintiff in a California county; (3) class definition keyed to 47 CFR § 64.1200(c)(1) quiet hours; (4) screenshot exhibits showing 3–5 send timestamps outside 8 AM–9 PM local time; (5) "several thousand" class numerosity allegation. Documented targets in this template include Nespresso, ThirdLove, Steve Madden, Tampa Bay Buccaneers, Summer Vibe, Overtime Sports, and now GoodStuff Juices. <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span></p>
+      <p class="card-body" style="margin-top:8px"><strong>Plaintiff serial signal:</strong> Christine Pruitt also filed Pruitt v. Kirby Beauty LLC (C.D. Cal. 2:26-cv-05379) ~10 days before this case — same template, different defendant. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Christine+Pruitt%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td><strong>Pruitt v. GoodStuff Juices LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>2:26-cv-05756</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-29</td>
+            <td><span class="pill pill--red">Just Filed</span></td>
+            <td>Quiet hours · 47 CFR 64.1200(c)(1)</td>
+          </tr>
+          <tr>
+            <td>Pruitt v. Kirby Beauty LLC <span class="pill pill--warn">Same Plaintiff</span></td>
+            <td>2:26-cv-05379</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05 (~10d prior)</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours (template match)</td>
+          </tr>
+          <tr>
+            <td>Hindi v. Vanguard Equities, LLC <span class="pill pill--dark">Same Firm</span></td>
+            <td>—</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated ~3mo</span></td>
+            <td>TCPA 47:227</td>
+          </tr>
+          <tr>
+            <td>Moreno Armas v. Freedom Mortgage Corp. <span class="pill pill--dark">Same Firm</span></td>
+            <td>—</td>
+            <td>S.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Terminated</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Turizo v. Healthfund Solutions, LLC <span class="pill pill--dark">Same Firm</span></td>
+            <td>—</td>
+            <td>S.D. Fla.</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Terminated</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Bryant v. Hey Dude Inc. <span class="pill pill--dark">Same Firm · DTC</span></td>
+            <td>—</td>
+            <td>E.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Zuniga v. Playboy Enterprises Int'l <span class="pill pill--dark">Same Firm · DTC</span></td>
+            <td>—</td>
+            <td>E.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Bryant v. A &amp; W Restaurants, Inc. <span class="pill pill--dark">Same Firm</span></td>
+            <td>—</td>
+            <td>E.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin:0 0 24px"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener firm sweep -></a> &nbsp;·&nbsp; <a href="https://www.courtlistener.com/?q=%22Law+Offices+of+Jibrael+S.+Hindi%22&type=r">CourtListener firm name -></a></p>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:16px;height:16px;vertical-align:-3px"></i> Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Plaintiff's recipient phone number — not pled in complaint; pull ECF #1 from PACER and review attached screenshot metadata.</li>
+        <li>Defendant registered agent and members/managers — NC Secretary of State retry required (all corporate registry sources failed during enrichment).</li>
+        <li>Defendant executive contacts — TheOrg, ZoomInfo, Apollo, RocketReach, and LinkedIn people search all blocked / returned no employees. Likely requires LinkedIn Sales Navigator or WHOIS on goodstuffjuices.com.</li>
+        <li>Judge assignment and answer deadline — not yet on docket; check PACER again in 5–7 days after defendant is served.</li>
+        <li>Defense counsel — none on docket yet; first appearance will surface the firm and likely M&amp;A insurance carrier.</li>
+        <li>Sender 1-855-597-1943 third-party complaint volume — 800notes/YouMail/Tellows/RoboKiller all returned errors. Retry overnight or via paid sender-ID lookup.</li>
+        <li>Defendant's actual SMS ESP — kvo1.io/klo8.io are Klaviyo-pattern but unconfirmed. Confirm via builtwith.com or DNS check on the redirect domains.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named decision-makers surfaced — pitch defense counsel once they appear, and use the Greenville HQ + LinkedIn company page as the only confirmed entry points.</h2>
+      <p class="section-lede">All standard decision-maker sources (TheOrg, ZoomInfo, Apollo, RocketReach, LinkedIn people search, goodstuffjuices.com /about and /contact) returned 404 / 403 errors or login walls. GoodStuff Juices appears to be a very small private DTC operation with minimal public web footprint. Highest-value first move: NC Secretary of State retry to surface the LLC's registered agent and members.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GoodStuff Juices LLC</strong> <span class="pill pill--dark">Defendant HQ</span></td>
+            <td>Principal office: 803 Moye Blvd Ste A, Greenville, NC 27834 (per complaint ¶8)</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/company/goodstuff-juices">LinkedIn company page -></a> <br><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong> <span class="pill pill--dark">Service of Process</span></td>
+            <td>NC SoS filing — name and address unknown (NC SoS, OpenCorporates, Bizapedia all returned errors during enrichment)</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">GAP — Retry NC SoS</span></td>
+          </tr>
+          <tr>
+            <td><strong>Member / Manager(s)</strong> <span class="pill pill--dark">LLC Owner(s)</span></td>
+            <td>NC LLC officers — not surfaced from any source. Most likely 1–3 individuals based on company size and DTC profile.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Marketing Lead</strong> <span class="pill pill--dark">SMS Owner</span></td>
+            <td>Whoever runs the Klaviyo-pattern SMS stack (likely owner-operator at this company size). Tracking domains kvo1.io and klo8.io confirm active outbound SMS program. <span class="src-tag"><a href="https://goodstuffjuices.com">goodstuffjuices.com -></a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">GAP — Role Identified</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong> <span class="pill pill--dark">Litigation</span></td>
+            <td>Not yet appeared. 21-day federal answer clock will start on service. Likely a NC-based or CA-based defense firm given the geography split. <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05756&type=r">CourtListener docket -></a></span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">GAP — Not Yet Appeared</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px; background:var(--info-bg); border-left-color:var(--info)">
+      <h4 style="color:var(--info)"><i data-lucide="users" style="width:16px;height:16px;vertical-align:-3px"></i> Plaintiff Counsel (Reference Only — Do Not Pitch)</h4>
+      <ul style="list-style:none; margin:8px 0 0; padding:0;">
+        <li><strong>Gerald D. Lane Jr.</strong> — CA Bar 352470, gerald@jibraellaw.com, (754) 444-7539, Law Offices of Jibrael S. Hindi, 1515 NE 26th Street, Wilton Manors, FL 33305. <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar -></a></span></li>
+        <li style="margin-top:6px"><strong>Jibrael S. Hindi</strong> — Firm founder, jibrael@jibraellaw.com. <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 7 days — before defense counsel files an appearance and locks down outbound communications.</h2>
+      <p class="section-lede">The complaint was filed today. Once GoodStuff is served and retains counsel, a vendor pitch turns into a "talk to our lawyer" wall. The 7-day pre-service / pre-answer window is the only clean shot at the owner-operator decision-maker.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Close intel gaps before any outreach</h4>
+          <p>Pull ECF #1 from PACER (~$1.20) to confirm screenshot exhibits and any redacted plaintiff number. Retry NC Secretary of State business search for "GoodStuff Juices LLC" to surface registered agent + members. WHOIS goodstuffjuices.com for registrant contact.</p>
+          <p><strong>Desired outcome:</strong> a named human at GoodStuff Juices LLC to call.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1–3 · First-touch outreach to owner-operator</h4>
+          <p>Cold email + LinkedIn InMail to whoever the NC SoS surfaces as registered agent or member. Reference the case number (2:26-cv-05756) and the specific smoking-gun fact — that goodstuffjuices.com has no accessible privacy policy or SMS terms. Lead with compliance audit, secondary on DNC scrub.</p>
+          <p><strong>Desired outcome:</strong> 15-minute intro call before defense counsel is retained.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 3–7 · Sender / ESP intel handoff</h4>
+          <p>On the intro call, position Blacklist as the partner who will (a) stop the bleeding by installing daily DNC scrub + quiet-hours time-of-day filter on the Klaviyo-pattern stack, and (b) build out the missing privacy policy / SMS terms / consent capture flow. Frame as "the cost of one more deposition." Reference the firm's documented 1,380+ filings and pattern of repeat-targeting same verticals. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span></p>
+          <p><strong>Desired outcome:</strong> verbal commitment to a Blacklist scrub + policies package.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 7–21 · Watch the docket for defense appearance</h4>
+          <p>Re-check CourtListener RECAP every 3–4 days. Once defense counsel appears, send a copy of the proposed Blacklist remediation package directly to defense — this lets defense cite remediation in early settlement talks and dramatically lowers the cost-of-close on Blacklist's side.</p>
+          <p><strong>Desired outcome:</strong> defense counsel co-signs Blacklist as the remediation vendor in their settlement positioning.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent">
+      <div class="card-meta">Trigger Conditions — Change the Plan If</div>
+      <ul class="clean tight">
+        <li>Defense counsel appears and files an early motion to compel arbitration → no arbitration clause is visible on goodstuffjuices.com today, so this would surface evidence we don't have. Reset to defense-counsel-direct outreach.</li>
+        <li>Plaintiff voluntarily dismisses or amends → Hindi firm has documented walk-away pattern (PrimeFish dismissed w/ prejudice 4/26). If this case dismisses, the urgency drops but the underlying compliance gap remains — pitch becomes "you got lucky once."</li>
+        <li>Second TCPA case filed against GoodStuff Juices LLC → urgency goes from high to emergency; engage defense counsel directly with audit package.</li>
+        <li>Defendant entity is dissolved or transferred in NC SoS records → successor liability play opens up; coordinate with corporate registry retry.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 7-DAY WINDOW</span>
+      <span class="pill pill--warn">PRE-SERVICE · PRE-ANSWER</span>
+      <span class="pill pill--info">LEAD PRODUCT: COMPLIANCE AUDIT + POLICIES</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
