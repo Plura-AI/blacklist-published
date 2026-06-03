@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guardian News & Media v. CFPB — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:200px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:12px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:600; color:var(--bl-red); line-height:1; }
+.step-title{ font-size:17px; font-weight:600; margin:0 0 6px; }
+.step-body{ font-size:14px; color:var(--fg-2); line-height:1.55; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 40" role="img" aria-label="Blacklist Alliance">
+          <rect x="0" y="8" width="6" height="24" fill="#A50100"/>
+          <text x="16" y="28" fill="#FFFFFF" font-family="General Sans, sans-serif" font-weight="700" font-size="22" letter-spacing="0.02em">BLACKLIST</text>
+          <text x="148" y="28" fill="#A8A8A8" font-family="General Sans, sans-serif" font-weight="500" font-size="22" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">FOIA Action Against Federal Agencies · Non-TCPA Matter · Loevy &amp; Loevy Volume FOIA Plaintiff · D.D.C.</p>
+      <h1 class="hero-tagline">Guardian News &amp; Media v.<br>CFPB <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">&amp; Federal Reserve Board</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-01863</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">D.D.C.</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(random draw pending)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">5 USC § 552<br>(FOIA)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Single-Plaintiff FOIA</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Matthew V. Topic <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Loevy &amp; Loevy</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">No phone artifacts. No TCPA claim. Scrub is not applicable to this matter.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. This case has no TCPA claim, no phone allegations, and no communications channel pled — it is a Freedom of Information Act lawsuit against two federal agencies. The litigator scrub is not the right product here, and the entire pitch model needs to be reframed (see Section 02).</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow">Scrub Status</div>
+        <span class="pill pill--gap">N/A — FOIA Matter, No TCPA Claim</span>
+        <span class="pill pill--info">Federal Agency Defendants</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Phone Number</div>
+        <div class="scrub-number">NOT APPLICABLE</div>
+        <div class="scrub-number-sub">Plaintiff Guardian News &amp; Media, LLC is a corporate news publisher, not a consumer. The complaint pleads <strong>only</strong> a FOIA violation under 5 USC § 552 against CFPB and the Federal Reserve Board. No phone calls, SMS, prerecorded voice, or autodialer conduct is alleged. <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01863&type=r">CourtListener docket -&gt;</a></span></div>
+      </div>
+      <p class="scrub-body-text">The complaint seeks to compel CFPB to (1) conduct a reasonable search, (2) issue a determination, and (3) produce records referenced in CFPB's now-dismissed December 23, 2024 enforcement action against Rocket Homes Real Estate LLC (Case No. 2:24-cv-13442-BRM-KGA). The FOIA request (CFPB-2026-0481-F) was submitted March 17, 2026; CFPB acknowledged on May 7, 2026 citing a "backlog of pending requests" and requested a 10-business-day extension. No determination has issued. <span class="src-tag"><a href="https://www.consumerfinance.gov/foia-requests/">CFPB FOIA -&gt;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px" class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px">Why scrub doesn't apply</div>
+        <div class="card-title" style="font-size:17px">Plaintiff is a corporate FOIA requester</div>
+        <div class="card-body">Guardian News &amp; Media, LLC is the U.S. operating arm of The Guardian newspaper. There is no consumer "plaintiff number" to scrub — the plaintiff is an institutional requester invoking 5 USC § 552. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Guardian+News+%26+Media%22&type=r">CourtListener -&gt;</a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px">Why scrub doesn't apply</div>
+        <div class="card-title" style="font-size:17px">No § 227 statute pled</div>
+        <div class="card-body">The cause of action is "05:552 FOIA" with Nature of Suit code 895. No TCPA, no RFDCPA, no FDCPA, no state mini-TCPA. Statutes invoked: 5 USC § 552, 5 USC § 552(a)(4)(B), 28 USC § 1331. <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01863&type=r">Docket -&gt;</a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px">Why scrub doesn't apply</div>
+        <div class="card-title" style="font-size:17px">Defendants are federal agencies</div>
+        <div class="card-body">CFPB and the Federal Reserve Board are not TCPA-regulated callers. Blacklist's litigator-scrub, RND, and DNC products do not address FOIA processing obligations. <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/the-bureau/">CFPB -&gt;</a></span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--gap">SCRUB STATUS: NOT RUN — N/A</span>
+      <span class="pill pill--warn">NON-TCPA MATTER — REFRAME PITCH</span>
+      <span class="pill pill--info">PLAINTIFF FIRM: EXTREME FOIA THREAT (LOEVY &amp; LOEVY)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Not a Blacklist core-product fit. Treat as intelligence-only or pivot to the underlying Rocket Homes investigation.</h2>
+      <p class="section-lede">This matter is a FOIA suit between a media plaintiff and two federal agencies. There is no TCPA, FDCPA, or DNC claim. Blacklist's commercial product suite (litigator scrub, RND/safe-harbor, DNC scrubbing, consent capture) does not address what is at issue — federal agency record-search adequacy. The real downstream commercial angle, if any, is the <strong>Rocket Homes / Rocket Mortgage</strong> ecosystem that was the subject of the underlying (and dismissed) CFPB enforcement action.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="pill pill--gap" style="margin-bottom:12px; display:inline-flex">Not Applicable</span>
+        <div class="card-title">Litigator Scrub</div>
+        <div class="card-body">No consumer plaintiff phone number exists in this case. Guardian News &amp; Media is an institutional FOIA requester, not a TCPA recipient. Do not pitch.</div>
+      </div>
+      <div class="card">
+        <span class="pill pill--gap" style="margin-bottom:12px; display:inline-flex">Not Applicable</span>
+        <div class="card-title">RND + FCC Safe Harbor</div>
+        <div class="card-body">Defendants are federal agencies. There is no reassigned-number defense available, and no calling conduct is alleged. Do not pitch.</div>
+      </div>
+      <div class="card card--accent">
+        <span class="pill pill--warn" style="margin-bottom:12px; display:inline-flex">Optional Cross-Sell — Downstream</span>
+        <div class="card-title">Rocket Homes / Rocket Mortgage Ecosystem</div>
+        <div class="card-body">The underlying CFPB complaint targeted <strong>Rocket Homes Real Estate LLC</strong> for RESPA violations involving real-estate brokerage referral tactics, "Dog Bone" referrals, and capture-rate goals. The Rocket ecosystem (Rocket Mortgage, Rocket Companies, Amrock) is a Fortune 500 financial-services advertiser with active SMS and outbound voice campaigns. Worth flagging to the appropriate vertical owner. <span class="src-tag"><a href="https://www.consumerfinance.gov/enforcement/actions/">CFPB Enforcement -&gt;</a></span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); margin:0 0 12px;">There is no first-call pitch to make against the named defendants. CFPB and the Federal Reserve Board are not Blacklist prospects. The intelligence value of this report is twofold: (1) confirm to the assigned owner that this lead from the new-filing feed is a <em>non-actionable false positive</em> and route accordingly; (2) flag the Rocket Homes / Rocket Mortgage thread to whichever vertical owner runs financial-services and mortgage-lead-gen prospects, since the underlying conduct CFPB investigated — high-volume outbound calls to real-estate brokerages with referral-quota pressure — is exactly the operational profile that produces TCPA exposure downstream.</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); margin:0;">The secondary intelligence value: <strong>Loevy &amp; Loevy</strong> — Matthew Topic's FOIA practice — is one of the highest-volume FOIA plaintiff firms in the country, with 318+ FOIA matters tied to Topic alone on CourtListener. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Matthew+Topic%22+FOIA&type=r">CourtListener -&gt;</a></span> If Blacklist ever sells transparency/FOIA-tracking tooling, this firm is a target buyer, not a target defendant. For now: log, route, move on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Federal agency defendants. Zero commercial scope. Downstream Rocket ecosystem is where the cross-sell heat lives.</h2>
+      <p class="section-lede">The named defendants are the Consumer Financial Protection Bureau (an independent bureau within the Federal Reserve System, founded 2011-07-21 under Dodd-Frank) and the Board of Governors of the Federal Reserve System (CFPB's nominal parent). Neither is a commercial-sales prospect.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Primary Defendant</div>
+        <h3 class="card-title">Consumer Financial Protection Bureau</h3>
+        <dl class="kv">
+          <dt>Entity type</dt><dd>Federal independent bureau within the Federal Reserve System</dd>
+          <dt>Founded</dt><dd>July 21, 2011 (Dodd-Frank Act) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Consumer_Financial_Protection_Bureau">Wikipedia -&gt;</a></span></dd>
+          <dt>HQ</dt><dd>1700 G Street NW, Washington, DC 20552</dd>
+          <dt>Mailing</dt><dd>PO Box 27170, Washington, DC 20038 <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/contact-us/">CFPB Contact -&gt;</a></span></dd>
+          <dt>Main phone</dt><dd>(855) 411-2372</dd>
+          <dt>FOIA phone</dt><dd>(855) 444-3642 <span class="src-tag"><a href="https://www.consumerfinance.gov/foia-requests/">CFPB FOIA -&gt;</a></span></dd>
+          <dt>FY24 budget</dt><dd>~$729M (funded through Federal Reserve transfers)</dd>
+          <dt>Headcount</dt><dd>1,758 (2024) — reportedly reduced dramatically in 2025 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Consumer_Financial_Protection_Bureau">Wikipedia -&gt;</a></span></dd>
+          <dt>Acting Director</dt><dd>Russell Vought (since Feb 7, 2025) <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/the-bureau/about-director/">CFPB Director -&gt;</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Co-Defendant</div>
+        <h3 class="card-title">Board of Governors of the Federal Reserve System</h3>
+        <dl class="kv">
+          <dt>Entity type</dt><dd>Federal agency / central bank governing board</dd>
+          <dt>HQ</dt><dd>Eccles Building, Constitution Avenue NW, Washington, DC 20551 <span class="src-tag"><a href="https://www.federalreserve.gov/aboutthefed/structure-federal-reserve-board.htm">Fed Board -&gt;</a></span></dd>
+          <dt>Main phone</dt><dd>202-452-3000</dd>
+          <dt>Chair</dt><dd>Kevin Warsh <span class="src-tag"><a href="https://www.federalreserve.gov/aboutthefed/bios/board/default.htm">Fed Bios -&gt;</a></span></dd>
+          <dt>Vice Chair</dt><dd>Philip N. Jefferson</dd>
+          <dt>Role in case</dt><dd>Sued as CFPB's "parent agency" — complaint asserts FRS is responsible for CFPB FOIA compliance as the funding/oversight body <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Federal_Reserve_Board_of_Governors">Wikipedia -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:24px" class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8">Operational Context (not a "smoking gun" — context only)</div>
+      <h3 class="card-title">CFPB has been ordered to "halt all work" since Feb 2025; FOIA processing capacity is degraded</h3>
+      <div class="card-body">In February 2025, Acting Director Russell Vought directed CFPB to halt operations and reportedly sought to terminate ~90% of staff. On Nov 11, 2025, CFPB filed notice in <em>NTEU v. Vought</em> that DOJ OLC determined the Bureau may not legally request funds from the Federal Reserve. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Consumer_Financial_Protection_Bureau">Wikipedia -&gt;</a></span> This operational shutdown is the practical explanation for why FOIA request CFPB-2026-0481-F sat unprocessed and is the proximate cause of the lawsuit. It is not, however, a commercial sales angle.</div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Board of Governors of the Federal Reserve System</strong></td>
+              <td>Named co-defendant / CFPB parent</td>
+              <td>Federal central bank</td>
+              <td>None</td>
+              <td><span class="pill pill--gap">Not In Scope</span></td>
+            </tr>
+            <tr>
+              <td><strong>Federal Open Market Committee</strong></td>
+              <td>FRS subsidiary body</td>
+              <td>Federal monetary policy</td>
+              <td>None</td>
+              <td><span class="pill pill--gap">Not In Scope</span></td>
+            </tr>
+            <tr>
+              <td><strong>Rocket Homes Real Estate LLC</strong></td>
+              <td>Subject of underlying CFPB enforcement action (dismissed)</td>
+              <td>Real-estate brokerage referral network</td>
+              <td>High — alleged outbound calls to brokerages, capture-rate quotas, referral pressure</td>
+              <td><span class="pill pill--warn">Downstream Flag</span></td>
+            </tr>
+            <tr>
+              <td><strong>Rocket Mortgage / Rocket Companies, Inc.</strong></td>
+              <td>Affiliate of Rocket Homes (NYSE: RKT)</td>
+              <td>Mortgage lending / DTC</td>
+              <td>High — large outbound voice + SMS marketing footprint</td>
+              <td><span class="pill pill--warn">Downstream Flag</span></td>
+            </tr>
+            <tr>
+              <td><strong>Amrock</strong></td>
+              <td>Rocket affiliate (title/closing services)</td>
+              <td>Real-estate settlement services</td>
+              <td>Medium — referenced in CFPB complaint ¶68 "preferential relationship"</td>
+              <td><span class="pill pill--info">Watch</span></td>
+            </tr>
+            <tr>
+              <td><strong>The Mitchell Group</strong></td>
+              <td>Real-estate brokerage referenced in CFPB complaint (¶¶59, 69–75)</td>
+              <td>Real-estate brokerage</td>
+              <td>Medium — alleged "Dog Bone" referral program</td>
+              <td><span class="pill pill--info">Watch</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Loevy &amp; Loevy is the country's most aggressive media-side FOIA shop. CFPB is a frequent FOIA defendant. This case fits a clear template.</h2>
+      <p class="section-lede">The plaintiff firm — Loevy &amp; Loevy — runs one of the highest-volume FOIA litigation practices in the United States. The complaint follows the firm's standard FOIA template against a federal agency that missed the 20-day statutory determination deadline. CFPB has been sued repeatedly in D.D.C. on FOIA grounds; the Federal Reserve Board likewise.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Guardian News &amp; Media, LLC v. CFPB &amp; FRS</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-01863 (D.D.C.)</dd>
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Plaintiff</dt><dd>Guardian News &amp; Media, LLC (100 Broadway, 11th fl, NY, NY 10005)</dd>
+          <dt>Lead counsel</dt><dd>Matthew V. Topic, DC Bar IL0037 — Loevy &amp; Loevy <span class="src-tag"><a href="https://www.loevy.com/attorneys/matt-topic/">Loevy -&gt;</a></span></dd>
+          <dt>Class action</dt><dd>No — single-plaintiff FOIA</dd>
+          <dt>Statute</dt><dd>5 USC § 552; 5 USC § 552(a)(4)(B); 28 USC § 1331</dd>
+          <dt>Theory</dt><dd>Failure to conduct reasonable search; failure to issue determination; constructive denial</dd>
+          <dt>FOIA ref #</dt><dd>CFPB-2026-0481-F (assigned May 7, 2026)</dd>
+          <dt>Relief sought</dt><dd>Declaratory judgment; order to search/produce; injunction; attorneys' fees under 5 USC § 552(a)(4)(E)</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared — DOJ Civil Division / USAO-DDC typical. In prior CFPB FOIA cases AUSAs Walker, Peterson, Hammond, Interrante, Nebeker, and Seabrook have appeared. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Consumer+Financial+Protection+Bureau%22+FOIA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Answer deadline</dt><dd>~60 days from service (FRCP 12(a)(2)) — est. late July / early August 2026</dd>
+          <dt>Judge</dt><dd>Not yet assigned (random draw pending) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01863&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h3 class="card-title">Matthew V. Topic &amp; Loevy &amp; Loevy <span class="pill pill--danger" style="margin-left:8px">Threat: Extreme</span></h3>
+        <dl class="kv">
+          <dt>Firm</dt><dd>Loevy &amp; Loevy — 60+ attorneys, civil rights / FOIA / wrongful conviction <span class="src-tag"><a href="https://www.loevy.com">loevy.com -&gt;</a></span></dd>
+          <dt>Firm address</dt><dd>311 North Aberdeen, 3rd Floor, Chicago, IL 60607</dd>
+          <dt>Firm phone</dt><dd>312-243-5900</dd>
+          <dt>FOIA intake</dt><dd>foia@loevy.com</dd>
+          <dt>Lead attorneys</dt><dd>
+            Matthew Topic — DC Bar IL0037, matt@loevy.com<br>
+            Merrick Wayne — DC Bar IL0058, Merrick@loevy.com (IL 2018, DDC 2019, CA 2025)<br>
+            Stephen Stich Match — DC Bar MA0044, match@loevy.com (JD 2017)
+            <span class="src-tag"><a href="https://www.loevy.com/attorneys/">Attorneys -&gt;</a></span>
+          </dd>
+          <dt>Bar address match</dt><dd>Firm HQ Chicago — attorneys hold DC bar admissions and DDC privileges. No mismatch. <span class="pill pill--ok">OK</span></dd>
+          <dt>Discipline history</dt><dd>None found in available sources <span class="pill pill--gap">DC Bar directory 404</span></dd>
+          <dt>FOIA filing volume</dt><dd><strong>318+</strong> FOIA matters tied to attorney Matthew Topic on CourtListener — among the highest-volume FOIA plaintiff attorneys in the country <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Matthew+Topic%22+FOIA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>TCPA filings</dt><dd>0 — firm does not litigate TCPA</dd>
+          <dt>Notable wins</dt><dd>Forced release of Laquan McDonald shooting video; DC Cir. revival of BuzzFeed v. DOJ (HSBC laundering report, 2024); $51.75M Clearview AI class settlement (2025); Chicago Headline Club v. Noem (2025 Operation Midway Blitz) <span class="src-tag"><a href="https://www.loevy.com/news/">Loevy News -&gt;</a></span></dd>
+          <dt>Settlement posture</dt><dd>Aggressive — litigates through appellate review; routinely recovers statutory fees under 5 USC § 552(a)(4)(E). Not a "fast-settler."</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Firm Template — "Loevy / Topic FOIA Form Complaint"</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-2); margin:0 0 16px;">The complaint is a textbook Loevy / Topic FOIA template: (1) identify the requester as a media entity, (2) recite the request and the agency's missed 20-day deadline, (3) plead constructive denial via failure to determine within statutory deadline, (4) plead failure to conduct adequate search, (5) demand declaratory + injunctive relief + attorneys' fees. The same template — same firm, same lead attorney — is visible in <em>Guardian News &amp; Media v. ICE</em> (D.D.C. 2025 &amp; 2026), <em>BuzzFeed v. DOJ</em>, <em>BuzzFeed v. CDC</em>, <em>Leopold v. Treasury</em>, <em>Leopold v. Federal Reserve Board</em> (1:25-cv-01990), <em>Block Club Chicago v. DHS</em>, and many others. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Matthew+Topic%22+FOIA&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="current">
+              <td><strong>Guardian News &amp; Media v. CFPB &amp; FRS</strong></td>
+              <td>D.D.C.</td>
+              <td>2026-05-29</td>
+              <td><span class="pill pill--red">Current Case</span></td>
+              <td>FOIA — Rocket Homes investigation records</td>
+            </tr>
+            <tr>
+              <td>Guardian News &amp; Media LLC v. ICE</td>
+              <td>D.D.C.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>FOIA — same plaintiff, same firm</td>
+            </tr>
+            <tr>
+              <td>Guardian News &amp; Media LLC v. ICE</td>
+              <td>D.D.C.</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>FOIA — same plaintiff, same firm</td>
+            </tr>
+            <tr>
+              <td>Leopold v. Board of Governors of the Federal Reserve System</td>
+              <td>D.D.C.</td>
+              <td>2025 (1:25-cv-01990)</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>FOIA — same firm, same Fed defendant</td>
+            </tr>
+            <tr>
+              <td>Wernick v. CFPB</td>
+              <td>D.D.C.</td>
+              <td>2023</td>
+              <td><span class="pill pill--ok">Terminated 06/2023</span></td>
+              <td>FOIA — same defendant</td>
+            </tr>
+            <tr>
+              <td>Frank LLP v. CFPB</td>
+              <td>D.D.C.</td>
+              <td>2019</td>
+              <td><span class="pill pill--ok">Terminated</span></td>
+              <td>FOIA — same defendant</td>
+            </tr>
+            <tr>
+              <td>Shepherd v. CFPB</td>
+              <td>D.D.C.</td>
+              <td>2018</td>
+              <td><span class="pill pill--ok">Terminated 12/2019</span></td>
+              <td>FOIA — same defendant</td>
+            </tr>
+            <tr>
+              <td>Baker v. CFPB</td>
+              <td>D.D.C.</td>
+              <td>2018</td>
+              <td><span class="pill pill--ok">Terminated</span></td>
+              <td>FOIA — same defendant</td>
+            </tr>
+            <tr>
+              <td>Frank LLP v. CFPB</td>
+              <td>D.D.C.</td>
+              <td>2016</td>
+              <td><span class="pill pill--ok">Terminated 01/2018</span></td>
+              <td>FOIA — same defendant</td>
+            </tr>
+            <tr>
+              <td>Benjenk v. CFPB</td>
+              <td>D.D.C.</td>
+              <td>2015</td>
+              <td><span class="pill pill--ok">Terminated 03/2016</span></td>
+              <td>FOIA — same defendant</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Source: CourtListener queries for "Consumer Financial Protection Bureau" FOIA in D.D.C. and "Matthew Topic" FOIA. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Consumer+Financial+Protection+Bureau%22+FOIA&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Open intel gaps to close before any further work on this lead</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>• Judge assignment not yet visible — CourtListener docket snapshot taken pre-random-draw. Re-check in 48 hours.</li>
+        <li>• PACER, PacerMonitor, Justia, and DCD ECF direct lookups all returned 404/403 — no live docket sheet retrieved yet. Pull ECF #1 from PACER (~$1.20) for service/scheduling order.</li>
+        <li>• Answer deadline not on docket — applying FRCP 12(a)(2) 60-day federal-agency window suggests late July / early August 2026, but confirm via summons return when posted.</li>
+        <li>• DOJ AUSA assignment not yet on docket. Likely USAO-DDC Civil Division; possible recurring CFPB-FOIA AUSAs include Walker III, Peterson, Hammond, Interrante, Nebeker, Seabrook.</li>
+        <li>• DC Bar and Illinois ARDC directories returned 404 — bar status / discipline history for Topic, Wayne, Match could not be independently verified.</li>
+        <li>• Federal Reserve FOIA officer name/contact never retrieved (federalreserve.gov FOIA services page returned 404).</li>
+        <li>• Rocket Homes underlying complaint (2:24-cv-13442-BRM-KGA, E.D. Mich.) — pull the docket to confirm dismissal date/reason; that's the substantive predicate for the FOIA request.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Federal agency leadership. Treat as reference only — these are not Blacklist prospects.</h2>
+      <p class="section-lede">Defendants are federal agencies. The personnel below are the publicly listed leadership of CFPB and the Federal Reserve Board, plus the CFPB FOIA office. There is no commercial first-call sequence here. Provided for completeness and to enable downstream routing.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Danielle Duvall Adams</strong><br><span class="pill pill--dark">FOIA Officer</span></td>
+            <td>CFPB Chief FOIA Officer / FOIA Manager — the operational owner of CFPB-2026-0481-F. <span class="src-tag"><a href="https://www.consumerfinance.gov/foia-requests/">CFPB FOIA -&gt;</a></span></td>
+            <td>(855) 444-3642</td>
+            <td>FOIA@cfpb.gov</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Russell Vought</strong><br><span class="pill pill--dark">Acting Director</span></td>
+            <td>Acting Director, CFPB — since Feb 7, 2025. <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/the-bureau/about-director/">CFPB Director -&gt;</a></span></td>
+            <td>(855) 411-2372</td>
+            <td>Russell.Vought@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mark Paoletta</strong><br><span class="pill pill--dark">Deputy Director</span></td>
+            <td>Deputy Director, CFPB. <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/the-bureau/bureau-structure/">CFPB Structure -&gt;</a></span></td>
+            <td>(855) 411-2372</td>
+            <td>Mark.Paoletta@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sonya White</strong><br><span class="pill pill--dark">Deputy GC</span></td>
+            <td>Deputy General Counsel, Office of Ethics &amp; Legal Administration, CFPB. <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/the-bureau/bureau-structure/">CFPB Structure -&gt;</a></span></td>
+            <td>(855) 411-2372</td>
+            <td>Sonya.White@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Anne Zorc</strong><br><span class="pill pill--dark">Deputy GC</span></td>
+            <td>Deputy General Counsel, Office of Law &amp; Policy, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Anne.Zorc@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mark Beaudette</strong><br><span class="pill pill--dark">Deputy GC</span></td>
+            <td>Deputy General Counsel, Office of General Law &amp; Oversight, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Mark.Beaudette@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Geoffrey Gradler</strong><br><span class="pill pill--dark">Chief of Staff</span></td>
+            <td>Chief of Staff &amp; Private Education Loan Ombudsman, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Geoffrey.Gradler@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Adam Martinez</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer &amp; Acting Chief Human Capital Officer, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Adam.Martinez@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Deborah Morris</strong><br><span class="pill pill--dark">Enforcement</span></td>
+            <td>Principal Deputy Enforcement Director, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Deborah.Morris@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chris Chilbert</strong><br><span class="pill pill--dark">CIO</span></td>
+            <td>Chief Information Officer, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Chris.Chilbert@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Wendy Kamenshine</strong><br><span class="pill pill--dark">Ombudsman</span></td>
+            <td>Ombudsman, CFPB.</td>
+            <td>(855) 411-2372</td>
+            <td>Wendy.Kamenshine@cfpb.gov</td>
+            <td><span class="pill pill--info">INFERRED (pattern)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kevin Warsh</strong><br><span class="pill pill--dark">Chair, FRB</span></td>
+            <td>Chairman, Board of Governors of the Federal Reserve System. <span class="src-tag"><a href="https://www.federalreserve.gov/aboutthefed/bios/board/default.htm">Fed Bios -&gt;</a></span></td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Philip N. Jefferson</strong><br><span class="pill pill--dark">Vice Chair, FRB</span></td>
+            <td>Vice Chair, Federal Reserve Board.</td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michelle W. Bowman</strong><br><span class="pill pill--dark">VC Supervision</span></td>
+            <td>Vice Chair for Supervision, Federal Reserve Board.</td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jerome H. Powell</strong><br><span class="pill pill--dark">Governor</span></td>
+            <td>Governor, Federal Reserve Board.</td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Christopher J. Waller</strong><br><span class="pill pill--dark">Governor</span></td>
+            <td>Governor, Federal Reserve Board.</td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lisa D. Cook</strong><br><span class="pill pill--dark">Governor</span></td>
+            <td>Governor, Federal Reserve Board.</td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael S. Barr</strong><br><span class="pill pill--dark">Governor</span></td>
+            <td>Governor, Federal Reserve Board.</td>
+            <td>202-452-3000</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; padding:16px 20px; background:var(--info-bg); border-left:4px solid var(--info); font-size:13px;">
+      <strong>Email pattern (CFPB):</strong> <code style="font-family:var(--font-mono);">{first}.{last}@cfpb.gov</code> — INFERRED. Functional mailboxes on consumerfinance.gov use the @cfpb.gov domain (FOIA@cfpb.gov, press@cfpb.gov, CFPB_Jobs@cfpb.gov) and the first.last pattern is the standard federal convention, but no individual @cfpb.gov address was independently published in the sources consulted. <span class="src-tag"><a href="https://www.consumerfinance.gov/about-us/contact-us/">CFPB Contact -&gt;</a></span>
+    </div>
+
+    <div style="margin-top:16px; padding:16px 20px; background:var(--gray-05); border-left:4px solid var(--gray-50); font-size:13px;">
+      <strong>Plaintiff Counsel (reference only — do not contact for sales purposes):</strong> Matthew V. Topic, Merrick Wayne, Stephen Stich Match — Loevy &amp; Loevy, 311 N. Aberdeen, 3rd Fl, Chicago, IL 60607 — 312-243-5900 — foia@loevy.com. <span class="src-tag"><a href="https://www.loevy.com/attorneys/">Loevy attorneys -&gt;</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Disposition: log, route, archive. Do not staff outbound effort on this defendant pair.</h2>
+      <p class="section-lede">This lead surfaced from the federal new-filings feed because the case name matched a "v. [agency]" pattern. On inspection it is a FOIA action with no TCPA/RFDCPA/FDCPA/DNC component. The correct disposition is to mark it non-actionable, surface the cross-sell flag, and free up the assigned owner's pipeline for live commercial leads.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Mark as non-actionable in CRM (today)</div>
+          <div class="step-body">Set lead disposition to "Non-TCPA / FOIA — Federal Agency Defendant." Note in the record that Blacklist's commercial product suite does not address the underlying claim (5 USC § 552). Do not assign outbound sequence.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Route Rocket-ecosystem flag to financial-services / mortgage vertical owner (within 48 hours)</div>
+          <div class="step-body">Forward the Section 03 cross-sell table to whichever pod owns mortgage / DTC financial-services prospects. The underlying CFPB enforcement action against <strong>Rocket Homes Real Estate LLC</strong> (Case 2:24-cv-13442-BRM-KGA) alleged high-volume outbound calls to real-estate brokerages, capture-rate quotas, and "Dog Bone" referral pressure — that operational profile is precisely the kind of upstream-pressure pattern that produces TCPA exposure further down the funnel. Rocket Mortgage / Rocket Companies (NYSE: RKT) is the live commercial target, not CFPB. <span class="src-tag"><a href="https://www.consumerfinance.gov/enforcement/actions/">CFPB Enforcement -&gt;</a></span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Add Loevy &amp; Loevy / Matthew Topic to firm-watch list (this week)</div>
+          <div class="step-body">318+ FOIA matters tied to Topic; firm is the highest-volume FOIA filer the system has surfaced so far. If Blacklist ever adds a transparency / FOIA-tracking product tier, this firm is a target <em>buyer</em>. Tag the firm record accordingly and exclude from any defendant-side workflow. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Matthew+Topic%22+FOIA&type=r">CourtListener -&gt;</a></span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Update new-filings ingestion filter (this sprint)</div>
+          <div class="step-body">Recommend an ingestion-side filter that excludes Nature of Suit code 895 (FOIA) and complaints citing only 5 USC § 552 / 552(a)(4)(B) without any 47 USC § 227 / 15 USC § 1692 reference. Cases like this should not consume Docky cycles or rep pipeline slots. Surface to product/ops.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Re-check docket if Rocket Homes records are eventually produced (long horizon)</div>
+          <div class="step-body">If CFPB ultimately produces the records sought by Guardian (paragraphs 43–78 of the underlying Rocket Homes complaint — including specific call records, capture-rate data, "Dog Bone" referral logs, and Mitchell Group communications), those records will become public and may inform downstream TCPA / RESPA risk profiles for Rocket Companies, Amrock, and Mitchell Group. Set a calendar reminder for early 2027.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px;">Trigger conditions (would change the plan)</h3>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>• <strong>Guardian or Loevy &amp; Loevy files a parallel TCPA matter</strong> against a Rocket entity — escalate immediately to commercial outreach against the named Rocket defendant.</li>
+        <li>• <strong>Rocket Companies (RKT) is named in any new TCPA filing</strong> in the next 90 days — open as a high-priority lead in the mortgage vertical.</li>
+        <li>• <strong>CFPB produces the underlying call records / capture-rate data</strong> via court order and they become PACER-public — re-evaluate cross-sell timing.</li>
+        <li>• <strong>The same firm + same plaintiff files an unrelated TCPA action</strong> — re-onboard separately; Loevy is otherwise not a TCPA shop.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--gap">DISPOSITION: NON-ACTIONABLE</span>
+      <span class="pill pill--warn">CROSS-SELL FLAG: ROCKET ECOSYSTEM</span>
+      <span class="pill pill--info">FIRM WATCH: LOEVY &amp; LOEVY (FOIA, 318+ FILINGS)</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
