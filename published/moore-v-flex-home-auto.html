@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moore v. Flex Home &amp; Auto — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:170px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; font-variant-numeric:tabular-nums; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 4px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, Arial, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, Arial, sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-31</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Auto-Warranty Telemarketer · Federal DNC Class Action · Serial Plaintiff + TCPAWorld Top-10 Counsel</p>
+      <h1 class="hero-tagline">Moore v.<br>Flex Home &amp; Auto <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">(Encense Enterprises LLC)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-06309</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Ill. (Chicago)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Andrea R. Wood<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Mag. Keri L. Holleb Hotaling</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">47 CFR § 64.1200(c)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Anthony Paronich <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Paronich Law, P.C.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's number redacted in complaint — but Moore is a confirmed serial TCPA filer (9+ federal cases since 2020).</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint here only discloses "(630) XXX-XXXX" — a partial 630 area code. A bulk scrub against that partial would produce false positives. Until the full number is obtained, scrub is deferred; however, the plaintiff's name alone surfaces a substantial filing history that is independently dispositive.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial Filer · 9 Prior TCPA Suits</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Recipient Number (as pled)</div>
+        <div class="scrub-number">(630) XXX-XXXX</div>
+        <div class="scrub-number-sub">Northern District of Illinois (630 = DuPage / west suburbs of Chicago). Last 7 digits redacted in the public-filed complaint. Full number is in the PACER civil cover sheet and/or will be produced in initial disclosures.</div>
+      </div>
+      <p class="scrub-body-text">A litigator-bulk lookup was not run because the plaintiff's recipient number was redacted on the face of the complaint. Per Blacklist protocol we do not run scrub on a partial number — false positives are guaranteed across the ~7.9M numbers in the 630 NPA. <strong>However</strong>, a CourtListener cross-check on the plaintiff's name returns at least nine prior federal TCPA filings, almost all in N.D. Ill. and almost all represented by the same counsel <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22George+Moore%22+TCPA&type=r">CourtListener →</a></span>. The serial-filer designation is independently established.</p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Sender DIDs disclosed in complaint</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">Sender DID #1</div>
+          <h3 class="card-title" style="font-family:var(--font-mono);">(630) 326-7400</h3>
+          <div class="card-body">
+            <p>First call to plaintiff on March 13, 2026. Caller identified as "Daniel from the Toyota Coverage Department" pitching an extended vehicle service contract on plaintiff's 2016 Toyota RAV4.</p>
+            <p style="margin-top:8px;"><strong>Reputation lookups:</strong> 800notes, YouMail, Tellows, and RoboKiller all returned anti-bot blocks (HTTP 403/404) on this number. Sender-identity tags could not be retrieved from third-party directories — sender attribution rests on the complaint allegations alone.</p>
+            <div style="margin-top:12px;"><span class="pill pill--warn">630 NPA · IL Local Presence</span> <span class="pill pill--info">Voice · Outbound</span></div>
+          </div>
+        </div>
+        <div class="card card--accent">
+          <div class="card-meta">Sender DID #2</div>
+          <h3 class="card-title" style="font-family:var(--font-mono);">(630) 685-9786</h3>
+          <div class="card-body">
+            <p>Second call within "a couple of minutes" of DID #1. Same opener voice. A second rep ("Brian Miller, warranty specialist") then pitched a $99 down / $113 monthly extended warranty, naming National Administrative Service Corp., Flex Home and Auto, and MEPCO as the entities the consumer would see on bank statements.</p>
+            <p style="margin-top:8px;"><strong>Pattern:</strong> Two separate 630-NPA DIDs hitting one plaintiff in rapid succession is consistent with dialer-pool rotation. Both numbers share the Illinois 630 NPA despite the entity's California / Wyoming footprint <span class="src-tag"><a href="https://www.flexhomeandauto.com">flexhomeandauto.com →</a></span>.</p>
+            <div style="margin-top:12px;"><span class="pill pill--warn">630 NPA · IL Local Presence</span> <span class="pill pill--danger">Dialer Pool Indicator</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Recovery path for plaintiff number</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Path 1</div>
+          <h3 class="card-title">Pull PACER civil cover sheet</h3>
+          <div class="card-body">The JS44 cover sheet (ECF #1-1 or attached to ECF #1) historically contains the plaintiff's unredacted phone in box II. Cost ~$1.20. Fastest path to a scrubbable 10-digit number.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path 2</div>
+          <h3 class="card-title">Wait for defense counsel appearance</h3>
+          <div class="card-body">Once defense appears (likely Daniel Silverman or successor), they will receive the unredacted number in Rule 26(a)(1) disclosures within 14 days of the Rule 26(f) conference. Defense counsel is a credible recipient for inbound outreach.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path 3</div>
+          <h3 class="card-title">Cross-reference Rowan v. Encense</h3>
+          <div class="card-body">The parallel C.D. Cal. case (8:25-cv-02775) is already at the Answer stage <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Encense+Enterprises%22&type=r">CourtListener →</a></span>. Initial-disclosure exchanges in Rowan may have already produced sender-side call records that overlap with Moore.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: DEFERRED — RECOVER FULL DID</span>
+      <span class="pill pill--danger">SERIAL FILER FLAG: 9+ PRIOR FILINGS</span>
+      <span class="pill pill--red">COUNSEL: TCPAWORLD TOP-10</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Auto-warranty telemarketer with zero visible compliance infrastructure, two open TCPA cases in six months, and an answer clock about to start.</h2>
+      <p class="section-lede">Encense Enterprises (d/b/a Flex Home &amp; Auto) is operating in the single most-litigated TCPA vertical, has been sued twice in under six months by two different plaintiff firms, and its public-facing website's privacy policy URL returns a 404. Lead with <strong>DNC scrubbing</strong>; second product is <strong>consent capture / record retention</strong>; close on the C.D. Cal. Rowan answer-on-the-merits posture as proof that the next case will be defended (and paid for) — not dismissed.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Plaintiff's number was on the National Do Not Call Registry "for years" prior to the 3/13/2026 calls. Encense placed at least two telemarketing calls in a single day from two different DIDs. A working DNC scrub against National DNC + state DNC + internal DNC would have suppressed both. Sell the SAN-registered, daily-refreshed scrub as the front-end gate.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Defendant's website /signup and /privacy-policy URLs both return 404 <span class="src-tag"><a href="https://www.flexhomeandauto.com/terms">flexhomeandauto.com/terms →</a></span>. There is no documented web-based opt-in flow, which means no defensible consent record per-call. Position consent capture + audit-grade retention as the discovery shield.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Once the plaintiff's full number is recovered from PACER, run litigator-bulk against the file. Given Moore's 9+ filing history, his number is a near-certain match for litigator status — strong upsell rationale after the initial DNC sale closes.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <div class="card">
+        <div class="card-body" style="font-size:15px; line-height:1.65;">
+          <p>"You were just sued in the Northern District of Illinois by George Moore — a plaintiff who has filed at least nine TCPA cases since 2020, almost all in your jurisdiction, almost all with the same lawyer. That lawyer is Anthony Paronich, who TCPAWorld has put on its Top-10 Most Dangerous Plaintiff's Lawyers list five years in a row and who has publicly reported $200M+ in TCPA recoveries <span class='src-tag'><a href='https://paronichlaw.com'>paronichlaw.com →</a></span>. This is your second federal TCPA case in six months — Nathan Rowan sued you in the Central District of California in December and you already filed an Answer there <span class='src-tag'><a href='https://www.courtlistener.com/?q=%22Encense+Enterprises%22&type=r'>CourtListener →</a></span>. The Rowan posture tells the plaintiff bar you defend, you don't fold — which means the next filing is coming, and the one after that."</p>
+          <p style="margin-top:12px;">"The wedge here is your DNC program. The complaint alleges two calls to a registry-listed number from two different 630-area-code DIDs inside the same day. A current, SAN-registered National DNC scrub plus state DNC plus internal DNC would have stopped both calls before they were placed. We sell the scrub as a daily-refreshed gate sitting in front of your dialer. We also have a litigator-bulk file Paronich's plaintiffs sit on — that's how you stop being the test case."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A privately-held auto/home warranty marketer running on a Wix site, a Wyoming mass-registration address, and zero published compliance infrastructure.</h2>
+      <p class="section-lede">Encense Enterprises LLC operates under the consumer-facing brand "Flex Home &amp; Auto." Public footprint is thin: a Wix-hosted website with a working Terms page but a 404 on its referenced Privacy Policy, no About Us page, no leadership page, and an address in Lake Elsinore, CA that maps to a residential / small-business corridor. Wyoming filing uses 1309 Coffeen Ave, Sheridan — a well-known mass-registration agent address.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Encense Enterprises LLC d/b/a Flex Home &amp; Auto</h3>
+        <div class="card-body" style="margin-top:12px;">
+          <dl class="kv">
+            <dt>Legal entity</dt><dd>Encense Enterprises LLC</dd>
+            <dt>DBAs</dt><dd>Flex Home &amp; Auto · Flex Home and Auto LLC</dd>
+            <dt>Formation state</dt><dd>Not confirmed (registry sources blocked) <span class="pill pill--gap">GAP</span></dd>
+            <dt>Operational HQ</dt><dd>16738 Lakeshore Drive #H262, Lake Elsinore, CA 92530 <span class="src-tag"><a href="https://www.flexhomeandauto.com/terms">flexhomeandauto.com/terms →</a></span></dd>
+            <dt>WY Reg. Address</dt><dd>1309 Coffeen Ave STE 1200, Sheridan, WY 82801 (mass-registration agent)</dd>
+            <dt>Vertical</dt><dd>Auto warranty (VSC) + home warranty</dd>
+            <dt>Channels</dt><dd>Voice (outbound) + SMS marketing campaign</dd>
+            <dt>Tech stack</dt><dd>Wix-hosted site; SMS up to 5 msgs/wk per Terms; outbound dialer using IL-NPA DIDs</dd>
+            <dt>Stated partners</dt><dd>National Administrative Service Corp. (claims admin) · MEPCO (billing)</dd>
+            <dt>Employees / revenue</dt><dd>Not disclosed <span class="pill pill--gap">GAP</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Section 9 of the public Terms incorporates a Privacy Policy that does not exist.</h3>
+        <div class="card-body" style="margin-top:8px;">
+          <p>Section 9 of <a href="https://www.flexhomeandauto.com/terms" style="color:#fff; text-decoration:underline;">flexhomeandauto.com/terms</a> reads "By using the Services, you agree to be bound by our Privacy Policy posted on the Services." The /privacy-policy URL returns HTTP 404. The /signup URL also returns 404. The SMS-consent clause in Section 22 is a single sentence — "By enrolling in the Flex Home &amp; Auto SMS Campaign, you agree to these Terms" — with no TCPA prior-express-written-consent language, no autodialer disclosure, no frequency disclosure, and no STOP/HELP language.</p>
+          <p style="margin-top:12px;"><strong style="color:#fff;">Why this matters in discovery:</strong> Paronich will request the consent record for every class member's number. The Terms reference a Privacy Policy that the company has not published. There is no signup page producing a documented opt-in. The consent paper trail is the case.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day answer clock starts on service. Parallel C.D. Cal. case already at Answer.</h3>
+        <div class="card-body" style="margin-top:12px;">
+          <dl class="kv">
+            <dt>Filed</dt><dd>May 29, 2026</dd>
+            <dt>Summons issued</dt><dd>May 29, 2026 (ECF #4) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06309&type=r">CourtListener →</a></span></dd>
+            <dt>Answer deadline</dt><dd>~21 days from service of summons</dd>
+            <dt>Parallel case</dt><dd>Rowan v. Encense (C.D. Cal. 8:25-cv-02775) — Encense filed Answer 2/26/2026, not MTD <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Encense+Enterprises%22&type=r">CourtListener →</a></span></dd>
+            <dt>Sales window</dt><dd>Close before defense counsel files Answer in N.D. Ill. — once Answer is on file, the spend pivots from "preventive compliance" to "defense cost recovery"</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Flex Home &amp; Auto LLC (WY)</strong></td>
+              <td>DBA / parallel filing</td>
+              <td>Auto + home warranty</td>
+              <td>Same operating brand; same SMS infra; same DIDs</td>
+              <td><span class="pill pill--danger">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>National Administrative Service Corp.</strong></td>
+              <td>Named claims administrator (per call transcript)</td>
+              <td>VSC claims administration</td>
+              <td>Co-defendant in Rowan v. Encense (C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Encense+Enterprises%22&type=r">CourtListener →</a></span></td>
+              <td><span class="pill pill--danger">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Palmer Administrative Services</strong></td>
+              <td>Co-defendant in Rowan</td>
+              <td>VSC administration</td>
+              <td>Named in parallel TCPA suit; shares dialer ecosystem</td>
+              <td><span class="pill pill--danger">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Pelican Investment Holdings</strong></td>
+              <td>Co-defendant in Rowan</td>
+              <td>Auto-warranty marketing</td>
+              <td>Named in parallel TCPA suit; serial TCPA defendant historically</td>
+              <td><span class="pill pill--warn">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>MEPCO</strong></td>
+              <td>Billing processor (per call transcript)</td>
+              <td>Warranty payment processing</td>
+              <td>Not a TCPA dialer; processes the receivable</td>
+              <td><span class="pill pill--info">Low</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Second federal TCPA case against Encense in six months. Plaintiff counsel is Top-10 TCPAWorld and runs a 100+ class-action / $200M+ recovery book.</h2>
+      <p class="section-lede">The defendant has now been sued twice in two federal districts inside six months, with both cases targeting the same auto-warranty telemarketing operation. The C.D. Cal. matter is already at Answer. The plaintiff firm has a recognized pattern of obtaining class certification and forcing settlement.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Moore v. Encense Enterprises LLC d/b/a Flex Home &amp; Auto</h3>
+        <div class="card-body" style="margin-top:12px;">
+          <dl class="kv">
+            <dt>Docket</dt><dd>1:26-cv-06309 (N.D. Ill., Eastern Div.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06309&type=r">CourtListener →</a></span></dd>
+            <dt>Filed</dt><dd>May 29, 2026</dd>
+            <dt>Article III judge</dt><dd>Hon. Andrea R. Wood</dd>
+            <dt>Magistrate</dt><dd>Hon. Keri L. Holleb Hotaling</dd>
+            <dt>Plaintiff</dt><dd>George Moore (IL resident; 9+ prior TCPA filings)</dd>
+            <dt>Plaintiff counsel</dt><dd>Anthony Paronich (Paronich Law, P.C., Hingham MA)</dd>
+            <dt>Class</dt><dd>Yes — Putative Rule 23(b)(2)/(b)(3) National DNC Registry Class</dd>
+            <dt>Class definition</dt><dd>All US persons whose numbers were on Nat'l DNC ≥31 days who received &gt;1 solicitation call from Defendant in a 12-month period within 4 years of filing</dd>
+            <dt>Claim</dt><dd>47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1200(c) — Federal DNC</dd>
+            <dt>Theory</dt><dd>Two telemarketing calls (3/13/2026) from 630-326-7400 and 630-685-9786 to a DNC-listed number without consent; auto-warranty sales pitch</dd>
+            <dt>Damages</dt><dd>$500 / call (statutory) up to $1,500 / call (willful) + injunction</dd>
+            <dt>Named-plaintiff exposure</dt><dd>$1,000 (2 × $500) to $3,000 (2 × $1,500) — class exposure not yet quantified; plaintiff alleges "hundreds" of class members</dd>
+            <dt>Defense counsel</dt><dd>Not yet appeared <span class="pill pill--warn">~21-day clock from service</span></dd>
+            <dt>Aggregator visibility</dt><dd>CourtListener / RECAP indexed within 48 hours of filing</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Anthony Paronich · Paronich Law, P.C.</h3>
+        <div class="card-body" style="margin-top:12px;">
+          <dl class="kv">
+            <dt>Firm address</dt><dd>350 Lincoln Street, Suite 2400, Hingham, MA 02043</dd>
+            <dt>Firm phone</dt><dd>(617) 485-0018</dd>
+            <dt>Firm fax</dt><dd>(508) 318-8100</dd>
+            <dt>Firm email</dt><dd>anthony@paronichlaw.com</dd>
+            <dt>Firm website</dt><dd><a href="https://paronichlaw.com">paronichlaw.com</a></dd>
+            <dt>Bar admission</dt><dd>Massachusetts (active); admitted N.D. Ill. and S.D. Ill.; appears in 1st, 7th, 9th Circuits</dd>
+            <dt>Bar number</dt><dd>Not extracted <span class="pill pill--gap">GAP</span> — MA BBO lookup returned 404</dd>
+            <dt>Address match</dt><dd>Complaint address matches firm website — no mismatch <span class="pill pill--ok">CLEAN</span></dd>
+            <dt>Discipline</dt><dd>None found</dd>
+            <dt>TCPAWorld ranking</dt><dd>Top-10 Most Dangerous TCPA Plaintiff's Lawyers — 2022, 2023, 2024, 2025, 2026 <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld →</a></span></dd>
+            <dt>Filing volume</dt><dd>1,129–1,390 TCPA matter hits in CourtListener RECAP across jurisdictions <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich%22+TCPA&type=r">CourtListener →</a></span></dd>
+            <dt>Reported recoveries</dt><dd>"100+ class actions" / "$200M+ in settlements or judgments" per firm site <span class="src-tag"><a href="https://paronichlaw.com/about">paronichlaw.com/about →</a></span></dd>
+            <dt>Practice focus</dt><dd>TCPA, DPPA (auto-warranty calls specifically), FACTA, FDCPA, FLSA</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff &amp; Firm Template</h3>
+      <div class="card">
+        <div class="card-body">
+          <p><strong>The Moore/Paronich template.</strong> George Moore has filed at least nine federal TCPA actions since 2020, almost exclusively in N.D. Ill., almost exclusively represented by Paronich Law <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22George+Moore%22+TCPA&type=r">CourtListener →</a></span>. Prior targets span auto-warranty, insurance, healthcare, retail publishing, and energy verticals (Clear Link, Tribune Publishing, Independence American Insurance, Healthcare Solutions, OKCity Rx, C&amp;N Construction, Alpha Electric / Our World Energy, Contactability.com). The pattern from terminated cases (Tribune, OKCity Rx, Clear Link, Healthcare Solutions, Independence American) is rapid resolution — most cases terminate inside 4–20 months, consistent with negotiated individual or class settlement rather than trial.</p>
+          <p style="margin-top:12px;"><strong>Judicial note.</strong> Judge Wood is currently presiding over another open Moore/Paronich case — <em>Moore v. C&amp;N Construction Inc.</em> (1:25-cv-04568). She will recognize this plaintiff and this firm as repeat filers, which can cut either way procedurally.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="row-current">
+              <td><strong>Moore v. Encense Enterprises (this case)</strong></td>
+              <td>N.D. Ill. 1:26-cv-06309</td>
+              <td class="num">2026-05-29</td>
+              <td><span class="pill pill--red">Active · Just Filed</span></td>
+              <td>Federal DNC class — auto warranty voice calls</td>
+            </tr>
+            <tr>
+              <td>Rowan v. Encense Enterprises, Pelican Inv. Holdings, NASC, Palmer Admin. Services</td>
+              <td>C.D. Cal. 8:25-cv-02775</td>
+              <td class="num">2025-12</td>
+              <td><span class="pill pill--warn">Active · Answer Filed 2/26/2026</span></td>
+              <td>TCPA — auto warranty ecosystem co-defendants</td>
+            </tr>
+            <tr>
+              <td>Moore v. C&amp;N Construction</td>
+              <td>N.D. Ill. 1:25-cv-04568</td>
+              <td class="num">2025</td>
+              <td><span class="pill pill--warn">Active</span> · same judge</td>
+              <td>TCPA (same plaintiff &amp; counsel)</td>
+            </tr>
+            <tr>
+              <td>Moore v. Alpha Electric Group / Our World Energy</td>
+              <td>N.D. Ill. 1:25-cv-13487</td>
+              <td class="num">2025</td>
+              <td><span class="pill pill--warn">Active · MTD briefed</span></td>
+              <td>TCPA — same plaintiff &amp; counsel</td>
+            </tr>
+            <tr>
+              <td>Moore v. Healthcare Solutions / Prosperity Life</td>
+              <td>N.D. Ill.</td>
+              <td class="num">2021</td>
+              <td><span class="pill pill--ok">Terminated 2023 (likely settled)</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Moore v. Independence American Insurance</td>
+              <td>N.D. Ill. 1:21-cv-02403</td>
+              <td class="num">2021</td>
+              <td><span class="pill pill--ok">Terminated Jan 2025</span></td>
+              <td>TCPA — insurance</td>
+            </tr>
+            <tr>
+              <td>Moore v. Tribune Publishing</td>
+              <td>N.D. Ill. 1:20-cv-07666</td>
+              <td class="num">2020</td>
+              <td><span class="pill pill--ok">Terminated 2022 (likely settled)</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Moore v. Clear Link Technologies</td>
+              <td>N.D. Ill. 1:20-cv-03120</td>
+              <td class="num">2020</td>
+              <td><span class="pill pill--ok">Voluntarily dismissed (~3 mo)</span></td>
+              <td>TCPA — likely individual settlement</td>
+            </tr>
+            <tr>
+              <td>Moore v. OKCity Rx</td>
+              <td>N.D. Ill. 1:22-cv-01476</td>
+              <td class="num">2022</td>
+              <td><span class="pill pill--ok">Terminated ~4 mo</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Moore v. Contactability.com</td>
+              <td>C.D. Cal. 8:20-cv-00569</td>
+              <td class="num">2020</td>
+              <td><span class="pill pill--ok">Closed</span></td>
+              <td>TCPA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>• <strong>Plaintiff's full 10-digit number</strong> — redacted in complaint; pull from PACER civil cover sheet (~$1.20) to enable litigator scrub.</li>
+        <li>• <strong>Defense counsel</strong> — not yet appeared in N.D. Ill. case. Likely candidate is Daniel Scott Silverman (Encense's counsel in C.D. Cal. Rowan); watch ECF for appearance.</li>
+        <li>• <strong>Encense corporate registry detail</strong> — CA SoS, Bizapedia, OpenCorporates, and FL Sunbiz all returned 403/404 in research. Formation state, registered agent, and member/manager names remain unconfirmed.</li>
+        <li>• <strong>Decision-maker contacts</strong> — TheOrg, LinkedIn company pages, ZoomInfo, SignalHire, RocketReach, and Hunter all returned 403/404/410 or login walls. No principal name surfaced. Email pattern unconfirmed.</li>
+        <li>• <strong>Sender-DID reputation</strong> — 800notes, YouMail, Tellows, RoboKiller all blocked. Sender attribution rests on complaint allegations alone; consider manual desktop lookup before close.</li>
+        <li>• <strong>Paronich bar number / MA BBO admit date</strong> — MA BBO returned 404.</li>
+        <li>• <strong>Encense privacy policy</strong> — /privacy-policy returns 404 despite Terms incorporating it. Snapshot the 404 for the file before defendant remediates.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Defendant contact discovery failed across every source — every public-people channel returned 403/404 or login walls.</h2>
+      <p class="section-lede">No verified defendant decision-maker has been recovered for Encense Enterprises LLC. The website has no /about, /team, or /contact pages; TheOrg, LinkedIn, ZoomInfo, RocketReach, and Hunter all blocked or returned empty. The next-step recovery path is the California Secretary of State business filings (registered agent + members/managers), then PACER for any defense-counsel notice of appearance.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Unknown principal / member</strong><br>
+              <span class="pill pill--gap">GAP</span> <span class="pill pill--dark">Owner</span>
+            </td>
+            <td>Encense Enterprises LLC — no public officer disclosure surfaced. Recover from CA SoS &amp; WY SoS filings.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Not located</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Registered agent (CA)</strong><br>
+              <span class="pill pill--gap">GAP</span> <span class="pill pill--dark">Agent for Service</span>
+            </td>
+            <td>Required by CA Corp. Code §17701.13 — recover from CA SoS bizfile.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>CA SoS bizfile (pending)</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Registered agent (WY)</strong><br>
+              <span class="pill pill--info">INFERRED</span> <span class="pill pill--dark">Mass-Reg Agent</span>
+            </td>
+            <td>WY filing address is 1309 Coffeen Ave STE 1200, Sheridan WY — a known mass-registration address used by thousands of LLCs <span class="src-tag"><a href="https://www.flexhomeandauto.com/terms">flexhomeandauto.com/terms →</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>WY SoS (pending)</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Company main line</strong><br>
+              <span class="pill pill--info">INFERRED</span>
+            </td>
+            <td>Customer-service callback referenced on the recorded sales pitch (per complaint ¶28). Likely a third-party admin line (NASC), not Encense direct.</td>
+            <td>(888) 837-1646</td>
+            <td>—</td>
+            <td>Complaint ¶28</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Sender DID #1</strong><br>
+              <span class="pill pill--warn">PATTERN</span>
+            </td>
+            <td>Outbound call origination on 3/13/2026 (rep "Daniel — Toyota Coverage Department")</td>
+            <td>(630) 326-7400</td>
+            <td>—</td>
+            <td>Complaint ¶22</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Sender DID #2</strong><br>
+              <span class="pill pill--warn">PATTERN</span>
+            </td>
+            <td>Outbound call origination on 3/13/2026 (rep "Brian Miller — warranty specialist")</td>
+            <td>(630) 685-9786</td>
+            <td>—</td>
+            <td>Complaint ¶25</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Defense counsel (N.D. Ill.)</strong><br>
+              <span class="pill pill--gap">GAP</span> <span class="pill pill--dark">Defense Lead</span>
+            </td>
+            <td>Not yet appeared. Likely candidate: Daniel Scott Silverman, who appears for Encense in Rowan v. Encense (C.D. Cal. 8:25-cv-02775) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Encense+Enterprises%22&type=r">CourtListener →</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>PACER monitor (pending)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Counsel (reference only — do not pitch)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Name / Role</th><th>Firm &amp; Bar</th><th>Phone</th><th>Email</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Anthony Paronich</strong> <span class="pill pill--ok">VERIFIED</span> <span class="pill pill--dark">Plaintiff Counsel</span></td>
+              <td>Paronich Law, P.C. — 350 Lincoln St., Suite 2400, Hingham, MA 02043 · MA Bar (active) · admitted N.D. Ill. &amp; S.D. Ill.</td>
+              <td>(617) 485-0018 (per PACER)</td>
+              <td>anthony@paronichlaw.com</td>
+              <td><span class="src-tag"><a href="https://paronichlaw.com/about">paronichlaw.com →</a></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move inside 7 business days — before defense counsel appears and Encense's TCPA spend pivots from prevention to defense.</h2>
+      <p class="section-lede">Encense just took service in N.D. Ill. and has a parallel C.D. Cal. case already at Answer. The buying window is the gap between filing and defense-counsel appearance, when the operations team (not the litigation team) is feeling the pain and looking for a fast remediation story.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Recover the plaintiff's full DID from PACER</h4>
+          <p>Pull ECF #1 and the civil cover sheet (~$1.20). The unredacted 10-digit number is the litigator-scrub proof point and the entry line for the call.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1–2 · Recover principals from CA SoS bizfile + WY SoS</h4>
+          <p>Get registered agent + members/managers for Encense Enterprises LLC. Cross-check against any "Flex Home &amp; Auto LLC" WY filing. The names produced here become the contact list.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 2–3 · First call to recovered principal</h4>
+          <p>Open with: "You were just sued in the Northern District of Illinois by George Moore — that's your second federal TCPA case in six months." Lead with DNC scrubbing as the front-end gate; reference the publicly-broken /privacy-policy and /signup URLs as the discovery-exposure data point.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 3–5 · Second touch — proof-pack email</h4>
+          <p>Send the docket excerpt, the Paronich TCPAWorld Top-10 ranking, and the Moore filing-history table. Position the litigator-bulk file as the upsell after DNC.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 5–7 · Final touch — quote + parallel-case angle</h4>
+          <p>Reference Rowan v. Encense as the proof-point that the next case is coming. Quote DNC + consent capture + litigator bulk as a bundle. Aim to close before defense counsel files Notice of Appearance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Trigger conditions that change the plan</h3>
+      <div class="card">
+        <ul class="clean tight" style="font-size:14px;">
+          <li>• <strong>Defense counsel files Answer in N.D. Ill.</strong> — spend authority shifts to counsel; reroute pitch through defense firm with a "discovery-shield consent capture" framing.</li>
+          <li>• <strong>Encense files MTD or motion to compel arbitration</strong> — Terms Section currently has an arbitration clause; if Encense invokes it, the class exposure narrows and the urgency drops one notch.</li>
+          <li>• <strong>Plaintiff voluntarily dismisses (individual settlement)</strong> — past Moore cases show this pattern within 3–4 months. If it happens, pivot the pitch to "the third Paronich filing is statistically inevitable in this vertical."</li>
+          <li>• <strong>Class certification motion files</strong> — exposure jumps from ~$3K named plaintiff to "hundreds × $500–$1,500." Re-engage immediately at higher altitude.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE APPEARS</span>
+      <span class="pill pill--danger">SERIAL PLAINTIFF + TOP-10 COUNSEL</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-31</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
