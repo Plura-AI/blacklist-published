@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darr v. Sweat Equity Group — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:170px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout .callout-title{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; font-variant-numeric:tabular-nums; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; color:var(--fg-2); line-height:1.55; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Caller-ID Class Action · Wellness Franchise SMS · Serial-Plaintiff + Hindi/Lane Template</p>
+      <h1 class="hero-tagline">Darr v.<br>Sweat Equity Group<span style="color:var(--bl-red); font-weight:500; font-size:0.6em;"> &nbsp;d/b/a Perspire Sauna Studio</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01390</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Several thousands alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Caitlin Darr is already a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint redacts the recipient number, so a litigator-list lookup is deferred. Independent of the scrub, CourtListener confirms Darr filed at least four federal consumer cases inside an 11-day window in May 2026 — she is a working serial plaintiff.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial-Filer Flag · 4 Federal Cases in 11 Days</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only that texts were sent to Plaintiff's "cellular telephone." Three screenshot exhibits (Nov 20 &amp; Nov 25, 2025) show the <strong>sender</strong> as 424-322-4340 but redact the recipient. Recovery via PACER pull of ECF #1 with native screenshot, or via Rule 26 initial disclosures.</div>
+      </div>
+      <p class="scrub-body-text">Without the recipient 10-digit, a blacklistBulk lookup against the litigator list cannot be run. However, the plaintiff is independently verifiable as a serial TCPA filer: Darr v. EyeBuyDirect (8:26-cv-01250, C.D. Cal., filed 5/19/26), Darr v. Gatorade/PepsiCo (1:26-cv-06075, N.D. Ill., filed 5/22/26), and Darr v. Grey Bandit (8:26-cv-01301, C.D. Cal., filed 5/26/26) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Caitlin+Darr%22&type=r">CourtListener -&gt;</a></span>. The Sweat Equity filing is her fourth in eleven days.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Sending DID — Sender Identification</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID</div>
+        <h3 class="card-title">+1 (424) 322-4340</h3>
+        <p class="card-body" style="font-size:14px;">10-digit long code, area code 424 (Los Angeles / South Bay CA) — not a registered short code, not toll-free. Consistent with local-presence dialing for franchise SMS marketing <span class="src-tag"><a href="https://www.perspiresaunastudio.com/ca/santa-monica/">perspiresaunastudio.com -&gt;</a></span>.</p>
+        <p class="card-body" style="font-size:13px; color:var(--fg-2); margin-top:10px;">Screenshot exhibits link this DID directly to <em>perspiresaunastudio.com/ca/santa-monica/</em> URLs in the message body — sender identity is the Perspire Santa Monica studio (a Sweat Equity Group, LLC location/brand).</p>
+        <div style="margin-top:12px;">
+          <span class="pill pill--warn">10DLC · Not Short Code</span>
+          <span class="pill pill--info">Area Code 424</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Crowdsource Check</div>
+        <h3 class="card-title">No public consumer reports</h3>
+        <p class="card-body" style="font-size:14px;">800notes, YouMail, Tellows, and RoboKiller did not return retrievable records for 424-322-4340 (sources gated 403/404). Treat absence as inconclusive, not exonerating — the complaint's screenshot is the primary evidence.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Path 1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body" style="font-size:14px;">Native PDF of the complaint includes the screenshot exhibits; the masked "1161" prefix in the message thread may reveal more recipient digits than the redacted print copy. Cost ~$1.20.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 2</div>
+        <h3 class="card-title">Await defense-counsel notice</h3>
+        <p class="card-body" style="font-size:14px;">No defense counsel has appeared yet on the docket <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01390&type=r">CourtListener -&gt;</a></span>. Sweat Equity must answer within the federal 21-day window from service. Once defense files, ask them for plaintiff's number directly under L.R. 26 conferral.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 3</div>
+        <h3 class="card-title">Rule 26(f) / Discovery</h3>
+        <p class="card-body" style="font-size:14px;">Plaintiff's cell will surface in initial disclosures. Push defense to demand it on day one of the F.R.C.P. 26(f) conference — Hindi firm routinely produces it without a fight.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL PLAINTIFF: 4 CASES / 11 DAYS</span>
+      <span class="pill pill--warn">SENDER DID CONFIRMED: 424-322-4340</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Wellness-franchise SMS marketer with an admitted opt-in stack, a 6-year-stale privacy policy, and zero prior TCPA exposure to fall back on.</h2>
+      <p class="section-lede">Sweat Equity Group's own franchise enrollment forms admit they send "recurring, automated marketing text messages" <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise">perspiresaunastudio.com/franchise -&gt;</a></span>, yet there is no published TCPA program, no DNC disclosure, no CCO, and no prior litigation playbook. Lead with Litigator Scrub + Consent Capture; close on a franchise-wide compliance audit because 100+ studios share the same SMS infrastructure.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body" style="font-size:14px;">Darr is a confirmed serial filer; the firm is a serial template. Sweat Equity's SMS list has unknown numbers of additional litigators on it. Daily scrub closes the leak — and is the cheapest "we're doing something" answer for the GC's first board update.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Cross-Sell</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body" style="font-size:14px;">Defendant's franchise lead form bundles SMS + calls + email into a single checkbox <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise">Perspire franchise form -&gt;</a></span>. That is facially non-compliant under 47 CFR § 64.1200(f). Sell a clean re-consent flow with timestamp + IP capture per studio.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Compliance Audit (Franchise-Wide)</h3>
+        <p class="card-body" style="font-size:14px;">100+ studios, 200+ licensed units, decentralized marketing <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise">perspiresaunastudio.com -&gt;</a></span>. Each franchisee carries its own DNC risk. Franchisor faces vicarious liability — they need a baseline audit + policies-and-procedures rollout.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Pitch Angle</h3>
+    <div class="card">
+      <p class="card-body">"You were sued yesterday by the Jibrael Hindi firm — the same firm running Quiet Hours and Caller-ID class actions against Nespresso, Steve Madden, ThirdLove, and the Tampa Bay Bucs <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span>. Their plaintiff in your case, Caitlin Darr, has filed four federal consumer cases in the last eleven days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Caitlin+Darr%22&type=r">CourtListener -&gt;</a></span>. That's not a one-off; that's a template, and your 100+ studios are on the same SMS stack. We can scrub your list against the active litigator universe overnight, then walk in behind that with re-consented opt-ins so the next demand letter has nowhere to land."</p>
+      <p class="card-body" style="margin-top:12px;">Second beat for the GC: "Your privacy policy was last edited in September 2019 <span class="src-tag"><a href="https://www.perspiresaunastudio.com/privacy-policy">perspiresaunastudio.com/privacy-policy -&gt;</a></span>. It does not mention TCPA, DNC, or SMS at all. In discovery, that's the first document plaintiff's counsel will subpoena. Let us put a modern record-retention and consent-capture stack in place so the next deposition has a paper trail."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A 100+ studio wellness franchisor running centralized SMS with no published compliance program.</h2>
+      <p class="section-lede">Sweat Equity Group, LLC is the franchisor entity behind Perspire Sauna Studio — an infrared-sauna franchise system with 100+ studios opened and 5M+ sessions delivered, marketing memberships at $129–$249/month and selling franchises at $565K–$989K per unit <span class="src-tag"><a href="https://www.perspiresaunastudio.com">perspiresaunastudio.com -&gt;</a></span> <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise">/franchise -&gt;</a></span>.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Sweat Equity Group, LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Sweat Equity Group, LLC</dd>
+          <dt>DBA</dt><dd>Perspire Sauna Studio</dd>
+          <dt>Founded</dt><dd>2010 <span class="src-tag"><a href="https://www.perspiresaunastudio.com">perspiresaunastudio.com -&gt;</a></span></dd>
+          <dt>HQ (per complaint)</dt><dd>Delray Beach, FL</dd>
+          <dt>HQ (per site)</dt><dd>1048 Irvine Ave #971, Newport Beach, CA 92659 <span class="src-tag"><a href="https://www.perspiresaunastudio.com">perspiresaunastudio.com -&gt;</a></span></dd>
+          <dt>Formation State</dt><dd><span class="pill pill--gap">Unknown · Sunbiz Blocked</span></dd>
+          <dt>Vertical</dt><dd>Wellness / Fitness — Infrared sauna franchise</dd>
+          <dt>System Scale</dt><dd>100+ studios opened · 200+ licenses sold · 5M+ sessions <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise">/franchise -&gt;</a></span></dd>
+          <dt>Revenue Est.</dt><dd>$50M–$100M+ system-wide (estimate from franchise unit economics)</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>CEO/Founder</dt><dd>Lee Braun <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#ff9c9c;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">A 6-year-stale privacy policy with no TCPA, DNC, or SMS disclosure — paired with admitted automated marketing texts.</h3>
+        <p class="card-body">The Perspire privacy policy was last edited <strong>September 25, 2019</strong> <span class="src-tag"><a href="https://www.perspiresaunastudio.com/privacy-policy" style="color:#fff;">perspiresaunastudio.com/privacy-policy -&gt;</a></span>. It contains zero references to TCPA, internal or national DNC scrubbing, autodialer use, or SMS opt-out mechanics. Meanwhile, the franchise lead form openly states the brand sends "recurring, automated marketing text messages" with consent bundled across SMS + calls + email in a single checkbox <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise" style="color:#fff;">perspiresaunastudio.com/franchise -&gt;</a></span>. That single fact will headline plaintiff's MSJ.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Federal 21-day answer clock + no prior litigation playbook</h3>
+        <dl class="kv">
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Answer Deadline</dt><dd>~June 19, 2026 (21 days from service, F.R.C.P. 12(a))</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01390&type=r">CourtListener docket -&gt;</a></span></dd>
+          <dt>Prior TCPA History</dt><dd>None for Sweat Equity Group itself; franchisee Harmonious Healing, Inc. was a TCPA defendant in S.D. Tex. (Luna v. Harmonious Healing, 4:24-cv-03223, terminated 3/21/2025 — likely settled) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Perspire+Sauna%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Settlement Posture</dt><dd>First-time TCPA defendant; no internal compliance playbook; high pressure to settle pre-cert.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Perspire Sauna Studio</strong><br><span class="src-tag"><a href="https://www.perspiresaunastudio.com">perspiresaunastudio.com -&gt;</a></span></td>
+            <td>Brand / DBA of defendant</td>
+            <td>Wellness — infrared sauna</td>
+            <td>Same SMS infrastructure as named defendant; in scope of any scrub or consent rebuild</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>100+ Perspire Franchisees</strong></td>
+            <td>Franchisee network</td>
+            <td>Wellness — local studio operators</td>
+            <td>Decentralized franchise marketing creates franchisor vicarious-liability exposure; sell shared compliance stack</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Harmonious Healing, Inc.</strong></td>
+            <td>Existing Perspire franchisee</td>
+            <td>Wellness — Texas studios</td>
+            <td>Was a TCPA defendant in S.D. Tex. (Luna, 4:24-cv-03223, terminated 2025) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Perspire+Sauna%22&type=r">CourtListener -&gt;</a></span> — already on notice; warm intro</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-time TCPA defendant walking into a Hindi/Lane volume practice with no playbook.</h2>
+      <p class="section-lede">Defendant has zero direct TCPA litigation history. Plaintiff's counsel runs one of the highest-volume TCPA dockets in the country. This is asymmetric — and the firm's settlement velocity (Petruso terminated in 2 months; Curtis settled at ENE) suggests a quick demand window.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <h3 class="card-title">Darr v. Sweat Equity Group, LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>8:26-cv-01390 (C.D. Cal., Santa Ana) <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01390&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Plaintiff</dt><dd>Caitlin Darr (Orange County, CA)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Gerald D. Lane Jr., CA Bar #352470</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi, PLLC</dd>
+          <dt>Class</dt><dd>Putative Rule 23 — "All persons within the U.S. who within 4 years received two or more telemarketing calls in a 12-month period without CPN/ANI + telemarketer name"</dd>
+          <dt>Class Size Pled</dt><dd>≥ 50 numerosity floor; "several thousands, if not more"</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1601(e)(1) — Caller-ID transmission failure</dd>
+          <dt>Theory</dt><dd>Marketing SMS to Plaintiff Nov 20 &amp; Nov 25, 2025 from 424-322-4340 did not disclose the telemarketer/seller name in caller-ID</dd>
+          <dt>Damages Sought</dt><dd>$500/violation (negligent) · $1,500/violation (willful) per class member · injunction + fees</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer clock</span></dd>
+          <dt>Docket Visibility</dt><dd>Doc #1 (Complaint), Doc #2 (Summons Req.), Doc #3 (Cert. of Interested Parties), Doc #4 (Civil Cover Sheet) all filed 5/29/26 <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01390&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. · Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>754-444-7539</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com · gerald@jibraellaw.com</dd>
+          <dt>Website</dt><dd><span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Lane Bar No.</dt><dd>CA #352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar -&gt;</a></span></dd>
+          <dt>Address Mismatch</dt><dd><span class="pill pill--warn">YES — CA bar / FL firm</span> Out-of-state filer pattern.</dd>
+          <dt>Discipline</dt><dd>None located.</dd>
+          <dt>TCPA Power Ranking</dt><dd>Jibrael Hindi appears in the 2026 TCPAWorld Power Rankings as one of the most dangerous TCPA plaintiff lawyers <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>Volume</dt><dd>10+ confirmed TCPA filings 2024–2026 across S.D./M.D. Fla., E.D./N.D./C.D./S.D. Cal. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Self-Reported</dt><dd>Firm claims +$30M in TCPA settlements; +$200M in class actions overall <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Hindi / Lane Template</h3>
+    <div class="card">
+      <p class="card-body">The Hindi firm runs a high-velocity TCPA practice across two theories: (a) <strong>Quiet Hours</strong> (47 CFR § 64.1200(c)) and (b) <strong>Caller-ID transmission failure</strong> (47 CFR § 64.1601(e)(1)) — this case is the latter. Recent template targets include Nespresso, Steve Madden, ThirdLove, Summer Vibe, the Tampa Bay Buccaneers, Overtime Sports, and PrimeFish Seafood <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span>. The firm has even defended the Quiet Hours theory in pending FCC comments. Settlement cadence in concurrent Lane cases (Petruso terminated in 2 months; Curtis settled at ENE) tells you the firm wants pre-cert resolution, not trial.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Darr v. Sweat Equity Group, LLC</strong></td>
+            <td>8:26-cv-01390</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-29</td>
+            <td><span class="pill pill--red">ACTIVE — CURRENT</span></td>
+            <td>Caller-ID (64.1601(e))</td>
+          </tr>
+          <tr>
+            <td>Darr v. EyeBuyDirect, Inc.</td>
+            <td>8:26-cv-01250</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-19</td>
+            <td><span class="pill pill--info">Active · Same Plaintiff</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Darr v. Grey Bandit LLC</td>
+            <td>8:26-cv-01301</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-26</td>
+            <td><span class="pill pill--info">Active · Same Plaintiff</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Darr v. The Gatorade Co. / PepsiCo</td>
+            <td>1:26-cv-06075</td>
+            <td>N.D. Ill.</td>
+            <td>2026-05-22</td>
+            <td><span class="pill pill--info">Active · Same Plaintiff</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Luna v. Harmonious Healing, Inc. (Perspire franchisee)</td>
+            <td>4:24-cv-03223</td>
+            <td>S.D. Tex.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated 3/21/25 · Likely Settled</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Gianne v. Drink LMNT, Inc. (Sweat Equity Group subpoenaed)</td>
+            <td>2:26-cv-02029</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--warn">Non-Party Subpoena</span></td>
+            <td>TCPA (third party)</td>
+          </tr>
+          <tr>
+            <td>Curtis v. Authentic Sport Specialty, Inc. (Hindi/Lane)</td>
+            <td>—</td>
+            <td>S.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Settled at ENE</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Petruso v. Portfolio Recovery Assocs. (Hindi/Lane)</td>
+            <td>—</td>
+            <td>M.D. Fla.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Terminated &lt;2 mo</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul class="clean tight">
+        <li>Plaintiff's recipient 10-digit number — pull from ECF #1 native PDF or wait for Rule 26 disclosures.</li>
+        <li>Sweat Equity Group, LLC formation state and registered agent — Florida Sunbiz returned 403; complaint pleads FL HQ but website lists Newport Beach, CA address. Need an unblocked SoS pull.</li>
+        <li>Assigned Article III judge and magistrate — not yet posted on CourtListener for 8:26-cv-01390.</li>
+        <li>Date of service / answer deadline — no summons returned yet; standard 21-day clock starts at service.</li>
+        <li>SMS vendor / platform — Attentive, Klaviyo, Postscript, Twilio? Not visible in fetched HTML; ask in first call.</li>
+        <li>Whether SMS texting list is centralized at franchisor or fragmented across franchisees — drives whether scrub is one program or 100.</li>
+        <li>BBB, Trustpilot, Glassdoor profiles all blocked — no consumer-sentiment data confirmed.</li>
+        <li>Defense counsel — none appeared as of this report; track docket daily.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the founder/CEO — there is no GC, CCO, or CMO published. Lee Braun owns the decision.</h2>
+      <p class="section-lede">Sweat Equity Group has no published General Counsel, no Chief Compliance Officer, no CMO. The org chart is founder-led and franchise-development-heavy <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span>. That means the first call goes to Lee Braun or to Jackie Mendes / Matthew Sawicki on the franchise-development side, who will route the legal exposure upward.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-meta">Email Pattern</div>
+      <p class="card-body"><strong>{first}@perspiresaunastudio.com</strong> — inferred from masked SignalHire records (e.g., k**********n@, s****n@, s********l@) <span class="src-tag"><a href="https://www.signalhire.com/companies/perspire-sauna-studio">SignalHire -&gt;</a></span>. Confidence: PATTERN.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lee Braun</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>CEO &amp; Founder since 2010. Owns the buy decision. <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lee@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/lee-braun-9840bb9">linkedin.com/in/lee-braun-9840bb9</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jackie Mendes</strong><br><span class="pill pill--dark">VP FRANCHISE DEV</span></td>
+            <td>VP of Franchise Development. Owns franchisee onboarding (where the bundled-consent form lives). <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jackie@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jacqueline-mendes-tx">linkedin.com/in/jacqueline-mendes-tx</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Matthew Sawicki</strong><br><span class="pill pill--dark">VP FRANCHISE SALES</span></td>
+            <td>VP of Franchise Sales. Closest to SMS-driven franchise-lead capture. <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>matthew@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/matthewpsawicki">linkedin.com/in/matthewpsawicki</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Katy Fetters</strong><br><span class="pill pill--dark">VP EXPERIENCE</span></td>
+            <td>Vice President, Experience — likely owns customer-facing SMS retention. <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>katy@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Patti Rother</strong><br><span class="pill pill--dark">FRACTIONAL CDO</span></td>
+            <td>Fractional Chief Development Officer. Strategy-level — useful for franchise-wide compliance pitch. <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>patti@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>JJ Creegan</strong><br><span class="pill pill--dark">FRANCHISE DEV</span></td>
+            <td>Franchise Development leadership. <span class="src-tag"><a href="https://www.linkedin.com/company/perspire-sauna-studio">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jj@perspiresaunastudio.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jjcreegan">linkedin.com/in/jjcreegan</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michelle Khemthong</strong><br><span class="pill pill--dark">SR STUDIO MGR</span></td>
+            <td>Senior Studio Manager (operations contact). <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>michelle@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Omar Ghazaleh</strong><br><span class="pill pill--dark">AREA MGR</span></td>
+            <td>Area Manager (multi-studio operations). <span class="src-tag"><a href="https://theorg.com/org/perspire-sauna-studio">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>omar@perspiresaunastudio.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">DEFENSE</span></td>
+            <td><span class="pill pill--gap">Not yet appeared · 21-day answer clock</span> Check daily.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">ROLE</span></td>
+            <td><span class="pill pill--gap">No GC published</span> Route legal-exposure pitch through Lee Braun or escalate to outside counsel once they appear.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">ROLE</span></td>
+            <td><span class="pill pill--gap">No CCO published</span> Sales framing: this gap IS the pitch — they need a program, not a person.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move inside the 21-day answer window. Open on the founder. Close on the franchise-wide scrub.</h2>
+      <p class="section-lede">The defendant is one day into a federal class action with no defense counsel of record and no published compliance program. The rep has roughly three weeks before defense counsel locks down direct vendor outreach. Sequence outreach so the founder hears the pitch before the answer is drafted.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 1–2 · LinkedIn touch + voicemail to Lee Braun (CEO/Founder)</h4>
+          <p>Reference Darr v. Sweat Equity Group, 8:26-cv-01390 by docket number. Lead with: "You were sued yesterday by the same firm running Quiet Hours cases against Nespresso, Steve Madden, and the Bucs. We can scrub your SMS list against the active litigator universe overnight." Lee Braun LinkedIn is verified; phone is a gap — leave a single voicemail at the corporate line, then follow with email pattern lee@perspiresaunastudio.com.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 2–4 · Parallel touch to Jackie Mendes (VP Franchise Dev) and Matthew Sawicki (VP Franchise Sales)</h4>
+          <p>Hook: the bundled SMS + calls + email consent on the franchise lead form <span class="src-tag"><a href="https://www.perspiresaunastudio.com/franchise">perspiresaunastudio.com/franchise -&gt;</a></span> is exactly the artifact plaintiff's counsel will subpoena. Position the cross-sell: franchise-wide consent capture so every new franchisee onboards under a clean template. They will route the conversation up to Lee Braun if it isn't already moving.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 5–7 · PACER pull + scrub-status update</h4>
+          <p>Pull ECF #1 from PACER (~$1.20) to confirm the recipient number from the native screenshot exhibits. Re-run blacklistBulk on Darr's number. Use either result on the next outbound: a litigator-list hit unlocks a "told you so" close; a clean number unlocks a "she's a serial filer regardless" close.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 8–14 · Educational asset to GC/CCO seat (even though both are vacant)</h4>
+          <p>Send a 1-page TCPA-exposure brief addressed generically to "Legal/Compliance" but routed to Lee Braun's inbox. Cover: (a) the stale 2019 privacy policy, (b) the bundled-consent form, (c) the 100+ studios sharing infrastructure. The asset itself is the pitch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 15–21 · Pre-answer check-in</h4>
+          <p>Window closes when defense counsel files. Re-check CourtListener docket daily for a Notice of Appearance <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01390&type=r">CourtListener -&gt;</a></span>. Once defense appears, the buyer behavior shifts from "founder routing vendors" to "outside counsel gating procurement." Get the scrub agreement signed before that shift.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600;">Trigger Conditions</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h3 class="card-title" style="font-size:16px;">Defense counsel files Notice of Appearance</h3>
+        <p class="card-body" style="font-size:14px;">Switch immediate outreach to opposing counsel; brief them that vendor remediation is on the table for MTD / class-cert opposition.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title" style="font-size:16px;">Plaintiff voluntarily dismisses or amends to add second theory (Quiet Hours)</h3>
+        <p class="card-body" style="font-size:14px;">Indicates pre-suit settlement posture or expanded class. Either way, scrub urgency stays — pivot pitch to consent re-capture.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title" style="font-size:16px;">A second TCPA suit filed against Sweat Equity or a Perspire franchisee</h3>
+        <p class="card-body" style="font-size:14px;">Pattern confirmed. Reset outreach urgency to "this week" and price the program as franchise-wide.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 19, 2026</span>
+      <span class="pill pill--warn">FIRST-TIME TCPA DEFENDANT — NO PLAYBOOK</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
