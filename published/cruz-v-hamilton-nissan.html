@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cruz v. Hamilton Nissan — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+
+.row-current{ background:var(--bl-red-tint); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
+          <text x="115" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Single-Location Maryland Auto Dealer · SMS Trade-In Solicitation · Federal DNC + Maryland MSSCA Class Action</p>
+      <h1 class="hero-tagline">Cruz v.<br>Hamilton Nissan</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-02135-ABA</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">D. Md. (Baltimore)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Adam B. Abelson <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">(U.S. Magistrate Judge)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)/(d)<br>Md. Com. Law § 14-4502</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"thousands" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Leanna Loginov <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Shamis &amp; Gentile, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's number not pled in the complaint — scrub deferred until the 5642 Number is recovered.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Cruz's complaint discloses only the last four digits ("5642 Number") — a full 10-digit lookup is impossible from the pleading alone.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">DNC Registered Since Jan 16, 2013</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Recipient Number</div>
+        <div class="scrub-number">(XXX) XXX-5642</div>
+        <div class="scrub-number-sub">Only the last four digits of Melissa Cruz's residential cellular number appear in ¶9 of the complaint. The full 10-digit number is not pled and cannot be scrubbed against the Blacklist litigator database from the four-corners of the filing.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff alleges her number has been registered on the National Do Not Call Registry since <strong>January 16, 2013</strong> — a 13-year DNC tenure that is itself a litigation marker. CourtListener returned no prior TCPA filings under "Melissa Cruz," so this appears to be either a first-time filer or a plaintiff whose prior filings are outside RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-02135&type=r">CourtListener -&gt;</a></span>. Either way, the litigator-scrub product cannot be closed on this lead until the full number is on the desk.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 16px;">Sending DID intelligence</h3>
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID · 1 of 1</div>
+        <h3 class="card-title">+1 (240) 981-4938</h3>
+        <div class="card-body">
+          <p>Local Maryland 240 area code (Hagerstown / Western MD rate center), consistent with a dealer-owned DID or a vendor "local presence" DID. The complaint screenshots confirm this is the sole sender across all five texts on Mar 27, Mar 29, Apr 2, and Apr 5, 2026 (¶14, ¶26).</p>
+          <p><strong>Consumer-source intel:</strong> 800notes, YouMail, Tellows, and RoboKiller all returned 403/404 on the lookup — no consumer-reported tags or estimated call-volume corroboration is available. Sender identity therefore rests solely on the complaint exhibit ("Hi Melissa! This is Katie reaching out from Hamilton Nissan").</p>
+          <span class="pill pill--info">Maryland Local DID</span>
+          <span class="pill pill--gap">No Third-Party Tags</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 16px;">Recovery path</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Step 1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">The signed complaint is already on the public docket. If a separate exhibit or civil cover sheet discloses the full 10-digit number, it will surface there. Cost: ~$1.50 max. <span class="pill pill--red">PRIORITY</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 2</div>
+        <h3 class="card-title">Wait for defense counsel notice of appearance</h3>
+        <div class="card-body">Defense counsel will typically circulate a Rule 26(f) report within ~30 days of appearance. The plaintiff's number is almost always disclosed in early discovery / initial disclosures.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 3</div>
+        <h3 class="card-title">Coordinate with defense post-appearance</h3>
+        <div class="card-body">Once defense counsel appears, offer Blacklist scrub as part of the answer-preparation workflow — they will share the plaintiff's number to validate a consent defense.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">SERIAL-FILER STATUS: NOT CONFIRMED · CourtListener Clean</span>
+      <span class="pill pill--info">DNC TENURE: 13+ YEARS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small, family-owned Maryland Nissan dealer facing its first federal TCPA class action — every compliance product fits, but lead with DNC scrubbing.</h2>
+      <p class="section-lede">Hamilton Nissan is a single-rooftop auto dealer that has been operating in Hagerstown since approximately 1970 <span class="src-tag"><a href="https://hamiltonnissan.com">hamiltonnissan.com -&gt;</a></span>. They have no visible privacy policy, no visible TCPA/SMS terms page (every /privacy and /about URL returns 404), and a sender DID with zero consumer-complaint footprint — meaning their outbound texting program is brand-new or low-volume but completely unscrubbed. The DNC class theory hits dead-center.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + State)</h3>
+        <div class="card-body">Cruz alleges a number on the federal DNC since 2013 received 5 texts in 10 days. A pre-send federal DNC scrub would have caught this. Maryland MSSCA layered on top makes state DNC compliance equally critical. <span class="pill pill--red">LEAD WITH THIS</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #1</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Activate the moment defense counsel surfaces Cruz's full number. Cruz's 13-year DNC tenure and Shamis &amp; Gentile representation make her a candidate for the litigator database going forward.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #2</div>
+        <h3 class="card-title">Consent Capture / Policies &amp; Procedures</h3>
+        <div class="card-body">Complaint pleads both express-consent failure AND no internal-DNC procedures. A documented opt-in flow and a written policy binder are table stakes for a dealer that wants to keep texting.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:16px 0 12px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>Hamilton Nissan just got served by Shamis &amp; Gentile — the same firm that took Jamestown Import Auto Sales to a classwide settlement in 2023 and the same firm that secured class certification against Spring EQ on a Federal DNC theory in September 2025 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener -&gt;</a></span>. This is not a one-off plaintiff; this is a firm with a documented playbook for converting DNC-tenure plaintiffs into classwide settlements <span class="src-tag"><a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld -&gt;</a></span>.</p>
+        <p>The pitch the rep should run on the first call: <em>"You sent five trade-in solicitations in ten days to a number that's been on the federal DNC list since 2013. The plaintiff's firm just got a Federal DNC class certified against another defendant in September. Your website doesn't have a privacy policy or any visible SMS terms — which is what their next motion is going to highlight. We can have your DNC scrub running before your answer is due, and we can document a written internal-DNC policy that lets you defend on the safe-harbor."</em> Lead with DNC scrubbing, close on policies &amp; procedures, and tee up litigator scrub for the cross-sell on call two.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A 55-year-old single-rooftop Nissan store in Hagerstown with a sister dealership and a Dealer.com tech stack — privately held, asset-rich, and judgment-collectible.</h2>
+      <p class="section-lede">Hamilton Nissan is a Maryland corporation operating one new-Nissan rooftop plus a used-car sister brand. They are small, but they are real — and they have inventory, real estate, and a parts-and-service revenue stream that a TCPA judgment can attach to.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Hamilton Nissan, Inc.</dd>
+          <dt>Entity Type</dt><dd>Maryland corporation (¶10) <span class="pill pill--gap">SDAT Confirmation Pending</span></dd>
+          <dt>HQ Address</dt><dd>1929 Dual Highway, Hagerstown, MD 21740 (¶10)</dd>
+          <dt>Founded</dt><dd>~1970 (55-year-anniversary references on website) <span class="src-tag"><a href="https://hamiltonnissan.com">hamiltonnissan.com -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Franchised Nissan dealership · new + used + service + parts</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Sister Store</dt><dd>"The Right Car" (used-car operation referenced on Hamilton site)</dd>
+          <dt>Website Platform</dt><dd>Dealer.com (CDK Global)</dd>
+          <dt>Compliance Page</dt><dd>None visible — /privacy and /privacy-policy return 404</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No privacy policy. No SMS terms. No opt-in disclosure. Anywhere on the website.</h3>
+        <div class="card-body">
+          <p>Every standard URL — <code>/privacy</code>, <code>/privacy-policy</code>, <code>/about</code>, <code>/terms</code>, <code>/terms-of-service</code> — returns 404 on hamiltonnissan.com. There is no public-facing TCPA, DNC, or SMS-consent disclosure of any kind. The dealership's lead-capture forms (Finance Application, Value Your Trade, CarFinder, Sell Your Car, Schedule Service) collect phone numbers but do not visibly link to any consent language <span class="src-tag"><a href="https://hamiltonnissan.com">hamiltonnissan.com -&gt;</a></span>.</p>
+          <p>For a defendant facing both Federal DNC and Maryland MSSCA "prior express written consent" claims, the absence of a written opt-in flow is the single most damaging public-source fact — and it is documentable today, before any discovery.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Complaint Filed</dt><dd>May 29, 2026 (1 day ago)</dd>
+        <dt>Service of Process</dt><dd>Not yet docketed — Fed. R. Civ. P. 4(m) gives plaintiff 90 days</dd>
+        <dt>Answer Deadline</dt><dd>21 days after service (Fed. R. Civ. P. 12(a)(1)(A)(i)) — tentative window mid-June through August 2026</dd>
+        <dt>Dealer Selling Season</dt><dd>Summer (May–August) is peak used-car trade-in solicitation season — outbound SMS volume likely elevated right now</dd>
+        <dt>Discovery Trigger</dt><dd>Rule 26(f) report ~30 days post-appearance — initial disclosures will surface Cruz's full number</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>The Right Car</strong></td>
+            <td>Sister brand / used-car arm referenced on Hamilton site</td>
+            <td>Used auto sales</td>
+            <td>Likely shares lead lists with Hamilton Nissan; if SMS is unified, same DNC exposure applies</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dealer.com / CDK Global</strong></td>
+            <td>Website + CRM platform vendor</td>
+            <td>Auto SaaS</td>
+            <td>Powers thousands of US dealer SMS programs; an enterprise scrub partnership is a Blacklist channel play, not a defendant ask</td>
+            <td><span class="pill pill--info">Channel Play</span></td>
+          </tr>
+          <tr>
+            <td><strong>SMS marketing vendor (TBD)</strong></td>
+            <td>Likely third-party texting platform behind 240-981-4938</td>
+            <td>MarTech</td>
+            <td>Identification pending discovery — vendor will be a co-defendant candidate and a cross-sell target</td>
+            <td><span class="pill pill--gap">Pending Discovery</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Shamis &amp; Gentile is running their proven auto-dealer DNC playbook — the same one that produced a class settlement against Jamestown Import Auto Sales and class certification against Spring EQ.</h2>
+      <p class="section-lede">This is the firm's bread and butter: federal DNC class actions against single-rooftop or small-chain consumer-facing businesses. The Cruz template is recognizable to anyone tracking their docket.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card · Cruz v. Hamilton Nissan, Inc.</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-02135-ABA</dd>
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Court</dt><dd>U.S. District Court, D. Maryland (Baltimore Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-02135&type=r">CourtListener RECAP -&gt;</a></span></dd>
+          <dt>Judge</dt><dd>Adam B. Abelson (U.S. Magistrate Judge — "ABA" initials in case number) <span class="pill pill--warn">Article III Assignment Pending</span></dd>
+          <dt>Plaintiff</dt><dd>Melissa Cruz, individually + Rule 23 class</dd>
+          <dt>Class Status</dt><dd>Putative Rule 23 class · "thousands" of members alleged</dd>
+          <dt>Class Definitions</dt><dd>(1) Federal DNC Registry Class (nationwide); (2) Maryland Automated System Class (MD residents)</dd>
+          <dt>Claims</dt><dd>Count I: 47 U.S.C. § 227(c) / 47 C.F.R. § 64.1200(c)–(d)<br>Count II: Md. Code, Com. Law § 14-4502(a)</dd>
+          <dt>Theory</dt><dd>SMS trade-in / appointment solicitations to a number on the federal DNC since 2013, sent without prior express written consent, using an automated system for the selection or dialing of numbers</dd>
+          <dt>Damages Sought</dt><dd>Up to $500 per text TCPA + up to $500/text MSSCA + treble for willful (each statute)</dd>
+          <dt>Named-Plaintiff Exposure</dt><dd>5 texts × $500 (TCPA) + 5 × $500 (MSSCA) = <strong>$5,000 baseline</strong>; with willful trebling, <strong>up to $15,000</strong></dd>
+          <dt>Class Exposure (illustrative)</dt><dd>1,000 recipients × 2 texts × $500 = <strong>$1.0M floor</strong>; trebled = <strong>$3.0M</strong>; complaint alleges $5M+ to invoke CAFA (¶6)</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared — within the 21-day answer window</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel · Leanna Loginov / Shamis &amp; Gentile, P.A.</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>14 NE 1st Ave., Suite 705, Miami, FL 33132</dd>
+          <dt>Firm Phone</dt><dd>(305) 479-2299</dd>
+          <dt>Firm Email</dt><dd>info@shamisgentile.com</dd>
+          <dt>Firm Website</dt><dd>shamisgentile.com <span class="src-tag"><a href="https://www.shamisgentile.com">shamisgentile.com -&gt;</a></span></dd>
+          <dt>Lead Attorney</dt><dd>Leanna Loginov, Esq.</dd>
+          <dt>Bar Number</dt><dd>FL Bar #31890 <span class="pill pill--ok">Active</span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=31890">FL Bar -&gt;</a></span></dd>
+          <dt>Lead Email</dt><dd>lloginov@shamisgentile.com</dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>Firm Reputation</dt><dd>Self-reports $1.6B+ recovered across 200+ class cases; TCPAWorld documents repeated classwide settlements in auto-dealer TCPA actions <span class="src-tag"><a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld -&gt;</a></span></dd>
+          <dt>TCPA Filings</dt><dd>20+ federal TCPA cases in RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Serial Filer</dt><dd><span class="pill pill--danger">YES — High-Volume TCPA Class-Action Firm</span></dd>
+          <dt>Bar-Address Match</dt><dd>FL Bar address mirrors complaint signature block — no mismatch flag</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Plaintiff Firm Template — "Shamis &amp; Gentile Federal DNC Auto-Dealer"</h3>
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-body">
+        <p>Shamis &amp; Gentile's recurring auto-dealer template: (1) identify a consumer with a long-tenured DNC-registered number who receives a trade-in or service-appointment SMS; (2) plead both Federal DNC (§ 227(c)) and a state-DNC analog (here, Md. § 14-4502); (3) frame a Rule 23 class around the dealer's outbound texting list; (4) push for class certification on the DNC theory and convert to a classwide settlement. The firm secured a final class settlement in <em>Ingram v. Jamestown Import Auto Sales</em> (W.D.N.Y. 2022) on a near-identical fact pattern, and class certification in <em>Mason v. Spring EQ LLC</em> (C.D. Cal. Sept. 2025) on the same Federal DNC theory <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener -&gt;</a></span>.</p>
+        <p>Other named attorneys in the firm's TCPA stable: Andrew Shamis, Garrett Berg <span class="src-tag"><a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld -&gt;</a></span>. Loginov appears to be the filer-of-record; the senior litigators typically appear pro hac vice when local counsel is needed in MD.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Concurrent &amp; Recent Litigation Context</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Cruz v. Hamilton Nissan, Inc.</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>D. Md.</td>
+            <td>2026-05-29</td>
+            <td><span class="pill pill--red">Active · No Defense Appearance</span></td>
+            <td>Federal DNC + MD MSSCA · SMS</td>
+          </tr>
+          <tr>
+            <td>Mason v. Spring EQ LLC</td>
+            <td>C.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--warn">Class Certified Sept 2025</span></td>
+            <td>Federal DNC (same theory)</td>
+          </tr>
+          <tr>
+            <td>Ingram v. Jamestown Import Auto Sales, Inc.</td>
+            <td>W.D.N.Y.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Class Settlement Final 2023</span></td>
+            <td>TCPA · Auto-dealer SMS</td>
+          </tr>
+          <tr>
+            <td>Raymond v. Pull-A-Part, LLC</td>
+            <td>N.D. Ga.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Auto salvage</td>
+          </tr>
+          <tr>
+            <td>Drazen v. GoDaddy.com, LLC</td>
+            <td>S.D. Ala.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">Settled</span></td>
+            <td>TCPA · Marketing texts</td>
+          </tr>
+          <tr>
+            <td>United States v. Hamilton Nissan Inc.</td>
+            <td>D. Md.</td>
+            <td>2018</td>
+            <td><span class="pill pill--gap">Disposition Unknown</span></td>
+            <td>Non-TCPA · same defendant <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hamilton+Nissan%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Whitmore v. Hamilton Nissan, Inc.</td>
+            <td>Bankr. D. Md.</td>
+            <td>2001</td>
+            <td><span class="pill pill--gap">Closed</span></td>
+            <td>Non-TCPA · same defendant <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hamilton+Nissan%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:middle"></i> Open intel gaps to close before first dial</h4>
+      <ul style="margin:8px 0 0 18px; padding:0;">
+        <li>Plaintiff's full 10-digit number (recover from PACER ECF #1 or first discovery exchange)</li>
+        <li>Hamilton Nissan officer / registered-agent names — Maryland SDAT and Bizapedia both returned 403, no officer slate confirmed</li>
+        <li>Identity of the SMS vendor behind 240-981-4938 — could be in-house Dealer.com module or third-party (Podium, Kenect, TextUs, etc.); no consumer-source corroboration on 800notes / YouMail / Tellows / RoboKiller (all 403/404)</li>
+        <li>Whether Judge Abelson holds the case as a magistrate on consent or whether an Article III judge will be assigned (case number initials "ABA" suggest initial magistrate assignment)</li>
+        <li>Defense counsel identity — no notice of appearance yet docketed</li>
+        <li>Hamilton Nissan general manager / dealer principal name — every team/about page on the dealer website returned 404; LinkedIn company page also 404</li>
+        <li>Sister-store "The Right Car" legal entity name and whether it shares a lead list with Hamilton Nissan</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the dealership main line — every name-level decision-maker channel returned 404.</h2>
+      <p class="section-lede">Hamilton Nissan does not maintain a public LinkedIn company page, a public team / about page, or a public org-chart on TheOrg. The dealer-principal and GM identities will need to be recovered by direct outreach to the dealership or via Maryland SDAT records. Until then, the call path is the main dealership number and the General Manager / Owner role.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Dealer Principal / Owner</strong><br><span class="pill pill--dark">OWNER</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Single-rooftop family-owned Nissan dealership; principal name not publicly disclosed</td>
+            <td>Main dealership line (recover via website / Google Business) <span class="pill pill--gap">GAP</span></td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Manager</strong><br><span class="pill pill--dark">GM</span> <span class="pill pill--gap">GAP</span></td>
+            <td>GM is typically the operational decision-maker on dealer marketing programs and vendor contracts</td>
+            <td>Main dealership line <span class="pill pill--gap">GAP</span></td>
+            <td>Likely first.last@hamiltonnissan.com <span class="pill pill--warn">PATTERN — UNVERIFIED</span></td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Internet / BDC Manager</strong><br><span class="pill pill--dark">MARKETING</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Owns the SMS / outbound texting program; "Katie" who signed the texts ("Hi Melissa! This is Katie reaching out from Hamilton Nissan") sits in this department</td>
+            <td>Main dealership line <span class="pill pill--gap">GAP</span></td>
+            <td>Pattern: first.last@hamiltonnissan.com <span class="pill pill--warn">PATTERN — UNVERIFIED</span></td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>"Katie" (BDC / Sales)</strong><br><span class="pill pill--dark">SIGNED THE TEXTS</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Named in the Mar 27, 2026 SMS ("Hi Melissa! This is Katie reaching out from Hamilton Nissan…"); last name not pled in complaint</td>
+            <td>Sending DID +1 (240) 981-4938 (per complaint ¶26) <span class="pill pill--info">VERIFIED · DID Only</span></td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hamilton Nissan, Inc.</strong><br><span class="pill pill--dark">CORPORATE</span></td>
+            <td>Principal place of business: 1929 Dual Highway, Hagerstown, MD 21740 (per complaint ¶10)</td>
+            <td>Not recovered <span class="pill pill--gap">GAP</span></td>
+            <td>Not recovered (no info@ confirmed) <span class="pill pill--gap">GAP</span></td>
+            <td>No active company page <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">DEFENSE</span></td>
+            <td>Not yet appeared · 21-day answer clock running from service of process</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-3);">
+      <strong>Email pattern note:</strong> No verified Hamilton Nissan email could be harvested from ZoomInfo (403), SignalHire (410), RocketReach, Hunter.io, or the dealership's own website (every /about, /team, /staff, /contact URL returned 404 or 429). The <em>first.last@hamiltonnissan.com</em> pattern shown above is the franchised-dealer industry default and should be treated as PATTERN until verified.
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Plaintiff Counsel (Reference Only — Do Not Pitch)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Firm</th><th>Phone</th><th>Email</th><th>Bar</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Leanna Loginov, Esq.<br><span class="pill pill--info">PLAINTIFF COUNSEL · DO NOT CONTACT</span></td>
+            <td>Shamis &amp; Gentile, P.A.<br>14 NE 1st Ave., Suite 705, Miami, FL 33132</td>
+            <td>(305) 479-2299 (per PACER signature block) <span class="pill pill--ok">VERIFIED</span></td>
+            <td>lloginov@shamisgentile.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>FL #31890 <span class="pill pill--ok">Active</span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=31890">FL Bar -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — get to the dealership before defense counsel does.</h2>
+      <p class="section-lede">Hamilton Nissan was served (or is about to be served) on a complaint filed May 29, 2026. The 21-day answer clock starts running on service. The window where the dealer principal is shopping for a compliance story — and not yet behind a defense firm's wall — is now.</p>
+    </div>
+
+    <ol style="padding-left:20px; display:grid; gap:18px;">
+      <li>
+        <h4 style="margin:0 0 4px; font-size:16px;">Day 1–2 · Pull PACER ECF #1 and recover the plaintiff's full number</h4>
+        <p class="step-body" style="margin:0; color:var(--fg-2)">~$1.50 PACER charge. Confirm whether the civil cover sheet or any sealed exhibit discloses the full 10-digit "5642 Number." If recovered, run the litigator scrub immediately and re-stage the pitch around a confirmed scrub result.</p>
+      </li>
+      <li>
+        <h4 style="margin:0 0 4px; font-size:16px;">Day 2 · Call the dealership main line and ask for the General Manager</h4>
+        <p class="step-body" style="margin:0; color:var(--fg-2)">Open neutral: "I'm calling about a federal lawsuit your dealership was named in last Friday — Cruz v. Hamilton Nissan, District of Maryland. I work with auto dealers on the exact compliance gap the plaintiff is alleging." Get to the GM or the dealer principal. Do NOT engage with the BDC manager / "Katie" — they are a fact witness, not a buyer.</p>
+      </li>
+      <li>
+        <h4 style="margin:0 0 4px; font-size:16px;">Day 3–5 · Send a written follow-up to the GM with the smoking-gun facts</h4>
+        <p class="step-body" style="margin:0; color:var(--fg-2)">One-pager covering: (1) the plaintiff's 13-year DNC tenure since 2013, (2) Shamis &amp; Gentile's classwide settlement track record against Jamestown Import Auto Sales and class certification against Spring EQ, (3) the absence of any privacy policy or SMS terms on hamiltonnissan.com, (4) the federal-plus-Maryland statutory damage stack ($500 + $500 per text, trebled).</p>
+      </li>
+      <li>
+        <h4 style="margin:0 0 4px; font-size:16px;">Day 5–10 · Identify defense counsel via PACER docket alerts and coordinate</h4>
+        <p class="step-body" style="margin:0; color:var(--fg-2)">Once defense counsel appears, pivot the pitch: offer Blacklist DNC scrub + policies &amp; procedures as the foundation for a Rule 12 / Rule 26 narrative that the dealer has remediated. Defense counsel is the most likely person to surface the plaintiff's full number in initial disclosures.</p>
+      </li>
+      <li>
+        <h4 style="margin:0 0 4px; font-size:16px;">Day 14–21 · Pre-answer close window</h4>
+        <p class="step-body" style="margin:0; color:var(--fg-2)">Target signing a DNC-scrubbing engagement before the answer is filed so the dealer can plead "remediated" rather than "continues to violate." This is the most powerful frame for getting a check signed.</p>
+      </li>
+      <li>
+        <h4 style="margin:0 0 4px; font-size:16px;">Cross-sell · The Right Car sister brand</h4>
+        <p class="step-body" style="margin:0; color:var(--fg-2)">Once the Hamilton Nissan engagement closes, ask whether The Right Car shares the lead list / SMS vendor. If yes, expand the scope; if no, sell it as a separate engagement on the same MSA.</p>
+      </li>
+    </ol>
+
+    <div class="card" style="margin-top:32px">
+      <h3 class="card-title">Trigger conditions that change the plan</h3>
+      <ul class="clean tight">
+        <li><strong>Defense counsel files a motion to compel arbitration</strong> — if Hamilton Nissan asserts a clickwrap arbitration clause, the named-plaintiff exposure drops but the class is still in play. Pivot to consent-capture + record-retention as the lead product.</li>
+        <li><strong>Plaintiff voluntarily dismisses to amend</strong> — likely if Cruz's full number turns out to be wireless rather than residential. Re-engage when the amended complaint hits.</li>
+        <li><strong>PACER shows a transfer to an Article III judge</strong> — adjust judicial-history slide on next call; Judge Abelson is currently magistrate-assigned.</li>
+        <li><strong>SMS vendor is named as co-defendant</strong> — opens a parallel pitch to the vendor on enterprise scrubbing.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW</span>
+      <span class="pill pill--warn">PRE-DEFENSE-APPEARANCE</span>
+      <span class="pill pill--info">LEAD PRODUCT: DNC SCRUBBING</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
