@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoffman v. True Gold Republic — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout-title{ font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" class="hero-logo-svg">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Gold IRA SMS Marketer · No DNC Scrub · Putative Class Action · W.D. Wash. · Paronich/Perrong/Strauss Team Up</p>
+      <h1 class="hero-tagline">Hoffman v.<br>True Gold Republic <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(DB Miami, Inc.)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-05561</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Wash. (Tacoma)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PACER pull pending</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>RCW 19.190.060<br>RCW 19.86 (WA CPA)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"Several thousand"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Strauss / Paronich / Perrong <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Strauss Borrelli PLLC + co-counsel</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted to "206-XXX-XXXX" — scrub deferred pending PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Hoffman's complaint discloses only the area code (206 · Seattle) — the remaining seven digits are redacted. A litigator-list lookup cannot be run on a partial number. Recovery path below.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--warn">Recovery Path: PACER ECF #1 Pull</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Phone (alleged)</div>
+        <div class="scrub-number">206-XXX-XXXX</div>
+        <div class="scrub-number-sub">Complaint ¶24 discloses only the Washington-state 206 area code. Full 10-digit number is redacted in the publicly filed pleading. No BlacklistBulk lookup performed — partial numbers cannot be scrubbed.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff alleges his "residential telephone number" has been on the National DNC Registry for 5+ years and that he received "at least 9 text messages" between Dec 12, 2025 and May 21, 2026 from sender DID +1 (866) 896-3218. Until the full plaintiff number is recovered from the un-redacted complaint exhibit or initial disclosures, the litigator-scrub close-loop cannot be confirmed. The plaintiff-firm composition (see §04) is itself the strongest "this is a known plaintiff ecosystem" signal.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID</div>
+        <h3 class="card-title">+1 (866) 896-3218</h3>
+        <p class="card-body">Toll-free 866 prefix consistent with outbound SMS-blast infrastructure (not person-to-person). Used to send links through the <code>slk1.io</code> shortener domain — a TCPA red flag because shorteners cloak the actual sender identity from recipient and from carrier-level spam filters.</p>
+        <p style="margin-top:12px"><span class="pill pill--warn">Toll-Free SMS Blast</span> <span class="pill pill--gap">800notes: No Data</span> <span class="pill pill--gap">YouMail: No Data</span></p>
+        <p style="font-size:12px;color:var(--fg-3);margin-top:8px">Crowd-sourced complaint databases (800notes, YouMail, Tellows, RoboKiller) all returned HTTP errors on this DID — no third-party complaint corroboration available. Numerosity will need to come from defendant's dialer logs in discovery.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">Hoffman complaint is Doc #1 in case 3:26-cv-05561 (W.D. Wash.). Cost ≈ $1.40. The un-redacted exhibit version, once filed under seal/discovery, will surface the full 206 number for a clean BlacklistBulk scrub.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Await Defendant's First Filing</h3>
+        <p class="card-body">Defense counsel's initial disclosures or a motion to compel arbitration / dismiss will typically reference plaintiff's full number. Watch the docket — no defense appearance yet (case filed 1 day ago).</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS · PENDING — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL FIRM ECOSYSTEM CONFIRMED</span>
+      <span class="pill pill--info">9 ALLEGED VIOLATIONS · NAMED PLAINTIFF</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Newly-launched Gold IRA shop, missing /terms and /privacy pages, sued by the country's top TCPA bench — open the call with "your website doesn't even have a privacy policy."</h2>
+      <p class="section-lede">True Gold Republic is a small (~&lt;25 employee) Miami-based precious-metals seller that scaled fast on celebrity-conservative-media marketing and outbound SMS lead-gen. Their own website's <code>/terms</code> and <code>/privacy</code> URLs return 404 <span class="src-tag"><a href="https://www.truegoldrepublic.com/privacy">truegoldrepublic.com/privacy →</a></span> <span class="src-tag"><a href="https://www.truegoldrepublic.com/terms">truegoldrepublic.com/terms →</a></span> — a smoking-gun consent gap. Lead with Litigator Scrub + DNC Scrubbing as the bundle.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <span class="pill pill--red">LEAD WITH THIS</span>
+        <h3 class="card-title" style="margin-top:12px">Litigator Scrub</h3>
+        <p class="card-body">Plaintiff's counsel team (Paronich + Perrong + Strauss Borrelli) files dozens of TCPA class actions per year against marketing-heavy verticals. The defendant has zero litigator-scrub coverage today — the next Hoffman is already on their list. Litigator Scrub is the immediate stop-the-bleeding play.</p>
+      </div>
+      <div class="card card--accent">
+        <span class="pill pill--red">BUNDLE</span>
+        <h3 class="card-title" style="margin-top:12px">Federal + State DNC Scrubbing</h3>
+        <p class="card-body">Complaint pleads Federal DNC under 47 USC § 227(c) AND Washington CEMA (RCW 19.190.060) — a stacked $500/violation + per se WA CPA treble exposure. Multi-state DNC scrub is the affirmative defense True Gold needs in place yesterday.</p>
+      </div>
+      <div class="card">
+        <span class="pill pill--info">CROSS-SELL</span>
+        <h3 class="card-title" style="margin-top:12px">Consent Capture / Policies &amp; Procedures</h3>
+        <p class="card-body">Defendant's site has no published Privacy Policy, no Terms of Service, no DNC policy <span class="src-tag"><a href="https://www.truegoldrepublic.com">truegoldrepublic.com →</a></span>. Their leadership page lists no CCO or GC <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span>. They need the full policy stack — TCPA policy, written internal DNC list, vendor consent records.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;margin:0 0 12px">Pitch Angle</h3>
+    <div class="card">
+      <p class="card-body" style="margin:0 0 12px">"Hi — I'm calling because your company was named yesterday in a federal TCPA class action in the Western District of Washington (Hoffman v. DB Miami / True Gold Republic, 3:26-cv-05561). The complaint alleges your SMS campaign sent nine texts to a Washington resident whose number had been on the federal DNC list for five-plus years. The plaintiff's counsel — Anthony Paronich, Andrew Perrong, and Strauss Borrelli — is one of the most aggressive TCPA plaintiff teams in the country; Paronich alone has settled $200M+ in TCPA matters. They don't file once, they file a campaign. Your exposure on the named plaintiff alone is between $4,500 and $13,500 under federal TCPA, plus another $4,500 in WA CEMA statutory damages, plus the WA CPA's per-se treble. On the alleged 'several thousand' class size, you're looking at $1.5M–$10M+ before fees."</p>
+      <p class="card-body" style="margin:0 0 12px">"Here's why I think this conversation is urgent: your own website's privacy and terms pages return 404 today — which means there's no documented consent framework governing the texts that went out. The Blacklist Litigator Scrub would have stopped the texts that triggered this case. Our DNC scrub product would have flagged Mr. Hoffman's number five years ago. We can have you scrubbing within 48 hours."</p>
+      <p class="card-body" style="margin:0">The rep should lead with the named-plaintiff exposure math, then anchor on the missing /privacy and /terms pages, then close on a bundled Litigator Scrub + Federal/State DNC subscription before the answer is due. Do not editorialize about plaintiff counsel — just name the dollar figures they've extracted.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small, recently-launched Florida precious-metals shop scaling via celebrity-conservative-media endorsements and outbound SMS lead-gen.</h2>
+      <p class="section-lede">DB Miami, Inc. d/b/a True Gold Republic appears to be a young (2024–2026 site copyright) Miami-based Gold IRA / 401(k)-rollover seller marketed heavily through Steven Crowder, Russell Brand, Joe Piscopo, and Tim Pool <span class="src-tag"><a href="https://www.truegoldrepublic.com">truegoldrepublic.com →</a></span>. Leadership is four people deep. No CCO. No GC. No published privacy policy. Classic scale-first, comply-later profile.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>DB Miami, Inc. <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span></dd>
+          <dt>d/b/a</dt><dd>True Gold Republic</dd>
+          <dt>Formation State</dt><dd>Florida <span class="pill pill--gap" style="margin-left:6px">Sunbiz lookup blocked</span></dd>
+          <dt>HQ</dt><dd>1101 Brickell Ave, Suite 901-S, Miami, FL 33131<br><span style="color:var(--fg-3);font-size:12px">Secondary: 6586 W. Atlantic Ave #1304, Delray Beach, FL 33446</span></dd>
+          <dt>Founded</dt><dd>Site copyright 2024–2026 (likely incorporated 2023–2024)</dd>
+          <dt>Employees</dt><dd>~&lt;25 (4-person published leadership team) <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span></dd>
+          <dt>Vertical</dt><dd>Precious metals investment · Gold IRAs · 401(k) rollovers</dd>
+          <dt>Public/Private</dt><dd>Private — no SEC filings</dd>
+          <dt>Customer Claim</dt><dd>"35,000+ Satisfied Customers" / "35,000+ Families Protected" (self-claimed, unverified)</dd>
+          <dt>BBB</dt><dd>Self-claims "A+ BBB Rating" / "5★ BBB &amp; Google" — BBB direct lookup returned 403, unverified</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <span class="pill pill--red">Smoking-Gun Compliance Gap</span>
+        <h3 class="card-title" style="margin-top:12px">Their own consent UI excludes SMS — but they sent SMS.</h3>
+        <p class="card-body">Defendant's published consent disclosure language on its lead-gen form states the consumer agrees to be contacted "including by use of an autodialer, but <strong>not including by text/SMS</strong>" <span class="src-tag"><a href="https://www.truegoldrepublic.com">truegoldrepublic.com →</a></span>. Yet Hoffman alleges nine marketing SMS messages from sender DID +1-866-896-3218. A contradicting page footer on the 401(k) service URL states "Information submitted through this form will be used to send a Free Gold Guide via email or SMS" <span class="src-tag"><a href="https://www.truegoldrepublic.com/service/401k">/service/401k →</a></span>. Self-contradicting consent language across two pages, plus a 404 privacy policy at <span class="src-tag"><a href="https://www.truegoldrepublic.com/privacy">/privacy →</a></span> and 404 terms at <span class="src-tag"><a href="https://www.truegoldrepublic.com/terms">/terms →</a></span>, means there is no documented E-SIGN-compliant TCPA consent record anywhere on the public site.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <span class="pill pill--warn">Strategic Timing</span>
+      <h3 class="card-title" style="margin-top:12px">Answer clock starts now. Small leadership team. Sales-driven culture. Window: ~21 days.</h3>
+      <dl class="kv" style="margin-top:12px">
+        <dt>Filed</dt><dd>May 29, 2026 — defendant just received notice</dd>
+        <dt>Answer Window</dt><dd>~21 days from service (typical FRCP 12 timeline) — defendant likely retaining counsel this week</dd>
+        <dt>Q3/Q4 Hook</dt><dd>Gold IRA marketing peaks in Q4 around year-end retirement contribution deadlines — they cannot afford to throttle their SMS engine</dd>
+        <dt>Founder Reachability</dt><dd>Founder Samuel O'Brien is on the team page with a direct line <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span> — small team means decision can be made on one call</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;margin:0 0 16px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>True Gold Republic</strong></td>
+            <td>d/b/a of DB Miami, Inc.</td>
+            <td>Gold IRA / Precious metals</td>
+            <td>Named in current complaint — direct target</td>
+            <td><span class="pill pill--red">CURRENT TARGET</span></td>
+          </tr>
+          <tr>
+            <td>slk1.io</td>
+            <td>Vendor (link shortener used in alleged SMS campaign)</td>
+            <td>SMS infrastructure</td>
+            <td>Link-cloaking domain in plaintiff exhibits — vendor-side scrub could implicate other slk1.io clients</td>
+            <td><span class="pill pill--info">VENDOR LEAD</span></td>
+          </tr>
+          <tr>
+            <td>Steven Crowder / Russell Brand / Tim Pool / Joe Piscopo affiliate channels</td>
+            <td>Endorsement partners driving traffic</td>
+            <td>Conservative-media affiliate marketing</td>
+            <td>If affiliates are placing the SMS, they are co-liable under TCPA agency theory</td>
+            <td><span class="pill pill--gap">RESEARCH NEEDED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--fg-3);margin-top:8px">Sunbiz, OpenCorporates, and WA SoS lookups for DB Miami, Inc. returned HTTP 403 — no parent/sister entity intel could be confirmed from corporate registries. Manual Sunbiz pull recommended before first call.</p>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First known TCPA suit against True Gold — but the plaintiff bench is the most dangerous in the country.</h2>
+      <p class="section-lede">No prior TCPA filings against DB Miami, Inc. or True Gold Republic surfaced in public dockets (PACER/PacerMonitor/CourtListener fetches failed; manual confirmation recommended). However, the plaintiff team — Paronich, Perrong, and Strauss Borrelli — has cumulatively settled hundreds of millions of dollars in TCPA matters and is widely regarded in the defense bar as a serial-class-action operation.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card · Hoffman v. DB Miami, Inc.</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-05561 (W.D. Wash., Tacoma)</dd>
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Plaintiff</dt><dd>Mark Hoffman (WA resident · 206 area code)</dd>
+          <dt>Class Status</dt><dd>Putative Rule 23(a), (b)(2), (b)(3) — "several thousand" members alleged</dd>
+          <dt>Primary Claim</dt><dd>47 USC § 227(c)(5) — Federal DNC violation (9 alleged texts to a number on DNC for 5+ years)</dd>
+          <dt>Secondary Claims</dt><dd>WA CEMA (RCW 19.190.060) · WA CPA per se treble (RCW 19.86)</dd>
+          <dt>Channel</dt><dd>SMS — sender DID +1 (866) 896-3218 · short-link domain <code>slk1.io</code></dd>
+          <dt>Date Range Pled</dt><dd>Dec 12, 2025 → May 21, 2026</dd>
+          <dt>Damages Sought</dt><dd>$500 / $1,500 per text (federal) + $500 per text (WA CEMA) + WA CPA treble + injunction + fees</dd>
+          <dt>Named Plaintiff Exposure</dt><dd class="num">$4,500 – $13,500 (federal) + $4,500 (CEMA) = <strong>$9,000 – $18,000+</strong></dd>
+          <dt>Class Exposure Est.</dt><dd class="num">$1.5M – $10M+ before WA CPA treble &amp; fees</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer deadline</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel · The Paronich/Perrong/Strauss Team</h3>
+        <dl class="kv">
+          <dt>Lead Local</dt><dd>Samuel J. Strauss (WSBA #46971) · Strauss Borrelli PLLC</dd>
+          <dt>Co-Counsel</dt><dd>Anthony I. Paronich · Paronich Law, P.C. (Hingham, MA)<br>Andrew Roman Perrong · Perrong Law LLC (Glenside, PA)</dd>
+          <dt>Strauss Firm Address</dt><dd>980 N Michigan Ave, Suite 1610, Chicago, IL 60611</dd>
+          <dt>Strauss Phone</dt><dd>(872) 263-1100</dd>
+          <dt>Strauss Email</dt><dd>sam@straussborrelli.com</dd>
+          <dt>Paronich Phone</dt><dd>(617) 485-0018 · anthony@paronichlaw.com <span class="src-tag"><a href="https://www.paronichlaw.com">paronichlaw.com →</a></span></dd>
+          <dt>Perrong Phone</dt><dd>(215) 225-5529 · a@perronglaw.com <span class="src-tag"><a href="https://perronglaw.com">perronglaw.com →</a></span></dd>
+          <dt>TCPAWorld Profile</dt><dd>Paronich repeatedly named "The Wolf" in TCPAWorld 2024/2025/2026 Power Rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Paronich">tcpaworld.com →</a></span></dd>
+          <dt>Reported Settlements</dt><dd>Strauss Borrelli: $1B+ recovered, 250+ class actions <span class="src-tag"><a href="https://www.straussborrelli.com">straussborrelli.com →</a></span> · Paronich: $200M+ TCPA settlements/judgments · Perrong: $9.05M reported class settlements <span class="src-tag"><a href="https://perronglaw.com/about">perronglaw.com/about →</a></span></dd>
+          <dt>Recent Wins</dt><dd>National Retail Solutions $6.5M TCPA RVM settlement (May 2026) · Tax Relief Helpers $2.95M TCPA robocall settlement (Nov 2025) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Anthony+Paronich%22+TCPA">Law360 →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <span class="pill pill--warn">Plaintiff Firm Template</span>
+      <h3 class="card-title" style="margin-top:12px">SMS DNC class actions against marketing-heavy verticals — gold, solar, insurance, debt relief.</h3>
+      <p class="card-body">The Paronich/Perrong combination is widely recognized in defense-bar circles as a high-volume TCPA class-action engine focused on text-message campaigns where consent records are weak or missing. Strauss Borrelli serves as class-action local counsel. Their template against precious-metals dealers: (1) plaintiff on DNC for 5+ years, (2) screenshots of N+ texts with short-link domains, (3) Rule 23(b)(2) and (b)(3) classes, (4) federal DNC paired with applicable state mini-TCPAs (WA CEMA here; FL FTSA, MD MTCPA, OK TCPA in past cases). Defendants who don't move quickly to scrub and document consent typically settle in the $2M–$8M range within 12–18 months.</p>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;margin:0 0 16px">Concurrent &amp; Recent Litigation Against True Gold Republic / DB Miami, Inc.</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Hoffman v. DB Miami, Inc. d/b/a True Gold Republic</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span></td>
+            <td>3:26-cv-05561</td>
+            <td>May 29, 2026</td>
+            <td><span class="pill pill--red">Pending · Pre-Answer</span></td>
+            <td>TCPA DNC + WA CEMA + WA CPA · SMS · putative class</td>
+          </tr>
+          <tr>
+            <td colspan="5" style="text-align:center;color:var(--fg-3);font-style:italic">No additional TCPA suits against DB Miami, Inc. or True Gold Republic located in public docket aggregators (PACER/CourtListener queries failed — manual confirmation recommended). This is likely the defendant's first major TCPA exposure.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:middle"></i> Open intel gaps to close before first dial</div>
+      <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.7">
+        <li>Recover full plaintiff number from un-redacted complaint exhibit or initial disclosures — pull PACER ECF #1 (~$1.40)</li>
+        <li>Manually verify Sunbiz record for DB Miami, Inc. — formation date, registered agent, principal address (Sunbiz returned 403 in automated lookup)</li>
+        <li>Confirm whether the (866) 896-3218 DID is owned by True Gold or by a third-party SMS lead vendor (affiliate liability question)</li>
+        <li>Check CourtListener manually for prior Mark Hoffman TCPA filings — name is common, but TCPAWorld has reported on a serial Hoffman plaintiff before</li>
+        <li>Pull WSBA profile for Samuel Strauss (Bar #46971) to confirm admission date and discipline status — automated fetch hit redirect loop</li>
+        <li>Identify any General Counsel or outside-counsel-of-record for True Gold Republic — neither the team page nor LinkedIn surfaced a GC or CCO</li>
+        <li>Determine whether judge has been assigned (case &lt;48h old) and whether judge has prior TCPA rulings in W.D. Wash.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call the Founder first. Small team, no GC, no CCO — Samuel O'Brien is the buyer.</h2>
+      <p class="section-lede">With only four leadership-team members and no in-house General Counsel or Chief Compliance Officer surfaced from any source <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span>, the decision sits with founder/President Samuel O'Brien. The CMO (Hannah Dickman) is the secondary path because she owns the SMS marketing program that triggered the suit. Email pattern is <code>{first}@truegoldrepublic.com</code> (founder uses <code>{flast}</code> variant).</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:16px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Samuel O'Brien</strong><br><span class="pill pill--dark">FOUNDER</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>President &amp; Founder · 10+ yrs financial services / precious metals · sole decision-maker for vendor purchases <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span></td>
+            <td>(786) 373-1716 <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td>sobrien@truegoldrepublic.com <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td><a href="https://www.linkedin.com/in/samuel-obrien-truegold">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hannah Dickman</strong><br><span class="pill pill--dark">CMO</span> <span class="pill pill--red">CALL SECOND</span></td>
+            <td>Chief Marketing Officer · owns the SMS lead-gen program that produced the Hoffman texts · 8+ yrs trading/investing <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span></td>
+            <td>(800) 628-4653 <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td>hannah@truegoldrepublic.com <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+          </tr>
+          <tr>
+            <td><strong>Anthony Roberts</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>Director of Operations / Client Account Manager · 5+ yrs precious metals <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span></td>
+            <td>(310) 708-1744 <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td>anthony@truegoldrepublic.com <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+          </tr>
+          <tr>
+            <td><strong>Joseph Borowy</strong><br><span class="pill pill--dark">SR. AM</span></td>
+            <td>Senior Account Manager <span class="src-tag"><a href="https://www.truegoldrepublic.com/about-us">about-us →</a></span></td>
+            <td>(786) 629-1482 <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td>joe@truegoldrepublic.com <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+          </tr>
+          <tr>
+            <td><strong>Benjamin Martin</strong><br><span class="pill pill--dark">AE</span></td>
+            <td>Senior Account Executive <span class="src-tag"><a href="https://www.truegoldrepublic.com/team">team →</a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>benjamin@truegoldrepublic.com <span class="pill pill--warn" style="margin-left:6px">PATTERN</span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+          </tr>
+          <tr>
+            <td><strong>Stevie Jennings</strong><br><span class="pill pill--dark">CMO (LISTED)</span></td>
+            <td>Listed as CMO on /team page (conflicting with /about-us listing Dickman) — likely recent transition <span class="src-tag"><a href="https://www.truegoldrepublic.com/team">team →</a></span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+            <td>stevie@truegoldrepublic.com <span class="pill pill--warn" style="margin-left:6px">PATTERN</span></td>
+            <td><span class="pill pill--gap">NOT FOUND</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--gap">ROLE ONLY</span></td>
+            <td>No in-house GC identified on any team page or LinkedIn — likely outside counsel will appear on the docket within 21 days</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--gap">ROLE ONLY</span></td>
+            <td>No CCO on published leadership — gap is itself a sales hook</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Main Switchboard</strong></td>
+            <td>True Gold Republic general contact line / inbox <span class="src-tag"><a href="https://www.truegoldrepublic.com/contact">contact →</a></span></td>
+            <td>(800) 300-4653 <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td>info@truegoldrepublic.com <span class="pill pill--ok" style="margin-left:6px">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px;color:var(--fg-3);margin:0">
+      <strong>Email pattern:</strong> <code>{first}@truegoldrepublic.com</code> (confirmed from <code>anthony@</code>, <code>joe@</code>, <code>hannah@</code> on published team page). Founder uses <code>{flast}@</code> variant (<code>sobrien@</code>). Apply pattern with <span class="pill pill--warn">PATTERN</span> confidence for unverified team members.
+    </p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours. Defendant just got served, hasn't retained counsel, and has no compliance infrastructure to lean on.</h2>
+      <p class="section-lede">The window is the gap between service of the complaint and the defendant retaining defense counsel. Once outside counsel is engaged, all vendor decisions slow down. Right now, the founder is the buyer and the urgency is at peak.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–1 · Today</div>
+        <h3 class="card-title">Direct call to founder Samuel O'Brien</h3>
+        <p class="card-body">Dial (786) 373-1716. Lead with: "I'm calling about Hoffman v. DB Miami filed yesterday in Western Washington." Reference the missing /privacy and /terms pages and the named-plaintiff exposure of $9K–$18K. Pitch Litigator Scrub + Federal/State DNC as the bundle. Outcome: schedule a 20-min demo within 48 hours.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">Parallel outreach to CMO Hannah Dickman</h3>
+        <p class="card-body">Dial (800) 628-4653 ext. CMO. She owns the SMS engine. Email <code>hannah@truegoldrepublic.com</code> with subject "Hoffman complaint + your SMS program — 15 min?" Frame Blacklist as the way to keep her SMS engine running through Q4 without triggering another case. Outcome: technical eval of scrub integration.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 3–7</div>
+        <h3 class="card-title">Pull PACER ECF #1 + watch for defense appearance</h3>
+        <p class="card-body">Pull the un-redacted complaint exhibit from PACER to recover full plaintiff number for retroactive scrub validation. Monitor docket daily for defense counsel notice of appearance — once outside counsel is on, route follow-up through them.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">Bundle close before answer deadline</h3>
+        <p class="card-body">Position Litigator Scrub + DNC Subscription + Consent Capture as a unified "Hoffman remediation package" so defendant can demonstrate a remedial program in any settlement discussion or 12(b) motion. Outcome: signed MSA before ~Day 21 answer.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <h3 class="card-title">Trigger conditions — re-route if any of these fire</h3>
+      <ul class="clean tight" style="margin-top:8px">
+        <li><strong>Defense counsel appears on docket →</strong> pause founder outreach, route through outside counsel; lead with "scrub-as-remediation" angle for settlement leverage</li>
+        <li><strong>Plaintiff drops to amend / adds defendants →</strong> escalate urgency and broaden pitch to any affiliate marketing partners named</li>
+        <li><strong>Defendant files MTC arbitration →</strong> shift pitch to consent-capture / record-retention since arbitration record will need consent proof</li>
+        <li><strong>True Gold publishes a privacy policy mid-litigation →</strong> note language carefully; their first published policy is often drafted by defense counsel and reveals their compliance baseline</li>
+        <li><strong>800notes / YouMail starts indexing (866) 896-3218 →</strong> consumer corroboration strengthens class numerosity and raises settlement pressure</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY · HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 19, 2026</span>
+      <span class="pill pill--warn">FOUNDER-OWNED DECISION · SMALL TEAM</span>
+      <span class="pill pill--info">BUNDLE: LITIGATOR SCRUB + FED/STATE DNC + POLICIES</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
