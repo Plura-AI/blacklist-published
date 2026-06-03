@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pineda-Torres v. Pacific Credit Services — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.row-current{ background:var(--bl-red-tint); }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#fff" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">BLACKLIST</text>
+          <text x="125" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA + RFDCPA + FDCPA Defendant · CA Debt Collector · Post-Cease-and-Desist ATDS + Prerecorded Voice + SMS</p>
+      <h1 class="hero-tagline">Pineda-Torres v.<br>Pacific Credit Services <span style="color:var(--bl-red); font-weight:500; font-size:0.55em;">&amp; Orange County Heart Institute</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01375</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(pull PACER)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">15 USC § 1692c/e/f<br>Cal. Civ. § 1788.14/.17<br>47 USC § 227(b)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Anthony Paul Diehl <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Office of Anthony Paul Diehl · Irvine, CA</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff phone number was never pled — scrub is deferred pending PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses no full 10-digit number for Gerzain Pineda-Torres, and Defendant Pacific Credit Services discloses no sending DID. The scrub is therefore deferred until the recipient number is recovered from the underlying account file or discovery.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Cell Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">The complaint alleges contact "by phone, email, mail, and/or SMS to collect on the debt at least six (6) times" but never quotes the recipient cellular number. No exhibits attached.</div>
+      </div>
+      <p class="scrub-body-text">
+        Blacklist's litigator-list lookup was <strong>not run</strong> — running it on a partial or absent number returns garbage. Pineda-Torres's name was, however, cross-checked against CourtListener for prior TCPA/FDCPA filings: no prior consumer filings surface, but plaintiff filed a Chapter 7 bankruptcy petition (8:25-bk-11824) in the C.D. Cal. on July 3, 2025
+        <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerzain+Pineda-Torres%22&type=r">CourtListener -&gt;</a></span>. This bankruptcy itself is the underlying debt being collected and creates a potential standing / judicial-estoppel angle if the TCPA claim accrued pre-petition and was not scheduled as an asset.
+      </p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Recovery Path #1</div>
+          <h3 class="card-title">Pull ECF #1 from PACER</h3>
+          <div class="card-body">Complaint and exhibits in the C.D. Cal. case (~$1.20). Look for the cease-and-desist letter exhibit — the recipient number is usually printed on the demand. Confirm the plaintiff cell from the account-statement attachment if Pacific Credit Services answers.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path #2</div>
+          <h3 class="card-title">Wait for Defense Counsel Notice</h3>
+          <div class="card-body">Both defendants must appear within 21 days of service. Once defense counsel files an answer or motion, the rep can call them directly — they will know the recipient number from the account file.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path #3</div>
+          <h3 class="card-title">Bankruptcy Schedules</h3>
+          <div class="card-body">Pineda-Torres's Ch. 7 schedules (8:25-bk-11824) likely list the Pacific Credit Services / Orange County Heart Institute debt with the consumer phone on the creditor-matrix. Pull from PACER bankruptcy docket.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>&nbsp;
+      <span class="pill pill--info">Plaintiff: No Prior TCPA Filings Found</span>&nbsp;
+      <span class="pill pill--warn">Bankruptcy Estoppel Risk Flagged</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A California third-party debt collector with no functioning corporate website and a textbook post-cease-and-desist ATDS allegation.</h2>
+      <p class="section-lede">Third-party debt collection is the single highest TCPA/FDCPA-exposure vertical in the country. Pacific Credit Services has been named for ignoring a written attorney-representation + cease-and-desist letter and continuing to dial, text, and email through an ATDS / prerecorded voice. Lead with Litigator Scrub + Internal DNC suppression; close with a compliance audit and consent-capture overhaul.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Front-of-funnel block on every known plaintiff number before the dialer fires. PCS's complaint is the textbook signal: a represented consumer kept getting called for 6+ contacts <em>after</em> written cease-and-desist. A working litigator list catches this.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Co-Sell</div>
+        <h3 class="card-title">Internal DNC / Suppression List</h3>
+        <div class="card-body">FDCPA § 1692c(c) cease requests and § 1692c(a)(2) attorney-rep notices must persist across SMS, voice, and email platforms. The complaint alleges all three channels failed. Sell a single source-of-truth suppression API.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Upsell After Answer</div>
+        <h3 class="card-title">Consent Capture &amp; Compliance Audit</h3>
+        <div class="card-body">PCS's "website" (pacificcredit.com) is a parked domain listed for sale on Atom.com — there is no privacy policy, no opt-out page, no posted compliance program. A policies-and-procedures audit is a defensible Rule 26 disclosure.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="color:var(--fg-2); font-size:15px; line-height:1.65; max-width:880px;">
+        Open with the wedge: "Your account at Pacific Credit Services just got named in a multi-statute federal complaint in the Central District of California — FDCPA, Rosenthal, and TCPA, all stacked. The plaintiff's lawyer sent your client a written attorney-rep + cease-and-desist letter on July 29, 2025, and the file shows six follow-up contacts across phone, SMS, and email after that. That's a §1692c(c) violation, a §1692c(a)(2) violation, and a §227(b) violation in a single transaction. The fix is upstream — a litigator-list scrub plus a single suppression layer your dialer, your texting platform, and your email tool all hit before they fire."
+      </p>
+      <p style="color:var(--fg-2); font-size:15px; line-height:1.65; max-width:880px; margin-top:12px;">
+        Close with the cross-sell: PCS collects medical debt for Orange County Heart Institute, who is also named as a co-defendant on a vicarious-liability theory. The healthcare-creditor vertical is increasingly being dragged into collector suits. If the rep can land PCS, OCHI is the next call.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A private California debt collector with zero public-facing compliance infrastructure.</h2>
+      <p class="section-lede">Pacific Credit Services is a privately-held California third-party debt-collection firm. Public corporate-registry sources (CA SoS bizfileonline, Bizapedia, OpenCorporates, BBB) all blocked or returned null on enrichment — meaning the entity has not been verified through structured data and the rep should expect a low-visibility, low-marketing-spend operator.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile — Pacific Credit Services</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Pacific Credit Services <span class="pill pill--gap">CA SOS not retrieved</span></dd>
+          <dt>Vertical</dt><dd>Third-party debt collection (medical-receivable focus per pleadings)</dd>
+          <dt>Formation State</dt><dd>California (alleged in complaint)</dd>
+          <dt>HQ</dt><dd>California — exact city unknown <span class="pill pill--gap">GAP</span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Website</dt><dd>pacificcredit.com — parked / listed for sale on Atom.com for $55,000 <span class="src-tag"><a href="https://www.pacificcredit.com">pacificcredit.com -&gt;</a></span></dd>
+          <dt>CFPB Complaints</dt><dd>Searched; no published complaint dataset surfaced for this name <span class="src-tag"><a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/?searchField=all&searchText=Pacific+Credit+Services">CFPB -&gt;</a></span></dd>
+          <dt>Marketing Tech</dt><dd>ATDS, prerecorded/artificial voice, SMS platform (alleged in complaint)</dd>
+          <dt>Channels in Use</dt><dd>Voice · SMS · Email · Mail (per complaint ¶¶ 20, 23, 25)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No corporate website. No privacy policy. No DNC page.</h3>
+        <div class="card-body">
+          Pacific Credit Services's domain <strong>pacificcredit.com is a parked, for-sale Atom.com landing page</strong> — no /about, no /contact, no /privacy, no compliance disclosures
+          <span class="src-tag"><a href="https://www.pacificcredit.com" style="color:#C9C9C9;">pacificcredit.com -&gt;</a></span>. For a regulated debt collector in California operating across SMS, voice, and email channels, the absence of a public privacy policy and any DNC / opt-out page is a fact a plaintiff's expert will weaponize at deposition. Pair this with a multi-channel cease-and-desist failure (¶¶ 20, 23, 25) and the §1692c(c) case writes itself.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day federal answer clock · Window closes ~ June 18, 2026</h3>
+        <div class="card-body">
+          Complaint filed 2026-05-28; summons request docketed same day <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01375&type=r">CourtListener -&gt;</a></span>. Once served, defendants have 21 days under Fed. R. Civ. P. 12(a)(1). The economic window to land scrubbing/suppression service is <strong>before</strong> the answer is drafted — counsel will want to truthfully state corrective remediation in their Rule 26 disclosures and defenses.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-2);">Related Entities &amp; Cross-Sell Candidates</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Orange County Heart Institute</strong></td>
+              <td>Co-defendant (original creditor)</td>
+              <td>Healthcare / Cardiology</td>
+              <td>Vicariously liable for collector's calls; healthcare-creditor vertical increasingly named</td>
+              <td><span class="pill pill--red">High</span></td>
+            </tr>
+            <tr>
+              <td>Other PCS creditor-clients (medical / utility / consumer-finance)</td>
+              <td>Upstream clients</td>
+              <td>Mixed receivables</td>
+              <td>If PCS's suppression layer leaks, every creditor on PCS's roster shares exposure</td>
+              <td><span class="pill pill--warn">Medium</span></td>
+            </tr>
+            <tr>
+              <td>Law Office of Anthony Paul Diehl — past bankruptcy clients</td>
+              <td>Plaintiff-counsel's book of business</td>
+              <td>Consumer / bankruptcy debtors</td>
+              <td>Diehl's bankruptcy practice is a feeder funnel for FDCPA/TCPA add-on suits</td>
+              <td><span class="pill pill--info">Low (defense intel)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA/FDCPA suit surfaced against PCS in the public index — a cold-start opportunity to fix the gap before volume filers find it.</h2>
+      <p class="section-lede">CourtListener indexes zero prior TCPA or FDCPA suits naming Pacific Credit Services. This is the first publicly-indexed event, not a serial-defendant pattern. The rep's wedge is: "Close the gap now, before this complaint shows up in the next plaintiff lawyer's search."</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>8:26-cv-01375 (C.D. Cal. — Santa Ana)</dd>
+          <dt>Filed</dt><dd>May 28, 2026</dd>
+          <dt>Plaintiff</dt><dd>Gerzain Pineda-Torres (Orange County, CA)</dd>
+          <dt>Counsel</dt><dd>Anthony Paul Diehl, Esq. (CA Bar #342160)</dd>
+          <dt>Firm</dt><dd>The Law Office of Anthony Paul Diehl</dd>
+          <dt>Class Action</dt><dd>No — Individual plaintiff</dd>
+          <dt>Theories</dt><dd>§ 1692c(a)(2), § 1692c(c), § 1692e, § 1692f, Cal. Civ. § 1788.14, § 1788.17, 47 USC § 227(b), Intrusion upon Seclusion</dd>
+          <dt>DNC Status</dt><dd>Internal DNC / cease-and-desist failure pled (¶¶ 21, 23)</dd>
+          <dt>Damages Sought</dt><dd>$1,000 FDCPA + $1,000 Rosenthal + $500/$1,500 per TCPA violation + actual + attorney fees + injunctive relief</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · 21-day answer clock <span class="pill pill--red">Pending</span></dd>
+          <dt>Docket Visibility</dt><dd>CourtListener has docket #1, #4, #5 indexed <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01375&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel Card</h3>
+        <dl class="kv">
+          <dt>Attorney</dt><dd>Anthony Paul Diehl, Esq.</dd>
+          <dt>CA Bar #</dt><dd>342160 — Active <span class="pill pill--ok">Active</span> <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/342160">CA Bar -&gt;</a></span></dd>
+          <dt>Firm</dt><dd>The Law Office of Anthony Paul Diehl <span class="src-tag"><a href="https://apdlaw.net">apdlaw.net -&gt;</a></span></dd>
+          <dt>Firm Address</dt><dd>104 Blue Note, Irvine, CA 92618 <span class="pill pill--warn">Likely residential</span></dd>
+          <dt>Firm Phone</dt><dd>(949) 694-9702</dd>
+          <dt>Firm Email</dt><dd><a href="mailto:anthony@apdlaw.net">anthony@apdlaw.net</a></dd>
+          <dt>Practice Areas</dt><dd>Bankruptcy · Consumer Protection · FDCPA / TCPA add-on</dd>
+          <dt>Discipline History</dt><dd>None identified <span class="pill pill--ok">Clean</span></dd>
+          <dt>Firm Size</dt><dd>Solo practitioner</dd>
+          <dt>TCPA Power Ranking</dt><dd>Not ranked on TCPAWorld <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paul+Diehl">TCPAWorld -&gt;</a></span></dd>
+          <dt>Serial Filer?</dt><dd>No — solo bankruptcy practice, TCPA is opportunistic add-on</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--info">Low</span> — not a volume filer</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-2);">Plaintiff Firm Template</h3>
+      <div class="card">
+        <div class="card-body">
+          Diehl's pattern is the "<strong>bankruptcy-feeder add-on</strong>": file Chapter 7 for the consumer, send a single attorney-representation + cease-and-desist letter to every creditor and collector on the matrix, then bring an FDCPA/TCPA action when any of them keep dialing post-letter. The letter is the linchpin — it does three jobs at once (attorney representation under §1692c(a)(2), cease-and-desist under §1692c(c), and TCPA consent revocation under §227(b)). One failed suppression = three statutory claims. This complaint is a textbook execution of that template.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-2);">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row-current">
+              <td><strong>Pineda-Torres v. OCHI &amp; Pacific Credit Services</strong> <span class="pill pill--red">Current</span></td>
+              <td>8:26-cv-01375</td>
+              <td>C.D. Cal.</td>
+              <td>2026-05-28</td>
+              <td><span class="pill pill--red">Active · Pre-Answer</span></td>
+              <td>FDCPA + Rosenthal + TCPA + Intrusion</td>
+            </tr>
+            <tr>
+              <td>In re Gerzain Pineda-Torres (Ch. 7)</td>
+              <td>8:25-bk-11824</td>
+              <td>Bankr. C.D. Cal. (J. Clarkson)</td>
+              <td>2025-07-03</td>
+              <td><span class="pill pill--info">Underlying bankruptcy</span></td>
+              <td>Origin of the disputed debt; potential estoppel angle</td>
+            </tr>
+            <tr>
+              <td>Tews v. McDonough (PCS as collector)</td>
+              <td>—</td>
+              <td>E.D. Wash.</td>
+              <td>2013</td>
+              <td><span class="pill pill--ok">Terminated 2015 (likely settled)</span></td>
+              <td>FDCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Pacific+Credit+Services%22&type=r">CourtListener -&gt;</a></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>Open Intel Gaps to Close Before First Dial</h4>
+      <ul class="clean tight">
+        <li>• <strong>Plaintiff recipient number</strong> — not pled; pull ECF #1 exhibits and the bankruptcy creditor matrix.</li>
+        <li>• <strong>Judge assignment</strong> — not visible in CourtListener summary; PACER pull required.</li>
+        <li>• <strong>Defense counsel</strong> — not yet appeared; expect notice within ~21 days of service.</li>
+        <li>• <strong>Pacific Credit Services SoS record</strong> — CA bizfileonline returned null; manually pull registered-agent + officer list before first call.</li>
+        <li>• <strong>Orange County Heart Institute corporate record</strong> — entity not verified; confirm legal name (vs. "OC Heart Institute"), tax status (PC / Inc.), and managing physicians.</li>
+        <li>• <strong>Sending DID(s)</strong> — none disclosed in complaint; ask defense counsel for the dialer trunk numbers when they appear.</li>
+        <li>• <strong>Bankruptcy schedule disclosure</strong> — confirm whether the TCPA/RFDCPA claim was scheduled as an asset in 8:25-bk-11824. If not, judicial estoppel may bar recovery.</li>
+        <li>• <strong>BBB / Trustpilot / 800notes</strong> all blocked (HTTP 403); rerun manually for consumer complaint volume against PCS.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No verified PCS decision-makers in public index — call the main line and ask for compliance.</h2>
+      <p class="section-lede">All standard enrichment sources (TheOrg, LinkedIn employee list, RocketReach, ZoomInfo, Hunter.io) were gated or returned null for Pacific Credit Services. The rep should call the company main line, ask for the Compliance Officer or General Counsel, and back-fill this directory after the conversation. Email pattern could not be inferred from any source.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Compliance Officer / GC</strong><br><span class="pill pill--dark">Pacific Credit Services</span></td>
+            <td>Decision-maker on suppression list / litigator scrub purchase. Name not in public index.</td>
+            <td>Unknown — pull from CA SoS registered agent</td>
+            <td>Unknown — no email pattern verified</td>
+            <td><a href="https://www.linkedin.com/company/pacific-credit-services">LinkedIn co. page</a> (employee list gated)</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark">Pacific Credit Services</span></td>
+            <td>Service-of-process contact; often general counsel for small CA collectors.</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>CA SoS bizfileonline (manual pull required)</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Operations / Collections Manager</strong><br><span class="pill pill--dark">Pacific Credit Services</span></td>
+            <td>Owns dialer + SMS platform; second-best buyer of scrubbing services.</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Not surfaced</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Practice Administrator / CFO</strong><br><span class="pill pill--dark">Orange County Heart Institute</span></td>
+            <td>Co-defendant creditor. Owns the vendor relationship with PCS; can pressure PCS to remediate.</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Not surfaced — confirm OCHI's legal domain first</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr style="background:var(--gray-05);">
+            <td><strong>Anthony Paul Diehl, Esq.</strong><br><span class="pill pill--info">Plaintiff Counsel — Do Not Pitch</span></td>
+            <td>Solo practitioner · CA Bar #342160 · The Law Office of Anthony Paul Diehl, Irvine. Listed here for sales-context only.</td>
+            <td>(949) 694-9702 (per PACER)</td>
+            <td>anthony@apdlaw.net</td>
+            <td><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/342160">CA Bar</a> · <a href="https://apdlaw.net">apdlaw.net</a></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Plaintiff-counsel row is included for case context. Do not pitch plaintiff-side personnel. All defendant-side contacts are <span class="pill pill--gap">GAP</span> pending CA SoS registered-agent pull + LinkedIn premium lookup.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours. The 21-day answer clock starts on service.</h2>
+      <p class="section-lede">The complaint was filed May 28, 2026. Once served, defense has 21 days to answer. Blacklist's economic window is now — before defense counsel drafts a Rule 26 disclosure and tells the client to "wait until we see how this plays out."</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 — Today</div>
+        <h3 class="card-title">Pull CA SoS + PACER #1</h3>
+        <div class="card-body">Pull Pacific Credit Services registered-agent record from CA bizfileonline. Pull ECF #1 from PACER and the cease-and-desist exhibit. Recover plaintiff cell from the bankruptcy creditor matrix (8:25-bk-11824).</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2</div>
+        <h3 class="card-title">Cold Call PCS Main Line</h3>
+        <div class="card-body">Ask for Compliance Officer or General Counsel. Reference the C.D. Cal. complaint by docket. Wedge: "We saw the multi-statute filing — we can help close the suppression gap before answer is due."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3-7</div>
+        <h3 class="card-title">Run Scrub on Recovered Number</h3>
+        <div class="card-body">Once the plaintiff cell is recovered from PACER or the bk matrix, run the Blacklist litigator-list check and deliver the result as a proof-point on the second call.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7-14</div>
+        <h3 class="card-title">Cross-Sell OCHI</h3>
+        <div class="card-body">Reach Orange County Heart Institute's practice administrator. Healthcare creditors are increasingly named in vicarious-liability theories. Pitch upstream account scrubbing before files are placed with collectors.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 14-21</div>
+        <h3 class="card-title">Watch Docket for Defense Notice</h3>
+        <div class="card-body">When defense counsel appears, call them directly. Counsel often welcomes a vendor that can ship a "remediation in place" narrative for Rule 26 / mitigation argument.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Post-Answer</div>
+        <h3 class="card-title">Upsell Policies &amp; Procedures Audit</h3>
+        <div class="card-body">PCS has no published privacy policy or DNC page. A written compliance program is the cheapest insurance against the next solo bankruptcy lawyer running the same play.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-2);">Trigger Conditions</h3>
+      <ul class="clean tight" style="background:var(--bg-surface); border:1px solid var(--border-1); padding:16px 24px;">
+        <li>• If defendant files a motion to compel arbitration before answer — pivot pitch to consent-capture overhaul (showing the file's deficiencies will strengthen defense).</li>
+        <li>• If plaintiff dismisses voluntarily to amend (e.g., to add a class) — urgency goes from "21-day answer" to "30-day amended complaint" and the cross-sell to OCHI becomes the lead.</li>
+        <li>• If a settlement is reached before defense counsel appears (common for solo-bk add-on suits) — close the prevention sale on the "next one will be a class" framing.</li>
+        <li>• If a second Diehl complaint hits PCS within 60 days — the defendant officially has a serial problem and the rep can close immediately at higher ACV.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">Urgency: High</span>&nbsp;
+      <span class="pill pill--warn">21-Day Answer Window · Close Before Jun 18, 2026</span>&nbsp;
+      <span class="pill pill--info">Cold-Start Defendant — No Prior TCPA Index Hits</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
