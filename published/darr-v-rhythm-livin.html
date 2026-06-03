@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darr v. Rhythm Livin — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-01</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Apparel SMS Marketer · Caller-ID Transmission Failure · Putative Class · C.D. Cal.</p>
+      <h1 class="hero-tagline">Darr v.<br>Rhythm Livin <span style="color:var(--bl-red); font-weight:500; font-size:0.5em;">(Rhythm USA, LLC)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01389</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 29, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(per RECAP)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Caitlin Darr is already a 3-case serial filer in 10 days.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint pleads zero digits of the plaintiff's number, so a Blacklist Litigator Scrub cannot be run today. However, plaintiff Caitlin Darr filed three TCPA actions in the C.D. Cal. within ten days — that pattern alone is the scrub-equivalent risk signal.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial Filer Flag · 3 Cases / 10 Days</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraphs 12–18 describe the texts and attach screenshots, but the plaintiff's own cellular number is redacted/omitted. Recovery options below.</div>
+      </div>
+      <p class="scrub-body-text">Even without a digit-level scrub, plaintiff Caitlin Darr is independently confirmed as a serial TCPA filer: <strong>three putative class actions in the Central District of California within ten days</strong> — Darr v. EyeBuyDirect (8:26-cv-01250), Darr v. Grey Bandit (8:26-cv-01301), and the present action — all against DTC consumer brands <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Caitlin+Darr%22&type=r">CourtListener →</a></span>. Treat every Darr-style fact pattern (DTC apparel SMS, no opt-in checkbox, no caller-ID name) as Blacklist-list-grade exposure.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-meta">Sender DID</div>
+        <h3 class="card-title">+1 (855) 408-3062</h3>
+        <p class="card-body">Toll-free 855 NANPA number used to transmit the marketing texts to plaintiff per the complaint screenshots. Consistent with outbound SMS dialer/aggregator infrastructure rather than a geographic consumer line. The texts link to <code>rhythm.klo0.io</code> — a Klaviyo-pattern shortlink domain, indicating a third-party ESP/SMS vendor in the loop.</p>
+        <div style="margin-top:12px;"><span class="pill pill--info">Toll-Free Sender</span> <span class="pill pill--warn">Third-Party ESP (klo0.io)</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Aggregator Intel</div>
+        <h3 class="card-title">No third-party consumer reports surfaced</h3>
+        <p class="card-body">800notes, YouMail, Tellows and RoboKiller all returned 403/404 during enrichment — no consumer-side complaint volume could be retrieved for 855-408-3062. This does not exonerate the DID; it means the sender identification corroboration step is a known gap to close before first dial.</p>
+        <div style="margin-top:12px;"><span class="pill pill--gap">Aggregator Data Unavailable</span></div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 + Exhibits via PACER</h3>
+        <p class="card-body">Plaintiff's number may surface in the exhibit metadata or in any forthcoming amended complaint. Cheapest route to a digit-level scrub.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for Defense Counsel Appearance</h3>
+        <p class="card-body">Defense counsel typically receives the plaintiff number in the first 26(f) discovery exchange or a Rule 12 meet-and-confer. Set a calendar trigger for ~30 days post-service.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Cross-Reference Sister Filings</h3>
+        <p class="card-body">If the same Caitlin Darr's number is disclosed in Darr v. EyeBuyDirect or Darr v. Grey Bandit during discovery, it is highly likely the same number used here <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Caitlin+Darr%22&type=r">CourtListener →</a></span>.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL FILER CONFIRMED</span>
+      <span class="pill pill--warn">JIBRAEL HINDI FIRM — 2026 TCPAWORLD POWER RANKING</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Foreign-parent DTC apparel brand with a smoking-gun "DNC waiver" in its own Terms of Service.</h2>
+      <p class="section-lede">Rhythm USA, LLC is the U.S. arm of an Australian surf-apparel parent running an SMS marketing program through a third-party ESP (klo0.io / Klaviyo pattern). Its own Terms of Service tell consumers they agree to texts "even if your mobile number is registered on any state or federal do-not-call list" — exactly the §227(c) theory Jibrael Hindi's firm pleads. Lead with Consent Capture + DNC scrubbing. Use Compliance Audit as the close-out.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Rhythm's account-registration page collects no phone number and shows no TCPA checkbox; SMS "consent" is buried inside the Terms of Service. The Hindi firm's §227(c)(5) and 47 CFR §64.1601(e) theory targets exactly this gap. A defensible consent-capture stack at checkout is the only meaningful long-term fix <span class="src-tag"><a href="https://www.rhythmlivin.com/policies/terms-of-service">Rhythm ToS →</a></span>.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <p class="card-body">The ToS purports to override DNC registration — a clear signal Rhythm has no Federal DNC scrubbing in place. Putative class is defined nationally; class numerosity in the "several thousands" multiplies exposure. Daily-list DNC scrub is the cheapest mitigation.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">Privacy policy is written under Australian Privacy Principles (Privacy Act 1988 Cth) with zero U.S. TCPA / CCPA / CAN-SPAM language, and the site copyright still reads "© 2022 Rhythm" — strong indicator policies have not been refreshed for the 2023 FCC one-to-one consent rule <span class="src-tag"><a href="https://www.rhythmlivin.com/policies/privacy-policy">Rhythm Privacy →</a></span>.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Pitch Angle</div>
+      <h3 class="card-title">Open with the screenshot. Close with the ToS.</h3>
+      <div class="card-body">
+        <p>"You're being sued by Gerald Lane out of the Jibrael Hindi firm — the same firm that's already filed against Steve Madden, Nespresso, the Tampa Bay Buccaneers and ThirdLove this cycle. They aren't going away after this case. Your own Terms of Service tell consumers they agree to receive marketing texts 'even if your mobile number is registered on any state or federal do-not-call list.' That sentence is the §227(c)(5) theory in the complaint, copy-pasted."</p>
+        <p>"Blacklist's litigator scrub + Federal DNC list + consent capture would have prevented this contact from being sent. The plaintiff is already on a three-case-in-ten-days run against DTC brands — EyeBuyDirect, Grey Bandit, now Rhythm. Your peer brands are next. Either we scrub before the next blast, or you settle this one and pay the next firm to scrub for you in discovery."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">U.S. distribution arm of an Australian surf/coastal-lifestyle apparel parent, dispatching from California.</h2>
+      <p class="section-lede">Rhythm USA, LLC operates rhythmlivin.com as the U.S. storefront for Rhythm Group Pty Ltd / Rhythm Retail Group Pty Ltd, an Australian surf-apparel brand founded in 2003 with a 1,000+ retail-store global wholesale footprint. The U.S. LLC handles California-dispatched DTC orders; the Australian parent controls brand and creative.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Rhythm USA, LLC d/b/a Rhythm Livin</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Rhythm USA, LLC <span class="src-tag"><a href="https://www.rhythmlivin.com/pages/about-us">Rhythm About →</a></span></dd>
+          <dt>Entity Type</dt><dd>California LLC (per complaint ¶8)</dd>
+          <dt>Formation State</dt><dd>CA</dd>
+          <dt>HQ</dt><dd>Laguna Beach, CA (per complaint); USA orders dispatched from California</dd>
+          <dt>Parent</dt><dd>Rhythm Group Pty Ltd / Rhythm Retail Group Pty Ltd (Australia, Burleigh Heads) <span class="src-tag"><a href="https://www.rhythmlivin.com/policies/privacy-policy">Privacy Policy →</a></span></dd>
+          <dt>Founded</dt><dd>2003 <span class="src-tag"><a href="https://www.rhythmlivin.com/pages/about-us">About →</a></span></dd>
+          <dt>Vertical</dt><dd>DTC apparel — surf / coastal lifestyle</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Revenue / Employees</dt><dd>Not disclosed (Crunchbase / Glassdoor blocked at enrichment)</dd>
+          <dt>Wholesale Footprint</dt><dd>1,000+ retail stores globally <span class="src-tag"><a href="https://www.rhythmlivin.com/pages/about-us">About →</a></span></dd>
+          <dt>Registered Agent</dt><dd>Not retrieved — CA SoS bizfile fetch failed</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">"…even if your mobile number is registered on any state or federal do-not-call list."</h3>
+        <div class="card-body">
+          <p>Verbatim from Rhythm's own Terms of Service: <em>"By consenting to RHYTHM's SMS marketing in the checkout and initializing a purchase or subscribing via our subscription tools, you agree to receive recurring text notifications… even if your mobile number is registered on any state or federal do-not-call list."</em> <span class="src-tag"><a href="https://www.rhythmlivin.com/policies/terms-of-service">Rhythm ToS →</a></span></p>
+          <p style="margin-top:12px;">No arbitration clause. No class-action waiver. Privacy policy governed by Australian Privacy Principles with zero TCPA, autodialer, or DNC language. Site copyright still "© 2022 Rhythm." Account registration page collects no phone field and offers no TCPA disclosure <span class="src-tag"><a href="https://www.rhythmlivin.com/policies/privacy-policy">Privacy →</a></span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Pre-answer window is open. Move now.</h3>
+      <dl class="kv">
+        <dt>Complaint Filed</dt><dd>May 29, 2026 — 3 days ago</dd>
+        <dt>Answer Deadline</dt><dd>~21 days post-service (TBD; not yet on docket)</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+        <dt>Class Cert Window</dt><dd>Discovery has not begun — class consent records and ESP audit trails are the single biggest defense asset</dd>
+        <dt>Vendor Refresh Trigger</dt><dd>Pre-summer DTC apparel SMS blast season (Jun–Aug) — every additional contact during this window is incremental exposure</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Rhythm Group Pty Ltd / Rhythm Retail Group Pty Ltd</td>
+            <td>Parent (Australia)</td>
+            <td>Surf apparel — global wholesale + DTC</td>
+            <td>Controls brand SMS/email comms; Australian privacy regime ≠ TCPA</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Rhythm USA, LLC (current defendant)</td>
+            <td>U.S. subsidiary</td>
+            <td>DTC apparel — CA-dispatched</td>
+            <td>Live TCPA exposure today</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>Klaviyo (klo0.io shortlink vendor)</td>
+            <td>SMS/ESP vendor</td>
+            <td>Marketing platform</td>
+            <td>Same ESP used by hundreds of DTC brands — vendor-level scrub integration opportunity</td>
+            <td><span class="pill pill--info">Channel Partner</span></td>
+          </tr>
+          <tr>
+            <td>Shopify storefront tenants in DTC apparel</td>
+            <td>Peer DTC brands</td>
+            <td>Apparel / e-commerce</td>
+            <td>Hindi firm has filed against Steve Madden, ThirdLove, Grey Bandit, EyeBuyDirect — entire peer set is at risk</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA action against Rhythm USA — and a textbook Jibrael Hindi caller-ID template.</h2>
+      <p class="section-lede">No prior TCPA cases were found against Rhythm USA, LLC or Rhythm Livin in CourtListener/RECAP. This is novel exposure for the defendant, prosecuted by one of the most active TCPA plaintiffs' shops in the country running a documented "caller-ID name not transmitted" template.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Darr v. Rhythm USA, LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>8:26-cv-01389 (C.D. Cal., Santa Ana Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01389&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>May 29, 2026</dd>
+          <dt>Plaintiff</dt><dd>Caitlin Darr (Orange County, CA)</dd>
+          <dt>Counsel</dt><dd>Gerald D. Lane Jr. (CA #352470) · Law Offices of Jibrael S. Hindi, PLLC</dd>
+          <dt>Class</dt><dd>Yes — putative Rule 23, nationwide, 4-year lookback</dd>
+          <dt>Class Size</dt><dd>"At least 50 persons; believed to be in the several thousands" (¶21–22)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>Telemarketing texts placed without transmission of CPN/ANI plus telemarketer/seller name</dd>
+          <dt>Channel Pled</dt><dd>SMS — sender 855-408-3062, shortlinks at rhythm.klo0.io</dd>
+          <dt>Damage Math</dt><dd>$500/text negligent · $1,500/text willful · "aggregate damages in the millions" (¶28)</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer clock</dd>
+          <dt>Aggregator Visibility</dt><dd>RECAP indexed; PacerMonitor/UniCourt aggregation pending</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. — Law Offices of Jibrael S. Hindi, PLLC</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="pill pill--warn">FL firm filing CA cases</span></dd>
+          <dt>Firm Phone</dt><dd>754-444-7539</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com · gerald@jibraellaw.com</dd>
+          <dt>Website</dt><dd>jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com/">jibraellaw.com →</a></span></dd>
+          <dt>Bar Number</dt><dd>CA #352470 (Lane) — admission date not extracted <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CA Bar →</a></span></dd>
+          <dt>Bar Status</dt><dd>Active</dd>
+          <dt>Address Mismatch</dt><dd><span class="pill pill--warn">Yes</span> — FL firm address on CA federal complaint</dd>
+          <dt>Discipline</dt><dd>None surfaced</dd>
+          <dt>TCPAWorld Ranking</dt><dd>Named in 2026 Power Rankings — "Most Dangerous TCPA Plaintiff's Lawyers" <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Filing Cadence</dt><dd>Multiple Quiet Hours / Caller-ID class actions per month in C.D. Cal. <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span></dd>
+          <dt>Notable Defendants</dt><dd>Steve Madden, Nespresso, ThirdLove, Tampa Bay Buccaneers, Grey Bandit, EyeBuyDirect, UrbanStems</dd>
+          <dt>Settlement Posture</dt><dd>Firm advertises "+$30M TCPA settlements" — settlement-oriented practice</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Hindi/Lane Caller-ID Transmission Template (47 CFR § 64.1601(e))</h3>
+      <p class="card-body">The complaint relies on <em>Newell v. JR Cap.</em>, 791 F. Supp. 3d 571 (E.D. Pa. 2025) and <em>Dobronski v. SelectQuote</em>, 2025 WL 900439 (E.D. Mich. Mar. 25, 2025) — both establishing a private right of action under § 227(c)(5) for caller-ID transmission failures. Plaintiff Caitlin Darr is independently a 3-case serial filer (Darr v. EyeBuyDirect, Darr v. Grey Bandit, Darr v. Rhythm USA — all C.D. Cal., all DTC apparel/eyewear, all within 10 days) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Caitlin+Darr%22&type=r">CourtListener →</a></span>. Expect the same template across the next wave of DTC peer brands.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Darr v. Rhythm USA, LLC</strong></td>
+            <td>8:26-cv-01389</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-29</td>
+            <td><span class="pill pill--red">Active · Current Case</span></td>
+            <td>Caller-ID transmission (§ 64.1601(e))</td>
+          </tr>
+          <tr>
+            <td>Darr v. EyeBuyDirect, Inc.</td>
+            <td>8:26-cv-01250</td>
+            <td>C.D. Cal.</td>
+            <td>2026 (May)</td>
+            <td><span class="pill pill--info">Active · Same Plaintiff</span></td>
+            <td>TCPA — DTC eyewear</td>
+          </tr>
+          <tr>
+            <td>Darr v. Grey Bandit LLC</td>
+            <td>8:26-cv-01301</td>
+            <td>C.D. Cal.</td>
+            <td>2026 (May)</td>
+            <td><span class="pill pill--info">Active · Same Plaintiff</span></td>
+            <td>TCPA — DTC apparel</td>
+          </tr>
+          <tr>
+            <td>Lane v. UrbanStems, Inc.</td>
+            <td>—</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Same Firm</span></td>
+            <td>TCPA — DTC flowers</td>
+          </tr>
+          <tr>
+            <td>Curtis v. Authentic Sport Specialty</td>
+            <td>—</td>
+            <td>S.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Terminated</span></td>
+            <td>TCPA — DTC apparel/sports</td>
+          </tr>
+          <tr>
+            <td>Hernandez v. LA Tropicana Food L.P.</td>
+            <td>—</td>
+            <td>N.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated</span></td>
+            <td>TCPA — food/CPG</td>
+          </tr>
+          <tr>
+            <td>Andrighetto v. JumpStartMD, Inc.</td>
+            <td>—</td>
+            <td>N.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated</span></td>
+            <td>TCPA — health services</td>
+          </tr>
+          <tr>
+            <td>Moses v. Millionaire Media LLC</td>
+            <td>—</td>
+            <td>N.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Terminated (pre-cert)</span></td>
+            <td>TCPA — info products</td>
+          </tr>
+          <tr>
+            <td>Hindi v. Vanguard Equities, LLC</td>
+            <td>—</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Same Firm</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Sources: <a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener — Jibrael Hindi →</a> · <a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener — Gerald Lane →</a> · <a href="https://www.courtlistener.com/?q=%22Rhythm+USA%22+TCPA&type=r">CourtListener — Rhythm USA →</a></p>
+
+    <div class="card card--alert" style="margin-top:32px;">
+      <div class="card-meta" style="color:#A8A8A8;">Open intel gaps to close before first dial</div>
+      <h3 class="card-title">Known unknowns</h3>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li>Judge assignment not yet visible on RECAP — pull at first appearance</li>
+          <li>Answer deadline not yet calculable — service date not on docket</li>
+          <li>No defense counsel has appeared — direct outreach to in-house GC/CCO is the only channel today</li>
+          <li>Plaintiff's recipient number not pled in the complaint — pull ECF #1 exhibits via PACER (~$1.20)</li>
+          <li>California SoS bizfile, Bizapedia, OpenCorporates, Sunbiz all blocked — registered agent, formation date, officer list not confirmed from a primary source</li>
+          <li>800notes / YouMail / Tellows / RoboKiller all returned 403/404 — no independent corroboration of sender DID 855-408-3062 as Rhythm</li>
+          <li>No named GC, CCO, CMO, or VP-Legal identified — TheOrg shows only initials (JF, KK, LW); LinkedIn enrichment paid databases (ZoomInfo / Apollo / SignalHire) all blocked</li>
+          <li>Could not view live checkout flow — the one-to-one consent compliance step at point-of-phone-capture remains unverified</li>
+          <li>Jibrael Hindi FL bar number / discipline history not retrieved</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named legal/compliance contact surfaced — open with support@ + LinkedIn outreach to the four named employees, then escalate to U.S. operations lead.</h2>
+      <p class="section-lede">Rhythm Livin's public team page lists only initials; no GC, CCO, or CMO is publicly identifiable. Four named employees were located via LinkedIn — start there to triangulate to the U.S. operations / compliance owner. Email pattern <code>{first}.{last}@rhythmlivin.com</code> is inferred from <code>support@</code> and <code>usawholesale@</code> domain confirmation.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-meta">Email Pattern</div>
+      <h3 class="card-title" style="font-family:var(--font-mono); font-size:22px;">{first}.{last}@rhythmlivin.com <span class="pill pill--warn" style="font-family:var(--font-sans); font-size:11px; vertical-align:middle;">PATTERN · INFERRED</span></h3>
+      <p class="card-body">Confirmed domain via support@rhythmlivin.com and usawholesale@rhythmlivin.com on the contact page <span class="src-tag"><a href="https://www.rhythmlivin.com/pages/contact-us">Rhythm Contact →</a></span>. Personal-name format is inferred and must be verified before mass send.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:32px;">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Jessica Bishop</strong><br><span class="pill pill--dark">Rhythm Livin Employee</span></td>
+            <td>Title not public; surfaced via LinkedIn as a Rhythm Livin employee — start here for warm-routing to U.S. ops/compliance</td>
+            <td>—</td>
+            <td>jessica.bishop@rhythmlivin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jessicabishop1">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Delroy Beckford</strong><br><span class="pill pill--dark">Rhythm Livin Employee</span></td>
+            <td>Title not public; LinkedIn-surfaced Rhythm Livin contact</td>
+            <td>—</td>
+            <td>delroy.beckford@rhythmlivin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/delroy-beckford-5953291b">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jacob Byrne</strong><br><span class="pill pill--dark">Rhythm Livin Employee</span></td>
+            <td>Title not public; LinkedIn-surfaced Rhythm Livin contact</td>
+            <td>—</td>
+            <td>jacob.byrne@rhythmlivin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Marc Llewellyn</strong><br><span class="pill pill--dark">Rhythm Livin Employee</span></td>
+            <td>Title not public; LinkedIn-surfaced Rhythm Livin contact</td>
+            <td>—</td>
+            <td>marc.llewellyn@rhythmlivin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Support</strong><br><span class="pill pill--dark">Company Channel</span></td>
+            <td>Public-facing support email; use to log a formal inbound and request routing to Legal/Compliance</td>
+            <td>—</td>
+            <td>support@rhythmlivin.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>U.S. Wholesale</strong><br><span class="pill pill--dark">Company Channel</span></td>
+            <td>U.S. wholesale inbox — typically routes to a U.S.-based account/ops manager who can escalate to legal</td>
+            <td>—</td>
+            <td>usawholesale@rhythmlivin.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">Role Target</span></td>
+            <td>Role exists; individual not publicly identified — escalation target after named-employee outreach</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">Role Target</span></td>
+            <td>No CCO publicly identified; may not exist as a dedicated role given Australian-parent structure</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Plaintiff Counsel</strong><br><span class="pill pill--dark">Opposing</span></td>
+            <td>Gerald D. Lane Jr. (CA #352470) · Law Offices of Jibrael S. Hindi, PLLC (Wilton Manors, FL)</td>
+            <td>754-444-7539 (firm)</td>
+            <td>gerald@jibraellaw.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">Opposing</span></td>
+            <td>Not yet appeared · ~21-day answer clock from service</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag">Sources: <a href="https://www.linkedin.com/company/rhythm-livin">LinkedIn — Rhythm Livin →</a> · <a href="https://theorg.com/org/rhythm-livin">TheOrg — Rhythm Livin →</a> · <a href="https://www.rhythmlivin.com/pages/contact-us">Rhythm Contact →</a></p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 5 business days — before defense counsel appears and the door closes.</h2>
+      <p class="section-lede">The defendant is 3 days post-filing with no defense counsel on the docket. The named-employee LinkedIn list is short and warm. Once defense counsel appears, all outbound routes through outside counsel and the deal collapses to a discovery-driven evaluation.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">PACER pull + LinkedIn warm-up</h3>
+        <p class="card-body">Pull ECF #1 with exhibits via PACER (~$1.20) to attempt to recover plaintiff's number for scrub. In parallel, send LinkedIn connect requests to Jessica Bishop and Delroy Beckford with a neutral intro referencing the filing.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2</div>
+        <h3 class="card-title">Direct email — Support + U.S. Wholesale</h3>
+        <p class="card-body">Email support@rhythmlivin.com and usawholesale@rhythmlivin.com with a one-paragraph note: TCPA action filed 5/29 in C.D. Cal., would like to route a 15-minute call to whoever owns SMS compliance. Reply-rate on the wholesale inbox is typically higher.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Pattern-email the four named employees</h3>
+        <p class="card-body">Send to {first}.{last}@rhythmlivin.com for Bishop / Beckford / Byrne / Llewellyn. Lead with the smoking-gun ToS quote — it self-authenticates the pitch. Use bounce-rate to validate the email pattern before scaling.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7</div>
+        <h3 class="card-title">Phone-route via Australian parent</h3>
+        <p class="card-body">If U.S. routes don't return, call the Australian parent number listed on the rhythmlivin.com contact page and request the U.S. operations lead. The parent will route to whoever owns CA-based logistics, which is the likely TCPA-defense decision-maker.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10</div>
+        <h3 class="card-title">Cross-sell trigger</h3>
+        <p class="card-body">Whether or not Rhythm closes, the Hindi firm's DTC apparel campaign is live — add Steve Madden, ThirdLove, EyeBuyDirect, Grey Bandit and UrbanStems to the parallel outreach queue. All five are confirmed Hindi-firm targets.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 14–21</div>
+        <h3 class="card-title">Defense counsel watch</h3>
+        <p class="card-body">Monitor RECAP daily for a notice of appearance. Once defense counsel files, pivot the pitch to "consent record audit + records retention for discovery" — that becomes the immediate outside-counsel-led need.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px;">
+      <div class="card-meta" style="color:#A8A8A8;">Trigger Conditions</div>
+      <h3 class="card-title">What changes the plan</h3>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Defense counsel appears:</strong> pivot pitch to discovery support / consent-record audit; all outbound goes through outside counsel</li>
+          <li><strong>Plaintiff amends complaint to add plaintiff number:</strong> run live Litigator Scrub immediately and re-pitch with verified data</li>
+          <li><strong>Plaintiff voluntarily dismisses (Hindi firm has done this in PrimeFish):</strong> pre-suit settlement likely — pitch retention before defendant signs a release with no compliance covenant</li>
+          <li><strong>Hindi firm files against a second Rhythm-peer DTC brand:</strong> escalate cross-sell urgency to the whole peer set</li>
+          <li><strong>FCC one-to-one consent enforcement action surfaces against Klaviyo or another ESP:</strong> compounds the audit pitch</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH · 5-DAY WINDOW</span>
+      <span class="pill pill--danger">~21-DAY ANSWER CLOCK</span>
+      <span class="pill pill--warn">PRE-SUMMER SMS BLAST SEASON</span>
+      <span class="pill pill--info">CROSS-SELL: DTC APPAREL PEER SET</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-01</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
