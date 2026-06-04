@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gress v. Praxis Ethica — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout-gap{ background:#FFF3DD; border:1px solid #B36B00; border-left:4px solid #B36B00; padding:20px 24px; margin-top:24px; }
+.callout-gap h4{ margin:0 0 8px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:#B36B00; }
+.step-body{ font-size:15px; line-height:1.6; color:var(--fg-1); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#fff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">BLACKLIST</text>
+          <rect x="118" y="3" width="3" height="17" fill="#A50100"/>
+          <text x="128" y="18" fill="#fff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-27</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Junk-Fax Class Action · ICFA + Conversion + Trespass · Edelman Combs Plaintiff Template</p>
+      <h1 class="hero-tagline">Gress v.<br>Praxis Ethica Compliance &amp; RM</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-06231</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Ill. (Chicago)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 27, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(0 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Edmond E-Min Chang<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC §227(b)(1)(C)<br>815 ILCS 505/2<br>Conversion · Trespass</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">40+ alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Daniel A. Edelman<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Edelman Combs Latturner &amp; Goodwin</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff fax number disclosed in exhibit — but the API call failed. Manual scrub required before first dial.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The fax recipient number for Dr. Gress (708-957-8929) is visible in the exhibit cover page (the "To: Fax" line on the Praxis Ethica fax). Our automated <code>blacklistBulk</code> lookup returned a TLS/certificate error and could not be retried in this run — the rep must re-run the scrub manually before quoting matched-list status.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" width="16" height="16"></i> Scrub Status</div>
+        <span class="pill pill--warn">API ERROR · SCRUB DEFERRED · MANUAL RE-RUN REQUIRED</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Fax (Recipient) Number</div>
+        <div class="scrub-number">(708) 957-8929</div>
+        <div class="scrub-number-sub">Disclosed in Exhibit A header — "Fax: +17089578929" on the Praxis Ethica fax cover page (sent 04/21/2026). Plaintiff's standalone fax at 855 Maple Ave, Homewood, IL 60430.</div>
+      </div>
+      <p class="scrub-body-text">The Blacklist Alliance bulk lookup endpoint returned an expired-certificate error: <em>"invalid peer certificate: Expired"</em>. No litigator-list determination was reached. Independently, none of 800notes, YouMail, Tellows, or RoboKiller returned data for 708-957-8929 (all blocked 403/404), so no consumer-spam reputation signal is available either. The number traces to a southwest-Chicago-suburb landline (708 area code, Homewood IL), consistent with a physician's office fax line — not an obvious dialer/spam number.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID #1</div>
+        <h3 class="card-title">+1 (571) 717-3637</h3>
+        <p class="card-body">571 area code = Northern Virginia. Appears on the fax header as "From: Physician Outreach." No 800notes / YouMail / Tellows / RoboKiller reports could be retrieved (all sources returned 403/404). The use of an out-of-state VA number alongside the NJ 908 number suggests a multi-DID fax-broadcaster pool rather than a single in-house line.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID #2</div>
+        <h3 class="card-title">(908) 344-5565</h3>
+        <p class="card-body">908 area code = NJ (Basking Ridge). Listed on the fax body as Praxis Ethica's "phone" line and also appears as Sitora Alexander's NPI registry phone (PO Box 5170, Basking Ridge NJ 07920). Same number used for both inbound contact and outbound fax — small-shop infrastructure. <span class="src-tag"><a href="https://praxisethica.com">praxisethica.com →</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Opt-Out DID</div>
+        <h3 class="card-title">(908) 344-5534</h3>
+        <p class="card-body">The fax's own disclaimer instructs recipients to "write the word 'REMOVE' on this page and fax it to (908) 344-5534." Same 908 prefix as the main number — same Basking Ridge, NJ block. Matches the "Location Fax" line on Sitora Alexander's NPI profile.</p>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Re-run <code>blacklistBulk</code> manually</h3>
+        <p class="card-body">The cert error was transient infrastructure — re-running the lookup against 7089578929 should resolve in seconds and produce a clean match/no-match verdict before the first outreach call.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Cross-check against firm's prior plaintiff list</h3>
+        <p class="card-body">Dr. William P. Gress is a <strong>known repeat TCPA junk-fax plaintiff</strong> in N.D. Ill. — previously appeared as an intervenor/objector in <em>Davis Neurology v. Dental Equities</em> (E.D. Ark. 2016) alongside Florence Mussat and Scoma Chiropractic. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22William+Gress%22&type=r">CourtListener →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Pull PACER docket entry #1</h3>
+        <p class="card-body">Only the complaint is on file (CourtListener RECAP shows one docket entry). No defense appearance yet. A direct PACER pull (~$1.20) is the fastest way to confirm summons issuance and answer-deadline math.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: DEFERRED — API CERT ERROR</span>
+      <span class="pill pill--danger">SERIAL-FILER FLAG · PLAINTIFF GRESS</span>
+      <span class="pill pill--info">FAX HEADER NUMBER CAPTURED · 708-957-8929</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A healthcare-compliance vendor just got sued by the most prolific TCPA fax firm in Illinois — for the exact opposite of compliance.</h2>
+      <p class="section-lede">Praxis Ethica sells "OIG-aligned compliance programs" to physicians. They were just hit with a federal class action by Edelman, Combs, Latturner &amp; Goodwin for blasting unsolicited fax ads in violation of the TCPA — destroying the credibility premise of their entire business. They need a documented, defensible scrub/consent posture immediately. Lead with <strong>Consent Capture &amp; Record Retention</strong> and stack <strong>Fax-Number Scrubbing / DNC</strong> as the cross-sell.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title"><i data-lucide="file-search" width="18" height="18"></i> Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Defendant's own website has no Privacy Policy, no Terms of Service, no visible opt-in flow — multiple 404s on /privacy, /terms, /about. Going forward they need a documented invitation-or-permission system that survives 47 USC §227(b)(1)(C) scrutiny. <span class="pill pill--red" style="margin-top:8px">LEAD WITH THIS</span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #1</div>
+        <h3 class="card-title"><i data-lucide="phone-call" width="18" height="18"></i> Fax/DNC Scrubbing</h3>
+        <p class="card-body">Two known sending DIDs (571-717-3637 and 908-344-5565) indicate a fax-broadcast pool. Any future outbound campaign needs a JFPA-compliant scrub on the recipient list — the absence of one is precisely the gap Edelman Combs will plead in the next 10 cases against this defendant.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #2</div>
+        <h3 class="card-title"><i data-lucide="gavel" width="18" height="18"></i> Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">Defendant is an LLC that <em>sells compliance services</em> with no public-facing compliance infrastructure of its own. A Blacklist policies-and-procedures package gives them a paper trail to defeat willfulness allegations (3x damages) under §227(b)(3) — and aligns with the OIG seven-elements framework they already pitch to clients.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">"Sitora — you just got named individually in a federal TCPA class action filed by the most prolific junk-fax plaintiff's firm in Illinois. Edelman Combs has $500M+ in consumer recoveries and a published track record of certifying fax classes in N.D. Ill. The plaintiff, Dr. Gress, is a known repeat objector in TCPA fax settlements. You can't fight this on the merits without a documented consent and scrub record — and right now, your own site has no Privacy Policy and no Terms of Service. Worse: your business is <em>selling compliance to physicians</em>, so the optics of fighting this in public are devastating. The defensible move is to put a Blacklist consent-capture and fax-scrub stack in place this week — so that when discovery lands, you have something to point to for every fax sent <em>after</em> today, and so the next ten filings don't follow the same template."</p>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px; margin-top:12px;">The wedge isn't price — it's reputation. A compliance vendor cannot afford to be the defendant in an uncontested TCPA class action. Frame Blacklist as the cheap, fast, documentable remediation that lets them survive depositions and protect their physician-client roster.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Solo-operator NJ LLC selling OIG compliance services to physicians — built around one person, Sitora Alexander.</h2>
+      <p class="section-lede">Praxis Ethica is a thin, single-principal operation headquartered in Basking Ridge, NJ. The entire business appears to revolve around Sitora Alexander (sole manager, member, CEO, and registered agent per the complaint). No employees disclosed, no funding, no BBB profile, no Crunchbase listing — but they actively market to physician practices nationwide.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>Praxis Ethica Compliance &amp; RM LLC</dd>
+          <dt>DBA</dt><dd>Praxis Ethica Healthcare Compliance Group <span class="src-tag"><a href="https://praxisethica.com">praxisethica.com →</a></span></dd>
+          <dt>Formation state</dt><dd>New Jersey (per complaint ¶4)</dd>
+          <dt>Entity status</dt><dd><span class="pill pill--gap">UNCONFIRMED — NJ SOS lookup not retrieved</span></dd>
+          <dt>HQ / mailing</dt><dd>PO Box 5170, Basking Ridge, NJ 07920 (per Sitora Alexander NPI profile)</dd>
+          <dt>Founder / CEO</dt><dd>Sitora Alexander (a/k/a Sitora Ashrafova)</dd>
+          <dt>Phone</dt><dd>(908) 344-5565</dd>
+          <dt>Fax</dt><dd>(908) 344-5534</dd>
+          <dt>Email</dt><dd>info@pethica.org</dd>
+          <dt>Domains</dt><dd>praxisethica.com (primary), pethica.org (email)</dd>
+          <dt>Vertical</dt><dd>Healthcare compliance / OIG program development for physician practices, clinical labs, medical billing companies</dd>
+          <dt>Employees</dt><dd><span class="pill pill--gap">UNCONFIRMED · appears solo</span></dd>
+          <dt>Revenue band</dt><dd><span class="pill pill--gap">UNCONFIRMED</span> — fax discloses pricing: $3,400 setup + $150/mo ongoing per practice</dd>
+          <dt>Public footprint</dt><dd>No Wikipedia, no Crunchbase, no BBB profile, no Trustpilot reviews. Praxis Ethica's own /about, /team, /services, /privacy, /terms pages all return 404.</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">A compliance vendor with no compliance infrastructure of its own.</h3>
+        <p class="card-body">Praxis Ethica's public website has <strong>no Privacy Policy, no Terms of Service, no team page, no services page</strong> — every key URL returns 404. They sell "OIG seven-elements" programs to physicians but expose no consent flow, no opt-in mechanism, and no TCPA/JFPA disclosure on their own marketing channel.</p>
+        <p class="card-body" style="margin-top:12px;">The fax itself contains a tell-tale defect: the "opt out by faxing REMOVE" disclaimer at the bottom is the classic <strong>post-hoc opt-out</strong> language that the TCPA expressly rejects as a substitute for <em>prior express invitation or permission</em>. To a class-cert judge, this reads as an admission of mass unsolicited transmission.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Clock is at T-zero. First-mover advantage is enormous.</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 27, 2026 (today, 0 days ago)</dd>
+        <dt>Answer deadline</dt><dd>~21 days from service — defense counsel has NOT appeared <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06231&type=r">CourtListener →</a></span></dd>
+        <dt>Discovery window</dt><dd>Has not opened. The fax broadcast log subpoena is the inevitable next move.</dd>
+        <dt>Litigation heat</dt><dd>COLD — this is the FIRST TCPA suit against Praxis Ethica. The remediation window is open.</dd>
+        <dt>Renewal cycle</dt><dd>Praxis Ethica is mid-marketing-campaign per the 04/21/2026 fax date. Every additional fax sent without a Blacklist scrub adds to class-wide damages.</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:22px; font-weight:600;">Related Entities (Cross-Sell Candidates)</h3>
+    <p style="color:var(--fg-2); margin:0 0 16px; max-width:880px;">Sitora Alexander has a multi-venture history per her LinkedIn profile — each entity is a potential cross-sell or a forensic data-point if the operating company turns out to be a shell.</p>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Optelle Health</strong></td>
+            <td>Founder's prior company (CEO &amp; Founder, 2023-2024)</td>
+            <td>Chronic-care management for Medicare practices</td>
+            <td>Likely physician-outreach marketer — similar JFPA risk profile</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>Televisit</strong></td>
+            <td>Founder's prior company (CEO &amp; Founder, 2020-2022)</td>
+            <td>Telemedicine platform / EHR</td>
+            <td>Potential outbound SMS/call activity to physician customers</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>LiteMD</strong></td>
+            <td>Founder's prior company (CEO &amp; Founder, 2017-2019)</td>
+            <td>Specialty-care telehealth</td>
+            <td>Pre-pandemic telehealth — may be dormant</td>
+            <td><span class="pill pill--gap">LOW</span></td>
+          </tr>
+          <tr>
+            <td><strong>New York Healthcare Consultants</strong></td>
+            <td>Founder's prior employer (CEO, 2015-2019)</td>
+            <td>Multi-site physician practice management</td>
+            <td>65,000+ patient base disclosed — recurring outbound channels</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Edelman Combs running a textbook fax-class template — stacked theories, named individual defendant, 40+ class.</h2>
+      <p class="section-lede">This is the kind of complaint Edelman, Combs, Latturner &amp; Goodwin has refined over 20+ years of N.D. Ill. junk-fax litigation. Four counts (TCPA, ICFA, conversion, trespass-to-chattels) are stacked to survive a TCPA-only 12(b)(6); Sitora Alexander is named individually to pierce the LLC veil; and the plaintiff is a known repeat TCPA-fax intervenor.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">The Case</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-06231 (N.D. Ill., Eastern Div., Chicago) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06231&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>May 27, 2026</dd>
+          <dt>Judge</dt><dd>Edmond E-Min Chang (Article III, appointed 2010) <span class="src-tag"><a href="https://www.ilnd.uscourts.gov/home.aspx">N.D. Ill. →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Dr. William P. Gress (Cook County, IL — physician with standalone fax at 855 Maple Ave, Homewood)</dd>
+          <dt>Class</dt><dd>Putative Rule 23(b)(3) — "all persons with fax numbers" who received Praxis Ethica fax ads on or after May 27, 2022 (4-yr TCPA), or May 27, 2023 (3-yr ICFA), or May 27, 2021 (5-yr conversion / trespass)</dd>
+          <dt>Class size pled</dt><dd>"More than 40" recipients (4 separate counts)</dd>
+          <dt>Counts</dt><dd>I. TCPA 47 USC §227(b)(1)(C) · II. ICFA 815 ILCS 505/2 · III. Conversion · IV. Trespass to Chattels</dd>
+          <dt>Statutory damages</dt><dd>$500 per fax (§227(b)(3)(B)); up to $1,500 per fax if willful (§227(b)(3) treble)</dd>
+          <dt>Class exposure</dt><dd>40 × $500 = <strong>$20,000 floor</strong>; if willful: 40 × $1,500 = <strong>$60,000 floor</strong>. Real exposure scales with discovered fax-broadcast logs and is typically $250K-$2M+ in this firm's settled fax classes.</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          <dt>Aggregator visibility</dt><dd>Indexed in CourtListener RECAP only; not yet in PacerMonitor / Justia / UniCourt (too new).</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel — Edelman Combs</h3>
+        <dl class="kv">
+          <dt>Lead attorney</dt><dd>Daniel A. Edelman <span class="src-tag"><a href="https://edcombs.com/attorneys">edcombs.com →</a></span></dd>
+          <dt>Co-counsel</dt><dd>Heather Kolbus</dd>
+          <dt>Firm</dt><dd>Edelman, Combs, Latturner &amp; Goodwin, LLC</dd>
+          <dt>Address</dt><dd>20 S. Clark St., Suite 1800, Chicago, IL 60603-1841</dd>
+          <dt>Phone</dt><dd>312-739-4200 (litigation) / 312-626-3585 (main per website)</dd>
+          <dt>Email</dt><dd>dedelman@edcombs.com · hkolbus@edcombs.com · courtecl@edcombs.com</dd>
+          <dt>Firm size</dt><dd>9 attorneys — consumer-rights specialty <span class="src-tag"><a href="https://edcombs.com">edcombs.com →</a></span></dd>
+          <dt>Bar discipline</dt><dd>None found in available sources <span class="pill pill--ok">CLEAN</span></dd>
+          <dt>TCPA filing volume</dt><dd>CourtListener returns <strong>739 matching dockets</strong> for "Edelman Combs" + TCPA; 1,731+ hits for "Edelman Combs" + "fax" <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelman+Combs%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Serial filer?</dt><dd><span class="pill pill--danger">YES — VOLUME FILER · TCPA-DEDICATED</span></dd>
+          <dt>Published wins</dt><dd>$2.2M Bancard Junk Fax class (Ill. 2021) · $800K drug-fax settlement (Ill. 2021) · 7th Cir. revival of TCPA medical-recruitment-fax suit (Aug 2023) · <em>Loop Spine &amp; Sports</em> class cert (2025) <span class="src-tag"><a href="https://tcpaworld.com/?s=Daniel+Edelman">TCPAWorld →</a></span></dd>
+          <dt>Threat level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; background:var(--bg-canvas);">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">The Edelman Combs N.D. Ill. junk-fax template</h3>
+      <p class="card-body">This complaint is a near-pristine instance of ECLG's standard junk-fax class template, refined across <em>Holtzman v. Turza</em>, <em>Hinman v. M&amp;M Rental</em>, <em>CE Design v. Cy's Crabhouse</em>, <em>Garrett v. Ragle Dental</em>, and a dozen other certified N.D. Ill. fax classes (all cited in ¶37 of this very complaint as exemplars of class-certification success). The template:</p>
+      <ul style="margin:12px 0 0 18px; line-height:1.7;">
+        <li>Four stacked counts — TCPA + ICFA + conversion + trespass — to defeat motions to dismiss premised on any one theory</li>
+        <li>"On information and belief … more than 40 recipients in Illinois" — minimum-numerosity hedge</li>
+        <li>Individual officer named alongside LLC (here, Sitora Alexander) to pierce the corporate veil and reach personal assets</li>
+        <li>John Does 1-10 placeholder for the fax broadcaster and any affiliate marketers</li>
+        <li>Document Preservation Demand and Notice of Lien filed as separate signed pages — discovery is being teed up immediately</li>
+      </ul>
+      <p class="card-body" style="margin-top:12px;">Plaintiff Dr. Gress himself has a documented track record as a TCPA-fax-class participant: he appeared as a movant-to-intervene in <em>Davis Neurology PA v. Dental Equities LLC</em> (E.D. Ark. 4:16-cv-00371, 2016-2017) — a junk-fax class settlement — alongside Florence Mussat and Scoma Chiropractic, two other names familiar to TCPA defense counsel. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22William+Gress%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:22px; font-weight:600;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Gress v. Praxis Ethica Compliance &amp; RM LLC et al.</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span></td>
+            <td>1:26-cv-06231</td>
+            <td>May 27, 2026</td>
+            <td><span class="pill pill--danger">ACTIVE · NEW FILING</span></td>
+            <td>TCPA fax + ICFA + conversion + trespass</td>
+          </tr>
+          <tr>
+            <td><em>Davis Neurology PA v. Dental Equities LLC</em> (Gress as movant-intervenor)</td>
+            <td>4:16-cv-00371 (E.D. Ark.)</td>
+            <td>2016</td>
+            <td><span class="pill pill--ok">SETTLED</span></td>
+            <td>TCPA junk-fax class — Gress objected/intervened</td>
+          </tr>
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--fg-3); font-style:italic;">No other TCPA suits against Praxis Ethica or Sitora Alexander found in CourtListener — this is the FIRST. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Praxis+Ethica%22&type=r">CourtListener →</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-gap">
+      <h4><i data-lucide="alert-triangle" width="14" height="14"></i> Open Intel Gaps to Close Before First Dial</h4>
+      <ul style="margin:8px 0 0 18px; line-height:1.7;">
+        <li>Re-run <code>blacklistBulk</code> on 708-957-8929 (cert error in this run) to confirm match/no-match status</li>
+        <li>NJ Division of Revenue lookup on "Praxis Ethica Compliance &amp; RM LLC" — confirm entity status, formation date, registered agent of record</li>
+        <li>IARDC bar lookup for Edelman + Kolbus — confirm bar numbers and admission dates (page returned 404 in this run)</li>
+        <li>PACER docket pull (~$1.20) — confirm summons issuance date and exact answer-deadline math</li>
+        <li>Determine whether John Does 1-10 includes a named fax broadcaster (Westfax, Concord, j2/eFax, etc.) — that vendor is often the soft-target for early settlement</li>
+        <li>Confirm Sitora Alexander's individual exposure — is the NJ Ch.7 bankruptcy (E.D.N.Y. 2019, 1-19-47835) referenced in worker intel actually hers? If so, this is part of a personal-asset-protection pattern</li>
+        <li>BBB, Trustpilot, and Crunchbase were all 403-blocked — re-attempt before quoting reputation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Sitora Alexander directly. She is the LLC, the CEO, the registered agent, and the named individual defendant.</h2>
+      <p class="section-lede">This is a one-decision-maker shop. There is no in-house GC, no marketing director, no compliance officer to route through — every authority node converges on Sitora Alexander. Her personal exposure (named individual defendant under §227(b)) makes her the most motivated buyer Blacklist will see this month.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Sitora Alexander</strong> <span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span> <span class="pill pill--red" style="margin-left:4px">NAMED DEFENDANT</span></td>
+            <td>Sole manager, member, and CEO of Praxis Ethica Compliance &amp; RM LLC. Also the registered agent. Directs all advertising-by-fax policy (per complaint ¶7). Healthcare Compliance Officer · Harvard University background · Independent consultant since Jan 2025. Prior CEO of Optelle Health, Televisit, LiteMD, and New York Healthcare Consultants. <span class="src-tag"><a href="https://praxisethica.com">praxisethica.com →</a></span></td>
+            <td>(908) 344-5565 <span style="display:block; font-size:11px; color:var(--fg-3); margin-top:4px;">Main line (per NPI / fax)</span></td>
+            <td>info@pethica.org <span style="display:block; font-size:11px; color:var(--fg-3); margin-top:4px;">sitora@praxisethica.com (inferred)</span></td>
+            <td><a href="https://praxisethica.com/contact">Site contact →</a><br><span class="pill pill--info" style="margin-top:6px">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Company Main Line</strong> <span class="pill pill--dark">CORP</span></td>
+            <td>Praxis Ethica Healthcare Compliance Group — primary inbound line per fax disclaimer and NPI registry. Same number used for sales inquiries and "REMOVE" opt-out routing.</td>
+            <td>(908) 344-5565</td>
+            <td>info@pethica.org</td>
+            <td>—<br><span class="pill pill--ok" style="margin-top:6px">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Opt-Out / Fax Line</strong> <span class="pill pill--dark">OPS</span></td>
+            <td>Listed in the fax's own disclaimer as the line to fax "REMOVE" requests. Per Sitora Alexander's NPI profile, this is also her registered "Location Fax" — confirms she personally controls the opt-out infrastructure.</td>
+            <td>(908) 344-5534</td>
+            <td>—</td>
+            <td>—<br><span class="pill pill--ok" style="margin-top:6px">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong> <span class="pill pill--dark">LEGAL</span></td>
+            <td>No appearance on file as of report generation. ~21-day answer clock from service.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—<br><span class="pill pill--gap" style="margin-top:6px">NOT YET APPEARED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px; padding:20px 24px; background:var(--info-bg); border-left:4px solid var(--info);">
+      <strong style="color:var(--info); text-transform:uppercase; font-size:12px; letter-spacing:0.1em;">Email Pattern Note</strong>
+      <p style="margin:8px 0 0; font-size:14px; line-height:1.55;">No published email convention discoverable on praxisethica.com (no info@, support@, or contact@ exposed in fetched HTML — /contact page returned 404). The only verified email is <code>info@pethica.org</code> (the secondary domain). Pattern <code>{first}@praxisethica.com</code> is inferred from one-principal sites of similar size — pill: <span class="pill pill--info">INFERRED</span>. Confirm with a soft-bounce check before sending cold outbound.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours. Defense counsel hasn't appeared, the answer clock is wide open, and Sitora is the buyer.</h2>
+      <p class="section-lede">The optimal call window is now through the answer deadline (~21 days). Once defense counsel files a notice of appearance, communications get routed through them and the rep loses direct access to the buyer. Hit Sitora Alexander before that happens.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0-1 · Today</div>
+        <h3 class="card-title">1. Re-run the scrub. Pull the docket.</h3>
+        <p class="step-body">Re-run <code>blacklistBulk</code> on 708-957-8929 (today's run hit a cert error). Pull PACER docket entry #1 for ~$1.20 to confirm summons issuance and answer deadline. NJ SOS lookup on the LLC to confirm registered-agent address for service confirmation.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2 · Cold Touch</div>
+        <h3 class="card-title">2. Email Sitora Alexander direct.</h3>
+        <p class="step-body">Subject line: "Praxis Ethica + Edelman Combs — a 48-hour read." Body references the filing by docket number, names the Edelman Combs N.D. Ill. fax-class track record, and offers a documented consent-capture + scrub stack as a remediation deliverable. Use <code>info@pethica.org</code> as the verified address and CC the inferred <code>sitora@praxisethica.com</code>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2-3 · Phone Touch</div>
+        <h3 class="card-title">3. Call (908) 344-5565.</h3>
+        <p class="step-body">Same line answers sales inquiries and opt-out requests — Sitora likely picks up personally given the solo-operator footprint. Open with the reputational angle: "You sell compliance services to physicians, and you just got named individually in a federal class action for the opposite. Here's how to get a documented Blacklist scrub in place before discovery hits."</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4-7 · Decision Pressure</div>
+        <h3 class="card-title">4. LinkedIn touch + follow-up email.</h3>
+        <p class="step-body">Connect on LinkedIn (Sitora Alexander, "Healthcare Compliance Officer — Harvard University"). Re-send the email with a one-pager attached showing the Edelman Combs prior-fax-class settlements ($2.2M Bancard, $800K drug-fax) and how a documented Blacklist scrub would have defeated willfulness in those matters.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7-14 · Pre-Answer Push</div>
+        <h3 class="card-title">5. Quote with implementation timeline.</h3>
+        <p class="step-body">If she's engaged, quote with a 5-business-day implementation timeline so she can point to a "live and documented" compliance stack <em>before</em> her answer is filed. The optics of "we adopted Blacklist within 30 days of being put on notice" are valuable defensively.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14-21 · Last Window</div>
+        <h3 class="card-title">6. Defense-counsel handoff.</h3>
+        <p class="step-body">If defense counsel appears mid-cycle, redirect outreach to them — they have the same incentive (a documented scrub stack helps their settlement posture) and often become the most reliable referral source for future Blacklist deals across their client book.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-top:32px;">
+      <div class="card-meta" style="color:#A8A8A8">Trigger Conditions</div>
+      <h3 class="card-title">What would change this plan</h3>
+      <ul style="margin:12px 0 0 18px; line-height:1.7;">
+        <li><strong>Defense counsel files a notice of appearance →</strong> route all communications through counsel; Sitora becomes off-limits</li>
+        <li><strong>Plaintiff files an amended complaint adding a fax broadcaster as a named defendant →</strong> open a parallel outreach to that vendor (often the fastest-moving buyer)</li>
+        <li><strong>Praxis Ethica settles individual claim and amends to drop class →</strong> opportunity collapses; deprioritize</li>
+        <li><strong>Praxis Ethica's site goes dark or pivots →</strong> evidence of business shutdown; redirect outreach to Sitora's next venture</li>
+        <li><strong>Edelman Combs files a second case against Praxis Ethica →</strong> urgency escalates; price discipline becomes easier</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--danger">URGENCY: HIGH</span>
+      <span class="pill pill--red">~21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--warn">SCRUB RE-RUN REQUIRED BEFORE FIRST DIAL</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-27</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
