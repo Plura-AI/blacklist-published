@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Botto v. Engel Lane — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.row-current{ background:var(--bl-red-tint); }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">BLACKLIST</text>
+          <rect x="118" y="4" width="4" height="16" fill="#A50100"/>
+          <text x="130" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.04em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-03</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Boutique Apparel · Klaviyo SMS · Quiet-Hours Class Action · Serial-Filer Plaintiff · C.D. Cal.</p>
+      <h1 class="hero-tagline">Botto v.<br>Engel Lane LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05917</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 2, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Nancy Lopez Botto is a documented serial filer (11+ cases in 5 months).</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint omits the recipient number; however, the plaintiff's filing pattern alone qualifies her as a known litigator.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial Filer Confirmed</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only that Plaintiff is "the regular user of the telephone number that received the above solicitations" (¶18) and resides in Los Angeles County. No 10-digit recipient number appears anywhere in the pleading or screenshot exhibits.</div>
+      </div>
+      <p class="scrub-body-text">A formal blacklistBulk lookup was not run — there is no number to scrub. However, the plaintiff Nancy Lopez Botto has been independently confirmed as a serial TCPA filer with at least 11 active cases in C.D. Cal. between January and June 2026, all brought by The Law Offices of Jibrael S. Hindi <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nancy+Lopez+Botto%22&type=r">CourtListener -></a></span>. Treat her recipient number — once recovered from PACER or discovery — as a presumptive match for the Blacklist Litigator List.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID · Toll-Free</div>
+        <h3 class="card-title">+1 (844) 978-1568</h3>
+        <div class="card-body">
+          <p>Identified in the complaint screenshots as the originating SMS sender for "Engel Lane Boutique" messages dated Jan 16, Jan 27, Feb 16, and Apr 20, 2026. Toll-free 844 routing is consistent with mass-SMS dialer infrastructure layered on top of the Klaviyo platform.</p>
+          <ul class="clean tight" style="margin-top:8px;">
+            <li><strong>800notes:</strong> <span class="pill pill--gap">No record retrievable</span></li>
+            <li><strong>YouMail:</strong> <span class="pill pill--gap">No record retrievable</span></li>
+            <li><strong>Tellows:</strong> <span class="pill pill--gap">No record retrievable</span></li>
+            <li><strong>RoboKiller:</strong> <span class="pill pill--gap">No record retrievable</span></li>
+          </ul>
+          <p style="margin-top:12px; font-size:13px; color:var(--fg-2);">Third-party complaint databases were inaccessible during enrichment (403/404). Sender identity confirmed from complaint exhibit text + Klaviyo short-link domain <code>engellane.kla7.io</code>.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path</div>
+        <h3 class="card-title">How to Recover the Plaintiff Number</h3>
+        <div class="card-body">
+          <ol style="padding-left:18px; margin:0;">
+            <li style="margin-bottom:8px;"><strong>Pull ECF #1 from PACER</strong> — the unredacted complaint may include the number in caption or service papers (~$1.20).</li>
+            <li style="margin-bottom:8px;"><strong>Wait for FRCP 26(a)(1) disclosures</strong> — Plaintiff must disclose contact info within ~14 days of Rule 26(f).</li>
+            <li><strong>Cross-reference sibling cases</strong> — Botto's 11+ filings in C.D. Cal. may have surfaced her number in another complaint or motion.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER ECF #1</span>
+      <span class="pill pill--danger">SERIAL FILER · 11+ FILINGS · JAN–JUN 2026</span>
+      <span class="pill pill--info">FIRM TARGETS DTC E-COMMERCE</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small Michigan DTC boutique caught by a serial filer's go-to quiet-hours theory — fresh defendant, no playbook, ESP-routed SMS.</h2>
+      <p class="section-lede">Engel Lane LLC is a small private DTC apparel brand with zero prior TCPA litigation history, no visible compliance program, and SMS sent via Klaviyo (<code>kla7.io</code>) outside the 8 a.m. quiet-hours window. The plaintiff's firm has a documented quick-settle cadence; lead with Litigator Scrub + Consent Capture to remediate the gap before the next Hindi/Lane filing lands.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch · Primary</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Stop the next Hindi/Lane plaintiff from receiving an Engel Lane text. The firm has filed 11+ Botto cases and 10+ other Lane-led TCPA actions across DTC verticals in 2025–2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener -></a></span>. Litigator Scrub on the existing Klaviyo list is the fastest defensive move.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">Consent Capture &amp; Quiet-Hours Suppression</h3>
+        <div class="card-body">The smoking gun is timing: texts sent at 7:01 AM and 7:55 AM local time. Klaviyo supports quiet-hours geofencing — it must be enabled merchant-side. Pair Blacklist scrub with a consent-capture audit of the SMS opt-in flow on engellane.com.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Internal DNC / Policies &amp; Procedures</h3>
+        <div class="card-body">Plaintiff pleads she "never signed any type of authorization" (¶21). Even if consent existed, the firm's go-to combo theory pairs quiet-hours with internal-DNC failure — a documented Lane pattern <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span>.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>"You were just named in a Rule 23 class action in C.D. Cal. by Nancy Lopez Botto — a plaintiff who has filed 11 of these in the last five months — represented by Gerald Lane at the Jibrael Hindi firm. They've already settled and dismissed at least one sibling case (Garnet Hill) inside 5 weeks. The complaint is built around two screenshots showing Engel Lane Boutique texts arriving at 7:01 AM and 7:55 AM via Klaviyo's <code>kla7.io</code> link domain. The same firm has filed against UrbanStems, Authentic Sport Specialty, Marine Layer, Seventh Avenue, and a dozen other DTC brands — your vertical is their target list."</p>
+        <p>"The fastest way to stop the bleeding is a Blacklist Litigator Scrub of your existing Klaviyo audience, layered with a quiet-hours geofence and an internal-DNC reconciliation pass. We do the scrub today, you don't get sued again next month, and you walk into settlement talks with a documented post-incident remediation that materially lowers your number."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Private Michigan DTC boutique — small footprint, no public compliance posture, Klaviyo-routed SMS.</h2>
+      <p class="section-lede">Engel Lane LLC operates as "Engel Lane Boutique" via Instagram, TikTok, and a Shopify-style storefront at engellane.com. No public team page, no privacy policy retrievable, no in-house counsel visible.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Engel Lane LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal name</dt><dd>Engel Lane LLC</dd>
+            <dt>DBA</dt><dd>Engel Lane Boutique</dd>
+            <dt>Entity type</dt><dd>LLC</dd>
+            <dt>Formation state</dt><dd><span class="pill pill--gap">Unverified</span></dd>
+            <dt>HQ</dt><dd>Canton, Michigan (per complaint ¶8)</dd>
+            <dt>Vertical</dt><dd>DTC boutique apparel · women's fashion/accessories</dd>
+            <dt>Web</dt><dd>engellane.com <span class="src-tag"><a href="https://engellane.com">site -></a></span></dd>
+            <dt>Social</dt><dd>@engellaneboutique <span class="src-tag"><a href="https://www.instagram.com/engellaneboutique">IG -></a></span> <span class="src-tag"><a href="https://www.tiktok.com/@engellaneboutique">TikTok -></a></span></dd>
+            <dt>Parent</dt><dd>None identified</dd>
+            <dt>Public/Private</dt><dd>Private</dd>
+            <dt>Employees</dt><dd><span class="pill pill--gap">Unknown</span></dd>
+            <dt>Revenue</dt><dd><span class="pill pill--gap">Unknown</span></dd>
+            <dt>SMS vendor</dt><dd>Klaviyo (kla7.io short-link domain) <span class="src-tag"><a href="https://www.klaviyo.com/customers?q=engel+lane">Klaviyo -></a></span></dd>
+            <dt>Sender DID</dt><dd>+1 (844) 978-1568</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Texts sent at 7:01 AM and 7:55 AM — Klaviyo quiet-hours not configured.</h3>
+        <div class="card-body">
+          <p>Complaint screenshots (¶14) timestamp Engel Lane Boutique SMS at <strong>7:01 AM</strong> (Jan 16, 2026) and <strong>7:55 AM</strong> (Apr 20, 2026 "Today") in the plaintiff's Pacific time zone. 47 C.F.R. § 64.1200(c)(1) prohibits solicitations before 8 a.m. local. Both messages also contained promotional links to <code>engellane.kla7.io</code>, confirming the campaigns ran through Klaviyo without merchant-side quiet-hours suppression.</p>
+          <p style="margin-top:12px;">Plaintiff also pleads (¶21) she "never signed any type of authorization permitting or allowing Defendant to send them telephone solicitations before 8 am or after 9 pm" — a direct internal-DNC / consent-scope challenge.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Window: 21-day federal answer clock from service.</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 2, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05917&type=r">CourtListener -></a></span></dd>
+          <dt>Service</dt><dd>Summons requested same day (Doc #2); not yet returned executed</dd>
+          <dt>Answer deadline</dt><dd>~21 days post-service (FRCP 12(a)(1)(A)(i)) — projected late June / early July 2026</dd>
+          <dt>Judge assignment</dt><dd>Pending CV-18 notice (typically ~10 days from filing per sibling-case patterns)</dd>
+          <dt>Sibling cadence</dt><dd>Garnet Hill (sibling case) was voluntarily dismissed under FRCP 41(a)(1) ~5 weeks after filing — pre-answer settlement pattern <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nancy+Lopez+Botto%22&type=r">CourtListener -></a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Engel Lane LLC</td>
+            <td>Primary defendant</td>
+            <td>DTC boutique apparel</td>
+            <td>Active class action — primary target</td>
+            <td><span class="pill pill--red">Primary</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="font-style:italic; color:var(--fg-3);">No parent, subsidiary, or sister-brand entities identified. Michigan LARA and OpenCorporates were inaccessible; founder/owner identity not recovered. Treat the defendant as a standalone single-entity target.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Hindi/Lane quiet-hours template — DTC boutique vertical, two-screenshot exhibit, Rule 23 putative class.</h2>
+      <p class="section-lede">This case is a near-verbatim template the firm has run against at least 10+ other DTC defendants in 2025–2026. The combo theory (47 USC § 227(c) + 64.1200(c)(1) quiet hours) travels across verticals and is hard to defeat at the pleading stage.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case Facts</div>
+        <h3 class="card-title">Botto v. Engel Lane LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>2:26-cv-05917 (C.D. Cal., Los Angeles) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05917&type=r">CourtListener -></a></span></dd>
+            <dt>Filed</dt><dd>June 2, 2026</dd>
+            <dt>Plaintiff</dt><dd>Nancy Lopez Botto (Los Angeles County, CA)</dd>
+            <dt>Plaintiff counsel</dt><dd>Gerald D. Lane Jr., CA Bar #352470 · Law Offices of Jibrael S. Hindi</dd>
+            <dt>Class action</dt><dd><span class="pill pill--danger">Yes — Rule 23</span></dd>
+            <dt>Class definition</dt><dd>All US persons who received >1 marketing text in any 12-month period from Defendant (or on its behalf) before 8 a.m. or after 9 p.m. local time, 4 years prior to filing through class certification</dd>
+            <dt>Class size pled</dt><dd>"at least 50" / "several thousands, if not more" (¶25–26)</dd>
+            <dt>Claims</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1200(c)(1) — quiet hours</dd>
+            <dt>Theory</dt><dd>Pre-8 a.m. SMS solicitations; no prior express written consent for off-hours contact</dd>
+            <dt>Damages sought</dt><dd>$500/violation negligent; $1,500/violation willful; injunctive relief; attorneys' fees</dd>
+            <dt>Channels</dt><dd>SMS (Klaviyo via kla7.io)</dd>
+            <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · ~21-day answer clock from service</dd>
+            <dt>Docket items</dt><dd>Doc #1 Complaint · Doc #2 Summons Req · Doc #3 Notice of Interested Parties · Doc #4 CV-71 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05917&type=r">CourtListener -></a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. · Law Offices of Jibrael S. Hindi</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Lead attorney</dt><dd>Gerald D. Lane Jr.</dd>
+            <dt>Bar</dt><dd>CA Bar #352470 · status active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -></a></span></dd>
+            <dt>Admit date</dt><dd><span class="pill pill--gap">Not retrieved</span></dd>
+            <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi (FL-based boutique)</dd>
+            <dt>Firm address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+            <dt>Firm phone</dt><dd>(754) 444-7539</dd>
+            <dt>Firm email</dt><dd>gerald@jibraellaw.com · Jibrael@jibraellaw.com</dd>
+            <dt>Firm web</dt><dd>jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">site -></a></span></dd>
+            <dt>Bar address match</dt><dd><span class="pill pill--warn">FL firm · CA bar admit — out-of-state plaintiff counsel pattern</span></dd>
+            <dt>Discipline</dt><dd>None identified in available sources</dd>
+            <dt>TCPA practice</dt><dd>Firm referenced in TCPAWorld 2026 Power Rankings; advertises +$30M TCPA settlements <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span></dd>
+            <dt>Filing volume</dt><dd>10+ Lane-led TCPA cases in past 24 months; 11+ Botto filings in C.D. Cal. Jan–Jun 2026 alone</dd>
+            <dt>Notable cases</dt><dd>Overtime Sports · Nespresso · Steve Madden · Thirdlove · UrbanStems · Marine Layer · Garnet Hill · Karina Designs <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Gerald+Lane%22+TCPA">Law360 -></a></span></dd>
+            <dt>Threat level</dt><dd><span class="pill pill--danger">High</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff/Firm Template</div>
+      <h3 class="card-title">Hindi/Lane Quiet-Hours DTC Template</h3>
+      <div class="card-body">
+        <p>This complaint is a near-exact instance of the firm's quiet-hours template, repeated against DTC e-commerce defendants throughout 2025–2026:</p>
+        <ul class="clean tight" style="margin-top:8px;">
+          <li><strong>Two screenshot exhibits</strong> showing texts received before 8 a.m. local time — minimum two messages to satisfy § 227(c)(5)'s "more than one call" element.</li>
+          <li><strong>Single count</strong> under 47 USC § 227(c) + 47 CFR § 64.1200(c)(1) — narrow, hard to dismiss on 12(b)(6).</li>
+          <li><strong>Class period</strong> = 4 years pre-filing through cert; class size pled as "at least 50 / several thousands" — minimum numerosity language.</li>
+          <li><strong>Standard relief stack</strong>: statutory damages, injunction, fees, document preservation demand.</li>
+          <li><strong>FL firm + CA local counsel</strong> (Gerald Lane CA Bar #352470 working out of 1515 NE 26th St, Wilton Manors, FL) — appears virtually / via local counsel.</li>
+          <li><strong>Quick-settle cadence</strong>: Garnet Hill sibling case voluntarily dismissed under FRCP 41(a)(1) within ~5 weeks of filing — likely confidential settlement <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nancy+Lopez+Botto%22&type=r">CourtListener -></a></span>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Botto v. Engel Lane LLC</strong></td>
+            <td class="num">2:26-cv-05917</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-02</td>
+            <td><span class="pill pill--red">Active · New</span></td>
+            <td>Quiet hours (SMS)</td>
+          </tr>
+          <tr>
+            <td>Botto v. Garnet Hill Inc.</td>
+            <td class="num">2:26-cv-00136</td>
+            <td>C.D. Cal.</td>
+            <td>2026-01-07</td>
+            <td><span class="pill pill--ok">Voluntarily dismissed 2026-02-11</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Karina Designs Inc.</td>
+            <td class="num">2:26-cv-00236</td>
+            <td>C.D. Cal.</td>
+            <td>2026-01-09</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. VGP Holdings LLC</td>
+            <td class="num">2:26-cv-03082</td>
+            <td>C.D. Cal.</td>
+            <td>2026-03-23</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Luxury Brand Holdings Inc.</td>
+            <td class="num">2:26-cv-03130</td>
+            <td>C.D. Cal.</td>
+            <td>2026-03-24</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Sonsie Skin Inc.</td>
+            <td class="num">2:26-cv-03379</td>
+            <td>C.D. Cal.</td>
+            <td>2026-03-30</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Seventh Avenue Inc.</td>
+            <td class="num">2:26-cv-03788</td>
+            <td>C.D. Cal.</td>
+            <td>2026-04-09</td>
+            <td><span class="pill pill--warn">Answer filed 2026-05-06 · litigating</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Marine Layer PBC</td>
+            <td class="num">2:26-cv-03858</td>
+            <td>C.D. Cal.</td>
+            <td>2026-04-10</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. 2601 Inc.</td>
+            <td class="num">2:26-cv-03861</td>
+            <td>C.D. Cal.</td>
+            <td>2026-04-10</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Real Value LLC</td>
+            <td class="num">2:26-cv-04017</td>
+            <td>C.D. Cal.</td>
+            <td>2026-04-15</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+          <tr>
+            <td>Botto v. Hearth Display Inc.</td>
+            <td class="num">2:26-cv-05366</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-19</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Quiet hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin:0 0 24px;">Source: CourtListener search for "Nancy Lopez Botto" returned 16 results — full filer count may be higher <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nancy+Lopez+Botto%22&type=r">CourtListener -></a></span>. Engel Lane LLC itself has <strong>zero</strong> prior TCPA filings on the docket — first-time defendant.</p>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Open intel gaps to close before first dial</div>
+      <h3 class="card-title">What the rep should chase</h3>
+      <div class="card-body">
+        <ul style="padding-left:18px; margin:0;">
+          <li>Pull ECF #1 from PACER — the unredacted complaint may contain the plaintiff recipient number for a real Blacklist scrub.</li>
+          <li>Judge assignment (CV-18) is still pending — once issued, check the assigned Article III judge's TCPA dismissal/MTC history.</li>
+          <li>Engel Lane LLC formation state was not verified — Michigan LARA business search was inaccessible. Confirm formation state, registered agent, and member/officer identity before first call.</li>
+          <li>No officer, founder, or in-house counsel name was recovered from LinkedIn, the company website, TheOrg, ZoomInfo, or Klaviyo case studies. Identify the decision-maker manually (Instagram bio, TikTok, MI LARA filings) before outreach.</li>
+          <li>Garnet Hill dismissal terms not public — confirm via PACER or industry contacts whether sibling cases settled in the $20K–$60K range typical for single-plaintiff Hindi/Lane resolutions.</li>
+          <li>Verify whether engellane.com terms include an arbitration clause or class-action waiver (could change the defense calculus).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No published officer or in-house counsel — go through the engellane.com general inbox and the Instagram/TikTok DM channel.</h2>
+      <p class="section-lede">Engel Lane LLC has no LinkedIn company page, no team page on its website, no TheOrg entry, and no recoverable officer registry data. The defendant is small enough that the founder is almost certainly also the marketing decision-maker — but the name was not surfaced through public sources. Outreach should target the brand's published contact channels until a named decision-maker is recovered.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Founder / Owner</strong><br><span class="pill pill--dark">Decision Maker</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Engel Lane LLC is a small founder-led MI boutique. Likely 1–10 employees. No name recovered from LinkedIn, TheOrg, or engellane.com.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">No company page</span></td>
+          </tr>
+          <tr>
+            <td><strong>Marketing / SMS Owner</strong><br><span class="pill pill--dark">CMO equivalent</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Klaviyo SMS account owner — the person who configures (or fails to configure) quiet-hours suppression. In a brand this size, likely same person as founder.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Not located</span></td>
+          </tr>
+          <tr>
+            <td><strong>Engel Lane Boutique (Brand)</strong><br><span class="pill pill--dark">Public channel</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Public-facing brand presence — Instagram, TikTok, and Shopify storefront. DM the founder via @engellaneboutique as a parallel outreach path.</td>
+            <td><span class="pill pill--gap">Site contact form only</span></td>
+            <td><span class="pill pill--info">Pattern unknown (no published address)</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark">Service of process</span> <span class="pill pill--gap">GAP</span></td>
+            <td>MI LARA business entity record could not be retrieved (registry API and search page both failed). The summons was requested in C.D. Cal. on 2026-06-02 (Doc #2); service papers will identify the agent.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">Outside counsel</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared. ~21-day answer clock from service of summons. Sibling case (Seventh Avenue) drew defense counsel who filed an answer rather than settling — track who that was.</td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px; background:var(--bg-sunken);">
+      <div class="card-meta">Outreach Path</div>
+      <div class="card-body">
+        <p style="margin:0;"><strong>Recommended sequence:</strong> (1) Pull MI LARA registry manually to recover the registered agent and any listed member/manager name — that is your decision-maker. (2) In parallel, DM @engellaneboutique on Instagram with a short "we saw the C.D. Cal. filing, can we help" message. (3) Once defense counsel appears on the docket, redirect outreach through them. The named-decision-maker GAP is the single biggest blocker on this lead — fix it before first dial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — the answer clock starts as soon as Engel Lane is served, and the Hindi/Lane firm settles quickly.</h2>
+      <p class="section-lede">The Garnet Hill sibling case was dismissed under FRCP 41(a)(1) within ~5 weeks of filing. If Engel Lane follows the same path, the window for a remediation-based pitch closes fast. Lead with Litigator Scrub + quiet-hours suppression, framed as evidence of post-incident good faith.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–1 · Pre-Dial</div>
+        <h3 class="card-title">Identify the decision-maker</h3>
+        <div class="card-body">
+          <ul style="padding-left:18px; margin:0;">
+            <li>Pull MI LARA business entity record to recover registered agent + named member/manager.</li>
+            <li>Pull ECF #1 from PACER (~$1.20) to confirm plaintiff recipient number and any caption-page service info.</li>
+            <li>Cross-check @engellaneboutique Instagram bio for founder name / link-in-bio email.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–3 · First Touch</div>
+        <h3 class="card-title">Cold email + IG DM</h3>
+        <div class="card-body">
+          <ul style="padding-left:18px; margin:0;">
+            <li>Subject line references the docket: "C.D. Cal. 2:26-cv-05917 — quiet-hours remediation."</li>
+            <li>Open with the two screenshot timestamps (7:01 AM / 7:55 AM) — they will recognize them immediately.</li>
+            <li>Name Hindi/Lane and the Botto sibling cases (Garnet Hill, Marine Layer) — establishes you know the firm's pattern.</li>
+            <li>Pitch Litigator Scrub + Klaviyo quiet-hours geofence audit as a 2-week remediation package.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–10 · Follow-Up</div>
+        <h3 class="card-title">Call the registered agent</h3>
+        <div class="card-body">
+          <ul style="padding-left:18px; margin:0;">
+            <li>Once MI LARA returns the agent, call directly — agents in small LLCs often forward to the owner.</li>
+            <li>Position Blacklist as the defense-side remediation vendor — not legal counsel. Avoid UPL framing.</li>
+            <li>Offer to brief whoever they retain as defense counsel.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Day 10–21 · Hand-Off</div>
+        <h3 class="card-title">Convert to defense counsel</h3>
+        <div class="card-body">
+          <ul style="padding-left:18px; margin:0;">
+            <li>Monitor docket for Notice of Appearance — that's your new POC.</li>
+            <li>Send defense counsel a one-pager: "What we've already done for similar Hindi/Lane defendants in the past 6 months."</li>
+            <li>Offer ride-along on settlement conference prep.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Trigger Conditions</div>
+      <div class="card-body">
+        <ul style="padding-left:18px; margin:0;">
+          <li><strong>If FRCP 41(a)(1) dismissal hits the docket within 30 days</strong> → pivot from defense-side pitch to forward-looking compliance pitch ("you settled — now let's make sure the next one doesn't land"). Don't drop the lead.</li>
+          <li><strong>If defense counsel files an answer (like Seventh Avenue did)</strong> → defendant is litigating; pitch full audit + consent capture overhaul + scrub.</li>
+          <li><strong>If an amended complaint adds a sister entity or Klaviyo as co-defendant</strong> → escalate priority; broader exposure means bigger budget.</li>
+          <li><strong>If the assigned judge has a known TCPA-skeptical posture</strong> → defendant has leverage, settlement urgency drops, lengthen the sales cycle.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--warn">SIBLING-CASE QUICK-SETTLE PATTERN (~5 WEEKS)</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-03</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
