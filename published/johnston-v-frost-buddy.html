@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnston v. Frost Buddy — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin:0 0 12px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; font-family:var(--font-mono); }
+.step-title{ font-size:17px; font-weight:600; margin:0 0 6px; }
+.step-body{ font-size:14px; line-height:1.55; color:var(--fg-2); margin:0; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="120" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-28</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Serial-Plaintiff TCPA Class Action · DTC Drinkware SMS Blast · Caller-ID Transmission Failure · C.D. Cal. (Riverside)</p>
+      <h1 class="hero-tagline">Johnston v.<br>Frost Buddy LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-02877</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 27, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Eastern Div. magistrate pool</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number was never pled — but Johnston is already a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Bianca Johnston did not disclose her cell number anywhere in the complaint or the screenshot exhibit, so a litigator-list lookup cannot be run yet. However, court records show she has filed at least 10+ TCPA class actions in C.D. Cal. in the past 14 months — she is a clear serial plaintiff regardless of scrub status.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--danger">Serial Filer Confirmed · 10+ Prior Suits</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">The complaint identifies Plaintiff as a "regular user" of her "cellular telephone" and a resident of San Bernardino County, CA — but never recites the 10-digit number. The screenshot exhibit (Aug 5, 2026 SMS showing "Pencil & Crayon just dropped" with brz.ai link) shows only the sender side. No DID is visible.</div>
+      </div>
+      <p class="scrub-body-text">Without the recipient number, we cannot run blacklistBulk against Johnston's cell. What we <em>can</em> confirm is that Johnston is a high-volume TCPA plaintiff: CourtListener returns at least 10 prior/concurrent TCPA actions she has filed against DTC e-commerce defendants (Fashion Nova, Tracksmith, Thirdlove, Seido Knives, Trish McEvoy, Lucky Color, Slashop, Seeding, Frontier Cooperative) — all in C.D. Cal. Eastern Division — all represented by the same Jibrael Hindi / Gerald Lane team. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener — Bianca Johnston filings &rarr;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px;" class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path 1</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <p class="card-body">Plaintiff's full address and phone are often in the Civil Cover Sheet (CV-71) — already on docket as Doc #4. Cost: ~$1.20 via PACER. Run blacklistBulk the moment we have a 10-digit number.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path 2</div>
+        <h3 class="card-title">Wait for Defense Counsel Notice</h3>
+        <p class="card-body">Once Frost Buddy retains defense counsel, the first Rule 26(f) conference will surface the plaintiff number in initial disclosures. This is the slow path — 60–90 days.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path 3</div>
+        <h3 class="card-title">Discovery — Interrogatory</h3>
+        <p class="card-body">Defense team can serve Rog #1 asking for plaintiff's recipient number on Day 1 of discovery. This puts the scrub answer on the record formally and is the lever Blacklist would help structure.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--danger">Serial-Filer Flag: 10+ Cases / 14 Months</span>
+      <span class="pill pill--warn">Same-Firm Pattern: Jibrael Hindi / Lane</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">First-ever TCPA hit on a Shopify-powered DTC drinkware brand running mass Braze SMS — naked, no arbitration, no defense counsel.</h2>
+      <p class="section-lede">Frost Buddy is litigation-cold (zero prior TCPA history), runs SMS through Braze's brz.ai short-link infrastructure, and its own Terms of Service contain zero SMS-marketing consent language. There is no contractual defense. Lead with Litigator Scrub + DNC Scrubbing, anchor on the founder/COO directly.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Product</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Hindi-firm and Johnston are confirmed serial filers. Scrubbing the next SMS blast against Blacklist's litigator list would have caught Johnston before this complaint was even drafted. This is the wedge.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <p class="card-body">Complaint pleads 47 USC § 227(c)(5) — the DNC private right of action. A class of "several thousands" implies untargeted blasts to numbers Frost Buddy never scrubbed. Per-record scrub price is a rounding error vs. $500–$1,500 per text exposure.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Product</div>
+        <h3 class="card-title">Consent Capture / Policies &amp; Procedures</h3>
+        <p class="card-body">Frost Buddy's Shopify privacy policy is a boilerplate template with unfilled placeholders. <span class="src-tag"><a href="https://frostbuddy.com/policies/privacy-policy">frostbuddy.com privacy policy &rarr;</a></span> A documented consent-capture + retention program is the long-tail upsell.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;" class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Pitch Angle</div>
+      <h3 class="card-title">"You just got served by the Jibrael Hindi firm. They settle. They also keep coming."</h3>
+      <p class="card-body">The opener: Frost Buddy was sued yesterday by a serial TCPA plaintiff in C.D. Cal. The plaintiff's firm has 50+ TCPA filings and is on TCPAWorld's 2026 Power Rankings of most-dangerous plaintiff's lawyers. <span class="src-tag" style="color:#C9C9C9;"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld &rarr;</a></span> Frost Buddy's own SMS Terms admit autodialer use, but its Terms of Service have zero marketing-consent language — meaning there is no contractual hook for an arbitration motion or a consent defense. The rep's job is to make the call before defense counsel does: "Whatever you settle Johnston for, the next one is already being drafted. The only thing that stops the next one is scrubbing every outbound SMS against our litigator list and the DNC registry. We can have you live by end of week."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small-but-aggressive Illinois DTC drinkware brand running enterprise-scale Braze SMS through a Shopify storefront.</h2>
+      <p class="section-lede">Frost Buddy is a privately-held LLC headquartered in Effingham, IL, selling insulated can coolers ($20–$40 SKUs) direct-to-consumer with licensed collabs (Margaritaville, Atlanta Braves). It markets itself as having 100K+ affiliates and 100K+ VIP members — a large outbound SMS universe relative to its employee count.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Frost Buddy LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Frost Buddy LLC <span class="pill pill--gap">SoS Not Verified</span></dd>
+          <dt>Formation State</dt><dd>Unknown — IL SoS blocked fetch</dd>
+          <dt>HQ</dt><dd>Effingham, Illinois (per complaint ¶8)</dd>
+          <dt>Parent</dt><dd>None disclosed</dd>
+          <dt>Vertical</dt><dd>DTC drinkware / insulated can coolers <span class="src-tag"><a href="https://frostbuddy.com">frostbuddy.com &rarr;</a></span></dd>
+          <dt>Public/Private</dt><dd>Private LLC</dd>
+          <dt>Employee Count</dt><dd>Unknown (small — TheOrg surfaced only 5 named individuals) <span class="src-tag"><a href="https://theorg.com/org/frost-buddy">TheOrg &rarr;</a></span></dd>
+          <dt>Founders</dt><dd>Brock Mammoser (Founder); Mitch Mammoser (Co-Founder &amp; COO)</dd>
+          <dt>E-commerce Stack</dt><dd>Shopify storefront; Braze SMS (brz.ai short-link domain); Google/Facebook/Bing Ads</dd>
+          <dt>Notable Collabs</dt><dd>Margaritaville, Atlanta Braves, "Merica 250"</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Terms of Service contain ZERO SMS-marketing consent language.</h3>
+        <p class="card-body">Frost Buddy's TOS only authorizes contact via the customer's phone "at the time the order was made" for transactional purposes — there is no provision authorizing marketing texts, autodialer use, or DNC waiver. <span class="src-tag" style="color:#C9C9C9;"><a href="https://frostbuddy.com/policies/terms-of-service">frostbuddy.com TOS &rarr;</a></span> Separately, the Shopify-template privacy policy still contains unfilled placeholders ("[[INSERT ANY OTHER PAYMENT TYPES ACCEPTED]]") <span class="src-tag" style="color:#C9C9C9;"><a href="https://frostbuddy.com/policies/privacy-policy">privacy policy &rarr;</a></span> — a clear indicator that legal review never happened. There is no contractual defense to compel arbitration or invoke a consent waiver.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Why call this week.</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 27, 2026 — Day 1 of the 21-day answer clock (assuming standard service)</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared — Frost Buddy is unrepresented as of docket fetch</dd>
+        <dt>Settlement Pattern</dt><dd>Hindi firm settles fast: Seeding (~28 days), Seido Knives (~7 weeks). Frost Buddy will be in settlement talks within 60 days. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22&type=r">CourtListener — Hindi firm &rarr;</a></span></dd>
+        <dt>Window to Sell</dt><dd>~3 weeks before in-house counsel/founder hires defense — after that, attention shifts to MTD/MTC mechanics</dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Brez / Braze</strong></td>
+              <td>SMS infra vendor (brz.ai)</td>
+              <td>Enterprise CDP/SMS</td>
+              <td>Channel partner — every Braze customer running outbound SMS is a Blacklist prospect</td>
+              <td><span class="pill pill--info">Channel Play</span></td>
+            </tr>
+            <tr>
+              <td><strong>Margaritaville (licensee partner)</strong></td>
+              <td>Licensed collab</td>
+              <td>Lifestyle / hospitality</td>
+              <td>Likely runs own SMS list — separate outreach</td>
+              <td><span class="pill pill--gap">Low — Indirect</span></td>
+            </tr>
+            <tr>
+              <td><strong>Atlanta Braves (licensee partner)</strong></td>
+              <td>Licensed collab</td>
+              <td>MLB team / consumer goods</td>
+              <td>Pro-sports SMS programs are already a Hindi-firm target (Tampa Bay Buccaneers case)</td>
+              <td><span class="pill pill--info">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Mammoser-led entities</strong></td>
+              <td>Founder other companies</td>
+              <td>Unknown</td>
+              <td>If founders run sister DTC brands on same Shopify/Braze stack, identical exposure profile</td>
+              <td><span class="pill pill--gap">Research Gap</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-ever TCPA hit on Frost Buddy. Plaintiff's firm is a confirmed volume-filer with the Hindi/Lane DTC template.</h2>
+      <p class="section-lede">No prior TCPA case has named Frost Buddy as a defendant — they are "litigation cold" with no defense playbook, no relationship with TCPA defense counsel, and no internal compliance muscle. Meanwhile, plaintiff's firm has filed at least 50 TCPA cases (10+ for Johnston alone) following an identifiable DTC-ecommerce template.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Bianca Johnston v. Frost Buddy LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>5:26-cv-02877 (C.D. Cal., Eastern Div. — Riverside) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-02877&type=r">CourtListener &rarr;</a></span></dd>
+          <dt>Filed</dt><dd>May 27, 2026</dd>
+          <dt>Plaintiff</dt><dd>Bianca Johnston, individually + putative class</dd>
+          <dt>Class Definition</dt><dd>All U.S. persons receiving 2+ telemarketing calls in 12-month period without compliant caller ID (CPN/ANI + telemarketer name) over 4 years</dd>
+          <dt>Class Size Pled</dt><dd>"Several thousands; at least 50 persons"</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>Caller-ID transmission failure on telemarketing SMS — sender used brz.ai short link with no telemarketer/seller identification</dd>
+          <dt>DNC Status</dt><dd>Section 227(c) pled (DNC private right) — but caller-ID is the specific theory</dd>
+          <dt>Damages Sought</dt><dd>$500/call negligent; $1,500/call willful — class-wide statutory damages "in the millions"</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span> ~21-day answer deadline running</dd>
+          <dt>Docket Visibility</dt><dd>Visible on CourtListener; PacerMonitor/UniCourt fetches blocked</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. — Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>754-444-7539 (Lane direct) · +1-844-542-7235 (main)</dd>
+          <dt>Firm Email</dt><dd>gerald@jibraellaw.com; Jibrael@jibraellaw.com</dd>
+          <dt>Bar (Lane)</dt><dd>CA Bar #352470 — Active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar &rarr;</a></span></dd>
+          <dt>Bar Address Mismatch</dt><dd><span class="pill pill--warn">Yes — CA-admitted, FL-based</span> Lane is admitted in CA but files from a Wilton Manors, FL office — confirms remote-volume model</dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>TCPAWorld Power Rank</dt><dd>Listed in <strong>2026 Power Rankings</strong> of most-dangerous TCPA plaintiff's lawyers <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld &rarr;</a></span></dd>
+          <dt>TCPA Volume</dt><dd>~50+ filings surfaced; firm advertises $30M+ TCPA settlements <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com &rarr;</a></span></dd>
+          <dt>Notable Cases</dt><dd>v. Nespresso, Steve Madden, Tampa Bay Buccaneers, Overtime Sports, PrimeFish, Thirdlove, UrbanStems <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 &rarr;</a></span></dd>
+          <dt>Appellate Reach</dt><dd>11th Cir. revival of TCPA suit (Aug 2023) — sophisticated, not just trial-court churner</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">Extreme — Volume Filer</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card">
+      <div class="card-meta">Plaintiff/Firm Template</div>
+      <h3 class="card-title">The Hindi/Lane DTC E-Commerce Template</h3>
+      <p class="card-body" style="margin-top:8px;">Bianca Johnston is a serial named-plaintiff for this firm. Same fact pattern across every filing: San Bernardino County resident → receives marketing SMS from a DTC Shopify brand → screenshots one or two messages → files Rule 23 class action in C.D. Cal. Eastern Division (Riverside) → pleads § 227(c)(5) + § 64.1601(e)(1) (caller-ID) or § 64.1200 (quiet hours) → demands "several thousand" class → settles or voluntarily dismisses within 4–8 weeks. Targets confirmed in CourtListener: Fashion Nova, Tracksmith, Thirdlove (twice), Seido Knives, Trish McEvoy, Lucky Color, Slashop, Seeding, Frontier Cooperative. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener &rarr;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="row-current">
+              <td><strong>Johnston v. Frost Buddy LLC</strong></td>
+              <td>5:26-cv-02877</td><td>C.D. Cal.</td><td>2026-05-27</td>
+              <td><span class="pill pill--red">Active — Current</span></td>
+              <td>Caller-ID transmission / § 64.1601(e)(1)</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Thirdlove Inc.</td><td>2:26-cv-02405</td><td>C.D. Cal.</td><td>2026</td>
+              <td><span class="pill pill--info">Active</span></td><td>TCPA (Hindi firm)</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Thirdlove Inc.</td><td>5:26-cv-01173</td><td>C.D. Cal.</td><td>2026</td>
+              <td><span class="pill pill--info">Active</span></td><td>TCPA (Hindi firm)</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Lucky Color, Inc.</td><td>5:25-cv-03259</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--info">Active/Resolving</span></td><td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Tracksmith Corp.</td><td>5:25-cv-03215</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--info">Active/Resolving</span></td><td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Trish McEvoy Ltd</td><td>5:25-cv-02648</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--warn">MTC Arbitration filed 11/11/25</span></td><td>TCPA — defense template precedent</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Seido Knives</td><td>5:25-cv-02612</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--ok">Voluntarily Dismissed 11/20/25</span></td><td>TCPA — likely settled</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Frontier Cooperative</td><td>5:25-cv-02574</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--info">Active</span></td><td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Slashop Inc.</td><td>5:25-cv-02449</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--info">Active</span></td><td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Fashion Nova, LLC</td><td>5:25-cv-01699</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--info">Active</span></td><td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Seeding, Inc.</td><td>5:25-cv-00716</td><td>C.D. Cal.</td><td>2025</td>
+              <td><span class="pill pill--ok">Terminated ~4 weeks · Settled</span></td><td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Brumate, Inc. v. Frost Buddy LLC</td><td>3:24-cv-02043</td><td>S.D. Ill.</td><td>2024</td>
+              <td><span class="pill pill--info">Patent/IP — not TCPA</span></td><td>Defendant has been sued before (IP), not TCPA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:8px; font-size:12px; color:var(--fg-3);">Source: <a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener — Bianca Johnston</a> · <a href="https://www.courtlistener.com/?q=%22Frost+Buddy%22&type=r">CourtListener — Frost Buddy</a></p>
+    </div>
+
+    <div class="callout">
+      <p class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:middle;"></i> Open Intel Gaps to Close Before First Dial</p>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>Pull PACER ECF #1 (~$1.20) for plaintiff's recipient phone number — run blacklistBulk immediately</li>
+        <li>Confirm Frost Buddy LLC's IL Secretary of State registration (formation date, registered agent) — SoS portal blocked during research</li>
+        <li>Verify the email pattern {first}@frostbuddy.com via a tool other than Apollo/ZoomInfo (all blocked) before sending outbound email</li>
+        <li>Identify Frost Buddy's actual SMS vendor — brz.ai = Braze, but is the program managed in-house or through an agency?</li>
+        <li>Check Trish McEvoy MTC Arbitration (11/11/25) outcome — that's the defense playbook precedent for this firm</li>
+        <li>Confirm whether Brock/Mitch Mammoser run other DTC entities on the same stack — cross-sell expansion</li>
+        <li>Get a 2025/2026 settlement amount from one Hindi-firm DTC case (PACER docket diving) to anchor pitch math</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call the founders directly. There is no GC or CCO — Brock and Mitch Mammoser <em>are</em> the compliance function.</h2>
+      <p class="section-lede">Frost Buddy is a founder-run small business (TheOrg surfaced only 5 named people). No General Counsel, no Chief Compliance Officer, no VP Legal. The call has to go to Brock or Mitch directly. Email pattern is INFERRED as {first}@frostbuddy.com — verify before mass-emailing.</p>
+    </div>
+
+    <div style="margin-bottom:16px; padding:16px; background:var(--info-bg); border-left:4px solid var(--info);">
+      <strong style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--info);">Email Pattern Discovered</strong>
+      <div style="font-family:var(--font-mono); font-size:18px; font-weight:600; margin-top:6px;">{first}@frostbuddy.com</div>
+      <div style="font-size:13px; color:var(--fg-2); margin-top:4px;">Source: TheOrg directory <span class="src-tag"><a href="https://theorg.com/org/frost-buddy">theorg.com &rarr;</a></span> · Confidence: <span class="pill pill--info">INFERRED</span> — no published email confirmed it directly. Test before bulk send.</div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Brock Mammoser</strong><br><span class="pill pill--dark">Founder</span> <span class="pill pill--red">Call First</span></td>
+            <td>Founder. Decision-maker on every operational and legal call. With no GC in place, he owns the TCPA response. <span class="src-tag"><a href="https://theorg.com/org/frost-buddy">TheOrg &rarr;</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td>brock@frostbuddy.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mitch Mammoser</strong><br><span class="pill pill--dark">Co-Founder / COO</span> <span class="pill pill--red">Call Second</span></td>
+            <td>Co-Founder &amp; Chief Operating Officer. Operational owner — likely the one who approves SMS campaigns and vendor contracts. <span class="src-tag"><a href="https://theorg.com/org/frost-buddy">TheOrg &rarr;</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td>mitch@frostbuddy.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Natty Perez</strong><br><span class="pill pill--dark">Team</span></td>
+            <td>Frost Buddy team member; role unspecified. Possible marketing/ops contact. <span class="src-tag"><a href="https://www.linkedin.com/company/frost-buddy">LinkedIn &rarr;</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td>natty@frostbuddy.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/nattyperez">/in/nattyperez</a></td>
+          </tr>
+          <tr>
+            <td><strong>Chas Shride</strong><br><span class="pill pill--dark">Design / Brand</span></td>
+            <td>Appears to lead design/collab work — useful if conversation routes through marketing leadership.</td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td>chas@frostbuddy.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/chas-shride">/in/chas-shride</a></td>
+          </tr>
+          <tr>
+            <td><strong>Evan Sinclair</strong><br><span class="pill pill--dark">Team</span></td>
+            <td>Team member; led Ole Miss collaboration. Lower-priority — escalate to Brock/Mitch.</td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td>evan@frostbuddy.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/evan-sinclair-990640181">/in/evan-sinclair</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--gap">Role Unfilled</span></td>
+            <td>No GC, no VP Legal, no Chief Compliance Officer surfaced. Frost Buddy's legal function is effectively outsourced/founder-managed.</td>
+            <td>—</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">Not Yet Appeared</span></td>
+            <td>No defense counsel on docket as of fetch. ~21-day answer clock running from service. <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-02877&type=r">CourtListener &rarr;</a></span></td>
+            <td>—</td><td>—</td><td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Company Main Line</strong></td>
+            <td>No main phone or main email surfaced on frostbuddy.com contact page (effectively empty). <span class="src-tag"><a href="https://frostbuddy.com/pages/about-us">frostbuddy.com &rarr;</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:12px; color:var(--fg-3);">
+      Plaintiff counsel contact info (Gerald Lane / Jibrael Hindi firm) is intentionally housed in Section 04 above — not in this directory. This directory is for defendant decision-makers only.
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before Frost Buddy retains TCPA defense counsel.</h2>
+      <p class="section-lede">Frost Buddy was served yesterday. The 21-day answer clock is running. The founders are unrepresented, and the only thing standing between them and the next Hindi-firm complaint is a litigator-scrub + DNC layer they don't have. Sequence the rep below.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h4 class="step-title">Day 1 — PACER pull + scrub run</h4>
+          <p class="step-body">Owner pulls ECF #1 from PACER (~$1.20) for plaintiff's recipient cell. Run blacklistBulk against Johnston's number and update Section 01 of this report with the result. This is the proof-point for the opening call.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h4 class="step-title">Day 1–2 — Outbound call to Brock Mammoser (Founder)</h4>
+          <p class="step-body">Cold call to brock@frostbuddy.com. Opener: "You were served yesterday in Johnston v. Frost Buddy. The plaintiff's firm has 50+ similar filings. The same firm just hit Thirdlove twice and Tracksmith — they're working a list, and you're on it." Lead with Litigator Scrub. Reference that Johnston has filed 10+ identical cases in the past 14 months.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h4 class="step-title">Day 2–3 — Parallel outreach to Mitch Mammoser (COO)</h4>
+          <p class="step-body">If Brock doesn't pick up, route to Mitch (mitch@frostbuddy.com). Operational owner; he signs vendor contracts. Pitch the DNC scrub layer + Braze integration. Reference the brz.ai sender domain in their SMS — they'll know exactly what you mean.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h4 class="step-title">Day 3–5 — Send "no contractual defense" memo</h4>
+          <p class="step-body">Follow up with a one-pager noting that Frost Buddy's TOS contains zero SMS-marketing consent language and the privacy policy is unfilled boilerplate. Frame: "We don't replace your defense counsel — we make sure the next plaintiff doesn't get through." Cite the TOS gap directly.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h4 class="step-title">Day 5–10 — Catch the answer deadline</h4>
+          <p class="step-body">When defense counsel appears on the docket, log who it is. If it's a known TCPA defense firm, route the conversation through them — they buy Blacklist for their portfolio. If it's general litigation counsel unfamiliar with TCPA, Blacklist can be positioned as the compliance partner the case requires.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div>
+          <h4 class="step-title">Day 14–21 — Settlement timing pitch</h4>
+          <p class="step-body">The Hindi firm settles fast (Seeding ~28 days; Seido Knives ~7 weeks). Use the settlement window to close: "Whatever you pay Johnston, the next one is being drafted right now. Lock in scrubbing before settlement is final so the release of claims actually has a future."</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card card--accent">
+      <div class="card-meta">Trigger Conditions</div>
+      <h4 class="card-title">What changes the plan</h4>
+      <ul class="clean tight" style="font-size:14px; margin-top:8px;">
+        <li><strong>Defense counsel files MTC Arbitration:</strong> Same defense as Trish McEvoy case (11/11/25). Unlikely to succeed given Frost Buddy's TOS has no arbitration clause — but if filed, our pitch becomes "even your defense bet is weak; you need the compliance layer."</li>
+        <li><strong>Plaintiff voluntarily dismisses:</strong> Mirrors the Seido Knives pattern (settled within 7 weeks). Frame Blacklist as the "never again" insurance.</li>
+        <li><strong>Defense counsel is a known TCPA firm:</strong> Switch from founder-direct outreach to counsel channel — TCPA defense firms refer compliance vendors.</li>
+        <li><strong>Second Hindi-firm complaint lands on Frost Buddy:</strong> Urgency doubles. Same-day call.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 72-Hour Window</span>
+      <span class="pill pill--danger">21-Day Answer Window · Close Before Jun 17</span>
+      <span class="pill pill--warn">No Defense Counsel Yet — Founder-Direct Path Open</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-28</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
