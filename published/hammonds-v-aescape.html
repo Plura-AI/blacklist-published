@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hammonds v. Aescape — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-03</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Quiet-Hours Class Action · DTC SMS Marketer · Hindi/Lane Template · C.D. Cal.</p>
+      <h1 class="hero-tagline">Hammonds v.<br>Aescape, Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05899</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (LA)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 2, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">The Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred, but Hindi/Lane template is the real signal.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Ariyah Hammonds' number is not disclosed in the complaint or the SMS screenshots (which redact the recipient row). Lookup is deferred pending PACER pull or discovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint ¶11 references only that Plaintiff's area code "specifically coincides with locations in California." Screenshot exhibits (¶14) show only the sender DID +1 (646) 630-9259. The recipient row is cropped/redacted in the filed exhibit.</div>
+      </div>
+      <p class="scrub-body-text">No 10-digit recipient number was pled or disclosed in exhibits, so a Blacklist litigator-list lookup cannot be run on Hammonds at this time. Plaintiff Ariyah Hammonds returned 0 results on CourtListener — no prior TCPA filings located <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05899&type=r">CourtListener -></a></span>. The serial-filer signal here is the firm, not the plaintiff: Gerald D. Lane Jr. and The Law Offices of Jibrael S. Hindi have 690+ TCPA hits on CourtListener and are tier-listed in TCPAWorld's 2026 Power Rankings <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span>.</p>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Sending DID Identified in Complaint</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">SMS Sender DID</div>
+        <h3 class="card-title">+1 (646) 630-9259</h3>
+        <div class="card-body">
+          <p>NYC area code 646 geographic DID (not toll-free) — consistent with Aescape's NY headquarters. No external consumer-reporting hits available: 800notes, YouMail, Tellows, and RoboKiller all returned 403/404 errors during enrichment.</p>
+          <p style="margin-top:8px;"><strong>Linked short-link domain:</strong> <code>brz.ai</code> — the Braze SMS marketing platform's URL shortener, common across high-volume DTC SMS senders.</p>
+          <span class="pill pill--info">SENDER IDENTIFICATION · NO EXTERNAL TAGS RETRIEVED</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Recovery Path for Scrub</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Path 1 · Fastest</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <div class="card-body">Cover sheet (Doc #4) and complaint exhibits may contain unredacted recipient DID. Cost: ~$1.20. Owner: BDR before first dial.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 2</div>
+        <h3 class="card-title">Wait for defense counsel notice</h3>
+        <div class="card-body">Once defense counsel appears, request unredacted exhibit set under L.R. 5-4. No appearance yet — too early in case <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05899&type=r">CourtListener -></a></span>.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 3</div>
+        <h3 class="card-title">Discovery request</h3>
+        <div class="card-body">Standard Rule 26 disclosures will surface Hammonds' number with the Rule 26(a)(1) initial disclosures. Slower (60-90 days post-service).</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">SERIAL-FILER FLAG: HINDI/LANE FIRM (690+ FILINGS)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">First-time TCPA defendant. Braze-stack SMS marketer. Smoking-gun consent gap on the privacy policy. Pitch lands today.</h2>
+      <p class="section-lede">Aescape is a venture-backed NY robotics startup running mass SMS via Braze (brz.ai). This is their first TCPA suit on record. The complaint pleads quiet-hours violations (6:02 AM and 7:05 AM sends) and class of "several thousands." Lead with Consent Capture + DNC Scrubbing to fix the immediate gap; cross-sell Litigator Scrub once they retain counsel.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">Aescape's Terms (July 2024) and Privacy Policy (Jan 2024) contain ZERO TCPA-specific consent language and no autodialer or quiet-hours disclosure <span class="src-tag"><a href="https://aescape.com/terms">aescape.com/terms -></a></span> <span class="src-tag"><a href="https://aescape.com/privacy">aescape.com/privacy -></a></span>. Blacklist consent-capture API plugs the gap before the next class wave.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">DNC Scrubbing + Quiet-Hours Suppression</h3>
+        <div class="card-body">The 6:02 AM and 7:05 AM send times <span class="src-tag"><a href="https://aescape.com">aescape.com -></a></span> indicate no time-zone-aware send logic in their Braze workflow. Blacklist time-zone suppression and DNC scrub plug directly into Braze.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-sell After Defense Counsel Appears</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Hindi firm files quiet-hours templates across DTC verticals every month. Once Aescape's counsel is named, sell scrub to prevent copycat plaintiffs from Hindi's pipeline.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:40px 0 16px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>"Aescape is fighting their first TCPA suit, and the complaint is structured like every Hindi/Lane case in this firm's pipeline — quiet-hours screenshot, no plaintiff number disclosed, class of 'several thousands' at $500–$1,500 a text. That math is $1.5M to $15M+ in exposure before fees. Your terms and privacy policy don't disclose autodialed marketing texts and your Braze workflow is firing at 6 AM. We plug the quiet-hours gap and capture compliant consent in the booking flow so the next Hindi plaintiff doesn't have a complaint to file. Scrub cost is a rounding error against the class exposure."</p>
+        <p style="margin-top:12px;">If they push back that this is a one-off: point to the Hindi firm's 10+ recent California TCPA filings against e-commerce and wellness defendants — same template, same monetization model, frequently with rapid settlements <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span>. Aescape's brand-risk exposure is amplified by their Equinox and luxury-hotel partnership channel <span class="src-tag"><a href="https://aescape.com/about">aescape.com/about -></a></span>; a public TCPA class action against a wellness-channel partner is a board-level conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Venture-backed NYC robotics startup with an involuntary Chapter 11 cloud and a Braze marketing stack misconfiguration.</h2>
+      <p class="section-lede">Aescape, Inc. operates AI-powered robotic massage tables marketed direct-to-consumer in NYC and through luxury-channel partnerships. The complaint comes 6 months after creditors filed an involuntary Chapter 11 petition against Aescape in S.D.N.Y. — a wrinkle the rep needs to flag.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Aescape, Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Name</dt><dd>Aescape, Inc.</dd>
+            <dt>Entity Type</dt><dd>Corporation (per Complaint ¶8)</dd>
+            <dt>Formation State</dt><dd>Not confirmed — corporate registry searches returned 403/CAPTCHA</dd>
+            <dt>HQ</dt><dd>New York, NY <span class="src-tag"><a href="https://aescape.com">aescape.com -></a></span></dd>
+            <dt>Vertical</dt><dd>Consumer wellness / robotics — AI-powered robotic massage tables</dd>
+            <dt>Public/Private</dt><dd>Private (venture-backed)</dd>
+            <dt>Products</dt><dd>Full Body 30 min ($39); Power Flow 45 min ($54); Total Body 60 min ($69) <span class="src-tag"><a href="https://aescape.com">aescape.com -></a></span></dd>
+            <dt>Marketing Stack</dt><dd>Braze (brz.ai); Salesforce CRM (hidden Account ID field on contact form) <span class="src-tag"><a href="https://aescape.com/contact">aescape.com/contact -></a></span></dd>
+            <dt>Compliance Page</dt><dd>None published; only <code>legal@aescape.com</code> generic mailbox</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#ffb3b3;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy policy contemplates marketing SMS — but discloses no TCPA consent capture, no autodialer use, no quiet-hours practice.</h3>
+        <div class="card-body">
+          <p>"...communicate with you about the Sites and our massage services, including by sending related announcements, updates, marketing promotions, security alerts, and support and administrative messages." <span class="src-tag"><a href="https://aescape.com/privacy">aescape.com/privacy -></a></span></p>
+          <p style="margin-top:12px;">The policy was last updated January 2024 — predates the 2024 FCC one-to-one consent rule developments. The Terms of Use (July 2024) similarly contain no express TCPA consent-to-contact language <span class="src-tag"><a href="https://aescape.com/terms">aescape.com/terms -></a></span>. Marketing email signup form has no SMS consent disclosure, but Aescape sends marketing SMS via Braze.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Two clocks running at once</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>TCPA Answer Window</dt><dd>~21 days post-service under Fed. R. Civ. P. 12(a)(1)(A)(i). Service not yet executed; window will close late June / early July 2026.</dd>
+            <dt>Bankruptcy Stay</dt><dd><strong>Involuntary Chapter 11 petition pending against Aescape in S.D.N.Y. (25-12775, filed 12/10/2025, Judge Michael E. Wiles).</strong> Petitioning creditors: Viola Gurvits, Vasanth Williams, Moeller NGCG Holdings II LLC, Roberto Figueroa <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Aescape%22&type=r">CourtListener -></a></span>. An automatic stay under 11 U.S.C. § 362 may apply to the C.D. Cal. action depending on order-for-relief timing.</dd>
+            <dt>Sales Implication</dt><dd>Sell compliance now, before bankruptcy outcome dictates discretionary spending. If a stay is imposed, the rep pivots to "no-regret" consent-capture spend that protects estate value.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:40px 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Equinox NYC (channel partner)</td>
+            <td>Distribution partner — Aescape tables at Equinox locations</td>
+            <td>Luxury fitness</td>
+            <td>Brand-risk exposure if Aescape marketing tagged to Equinox-channel customer lists</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Luxury hotel partners</td>
+            <td>Hospitality channel for in-room/spa placements</td>
+            <td>Hospitality</td>
+            <td>Shared customer-acquisition data flow may import non-consenting numbers into Braze</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Braze, Inc. (SMS platform)</td>
+            <td>Vendor — provides brz.ai short link infrastructure</td>
+            <td>MarTech / SMS automation</td>
+            <td>Not a defendant, but every Braze-using DTC brand has the same misconfiguration risk — Blacklist sells the integration layer</td>
+            <td><span class="pill pill--gap">NOT IN SCOPE (DEFENDANT)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-time TCPA defendant facing the Hindi/Lane quiet-hours template — a high-volume, multi-jurisdiction filing machine.</h2>
+      <p class="section-lede">Aescape has no prior TCPA history on the docket. Plaintiff's firm does — the Jibrael Hindi firm is a known volume filer with 690+ CourtListener TCPA hits and tier placement in TCPAWorld's 2026 Power Rankings.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Hammonds v. Aescape, Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>2:26-cv-05899 (C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05899&type=r">CourtListener -></a></span></dd>
+            <dt>Filed</dt><dd>June 2, 2026</dd>
+            <dt>Plaintiff</dt><dd>Ariyah Hammonds (Los Angeles County, CA)</dd>
+            <dt>Lead Counsel</dt><dd>Gerald D. Lane Jr. · CA Bar #352470 · The Law Offices of Jibrael S. Hindi</dd>
+            <dt>Class Action</dt><dd>Yes — Putative Rule 23 class</dd>
+            <dt>Class Definition</dt><dd>All US persons (4 years prior to filing through certification) who received &gt;1 marketing SMS in any 12-month period before 8 AM or after 9 PM local time</dd>
+            <dt>Class Size Pled</dt><dd>"Several thousands; at least 50 persons" (¶25-26)</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1200(c)(1)</dd>
+            <dt>Theory</dt><dd>Quiet-hours SMS — 7:05 AM (Dec 5, 2025) and 6:02 AM (Dec 16, 2025) sends in Plaintiff's time zone</dd>
+            <dt>Damages Sought</dt><dd>$500/text negligent; $1,500/text willful; injunction; fees &amp; costs</dd>
+            <dt>Exposure (Named PL)</dt><dd>$1,000 (2 × $500) to $3,000 (2 × $1,500)</dd>
+            <dt>Exposure (Class)</dt><dd>~$1.5M to $15M+ at 1,000–10,000 class members × $500–$1,500/text</dd>
+            <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer deadline from service</dd>
+            <dt>Judge</dt><dd>Not yet assigned (per available CourtListener record)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h3 class="card-title">Gerald D. Lane Jr. · Law Offices of Jibrael S. Hindi</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+            <dt>Firm Phone</dt><dd>(754) 444-7539</dd>
+            <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com · gerald@jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+            <dt>Lane CA Bar #</dt><dd>352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -></a></span></dd>
+            <dt>Bar Address Match</dt><dd><span class="pill pill--warn">MISMATCH</span> CA-barred attorney; firm address in Wilton Manors, FL — out-of-state firm using CA-barred filing vehicle</dd>
+            <dt>Bar Status</dt><dd>Active (inferred — Cal Bar profile chrome returned, attorney-detail render did not complete)</dd>
+            <dt>Discipline</dt><dd>None found in available sources</dd>
+            <dt>TCPA Filing Rank</dt><dd>Jibrael Hindi appears in TCPAWorld's 2026 Power Rankings ("Most Dangerous TCPA Plaintiff's Lawyers") <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+            <dt>Firm TCPA Filings</dt><dd>690+ hits on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span></dd>
+            <dt>Firm Settlements</dt><dd>$30M+ TCPA · $200M+ class action · self-published <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:40px 0 16px;">Plaintiff Firm Template — Hindi/Lane Quiet Hours</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>This case follows the firm's now-recognizable quiet-hours template: (1) DTC consumer brand defendant in a mid-market SaaS/wellness/retail vertical; (2) two-or-more SMS sends before 8 AM or after 9 PM local; (3) screenshot exhibit with sender DID visible but recipient cropped; (4) class of "several thousands; at least 50 persons"; (5) 47 USC § 227(c) + 47 CFR § 64.1200(c)(1) claim with no DNC or autodialer count layered on top. The firm has used this same template in Steve Madden, Tampa Bay Buccaneers, Nespresso, ThirdLove, Summer Vibe, PrimeFish, and the Overtime Sports matters in 2025-2026 <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span>. Cases terminate quickly when defendants settle (Holt v. Bump Boxes ~10 weeks; Fleurigene/Orderly Wellness ~4 months; Garcia/Financial Future ~4 months) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span>.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:40px 0 16px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory / Relationship</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Hammonds v. Aescape, Inc.</strong> (2:26-cv-05899)</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">ACTIVE — THIS CASE</span></td>
+            <td>TCPA quiet hours — Hindi/Lane template</td>
+          </tr>
+          <tr>
+            <td>In re Aescape, Inc. (25-12775)</td>
+            <td>Bankr. S.D.N.Y. (Judge Wiles)</td>
+            <td>2025</td>
+            <td><span class="pill pill--danger">INVOLUNTARY CH. 11 PENDING</span></td>
+            <td>Same defendant — automatic stay implication <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Aescape%22&type=r">CourtListener -></a></span></td>
+          </tr>
+          <tr>
+            <td>Lane v. UrbanStems, Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">FIRM PIPELINE</span></td>
+            <td>Same firm — DTC e-commerce TCPA template</td>
+          </tr>
+          <tr>
+            <td>Moses v. Millionaire Media LLC</td>
+            <td>N.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">CLASS CERT TRACK</span></td>
+            <td>Same firm; proves willingness to litigate to certification when defendants don't settle</td>
+          </tr>
+          <tr>
+            <td>Curtis v. Authentic Sport Specialty</td>
+            <td>S.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">SETTLED AT ENE</span></td>
+            <td>Same firm — California DTC template, rapid settlement</td>
+          </tr>
+          <tr>
+            <td>Andrighetto v. JumpStartMD, Inc.</td>
+            <td>N.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">TERMINATED ~4 MO</span></td>
+            <td>Same firm — wellness vertical analog</td>
+          </tr>
+          <tr>
+            <td>Hernandez v. LA Tropicana Food L.P.</td>
+            <td>N.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">TERMINATED ~4 MO</span></td>
+            <td>Same firm — California DTC template</td>
+          </tr>
+          <tr>
+            <td>Vazquez v. American Future Technology</td>
+            <td>E.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">FIRM PIPELINE</span></td>
+            <td>Same firm — California venue strategy</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert" style="margin-top:32px;">
+      <div class="card-meta" style="color:#ffb3b3;">Open Intel Gaps — Close Before First Dial</div>
+      <div class="card-body">
+        <ul class="clean tight" style="color:#E0E0E0;">
+          <li>Plaintiff recipient phone number — pull from PACER ECF #1 to confirm scrub eligibility and litigator-list status.</li>
+          <li>Judge assignment — not visible in CourtListener as of report generation. Pull docket sheet once posted.</li>
+          <li>Defense counsel identity — no appearance yet. Watch for notice of appearance to set up post-counsel pitch.</li>
+          <li>Bankruptcy stay status — confirm whether the S.D.N.Y. involuntary Ch. 11 has resulted in order-for-relief and whether stay extends to this C.D. Cal. action.</li>
+          <li>Corporate registry confirmation — NY DOS, Bizapedia, OpenCorporates, Delaware DOC, and CA SOS all returned errors / CAPTCHAs. Re-attempt entity-formation search to identify registered agent.</li>
+          <li>General Counsel / Chief Compliance Officer — no GC or CCO publicly identified. Only <code>legal@aescape.com</code> generic mailbox surfaced.</li>
+          <li>Sender-DID intel — 800notes, YouMail, Tellows, RoboKiller all 403/404 during enrichment; no third-party numerosity floor available.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the CEO. There is no published GC — escalate compliance ownership in the first call.</h2>
+      <p class="section-lede">Aescape has no publicly identified General Counsel or Chief Compliance Officer. Frank F. Britt (CEO) is the right first call. Backstop with Becca Valle (VP Marketing — owns the Braze workflow) and Nick Nelson (VP Operations). Email pattern <code>first.last@aescape.com</code> inferred from published role mailboxes and SignalHire fragment.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; border-top:4px solid var(--bl-red);">
+      <div class="card-meta">Email Pattern</div>
+      <h3 class="card-title"><code>first.last@aescape.com</code></h3>
+      <div class="card-body">Inferred from published role mailboxes on the contact page (<code>info@</code>, <code>partnerships@</code>, <code>communications@</code>, <code>social@</code>, <code>help@</code>, <code>legal@</code>) <span class="src-tag"><a href="https://aescape.com/contact">aescape.com/contact -></a></span> and a SignalHire fragment showing <code>nick.nelson@aescape.com</code> matching the first.last convention <span class="src-tag"><a href="https://www.signalhire.com/companies/aescape">SignalHire -></a></span>. Confidence: PATTERN — verify before bulk send.</div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Email</th><th>Phone</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Frank F. Britt</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Top of org. Right first call given no published GC. <span class="src-tag"><a href="https://www.linkedin.com/company/aescape">LinkedIn -></a></span></td>
+            <td>frank.britt@aescape.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><a href="https://www.linkedin.com/in/fbritt">fbritt</a></td>
+          </tr>
+          <tr>
+            <td><strong>Becca Valle</strong><br><span class="pill pill--dark">VP MARKETING</span></td>
+            <td>Owns the marketing stack — Braze sends route through her org. Critical for consent-capture pitch. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>becca.valle@aescape.com<br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nick Nelson</strong><br><span class="pill pill--dark">VP OPS</span></td>
+            <td>Operational owner; SignalHire fragment confirms the email pattern works for him. <span class="src-tag"><a href="https://www.signalhire.com/companies/aescape">SignalHire -></a></span></td>
+            <td>nick.nelson@aescape.com<br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><a href="https://www.linkedin.com/in/nick-nelson-bb779a1">nick-nelson</a></td>
+          </tr>
+          <tr>
+            <td><strong>John Michael Hauer</strong><br><span class="pill pill--dark">VP GROWTH</span></td>
+            <td>Growth/CAC owner — likely budget signer for compliance spend tied to marketing efficiency. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>john.hauer@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><a href="https://www.linkedin.com/in/john-michael-hauer">john-michael-hauer</a></td>
+          </tr>
+          <tr>
+            <td><strong>Eric Litman</strong><br><span class="pill pill--dark">FOUNDER</span></td>
+            <td>Founder, former CEO. Backchannel only — use if Britt won't engage. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>eric.litman@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alex Linde</strong><br><span class="pill pill--dark">SVP PRODUCT</span></td>
+            <td>Product org — consent-capture is a product-flow change. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>alex.linde@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><a href="https://www.linkedin.com/in/alexlinde">alexlinde</a></td>
+          </tr>
+          <tr>
+            <td><strong>Casey Nolter</strong><br><span class="pill pill--dark">PRES, RETAIL</span></td>
+            <td>Retail president — channel partnerships sit under him. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>casey.nolter@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dan Burns</strong><br><span class="pill pill--dark">SVP PARTNERSHIPS</span></td>
+            <td>Equinox / luxury hotel channel. Brand-risk frame lands here. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>dan.burns@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Doug DeSimone</strong><br><span class="pill pill--dark">VP PEOPLE</span></td>
+            <td>HR/People — owns compliance policy rollout to staff. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>doug.desimone@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kamil Saigol</strong><br><span class="pill pill--dark">CHIEF SCIENTIST</span></td>
+            <td>Technical leadership — not the compliance buyer, but a credibility check. <span class="src-tag"><a href="https://theorg.com/org/aescape">TheOrg -></a></span></td>
+            <td>kamil.saigol@aescape.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Legal Mailbox</strong><br><span class="pill pill--dark">FALLBACK</span></td>
+            <td>Only published "legal" channel — confirm GC identity here. <span class="src-tag"><a href="https://aescape.com/contact">aescape.com/contact -></a></span></td>
+            <td>legal@aescape.com<br><span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Company Main</strong><br><span class="pill pill--dark">SWITCHBOARD</span></td>
+            <td>General inbound mailbox. <span class="src-tag"><a href="https://aescape.com/contact">aescape.com/contact -></a></span></td>
+            <td>info@aescape.com<br><span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">ROLE</span></td>
+            <td>Not publicly identified. <strong>Confirm on first call via <code>legal@aescape.com</code>.</strong></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">ROLE</span></td>
+            <td>Not publicly identified — likely role-not-staffed gap given startup posture.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">ROLE</span></td>
+            <td>Not yet appeared · ~21-day answer window from service. <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05899&type=r">CourtListener -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The answer-deadline clock + bankruptcy cloud + first-time TCPA exposure all compress urgency.</h2>
+      <p class="section-lede">Service hasn't been executed yet — first call should hit before Aescape retains defense counsel, while the compliance gap is freshly identified and the CEO is still the compliance owner of record.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Pull PACER ECF #1 + email Frank Britt</h3>
+        <div class="card-body">
+          <p>1. Pull the complaint and exhibits from PACER (~$1.20) to capture the recipient DID and run litigator scrub on Hammonds.</p>
+          <p>2. Cold email <code>frank.britt@aescape.com</code> + cc <code>legal@aescape.com</code>. Subject: "Hammonds v. Aescape — quiet-hours exposure and the Braze fix." 4-sentence frame: case awareness, smoking-gun privacy-policy citation, scrub-cost-vs-class-exposure math, ask for a 15-minute call.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2</div>
+        <h3 class="card-title">Backstop — Marketing &amp; Ops</h3>
+        <div class="card-body">
+          <p>If no CEO response, parallel-track Becca Valle (VP Marketing) and Nick Nelson (VP Ops). Frame: "the Braze quiet-hours setting fix takes 2 weeks; the class window doesn't."</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3-7</div>
+        <h3 class="card-title">Pre-defense-counsel close</h3>
+        <div class="card-body">
+          <p>Close consent-capture + DNC scrubbing engagement before defense counsel appears. Once counsel files appearance, the conversation routes through outside firm and lengthens by 30-60 days.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14-21</div>
+        <h3 class="card-title">Post-answer follow-up</h3>
+        <div class="card-body">
+          <p>If Aescape answers and counsel is named, re-pitch through outside counsel with Litigator Scrub as the lead product. Reference Hindi firm's pipeline of copycat plaintiffs.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:40px 0 16px;">Trigger Conditions That Change the Plan</h3>
+    <div class="card">
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Automatic stay imposed via S.D.N.Y. bankruptcy.</strong> If the involuntary Ch. 11 (25-12775) results in order-for-relief, pivot pitch to estate-protection consent-capture (smaller, defensible spend) and target debtor-in-possession counsel.</li>
+          <li><strong>Defense counsel files a motion to compel arbitration.</strong> Aescape's Terms of Use contain an arbitration clause; if MTC is filed, pitch shifts to mass-arbitration scrubbing — Hindi firm advertises $10M+ in mass-arbitration recoveries.</li>
+          <li><strong>Plaintiff voluntarily dismisses to amend.</strong> The Hindi firm has voluntarily dismissed quiet-hours cases before (PrimeFish). If that happens here, urgency softens but compliance gap remains a sale.</li>
+          <li><strong>Copycat suit filed against Aescape.</strong> Monitor CourtListener weekly for second-filer plaintiffs — escalates exposure and urgency.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:32px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--info">BANKRUPTCY CLOUD — CONFIRM STAY STATUS DAY 1</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-03</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
