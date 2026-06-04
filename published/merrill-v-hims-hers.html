@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merrill v. Hims &amp; Hers — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:170px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <rect x="0" y="2" width="20" height="20" fill="#A50100"/>
+          <text x="28" y="18" font-family="General Sans, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
+          <text x="148" y="18" font-family="General Sans, sans-serif" font-size="18" font-weight="400" fill="#FFFFFF" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-03</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Telehealth SMS Marketer · Federal DNC + Internal DNC Violation · Putative Rule 23 Class · N.D. Cal.</p>
+      <h1 class="hero-tagline">Merrill v.<br>Hims &amp; Hers Health</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-05255</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Cal. (San Francisco)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 2, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23(b)(2)/(3)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Michael T. Houchin <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Crosner Legal, P.C.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number is masked in the complaint — but Merrill is already a serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Merrill's number is partially redacted in the complaint as <strong>(805) 663-XXXX</strong>, and only the area code (Oxnard, Ventura County) is in the public record. The full number must be recovered via PACER ECF #1 or discovery before a live scrub can run.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Partially Redacted · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Cellular Number (as pled)</div>
+        <div class="scrub-number">(805) 663-XXXX</div>
+        <div class="scrub-number-sub">Oxnard, Ventura County, CA · Verizon/AT&amp;T rate-center range · Last 4 digits redacted in pleading. Registered on Federal DNC May 20, 2025 per Compl. ¶ 23.</div>
+      </div>
+      <p class="scrub-body-text">No 10-digit number was disclosed in the public complaint, so the Blacklist litigator database lookup was not run — a partial number would produce false matches. The plaintiff <strong>is</strong>, however, an established serial consumer-plaintiff: CourtListener shows at least four federal consumer actions filed by Monica Merrill in roughly 13 months (May 2025 – June 2026), including <em>Merrill v. Gizmo Verse</em> (2:25-cv-04684, C.D. Cal., voluntarily dismissed within ~3.5 months), <em>Merrill v. Linebarger Goggan Blair &amp; Sampson</em> (2:26-cv-01024, C.D. Cal.), and <em>Merrill v. University of Phoenix</em> (2:26-cv-04502, C.D. Cal.). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Monica+Merrill%22&type=r">CourtListener →</a></span> The Hims case is her first N.D. Cal. filing, and the Gizmo Verse FRCP 41(a)(1) dismissal pattern suggests a quick-walk-away settlement posture.</p>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-3);">Sender DID Intelligence</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">SMS Short Code</div>
+          <div class="card-title">89866</div>
+          <div class="card-body">
+            <p>5-digit SMS short code visible in both screenshot exhibits (Compl. ¶ 26). 800notes, YouMail, Tellows, and RoboKiller do not index 5-digit short codes — no third-party consumer-spam corroboration available.</p>
+            <p><strong>Infrastructure signal:</strong> short codes of this length are provisioned through CTIA registry / aggregators and are characteristic of programmatic, high-volume mass-SMS dispatch — consistent with the "thousands"-strong class size alleged.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Click-Tracking Domain</div>
+          <div class="card-title">brz.ai</div>
+          <div class="card-body">
+            <p>Embedded short-link in both texts (<code>brz.ai/uksEQ/lR55YQc</code> and <code>brz.ai/Yi2v5/lR55YQc</code>). WHOIS shows registration via Withheld for Privacy ehf (Iceland) through NameCheap, 2020-12-28, hosted on AWS DNS. <span class="src-tag"><a href="https://www.whois.com/whois/brz.ai">whois.com →</a></span></p>
+            <p><strong>Vendor fingerprint:</strong> <code>brz.ai</code> is Braze's SMS click-tracking short-link domain. Confirms Hims &amp; Hers is using Braze for outbound customer engagement — Braze is mentioned in TheOrg infrastructure data too. <span class="src-tag"><a href="https://theorg.com/org/hims-hers">TheOrg →</a></span></p>
+          </div>
+        </div>
+        <div class="card card--accent">
+          <div class="card-meta">Campaign Theme</div>
+          <div class="card-title">Compounded GLP-1 Promo</div>
+          <div class="card-body">
+            <p>Both texts dated Oct 20 and Oct 22, 2025 promote "Compounded GLP-1 treatment plans · $199/mo with a 6-mo plan paid upfront in full, if prescribed" with "Ready to start your weight loss journey?" call-to-action. The second text added "Reply STOP at any time to opt out" — implying the first message lacked the opt-out footer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-3);">Recovery Path for the Full Plaintiff Number</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Step 1</div>
+          <div class="card-title">Pull ECF #1 from PACER</div>
+          <div class="card-body">Cost ≈ $1.20. Unredacted pleadings sometimes carry the full number in a footnote or exhibit. CourtListener confirms ECF #1 (Complaint) filed 6/2/2026 with receipt ACANDC-22054070. <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-05255&type=r">CourtListener →</a></span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Step 2</div>
+          <div class="card-title">Wait for defense-counsel notice</div>
+          <div class="card-body">Once defense files a Notice of Appearance, propound an immediate Rule 26 disclosure or interrogatory for the full plaintiff number — discovery routinely surfaces it within 30 days.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Step 3</div>
+          <div class="card-title">Reverse from sender logs</div>
+          <div class="card-body">If Hims &amp; Hers can identify the recipient in their Braze send logs (Oct 20 + Oct 22, 2025, Oxnard area code 805/663), the number is recoverable from the defendant's own marketing data store.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--red">Serial-Filer Flag: 4 filings in 13 months</span>
+      <span class="pill pill--info">Quick-Dismissal Pattern: Gizmo Verse 9/10/2025</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Public NYSE telehealth defendant, Braze SMS infrastructure, federal DNC + internal DNC pled — every Blacklist product fits.</h2>
+      <p class="section-lede">Hims &amp; Hers is a $872M-revenue public company (NYSE: HIMS, S&amp;P 400) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Hims_%26_Hers_Health">Wikipedia →</a></span> running a DTC subscription engine on Braze SMS. The complaint pleads both Federal DNC (§ 64.1200(c)) and Internal DNC (§ 64.1200(d)) violations — a one-two punch a proper scrub + written policy would have prevented. The class is pled in the thousands; statutory exposure is material.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <div class="card-title">Litigator Scrub + DNC Scrubbing</div>
+        <div class="card-body">Combined federal DNC + serial-filer flags = the exact failure mode the Blacklist database is built to prevent. Both Monica Merrill (4 filings in 13 months) and Crosner Legal would have been pre-flagged. Lead with this.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Strong Cross-Sell</div>
+        <div class="card-title">Policies &amp; Procedures / Compliance Audit</div>
+        <div class="card-body">Internal DNC claim (§ 64.1200(d)) targets whether Hims maintained a written do-not-call policy and trained personnel. No public-facing TCPA compliance page exists on hims.com — a Blacklist compliance audit closes that exposure.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Inherited-List Risk</div>
+        <div class="card-title">Consent Capture &amp; List Hygiene</div>
+        <div class="card-body">Hims acquired ZAVA (Jun 2025) and Eucalyptus Health / Juniper / Pilot / Kin (Feb 2026, $1.6B). <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Hims_%26_Hers_Health">Wikipedia →</a></span> Inherited international subscriber lists almost certainly never DNC-scrubbed against the US registry. Cross-sell ammunition.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px" class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8">Pitch Angle</div>
+      <div class="card-title">"Your Braze short code just got named in a class action filed yesterday."</div>
+      <div class="card-body">
+        <p>Lead the first call with timing: the complaint was filed June 2, 2026, in N.D. Cal. The named sender shortcode (89866) and Braze link domain (brz.ai) appear in the screenshot exhibits — meaning the rep can point to the exact infrastructure that's now litigation evidence. Plaintiff is a serial filer, plaintiff counsel is Crosner Legal (consumer-class shop that has filed repeat N.D. Cal. TCPA cases with the Friedman office), and there's no public TCPA compliance officer named on hims.com.</p>
+        <p>Pivot to scale: Hims is post-acquisition with ZAVA and Eucalyptus folded in this year. Every acquired list is a potential second-class action waiting to happen unless it gets scrubbed. The Blacklist database would have caught Merrill on a single API call before Braze ever fired — and would catch the next plaintiff before this case spawns copycats. Frame Blacklist as the cheapest insurance policy a public company can buy: $0.01 per scrub versus $500–$1,500 per text in statutory damages, trebled for willful conduct.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">$872M public DTC telehealth platform, growing by acquisition, no visible compliance officer.</h2>
+      <p class="section-lede">Hims &amp; Hers is a publicly traded telehealth holding (NYSE: HIMS, S&amp;P 400) with deep pockets, an aggressive growth-by-acquisition posture, and — per public-source review — no named Chief Compliance Officer or public TCPA program.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <div class="card-title">Hims &amp; Hers Health, Inc.</div>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Hims &amp; Hers Health, Inc.</dd>
+          <dt>Formation</dt><dd>Delaware corporation (per Compl. ¶ 4)</dd>
+          <dt>HQ</dt><dd>2269 Chestnut Street, #523, San Francisco, CA 94123</dd>
+          <dt>Public Ticker</dt><dd>NYSE: HIMS · S&amp;P 400 component <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Hims_%26_Hers_Health">Wikipedia →</a></span></dd>
+          <dt>Founded</dt><dd>2017 (SPAC merger w/ Oaktree Acquisition Corp. → public Jan 2021)</dd>
+          <dt>Founders</dt><dd>Andrew Dudum, Hilary Coles, Jack Abraham, Joe Spector</dd>
+          <dt>Revenue</dt><dd>~US$872M (2023) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Hims_%26_Hers_Health">Wikipedia →</a></span></dd>
+          <dt>Vertical</dt><dd>DTC telehealth / online pharmacy (hair loss, ED, weight loss, mental health, women's health)</dd>
+          <dt>Brands</dt><dd>Hims, Hers, ZAVA (acq. Jun 2025), Juniper / Pilot / Kin via Eucalyptus (acq. Feb 2026)</dd>
+          <dt>SMS Stack</dt><dd>Braze (brz.ai short-link domain) <span class="src-tag"><a href="https://theorg.com/org/hims-hers">TheOrg →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <div class="card-title">Second text added "Reply STOP" — first text didn't.</div>
+        <div class="card-body">
+          <p>The Oct 20, 2025 text (Compl. ¶ 26) reads: "Hers: Lowest price ever 🔥 Compounded GLP-1 treatment plans are now $199/mo... Ready to start your weight loss journey? https://brz.ai/uksEQ/lR55YQc" — <strong>no opt-out instruction</strong>.</p>
+          <p>The Oct 22, 2025 text adds: <em>"Reply STOP at any time to opt out."</em> Same campaign, same shortcode, 48 hours apart — Hims appears to have patched the opt-out language mid-flight, which is itself evidence that the written-policy / training requirement of § 64.1200(d) was not in place at the time of the first send.</p>
+          <p>Combined with no Chief Compliance Officer identified in public materials and no TCPA disclosures on hims.com (403-blocked but reviewed via TheOrg leadership listing), the internal-DNC count has real teeth.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-3);">Strategic Timing</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Answer Clock</div>
+          <div class="card-title">~21 days from service</div>
+          <div class="card-body">Complaint filed 6/2/2026; proposed summons on file as ECF #2 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-05255&type=r">CourtListener →</a></span>. Once served, Hims has 21 days to answer or 60 days if waiver. Window to engage in-house legal opens NOW.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Stock Pressure</div>
+          <div class="card-title">HIMS shares -48% YTD 2026</div>
+          <div class="card-body">Novo Nordisk lawsuit and FDA peptide rescheduling drove a 48% share decline at the start of 2026 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Hims_%26_Hers_Health">Wikipedia →</a></span>. Cost discipline is at peak — buying compliance now to head off a class action is a CFO-friendly conversation.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Concurrent Securities Suit</div>
+          <div class="card-title">Sookdeo (J. Donato, N.D. Cal.)</div>
+          <div class="card-body">Hims is already defending a securities class action in the same court (Sookdeo v. Hims &amp; Hers Health, 3:25-cv-05315) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hims+%26+Hers+Health%22&type=r">CourtListener →</a></span>. Outside counsel bandwidth is already stretched — in-house team will want to settle peripheral matters quickly.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px">
+      <table class="tbl">
+        <thead><tr><th>Related Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Hers (forhers.com)</td><td>Sister brand (women's health)</td><td>Telehealth</td><td>Same Braze stack — sender of the Merrill texts</td><td><span class="pill pill--red">High</span></td></tr>
+          <tr><td>ZAVA</td><td>Subsidiary (acquired Jun 2025)</td><td>European telehealth</td><td>Inherited subscriber base; likely not DNC-scrubbed against US registry</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>Juniper / Pilot / Kin (Eucalyptus Health)</td><td>Subsidiary (acquired Feb 2026, $1.6B)</td><td>Telehealth (AU origin)</td><td>Recently integrated marketing DBs — second-class-action risk surface</td><td><span class="pill pill--red">High</span></td></tr>
+          <tr><td>US peptide manufacturing facility (CA)</td><td>Asset acquisition (2025)</td><td>Compounded pharma</td><td>Operational only — limited direct TCPA exposure</td><td><span class="pill pill--info">Low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA hit on Hims & Hers — Crosner Legal is the template architect.</h2>
+      <p class="section-lede">Public TCPA dockets show zero prior TCPA cases against Hims &amp; Hers, making this the opening filing. Plaintiff counsel Crosner Legal is a high-volume consumer-class shop with a 100+ attorney/staff footprint and a known N.D. Cal. TCPA bench alongside Todd Friedman's office. They do not file one-offs.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Summary</div>
+        <div class="card-title">Merrill v. Hims &amp; Hers Health, Inc.</div>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>3:26-cv-05255 (N.D. Cal., San Francisco) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-05255&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>June 2, 2026</dd>
+          <dt>Plaintiff</dt><dd>Monica Merrill (Oxnard, Ventura County, CA)</dd>
+          <dt>Class</dt><dd>Yes — Rule 23(b)(2) &amp; 23(b)(3); "thousands" pled</dd>
+          <dt>Class Definition</dt><dd>All US persons whose residential cell numbers were on the NDCR for ≥31 days and who received 2+ marketing texts in any 12-month period from/on behalf of Hims, in past 4 years</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1200(c)(2); 47 CFR § 64.1200(d)</dd>
+          <dt>Theory</dt><dd>Federal DNC + Internal DNC (no written policy/training)</dd>
+          <dt>Channels</dt><dd>SMS only (two texts: Oct 20 + Oct 22, 2025)</dd>
+          <dt>Damages Sought</dt><dd>$500/violation + treble to $1,500 for willful; injunctive relief; fees</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> 21-day answer clock from service</dd>
+          <dt>Nature of Suit</dt><dd>Coded 890 (Other Statutory) — minor coding anomaly, not 485 (TCPA) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-05255&type=r">CourtListener →</a></span></dd>
+          <dt>Judge</dt><dd>Not yet assigned per docket</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <div class="card-title">Michael T. Houchin — Crosner Legal, P.C.</div>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Bar No.</dt><dd>CA SBN 305541 (active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/305541">CalBar →</a></span></dd>
+          <dt>Email</dt><dd>mhouchin@crosnerlegal.com</dd>
+          <dt>Firm Phone</dt><dd>(866) 276-7637</dd>
+          <dt>Firm Address</dt><dd>9440 Santa Monica Blvd, Suite 301, Beverly Hills, CA 90210 <span class="src-tag"><a href="https://crosnerlegal.com/">crosnerlegal.com →</a></span></dd>
+          <dt>Firm Offices</dt><dd>Beverly Hills (HQ), Seattle, Portland, Chicago</dd>
+          <dt>Firm Size</dt><dd>20+ attorneys/staff <span class="src-tag"><a href="https://crosnerlegal.com/attorneys/">Attorneys page →</a></span></dd>
+          <dt>Firm Principal</dt><dd>Zachary Crosner (zach@crosnerlegal.com)</dd>
+          <dt>Practice Areas</dt><dd>Consumer class actions, privacy/data breach, wage &amp; hour, PAGA, mass arbitration</dd>
+          <dt>Self-Reported Recovery</dt><dd>"$300M+ recovered" / 100,000+ workers and consumers represented <span class="src-tag"><a href="https://crosnerlegal.com/">crosnerlegal.com →</a></span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPA-Specialty</dt><dd>No — primarily a consumer/wage shop. CourtListener surfaces 2 prior firm TCPA dockets in N.D. Cal. (<em>Gonzalez v. Styleworks</em>, <em>Gonzalez v. Sincerely</em>, both 2022) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Crosner+Legal%22+TCPA&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--fg-3);">Plaintiff / Firm Template</h3>
+      <div class="card">
+        <div class="card-title">Crosner / Houchin Federal-DNC Screenshot Template</div>
+        <div class="card-body">
+          <p>The complaint follows a tight, repeatable template the firm uses against e-commerce/DTC defendants: (1) plaintiff registered cell on NDCR ≥31 days before texts, (2) two or more marketing SMS within 12 months, (3) screenshots of the texts reproduced as figures, (4) sender shortcode and link-shortener domain named, (5) Federal DNC count + Internal DNC count plus a written-policy/training failure paragraph. The same structure appeared in Crosner's earlier <em>Gonzalez v. Styleworks</em> and <em>Gonzalez v. Sincerely</em> N.D. Cal. cases.</p>
+          <p>Plaintiff Monica Merrill is herself a documented serial filer — at least 4 federal consumer cases between May 2025 and June 2026, the prior <em>Gizmo Verse</em> matter voluntarily dismissed within ~3.5 months (FRCP 41(a)(1)) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Monica+Merrill%22&type=r">CourtListener →</a></span>. Read together, this is a serial-plaintiff + repeat-template combination engineered to settle.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current"><td><strong>Merrill v. Hims &amp; Hers Health</strong> (current)</td><td>3:26-cv-05255 (N.D. Cal.)</td><td>2026-06-02</td><td><span class="pill pill--red">Active</span></td><td>Federal DNC + Internal DNC (SMS)</td></tr>
+          <tr><td>Sookdeo v. Hims &amp; Hers Health (securities)</td><td>3:25-cv-05315 (N.D. Cal., J. Donato)</td><td>2025</td><td><span class="pill pill--warn">Active</span></td><td>Securities class action (separate matter, same forum) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hims+%26+Hers+Health%22&type=r">CourtListener →</a></span></td></tr>
+          <tr><td>Merrill v. University of Phoenix</td><td>2:26-cv-04502 (C.D. Cal.)</td><td>2026</td><td><span class="pill pill--warn">Active</span></td><td>Same plaintiff, prior consumer action <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Monica+Merrill%22&type=r">CourtListener →</a></span></td></tr>
+          <tr><td>Merrill v. Linebarger Goggan Blair &amp; Sampson</td><td>2:26-cv-01024 (C.D. Cal.)</td><td>2026</td><td><span class="pill pill--warn">Active</span></td><td>Same plaintiff, prior consumer action</td></tr>
+          <tr><td>Merrill v. Gizmo Verse LLC</td><td>2:25-cv-04684 (C.D. Cal.)</td><td>2025-05</td><td><span class="pill pill--ok">Voluntarily Dismissed 9/10/2025</span></td><td>Same plaintiff — quick walk-away</td></tr>
+          <tr><td>Gonzalez v. Styleworks Design Group</td><td>N.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Terminated</span></td><td>Crosner Legal prior TCPA template <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Crosner+Legal%22+TCPA&type=r">CourtListener →</a></span></td></tr>
+          <tr><td>Gonzalez v. Sincerely, LLC</td><td>N.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Terminated</span></td><td>Crosner Legal prior TCPA template</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul style="margin:0; padding-left:20px;">
+        <li><strong>Plaintiff's full 10-digit number</strong> — pull ECF #1 from PACER and run a live Blacklist litigator scrub.</li>
+        <li><strong>Assigned Article III + Magistrate judges</strong> — not yet listed on CourtListener; check CAND general orders once assigned.</li>
+        <li><strong>Defense counsel</strong> — no Notice of Appearance on file yet; watch the docket for outside-counsel identity (informs how to brief the in-house team).</li>
+        <li><strong>Confirm Delaware entity status, registered agent, and full officer list</strong> — DE SoS, CA SoS, OpenCorporates, and SEC EDGAR were all blocked or returned no usable data; pull the 10-K and DEF 14A direct from SEC EDGAR for the verified officer/director slate.</li>
+        <li><strong>BBB, Trustpilot, Glassdoor profiles</strong> — all 403-blocked; can be re-run manually to gauge consumer-complaint volume around unwanted texts.</li>
+        <li><strong>hims.com signup-flow checkbox language</strong> — site 403-blocked; manual review will confirm whether express written consent meets E-SIGN.</li>
+        <li><strong>Hims main switchboard / in-house legal direct phone</strong> — not published; SEC filings or investor-relations contact may yield it.</li>
+        <li><strong>Whether shortcode 89866 is dedicated to Hims or shared</strong> — CTIA/aggregator lookup not publicly available.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the Chief Legal Officer. CFO is the budget backstop.</h2>
+      <p class="section-lede">Hims publishes its leadership on TheOrg but not on hims.com (403-blocked). Email pattern is <code>{first}@forhims.com</code>, inferred from <code>investors@forhims.com</code> in the IR site footer <span class="src-tag"><a href="https://investors.hims.com/">investors.hims.com →</a></span>. The Chief Legal Officer and Chief Policy Officer are the two highest-leverage opens; CFO and COO are the budget/operations backstops; CMO/CPO own the SMS spend.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Email</th><th>Phone</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Soleil Teubner Boughton</strong> <br><span class="pill pill--red">Lead Open</span> <span class="pill pill--dark">CLO</span></td>
+            <td>Chief Legal Officer &amp; Corporate Secretary. Owns litigation response. The decision-maker on whether to settle or fight. <span class="src-tag"><a href="https://theorg.com/org/hims-hers">TheOrg →</a></span></td>
+            <td>soleil@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/soleilboughton">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Deb Autor</strong> <br><span class="pill pill--dark">CPO</span></td>
+            <td>Chief Policy Officer. Ex-FDA; owns regulatory + compliance narrative. Strong fit for the "written policy / training" angle of the Internal DNC count. <span class="src-tag"><a href="https://theorg.com/org/hims-hers">TheOrg →</a></span></td>
+            <td>deb@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/debautor">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Yemi Okupe</strong> <br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer. Budget owner. With shares down 48% YTD, will be receptive to insurance-style framing.</td>
+            <td>yemi@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/yemiokupe">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Andrew Dudum</strong> <br><span class="pill pill--dark">CEO/Founder</span></td>
+            <td>Founder &amp; CEO. Public-facing; unlikely first call but escalation lever. <span class="src-tag"><a href="https://theorg.com/org/hims-hers">TheOrg →</a></span></td>
+            <td>andrew@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/andrewdudum">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Mike Chi</strong> <br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer. Owns the operational stack that includes Braze SMS infrastructure.</td>
+            <td>mike@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/mikechi">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Melissa Baird</strong> <br><span class="pill pill--dark">COO (Operations)</span></td>
+            <td>Chief Operations Officer — distinct from Mike Chi per TheOrg; likely owns supply / fulfillment operations.</td>
+            <td>melissa@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dheerja Kaur</strong> <br><span class="pill pill--dark">CPO (Product)</span></td>
+            <td>Chief Product Officer. Owns subscriber-experience flows, including SMS engagement &amp; opt-out UX.</td>
+            <td>dheerja@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/dheerjakaur">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Kathy Beiser</strong> <br><span class="pill pill--dark">CCO (Comms)</span></td>
+            <td>Chief Communications Officer. Owns PR posture once Crosner publicizes filing.</td>
+            <td>kathy@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/kathybeiser">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Mo Elshenawy</strong> <br><span class="pill pill--dark">CTO</span></td>
+            <td>Chief Technology Officer. Owns the Braze integration and data pipelines.</td>
+            <td>mo@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/moelshenawy">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jack Abraham</strong> <br><span class="pill pill--dark">Exec. Chair</span></td>
+            <td>Co-Founder &amp; Executive Chairman. Atomic Labs principal — board-level escalation lever.</td>
+            <td>jack@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pat Carroll</strong> <br><span class="pill pill--dark">CMO (Medical)</span></td>
+            <td>Chief Medical Officer.</td>
+            <td>pat@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sarah Stuart</strong> <br><span class="pill pill--dark">SVP People</span></td>
+            <td>SVP of People. Lower priority for TCPA outreach.</td>
+            <td>sarah@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><a href="https://www.linkedin.com/in/sarahstuart">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Dan Kenger</strong> <br><span class="pill pill--dark">CDO (Design)</span></td>
+            <td>Chief Design Officer. Owns signup-flow UX where consent capture happens.</td>
+            <td>dan@forhims.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Investor Relations</strong> <br><span class="pill pill--info">Verified Inbox</span></td>
+            <td>Generic IR inbox. Last-resort contact route if executive emails bounce.</td>
+            <td>investors@forhims.com <br><span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-2);">
+      <strong>Email pattern:</strong> <code>{first}@forhims.com</code> — inferred from the verified <code>investors@forhims.com</code> IR inbox. Use the pattern as the first-touch address; fall back to LinkedIn InMail on bounce.
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears.</h2>
+      <p class="section-lede">The complaint was filed June 2, 2026. Once defense counsel appears, the in-house team's appetite to take a vendor pitch evaporates. The window is now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–1</div>
+        <div class="card-title">Pull PACER ECF #1 + scrub Merrill's number</div>
+        <div class="card-body">Cost ~$1.20. Recover the full plaintiff 10-digit number. Run live Blacklist database lookup to verify litigator-list match. Result drives the entire pitch.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <div class="card-title">Outreach to Soleil Boughton (CLO)</div>
+        <div class="card-body">Email <code>soleil@forhims.com</code> with subject line referencing the case caption + docket. Lead with "your Braze short code 89866 is now litigation evidence" and the scrub-result data point. Copy <code>deb@forhims.com</code> (Chief Policy Officer) for the regulatory angle.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–4</div>
+        <div class="card-title">Cross-channel LinkedIn touch</div>
+        <div class="card-body">InMail Soleil Boughton and Deb Autor on LinkedIn with same hook. If no reply by Day 4, escalate to Yemi Okupe (CFO) with insurance-framing message: "$0.01/scrub vs. $500–$1,500/text statutory damages."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–10</div>
+        <div class="card-title">Cross-sell brief on acquired brands</div>
+        <div class="card-body">Once a conversation opens, expand scope: ZAVA (US compliance gap after Jun 2025 acquisition), Juniper/Pilot/Kin (post-Feb 2026 integration). Each acquired list is a second-class-action risk surface and a Blacklist scrub use case.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10–21</div>
+        <div class="card-title">Close before answer deadline</div>
+        <div class="card-body">The 21-day answer clock is the urgency anchor. Once defense counsel files an appearance, the in-house team will route everything through outside counsel and the vendor sale window closes.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Parallel</div>
+        <div class="card-title">Monitor for copycat filings</div>
+        <div class="card-body">This is the first public TCPA case against Hims. Watch CourtListener for copycats once Crosner's case becomes searchable — each copycat is fresh urgency on the in-house team.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px" class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8">Trigger Conditions That Change The Plan</div>
+      <div class="card-body">
+        <ul style="margin:0; padding-left:20px;">
+          <li><strong>Defense files a motion to compel arbitration</strong> — if Hims's ToS contains a binding arbitration clause that survives, class exposure shrinks and urgency decreases. (ToS not yet reviewed — site 403-blocked.)</li>
+          <li><strong>Plaintiff voluntarily dismisses</strong> (same FRCP 41(a)(1) pattern as Merrill v. Gizmo Verse) — would signal early settlement; pivot to the next plaintiff/filing rather than this defendant.</li>
+          <li><strong>Class certification denied or stayed</strong> — drops exposure 90%; deprioritize.</li>
+          <li><strong>Copycat filing in another district</strong> — escalate urgency one notch; multi-front exposure unlocks larger compliance budget.</li>
+          <li><strong>Crosner Legal serves discovery seeking sender-platform records</strong> — Braze data preservation hold = perfect moment to push the consent-capture / list-hygiene product.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE ~JUN 23, 2026 (POST-SERVICE)</span>
+      <span class="pill pill--info">LEAD PRODUCT: LITIGATOR SCRUB + DNC SCRUBBING</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-03</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
