@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carmack v. Clearpath Consulting Agency — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; color:var(--warning); font-size:14px; letter-spacing:0.08em; text-transform:uppercase; }
+.callout ul{ margin:8px 0 0 18px; padding:0; font-size:14px; color:var(--fg-1); }
+.callout li{ padding:3px 0; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#fff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">BLACKLIST</text>
+          <text x="125" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Prerecorded-Voice Defendant · Timeshare-Exit Vertical · 9-DID Snowshoe Dialer · Putative Rule 23 Class · Kaufman/Coleman Team</p>
+      <h1 class="hero-tagline">Carmack v.<br>Clearpath Consulting Agency <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">+ Serenity 1, LLC</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">6:26-cv-01181</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">M.D. Fla. (Orlando)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 27, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <span style="font-weight:400; font-size:12px; color:#A8A8A8;">(case 2 days old)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)(1)(A)(iii)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23(b)(2)/(b)(3)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Avi R. Kaufman (lead)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Kaufman P.A. + Coleman PLLC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number redacted — but Kaufman/Coleman is one of the most prolific TCPA duos in the country.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("ending in 1417"), so a litigator-list lookup cannot be run until the full number is recovered. The defendant's exposure to plaintiff's counsel is independently severe regardless of scrub result.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</span>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Cell (per Compl. ¶ 37)</div>
+        <div class="scrub-number">(XXX) XXX-1417</div>
+        <div class="scrub-number-sub">Only the last four digits were pled. No full 10-digit number disclosed. Blacklist scrub cannot be run against a partial number.</div>
+      </div>
+      <p class="scrub-body-text">
+        The complaint identifies the plaintiff as the "sole owner and user" of a cell phone ending in 1417 and a resident of Ocala, Florida (Marion County). The plaintiff alleges six prerecorded voicemails between April 14–17, 2026 from nine distinct sender DIDs operated by or for Clearpath Consulting Agency. No federal litigator-list scrub has been run because only four digits are available. Recovery of the full number requires either a PACER pull of the operative complaint (the docket is live in M.D. Fla.) or a Rule 26 initial disclosure once defense counsel appears.
+        <span class="src-tag"> <a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">CourtListener RECAP -></a></span>
+      </p>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:16px; font-size:18px;">Sending DID Pool (sender identification — not spam framing)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Sender DIDs — Toll-Free</div>
+        <div class="card-title">8 toll-free + 1 NYC geographic</div>
+        <div class="card-body">
+          <strong>855:</strong> 855-765-9557, 855-211-5612, 855-756-0706<br>
+          <strong>833:</strong> 833-506-7910, 833-679-2174, 833-774-8385, 833-475-1103, 833-781-1180<br>
+          <strong>917 (NYC):</strong> 917-651-0740<br>
+          <em style="color:var(--fg-2); font-size:13px;">No 800notes, YouMail, Tellows, or RoboKiller listings could be retrieved — all four consumer-report sources returned HTTP 403/404 on automated fetch. Sender identification rests on the verbatim voicemail scripts pled at Compl. ¶¶ 41–53.</em>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Infrastructure Signal</div>
+        <div class="card-title">Rotating DID pool — snowshoe pattern</div>
+        <div class="card-body">9 distinct originating numbers used against a single plaintiff in 4 calendar days. 8 of 9 are toll-free across two prefix ranges (855/833) plus one local-presence NYC number — characteristic of a multi-trunk predictive dialer with carrier rotation to evade STIR/SHAKEN spam labeling.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Defendant Admission</div>
+        <div class="card-title">19+ "unauthorized" numbers self-listed</div>
+        <div class="card-body">Clearpath's own Consumer Alert page lists 19+ phone numbers as "unauthorized." Serenity 1's identical Consumer Alert lists 12 more. Numbers like 855-756-3171 / 855-356-0702 are structurally adjacent to numbers in the complaint, suggesting overlapping vendor infrastructure.
+          <span class="src-tag"><a href="https://cpathconsulting.com/consumer-alert" target="_blank">cpathconsulting.com/consumer-alert -></a></span>
+          <span class="src-tag"><a href="https://sonecg.com/consumer-alert" target="_blank">sonecg.com/consumer-alert -></a></span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:16px; font-size:18px;">Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-title">1. Pull PACER ECF #1</div>
+        <div class="card-body">Operative complaint is filed and Summons issued May 28, 2026. ~$1.20 PACER fee. Plaintiff's full cell number may be pled in an unredacted exhibit. <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">RECAP -></a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Watch for defense counsel notice</div>
+        <div class="card-body">21-day answer clock under FRCP 12(a) starts from service. Defendants will demand discovery of plaintiff's call records — the carrier subpoena will surface the full number.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Rule 26(a) initial disclosure</div>
+        <div class="card-body">Plaintiff must produce "computation of damages" tied to the receiving line. Number surfaces no later than 14 days after the Rule 26(f) conference.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">PLAINTIFF FIRM: ELITE TCPA VOLUME FILER</span>
+      <span class="pill pill--warn">9 SENDER DIDS — ROTATING POOL</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Two-defendant timeshare-exit shop with no privacy policy, a self-published "we don't make these calls" disclaimer, and 9 rotating DIDs — a textbook consent-capture + scrub sale.</h2>
+      <p class="section-lede">This defendant has already <em>admitted on its own website</em> that telemarketing calls are going out under its name from "unauthorized" numbers it cannot control. That's the opening: Blacklist's litigator scrub + vendor compliance audit converts that admission from a class-cert weapon into a defensible compliance posture. Lead with Consent Capture / Vendor Compliance Audit — back it with Litigator Scrub for the live DID pool.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <div class="card-title">Consent Capture + Vendor Audit</div>
+        <div class="card-body">Defendant has zero published TCPA consent flow, no terms of service, no privacy policy on cpathconsulting.com (both /privacy and /terms return 404). Co-defendant Serenity 1's policy explicitly says "NOT a marketing or promotional messaging program." Capture + audit is the foundational product. <span class="src-tag"><a href="https://cpathconsulting.com/disclaimer" target="_blank">cpathconsulting.com/disclaimer -></a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Strong Secondary</div>
+        <div class="card-title">Litigator Scrub</div>
+        <div class="card-body">The complaint discloses 9 active outbound DIDs. Defendant continues to call. Blacklist's scrub against the federal litigator list prevents the next Carmack — and the next Kaufman P.A. filing — before it lands.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <div class="card-title">DNC Scrubbing + Policies & Procedures</div>
+        <div class="card-body">Plaintiff alleges he never owned a timeshare and never gave consent. That's a wrong-person / no-list-hygiene fact pattern. A Federal DNC + internal DNC scrub plus a written P&P binder is table stakes for a vertical this hot.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:12px; font-size:20px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body" style="font-size:15px;">
+        <p><strong>Open with the website admission.</strong> "I'm calling because your own Consumer Alert page lists 19 phone numbers as 'unauthorized' and admits a 'former vendor and one current vendor affiliate' have been calling consumers using your name. <span class="src-tag"><a href="https://cpathconsulting.com/consumer-alert" target="_blank">cpathconsulting.com/consumer-alert -></a></span> Serenity 1 publishes the identical disclaimer. <span class="src-tag"><a href="https://sonecg.com/consumer-alert" target="_blank">sonecg.com/consumer-alert -></a></span> You already know the calls are happening — you just have no infrastructure to prove which calls were authorized and which weren't. That's the case Avi Kaufman just filed against you, and that's the case Blacklist solves."</p>
+        <p><strong>Then escalate.</strong> "The lawyer who filed this — Avi Kaufman — is repeatedly named in TCPAWorld's Power Lawyer rankings and his firm has put together more than $100 million in TCPA class settlements (Keller Williams $40M, eXp Realty $26.9M, Realogy $20M). <span class="src-tag"><a href="https://tcpaworld.com/?s=Avi+Kaufman" target="_blank">TCPAWorld -></a></span> Kaufman's CourtListener docket shows 832 TCPA-tagged matters. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kaufman+P.A.%22+TCPA&type=r" target="_blank">CourtListener -></a></span> They don't take nuisance settlements. They certify and they hit. Class is pled as 'hundreds, if not thousands' at $500–$1,500 per call. You have a 21-day answer clock to demonstrate vendor-level compliance — and right now you can't, because you don't even have a privacy policy on cpathconsulting.com."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A two-year-old Central Florida timeshare-exit shop, fronting for a California fulfillment entity, scaling outbound dialing through "vendor affiliates."</h2>
+      <p class="section-lede">Clearpath Consulting Agency (Sanford/Longwood, FL) is the marketing front. Serenity 1, LLC (San Diego, CA) is the fulfillment partner. The two co-publish identical Consumer Alert pages, share an A+ BBB badge, and jointly guarantee a "100% Money Back Guarantee" — but no parent entity, registered agent, or officer roster has yet been retrieved from Sunbiz or CA SOS (both timed out 403 on lookup).</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-title">Defendant Profile — Clearpath Consulting Agency LLC</div>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Clearpath Consulting Agency LLC</dd>
+          <dt>Formation State</dt><dd>Florida</dd>
+          <dt>HQ</dt><dd>587 E SR 434, Ste 3045, Longwood, FL 32750 <span class="src-tag"><a href="https://cpathconsulting.com" target="_blank">cpathconsulting.com -></a></span></dd>
+          <dt>Founded</dt><dd>2023 (approx. — brand-new operator)</dd>
+          <dt>Employees</dt><dd>Self-claimed 11–50 (LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/clearpath-consulting-agency" target="_blank">LinkedIn -></a></span></dd>
+          <dt>Vertical</dt><dd>Timeshare exit / cancellation services</dd>
+          <dt>Main Phone</dt><dd>(844) 936-5311</dd>
+          <dt>Website</dt><dd>cpathconsulting.com</dd>
+          <dt>BBB Rating</dt><dd>"A+" claimed via badge linking to Serenity 1's BBB profile (not Clearpath's own) <span class="src-tag"><a href="https://cpathconsulting.com/about-us" target="_blank">about-us -></a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-title">Co-Defendant — Serenity 1, LLC</div>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Serenity 1, LLC</dd>
+          <dt>Formation State</dt><dd>California</dd>
+          <dt>HQ</dt><dd>San Diego, CA</dd>
+          <dt>Role</dt><dd>"Fulfillment" partner for Clearpath contracts <span class="src-tag"><a href="https://sonecg.com" target="_blank">sonecg.com -></a></span></dd>
+          <dt>Website</dt><dd>sonecg.com</dd>
+          <dt>Relationship</dt><dd>Clearpath: "We are a consulting company that coordinates with Serenity 1 LLC for fulfillment of services" <span class="src-tag"><a href="https://cpathconsulting.com/disclaimer" target="_blank">disclaimer -></a></span></dd>
+          <dt>Joint Marketing</dt><dd>Identical Consumer Alert pages on both domains; co-branded "100% Money Back Guarantee"</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px;">
+      <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+      <div class="card-title">Serenity 1's own privacy policy says the program is "NOT marketing." The complaint says they sent marketing prerecorded calls.</div>
+      <div class="card-body">
+        Serenity 1's published privacy policy: <em>"This is NOT a marketing or promotional messaging program. Your phone number will never be used for advertising or shared with third parties for marketing purposes."</em> Yet Compl. ¶¶ 41–53 quote six verbatim prerecorded voicemails soliciting "a timeshare exit program" and a "free prequalification review" — pure marketing.
+        <span class="src-tag" style="color:#C9C9C9;"><a href="https://sonecg.com" target="_blank" style="color:#fff;">sonecg.com -></a></span>
+        That contradiction is plaintiff's roadmap to willfulness and treble damages under 47 USC § 227(b)(3).
+        Meanwhile, cpathconsulting.com has <strong>no</strong> privacy policy at all — /privacy returns HTTP 404.
+        <span class="src-tag" style="color:#C9C9C9;"><a href="https://cpathconsulting.com/privacy" target="_blank" style="color:#fff;">cpathconsulting.com/privacy (404) -></a></span>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <div class="card-title">21-day answer clock</div>
+        <div class="card-body">Summons issued May 28, 2026. Service likely in progress now. FRCP 12(a) answer deadline lands ~21 days post-service. Compliance posture must be defensible before any responsive pleading.<span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">RECAP -></a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <div class="card-title">First Kaufman/Coleman shot</div>
+        <div class="card-body">No prior TCPA filings against either defendant. Historical pattern: Kaufman/Coleman targets attract copycat suits within 6–12 months. The window to scrub and harden is now.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Vertical Heat</div>
+        <div class="card-title">Timeshare exit = FTC/AG priority</div>
+        <div class="card-body">FTC has actively prosecuted timeshare-exit operators (Pro Timeshare Resorts, Castle Law). State AGs follow. Vertical-specific compliance posture matters more here than in other categories.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:16px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Serenity 1, LLC</strong><br><span class="src-tag"><a href="https://sonecg.com" target="_blank">sonecg.com -></a></span></td>
+            <td>Co-defendant / fulfillment partner</td>
+            <td>Timeshare exit</td>
+            <td>Joint TCPA exposure on same facts; needs same compliance buildout</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>Clearpath "vendor affiliates" (unidentified)</td>
+            <td>Lead-gen contractors (self-admitted on Consumer Alert)</td>
+            <td>Outbound dialing / lead-gen</td>
+            <td>Source of the 19+ "unauthorized" numbers; primary scrub target</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>Partner attorneys / CPAs / brokers (per Clearpath disclaimer)</td>
+            <td>Independent fulfillment professionals</td>
+            <td>Legal / tax / brokerage</td>
+            <td>Downstream consent recipients; lower direct TCPA exposure</td>
+            <td><span class="pill pill--info">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Defendant's first TCPA case — filed by one of the country's most prolific plaintiff's firms.</h2>
+      <p class="section-lede">Neither Clearpath nor Serenity 1 has appeared in prior TCPA dockets. But the plaintiff's counsel — Avi R. Kaufman (Kaufman P.A.) with Stefan Coleman (Coleman PLLC) — has filed 832 TCPA-tagged matters between them on CourtListener and has secured >$100M in class settlements. This is not a nuisance complaint.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-title">Case File — Carmack v. Clearpath / Serenity 1</div>
+        <dl class="kv">
+          <dt>Docket</dt><dd>6:26-cv-01181</dd>
+          <dt>Court</dt><dd>U.S. District Court, M.D. Fla. (Orlando Division)</dd>
+          <dt>Filed</dt><dd>May 27, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">RECAP -></a></span></dd>
+          <dt>Plaintiff</dt><dd>James Carmack, Ocala, FL (Marion County)</dd>
+          <dt>Lead Counsel</dt><dd>Avi R. Kaufman (Kaufman P.A.) — lead; Stefan Coleman (Coleman PLLC) — co-counsel</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Rule 23(b)(2) & (b)(3)</span></dd>
+          <dt>Class Definition</dt><dd>"All persons in the United States whose cellular telephone number was called by Defendants using an artificial or pre-recorded voice, from four years prior to the filing of this action through the date of class certification."</dd>
+          <dt>Class Size Pled</dt><dd>"hundreds, if not thousands"</dd>
+          <dt>Claim</dt><dd>47 USC § 227(b)(1)(A)(iii) — prerecorded voice to cell without prior express written consent</dd>
+          <dt>Theory</dt><dd>Vicarious liability (Serenity 1 ratification + agency); direct liability (Clearpath as caller)</dd>
+          <dt>Damages</dt><dd>$500–$1,500 per call · plaintiff alleges 6 calls × class of "hundreds, thousands" → exposure easily &gt;$5M</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer deadline</span></dd>
+          <dt>Docket Activity</dt><dd>Doc #1 complaint filed; Doc #5 summons issued May 28; 9 total entries on RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">RECAP -></a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-title">Plaintiff Counsel — Avi R. Kaufman</div>
+        <dl class="kv">
+          <dt>Firm (lead)</dt><dd>Kaufman P.A. <span class="src-tag"><a href="https://www.kaufmanpa.com" target="_blank">kaufmanpa.com -></a></span></dd>
+          <dt>Firm address</dt><dd>237 S Dixie Hwy, Floor 4, Coral Gables, FL 33133</dd>
+          <dt>Firm phone</dt><dd>(305) 469-5881</dd>
+          <dt>Firm email</dt><dd>kaufman@kaufmanpa.com</dd>
+          <dt>FL Bar #</dt><dd>84382 (active)</dd>
+          <dt>Bar discipline</dt><dd>None identified (FL Bar profile fetch blocked 403)</dd>
+          <dt>TCPAWorld Status</dt><dd><span class="pill pill--danger">"Power Lawyer" — repeat honoree (#7 historically)</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Avi+Kaufman" target="_blank">TCPAWorld -></a></span></dd>
+          <dt>CourtListener TCPA matters</dt><dd>832 (Kaufman) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kaufman+P.A.%22+TCPA&type=r" target="_blank">CourtListener -></a></span></dd>
+          <dt>Notable settlements</dt><dd>Keller Williams $40M · eXp Realty $26.9M · Realogy $20M · Western Dental $9.7M · CITGO $8.3M · Cardinal Financial $7.2M · BCBS NC $1.67M <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Avi+Kaufman%22+TCPA" target="_blank">Law360 -></a></span></dd>
+          <dt>Co-counsel</dt><dd>Stefan Coleman (FL Bar 30188) · Coleman PLLC, 18117 Biscayne Blvd, Ste 4152, Miami FL 33160 · (877) 333-9427 <span class="src-tag"><a href="https://stefancoleman.com" target="_blank">stefancoleman.com -></a></span></dd>
+          <dt>Vertical pattern</dt><dd>Timeshare/travel (Rowan v. Arrivia), home warranty, solar, real estate, auto warranty, consumer finance</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:12px; font-size:20px;">Plaintiff-Firm Template</h3>
+    <div class="card">
+      <div class="card-body">
+        The Kaufman/Coleman template is consistent and recognizable: <strong>(1)</strong> single named plaintiff in FL or CA with a partially-redacted "ending in" cell number, <strong>(2)</strong> verbatim transcripts of 3–6 prerecorded voicemails showing scripted, near-identical content, <strong>(3)</strong> a Rule 23(b)(2)/(b)(3) class going back 4 years, <strong>(4)</strong> vicarious liability theory tied to publicly-discoverable vendor relationships (here: Clearpath's own about-us page naming Serenity 1), <strong>(5)</strong> citation to FCC's DISH Network 2013 ruling on outsourced telemarketing liability. The complaint reads like a vertical-specialty pleading aimed at certification, not a quick statutory-damages settlement.
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:16px; font-size:20px;">Concurrent & Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--bl-red-tint);">
+            <td><strong>Carmack v. Clearpath / Serenity 1</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+            <td>6:26-cv-01181</td>
+            <td>M.D. Fla.</td>
+            <td>2026-05-27</td>
+            <td><span class="pill pill--danger">Active · Pre-answer</span></td>
+            <td>Prerecorded voice to cell, no consent</td>
+          </tr>
+          <tr>
+            <td>Rowan v. Arrivia Inc.</td><td>—</td><td>D. Del.</td><td>2021</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>TCPA — timeshare/travel <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kaufman+P.A.%22+TCPA&type=r" target="_blank">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Cardenas v. Infusion Capital Group LLC</td><td>—</td><td>S.D.N.Y.</td><td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA — consumer finance</td>
+          </tr>
+          <tr>
+            <td>Rivera v. Freeus, LLC</td><td>—</td><td>D. Colo.</td><td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Garibay v. Select Home Warranty LLC</td><td>—</td><td>D.N.J.</td><td>2024</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA — home warranty</td>
+          </tr>
+          <tr>
+            <td>Belanger v. HearingLife Texas, LLC</td><td>—</td><td>D.N.J.</td><td>2023</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>TCPA — hearing aids</td>
+          </tr>
+          <tr>
+            <td>Tuso v. Zillow Group Inc.</td><td>—</td><td>E.D. Cal.</td><td>2023</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>TCPA — real estate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Open Intel Gaps — Close Before First Dial</h4>
+      <ul>
+        <li>Plaintiff's full 10-digit cell phone (pulled from PACER ECF #1 — small fee)</li>
+        <li>Article III and magistrate judge assignments (not yet docketed — case is 2 days old)</li>
+        <li>Clearpath FL Sunbiz registered agent, manager(s), and officer roster (Sunbiz returned 403; retry direct entity ID lookup)</li>
+        <li>Serenity 1 California SOS registered agent and member/manager names (bizfile returned 403)</li>
+        <li>BBB profile for Clearpath itself (Clearpath's "A+" badge actually links to Serenity 1's BBB page, not Clearpath's)</li>
+        <li>Named founders / principals / equity holders of either entity (not surfaced on website, LinkedIn, or TheOrg)</li>
+        <li>Identity of the "vendor affiliate" Clearpath admits is using its name on unauthorized numbers</li>
+        <li>Whether Clearpath's main line (844-936-5311) is the same trunk as the 9 outbound DIDs in the complaint</li>
+        <li>Defense counsel — none on docket as of report generation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the company main line — no named decision-maker has surfaced yet.</h2>
+      <p class="section-lede">Officer/manager rosters for both LLCs are gated (Sunbiz and CA SOS both blocked on automated fetch). Only one Clearpath employee is publicly identifiable on LinkedIn. The fastest path in is the published main number — escalate to whoever picks up about the Carmack complaint by name. Plaintiff counsel info is listed separately and is NOT a sales contact.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title & Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Clearpath Consulting Agency</strong><br><span class="pill pill--dark">MAIN LINE</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Published main number. Use this to escalate. Reference Carmack 6:26-cv-01181 and 21-day answer clock. <span class="src-tag"><a href="https://cpathconsulting.com" target="_blank">cpathconsulting.com -></a></span></td>
+            <td>(844) 936-5311</td>
+            <td><span class="pill pill--gap">Email obfuscated on site</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Sue Charron</strong><br><span class="pill pill--dark">EMPLOYEE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Listed on Clearpath's LinkedIn company page. Title not public. Only Clearpath employee surfaced. <span class="src-tag"><a href="https://www.linkedin.com/company/clearpath-consulting-agency" target="_blank">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/sue-charron-02b89b2b" target="_blank">in/sue-charron-02b89b2b</a></td>
+          </tr>
+          <tr>
+            <td><strong>Clearpath Registered Agent</strong><br><span class="pill pill--dark">ENTITY CONTACT</span> <span class="pill pill--gap">GAP</span></td>
+            <td>FL Sunbiz lookup blocked (403). Pull manually via direct entity ID search for "Clearpath Consulting Agency LLC."</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Serenity 1, LLC — Main</strong><br><span class="pill pill--dark">CO-DEFENDANT</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Per Serenity 1 privacy policy: opt-out / contact line for SMS 2FA program. May or may not be sales main; treat as escalation path. <span class="src-tag"><a href="https://sonecg.com" target="_blank">sonecg.com -></a></span></td>
+            <td>(866) 222-7309</td>
+            <td>info@sonecg.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Serenity 1 Registered Agent</strong><br><span class="pill pill--dark">ENTITY CONTACT</span> <span class="pill pill--gap">GAP</span></td>
+            <td>CA SOS bizfile blocked (403). Pull manually via bizfileOnline.sos.ca.gov for "Serenity 1, LLC."</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">LITIGATION</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared. 21-day answer deadline runs from service. Watch RECAP for entry of appearance. <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">RECAP -></a></span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:12px; font-size:18px;">Plaintiff Counsel — Reference Only (DO NOT pitch)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name</th><th>Firm</th><th>Bar</th><th>Phone</th><th>Email</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Avi R. Kaufman <span class="pill pill--dark">LEAD</span></td>
+            <td>Kaufman P.A. (Coral Gables, FL) <span class="src-tag"><a href="https://www.kaufmanpa.com" target="_blank">kaufmanpa.com -></a></span></td>
+            <td>FL 84382</td>
+            <td>(305) 469-5881</td>
+            <td>kaufman@kaufmanpa.com</td>
+          </tr>
+          <tr>
+            <td>Stefan Coleman</td>
+            <td>Coleman PLLC (Miami, FL) <span class="src-tag"><a href="https://stefancoleman.com" target="_blank">stefancoleman.com -></a></span></td>
+            <td>FL 30188</td>
+            <td>(877) 333-9427</td>
+            <td>law@stefancoleman.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Reach Clearpath within 72 hours. The 21-day answer clock is your lever.</h2>
+      <p class="section-lede">Service was issued May 28, 2026. Defendant likely has no defense counsel yet. The decision to engage compliance vendors is being made <em>now</em>, before an answer is drafted. Speed wins this account.</p>
+    </div>
+
+    <ol style="font-size:15px; line-height:1.65; padding-left:24px;">
+      <li style="margin-bottom:16px;">
+        <strong>Day 1 (today):</strong> Pull PACER ECF #1 (~$1.20) to confirm full plaintiff number and review unredacted exhibits. Cross-reference the 9 sender DIDs against Blacklist's internal flagging history.
+      </li>
+      <li style="margin-bottom:16px;">
+        <strong>Day 1–2:</strong> Cold dial Clearpath main line (844) 936-5311 and ask for the principal / compliance lead. Lead the call with the Consumer Alert page admission and the Kaufman name. Reference the case number 6:26-cv-01181 by docket.
+      </li>
+      <li style="margin-bottom:16px;">
+        <strong>Day 2–3:</strong> Parallel outreach to Serenity 1 (866) 222-7309 / info@sonecg.com. Frame as joint exposure — the complaint pleads a single-enterprise theory and both entities need the same compliance posture.
+      </li>
+      <li style="margin-bottom:16px;">
+        <strong>Day 3–5:</strong> LinkedIn outreach to Sue Charron and any newly-surfaced employees. Mine LinkedIn employee search for "Clearpath Consulting Agency" and "Serenity 1 Consulting Group" for follow-up names.
+      </li>
+      <li style="margin-bottom:16px;">
+        <strong>Day 5–7:</strong> Manually pull FL Sunbiz and CA SOS entity records to identify registered agent, manager(s), and members. Use those names as escalation paths if main-line outreach stalls.
+      </li>
+      <li style="margin-bottom:16px;">
+        <strong>Day 7–14:</strong> Monitor RECAP for defense counsel appearance. The moment an answer is filed, pivot the pitch from "harden before answer" to "build the record before discovery." <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01181&type=r" target="_blank">RECAP -></a></span>
+      </li>
+      <li style="margin-bottom:16px;">
+        <strong>Day 14–21:</strong> Final push before answer deadline. If no contact made by Day 21, defense counsel is now in the loop — escalation goes through them, and product economics change (audit + remediation, not prevention).
+      </li>
+    </ol>
+
+    <h3 style="margin-top:32px; margin-bottom:12px; font-size:18px;">Trigger Conditions</h3>
+    <ul class="clean tight" style="font-size:14px;">
+      <li><strong>If defense counsel appears early:</strong> Pivot to defense-counsel-mediated pitch. Counsel will want vendor compliance evidence for the answer / MTD.</li>
+      <li><strong>If a second Kaufman/Coleman suit lands against the same defendant:</strong> Urgency goes from high to extreme — exposure becomes uninsurable without immediate scrub deployment.</li>
+      <li><strong>If plaintiff voluntarily dismisses (settlement signal):</strong> Lower-priority — defendant has chosen the pay-then-pray path. Still pitch, but on the next-call-coming basis.</li>
+      <li><strong>If Sunbiz/CA SOS reveals a parent or sister entity:</strong> Open the cross-sell conversation immediately.</li>
+    </ul>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 18, 2026</span>
+      <span class="pill pill--warn">KAUFMAN ON THE CASE — FIRST-MOVER ADVANTAGE WINDOW</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
