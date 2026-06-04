@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Littman v. Mortgage One Funding — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+.callout ul{ margin:0; padding-left:20px; }
+.callout li{ font-size:14px; line-height:1.6; color:var(--fg-1); margin-bottom:4px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
+          <text x="120" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-28</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Mortgage Lender · Federal + WA DNC + CEMA Class Action · Serial-Defendant Pattern · Removed to W.D. Wash.</p>
+      <h1 class="hero-tagline">Littman v.<br>Mortgage One Funding</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-05548</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Wash. (Tacoma)<br><span style="font-weight:400;color:#A8A8A8;font-size:12px;">Removed from Pierce Co. Super. Ct.</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Apr 26, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(~32 days ago)</span><br><span style="font-weight:400;color:#A8A8A8;font-size:12px;">Removed May 27, 2026</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned<br><span style="font-weight:400;color:#A8A8A8;font-size:12px;">Post-removal pending</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>RCW 80.36.390<br>RCW 19.190.060<br>RCW 19.86</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative CR 23<br><span style="font-weight:400;color:#A8A8A8;font-size:12px;">Nationwide + WA subclasses</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Peter Schneider<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Northwest Debt Resolution, LLC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Littman is already a 2-case serial filer in W.D. Wash.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint references only "the Washington State area code phone number that received the calls" without disclosing the digits — scrub is deferred until the number surfaces in discovery or PACER docs.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--info">Serial-Filer Flag · 2 active 2026 cases</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Paragraph 14 of the complaint refers to "the Washington State area code phone number that received the calls" but withholds the 10-digit number. The complaint is otherwise specific about sender DIDs (3 numbers identified).</div>
+      </div>
+      <p class="scrub-body-text">No scrub was performed because the complaint does not disclose the plaintiff's recipient cell number. Plaintiff <strong>Ron Littman</strong> has already filed a parallel TCPA class action one day earlier (5/26/2026) against Mutual of Omaha/Aetna in W.D. Wash. (3:26-cv-05538) using the same counsel — strongly indicating a serial-plaintiff pattern even without the scrub. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ron+Littman%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px;">Sender DIDs disclosed in complaint (Para. 20)</h3>
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-meta">SENDER DID #1 · TUCSON, AZ</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:22px;">(520) 569-2457</div>
+        <div class="card-body">SMS originator. Two texts on 11/18/2025 and 11/19/2025 from "Sam with Mortgage One Funding." Public sender directories returned no listing. <span class="pill pill--gap">No Public Reports</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">SENDER DID #2 · TACOMA, WA</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:22px;">(253) 461-3795</div>
+        <div class="card-body">Voice call on 11/21/2025 from "Jay." Area code matches plaintiff's home county (Pierce) — classic neighbor-spoofing / local-presence dialing pattern. <span class="pill pill--warn">Local-Presence Pattern</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">SENDER DID #3 · MACOMB CO., MI</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:22px;">(586) 808-1212</div>
+        <div class="card-body">Voice callback on 11/25/2025 from "Jay." 586 area code matches defendant's Michigan HQ — likely the direct line of a Mortgage One loan officer. <span class="pill pill--info">Likely Defendant Direct</span></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px;">Scrub recovery path</h3>
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card card--accent">
+        <div class="card-meta">PATH #1</div>
+        <div class="card-title">Pull ECF #1 attachments from PACER</div>
+        <div class="card-body">Full removal package may include unredacted exhibits identifying plaintiff's recipient number. Cost ~$1.20.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">PATH #2</div>
+        <div class="card-title">Wait for Rule 26(a) initial disclosures</div>
+        <div class="card-body">Plaintiff must disclose contact info under FRCP 26(a)(1)(A)(i) within 14 days of Rule 26(f) conference — number will surface there.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">PATH #3</div>
+        <div class="card-title">Cross-reference Mutual of Omaha case</div>
+        <div class="card-body">Littman's other TCPA suit (3:26-cv-05538) may reveal the same recipient number — pull that docket in parallel.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL PLAINTIFF · 2x 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A small Michigan mortgage shop on its third TCPA class action in 90 days, with no public Terms of Service and no in-house compliance.</h2>
+      <p class="section-lede">Mortgage One Funding is now defending three concurrent TCPA class actions in 2026 (W.D. Wash. + two in E.D. Mich.) against elite plaintiff firms including Paronich and Peluso. They are bleeding. Lead with DNC scrubbing + consent capture — the lead vendor pipeline is the bleeding wound.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD PRODUCT</div>
+        <div class="card-title">DNC Scrubbing (Federal + WA + State Pack)</div>
+        <div class="card-body">Complaint stacks 47 USC § 227(c) Federal DNC + RCW 80.36.390 Washington DNC. Three sender DIDs in three different area codes (520/253/586) is the fingerprint of a dialer/lead vendor with zero DNC hygiene. Blacklist's DNC scrub is the highest-ROI fix.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">PRIMARY CROSS-SELL</div>
+        <div class="card-title">Consent Capture / Record Retention</div>
+        <div class="card-body">Site solicits phone numbers via "Get Your Loan Quote Now" form with no visible TCPA express written consent disclosure. <span class="src-tag"><a href="https://www.mortgageonefunding.com/contact">Site -></a></span> No /terms or /terms-of-service page resolves (404). This is the smoking gun for class certification on consent.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY CROSS-SELL</div>
+        <div class="card-title">Compliance Audit / Policies & Procedures</div>
+        <div class="card-body">Privacy policy last updated 02/16/2017 — 8+ years stale. No compliance page, no TCPA disclosure, no CCO identified. <span class="src-tag"><a href="https://www.mortgageonefunding.com/privacy">Policy -></a></span> Defendant needs a turnkey P&P + 64.1200(d) Internal DNC program.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Pitch Angle</h3>
+    <div class="card" style="margin-top:12px;">
+      <div class="card-body">
+        <p><strong>Open with this:</strong> "I'm reaching out because Mortgage One Funding now has three open TCPA class actions in 90 days — Littman in Washington federal court, and Lamb and Landy in Eastern District of Michigan. Anthony Paronich and Patrick Peluso don't file these in volume for fun. They've flagged something systemic in your outbound dialer or your lead vendor pipeline, and right now your public-facing compliance footprint — no Terms of Service, no TCPA disclosure on your rate-quote form, a 2017 privacy policy — gives them every angle they need."</p>
+        <p><strong>The wedge:</strong> The Littman complaint discloses three sender numbers across three states (Arizona, Washington, Michigan). That's either an in-house dialer with no DNC scrub or a lead vendor selling you scraped lists. Either way, Blacklist's DNC + Litigator scrub bolts on in days, not months — and it gives defense counsel something concrete to point at when they argue good-faith remediation at summary judgment or settlement.</p>
+        <p><strong>The close:</strong> Don't wait for the answer deadline. With the Lamb MTD already briefed in E.D. Mich. and a new Washington class action just removed, the cheapest dollar you spend this quarter is the one that stops the next Littman.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A small/mid-market Michigan mortgage LLC running a multi-state outbound dialer with no visible compliance infrastructure.</h2>
+      <p class="section-lede">Mortgage One Funding, LLC is a Michigan limited liability company headquartered at 1055 W. Maple Rd., Clawson, MI 48017, marketing home purchase and refinance loans nationally via outbound calls, texts, and web lead capture.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">DEFENDANT PROFILE</div>
+        <div class="card-title">Mortgage One Funding, LLC</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Mortgage One Funding, LLC</dd>
+            <dt>Entity Type</dt><dd>Michigan limited liability company</dd>
+            <dt>Formation State</dt><dd>Michigan</dd>
+            <dt>HQ Address</dt><dd>1055 W. Maple Rd., Clawson, MI 48017 <span class="src-tag"><a href="https://www.mortgageonefunding.com">site -></a></span></dd>
+            <dt>WA Reg. Agent</dt><dd>Incorp Service, Inc, 4505 Pacific Hwy E Ste C-2, Fife, WA 98424 <span class="src-tag">(per complaint ¶ 7)</span></dd>
+            <dt>Main Phone</dt><dd>(800) 954-3211 · MI HQ (248) 434-5522</dd>
+            <dt>Main Email</dt><dd>Info@mortgageonefunding.com</dd>
+            <dt>Public/Private</dt><dd>Private</dd>
+            <dt>Vertical</dt><dd>Mortgage lending — purchase, refi, cash-out</dd>
+            <dt>Marketing Tech</dt><dd>LeadPops platform (placeholder emails detected on /our-team) <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team page -></a></span></dd>
+            <dt>Headcount</dt><dd>Not disclosed · ~9 loan officers publicly listed</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">SMOKING-GUN COMPLIANCE GAP</div>
+        <div class="card-title">2017 privacy policy + no Terms of Service + active rate-quote lead form = textbook indefensible consent flow</div>
+        <div class="card-body">
+          <p>Mortgageonefunding.com's privacy policy is dated <strong>02/16/2017</strong> — predating the 2024 FCC one-to-one consent rule, the bulk of modern TCPA case law, and current Washington CEMA enforcement. <span class="src-tag"><a href="https://www.mortgageonefunding.com/privacy">privacy -></a></span></p>
+          <p>Neither <code>/terms</code> nor <code>/terms-of-service</code> resolves — both return HTTP 404. <span class="src-tag"><a href="https://www.mortgageonefunding.com/contact">contact -></a></span></p>
+          <p>The "Get Your Loan Quote Now" form collects phone numbers without a visible TCPA express written consent disclosure or checkbox. The policy itself claims "SMS consent and phone numbers...will not be shared, sold, rented, or disclosed to third parties" — yet the complaint alleges contact without any prior consent, suggesting purchased or scraped lead lists.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">STRATEGIC TIMING</div>
+      <div class="card-title">Defendant removed to federal court on May 27 — answer/responsive pleading clock now running</div>
+      <div class="card-body" style="margin-top:12px;">
+        <dl class="kv">
+          <dt>Original Filing</dt><dd>April 26, 2026 · Pierce County Superior Court, WA</dd>
+          <dt>Removal</dt><dd>May 27, 2026 · W.D. Wash. (Tacoma Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-05548&type=r">CL -></a></span></dd>
+          <dt>Responsive Pleading</dt><dd>7 days post-removal under FRCP 81(c)(2) — already triggered. Answer or MTD imminent.</dd>
+          <dt>Defense Counsel</dt><dd>Williams, Rutherford, Lichtenstein, Sarconi, Trinh — Lichtenstein/Trinh are the same team defending Lamb &amp; Landy in E.D. Mich.</dd>
+          <dt>Open Litigation</dt><dd>3 concurrent TCPA class actions filed Feb–Apr 2026 — defense spend is already material</dd>
+          <dt>Window to Sell</dt><dd>Pre-answer / pre-MTD ruling — buy-in is easiest when defense counsel needs ammo</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lead vendor / "Does 1-10"</td>
+            <td>Alleged agents (per Compl. ¶ 8)</td>
+            <td>Lead generation</td>
+            <td>Likely source of multi-area-code dialing pool (520/253/586)</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>LeadPops</td>
+            <td>Marketing tech vendor (inferred)</td>
+            <td>Mortgage MarTech</td>
+            <td>Powers Mortgage One's lead capture; consent UI lives here</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Mortgage 1 Incorporated</td>
+            <td>Unrelated party (trademark adversary, terminated 04/29/2025)</td>
+            <td>Mortgage lending</td>
+            <td>No direct relationship — name collision only</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Third TCPA class action against this defendant in 90 days — Paronich, Peluso, and Schneider are all circling.</h2>
+      <p class="section-lede">Defense team is consistent across jurisdictions (Lichtenstein + Trinh appear in Lamb, Landy, and now Littman). Plaintiff side is fragmented — three different firms, three different states, identical theory. That fragmentation favors a settlement-by-attrition strategy by defense, which is exactly when a documented Blacklist scrub program changes the math.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">CASE FILE</div>
+        <div class="card-title">Littman v. Mortgage One Funding, LLC</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Docket</dt><dd>3:26-cv-05548 (W.D. Wash.)</dd>
+            <dt>Filed</dt><dd>April 26, 2026 (state) · Removed May 27, 2026</dd>
+            <dt>Plaintiff</dt><dd>Ron Littman, Pierce County, WA resident (cell phone used as residential line)</dd>
+            <dt>Plaintiff Counsel</dt><dd>Peter Schneider, WSBA #43131</dd>
+            <dt>Firm</dt><dd>Northwest Debt Resolution, LLC · Bellevue, WA</dd>
+            <dt>Class Action</dt><dd>Yes — Nationwide DNCR + WA DNCR + WA CEMA subclasses</dd>
+            <dt>Class Size</dt><dd>"At least thousands" (¶ 22)</dd>
+            <dt>Claims</dt><dd>47 USC § 227(c) Federal DNC · RCW 80.36.390 WA DNC · RCW 19.190.060 CEMA · RCW 19.86 WA CPA</dd>
+            <dt>Theory</dt><dd>Unsolicited mortgage-lending calls + texts to DNC-registered WA cell; 10+ violations alleged</dd>
+            <dt>Damages</dt><dd>$1,500/violation TCPA + $1,000/violation WTSA + $500/violation CEMA + $1,000/violation WCPA + treble</dd>
+            <dt>Defense Counsel</dt><dd>Todd T. Williams · Mark T. Rutherford · Nathan H. Lichtenstein · James J. Sarconi · Khoa D. Trinh <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-05548&type=r">CL -></a></span></dd>
+            <dt>Docket Visibility</dt><dd>CourtListener · Justia/PacerMonitor blocked at scrape</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">PLAINTIFF COUNSEL</div>
+        <div class="card-title">Peter Schneider — Northwest Debt Resolution, LLC</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Bar Number</dt><dd>WSBA #43131 (Washington)</dd>
+            <dt>Bar Status</dt><dd><span class="pill pill--gap">Unverified · directory inaccessible</span></dd>
+            <dt>Firm Address</dt><dd>10900 4th Street, Ste. 2300, Bellevue, WA 98004</dd>
+            <dt>Firm Phone</dt><dd>(206) 800-6000</dd>
+            <dt>Firm Website</dt><dd>northwestdebt.com <span class="pill pill--warn">Expired SSL cert</span></dd>
+            <dt>TCPA Power Ranking</dt><dd>Not listed on TCPAWorld <span class="src-tag"><a href="https://tcpaworld.com/?s=Northwest+Debt+Resolution">TCPAWorld -></a></span></dd>
+            <dt>TCPA Filings (12mo)</dt><dd>3 confirmed in W.D. Wash. (Aurandt, Sundstrom, Littman) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Northwest+Debt+Resolution%22+TCPA&type=r">CL -></a></span></dd>
+            <dt>Target Verticals</dt><dd>Debt relief · Insurance · Auto warranty · Mortgage · Lead-gen</dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--warn">Low–Medium · Volume filer, not on national power rankings</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">PLAINTIFF / FIRM TEMPLATE</div>
+      <div class="card-title">Schneider's Washington "DNC + CEMA + CPA stack" template</div>
+      <div class="card-body">
+        <p>Peter Schneider has now filed three TCPA class actions in W.D. Wash. using a near-identical statutory stack: <strong>Federal DNC under 47 USC § 227(c)</strong> + <strong>WA DNC under RCW 80.36.390</strong> + <strong>WA CEMA under RCW 19.190.060</strong> + <strong>WA Consumer Protection Act under RCW 19.86</strong>. The CEMA + WCPA pairing is especially powerful because the WA Supreme Court in <em>Wright v. Lyft</em> held CEMA violations are per-se WCPA violations with automatic damages. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Peter+Schneider%22+TCPA&type=r">CL -></a></span></p>
+        <p>Lead plaintiff Ron Littman is now on his second 2026 case with this firm — Mutual of Omaha / Aetna (3:26-cv-05538, filed May 26) and Mortgage One Funding (3:26-cv-05548, filed April 26 state, removed May 27 federal). Expect the same template re-used against any defendant Northwest Debt Resolution can connect to a WA-area-code call campaign.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Concurrent &amp; Recent Litigation — Mortgage One Funding</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Littman v. Mortgage One Funding LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>3:26-cv-05548</td>
+            <td>W.D. Wash.</td>
+            <td>Apr 26, 2026</td>
+            <td><span class="pill pill--danger">Pending · Removed</span></td>
+            <td>TCPA + WA DNC + CEMA + WCPA · Class</td>
+          </tr>
+          <tr>
+            <td>Lamb v. Mortgage One Funding, LLC</td>
+            <td>2:26-cv-10450</td>
+            <td>E.D. Mich.</td>
+            <td>Feb 2026</td>
+            <td><span class="pill pill--warn">MTD Briefed</span></td>
+            <td>TCPA · Class · Counsel: Anthony Paronich <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Mortgage+One+Funding%22+TCPA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Landy v. Mortgage One Funding LLC</td>
+            <td>2:26-cv-10643</td>
+            <td>E.D. Mich.</td>
+            <td>Feb–Mar 2026</td>
+            <td><span class="pill pill--danger">Active</span></td>
+            <td>TCPA · Class · Counsel: Patrick Peluso</td>
+          </tr>
+          <tr>
+            <td>Mortgage 1 Incorporated v. Mortgage One Funding LLC</td>
+            <td>2:25-cv-10241</td>
+            <td>E.D. Mich.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Terminated 04/29/2025</span></td>
+            <td>Trademark — unrelated theory</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Open intel gaps to close before first dial</div>
+      <ul>
+        <li>Plaintiff's recipient cell number — not in complaint; pull ECF #1 attachments via PACER (~$1.20) or wait for Rule 26(a) disclosures</li>
+        <li>Assigned Article III judge and Magistrate — not yet visible in CourtListener post-removal</li>
+        <li>Defense counsel firm affiliations + direct emails — only attorney names visible; full appearance forms needed</li>
+        <li>Mortgage One Funding officer / owner identity — Michigan LARA, Bizapedia, OpenCorporates, and NMLS Consumer Access all blocked; manual NMLS ID lookup required for owner/principal</li>
+        <li>NMLS license number(s) and state-by-state licensing footprint — not retrievable from automated NMLS Consumer Access lookups</li>
+        <li>WSBA bar status / discipline history for Peter Schneider — directory redirect-loop; cannot confirm active status</li>
+        <li>Identity of "Does 1-10" lead vendor(s) — likely the highest-leverage discovery target; complaint flags them as agents</li>
+        <li>Sender-DID third-party complaint volume — 800notes, YouMail, Tellows, RoboKiller all blocked (HTTP 403/404)</li>
+        <li>BBB rating, Crunchbase funding, headcount, and revenue band for Mortgage One Funding — all data sources blocked</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No GC, no CCO, no CEO disclosed publicly — open the door via the main HQ line and route to operations.</h2>
+      <p class="section-lede">Mortgage One Funding's public footprint discloses only loan officers and a generic info inbox — there is no named executive, GC, or compliance officer. First-call strategy is the 800-line and the Michigan HQ direct, asking for "the person responsible for compliance or telemarketing." Plaintiff and defense counsel contacts are documented below for case-context only.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mortgage One Funding · Main</strong><br><span class="pill pill--dark">PRIMARY ENTRY</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Company main line / general inbox — ask for compliance or operations <span class="src-tag"><a href="https://www.mortgageonefunding.com/contact">site -></a></span></td>
+            <td>(800) 954-3211 · (248) 434-5522 (MI HQ)</td>
+            <td>Info@mortgageonefunding.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No GC publicly identified — likely outside counsel only. Defense counsel below is the de-facto legal contact.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No CCO publicly identified — no compliance page on site. Route compliance pitch through main line + operations.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Jillian Starr</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer · directory contact, useful as a warm intro target <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985 (shared routing line)</td>
+            <td>Jillian@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Valerie Hudgens</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Valerie@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Hector Rodriguez</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Hector@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Marisol Hernandez</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Marisol@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Amber Bonita</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Amber@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Mattius Owen</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Mattius@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Antonio Walker</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Antonio@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Alex Ripley</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Alex@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Jenny Liddel</strong><br><span class="pill pill--dark">LOAN OFFICER</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Loan Officer <span class="src-tag"><a href="https://www.mortgageonefunding.com/our-team">team -></a></span></td>
+            <td>(619) 886-6985</td>
+            <td>Jenny@mortgageonefunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">
+      <strong>Email pattern (inferred):</strong> <code>{first}@mortgageonefunding.com</code> — derived from generic <code>Info@mortgageonefunding.com</code> and consistent first-name pattern on /our-team. Confidence: PATTERN. Verify before bulk outreach. Shared phone <strong>(619) 886-6985</strong> is a LeadPops routing/IVR number — not a direct line.
+    </p>
+
+    <h3 style="margin-top:32px; font-size:18px;">Case-context contacts (do NOT pitch — reference only)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Context</th><th>Phone</th><th>Email</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Peter Schneider</strong><br><span class="pill pill--dark">PLAINTIFF COUNSEL</span></td>
+            <td>WSBA #43131 · Northwest Debt Resolution, LLC · Bellevue, WA (per PACER)</td>
+            <td>(206) 800-6000 (per PACER)</td>
+            <td>— (firm site SSL expired)</td>
+          </tr>
+          <tr>
+            <td><strong>Todd T. Williams</strong><br><span class="pill pill--dark">DEFENSE COUNSEL</span></td>
+            <td>Counsel of record for removal · firm/email not yet captured</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Nathan H. Lichtenstein</strong><br><span class="pill pill--dark">DEFENSE COUNSEL</span></td>
+            <td>Cross-jurisdiction defense lead — also appears in Lamb &amp; Landy (E.D. Mich.)</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Khoa D. Trinh</strong><br><span class="pill pill--dark">DEFENSE COUNSEL</span></td>
+            <td>Cross-jurisdiction defense — also appears in Lamb &amp; Landy</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — the post-removal answer clock is already running, and defense counsel is the easiest yes when they're under deadline.</h2>
+      <p class="section-lede">FRCP 81(c)(2) gives the defendant 7 days post-removal to answer. The removal landed May 27. The window for Blacklist to be the "good-faith remediation" story in the answer or in early settlement talks is right now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 · TODAY</div>
+        <div class="card-title">Pull PACER ECF #1 + identify lead vendor</div>
+        <div class="card-body">Order the removal package (~$1.20) to capture plaintiff's recipient number and any unredacted exhibits. Run a parallel pull on Lamb (2:26-cv-10450) for the Paronich MTD reply brief — that brief will telegraph the defense's preferred liability theory.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2</div>
+        <div class="card-title">Cold-call (800) 954-3211 + (248) 434-5522</div>
+        <div class="card-body">Ask for "the person responsible for marketing compliance or telemarketing oversight." If routed to operations, anchor on the three concurrent class actions and the 2017 privacy policy. Send a follow-up to Info@mortgageonefunding.com referencing the Littman docket number.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 3–5</div>
+        <div class="card-title">Parallel-track defense counsel</div>
+        <div class="card-body">Email Todd T. Williams and Nathan H. Lichtenstein once firm affiliations are captured from PACER appearance forms. Pitch: "Your client needs to point at a documented scrub program by the time you brief class cert. We can stand it up before the Rule 26(f) conference."</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 7–10</div>
+        <div class="card-title">Loan officer side-door</div>
+        <div class="card-body">If the front-door is cold, work the loan officer list (Jillian Starr, Hector Rodriguez, Valerie Hudgens, et al.) for warm intros to ops/owner. They have the most operational pain from the dialer compliance overhead.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Trigger conditions — re-plan if any of these fire</h3>
+    <ul class="clean tight" style="margin-top:12px; background:var(--bg-surface); border:1px solid var(--border-1); padding:16px 24px;">
+      <li><strong>Defense files MTD on consent-based grounds</strong> → pivot to consent capture as primary product (defense theory will require documented opt-in).</li>
+      <li><strong>Lamb MTD denied in E.D. Mich.</strong> → urgency spikes; defendant's defense bills are about to balloon. Lead with full P&P + scrub package.</li>
+      <li><strong>Plaintiff files amended complaint disclosing recipient number</strong> → re-run litigator scrub immediately and update Section 01.</li>
+      <li><strong>New Schneider filing against Mortgage One in WA</strong> → pattern confirmed; defense will be motivated to settle program-wide.</li>
+      <li><strong>FCC or WA AG enforcement opens</strong> → escalate to executive/owner level via outside counsel.</li>
+    </ul>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">3 CONCURRENT TCPA CLASS ACTIONS</span>
+      <span class="pill pill--warn">POST-REMOVAL ANSWER CLOCK · CLOSE BEFORE JUN 10</span>
+      <span class="pill pill--info">LEAD PRODUCT: DNC SCRUBBING</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-28</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
