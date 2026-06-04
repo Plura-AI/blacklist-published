@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marsh v. American Express — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.callout ul{ margin:8px 0 0; padding-left:20px; font-size:14px; line-height:1.55; }
+.callout li{ margin-bottom:4px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff">BLACKLIST</text>
+          <text x="125" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-04-24</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA + RFDCPA Defendant · Prerecorded-Voice Debt Collection · Post-Revocation Call Campaign · 9th BLC v. Amex Filing</p>
+      <h1 class="hero-tagline">Marsh v.<br>American Express National Bank</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-02584-JO-SBC</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Apr 23, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Jinsook Ohta<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Steve B. Chu (Mag.)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Cal. Civ. § 1788.14(c), 1788.17 · 15 USC § 1692d(5)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Ahren A. Tiller <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">BLC Law Center, APC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but the sending DID is a smoking gun.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Marsh's complaint does not disclose his cell number, so a Litigator Scrub on the plaintiff cannot run today. But the complaint <em>does</em> disclose Amex's sending DID — and that number has 220+ consumer reports going back to 2007.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Plaintiff Andrew J. Marsh pled only that calls came to "his cellular telephone." No 10-digit number appears in the four corners of the complaint.</div>
+      </div>
+      <p class="scrub-body-text">No prior TCPA filings under "Andrew J. Marsh" surfaced on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Andrew+J.+Marsh%22&type=r">CourtListener →</a></span> — this appears to be a first-time TCPA plaintiff, not a serial filer. The serial profile sits with the firm (BLC / Tiller), not the named plaintiff. Recover the recipient number before first dial via PACER pull of ECF #1 attachments or first discovery request.</p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="margin:0 0 12px; font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Sending DID Identified in Complaint</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">SENDER DID · TOLL-FREE</div>
+          <h3 class="card-title">(888) 819-2135</h3>
+          <p class="card-body"><strong>Confirmed:</strong> American Express Credit / Account Services Department outbound dialer. <strong>220+ consumer reports</strong> across 13 pages on 800notes spanning 2007–2026 — a ~19-year continuously operating outbound dialer campaign. <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-888-819-2135">800notes →</a></span></p>
+          <p class="card-body" style="margin-top:10px;"><strong>Consumer pattern:</strong> non-cardholders called, wrong numbers, automated "this is not a telemarketing call" greeting, computerized call lists that even Amex CSRs say they cannot permanently remove consumers from. <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-888-819-2135">800notes →</a></span></p>
+          <div style="margin-top:12px;">
+            <span class="pill pill--danger">Prerecorded Voice Confirmed</span>
+            <span class="pill pill--warn">Wrong-Number Reports</span>
+            <span class="pill pill--info">19-Year Campaign</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="margin:0 0 12px; font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Recovery Path — Get the Plaintiff Number</h3>
+      <div class="card-grid">
+        <div class="card"><div class="card-meta">Path 1</div><h3 class="card-title">Pull ECF #1 attachments</h3><p class="card-body">Civil cover sheet (Doc #1 Att #1) sometimes lists plaintiff phone. ~$1.20 via PACER.</p></div>
+        <div class="card"><div class="card-meta">Path 2</div><h3 class="card-title">First-set discovery</h3><p class="card-body">Plaintiff's recipient number is squarely discoverable as a Rule 26(a)(1)(A) initial disclosure. Push for it on day 1 of Rule 26(f) conf.</p></div>
+        <div class="card"><div class="card-meta">Path 3</div><h3 class="card-title">Wait for defense counsel</h3><p class="card-body">When Amex panel counsel appears (likely Stroock or similar — Brian Frontino / Stephen Newman appeared in Behnke, Monroy, Fairchild), they will already have the number.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL ECF #1</span>
+      <span class="pill pill--info">Plaintiff: First-time TCPA filer</span>
+      <span class="pill pill--danger">Sender DID: 220+ historic complaints</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Amex has been sued 9 times by the same firm for the same prerecorded-collections problem. They keep paying. They haven't fixed it.</h2>
+      <p class="section-lede">Marsh is the <strong>9th identified TCPA suit</strong> filed by BLC Law Center / Ahren Tiller against American Express National Bank in S.D. Cal. since 2022, and all 8 prior cases settled or were dismissed within 4–6 months <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22American+Express+National+Bank%22+TCPA&type=r">CourtListener →</a></span>. The defendant has a $10.83B net-income line item that absorbs these settlements as a rounding error <span class="src-tag"><a href="https://en.wikipedia.org/wiki/American_Express">Wikipedia →</a></span> — which is exactly why scrub/consent-revocation infrastructure keeps failing. Lead with <strong>Consent Capture / Record Retention</strong>, cross-sell <strong>Compliance Audit + Policies & Procedures</strong>.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch</div>
+        <h3 class="card-title">Consent Capture & Revocation Retention</h3>
+        <p class="card-body">The Marsh complaint hinges on a single Aug 28, 2025 Docsmit-mailed C&D letter that Amex allegedly received and then ignored for 150+ subsequent prerecorded calls. This is a <em>revocation-tracking</em> failure, not an opt-in failure. Sell the revocation-record system that would have stopped call 1.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">Compliance Audit · P&P Build</h3>
+        <p class="card-body">Amex consent-to-contact provisions live inside 36+ separate Cardmember Agreements <span class="src-tag"><a href="https://www.americanexpress.com/en-us/company/legal/cardmember-agreements/">Amex Legal →</a></span>. The compliance gap isn't policy — it's policy execution at the collections-vendor layer.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-sell</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">BLC has filed 130+ TCPA cases — a known volume-filer roster <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener →</a></span>. Future Amex plaintiffs are already in BLC's intake pipeline. A live litigator scrub against BLC's known caller universe pre-empts the 10th, 11th, 12th filing.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="margin:0 0 12px; font-size:18px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; max-width:880px;">"Your team has been sued nine times by the same San Diego firm in four years for the same problem — prerecorded collection calls continuing after a written revocation. Every prior case settled, which means your in-house team and panel counsel already know the playbook costs you four-to-six figures per plaintiff, plus discovery, plus reputational drag. Marsh #9 is on the docket as of yesterday. We sell the consent-revocation record layer that closes the loop between a Docsmit-mailed C&D and the dialer at 888-819-2135. The math is simple: one prevented filing pays for the contract."</p>
+      <p style="font-size:15px; line-height:1.6; max-width:880px; margin-top:12px;">"And BLC isn't slowing down. They have parallel volume filings against Citibank (5+), Comenity (3+), Capital One (2+), Synchrony, U.S. Bank, Truist <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener →</a></span>. You're in a vertical sweep, and the firm has Amex on a recurring litigation calendar."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Fortune-58, $72B revenue, 141M cards in force — and a 19-year-old outbound dialer that consumer-complaint sites have been logging since 2007.</h2>
+      <p class="section-lede">American Express National Bank is the chartered banking subsidiary of American Express Company (NYSE: AXP), one of the 16 largest U.S. banks by assets. The scale is enormous; so is the call volume; so is the budget for compliance infrastructure that should already exist.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">American Express National Bank</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>American Express National Bank (National Banking Association)</dd>
+          <dt>Charter state</dt><dd>Utah</dd>
+          <dt>HQ (parent)</dt><dd>200 Vesey Street, New York, NY <span class="src-tag"><a href="https://en.wikipedia.org/wiki/American_Express">Wikipedia →</a></span></dd>
+          <dt>Parent</dt><dd>American Express Company (NYSE: AXP) <span class="src-tag"><a href="https://www.americanexpress.com/en-us/company/">Amex Company →</a></span></dd>
+          <dt>Revenue (2025)</dt><dd>$72.23B parent <span class="src-tag"><a href="https://en.wikipedia.org/wiki/American_Express">Wikipedia →</a></span></dd>
+          <dt>Net income (2025)</dt><dd>$10.83B parent <span class="src-tag"><a href="https://en.wikipedia.org/wiki/American_Express">Wikipedia →</a></span></dd>
+          <dt>Employees</dt><dd>~76,800 (parent, 2025) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/American_Express">Wikipedia →</a></span></dd>
+          <dt>Founded</dt><dd>March 18, 1850 (Wells, Fargo, Butterfield)</dd>
+          <dt>Vertical</dt><dd>Banking · Credit cards · Direct banking · Collections</dd>
+          <dt>Cards in force</dt><dd>~141.2M globally <span class="src-tag"><a href="https://en.wikipedia.org/wiki/American_Express">Wikipedia →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Amex's own CSRs admit the dialer can't be permanently stopped.</h3>
+        <p class="card-body">Quoted from 800notes consumer reports about Amex's sending DID (888) 819-2135: <em>"All they can do is take me off the call list, and hope that some other computer doesn't put me back on."</em> Other reports include calls to non-cardholders, wrong numbers, and even a school's mainline — with an automated voice greeting "this is not a telemarketing call" <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-888-819-2135">800notes →</a></span>. That's direct prerecorded-voice evidence supporting 47 USC § 227(b)(1)(A) — and a 19-year operating record (2007–2026) that the system has never been fixed.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day answer clock + repeat-defendant settlement cadence</h3>
+        <dl class="kv">
+          <dt>Filed</dt><dd>April 23, 2026</dd>
+          <dt>Answer deadline</dt><dd>~21 days post-service (estimate) — typical Amex pattern is joint motion for extension <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22American+Express+National+Bank%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Settlement cadence</dt><dd>Prior 8 BLC v. Amex cases all terminated in 2.5–6 months — median ~5 months. Marsh is likely to follow.</dd>
+          <dt>Sales window</dt><dd>Close before Amex settles. If you wait past ~T+90 days, the incentive cools.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="margin:0 0 12px; font-size:18px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr><td>American Express Company (NYSE: AXP)</td><td>Parent / bank holding company</td><td>Financial services</td><td>Same dialer, same collections vendors, same playbook</td><td><span class="pill pill--red">High</span></td></tr>
+            <tr><td>American Express Global Business Travel</td><td>33.54% stake</td><td>Corporate travel</td><td>B2B outbound — lower consumer TCPA exposure</td><td><span class="pill pill--info">Low</span></td></tr>
+            <tr><td>Resy</td><td>Subsidiary</td><td>Restaurant reservations / consumer SMS</td><td>SMS marketing platform — independent TCPA surface</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Marsh is filing #9 in a four-year, single-firm campaign with a 100% settlement rate.</h2>
+      <p class="section-lede">BLC Law Center has filed 8 prior nearly-identical TCPA actions against American Express National Bank in S.D. Cal., every one of which terminated without a merits ruling. Marsh is the next iteration of the template.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Marsh v. American Express National Bank</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-02584-JO-SBC <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-02584&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>April 23, 2026</dd>
+          <dt>Plaintiff</dt><dd>Andrew J. Marsh (San Diego County, CA)</dd>
+          <dt>Plaintiff counsel</dt><dd>Ahren A. Tiller (CA Bar 250608); Brett F. Bodie (CA Bar 264452) — BLC Law Center, APC <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/250608">Cal Bar →</a></span></dd>
+          <dt>Class</dt><dd>No — individual action</dd>
+          <dt>Claims</dt><dd>(1) Cal. Civ. Code § 1788.14(c) + § 1788.17 (RFDCPA, incorporating 15 USC § 1692d(5)); (2) 47 USC § 227(b)(1)(A) (TCPA prerecorded voice)</dd>
+          <dt>Theory</dt><dd>Post-revocation prerecorded debt-collection calls — 150+ alleged violations after Aug 28, 2025 Docsmit C&D letter</dd>
+          <dt>Damages sought</dt><dd>$1,000 RFDCPA statutory + actual + attorney fees · $500/call negligent or $1,500/call willful TCPA · injunctive relief</dd>
+          <dt>Exposure math</dt><dd>150 × $500 = <strong>$75,000</strong> (negligent floor) · 150 × $1,500 = <strong>$225,000</strong> (willful ceiling) + $1,000 RFDCPA + actual + fees</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared. Likely panel: Brian C. Frontino or Stephen J. Newman (both appeared in prior Amex TCPA matters) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22American+Express+National+Bank%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Docket so far</dt><dd>Doc #1 Complaint (4/23/26); Doc #1-1 Civil Cover Sheet; Doc #2 Summons Issued <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-02584&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Ahren A. Tiller · BLC Law Center, APC</h3>
+        <dl class="kv">
+          <dt>Firm address</dt><dd>1230 Columbia St., Ste 1100, San Diego, CA 92101</dd>
+          <dt>Firm phone</dt><dd>(619) 894-8831</dd>
+          <dt>Lead attorney email</dt><dd>ahren.tiller@blc-sd.com</dd>
+          <dt>Co-counsel</dt><dd>Brett F. Bodie — brett.bodie@blc-sd.com (CA Bar 264452)</dd>
+          <dt>Bar number</dt><dd>250608 (Active, CA) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/250608">Cal Bar →</a></span></dd>
+          <dt>Discipline</dt><dd>None surfaced</dd>
+          <dt>TCPA filing volume</dt><dd>130+ TCPA filings identified via CourtListener — volume filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Target verticals</dt><dd>Banking, credit-card issuers, consumer debt collection</dd>
+          <dt>TCPAWorld ranking</dt><dd>Not on TCPAWorld power rankings — flies under TCPAWorld radar despite high volume</dd>
+          <dt>Threat profile</dt><dd>Volume settlement filer — quick, transactional, not a merits-litigation shop</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="margin:0 0 12px; font-size:18px;">Plaintiff Firm Template — "BLC / Tiller v. Bank-Issuer Prerecorded-Voice Revocation"</h3>
+      <div class="card">
+        <p class="card-body">Every BLC v. Amex complaint follows the same fact pattern: (1) consumer-cardholder went delinquent; (2) plaintiff's counsel mails a <strong>Docsmit-certified</strong> Cease & Desist letter to the Amex P.O. Box in El Paso, TX, citing both RFDCPA and TCPA; (3) Amex's dialer at 888-819-2135 (or equivalent DID) continues making prerecorded calls after receipt; (4) plaintiff sues at 100–250 alleged violations for low-six-figures statutory exposure. The template scales across Citibank, Comenity, Capital One, Synchrony, U.S. Bank, Truist, and Reach Financial <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ahren+Tiller%22+TCPA&type=r">CourtListener →</a></span>. <strong>Marsh's complaint is a near-verbatim re-use of the Lopez (2025) and Fairchild (2023) templates.</strong></p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="margin:0 0 12px; font-size:18px;">Concurrent &amp; Recent Litigation — Defendant</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current-case"><td><strong>Marsh v. Amex Nat'l Bank</strong></td><td>S.D. Cal.</td><td>2026</td><td><span class="pill pill--red">Active · Filed</span></td><td>Prerecorded voice · post-revocation · RFDCPA + TCPA</td></tr>
+            <tr><td>Lopez v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2025</td><td><span class="pill pill--ok">Dismissed (~3 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Fairchild v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2023</td><td><span class="pill pill--ok">Voluntarily dismissed (~6 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Them v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Dismissed (~2.5 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Estep v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Joint dismissal (~4 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Moi v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Dismissed (~6 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Allison v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Dismissed (~6 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Behnke v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Dismissed (~4 mo)</span></td><td>Same template</td></tr>
+            <tr><td>Monroy v. Amex Nat'l Bank</td><td>S.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Dismissed (~5 mo)</span></td><td>Same template</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Source: <a href="https://www.courtlistener.com/?q=%22American+Express+National+Bank%22+TCPA&type=r">CourtListener TCPA search</a> — 8 of 8 prior BLC v. Amex cases dismissed/settled, 0 merits rulings.</p>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Plaintiff's recipient cell number — not in complaint; pull ECF #1 attachments via PACER or request in first discovery set.</li>
+        <li>Answer deadline — confirm waiver-of-service date once Amex acknowledges; standard 21-day clock starts from service.</li>
+        <li>Defense counsel identity — likely Stroock or panel firm (Frontino/Newman appeared in prior matters), but no appearance yet on the docket.</li>
+        <li>Whether plaintiff Andrew J. Marsh shares identity with prior bankruptcy filers (E.D. Mich. 2017, E.D. Cal. 2000); financial-distress backstory is consistent with the RFDCPA pleading.</li>
+        <li>Judge Jinsook Ohta's specific TCPA / RFDCPA ruling tendencies — appointed 2022, limited public record.</li>
+        <li>Confirmation of aexp.com email pattern for executives — all contact emails below are INFERRED, not VERIFIED.</li>
+        <li>No public settlement amounts available for any of the 8 prior Amex TCPA cases — all appear to be confidential individual settlements.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with Amex's General Counsel and Global Chief Compliance Officer. Cards-business president is the budget-holder backstop.</h2>
+      <p class="section-lede">Decision authority for TCPA scrub procurement at a national bank sits with Legal + Compliance, with funding tied to the Cards business owner. All emails below follow the inferred aexp.com corporate convention and should be treated as PATTERN-quality until a single verified address is in hand.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name · Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Laureen E. Seeger</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>EVP, General Counsel — owns outside-counsel relationships and TCPA settlement authority <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>laureen.e.seeger@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/laureen-seeger">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Beth Provanzana</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Global Chief Compliance Officer — direct owner of consent-revocation infrastructure <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>beth.provanzana@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/beth-provanzana">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Howard Grosfield</strong><br><span class="pill pill--dark">President, US Consumer</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>President, U.S. Consumer Services — budget holder for the Cards business that operates the dialer <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>howard.grosfield@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/howard-grosfield">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Doug Tabish</strong><br><span class="pill pill--dark">CRO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chief Risk Officer — regulatory and litigation risk aggregation <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>doug.tabish@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/doug-tabish">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tina Eide</strong><br><span class="pill pill--dark">EVP Risk Mgmt</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>EVP Global Fraud, Credit Bust Out, Payments &amp; Banking Product Risk Management — owns the credit / collections risk surface <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>tina.eide@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/tina-eide">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Andres Espinosa</strong><br><span class="pill pill--dark">Chief Credit Officer</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chief Credit Officer &amp; Executive Committee member — collections org reports up here <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>andres.espinosa@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/andres-espinosa">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Katy Blommer</strong><br><span class="pill pill--dark">VP AENB Gov.</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>VP, Enterprise Affiliate &amp; American Express National Bank Governance — name on the chartered banking entity that is the named defendant <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>katy.blommer@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/katy-blommer">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Benjamin Nahrstadt</strong><br><span class="pill pill--dark">Chief of Staff, AENB</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Manager, Chief of Staff — AENB Strategy and Execution <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>benjamin.nahrstadt@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/benjamin-nahrstadt">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Stephen J. Squeri</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chairman &amp; CEO (since 2018) — escalation-only contact <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>stephen.j.squeri@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/stephen-squeri">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Vivek Sehgal</strong><br><span class="pill pill--dark">CFO AENB</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>VP &amp; CFO — American Express Banking Corp. (the chartered AENB entity) <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>vivek.sehgal@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/vivek-sehgal">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Christophe Le Caillec</strong><br><span class="pill pill--dark">CFO Parent</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>CFO, American Express Company (parent) — final budget approver <span class="src-tag"><a href="https://theorg.com/org/american-express">TheOrg →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>christophe.lecaillec@aexp.com</td>
+            <td><a href="https://www.linkedin.com/in/christophe-le-caillec">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Main Corporate Line</strong><br><span class="pill pill--dark">Switchboard</span></td>
+            <td>Amex Credit / Account Services dialer (also the sender DID in the complaint) <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-888-819-2135">800notes →</a></span></td>
+            <td>(888) 819-2135</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:var(--fg-2);"><strong>Email pattern:</strong> <code>{first}.{last}@aexp.com</code> (sometimes <code>{first}.{middle_initial}.{last}@aexp.com</code> for senior execs) — inferred from the well-known Amex corporate domain. No published address has been verified end-to-end; treat all rows as <span class="pill pill--info">INFERRED</span> until one verified address confirms the convention.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move inside 72 hours. The window closes when Amex settles — historically ~T+90 days.</h2>
+      <p class="section-lede">Prior BLC v. Amex cases terminated in 2.5–6 months, with several closing inside 90 days. Once Amex pays Marsh, the urgency-to-buy collapses until filing #10. The window to sell is roughly: <strong>now through mid-July 2026</strong>.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">Outreach: Compliance + Legal</h3>
+        <p class="card-body">First touch via LinkedIn InMail + inferred email to <strong>Beth Provanzana (Global CCO)</strong> and <strong>Laureen Seeger (GC)</strong>. Reference Marsh by docket number. Frame as: "9th identical filing in 4 years from the same firm — we close the consent-revocation gap that produced calls 2–150."</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">PACER pull · recover plaintiff number</h3>
+        <p class="card-body">Pull ECF #1 attachments (~$1.20) to recover Marsh's recipient cell. Once obtained, run live Litigator Scrub to demonstrate Marsh's number — and at least one prior BLC plaintiff (Lopez, Fairchild) — against current Amex scrub data. This becomes the demo for the call.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–10</div>
+        <h3 class="card-title">Cards-business pressure</h3>
+        <p class="card-body">Parallel outreach to <strong>Howard Grosfield (President, U.S. Consumer)</strong> and <strong>Andres Espinosa (Chief Credit Officer)</strong>. They own the P&L line that is being charged for every Amex settlement. The legal team writes the check; these execs pay for it.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10–21</div>
+        <h3 class="card-title">Close before defense appearance</h3>
+        <p class="card-body">Watch the docket. Once Amex panel counsel (Frontino/Newman or successor) appears, the file becomes a litigation-managed matter and procurement decisions freeze. Aim to have a contract conversation initiated <em>before</em> the 21-day answer clock closes.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 30–60</div>
+        <h3 class="card-title">Cross-sell Resy + parent AXP</h3>
+        <p class="card-body">Resy operates an independent SMS marketing surface. Loop in cross-sell with AXP parent compliance once the AENB conversation is anchored.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 60–90</div>
+        <h3 class="card-title">Trigger watch · file #10 readiness</h3>
+        <p class="card-body">Monitor PACER for the next BLC filing against Amex. Filing #10 is the strongest "we told you so" — pre-build the outreach now.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="margin:0 0 12px; font-size:18px;">Trigger conditions — escalate or de-prioritize</h3>
+      <ul class="clean tight" style="background:var(--bg-surface); border:1px solid var(--border-1); padding:0 20px;">
+        <li><strong>Settle signal</strong> — joint motion to dismiss filed before contract closes → escalate to AENB Governance (Katy Blommer) framing: "the 10th will come; here's the fix."</li>
+        <li><strong>Defense counsel appears</strong> — pivot to panel-firm intro track; ask GC's office to connect.</li>
+        <li><strong>Class certification motion filed</strong> — N/A here (individual action), but watch for BLC pivoting to class structure.</li>
+        <li><strong>Plaintiff drops to amend</strong> — unlikely (template is mature); if it happens, signals weakness, slow down outreach.</li>
+        <li><strong>10th filing hits the docket</strong> — immediate re-touch with subject line "this is what we said."</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~90-DAY SETTLEMENT WINDOW · CLOSE BEFORE JUL 23, 2026</span>
+      <span class="pill pill--info">9TH IDENTICAL FILING · TEMPLATE MATURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-04-24</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
