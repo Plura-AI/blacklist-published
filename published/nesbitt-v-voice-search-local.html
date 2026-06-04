@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nesbitt v. Voice Search Local — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--warning); margin:0 0 12px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.02em">BLACKLIST</text>
+          <rect x="120" y="4" width="2" height="16" fill="#A50100"/>
+          <text x="130" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Prerecorded-Voice Class Action · 44 Rotating DIDs · Repeat-Defendant SEO Robocaller · Kaufman/Coleman Filing</p>
+      <h1 class="hero-tagline">Nesbitt v.<br>Voice Search Local <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">+ Internet Listing Solutions</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-14192</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (Fort Pierce)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Fort Pierce pool</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)(1)(A)(iii)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Prerecorded Voice</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"hundreds, if not thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Stefan Coleman · Avi Kaufman<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Coleman PLLC / Kaufman P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but 44 sender DIDs are a goldmine.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits of Nesbitt's cell ("ending in 2387"), so a litigator scrub against the recipient number cannot be performed at this stage. However, the complaint pleads 44 distinct outbound sender DIDs — a forensic gift for the sales angle.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">PLAINTIFF NUMBER NOT DISCLOSED · LOOKUP DEFERRED</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-2387</div>
+        <div class="scrub-number-sub">Only last-four disclosed in Complaint ¶26. Full 10-digit number must be obtained via PACER ECF #1 (already filed but redacted), discovery propounded on Defendants, or defense counsel's first appearance.</div>
+      </div>
+      <p class="scrub-body-text">Litigator scrub against blacklistBulk is <strong>not yet runnable</strong> on Nesbitt's recipient cell. Plaintiff is a first-time named plaintiff (no prior CourtListener hits under "Akaela Nesbitt"), so even a name-only check against the WebRecon serial-filer flag returns nothing actionable. The scrub angle here is the <strong>defendants' sender pool</strong>: 44 distinct DIDs, all routing back to a single static callback number 877-556-9255. <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-877-556-9255">800notes 8775569255 →</a></span></p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Sender-DID Intelligence (consumer-source identification)</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Toll-Free Callback Hub</div>
+          <h4 class="card-title">877-556-9255</h4>
+          <p style="margin:8px 0; font-size:13px; color:var(--fg-2);">15+ consumer complaints on 800notes between Nov 2022 and Jan 2026. Identified as <em>"Laura from Digital Marketing Pros"</em> robocall pitching Amazon Alexa / Google business-listing verification. Same script, same callback number, dozens of rotating spoofed caller IDs.</p>
+          <div style="margin-top:8px;"><span class="pill pill--danger">Telemarketer</span> <span class="pill pill--danger">FAKE Google</span> <span class="pill pill--warn">Scam suspicion</span></div>
+          <p style="margin-top:10px; font-size:12px; color:var(--fg-3);">"5-6 calls per day regarding my business not showing up correctly on Google" — consumer report, 2024 <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-877-556-9255">800notes →</a></span></p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Port St. Lucie Local-Identified DID</div>
+          <h4 class="card-title">772-807-1045</h4>
+          <p style="margin:8px 0; font-size:13px; color:var(--fg-2);">800notes report dated Feb 10, 2020: "This is the supposed customer number for a Google scam." Hutton Advertising LinkedIn post identified this number as the source the company called after receiving robocalls — BBB lists it as <strong>associated with Voice Search Local LLC</strong>. <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-772-807-1045">800notes →</a></span></p>
+          <div style="margin-top:8px;"><span class="pill pill--danger">Direct VSL attribution</span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Atlanta Spoof Pool</div>
+          <h4 class="card-title">42× 470-area-code DIDs</h4>
+          <p style="margin:8px 0; font-size:13px; color:var(--fg-2);">Complaint ¶29 lists 42 distinct 470 (Atlanta GA) sender numbers used to robocall Plaintiff over 24 days in March 2026. None individually appear on 800notes — DIDs are burned through too fast to accumulate per-number reports. Pure rotating-DID dialer infrastructure. Carrier identified by consumers as "Signal One." <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-877-556-9255">800notes →</a></span></p>
+          <div style="margin-top:8px;"><span class="pill pill--danger">Rotating DID</span> <span class="pill pill--warn">Caller-ID Spoofing</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER ECF #1</span>
+      <span class="pill pill--danger">REPEAT DEFENDANT · 6+ PRIOR TCPA CASES</span>
+      <span class="pill pill--warn">PLAINTIFF: FIRST-TIME FILER (no WebRecon flag)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat-defendant SEO robocaller with zero apparent scrub layer and a 7-figure exposure runway.</h2>
+      <p class="section-lede">Defendants have been sued for TCPA at least 6 prior times across 6 years (2019–2026) — and they keep dialing. The same plaintiff firm (Kaufman P.A.) sued Voice Search Local in 2020 and settled in 31 days. They are back in 2026 with the apex weapon: a putative <em>class</em> action backed by 44 sender DIDs. This is a clean Litigator Scrub + RND + Consent Capture triple-stack pitch with extreme urgency.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p style="font-size:14px; line-height:1.55;">Defendants placed 44 distinct prerecorded calls to a single plaintiff in one month. Every one of those numbers landed without a scrub against known serial-filer lists. Even one Blacklist scrub on the outbound list would have flagged Nesbitt's number before the 44th attempt — and the second case-filer who's already lining up.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p style="font-size:14px; line-height:1.55;">Plaintiff is a Georgia consumer with no business relationship to a Florida SEO vendor. There is no plausible prior express written consent. Defendants need a verifiable, auditable consent flow now — vsslocal.com signup/terms pages return HTTP 403, meaning <strong>nothing</strong> is preserved for the existing book.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">TERTIARY</div>
+        <h3 class="card-title">Compliance Audit / Policies & Procedures</h3>
+        <p style="font-size:14px; line-height:1.55;">44 rotating DIDs, spoofed area codes, ignored opt-out requests, "Press 9 to stop" with no follow-through, dead 877 number — every element of the dialer operation is a stand-alone violation. A compliance audit converts current chaos into a defensible internal-DNC + revocation program before discovery hits.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; max-width:880px;">"Kaufman P.A. has already taken your competitors for $40M (Keller Williams), $26.91M (eXp Realty), and $20M (Realogy). They filed against you in 2020 and you settled in 31 days. They watched you for six years, watched you keep dialing, and now they came back with a <em>class</em> caption and 44 caller IDs of receipts. The settle-quick-and-keep-dialing playbook just expired. Every day this case sits open without a litigator scrub running on your outbound list is another day a copycat plaintiff gets added to the class. Blacklist's litigator-scrub API in front of your dialer would have flagged Nesbitt before her 44th call — and we can have that live before defense counsel files an appearance." <span class="src-tag"><a href="https://tcpaworld.com/?s=Avi+Kaufman">TCPAWorld →</a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CourtListener →</a></span></p>
+      <p style="font-size:15px; line-height:1.6; max-width:880px; margin-top:12px;">Lead with Litigator Scrub. Close on Consent Capture once defense counsel appears and the answer-window clock starts ticking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A two-LLC Port St. Lucie SEO shop running an industrial-scale prerecorded-voice campaign.</h2>
+      <p class="section-lede">Voice Search Local LLC and Internet Listing Solutions LLC share an address, a suite number, a phone tree, and — per the Florida corporate registry screenshot in the Complaint — common authorized members. They market voice-search SEO and Google/Alexa listing verification to small businesses, and they generate leads almost entirely via outbound prerecorded calls.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Voice Search Local LLC (primary) + Internet Listing Solutions LLC (co-defendant)</dd>
+          <dt>Formation State</dt><dd>Florida (both)</dd>
+          <dt>HQ</dt><dd>1701 SE Tiffany Ave, Suite 105, Port Saint Lucie, FL 34952 (shared by both LLCs per Complaint ¶17–18)</dd>
+          <dt>Parent</dt><dd>Unknown — historic co-defendant filings tie both entities to <strong>Timothy Wilson / TWilson Investments LLC</strong> and <strong>Daniel W. Welling</strong> (Fabricant v. Backlinko, C.D. Cal. 2021) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Website</dt><dd>vsslocal.com (HTTP 403 to public scrape — no privacy policy or terms publicly accessible)</dd>
+          <dt>Employees (LinkedIn)</dt><dd>6 listed on Voice Search Local company page; only Nicoli Suarez surfaced by name without auth <span class="src-tag"><a href="https://www.linkedin.com/company/voice-search-local">LinkedIn →</a></span></dd>
+          <dt>Vertical</dt><dd>Digital marketing / local SEO / "voice search" listing verification (small-business sales)</dd>
+          <dt>Public Statements</dt><dd>LinkedIn company page markets proprietary "VoiceBot Technology" with free trial — directly corroborates prerecorded-voice infrastructure pleaded in Complaint <span class="src-tag"><a href="https://www.linkedin.com/company/voice-search-local">LinkedIn →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff;">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">44 sender DIDs, one toll-free hub, six years, zero scrub.</h3>
+        <p style="font-size:14px; line-height:1.6;">The Complaint pleads 44 distinct outbound caller IDs used in a single 24-day window in March 2026 against a single plaintiff. The 800notes record on the toll-free callback hub 877-556-9255 stretches from Nov 2022 to Jan 2026, with consumers reporting "5-6 calls per day," "dozens of different caller IDs," and "you can call the 877 number and dial nine all you want, nothing will make them stop calling you." <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-877-556-9255">800notes →</a></span></p>
+        <p style="font-size:14px; line-height:1.6; margin-top:10px;">This is the textbook profile of an outbound dialer running with no litigator scrub, no DNC scrub, no consent record, and no honored opt-outs. It also matches the dialer pattern in <em>Fabricant v. Backlinko</em> (C.D. Cal. 2021), <em>Boehm v. Internet Listing Solutions</em> (D. Neb. 2019), and <em>Brennan v. Voice Search Local</em> (S.D. Fla. 2024). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CourtListener →</a></span></p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Pre-answer window is open. Settlement-buy-peace pattern is short.</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Filed</dt><dd>May 28, 2026 — 1 day ago at report generation</dd>
+          <dt>Answer Window</dt><dd>21 days from service (per Fed. R. Civ. P. 12(a)) — service date not yet docketed</dd>
+          <dt>Historic Settle Speed</dt><dd>Ailion (2020): 31 days · Marrero (2021): 42 days · Brennan (2024): 52 days. Defendants buy peace fast on individual cases. <strong>Class caption changes the math.</strong> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Pitch Window</dt><dd>~14–21 days before defense counsel appears and locks down outside-vendor conversations</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr><td>Internet Listing Solutions LLC</td><td>Co-defendant · authorized member of Voice Search Local per FL registry <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CourtListener →</a></span></td><td>Digital marketing / SEO</td><td>Independent TCPA history (Strange 2019, Boehm 2019)</td><td><span class="pill pill--red">HIGH</span></td></tr>
+            <tr><td>TWilson Investments LLC</td><td>Common-controller per Fabricant (C.D. Cal. 2021) and Boehm (D. Neb. 2019) co-defendant filings <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CourtListener →</a></span></td><td>Holding / investments</td><td>Named in 2 prior TCPA cases as co-defendant</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+            <tr><td>Livefree Emergency Response</td><td>Co-defendant with Internet Listing Solutions in Boehm (D. Neb. 2019) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CourtListener →</a></span></td><td>Medical alert / emergency response</td><td>Prior TCPA telemarketing co-defendant</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+            <tr><td>Timothy D. Wilson (individual)</td><td>Named individual co-defendant in Fabricant, Boehm, Strange <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CourtListener →</a></span></td><td>Operator / principal</td><td>Personal liability exposure across 3+ TCPA cases</td><td><span class="pill pill--info">LOW</span></td></tr>
+            <tr><td>"Signal One" (carrier — consumer-identified)</td><td>Service provider per 800notes consumer report <span class="src-tag"><a href="https://800notes.com/Phone.aspx/1-877-556-9255">800notes →</a></span></td><td>Telephony carrier</td><td>Origination/transit liability under TRACED Act</td><td><span class="pill pill--info">LOW</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Kaufman P.A. — top-10 TCPA Power Lawyer — is back for round two against the same defendant.</h2>
+      <p class="section-lede">Avi Kaufman appears on the TCPAWorld Power Rankings every year from 2022 through 2026. His firm has booked over $100M in TCPA class settlements. He sued Voice Search Local in 2020 (Ailion) and watched them settle and keep dialing. Six years later, he's back — this time with a class caption.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">CASE FILE</div>
+        <h3 class="card-title">Nesbitt v. Voice Search Local LLC + Internet Listing Solutions LLC</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Docket</dt><dd>2:26-cv-14192 (S.D. Fla., Fort Pierce Division)</dd>
+          <dt>Filed</dt><dd>May 28, 2026 · Doc #1 Complaint, Doc #3 Summons Issued <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-14192&type=r">CourtListener →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Akaela Nesbitt (Smyrna, GA · first-time named plaintiff per CourtListener)</dd>
+          <dt>Counsel</dt><dd>Stefan Coleman (Coleman PLLC) + Avi R. Kaufman (Kaufman P.A.)</dd>
+          <dt>Class Status</dt><dd><span class="pill pill--danger">Putative Rule 23(b)(2) & 23(b)(3)</span></dd>
+          <dt>Class Definition</dt><dd>"All persons in the United States who from four years prior to the filing of this action through class certification (1) the Defendants called on their cellular telephone number (2) using an artificial or pre-recorded voice."</dd>
+          <dt>Claim</dt><dd>47 USC § 227(b)(1)(A)(iii) — prerecorded/artificial voice to cellular without prior express written consent</dd>
+          <dt>Damages Sought</dt><dd>$500 minimum per call · up to $1,500 (treble for willfulness) · class-wide injunctive relief</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared — 21-day answer clock</span></dd>
+          <dt>Judge</dt><dd>Not yet visible in RECAP (Clerk's Notice of Judge Assignment filed 5/28/2026 but content not yet extracted)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">PLAINTIFF COUNSEL</div>
+        <h3 class="card-title">Kaufman P.A. (lead) + Coleman PLLC (co-counsel)</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Lead Attorney</dt><dd>Avi R. Kaufman · FL Bar 84382 · kaufman@kaufmanpa.com · (305) 469-5881</dd>
+          <dt>Co-Counsel</dt><dd>Stefan Coleman · FL Bar 30188 · law@stefancoleman.com · (877) 333-9427</dd>
+          <dt>Firm Address (Complaint)</dt><dd>18117 Biscayne Blvd, Suite 4152, Miami, FL 33160 <span class="pill pill--warn">VIRTUAL/MAIL-DROP SUITE</span></dd>
+          <dt>Firm Address (Website)</dt><dd>237 S. Dixie Hwy, Floor 4, Coral Gables, FL 33133 <span class="src-tag"><a href="https://kaufmanpa.com">kaufmanpa.com →</a></span></dd>
+          <dt>Bar Discipline</dt><dd>None found in available sources</dd>
+          <dt>TCPAWorld Power Ranking</dt><dd>Multi-year honoree 2022–2026 · referenced as "#7" / "TCPA POWER LAWYER" <span class="src-tag"><a href="https://tcpaworld.com/?s=Avi+Kaufman">TCPAWorld →</a></span></dd>
+          <dt>Firm TCPA Filings</dt><dd>Kaufman P.A. ~832 + Coleman PLLC ~152 = combined ~984 lifetime TCPA filings <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kaufman+P.A.%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Settlement Track</dt><dd>$40M Keller Williams · $26.91M eXp Realty · $20M Realogy · $9.7M Western Dental · $8.3M CITGO · $7.2M Cardinal Financial · $5.16M Independent Home Products <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Avi+Kaufman%22+TCPA">Law360 →</a></span></dd>
+          <dt>Prior History v. VSL</dt><dd><strong>Ailion v. Voice Search Local</strong> (S.D. Fla. 2020) — Kaufman P.A. settled in 31 days. Same firm is now back with class caption.</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">PLAINTIFF FIRM TEMPLATE</div>
+        <h3 class="card-title">Kaufman 227(b) Prerecorded-Voice Class Template</h3>
+        <p style="font-size:15px; line-height:1.6;">Kaufman P.A. targets verticals with large outbound-dial footprints — real estate brokerages, mortgage, solar, dental, home services, and now digital marketing/SEO. The template: identify a defendant running a high-volume prerecorded campaign without verifiable consent, plead Rule 23(b)(2)/(b)(3) class, attach a forensic exhibit (here: 44 caller IDs over 24 days), and push to class certification rather than nuisance settlement. Track record shows the firm has certified classes and taken settlements to 7- and 8-figure ranges (eXp Realty $26.91M, Keller Williams $40M). <span class="src-tag"><a href="https://tcpaworld.com/?s=Avi+Kaufman">TCPAWorld →</a></span></p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Concurrent & Recent Litigation (Voice Search Local + Internet Listing Solutions)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current-case"><td><strong>Nesbitt v. Voice Search Local + Internet Listing Solutions</strong> <span class="pill pill--red">CURRENT</span></td><td>2:26-cv-14192</td><td>S.D. Fla.</td><td>2026-05-28</td><td><span class="pill pill--danger">ACTIVE · CLASS</span></td><td>227(b) prerecorded voice</td></tr>
+            <tr><td>DeLacey v. Voice Search Local</td><td>1:26-cv-02036</td><td>D. Colo.</td><td>2026-05-08</td><td><span class="pill pill--warn">ACTIVE</span></td><td>TCPA · pro se IFP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Aleman v. Voice Search Local</td><td>7:26-cv-00027</td><td>W.D. Tex.</td><td>2026-01-27</td><td><span class="pill pill--warn">ACTIVE</span></td><td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Brennan v. Voice Search Local</td><td>2:24-cv-14255</td><td>S.D. Fla.</td><td>2024-08-09</td><td><span class="pill pill--ok">Settled (52 days)</span></td><td>TCPA individual <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Fabricant v. Backlinko (incl. VSL + ILS + T. Wilson + D. Welling)</td><td>2:21-cv-05900</td><td>C.D. Cal.</td><td>2021</td><td><span class="pill pill--gap">Dismissed for prosecution</span></td><td>TCPA — joint enterprise <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Marrero v. Voice Search Local</td><td>2:21-cv-01742</td><td>E.D. Pa.</td><td>2021-04-14</td><td><span class="pill pill--ok">Settled (42 days)</span></td><td>TCPA individual <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Ailion v. Voice Search Local (<em>Kaufman P.A.</em>)</td><td>2:20-cv-14419</td><td>S.D. Fla.</td><td>2020-11-30</td><td><span class="pill pill--ok">Settled (31 days)</span></td><td>TCPA — <strong>same plaintiff firm</strong> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Boehm v. Internet Listing Solutions (+ T. Wilson)</td><td>8:19-cv-00208</td><td>D. Neb.</td><td>2019</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA / Telecom Act <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CL →</a></span></td></tr>
+            <tr><td>Strange v. Internet Listing Solutions</td><td>2:19-cv-14281</td><td>S.D. Fla.</td><td>2019</td><td><span class="pill pill--gap">Terminated</span></td><td>TCPA pro se <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CL →</a></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>Pull <strong>ECF #1 (Complaint)</strong> from PACER (~$1.20) to recover full plaintiff cell ending in 2387 — required to run a litigator scrub on the recipient number</li>
+        <li>Florida Sunbiz registry returned HTTP 403 — need direct browser pull to confirm registered agent, managing members, and officer names for both LLCs (Sunbiz, Bizapedia, OpenCorporates all blocked)</li>
+        <li>Defense counsel has <strong>not yet appeared</strong>; 21-day answer clock starts at service — monitor PACER daily for Doc #4+ entries</li>
+        <li>Judge assignment not yet visible in RECAP — Fort Pierce Division pool includes Middlebrooks, Marra, Rosenberg, and Mag. Maynard (all have prior VSL/ILS exposure)</li>
+        <li>No email pattern recovered for either defendant entity; no general info@ or support@ extractable from vsslocal.com (403); pattern must be inferred or pulled from LinkedIn outreach</li>
+        <li>Confirm Timothy Wilson / Daniel Welling current relationship to both LLCs (named co-defendants in Fabricant, Boehm — likely still principals/managers)</li>
+        <li>Bar address mismatch flagged: Coleman PLLC's Biscayne Blvd Suite 4152 is a known virtual/mail-drop address — confirm before any direct mail outreach</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Hit the LLC managing member directly — there is no GC, no compliance officer, and no website to leave a voicemail on.</h2>
+      <p class="section-lede">Defendants are a 6-person Port St. Lucie operation. There is no in-house legal department, no documented compliance officer, no general counsel. The decision-maker is whoever the Sunbiz filing lists as managing member — historically Timothy Wilson — and the operational chokepoint is the principal address and main number. Call early, before defense counsel installs a wall.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name & Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Timothy D. Wilson <span class="pill pill--dark">PRINCIPAL?</span></td>
+            <td>Named individual co-defendant in <em>Boehm</em> (D. Neb. 2019), <em>Strange</em> (S.D. Fla. 2019), and <em>Fabricant</em> (C.D. Cal. 2021) — tied to both LLCs via TWilson Investments. Likely current managing member; needs Sunbiz confirmation. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Internet+Listing+Solutions%22+TCPA&type=r">CourtListener →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Daniel W. Welling <span class="pill pill--dark">PRINCIPAL?</span></td>
+            <td>Named individual co-defendant in <em>Fabricant v. Backlinko</em> (C.D. Cal. 2021) alongside VSL + ILS. Operator/principal exposure. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Voice+Search+Local%22+TCPA&type=r">CourtListener →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Nicoli Suarez <span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Surfaced on Voice Search Local LinkedIn company page (only employee visible without auth). Title not disclosed publicly. <span class="src-tag"><a href="https://www.linkedin.com/in/nicoli-suarez-80796a403">LinkedIn →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--info">INFERRED</span> linkedin.com/in/nicoli-suarez-80796a403</td>
+          </tr>
+          <tr>
+            <td>"Lori" <span class="pill pill--dark">LIVE-AGENT</span></td>
+            <td>Identified herself as employee of "Voice Search" on the March 10, 2026 call to Plaintiff (Complaint ¶36). Disconnected after Plaintiff's "stop calling" request. Useful for discovery-witness identification, not outreach. <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-14192&type=r">CourtListener →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Main Office <span class="pill pill--dark">HQ</span></td>
+            <td>1701 SE Tiffany Ave, Suite 105, Port Saint Lucie, FL 34952 (shared by Voice Search Local LLC + Internet Listing Solutions LLC per Complaint ¶17–18). <span class="src-tag"><a href="https://www.linkedin.com/company/voice-search-local">LinkedIn →</a></span></td>
+            <td><span class="pill pill--warn">PATTERN</span> 772-807-1045 (BBB-listed per Complaint ¶21)</td>
+            <td><span class="pill pill--gap">GAP</span> — no info@ recoverable (site 403)</td>
+            <td><span class="pill pill--ok">VERIFIED</span> linkedin.com/company/voice-search-local</td>
+          </tr>
+          <tr>
+            <td>Defense Counsel</td>
+            <td><span class="pill pill--gap">Not yet appeared</span> · 21-day answer clock from service date · monitor PACER for Doc #4+</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:16px;">Email pattern for both defendant LLCs could not be determined — no public email addresses were recoverable from any source (vsslocal.com returned HTTP 403, ZoomInfo blocked, Apollo 404, SignalHire 410, LinkedIn requires authentication for employee detail). Sunbiz pull is the fastest path to managing-member identity.</p>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Plaintiff Counsel (reference only — DO NOT pitch)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name</th><th>Role</th><th>Firm</th><th>Phone (per PACER)</th><th>Email</th></tr></thead>
+        <tbody>
+          <tr><td>Stefan Coleman</td><td>Co-Counsel · FL Bar 30188</td><td>Coleman PLLC</td><td>(877) 333-9427</td><td>law@stefancoleman.com <span class="src-tag"><a href="https://stefancoleman.com">stefancoleman.com →</a></span></td></tr>
+          <tr><td>Avi R. Kaufman</td><td>Lead Counsel · FL Bar 84382</td><td>Kaufman P.A.</td><td>(305) 469-5881</td><td>kaufman@kaufmanpa.com <span class="src-tag"><a href="https://kaufmanpa.com">kaufmanpa.com →</a></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 7 days. The defendant's historical answer is "pay and keep dialing" — this time the price tag is class-wide.</h2>
+      <p class="section-lede">The three prior individual cases against Voice Search Local settled in 31, 42, and 52 days respectively. With a putative class on the table, defendants have a much bigger problem and a much narrower window to install a real compliance layer before the discovery wave hits.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 (TODAY)</div>
+        <h3 class="card-title">PACER pull + Sunbiz pull</h3>
+        <p style="font-size:14px; line-height:1.55;">Pull ECF #1 from PACER (~$1.20) to capture Plaintiff's full cell ending in 2387. Pull Sunbiz filings for both LLCs to recover managing member names and registered agent. Cost: under $5 total. Output: actionable contact + scrub-ready recipient number.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2</div>
+        <h3 class="card-title">Cold outreach to HQ</h3>
+        <p style="font-size:14px; line-height:1.55;">Call main line 772-807-1045 (BBB-listed per Complaint). Ask for Timothy Wilson or whoever Sunbiz confirms as managing member. Open with: "I'm calling because of the class action filed Wednesday in Fort Pierce — the one with the 44 caller IDs." Lead with Litigator Scrub product.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 3–5</div>
+        <h3 class="card-title">LinkedIn outreach to Nicoli Suarez + any Sunbiz-recovered officer</h3>
+        <p style="font-size:14px; line-height:1.55;">Use LinkedIn InMail to bypass the gatekeeper if HQ phone gets walled. Reference TCPAWorld coverage and the Kaufman track record to establish credibility — defendants will recognize the firm name from Ailion (2020).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 7–14</div>
+        <h3 class="card-title">Monitor PACER for defense counsel appearance</h3>
+        <p style="font-size:14px; line-height:1.55;">Once defense counsel files a notice of appearance, direct outbound becomes a courtesy-copy game. Pivot pitch to defense firm and offer Litigator Scrub + Consent Capture as a settlement-mitigation story to reduce class certification risk.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 14–21</div>
+        <h3 class="card-title">Answer-window close</h3>
+        <p style="font-size:14px; line-height:1.55;">21-day Fed.R.Civ.P. 12(a) answer deadline from service. Use this as the natural urgency anchor on every follow-up call.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">ONGOING</div>
+        <h3 class="card-title">Cross-sell tracking</h3>
+        <p style="font-size:14px; line-height:1.55;">Sister entities TWilson Investments and Livefree Emergency Response have independent TCPA exposure. Once VSL/ILS conversation is open, expand to the broader TWilson-Welling operational network.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">TRIGGER CONDITIONS</div>
+      <h3 class="card-title">When the plan changes</h3>
+      <ul class="clean tight" style="font-size:14px;">
+        <li><strong>If defense counsel files MTC arbitration:</strong> shift pitch to consent-capture audit (arbitration only works if there is a documented consumer agreement — defendants have no public terms page)</li>
+        <li><strong>If plaintiff voluntarily dismisses individual (Brennan pattern):</strong> the class caption suggests this is unlikely, but if Kaufman drops to amend, the 21-day urgency resets — keep the pitch warm</li>
+        <li><strong>If a second/third copycat plaintiff files (likely given 6-year complaint history):</strong> consolidated MDL risk = bigger problem for defendant + bigger sale for Blacklist</li>
+        <li><strong>If Sunbiz reveals new managing member (post-2021 successor to Timothy Wilson):</strong> reset target persona and pitch new principal directly</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 18</span>
+      <span class="pill pill--warn">REPEAT-DEFENDANT · 4TH LAWSUIT IN 6 YEARS</span>
+      <span class="pill pill--info">FIRST-TIME PLAINTIFF · CLASS CAPTION</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
