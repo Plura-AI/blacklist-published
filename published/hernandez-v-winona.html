@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hernandez v. Winona — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.callout ul{ margin:8px 0 0; padding-left:20px; font-size:14px; line-height:1.55; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <text x="120" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Telehealth SMS Marketer · Caller-ID Transmission Violation · Putative Rule 23 Class · W.D. Tex.</p>
+      <h1 class="hero-tagline">Hernandez v.<br>Winona, Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-01476</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Tex. (Austin)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 1, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">≥50 members alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Zane C. Hedaya <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not disclosed — scrub deferred until PACER pull or discovery</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Hernandez complaint pleads SMS receipt with screenshots but does not disclose the receiving cellular number. Scrub is deferred pending recovery.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Cell</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint alleges Plaintiff Nilda Hernandez (Oregon resident) received ≥2 SMS from Winona between Nov 1, 2025 (7:06 PM) and Nov 18, 2025, but the 10-digit recipient number is not pled. Screenshots show only message body + timestamp. No sender DID is disclosed either.</div>
+      </div>
+      <p class="scrub-body-text">No blacklistBulk lookup was performed — running a scrub on a partial or absent number would be invalid. Plaintiff name was cross-checked against CourtListener / RECAP and returned no prior TCPA filings tied to this exact individual <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nilda+Hernandez%22&type=r">CourtListener -></a></span>, so the serial-filer angle on the named plaintiff is currently cold. The serial-filer threat is upstream — it sits with plaintiff's counsel (see Section 04).</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Option 1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">The complaint exhibits filed with ECF #1 may include a less-redacted version showing the receiving number. Cost ~$1.20. Fastest recovery path before defense counsel appears.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Option 2</div>
+        <h3 class="card-title">Wait for defense counsel notice of appearance</h3>
+        <p class="card-body">Once Winona retains counsel, the plaintiff's number is typically disclosed in initial Rule 26(a) disclosures or in a settlement-discussion exchange. No defense counsel has appeared yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01476&type=r">RECAP -></a></span>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Option 3</div>
+        <h3 class="card-title">First-set discovery request</h3>
+        <p class="card-body">If Winona engages Blacklist post-suit, the plaintiff's number will surface in the firm's Rule 26 / interrogatory exchange. Run the scrub the moment it lands.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--info">No Prior TCPA Filings By Named Plaintiff</span>
+      <span class="pill pill--danger">Serial-Filer Firm — Hindi PLLC</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Venture-backed DTC telehealth brand with a 100K+ patient SMS list, no visible compliance program, and the country's most prolific TCPA firm at the gate.</h2>
+      <p class="section-lede">Winona's privacy policy is silent on TCPA, DNC, and SMS consent capture — a classic greenfield. The Hindi firm has 690+ TCPA matters on CourtListener and is actively targeting DTC wellness brands. Lead with Consent Capture + DNC Scrubbing; close on Litigator Scrub once the recipient number is recovered.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Winona's signup flow and privacy policy show no TCPA/DNC carve-outs and no documented opt-in mechanics <span class="src-tag"><a href="https://bywinona.com/privacy-policy">bywinona.com/privacy-policy -></a></span>. Without an audited consent record, every text in the class window is a strict-liability exposure.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Lead With</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + State)</h3>
+        <p class="card-body">Plaintiff is an Oregon resident sued in Texas — Winona is marketing nationally without state-level scrubbing. Bolt this onto consent capture as a turnkey defense against copycat filings.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Close After Scrub</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Once the plaintiff's recipient number is pulled from PACER or disclosures, run the scrub and lead the renewal conversation with the result. Hindi's firm files in volume — copycat plaintiffs will follow.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px;">"You just got hit by Jibrael Hindi — that's not bad luck, that's a target. His firm has filed 690+ TCPA matters across federal courts <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span> and he's running a clean templated theory against your SMS program right now: caller-ID transmission and DNC. The complaint references your <code>links.bywinona.com</code> short-link domain — that's your ESP's link wrapper, which means every text in the class window can be reconstructed from your vendor's logs. Your privacy policy doesn't mention TCPA, DNC, or SMS consent <span class="src-tag"><a href="https://bywinona.com/privacy-policy">bywinona.com -></a></span>, and you advertise 100,000+ patients. Multiply that against $500–$1,500 per text and the named-plaintiff exposure looks small next to what's coming. Blacklist closes the gap today — DNC scrub at the vendor layer, documented consent capture, and litigator scrub on every outbound list. That's how you make sure the next plaintiff Hindi's firm sends has nothing to plead."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Austin-HQ'd DTC menopause/HRT telehealth brand with a 100K+ patient marketing list and no compliance infrastructure on the public surface.</h2>
+      <p class="section-lede">Winona, Inc. operates the bywinona.com brand — a subscription telehealth platform for bioidentical hormone replacement therapy. SMS is a core acquisition channel routed through the <code>links.bywinona.com</code> tracking subdomain.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Winona, Inc.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>Winona, Inc.</dd>
+          <dt>Entity Type</dt><dd>Corporation</dd>
+          <dt>HQ</dt><dd>Austin, Texas <span class="src-tag"><a href="https://bywinona.com/about">bywinona.com/about -></a></span></dd>
+          <dt>Vertical</dt><dd>DTC Telehealth — Menopause / HRT</dd>
+          <dt>Website</dt><dd>bywinona.com</dd>
+          <dt>SMS Domain</dt><dd>links.bywinona.com (link-tracking subdomain, typical of Attentive / Klaviyo / Postscript)</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Patient Base</dt><dd>"100,000+ Happy Patients" per company marketing <span class="src-tag"><a href="https://bywinona.com">bywinona.com -></a></span></dd>
+          <dt>Known Subsidiary</dt><dd>Winona Medical of California, Inc.</dd>
+          <dt>Main Phone</dt><dd>415-840-1465</dd>
+          <dt>Main Email</dt><dd>hello@bywinona.com</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy policy is silent on TCPA, DNC, and SMS consent</h3>
+        <p class="card-body">Winona's published privacy policy authorizes "newsletters, surveys, questionnaires, promotions" and discloses sharing data with "advertisers, ad platforms and networks" and "commercial data partners ... for their own marketing purposes" — but never mentions TCPA, the Do Not Call Registry, prior express written consent, an internal DNC list, or SMS opt-out mechanics <span class="src-tag"><a href="https://bywinona.com/privacy-policy">bywinona.com/privacy-policy -></a></span>. The terms-of-service page at /terms returns 404. There is no published Chief Compliance Officer, no compliance page, and no public TCPA language anywhere on the site.</p>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day answer clock running</h3>
+        <p class="card-body">Filed Jun 1, 2026. Summons issued Jun 2, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01476&type=r">RECAP -></a></span>. Once Winona is served, FRCP 12(a) gives 21 days to answer. The window to close before defense counsel locks in posture is short.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Class Math</div>
+        <h3 class="card-title">≥50 alleged · $25K–$75K floor</h3>
+        <p class="card-body">At least 50 class members pled, at $500 negligent / $1,500 willful per violation. Two-text minimum × 50 = $50K–$150K floor before any class expansion. Plaintiff alleges "aggregate damages ... in the millions."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Vertical Heat</div>
+        <h3 class="card-title">DTC telehealth is a sued vertical</h3>
+        <p class="card-body">Hims, Ro, Nurx all have TCPA history. Winona's first TCPA filing is the canary — copycat filings typically follow within 60–90 days once a theory is public.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Winona Medical of California, Inc.</td>
+            <td>Subsidiary (CA medical practice entity)</td>
+            <td>Telehealth — HRT prescribing</td>
+            <td>Same SMS infrastructure; California adds CIPA / CCPA layer</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="color:var(--fg-3); font-style:italic;">No parent entity, M&amp;A history, or sister brands publicly disclosed. Crunchbase / BBB / Trustpilot all returned blocked or empty results — additional cross-sell mapping requires paid data source.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-time TCPA defendant facing the Hindi firm's templated caller-ID/DNC theory — exactly the playbook the firm has run against dozens of DTC wellness brands.</h2>
+      <p class="section-lede">Hindi PLLC is a volume filer. Winona has no prior TCPA history. The combination — clean defendant, templated plaintiff — is high-leverage for early settlement and high-risk for copycat filings if posture isn't fixed.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Hernandez v. Winona, Inc.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>1:26-cv-01476 (W.D. Tex., Austin Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01476&type=r">RECAP -></a></span></dd>
+          <dt>Filed</dt><dd>June 1, 2026</dd>
+          <dt>Plaintiff</dt><dd>Nilda Hernandez (Oregon resident)</dd>
+          <dt>Class Status</dt><dd>Putative Rule 23 — ≥50 members alleged</dd>
+          <dt>Class Definition</dt><dd>All U.S. persons sent ≥2 telemarketing calls/texts in a 12-month period within 4 years prior to filing without caller-ID transmission of CPN/ANI + telemarketer name</dd>
+          <dt>Statute</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>SMS solicitations sent from links.bywinona.com without disclosing the telemarketer's name in the caller-ID field</dd>
+          <dt>Damages Sought</dt><dd>$500/text negligent · $1,500/text willful · injunctive relief</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · 21-day answer clock starts on service</dd>
+          <dt>Docket Visibility</dt><dd>Doc #1 Complaint · Doc #2 Summons request · Doc #3 Summons issued (Jun 2, 2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01476&type=r">RECAP -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Zane C. Hedaya · Law Offices of Jibrael S. Hindi PLLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Filing Attorney</dt><dd>Zane C. Hedaya (TX Bar 24134450)</dd>
+          <dt>Lead Firm Principal</dt><dd>Jibrael S. Hindi</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>813-340-8838</dd>
+          <dt>Filing Email</dt><dd>zane@jibraellaw.com</dd>
+          <dt>Principal Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Website</dt><dd>jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPA Rank</dt><dd><span class="pill pill--danger">Extreme Threat</span> Recognized in TCPAWorld 2026 Power Rankings context <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+          <dt>TCPA Volume</dt><dd>690+ TCPA matters tied to firm on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+S.+Hindi%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Published Wins</dt><dd>+$30M TCPA / +$200M class action settlements claimed <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Address Note</dt><dd>Firm based in FL, filing through TX-barred Hedaya — standard out-of-state-lead pattern, not a bar mismatch</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Plaintiff Firm Template — Hindi Caller-ID / Quiet-Hours Series</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">The Hindi firm runs a templated SMS-marketing class theory and rotates it across verticals: <em>Nespresso</em>, <em>ThirdLove</em>, <em>Summer Vibe</em>, <em>PrimeFish</em>, <em>Bump Boxes</em>, <em>Alphalete Athletics</em>, <em>Orderly Wellness</em>, and others <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span>. Filings frequently use Hindi associates Hedaya / Faaris Uddin / Gerald Lane Jr. as local counsel. A subset (e.g., PrimeFish) get voluntarily dismissed — consistent with quick pre-cert settlements. The economic logic favors mid-market DTC defendants who lack a documented consent program. Winona fits the profile.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Year</th><th>Theory</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Hernandez v. Winona, Inc.</strong> · 1:26-cv-01476</td>
+            <td>W.D. Tex.</td>
+            <td>2026</td>
+            <td>Caller-ID transmission (SMS)</td>
+            <td><span class="pill pill--red">Active · Filed Jun 1</span></td>
+          </tr>
+          <tr>
+            <td>Pallan v. Reliant Services Group, LLC</td>
+            <td>E.D. Cal.</td>
+            <td>2025</td>
+            <td>Hindi firm filing</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Garcia v. Financial Future, Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td>Hindi firm filing</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Fleurigene v. Orderly Wellness Corporation</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td>DTC wellness SMS</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Farsian v. Alphalete Athletics LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td>DTC apparel SMS</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Holt v. Bump Boxes, Inc.</td>
+            <td>E.D. Okla.</td>
+            <td>2023</td>
+            <td>DTC subscription SMS</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="color:var(--fg-3); font-style:italic;">No prior TCPA cases against Winona, Inc. surfaced in CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Winona%2C+Inc%22+TCPA&type=r">CourtListener -></a></span> — this is the defendant's first TCPA action.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Plaintiff's recipient cell number is not pled — pull ECF #1 from PACER to confirm whether a less-redacted version exists with the number.</li>
+        <li>Texas Secretary of State (SOSDirect), Bizapedia, OpenCorporates, and Sunbiz searches were all blocked or paywalled — registered agent, officers list, and formation state for Winona, Inc. are unconfirmed.</li>
+        <li>Crunchbase / Glassdoor / Trustpilot / BBB all blocked — funding rounds, investor list, headcount, and consumer complaint volume not retrieved.</li>
+        <li>Specific SMS/ESP vendor (Attentive, Klaviyo, Postscript, Sendlane, etc.) not confirmed — <code>links.bywinona.com</code> is a tracking subdomain, vendor identification will be valuable for the vendor-layer scrub conversation.</li>
+        <li>No General Counsel, VP Legal, or Chief Compliance Officer identified on TheOrg, LinkedIn, or company site — escalation path on legal/compliance is currently a gap.</li>
+        <li>Texas State Bar directory fetch failed — Hedaya's admit date / sections / address of record not independently verified.</li>
+        <li>Judge has not yet been assigned per RECAP — no TCPA-history read possible.</li>
+        <li>Terms of service at <code>/terms</code> returns 404 — arbitration clause and class-action waiver language not reviewable from public surface.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the CEO and the CTO/founder. Cooper Anderson (VP Martech) owns the SMS stack — he's the technical champion.</h2>
+      <p class="section-lede">Winona has not publicly named a General Counsel or Chief Compliance Officer. The CEO and the founder/CTO are the decision authorities; the VP of Martech owns the channel that triggered the suit. Email pattern is inferred — every individual email below is PATTERN/INFERRED only.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nancy Belcher</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Chief executive — top decision authority on legal/compliance spend</td>
+            <td>415-840-1465 (main)</td>
+            <td>nancy@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/nancy-belcher">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Joel Andrew Green</strong><br><span class="pill pill--dark">FOUNDER · CTO</span></td>
+            <td>Founder &amp; CTO — owns infrastructure decisions including ESP/SMS vendor</td>
+            <td>—</td>
+            <td>joel@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/joel-andrew-green">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Cooper Anderson</strong><br><span class="pill pill--dark">VP MARTECH</span></td>
+            <td>VP of Martech — owns SMS marketing platform; the technical buyer for scrub/consent capture</td>
+            <td>—</td>
+            <td>cooper@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/cooper-anderson">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Green</strong><br><span class="pill pill--dark">CMO (Medical)</span></td>
+            <td>Chief Medical Officer — relevant for marketing-claim review on HRT messaging</td>
+            <td>—</td>
+            <td>michael@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-green">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Gray Dorsett</strong><br><span class="pill pill--dark">HEAD OF PRODUCT</span></td>
+            <td>Head of Product — owns consent-capture UX on signup/intake flows</td>
+            <td>—</td>
+            <td>gray@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/gray-dorsett">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Emma Jeffers</strong><br><span class="pill pill--dark">HEAD OF CREATIVE</span></td>
+            <td>Head of Creative — message copy / opt-in language owner</td>
+            <td>—</td>
+            <td>emma@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/emma-jeffers">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Erwan Lent</strong><br><span class="pill pill--dark">PARTNER</span></td>
+            <td>Partner — likely investor/advisor seat</td>
+            <td>—</td>
+            <td>erwan@bywinona.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/erwan-lent">LinkedIn</a> <span class="src-tag"><a href="https://theorg.com/org/winona">TheOrg -></a></span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>No General Counsel / VP Legal / Chief Compliance Officer publicly identified</td>
+            <td>—</td>
+            <td>legal@bywinona.com <span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Company Main Line</strong><br><span class="pill pill--dark">SWITCHBOARD</span></td>
+            <td>Primary inbound channel</td>
+            <td>415-840-1465 <span class="pill pill--ok">VERIFIED</span></td>
+            <td>hello@bywinona.com <span class="pill pill--ok">VERIFIED</span> <span class="src-tag"><a href="https://bywinona.com/contact">bywinona.com/contact -></a></span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:16px;">Email pattern <code>{first}@bywinona.com</code> is inferred from generic public aliases (hello@, help@, pr@) and small-DTC convention — not confirmed against any individual. Verify before send.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel locks in posture.</h2>
+      <p class="section-lede">The complaint was filed Jun 1, summons issued Jun 2, and the answer clock starts on service. The rep's window to land in front of the CEO and VP Martech before outside counsel takes over the messaging is approximately 7–14 days.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (today)</div>
+        <h3 class="card-title">Open with Cooper Anderson (VP Martech)</h3>
+        <p class="card-body step-body">Cold-email Cooper at the inferred address. Subject line referencing <code>links.bywinona.com</code> and the Jun 1 filing — he is the operator most likely to recognize the urgency. CC nancy@bywinona.com. Goal: discovery call this week.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <p class="card-body step-body">$1.20 from W.D. Tex. ECF. Look for the unredacted complaint exhibits / civil cover sheet — the plaintiff's number may be present. If recovered, run blacklistBulk and use the result on the Day 5 follow-up.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3</div>
+        <h3 class="card-title">CEO direct (Nancy Belcher)</h3>
+        <p class="card-body step-body">If no Day 1 reply, call 415-840-1465 and ask for Nancy Belcher's office. Frame: "We help DTC telehealth brands close TCPA exposure at the vendor layer — saw the Hernandez filing." Keep it 90 seconds.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5</div>
+        <h3 class="card-title">LinkedIn touch — Joel Green</h3>
+        <p class="card-body step-body">Founder/CTO. Personal LinkedIn note referencing his infrastructure role. Founders move fast when the brand is named in a class action.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7</div>
+        <h3 class="card-title">Drop the Hindi dossier</h3>
+        <p class="card-body step-body">Send the multi-defendant Hindi pattern (Alphalete, Orderly Wellness, Bump Boxes, ThirdLove) to whoever has responded. Frame copycat risk — once a theory is public on a DTC wellness brand, follow-on plaintiffs appear within 60–90 days.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10–14</div>
+        <h3 class="card-title">Position before defense counsel locks the room</h3>
+        <p class="card-body step-body">Once outside counsel appears on the docket, the BDR loses direct executive access. Goal: signed engagement OR scheduled in-person/Zoom with GC before then.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Trigger Conditions — Adjust the Plan If</h3>
+      <ul style="font-size:15px; line-height:1.6;">
+        <li><strong>Defense counsel files a motion to compel arbitration:</strong> pivot from compliance-spend to renewal/preventive posture — the litigation is contained, but the compliance gap remains.</li>
+        <li><strong>Plaintiff amends to add ATDS or quiet-hours counts:</strong> escalate urgency, broaden product mix to include consent capture + audit.</li>
+        <li><strong>Hindi files a second case against Winona within 60 days:</strong> the copycat predicted; lead with that fact on every subsequent touch.</li>
+        <li><strong>Settlement signal (stipulated dismissal in 30–60 days):</strong> Hindi pattern in PrimeFish suggests this is possible; even on settlement, the underlying compliance gap survives and Blacklist is the renewal pitch.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Urgency: High</span>
+      <span class="pill pill--warn">21-Day Answer Window Starts on Service</span>
+      <span class="pill pill--danger">Serial-Filer Firm — Copycat Risk Within 60–90 Days</span>
+      <span class="pill pill--info">First-Time TCPA Defendant — Clean Posture Available</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
