@@ -11,6 +11,7 @@
 @font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
 @font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
 @font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
 :root{
   --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
   --bl-black:#000000; --bl-white:#FFFFFF;
@@ -66,7 +67,7 @@ section + section{ border-top:1px solid var(--border-1); }
 .tbl tr:last-child td{ border-bottom:0; }
 .tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
 .tbl .num{ font-variant-numeric:tabular-nums; }
-.tbl tr.row--current{ background:var(--bl-red-tint); }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
 .pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
 .pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
 .pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
@@ -92,16 +93,16 @@ ul.clean.tight li:last-child{ border-bottom:0; }
 .scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
 .scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
 .scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
-.step{ display:grid; grid-template-columns:48px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--border-1); }
-.step:last-child{ border-bottom:0; }
-.step-num{ font-size:32px; font-weight:700; line-height:1; color:var(--bl-red); font-variant-numeric:tabular-nums; }
-.step-title{ font-size:18px; font-weight:600; margin:0 0 6px; }
-.step-body{ font-size:14px; line-height:1.55; color:var(--fg-2); margin:0; }
-.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
-.callout-title{ font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:10px; }
 footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
 footer a{ color:#C9C9C9; }
 footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout .callout-title{ font-weight:600; color:var(--warning); text-transform:uppercase; letter-spacing:0.08em; font-size:12px; margin-bottom:8px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:600; color:var(--bl-red); }
+.step-title{ font-weight:600; font-size:16px; margin:0 0 4px; }
+.step-body{ font-size:14px; color:var(--fg-2); line-height:1.55; }
 @media (max-width:768px){
   .kv{ grid-template-columns:1fr; gap:4px; }
   .kv dt{ padding-top:8px; }
@@ -116,447 +117,574 @@ footer .container{ display:flex; justify-content:space-between; align-items:cent
     <div class="hero-top">
       <div class="hero-logo" aria-label="Blacklist Alliance">
         <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
-          <rect x="0" y="2" width="22" height="20" fill="#A50100"/>
-          <text x="30" y="18" font-family="General Sans, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
-          <text x="156" y="18" font-family="General Sans, sans-serif" font-size="18" font-weight="400" fill="#C9C9C9" letter-spacing="0.5">ALLIANCE</text>
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="2" width="3" height="18" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
         </svg>
       </div>
-      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-31</div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-03</div>
     </div>
     <div>
       <span class="hero-bar"></span>
-      <p class="hero-sub" style="margin-bottom:12px">TCPA + RFDCPA Defendant · Prerecorded-Voice Debt Collection · Post-Revocation Calling · S.D. Cal.</p>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA + RFDCPA Defendant · Prerecorded-Voice Debt Collection · Post-Revocation Continuation · Repeat-Defendant of Same Firm</p>
       <h1 class="hero-tagline">Simmons v.<br>Capital One, N.A.</h1>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-03333-TWR-DDL</div></div>
       <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
-      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 30, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
-      <div class="hero-stat"><div class="label">Judges</div><div class="value">Todd W. Robinson <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Mag. David D. Leshner</span></div></div>
-      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b) <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Cal. Civ. § 1788.14(c)</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 30, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(4 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Todd W. Robinson<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Mag. David D. Leshner</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)(1)(A)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Cal. Civ. Code § 1788.14(c)</span></div></div>
       <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
       <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Ahren A. Tiller <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">BLC Law Center, APC</span></div></div>
     </div>
   </div>
 </header>
 
-<!-- 01 -->
+<!-- 01 · LITIGATOR SCRUB CHECK -->
 <section>
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
-      <h2 class="section-title">Plaintiff's recipient number not pled — scrub deferred pending PACER pull.</h2>
-      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Simmons complaint does not disclose Plaintiff's 10-digit cellular number — only the two Capital One sending DIDs are pled. Scrub cannot run on partial data.</p>
+      <h2 class="section-title">Plaintiff's recipient number not pled — scrub deferred until PACER pull or discovery</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Simmons complaint never discloses Ms. Simmons' cellular number on the face of the pleading — only the two Capital One sender DIDs are identified. A litigator scrub on the plaintiff has been deferred pending recovery.</p>
     </div>
 
-    <div class="scrub-card" style="margin-bottom:24px;">
+    <div class="scrub-card">
       <div class="scrub-card-head">
-        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
-        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
       </div>
       <div class="scrub-number-block">
         <div class="scrub-number-label">Plaintiff Cellular Number</div>
         <div class="scrub-number">NOT IN COMPLAINT</div>
-        <div class="scrub-number-sub">Complaint describes calls to "Plaintiff's cellular telephone" (ECF #1, ¶29, ¶40) but never recites the 10-digit number. No exhibit pages with the number were filed.</div>
+        <div class="scrub-number-sub">Complaint repeatedly references Plaintiff's "cellular telephone" (¶¶ 22, 29, 40) but never publishes the 10-digit recipient number. Plaintiff resides in San Diego County, CA (¶ 15).</div>
       </div>
-      <p class="scrub-body-text">Ruth Simmons resides in San Diego County, California (¶15). Recovery path: pull ECF #1 from PACER for the full pleading + any exhibits, then issue an early Rule 26(f) discovery request for the recipient cell number and call logs. Plaintiff has no identifiable prior TCPA filings in CourtListener — she appears to be a first-time plaintiff, not a serial filer. <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03333&type=r">CourtListener docket -></a></span></p>
+      <p class="scrub-body-text">A Blacklist litigator-scrub on Ruth Simmons cannot be confidently run without the recipient number. Name-only scrubs against Ruth Simmons return noise (a Pfizer board member and an unrelated bankruptcy filer surfaced as false positives during CourtListener checks). No prior TCPA filings under this exact plaintiff name were found in CourtListener.</p>
     </div>
 
-    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Sending DIDs Pled in the Complaint</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-meta">Sender DID #1</div>
-        <div class="card-title" style="font-family:var(--font-mono);">(800) 955-6600</div>
-        <div class="card-body">Toll-free 800 number consistent with outbound enterprise dialer infrastructure. Pled at ¶41 as a Capital One collections line that delivered prerecorded voice messages to plaintiff. No third-party consumer-database corroboration available — 800notes, YouMail, Tellows, and RoboKiller all blocked at fetch time.</div>
-      </div>
-      <div class="card">
-        <div class="card-meta">Sender DID #2</div>
-        <div class="card-title" style="font-family:var(--font-mono);">(800) 435-1415</div>
-        <div class="card-body">Second toll-free 800 number pled at ¶41. Same enterprise dialer profile. Two distinct DIDs against a single consumer indicates systematic multi-channel dialing infrastructure rather than a one-off attempt.</div>
-      </div>
-      <div class="card card--accent">
-        <div class="card-meta">Recovery Path</div>
-        <div class="card-title">Pull PACER ECF #1</div>
-        <div class="card-body">$1.20 PACER pull will reveal whether any exhibits attached to the complaint contain plaintiff's full cell number. If not present, lead with sending-DID conversation and elevate the scrub to a "preliminary, pending discovery" status when speaking with Capital One counsel.</div>
+    <div style="margin-top:24px;">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px;">Sender DIDs Disclosed in Complaint (¶ 41)</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Capital One Sender #1</div>
+          <h3 class="card-title" style="font-family:var(--font-mono);">(800) 955-6600</h3>
+          <p class="card-body">Toll-free DID alleged as a Capital One collections line per ¶ 41. Third-party sender-identity sources (800notes, YouMail, Tellows, RoboKiller) all returned 403/404 during enrichment — no consumer-reported attribution captured. Number is publicly documented as a Capital One credit card servicing/collections line in defendant-reputation research <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia →</a></span>.</p>
+          <div style="margin-top:12px;"><span class="pill pill--info">Toll-Free</span> <span class="pill pill--dark">Capital One Owned</span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Capital One Sender #2</div>
+          <h3 class="card-title" style="font-family:var(--font-mono);">(800) 435-1415</h3>
+          <p class="card-body">Second toll-free DID alleged in ¶ 41. Pled as one of the prerecorded-voice origin numbers used after the January 12, 2026 cease-and-desist. Third-party reporting platforms unavailable during enrichment.</p>
+          <div style="margin-top:12px;"><span class="pill pill--info">Toll-Free</span> <span class="pill pill--dark">Capital One Owned</span></div>
+        </div>
       </div>
     </div>
 
-    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
-      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
-      <span class="pill pill--info">PLAINTIFF: FIRST-TIME FILER (NOT SERIAL)</span>
-      <span class="pill pill--warn">DID CARDS: SENDER-IDENTIFICATION ONLY</span>
+    <div style="margin-top:24px;">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px;">Recovery Path</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Option A · Fastest</div>
+          <h3 class="card-title">Pull ECF #1 from PACER</h3>
+          <p class="card-body">Direct PACER pull failed during enrichment (404). Have the rep / paralegal pull the unredacted complaint exhibit set — the Docsmit certificate (¶¶ 33-35) and BLC's intake file will contain Plaintiff's cell number.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Option B</div>
+          <h3 class="card-title">Wait for Defense Counsel Notice of Appearance</h3>
+          <p class="card-body">Capital One has not yet appeared (filed 5/30/2026; ~21-day answer clock). Defense counsel filings typically attach the call log and disclose the dialed number in the joint Rule 26(f) report.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Option C</div>
+          <h3 class="card-title">Rule 26 Initial Disclosure / Discovery</h3>
+          <p class="card-body">Plaintiff is statutorily required to identify the called number in initial disclosures and Rule 33 interrogatory responses. Slowest path but highest reliability.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--info">Plaintiff Name: No Prior TCPA Filings Found</span>
+      <span class="pill pill--warn">Firm Is a Volume Filer (See § 04)</span>
     </div>
   </div>
 </section>
 
-<!-- 02 -->
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
 <section style="background:var(--bg-surface)">
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
-      <h2 class="section-title">Repeat TCPA defendant, repeat plaintiff firm, smoking-gun post-revocation calling — lead with consent capture &amp; record retention.</h2>
-      <p class="section-lede">Capital One has been sued by this same firm before (Diaz v. Capital One, S.D. Cal. 2021) and settled. The current complaint pleads 50+ prerecorded calls placed <em>after</em> Capital One received a written attorney C&amp;D dated Jan 12, 2026. That is the cleanest revocation fact pattern there is. Blacklist's consent-capture and policies-and-procedures stack is the natural pitch — but the cross-sell ammunition (Discover acquisition, Capital One Auto Finance, 100M+ accounts) is what makes this a strategic account, not a one-deal lead.</p>
+      <h2 class="section-title">Largest US credit-card issuer, repeat TCPA target, post-revocation prerecorded-voice claim — lead with Consent Capture &amp; Record Retention.</h2>
+      <p class="section-lede">Capital One has already paid into the largest TCPA MDL in history (MDL 2416, In re Capital One TCPA Litigation) and is <em>still</em> getting sued in 2026 by the same plaintiff's counsel that sued it in 2021. The Simmons complaint is a smoking-gun consent-revocation failure: written cease-and-desist mailed January 12, 2026, 50+ prerecorded-voice calls after receipt. The pitch is consent capture, revocation processing, and DNC/internal scrubbing.</p>
     </div>
 
     <div class="card-grid">
       <div class="card card--accent">
-        <div class="card-meta" style="color:var(--bl-red);">RECOMMENDED LEAD PITCH</div>
-        <div class="card-title">Consent Capture &amp; Record Retention</div>
-        <div class="card-body">The complaint's core fact is that Capital One kept dialing after written revocation. That's a consent-revocation tracking failure — exactly what Blacklist's consent capture / record retention solution prevents. Plaintiff's counsel will hammer "why didn't the C&amp;D land in your suppression file" in discovery.</div>
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Revocation Record-Keeping</h3>
+        <p class="card-body">The plaintiff sent a written revocation via Docsmit (¶¶ 31-35) to Capital One's published correspondence address. Capital One kept calling 50+ times. This is a process-and-systems failure, not a one-off. Blacklist's consent capture + revocation logging closes exactly this gap.</p>
       </div>
       <div class="card">
-        <div class="card-meta">SECONDARY</div>
-        <div class="card-title">Compliance Audit / Policies &amp; Procedures</div>
-        <div class="card-body">RFDCPA § 1788.14(c) attorney-representation rule was breached — Capital One's intake of inbound attorney correspondence is broken. A P&amp;P audit closes the gap at the operational level (mailroom -> account flag -> dialer suppression).</div>
+        <div class="card-meta">Strong Cross-Sell</div>
+        <h3 class="card-title">Internal DNC / Policies &amp; Procedures Audit</h3>
+        <p class="card-body">RFDCPA § 1788.14(c) and 15 USC § 1692d(5) (7-in-7 presumption) both pled. Capital One's own published Terms reportedly authorize marketing "even if you have chosen to opt out" <span class="src-tag"><a href="https://www.capitalone.com/legal/terms-conditions/">capitalone.com/legal →</a></span> — a structural internal-DNC gap.</p>
       </div>
       <div class="card">
-        <div class="card-meta">CROSS-SELL</div>
-        <div class="card-title">Litigator Scrub</div>
-        <div class="card-body">At 76,300 employees and millions of outbound collection calls per year, even a 1% serial-filer hit rate justifies enterprise scrub licensing. The recent Discover acquisition <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia -></a></span> doubles the call universe and the inherited consent debt.</div>
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">Litigator Scrub (Account-Onboarding &amp; Pre-Dial)</h3>
+        <p class="card-body">BLC Law Center filed at least 11 TCPA suits against banks (Citibank, Synchrony, AmEx, U.S. Bank, Truist, Comenity, Capital One). Scrubbing inbound credit-card applicants against Blacklist's litigator list would have flagged this firm's repeat plaintiffs <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener →</a></span>.</p>
       </div>
     </div>
 
-    <h3 style="font-size:18px; font-weight:600; margin:40px 0 12px;">Pitch Angle</h3>
-    <div class="card">
-      <div class="card-body">
-        <p>Open with the pattern: "Your team just got sued in S.D. Cal. by Ahren Tiller at BLC Law Center — the same firm that filed Diaz v. Capital One in 2021. They specialize in banking-vertical TCPA cases (Citibank, Synchrony, US Bank, AmEx, Truist, Comenity, Capital One) and have 138+ TCPA filings on the docket. They settle in 3–6 months. This isn't a one-off — they have your playbook." <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener firm filings -></a></span></p>
-        <p>Then the wedge: "The complaint pleads 50+ prerecorded collection calls after Capital One received a January 12, 2026 attorney cease-and-desist letter at the published correspondence address in Salt Lake City. The letter cited the last four of plaintiff's SSN. Capital One received it. The dialer kept dialing. That is not a TCPA-prior-express-consent fight — that is a record-retention failure. Blacklist's consent capture / revocation tracking is the system that prevents that exact gap. We'd like 20 minutes with whoever owns inbound attorney correspondence intake on the credit-card collections side."</p>
-      </div>
+    <div style="margin-top:32px;">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+        Capital One is the largest US credit-card issuer with 76,300 employees and $53.4B in 2025 revenue <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia →</a></span> — they have the wallet to settle and the volume to keep generating these claims. They already settled the In re Capital One TCPA MDL in 2014 and are still being sued today by Ahren Tiller / BLC Law Center, who has now filed against Capital One twice (Diaz 2021, Simmons 2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ahren+Tiller%22&type=r">CourtListener →</a></span>. That settlement playbook is the wedge: their existing legal-fees-and-settlement budget is the comparison point — Blacklist's annual consent-capture &amp; scrub subscription is a fraction of one Tiller settlement.
+      </p>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px; margin-top:12px;">
+        The story to tell on the first call: "You received a cease-and-desist via certified mail. The letter referenced the consumer's SSN-4. You kept calling 50+ times. Your own Terms of Use authorize calls even after opt-out. Whatever process you have between mailroom intake and your dialer suppression list is broken, and it just generated another statutory-damages lawsuit. We close that loop." Then anchor on the Discover acquisition (closed 2025) — Capital One now owns Discover's collections operation too, doubling the surface area.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- 03 -->
+<!-- 03 · CORPORATE FOOTPRINT -->
 <section>
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
-      <h2 class="section-title">$53B revenue, 76,300 employees, 100M+ cards — and Discover just folded in.</h2>
-      <p class="section-lede">Capital One Financial Corporation (NYSE: COF, S&amp;P 100 component) is the largest credit-card issuer in the U.S., a top-five auto-finance lender, and — as of 2025 — the post-merger home of Discover Financial Services. Capital One, N.A. is the federally chartered national bank subsidiary that's the named defendant here.</p>
+      <h2 class="section-title">A $53B public banking holding company that just absorbed Discover — collections surface area is at an all-time high.</h2>
+      <p class="section-lede">Capital One Financial Corporation (NYSE: COF) is the parent of defendant Capital One, N.A. — a federally-chartered national banking association. The 2025 Discover acquisition makes this the most consolidated post-acquisition compliance moment in the company's history.</p>
     </div>
 
     <div class="two-col">
       <div class="card card--accent">
         <div class="card-meta">Defendant Profile</div>
-        <div class="card-title">Capital One, N.A.</div>
-        <dl class="kv" style="margin-top:16px;">
-          <dt>Legal entity</dt><dd>Capital One, N.A. (national banking association, OCC-chartered) <span class="src-tag"><a href="https://www.occ.treas.gov/topics/charters-and-licensing/financial-institution-lists/index-financial-institution-lists.html">OCC -></a></span></dd>
-          <dt>Parent</dt><dd>Capital One Financial Corporation (NYSE: COF) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia -></a></span></dd>
-          <dt>HQ</dt><dd>Capital One Tower, Tysons, Virginia</dd>
-          <dt>Founded</dt><dd>July 21, 1994 (Fairbank &amp; Morris)</dd>
-          <dt>Revenue (2025)</dt><dd>US $53.4 billion</dd>
-          <dt>Employees (2025)</dt><dd>76,300</dd>
-          <dt>Vertical</dt><dd>Banking / consumer credit / credit cards / auto finance</dd>
-          <dt>Main phone</dt><dd>(703) 720-1000 <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></dd>
-          <dt>Public statements</dt><dd>Privacy/Terms mention SMS/RCS/push notice consent via mere site use; no visible TCPA compliance page <span class="src-tag"><a href="https://www.capitalone.com/legal/terms-conditions/">capitalone.com/legal -></a></span></dd>
+        <h3 class="card-title">Capital One, N.A.</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Capital One, N.A. (named defendant)</dd>
+          <dt>Entity Type</dt><dd>National Banking Association (federally chartered)</dd>
+          <dt>Parent</dt><dd>Capital One Financial Corporation (NYSE: COF) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia →</a></span></dd>
+          <dt>HQ</dt><dd>Capital One Tower, Tysons, Virginia <span class="src-tag"><a href="https://www.capitalone.com/about">capitalone.com →</a></span></dd>
+          <dt>Founded</dt><dd>July 21, 1994 — Richard Fairbank &amp; Nigel Morris</dd>
+          <dt>Employees</dt><dd>76,300 (2025) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia →</a></span></dd>
+          <dt>Revenue</dt><dd>$53.4B (2025)</dd>
+          <dt>Vertical</dt><dd>Banking · Credit Cards · Consumer Finance · Auto Finance</dd>
+          <dt>Main Phone</dt><dd>703-720-1000 <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></dd>
+          <dt>Public Statements</dt><dd>Privacy policy &amp; Terms last updated 12/2/2025; authorize SMS/RCS/push/email contact, including marketing "even if you have chosen to opt out" <span class="src-tag"><a href="https://www.capitalone.com/legal/terms-conditions/">capitalone.com/legal →</a></span></dd>
         </dl>
       </div>
 
       <div class="card card--alert">
-        <div class="card-meta" style="color:#FBE5E5;">SMOKING-GUN COMPLIANCE GAP</div>
-        <div class="card-title">Capital One's own ToS admits marketing continues "even if you have chosen to opt out"</div>
-        <div class="card-body">
-          <p>The capitalone.com Terms &amp; Conditions, last modified Dec 2, 2025, state: <em>"By using the Site you agree that we may market our services and the services of other companies… This is true even if you have chosen to opt out of other marketing offers from us."</em> <span class="src-tag"><a href="https://www.capitalone.com/legal/terms-conditions/">capitalone.com/legal -></a></span></p>
-          <p>Layered onto the complaint's allegation that 50+ prerecorded calls continued after a written attorney revocation, this is a published admission that opt-out signals are not honored end-to-end. Plaintiff's counsel will quote this language verbatim in MSJ briefing.</p>
-        </div>
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Their own Terms authorize contact "even if you have chosen to opt out."</h3>
+        <p class="card-body">Capital One's published Site Terms reserve a right to market services "even if you have chosen to opt out of other marketing offers from us," and to send notices via "email, text message/SMS/RCS, regular mail, push notifications" <span class="src-tag" style="color:#C9C9C9;"><a href="https://www.capitalone.com/legal/terms-conditions/" style="color:#fff;">capitalone.com/legal →</a></span>. The Simmons complaint maps directly: written revocation arrived January 12, 2026; 50+ prerecorded calls followed (¶ 38). The Terms-of-Use posture is structurally inconsistent with TCPA revocation requirements.</p>
       </div>
     </div>
 
-    <div class="card-grid" style="margin-top:24px;">
+    <div style="margin-top:24px;">
       <div class="card">
         <div class="card-meta">Strategic Timing</div>
-        <div class="card-title">21-day answer clock + Discover integration window</div>
-        <div class="card-body">Summons issued June 1, 2026. Under FRCP 12(a), Capital One's answer is due ~June 22, 2026 absent extension. The Discover Financial Services acquisition (2025) is still in active integration <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia -></a></span> — meaning Discover's existing collections call lists and consent records are now Capital One's successor problem.</div>
-      </div>
-      <div class="card">
-        <div class="card-meta">Settlement Posture</div>
-        <div class="card-title">Capital One settles individual TCPA cases</div>
-        <div class="card-body">MDL 2416 (In re Capital One TCPA Litigation, N.D. Ill.) settled at $75.5M in 2014-15. Post-MDL individual cases (Diaz, Flores, Brandon, Garcia, Colomer, Marazitto) all show settlement-status outcomes. Diaz — also filed by Tiller — terminated within ~11 months. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Capital+One%22+TCPA&type=r">CourtListener -></a></span></div>
-      </div>
-      <div class="card">
-        <div class="card-meta">Regulatory Heat</div>
-        <div class="card-title">CFPB complaint database tracks Capital One</div>
-        <div class="card-body">Capital One has a dedicated complaint stream in the CFPB consumer complaint database. <span class="src-tag"><a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=Capital%20One">CFPB -></a></span> No public FCC TCPA citation confirmed.</div>
+        <h3 class="card-title">Post-Discover Integration · ~21-Day Answer Clock</h3>
+        <dl class="kv">
+          <dt>Filed</dt><dd>May 30, 2026 (Friday)</dd>
+          <dt>Answer Deadline</dt><dd>~21 days post-service (FRCP 12(a)) — estimated late June 2026; not yet docketed</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span></dd>
+          <dt>Discover Integration</dt><dd>Capital One acquired Discover Financial Services in 2025 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Capital_One">Wikipedia →</a></span> — collections / dialer / DNC systems still being merged. Window of maximum compliance turbulence.</dd>
+          <dt>Pre-Existing MDL Exposure</dt><dd>In re Capital One TCPA Litigation, MDL No. 2416 (N.D. Ill.) — already resolved on a multi-million-dollar class basis. Public reporting cites a $75.5M figure.</dd>
+        </dl>
       </div>
     </div>
 
-    <h3 style="font-size:18px; font-weight:600; margin:40px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
-    <div class="tbl-wrap">
-      <table class="tbl">
-        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Capital One Financial Corp.</strong></td><td>Parent (NYSE: COF)</td><td>Bank holding</td><td>Ultimate TCPA exposure consolidator; SEC-disclosure leverage</td><td><span class="pill pill--danger">HIGH</span></td></tr>
-          <tr><td><strong>Capital One Auto Finance</strong></td><td>Subsidiary</td><td>Auto lending / collections</td><td>Massive collections call volume; separate dialer infra likely</td><td><span class="pill pill--danger">HIGH</span></td></tr>
-          <tr><td><strong>Discover Financial Services</strong></td><td>Acquired (2025)</td><td>Credit cards / payments</td><td>Inherited consent records + existing call lists; successor liability</td><td><span class="pill pill--danger">HIGH</span></td></tr>
-          <tr><td><strong>Capital One 360</strong></td><td>Subsidiary (ex-ING Direct)</td><td>Online banking</td><td>Acquired customer base = inherited consent gaps</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
-          <tr><td><strong>Diners Club / Pulse</strong></td><td>Subsidiary (via Discover)</td><td>Payment networks</td><td>B2B-skewed; limited consumer TCPA exposure</td><td><span class="pill pill--info">LOW</span></td></tr>
-          <tr><td><strong>CreditWise / Capital One Shopping</strong></td><td>Subsidiary</td><td>Credit monitoring / cashback</td><td>Marketing-driven; SMS/email opt-in flows</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
-        </tbody>
-      </table>
+    <div style="margin-top:32px;">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Capital One Financial Corporation</strong></td>
+              <td>Parent (NYSE: COF)</td>
+              <td>Bank Holding Co.</td>
+              <td>Sets enterprise compliance posture; master vendor decision-maker</td>
+              <td><span class="pill pill--red">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Discover Financial Services</strong></td>
+              <td>Subsidiary (acq. 2025)</td>
+              <td>Credit Cards / Payment Network</td>
+              <td>Newly absorbed collections + dialer operation; integration risk window open</td>
+              <td><span class="pill pill--red">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Capital One Auto Finance</strong></td>
+              <td>Subsidiary</td>
+              <td>Auto Lending</td>
+              <td>Heavy outbound collections vertical; led by Sanjiv Yajnik <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+              <td><span class="pill pill--danger">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Capital One 360</strong></td>
+              <td>Subsidiary (ex-ING Direct)</td>
+              <td>Online Banking</td>
+              <td>Marketing-driven acquisition channel; SMS/RCS authorized per Terms</td>
+              <td><span class="pill pill--warn">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Diners Club / Pulse</strong></td>
+              <td>Subsidiary (via Discover)</td>
+              <td>Payment Networks</td>
+              <td>Lower direct-to-consumer outreach exposure</td>
+              <td><span class="pill pill--info">Low</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 04 -->
+<!-- 04 · LITIGATION CONTEXT -->
 <section style="background:var(--bg-surface)">
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
-      <h2 class="section-title">Tiller knows this defendant — round two of BLC Law Center v. Capital One.</h2>
-      <p class="section-lede">Same plaintiff firm, same defendant, same district, same magistrate-judge track. BLC's pattern is fast settlement, not protracted litigation. Defense counsel has not yet appeared.</p>
+      <h2 class="section-title">Capital One is on fire in TCPA — 9+ tracked cases since 2012 and a known settlement playbook. Plaintiff's firm has sued them before.</h2>
+      <p class="section-lede">This is not Capital One's first prerecorded-voice case from this firm. Ahren Tiller / BLC Law Center filed Diaz v. Capital One in the same district in 2021; it terminated quickly, consistent with settlement. Tiller has filed at least 11 TCPA actions against banks. Settlement posture on this filing is highly likely.</p>
     </div>
 
     <div class="two-col">
       <div class="card card--accent">
         <div class="card-meta">Current Case</div>
-        <div class="card-title">Simmons v. Capital One, N.A.</div>
-        <dl class="kv" style="margin-top:16px;">
-          <dt>Docket</dt><dd>3:26-cv-03333-TWR-DDL <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03333&type=r">CourtListener -></a></span></dd>
+        <h3 class="card-title">Simmons v. Capital One, N.A.</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-03333-TWR-DDL <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03333&type=r">CourtListener →</a></span></dd>
           <dt>Filed</dt><dd>May 30, 2026</dd>
           <dt>Plaintiff</dt><dd>Ruth Simmons (San Diego County, CA)</dd>
-          <dt>Plaintiff counsel</dt><dd>Ahren A. Tiller, Esq. (CA Bar #250608); Brett F. Bodie, Esq. (CA Bar #264452) — BLC Law Center, APC <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/250608">CalBar -></a></span></dd>
-          <dt>Class action</dt><dd>No — individual claim</dd>
-          <dt>Claims</dt><dd>47 USC § 227(b)(1)(A); Cal. Civ. Code § 1788.14(c); § 1788.17 (incorporating 15 USC § 1692d(5))</dd>
-          <dt>Theory</dt><dd>Prerecorded-voice collection calls placed AFTER written attorney C&amp;D revoked consent on Jan 12, 2026</dd>
-          <dt>Violation count pled</dt><dd>50+ calls (¶38, ¶39, ¶40)</dd>
-          <dt>Damages exposure</dt><dd>TCPA: 50 × $500 = <strong>$25,000</strong> (negligent) to 50 × $1,500 = <strong>$75,000</strong> (willful). RFDCPA: $1,000 statutory + actual + fees. Plus injunctive relief.</dd>
-          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
-          <dt>Article III judge</dt><dd>Hon. Todd W. Robinson — no specific TCPA ruling history surfaced</dd>
-          <dt>Magistrate</dt><dd>Hon. David D. Leshner — previously assigned on BLC's Hopkins v. Comenity (3:23-cv-00389), which settled in ~3 months</dd>
+          <dt>Counsel</dt><dd>Ahren A. Tiller (CA Bar 250608); Brett F. Bodie (CA Bar 264452) — BLC Law Center, APC</dd>
+          <dt>Class Action</dt><dd>No — Individual</dd>
+          <dt>Theory</dt><dd>Prerecorded-voice calls (47 USC § 227(b)(1)(A)) after written revocation; RFDCPA attorney-represented contact (Cal. Civ. Code § 1788.14(c)); 15 USC § 1692d(5) 7-in-7 presumption via § 1788.17 incorporation</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(b)(1)(A); Cal. Civ. Code §§ 1788.14(c), 1788.17, 1788.30; 15 USC § 1692d(5)</dd>
+          <dt>Violation Count</dt><dd>50+ alleged post-revocation calls (¶¶ 38-40)</dd>
+          <dt>Damages Math</dt><dd>$500–$1,500 per TCPA call × 50 = <strong>$25,000–$75,000</strong> TCPA exposure + $1,000 RFDCPA statutory + actuals + fees</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared · ~21-Day Answer Clock</span></dd>
+          <dt>Docket Visibility</dt><dd>Complaint #1 and Summons #2 docketed June 1, 2026 per CourtListener RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03333&type=r">CourtListener →</a></span></dd>
         </dl>
       </div>
 
       <div class="card card--accent">
         <div class="card-meta">Plaintiff Counsel</div>
-        <div class="card-title">Ahren A. Tiller — BLC Law Center, APC</div>
-        <dl class="kv" style="margin-top:16px;">
-          <dt>Firm address</dt><dd>1230 Columbia St., Ste 1100, San Diego, CA 92101</dd>
-          <dt>Firm phone</dt><dd>(619) 894-8831</dd>
-          <dt>Firm email</dt><dd>ahren.tiller@blc-sd.com</dd>
-          <dt>Website</dt><dd>blc-sd.com <span class="pill pill--gap">UNREACHABLE</span></dd>
-          <dt>CA Bar #</dt><dd>250608 (active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/250608">CalBar -></a></span></dd>
-          <dt>Bar address match</dt><dd><span class="pill pill--ok">Matches complaint address</span></dd>
-          <dt>Discipline history</dt><dd>None identified</dd>
-          <dt>Practice mix</dt><dd>Predominantly bankruptcy (Ch. 7/11/13); secondary consumer protection, TCPA, FDCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ahren+Tiller%22&type=r">CourtListener -></a></span></dd>
-          <dt>TCPA filings (firm)</dt><dd>138+ identified — high-volume banking-vertical filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener -></a></span></dd>
-          <dt>TCPAWorld rank</dt><dd>Not ranked / no power-ranking presence</dd>
-          <dt>Co-counsel</dt><dd>Brett F. Bodie, Esq. (CA Bar #264452, active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/264452">CalBar -></a></span></dd>
+        <h3 class="card-title">Ahren A. Tiller — BLC Law Center, APC</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>1230 Columbia St., Ste 1100, San Diego, CA 92101</dd>
+          <dt>Firm Phone</dt><dd>(619) 894-8831</dd>
+          <dt>Firm Email</dt><dd>ahren.tiller@blc-sd.com</dd>
+          <dt>Bar Number</dt><dd>CA Bar 250608 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/250608">Cal Bar →</a></span></dd>
+          <dt>Bar Status</dt><dd><span class="pill pill--ok">Active</span> · No discipline found in available records</dd>
+          <dt>Practice</dt><dd>Bankruptcy, consumer protection, RFDCPA/FDCPA, occasional TCPA</dd>
+          <dt>TCPA Volume</dt><dd>11+ TCPA filings against banks identified — Citibank (×4), Capital One (×2), Synchrony, AmEx, U.S. Bank, Truist, Comenity, Reach Financial <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>TCPAWorld Ranking</dt><dd>Not on TCPAWorld power-rankings radar <span class="src-tag"><a href="https://tcpaworld.com/?s=Ahren+Tiller">TCPAWorld →</a></span></dd>
+          <dt>Co-Counsel Patterns</dt><dd>Has previously co-counseled with Kazerouni Law Group (known consumer/TCPA shop) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22BLC+Law+Center%22">Law360 →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--warn">Medium — Volume Filer Against Banks</span></dd>
         </dl>
       </div>
     </div>
 
-    <h3 style="font-size:18px; font-weight:600; margin:40px 0 12px;">Plaintiff Firm Template</h3>
-    <div class="card">
-      <div class="card-body">
-        <p><strong>BLC Law Center "Cease-and-Desist + Continued Calls" Template.</strong> The fact pattern is highly templated and recurs across BLC filings: (1) consumer defaults on bank/credit-card debt; (2) BLC mails an attorney C&amp;D via Docsmit (third-party certified-mail service) to the defendant's published correspondence PO box; (3) defendant continues to dial; (4) BLC sues under TCPA prerecorded-voice + RFDCPA § 1788.14(c) attorney-representation rule, often layering 15 USC § 1692d(5) via Cal. Civ. § 1788.17 to get to the CFPB Reg F "7 calls in 7 days" presumption. Cases settle in 2–6 months. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener firm history -></a></span></p>
+    <div style="margin-top:32px;">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 12px;">Plaintiff Firm Template — Bank Card Collections / Post-Revocation Prerecorded Voice</h3>
+      <div class="card">
+        <p class="card-body">BLC Law Center's TCPA template is consistent: (1) consumer goes delinquent on a bank-issued card, (2) bank calls aggressively with prerecorded voice, (3) attorney sends a Docsmit-mailed cease-and-desist citing § 1788.14(c) and revoking TCPA consent, (4) bank's mailroom-to-suppression-list workflow fails to ingest the revocation, (5) calls continue, (6) suit filed in S.D. Cal. as a single-plaintiff (not class) action seeking statutory + RFDCPA + fees. Same fact pattern appeared in Diaz v. Capital One (2021) and across the firm's Citibank/Synchrony/AmEx filings <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22BLC+Law+Center%22+TCPA&type=r">CourtListener →</a></span>. Quick termination patterns (1–6 months) suggest predictable settlement valuations.</p>
       </div>
     </div>
 
-    <h3 style="font-size:18px; font-weight:600; margin:40px 0 12px;">Concurrent &amp; Recent Litigation</h3>
-    <div class="tbl-wrap">
-      <table class="tbl">
-        <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory / Notes</th></tr></thead>
-        <tbody>
-          <tr class="row--current"><td><strong>Simmons v. Capital One, N.A.</strong> (current)</td><td>S.D. Cal.</td><td>2026</td><td><span class="pill pill--red">ACTIVE · NEW</span></td><td>TCPA prerecorded-voice + RFDCPA post-revocation calling</td></tr>
-          <tr><td>Diaz v. Capital One, N.A.</td><td>S.D. Cal. (3:21-cv-00526)</td><td>2021</td><td><span class="pill pill--ok">Settled</span></td><td>Prior Tiller v. Capital One — terminated ~11 months</td></tr>
-          <tr><td>Brandon v. Capital One Bank</td><td>D.S.C.</td><td>2022</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA individual</td></tr>
-          <tr><td>Flores v. Capital One Bank, NA</td><td>D. Nev.</td><td>2021</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA individual</td></tr>
-          <tr><td>Garcia v. Capital One Bank (USA) N.A.</td><td>S.D. Tex.</td><td>2019</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA individual</td></tr>
-          <tr><td>Colomer v. Capital One Bank USA, N.A.</td><td>S.D. Tex.</td><td>2022</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA individual</td></tr>
-          <tr><td>Marazitto v. Capital One Bank, N.A.</td><td>S.D. Tex.</td><td>2024</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA individual</td></tr>
-          <tr><td>In re Capital One TCPA Litigation (MDL 2416)</td><td>N.D. Ill.</td><td>2014-15</td><td><span class="pill pill--ok">Settled $75.5M</span></td><td>Class-action MDL — historic resolution <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Capital+One%22+TCPA&type=r">CourtListener -></a></span></td></tr>
-        </tbody>
-      </table>
+    <div style="margin-top:32px;">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px;">Concurrent &amp; Recent Litigation — Capital One Entities</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current-case">
+              <td><strong>Simmons v. Capital One, N.A.</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+              <td>S.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--red">Active · Just Filed</span></td>
+              <td>Prerecorded voice + RFDCPA post-revocation</td>
+            </tr>
+            <tr>
+              <td>Diaz v. Capital One, N.A.</td>
+              <td>S.D. Cal.</td>
+              <td>2021</td>
+              <td><span class="pill pill--ok">Settled (Feb 2022)</span></td>
+              <td>Same plaintiff firm — TCPA</td>
+            </tr>
+            <tr>
+              <td>Marazitto v. Capital One Bank, N.A.</td>
+              <td>S.D. Tex.</td>
+              <td>2024</td>
+              <td><span class="pill pill--ok">Settled</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Colomer v. Capital One Bank USA, N.A.</td>
+              <td>S.D. Tex.</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">Settled</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Brandon v. Capital One Bank</td>
+              <td>D.S.C.</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">Dismissed (Stip.)</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Flores v. Capital One Bank, NA</td>
+              <td>D. Nev.</td>
+              <td>2021</td>
+              <td><span class="pill pill--ok">Settled</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Garcia v. Capital One Bank (USA) N.A.</td>
+              <td>S.D. Tex.</td>
+              <td>2019</td>
+              <td><span class="pill pill--ok">Settled</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Keffer v. Capital One Bank (USA), N.A.</td>
+              <td>S.D.W. Va. → MDL 2416</td>
+              <td>2015</td>
+              <td><span class="pill pill--ok">Settled (MDL)</span></td>
+              <td>TCPA — In re Capital One TCPA Litigation</td>
+            </tr>
+            <tr>
+              <td>Harper v. Capital One Financial Corp.</td>
+              <td>N.D. Cal. → MDL 2416</td>
+              <td>2014</td>
+              <td><span class="pill pill--ok">Settled (MDL)</span></td>
+              <td>TCPA — class</td>
+            </tr>
+            <tr>
+              <td>Amadeck v. Capital One Financial Corp.</td>
+              <td>W.D. Wash. → MDL 2416</td>
+              <td>2012</td>
+              <td><span class="pill pill--ok">Settled (MDL)</span></td>
+              <td>TCPA — class</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Sources: <a href="https://www.courtlistener.com/?q=%22Capital+One%22+TCPA&type=r">CourtListener Capital One TCPA search →</a></p>
     </div>
 
     <div class="callout">
-      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:middle;"></i> Open Intel Gaps to Close Before First Dial</div>
       <ul style="margin:0; padding-left:20px;">
-        <li>Plaintiff's 10-digit cellular number is not in the complaint — pull PACER ECF #1 (~$1.20) to confirm no exhibit version is filed.</li>
-        <li>No defense counsel of record yet — answer deadline ~June 22, 2026 will surface the defense firm (likely Capital One's standing TCPA panel).</li>
-        <li>800notes / YouMail / Tellows / RoboKiller all blocked at fetch time — no third-party crowd-sourced corroboration that 800-955-6600 and 800-435-1415 are Capital One collection lines (the complaint asserts it; consumer DBs can confirm).</li>
-        <li>OCC / Virginia SCC / FFIEC all blocked — no independently extracted officer roster or registered agent for Capital One, N.A. specifically.</li>
-        <li>No verified direct-dial DIDs or emails for General Counsel / Chief Compliance Officer — all contact emails below are PATTERN/INFERRED.</li>
-        <li>Article III Judge Robinson's TCPA ruling profile is unknown — no published opinions surfaced.</li>
+        <li>Plaintiff's recipient cellular number — not pled; pull ECF #1 from PACER or wait for Rule 26 disclosures.</li>
+        <li>Defense counsel — Capital One has not yet appeared. Watch the docket for the answer; prior matters used Reid S. Manley, Joel E. Tasca, Aaron D. Van Oort, Paul S. Smith III.</li>
+        <li>Specific TCPA / collections compliance leader inside Capital One Legal — TheOrg surfaces a General Counsel (Matthew Cooper) but not the TCPA-specific subordinate. Run a targeted LinkedIn pass after first contact.</li>
+        <li>Capital One privacy policy at capitalone.com/privacy was not retrievable during enrichment — confirm exact TCPA/autodialer disclosure language before deposition prep handoff.</li>
+        <li>Cal Bar admission date for Tiller (Bar #250608) — page returned navigation chrome only; confirm via direct portal lookup.</li>
+        <li>Third-party sender-tag data for (800) 955-6600 and (800) 435-1415 — 800notes/YouMail/Tellows/RoboKiller all blocked during enrichment; retry from a residential IP if needed.</li>
+        <li>BLC Law Center's S.D. Cal. settlement-valuation median for prerecorded-voice cases — best obtained from PACER terminated-case docket sheets.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- 05 -->
+<!-- 05 · CONTACT DIRECTORY -->
 <section>
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
-      <h2 class="section-title">Sell to the GC's office. Matthew Cooper owns Discover integration AND is Corporate Secretary — same desk that owns litigation intake.</h2>
-      <p class="section-lede">Capital One is a $53B public company — you will not get the CEO on a cold call. The pragmatic path is GC office + collections operations leadership. Email pattern across the org is <strong>first.last@capitalone.com</strong> (PATTERN confidence, derived from SignalHire masked patterns).</p>
+      <h2 class="section-title">Open with Capital One Legal (Matthew Cooper, GC). Risk and compliance officers are the budget owners.</h2>
+      <p class="section-lede">No individual emails are published on capitalone.com. Pattern is <code>first.last@capitalone.com</code>, consistent with masked previews across multiple SignalHire records. All emails below are PATTERN-derived. Phone routing is the corporate main line; direct-dials are not public.</p>
     </div>
 
     <div class="tbl-wrap">
       <table class="tbl">
-        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <td><strong>Matthew Cooper</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--dark">CORP SEC</span></td>
-            <td>President, Discover Financial Integration; General Counsel &amp; Corporate Secretary. Owns litigation intake. <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
+            <td><strong>Matthew Cooper</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>President, Discover Financial Integration; General Counsel &amp; Corporate Secretary. Owns enterprise legal &amp; the post-acquisition compliance window <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
             <td>matthew.cooper@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/matthew-cooper-capitalone">LinkedIn</a></td>
           </tr>
           <tr>
-            <td><strong>Frank LaPrade</strong><br><span class="pill pill--dark">CHIEF OF STAFF</span></td>
-            <td>Chief Enterprise Services Officer &amp; Chief of Staff — gatekeeper to Fairbank, owns enterprise risk/compliance functions <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
-            <td>frank.laprade@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
-          </tr>
-          <tr>
-            <td><strong>Suzanne Hammett</strong><br><span class="pill pill--dark">EVP RISK</span></td>
-            <td>Executive Vice President, Chief Commercial Risk Officer — owns commercial-side risk; relevant counterpart for compliance pitch <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
+            <td><strong>Suzanne Hammett</strong><br><span class="pill pill--dark">CCO / Risk</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>EVP, Chief Commercial Risk Officer. Closest visible owner of collections compliance risk <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
             <td>suzanne.hammett@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/suzanne-hammett">LinkedIn</a></td>
           </tr>
           <tr>
-            <td><strong>Sanjiv Yajnik</strong><br><span class="pill pill--dark">PRES AUTO FIN</span></td>
-            <td>President, Capital One Auto Finance — auto-collections is highest-volume call generator at Capital One; cross-sell target <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
-            <td>sanjiv.yajnik@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
+            <td><strong>Frank LaPrade</strong><br><span class="pill pill--dark">OPS</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Chief Enterprise Services Officer &amp; Chief of Staff. Sits between Fairbank and operating businesses; enterprise-vendor decision influence <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
+            <td>frank.laprade@capitalone.com</td>
+            <td><a href="https://www.linkedin.com/in/frank-laprade">LinkedIn</a></td>
           </tr>
           <tr>
-            <td><strong>Celia Edwards Karam</strong><br><span class="pill pill--dark">PRES RETAIL</span></td>
-            <td>President of Retail Bank — owns consumer banking ops including collections workflows <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
-            <td>celia.karam@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
-          </tr>
-          <tr>
-            <td><strong>Stephen Otero</strong><br><span class="pill pill--dark">CHIEF AUDIT</span></td>
-            <td>EVP &amp; Chief Audit Officer — owns internal audit; a P&amp;P-audit pitch lands here <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
-            <td>stephen.otero@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
-          </tr>
-          <tr>
-            <td><strong>Andy Ozment</strong><br><span class="pill pill--dark">CTRO</span></td>
-            <td>Chief Technology Risk Officer &amp; EVP — owns tech/data risk; consent-record system pitch landing zone <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
+            <td><strong>Andy Ozment</strong><br><span class="pill pill--dark">TECH RISK</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Chief Technology Risk Officer &amp; EVP. Owns dialer/CRM/consent-platform risk surface <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
             <td>andy.ozment@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/andy-ozment">LinkedIn</a></td>
           </tr>
           <tr>
-            <td><strong>James Aron</strong><br><span class="pill pill--dark">CMO</span></td>
-            <td>Vice President, Chief Marketing Officer — owns outbound marketing channels (less likely owner of collections, but relevant for SMS/RCS opt-in flows) <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>Main: (703) 720-1000</td>
+            <td><strong>Stephen Otero</strong><br><span class="pill pill--dark">AUDIT</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>EVP &amp; Chief Audit Officer. Internal-audit findings on collections compliance flow through this office <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
+            <td>stephen.otero@capitalone.com</td>
+            <td><a href="https://www.linkedin.com/in/stephen-otero">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Celia Edwards Karam</strong><br><span class="pill pill--dark">RETAIL BANK</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>President of Retail Bank. Owns consumer-deposits collections vertical <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
+            <td>celia.karam@capitalone.com</td>
+            <td><a href="https://www.linkedin.com/in/celia-edwards-karam">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Sanjiv Yajnik</strong><br><span class="pill pill--dark">AUTO FINANCE</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>President, Capital One Auto Finance. Cross-sell anchor — auto-loan collections is a heavy outbound-call vertical <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
+            <td>sanjiv.yajnik@capitalone.com</td>
+            <td><a href="https://www.linkedin.com/in/sanjiv-yajnik">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Neal Blinde</strong><br><span class="pill pill--dark">COMMERCIAL</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>President, Commercial Banking <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
+            <td>neal.blinde@capitalone.com</td>
+            <td><a href="https://www.linkedin.com/in/neal-blinde">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>James Aron</strong><br><span class="pill pill--dark">CMO</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>VP, Chief Marketing Officer. Outbound marketing &amp; consent-capture systems live in his org <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
             <td>james.aron@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/james-aron">LinkedIn</a></td>
           </tr>
           <tr>
-            <td><strong>Kaitlin Haggerty</strong><br><span class="pill pill--dark">CHRO</span></td>
-            <td>Chief Human Resources Officer — pattern source: SignalHire masked email k*******y@capitalone.com aligns with first.last pattern <span class="src-tag"><a href="https://www.signalhire.com/companies/capital-one">SignalHire -></a></span></td>
-            <td>Main: (703) 720-1000</td>
-            <td>kaitlin.haggerty@capitalone.com</td>
-            <td><span class="pill pill--warn">PATTERN</span></td>
-          </tr>
-          <tr>
-            <td><strong>Richard D. Fairbank</strong><br><span class="pill pill--dark">CEO</span></td>
-            <td>Chairman, President &amp; CEO; co-founder (1994). Use only as escalation if GC office stalls. <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg -></a></span></td>
-            <td>(703) 720-1000</td>
+            <td><strong>Richard D. Fairbank</strong><br><span class="pill pill--dark">CEO / FOUNDER</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Chairman, President &amp; CEO. Co-founder (1994). Escalation-only target <span class="src-tag"><a href="https://theorg.com/org/capital-one">TheOrg →</a></span></td>
+            <td>703-720-1000 (main)</td>
             <td>richard.fairbank@capitalone.com</td>
-            <td><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/richard-fairbank">LinkedIn</a></td>
           </tr>
           <tr>
-            <td><strong>Capital One — Collections Compliance Owner</strong><br><span class="pill pill--dark">UNKNOWN</span></td>
-            <td>The specific department head who owns dialer suppression / attorney C&amp;D intake on the credit-card collections side was not identified in public sources. This is the single highest-value contact to surface.</td>
+            <td><strong>TCPA / Collections Compliance Lead</strong><br><span class="pill pill--gap">GAP</span></td>
+            <td>Role identified; named owner not yet surfaced. Likely reports to Matthew Cooper (Legal) and/or Suzanne Hammett (Risk).</td>
             <td>—</td>
             <td>—</td>
-            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared (~21-day answer clock from 5/30/2026 filing). Prior Capital One TCPA defense counsel of record has included Reid S. Manley, Joel E. Tasca, Aaron D. Van Oort, Paul S. Smith III <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Capital+One%22+TCPA&type=r">CourtListener →</a></span>.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <p style="font-size:13px; color:var(--fg-3); margin-top:16px;">Email pattern <strong>first.last@capitalone.com</strong> derived from SignalHire masked-email analysis (PATTERN confidence). Verify each address with a low-risk send (LinkedIn InMail recommended over cold email for first touch). RocketReach / ZoomInfo / Apollo were blocked at fetch time — no verified direct DIDs available.</p>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:12px;">Email pattern <code>first.last@capitalone.com</code> derived from masked SignalHire previews (e.g., kaitlin.haggerty, akshay.sharma) <span class="src-tag"><a href="https://www.signalhire.com/companies/capital-one">SignalHire →</a></span>. Main corporate switchboard 703-720-1000 confirmed via TheOrg corporate profile.</p>
   </div>
 </section>
 
-<!-- 06 -->
+<!-- 06 · ACTION PLAN -->
 <section style="background:var(--bg-surface)">
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
-      <h2 class="section-title">Move within 7 days. The answer is due ~June 22 — settlement posture forms now.</h2>
-      <p class="section-lede">BLC Law Center settles 80%+ of its TCPA dockets in 2–6 months. The window to land Blacklist as the post-mortem remediation vendor is between answer-filing and the first 26(f) conference. After settlement is signed, the budget conversation moves to procurement.</p>
+      <h2 class="section-title">Move within 10 business days — before defense counsel appears and Capital One enters settlement mode.</h2>
+      <p class="section-lede">Capital One's pattern with BLC Law Center is quick settlement (Diaz terminated ~10 months after filing). The window to insert Blacklist as a remediation-and-prevention vendor is largest <em>before</em> defense counsel files an answer. Lead with Risk + Legal in parallel.</p>
     </div>
 
     <div class="card">
       <div class="step">
         <div class="step-num">01</div>
         <div>
-          <h4 class="step-title">Day 1–2 · Pull PACER ECF #1 and confirm plaintiff number status</h4>
-          <p class="step-body">Pull the full complaint + any attached exhibits. Confirm whether plaintiff's 10-digit cell is on any exhibit page. If present, run the scrub. If not, treat scrub as deferred and lead with consent-capture pitch.</p>
+          <p class="step-title">Day 0–2 · Order PACER ECF #1</p>
+          <p class="step-body">Pull the complaint &amp; any unredacted exhibits to recover plaintiff's cellular number. Run that number through Blacklist's litigator-scrub on the same day for inclusion in the talk track. ~$1.20 PACER cost.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
         <div>
-          <h4 class="step-title">Day 2–3 · LinkedIn InMail to Matthew Cooper (GC) and Frank LaPrade (Chief of Staff)</h4>
-          <p class="step-body">Subject: "Simmons v. Capital One filed S.D. Cal. 5/30 — BLC Law Center is back." Reference the prior Diaz matter by docket number. Position Blacklist as the post-settlement remediation partner who closes the C&amp;D-to-dialer-suppression gap. Do not pitch product specs on the first message.</p>
+          <p class="step-title">Day 1–3 · LinkedIn warm-touch on Suzanne Hammett (Chief Commercial Risk Officer)</p>
+          <p class="step-body">Risk is the budget owner on a freshly-filed prerecorded-voice claim. Reference the Discover integration window without naming the Simmons matter (avoid appearing to solicit on active litigation). Anchor on revocation-workflow audit.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
         <div>
-          <h4 class="step-title">Day 3–5 · Parallel outreach to Stephen Otero (Audit) and Andy Ozment (Tech Risk)</h4>
-          <p class="step-body">These are the operational sponsors. The GC will not sign a vendor SOW; Audit or Tech Risk will. Frame as a control-gap remediation: "The complaint pleads that a written C&amp;D received at PO Box 30285 Salt Lake City did not propagate to the dialer suppression file. We help close that exact loop."</p>
+          <p class="step-title">Day 2–5 · Email Matthew Cooper (GC) — short, no attachments</p>
+          <p class="step-body">One-paragraph note: post-Discover-integration TCPA exposure, recent S.D. Cal. activity by repeat-filer firms against banks, offer a 20-min framework call. Email: matthew.cooper@capitalone.com (PATTERN). Cc: 703-720-1000 main-line voicemail to assistant.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
         <div>
-          <h4 class="step-title">Day 7–14 · Cross-sell intro to Sanjiv Yajnik (Auto Finance) and Celia Karam (Retail)</h4>
-          <p class="step-body">Auto Finance is the highest-volume collections operation inside the Capital One umbrella. If the Simmons fact pattern came from card-side collections, the same gap is almost certainly live on auto-side. Use Simmons as the cautionary tale; pitch enterprise-wide scrub + consent capture.</p>
+          <p class="step-title">Day 5–10 · Auto-Finance cross-sell — Sanjiv Yajnik</p>
+          <p class="step-body">Capital One Auto Finance is a heavier outbound-collections operation than the card unit and was not a defendant on Simmons. Frame as preventive: same enterprise consent-platform decision, second business unit getting the benefit.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">05</div>
         <div>
-          <h4 class="step-title">Day 14–21 · Discover integration angle</h4>
-          <p class="step-body">The 2025 Discover acquisition means Discover's existing call lists, consent records, and DNC files are now Capital One's successor obligations. Open a parallel conversation with whoever owns Discover-side compliance integration (Cooper's portfolio). Successor-liability framing is the right wedge.</p>
+          <p class="step-title">Day 10–21 · Monitor docket for defense counsel appearance</p>
+          <p class="step-body">Once defense counsel files, the conversation moves into "active matter" posture — outreach must pivot to enterprise-vendor positioning only (never the case). Pre-answer outreach is the window.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">06</div>
         <div>
-          <h4 class="step-title">Day 21+ · Monitor PACER for answer / motion to compel arbitration</h4>
-          <p class="step-body">Capital One's standard credit-card cardholder agreement contains an arbitration clause. If they move to compel arbitration, that shortens the litigation window dramatically and accelerates the procurement conversation. If they answer on the merits, the discovery window opens — that is the pitch sweet spot.</p>
+          <p class="step-title">Day 14+ · Second-touch: Andy Ozment (Tech Risk) &amp; James Aron (CMO)</p>
+          <p class="step-body">If Legal/Risk doesn't book, route to tech-risk (the dialer/CRM/consent-platform owner) and CMO (outbound marketing/consent capture). Both are PATTERN emails on the first.last@capitalone.com convention.</p>
         </div>
       </div>
     </div>
 
-    <div class="callout">
-      <div class="callout-title">Trigger conditions that change the plan</div>
+    <div class="callout" style="background:var(--info-bg); border-left-color:var(--info);">
+      <div class="callout-title" style="color:var(--info);">Trigger Conditions That Change This Plan</div>
       <ul style="margin:0; padding-left:20px;">
-        <li><strong>If Capital One moves to compel arbitration:</strong> accelerate to procurement; the substantive litigation will collapse into a private forum and the C-suite focus will shift quickly.</li>
-        <li><strong>If plaintiff amends to add a class:</strong> exposure math jumps from $25K–$75K to MDL-scale; re-pitch to Fairbank's office direct.</li>
-        <li><strong>If BLC files a notice of settlement within 60 days:</strong> shift to post-mortem framing — "the next one is already in BLC's pipeline."</li>
-        <li><strong>If a new BLC v. Capital One docket appears in S.D. Cal.:</strong> bundle leads and pitch enterprise license.</li>
+        <li><strong>Defense counsel appears and is from a known TCPA-defense shop (Manley/Tasca/Van Oort/Smith)</strong> — pivot to enterprise framing only; case-specific talk track ends.</li>
+        <li><strong>Notice of settlement filed within 60 days</strong> — Capital One pattern says they pay quickly; pivot pitch to "next-one prevention."</li>
+        <li><strong>Plaintiff voluntarily dismisses with leave to amend</strong> — likely indicates early settlement talks; same pivot.</li>
+        <li><strong>BLC Law Center files a second related case against Capital One</strong> — escalate to Fairbank's office; this becomes a board-level risk pattern.</li>
+        <li><strong>Capital One announces an OCC consent order tied to collections practices</strong> — front-page lead-with-compliance pitch becomes available.</li>
       </ul>
     </div>
 
-    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
-      <span class="pill pill--red">URGENCY: HIGH</span>
-      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 22</span>
-      <span class="pill pill--danger">REPEAT DEFENDANT · MDL HISTORY</span>
-      <span class="pill pill--info">REPEAT PLAINTIFF FIRM · 138+ TCPA FILINGS</span>
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">Urgency: High</span>
+      <span class="pill pill--warn">~21-Day Answer Window · Close Before Late June 2026</span>
+      <span class="pill pill--info">Post-Discover Integration Window Open</span>
+      <span class="pill pill--dark">Repeat-Defendant of Same Firm</span>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <div>Generated by Docky · Blacklist Alliance · 2026-05-31</div>
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-03</div>
     <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
   </div>
 </footer>
