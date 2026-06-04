@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hansen v. True Religion — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); font-weight:700; }
+.callout ul{ margin:8px 0 0; padding-left:20px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.02em">BLACKLIST</text>
+          <text x="130" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-02</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">FTSA Caller ID Defendant · DTC Apparel SMS Marketer · Class Action · 15th Jud. Cir. (Palm Beach)</p>
+      <h1 class="hero-tagline">Hansen v.<br>True Religion Apparel</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">502026CA006118<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">XXXAMB Div: AG</span></div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">15th Jud. Cir.<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Palm Beach Co., FL</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 1, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Div: AG <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Assigned judge not yet retrieved</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">Fla. Stat.<br>§ 501.059(8)(b)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">FTSA Caller ID</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Rule 1.220<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Exceeds 100 members</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Glickman / Heller<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Social Justice Law Collective</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — scrub deferred, but Hansen's identity is preserved for downstream lookup.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any FTSA/TCPA outreach. Hansen's complaint identifies only his county of residence (Palm Beach) and the fact that he is the "regular user of a cellular telephone." No 10-digit number was disclosed in the pleading.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">PLAINTIFF NUMBER NOT DISCLOSED · LOOKUP DEFERRED</span>
+        <span class="pill pill--info">SERIAL-FIRM PATTERN</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint ¶14 alleges Hansen "is the regular user of a cellular telephone number that receives Defendant's telephonic sales calls" but never discloses the 10-digit number. No exhibit attaches a phone-of-record. blacklistBulk lookup not run.</div>
+      </div>
+      <p class="scrub-body-text">A real scrub cannot be run on a name + county alone. The recovery paths below are how the assigned owner closes the loop. In parallel, the sender-side intel is already strong enough to drive the first call — see Section 02.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending Short Code</div>
+        <h3 class="card-title">32718</h3>
+        <p class="card-body">SMS short code used to deliver the alleged True Religion Text Message Sales Calls. Routed through Attentive Mobile's link-tracking domain <code>myrlgn.attn.tv</code> — branded subdomain confirms a dedicated True Religion sending tenant on Attentive's enterprise SMS platform. <span class="src-tag"><a href="https://www.attentivemobile.com/">Attentive Mobile -&gt;</a></span> <span class="src-tag"><a href="https://myrlgn.attn.tv/zFRKhAXL5Mgn">myrlgn.attn.tv -&gt;</a></span></p>
+        <p class="card-body" style="margin-top:8px"><strong>Identity confidence:</strong> HIGH. <strong>Public spam-tag reports:</strong> none retrievable — 800notes, YouMail, Tellows, RoboKiller all returned 403/404 for this short code (consumer spam aggregators rarely index short codes).</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Option A</div>
+        <h3 class="card-title">Pull plaintiff's number from discovery</h3>
+        <p class="card-body">Hansen's number will surface in Plaintiff's Initial Disclosures or first Request for Production response. FTSA defense counsel routinely demands the number in their first set of interrogatories. Timeline: ~45–90 days post-answer.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Option B</div>
+        <h3 class="card-title">Cross-reference Attentive subscriber records</h3>
+        <p class="card-body">True Religion's Attentive list contains the recipient phone tied to message ID <code>zFRKhAXL5Mgn</code> (from the tracking URL in the complaint exhibit). Once the defendant pulls that record, blacklistBulk can scrub it against our litigator database in &lt;5 minutes — and against the rest of the FL subscriber list as a one-shot batch.</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--warn">PLAINTIFF FIRM = SERIAL FTSA FILER</span>
+      <span class="pill pill--info">SENDER ID: ATTENTIVE / 32718</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">PE-owned DTC apparel brand running Attentive-powered SMS into Florida — exactly the FTSA fact pattern Blacklist solves.</h2>
+      <p class="section-lede">True Religion is a private-equity-owned premium denim brand <span class="src-tag"><a href="https://en.wikipedia.org/wiki/True_Religion">Wikipedia -&gt;</a></span> that has been through Chapter 11 twice (2017, 2020) and is now in a growth-at-all-costs marketing posture. They blast SMS through Attentive short code 32718 into Florida — a $500-per-text statutory damages jurisdiction — with no public-facing compliance program. Lead with consent capture / FTSA scrub; cross-sell DNC/litigator scrub as the second wedge.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">The Hansen complaint pleads a Caller ID Rules theory under § 501.059(8)(b) — a strict-liability provision that consent cannot cure. But the next FTSA case (and there will be one) will be a § 501.059(8)(a) consent case. Blacklist's consent-capture stack closes the open hole the plaintiffs' bar is already mapping.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Litigator Scrub (blacklistBulk)</h3>
+        <p class="card-body">Social Justice Law Collective is filing FTSA class actions against DTC retailers <span class="src-tag"><a href="https://tcpaworld.com/?s=Social+Justice+Law+Collective">TCPAWorld -&gt;</a></span>. Scrubbing True Religion's Attentive list against our known-filer database in real time would have flagged Hansen — and will flag the next 10.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Pitch</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">No visible Chief Compliance Officer. No TCPA mention on the public site. Two Chapter 11s in three years means lean legal staffing. Audit the Attentive integration, the consent modal UX, and the Florida-specific quiet-hours/caller-ID configuration.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px; margin:0 0 12px;">Pitch Angle</h3>
+    <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px;">"You were sued yesterday in Palm Beach over short code 32718. Plaintiff's counsel is Social Justice Law Collective — the firm that's been running the FTSA caller-ID playbook against DTC retailers all year. This complaint is a $500-per-text strict-liability claim that consent doesn't cure, so the only way to stop the bleed is to fix the sender-ID config inside Attentive and scrub your Florida list against the known plaintiff database before the next text goes out. We can have you scrubbed today and the policies/procedures audited within the week."</p>
+
+    <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px; margin-top:12px;">The second hook is the back-end math: True Religion's prior 2021 revenue was reported at ~$235M <span class="src-tag"><a href="https://en.wikipedia.org/wiki/True_Religion">Wikipedia -&gt;</a></span>, with a PE owner that watches litigation reserves. A class even at a conservative 10,000 FL recipients at $500/text = $5M minimum exposure. A second filer comes along — and there's already <em>Nuri v. True Religion</em> in W.D. Wash. <span class="src-tag"><a href="https://www.courtlistener.com/docket/recap/Nuri-v-True-Religion-Apparel-Inc/">CourtListener -&gt;</a></span> — and the reserve doubles.</p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">PE-backed premium denim brand on its third post-bankruptcy life — running growth marketing through Attentive at scale.</h2>
+      <p class="section-lede">True Religion Apparel, Inc. is a Delaware corporation HQ'd in El Segundo, California, founded in 2002 by Jeff Lubell and Kym Gold. Acquired by TowerBrook Capital in 2013; emerged from a second Chapter 11 in November 2020 under reorganized ownership. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/True_Religion">Wikipedia -&gt;</a></span></p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">True Religion Apparel, Inc.</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Legal entity</dt><dd>True Religion Apparel, Inc.</dd>
+          <dt>Entity type</dt><dd>Delaware corporation</dd>
+          <dt>HQ</dt><dd>2030 E Maple Ave, El Segundo, CA 90245</dd>
+          <dt>Founded</dt><dd>2002 (Lubell &amp; Gold) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/True_Religion">Wiki -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>DTC premium denim &amp; apparel</dd>
+          <dt>Revenue</dt><dd>~$235M (2021 reported) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/True_Religion">Wiki -&gt;</a></span></dd>
+          <dt>Ownership</dt><dd>Private — TowerBrook Capital acquired 2013; post-2020 emergence ownership shifted to Farmstead Capital and lender group <span class="src-tag"><a href="https://en.wikipedia.org/wiki/True_Religion">Wiki -&gt;</a></span></dd>
+          <dt>Website</dt><dd>truereligion.com</dd>
+          <dt>SMS platform</dt><dd>Attentive Mobile (short code 32718, branded subdomain myrlgn.attn.tv) <span class="src-tag"><a href="https://www.attentivemobile.com/">Attentive -&gt;</a></span></dd>
+          <dt>Compliance posture</dt><dd>No public-facing TCPA/FTSA compliance page; no named Chief Compliance Officer identified</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Branded Attentive subdomain + bare short code in caller ID = FTSA § 501.059(8)(b) per-text liability.</h3>
+        <p class="card-body">The complaint reproduces the actual text exhibit: caller ID shows "32718" — a 5-digit short code, not a 10-digit number capable of receiving inbound calls. FTSA § 501.059(8)(b) requires the transmitted number to be capable of receiving calls. Plaintiff's theory is that every single Florida-recipient text fails this test by design. Liquidated damages are $500/text and (per plaintiff) <strong>consent does not cure</strong> this defect. The complaint frames every FL message from short code 32718 over the last four years as a per-violation count. <span class="src-tag"><a href="https://myrlgn.attn.tv/zFRKhAXL5Mgn">tracking URL -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Florida state-court answer clock is 20 days from service — defense will almost certainly remove to S.D. Fla. under CAFA.</h3>
+      <dl class="kv" style="margin-top:12px">
+        <dt>Filed</dt><dd>June 1, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>FL answer clock</dt><dd>20 days from service of process (Fla. R. Civ. P. 1.140(a))</dd>
+        <dt>Removal window</dt><dd>30 days from service — defense pattern in <em>LaTouche</em> (D. Md.) and <em>Nuri</em> (W.D. Wash.) shows True Religion consistently removes <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Defendant prior Ch. 11</dt><dd>2017 + 2020 (Bankr. D. Del.) — corp. structure includes TRLG Corporate Holdings, TRLG Intermediate Holdings, TR Apparel Intermediate, TR Apparel Parent, Guru Denim LLC, True Religion Sales LLC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Outreach window</dt><dd>72 hours from filing — before defense counsel files appearance and locks down vendor decisions</dd>
+      </dl>
+    </div>
+
+    <div class="card-meta" style="margin-bottom:8px">Related Entities (Cross-Sell Candidates)</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA/FTSA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>True Religion Sales, LLC</td>
+            <td>Subsidiary / sister operating entity</td>
+            <td>DTC apparel sales</td>
+            <td>Frequently named alongside the Inc. in TCPA class actions; plaintiff may amend to add <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Guru Denim LLC</td>
+            <td>Subsidiary (per <em>LaTouche</em> 3/11/26 disclosure)</td>
+            <td>Apparel manufacturing</td>
+            <td>Holds IP / production; less likely SMS sender <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--gap">LOW</span></td>
+          </tr>
+          <tr>
+            <td>TRLG Corporate Holdings LLC / TR Apparel Parent Inc.</td>
+            <td>Parent holding entities</td>
+            <td>Holdco</td>
+            <td>Risk-sit at PE owner level; not direct compliance buyers <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Other Attentive-powered DTC apparel brands</td>
+            <td>Same vendor stack</td>
+            <td>DTC apparel</td>
+            <td>FTSA caller-ID theory is reusable against any short-code-only sender <span class="src-tag"><a href="https://www.attentivemobile.com/">Attentive -&gt;</a></span></td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Social Justice Law Collective is running a deliberate FL state-court FTSA strategy — and True Religion is already a repeat consumer-statute defendant.</h2>
+      <p class="section-lede">The Hansen filing is at minimum the second consumer-contact statute case against True Religion in ~12 months (Nuri v. True Religion, W.D. Wash. 2025 is still active). The plaintiff firm chose Palm Beach state court specifically to avoid federal TCPA standing/arbitration defenses.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Hansen v. True Religion Apparel, Inc.</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Docket</dt><dd>502026CA006118XXXAMB · Div: AG</dd>
+          <dt>Court</dt><dd>15th Jud. Cir., Palm Beach Co., FL</dd>
+          <dt>Filed</dt><dd>June 1, 2026 (4:30 PM ET)</dd>
+          <dt>Plaintiff</dt><dd>Ronald Hansen (Palm Beach Co., FL)</dd>
+          <dt>Plaintiff counsel</dt><dd>Joshua A. Glickman (FL Bar 43994) &amp; Shawn A. Heller (FL Bar 46346) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=43994">FL Bar 43994 -&gt;</a></span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=46346">FL Bar 46346 -&gt;</a></span></dd>
+          <dt>Class status</dt><dd><span class="pill pill--danger">YES — RULE 1.220</span> "exceeds 100 members"</dd>
+          <dt>Class def'n</dt><dd>All FL persons/entities whose caller ID was transmitted a number not capable of receiving calls when True Religion Text Message Sales Calls were made — past 4 years</dd>
+          <dt>Statute</dt><dd>Fla. Stat. § 501.059(8)(b) (FTSA Caller ID Rules)</dd>
+          <dt>Theory</dt><dd>Strict liability per-text — short code 32718 is incapable of receiving calls. Plaintiff frames this as <em>not curable by consent</em> (¶4).</dd>
+          <dt>Damages</dt><dd>$500 per text, liquidated, plus injunctive + declaratory + fees</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">NOT YET APPEARED · 20-DAY ANSWER WINDOW</span> Likely team: Elise Attridge or similar (per <em>LaTouche</em> D. Md. removal) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Docket visibility</dt><dd>Palm Beach Clerk site returned 403; case not yet indexed on CourtListener/RECAP/PacerMonitor/UniCourt as of generation date <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Social Justice Law Collective, PL</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Firm address</dt><dd>974 Howard Ave., Dunedin, FL 34698</dd>
+          <dt>Firm phone</dt><dd>(202) 709-5744 <span class="pill pill--warn" style="margin-left:6px">DC AREA CODE · FL FIRM</span></dd>
+          <dt>Firm fax</dt><dd>(866) 893-0416</dd>
+          <dt>Website</dt><dd>sjlawcollective.com <span class="pill pill--warn" style="margin-left:6px">CF SSL 526 AT FETCH</span></dd>
+          <dt>Lead attorneys</dt><dd>Joshua A. Glickman (josh@sjlawcollective.com)<br>Shawn A. Heller (shawn@sjlawcollective.com)</dd>
+          <dt>Bar numbers</dt><dd>43994 (Glickman), 46346 (Heller) — both FL, status active <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=43994">FL Bar -&gt;</a></span></dd>
+          <dt>Discipline</dt><dd>None located in available sources</dd>
+          <dt>Practice areas</dt><dd>TCPA, FTSA § 501.059, junk fax, Fair Housing, consumer protection / civil rights</dd>
+          <dt>Notable cases</dt><dd>Facundo v. EFinancial, 9th Cir. 2022 (TCPA ATDS, adverse ruling); FL junk-fax suit 2016; Neiman Marcus FTSA referenced on TCPAWorld <span class="src-tag"><a href="https://tcpaworld.com/?s=Social+Justice+Law+Collective">TCPAWorld -&gt;</a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Social+Justice+Law+Collective%22">Law360 -&gt;</a></span></dd>
+          <dt>Serial filer?</dt><dd><span class="pill pill--danger">YES — TCPA/FTSA DEDICATED</span></dd>
+          <dt>Threat level</dt><dd><span class="pill pill--danger">HIGH</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px; margin:0 0 12px;">Plaintiff Firm Template</h3>
+    <p style="font-size:15px; line-height:1.65; max-width:880px;">Glickman/Heller's FTSA template targets DTC retailers with Attentive-style short-code SMS programs. The complaint is purpose-built around § 501.059(8)(b)'s "capable of receiving calls" language and explicitly disavows the notice-and-cure provision of § 501.059(10)(c) — meaning the firm is trying to bypass the FTSA's safe harbor entirely. Expect a parallel filing pattern against other Attentive-powered DTC brands in Palm Beach, Broward, and Miami-Dade. <span class="src-tag"><a href="https://tcpaworld.com/?s=Social+Justice+Law+Collective">TCPAWorld -&gt;</a></span></p>
+
+    <h3 style="font-size:20px; margin:32px 0 12px;">Concurrent &amp; Recent Litigation Against Defendant</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Hansen v. True Religion Apparel</strong></td>
+            <td>502026CA006118 · 15th Jud. Cir. (Palm Beach, FL)</td>
+            <td>2026-06-01</td>
+            <td><span class="pill pill--red">CURRENT · NEW FILING</span></td>
+            <td>FTSA § 501.059(8)(b) Caller ID</td>
+          </tr>
+          <tr>
+            <td>LaTouche v. True Religion Apparel</td>
+            <td>D. Md. (removed from MD state, C-24-CV-26-000738)</td>
+            <td>2026</td>
+            <td><span class="pill pill--warn">ACTIVE · REMOVED 3/4/26</span></td>
+            <td>Consumer class action (removed under CAFA) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Nuri v. True Religion Apparel</td>
+            <td>W.D. Wash., 2:25-cv-00690</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">ACTIVE · ORDER TO REMAND 3/30/26</span></td>
+            <td>Consumer contact statute <span class="src-tag"><a href="https://www.courtlistener.com/docket/recap/Nuri-v-True-Religion-Apparel-Inc/">CL Docket -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Dalton v. True Religion Apparel</td>
+            <td>D. Minn.</td>
+            <td>2024-11-07</td>
+            <td><span class="pill pill--ok">TERMINATED ~75 DAYS · LIKELY SETTLED</span></td>
+            <td>ADA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Calcano v. True Religion Apparel</td>
+            <td>S.D.N.Y., 2019</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">DISMISSED W/PREJ 3/31/22 · STANDING</span></td>
+            <td>ADA (class strike granted) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Gomez v. True Religion Apparel</td>
+            <td>S.D. Fla., 2016</td>
+            <td>2016-05-27</td>
+            <td><span class="pill pill--ok">TERMINATED ~45 DAYS · LIKELY SETTLED</span></td>
+            <td>ADA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>In re True Religion Apparel</td>
+            <td>Bankr. D. Del., 20-10941</td>
+            <td>2020-04-13</td>
+            <td><span class="pill pill--info">EMERGED NOV 2020</span></td>
+            <td>Chapter 11 (37 store closures) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>In re True Religion Apparel</td>
+            <td>Bankr. D. Del.</td>
+            <td>2017-07-05</td>
+            <td><span class="pill pill--info">EMERGED 2017</span></td>
+            <td>Chapter 11 (27 store closures) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22True+Religion+Apparel%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:middle"></i> Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Plaintiff's 10-digit recipient phone — not in complaint; pull from discovery or Attentive list</li>
+        <li>Assigned judge in Div. AG — Palm Beach Clerk returned 403; check PACER/Clerk again in 48 hrs</li>
+        <li>Defense counsel of record — not yet appeared; watch for Notice of Appearance &amp; removal to S.D. Fla.</li>
+        <li>True Religion's General Counsel / Chief Compliance Officer — no name surfaced on LinkedIn/TheOrg; LinkedIn people search requires login</li>
+        <li>Verbatim consent-modal language on truereligion.com/email-signup and /sms-terms — both returned 307 redirects; capture via headless render</li>
+        <li>Confirm current PE owner post-2020 emergence (Farmstead Capital indicated but not directly verified)</li>
+        <li>FL SoS / Sunbiz registration status for True Religion Apparel, Inc. as a foreign corporation in FL — Sunbiz returned 403</li>
+        <li>Total Glickman/Heller FTSA filing volume — TCPAWorld power-ranking page 404'd; Trellis/UniCourt blocked</li>
+        <li>Prior FTSA filings (if any) by plaintiff Ronald Hansen — could not enumerate</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the CMO — marketing owns the Attentive contract, and the GC/CCO chair is currently unfilled in public records.</h2>
+      <p class="section-lede">No General Counsel or Chief Compliance Officer surfaced in available sources. The fastest path to a decision is through Marketing (who controls the Attentive integration) and HR/Recruiting (who can route inbound to legal). Email pattern <code>{first}.{last}@truereligion.com</code> is inferred from LinkedIn naming conventions and unverified — treat every email below as PATTERN until confirmed by a bounce-test or LinkedIn message.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Kristen D'Arcy</strong><br><span class="pill pill--dark">CMO</span> <span class="pill pill--warn" style="margin-left:4px">PATTERN</span></td>
+            <td>Chief Marketing Officer — owns Attentive contract and SMS program. Highest-leverage first call. <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>kristen.darcy@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/kristen-darcy">linkedin.com/in/kristen-darcy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Mara Roitman</strong><br><span class="pill pill--dark">SENIOR EMPLOYEE</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Featured on company LinkedIn — senior role unspecified. Useful warm path. <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>mara.roitman@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/mara-roitman-a554171">linkedin.com/in/mara-roitman-a554171</a></td>
+          </tr>
+          <tr>
+            <td><strong>Kelsey Cera</strong><br><span class="pill pill--dark">MARKETING / BRAND</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Marketing/Brand team — proximity to Attentive program <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>kelsey.cera@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/kelseyknightcera">linkedin.com/in/kelseyknightcera</a></td>
+          </tr>
+          <tr>
+            <td><strong>Sean Gibson</strong><br><span class="pill pill--dark">MARKETING / BRAND</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Marketing/Brand team <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>sean.gibson@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/sean-gibson-948945101">linkedin.com/in/sean-gibson-948945101</a></td>
+          </tr>
+          <tr>
+            <td><strong>Patrick Philion</strong><br><span class="pill pill--dark">FEATURED EMPLOYEE</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Featured on company LinkedIn <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>patrick.philion@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Leslie Espinoza</strong><br><span class="pill pill--dark">HR / RECRUITING</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Tagged on hiring posts — route to in-house counsel if marketing path stalls <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>leslie.espinoza@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/leslieespinoza">linkedin.com/in/leslieespinoza</a></td>
+          </tr>
+          <tr>
+            <td><strong>Kristen Cox-Jones</strong><br><span class="pill pill--dark">HR / RECRUITING</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Tagged on hiring posts <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>kristen.cox-jones@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/kristenjjones6">linkedin.com/in/kristenjjones6</a></td>
+          </tr>
+          <tr>
+            <td><strong>Felicia Gray</strong><br><span class="pill pill--dark">HR / RECRUITING</span> <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>Recruiting team <span class="src-tag"><a href="https://www.linkedin.com/company/true-religion/">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>felicia.gray@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/felicia-gray">linkedin.com/in/felicia-gray</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap" style="margin-left:4px">GAP</span></td>
+            <td>Not identified by name in available sources. LinkedIn people search requires login; TheOrg 404'd.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>legal@truereligion.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--gap" style="margin-left:4px">GAP</span></td>
+            <td>No CCO identified; no compliance page on truereligion.com. Possibly unfilled.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>HQ Main Line</strong><br><span class="pill pill--dark">RECEPTION</span> <span class="pill pill--gap" style="margin-left:4px">GAP</span></td>
+            <td>2030 E Maple Ave, El Segundo, CA 90245. Switchboard not retrievable from public sources.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:12px;"><strong>Email pattern note:</strong> <code>{first}.{last}@truereligion.com</code> is inferred from common DTC apparel naming conventions and the LinkedIn handles above. No verified email source confirmed the pattern. Validate via a deliverability check or LinkedIn InMail before sending volume.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears and locks down vendor decisions.</h2>
+      <p class="section-lede">The 20-day FL state-court answer window plus a near-certain CAFA removal means the defendant's legal &amp; marketing teams are about to be in panic mode. This is the moment Blacklist is most relevant. Sequence below assumes the assigned owner picks this up today.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–1</div>
+        <h3 class="card-title">Email + LinkedIn Kristen D'Arcy (CMO)</h3>
+        <p class="card-body">Subject line: "Hansen v. True Religion — 32718 caller-ID exposure." One paragraph: the filing happened yesterday, here is what § 501.059(8)(b) requires, here is what Blacklist does in the next 24 hours. Don't mention legal — mention the Attentive list and the Florida subscriber scrub.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–3</div>
+        <h3 class="card-title">Warm path through Marketing &amp; HR</h3>
+        <p class="card-body">If no response from D'Arcy, hit Kelsey Cera and Sean Gibson on the marketing side; in parallel, message Leslie Espinoza in recruiting with a "who handles outside vendor compliance" prompt. HR routes faster than reception.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Watch the docket for defense appearance</h3>
+        <p class="card-body">First filing on the docket will name in-house counsel and outside firm. Defense pattern in <em>LaTouche</em> and <em>Nuri</em> suggests removal to S.D. Fla. within 30 days. The moment defense appears, pivot pitch: "Your defense team will tell you to fix the sender ID — we can have it done before the Rule 26(f) conference."</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–14</div>
+        <h3 class="card-title">Cross-sell — Attentive ecosystem</h3>
+        <p class="card-body">If True Religion closes, the same FTSA caller-ID theory is reusable against every Attentive-powered DTC apparel brand. Build a list and run it through the same playbook before Glickman/Heller file the next one.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px;">Trigger Conditions</h3>
+    <ul class="clean tight" style="max-width:880px; border:1px solid var(--border-1); padding:0 16px;">
+      <li><strong>Defense counsel removes to S.D. Fla.</strong> → pitch shifts to federal MDL/CAFA exposure framing; emphasize blacklistBulk batch scrub.</li>
+      <li><strong>Plaintiff voluntarily dismisses / refiles</strong> → likely signals settlement talks; lean harder on consent-capture audit before the next plaintiff appears.</li>
+      <li><strong>Second FTSA case filed against True Religion within 30 days</strong> → escalate urgency; this is now a serial-target scenario with multi-million reserve impact.</li>
+      <li><strong>Glickman/Heller files against another Attentive customer</strong> → vendor-level pitch becomes more credible; loop in Attentive partnership channel.</li>
+    </ul>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:32px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">20-DAY FL ANSWER WINDOW · CLOSE BEFORE JUN 21</span>
+      <span class="pill pill--info">30-DAY REMOVAL WINDOW · BY JUL 1</span>
+      <span class="pill pill--danger">CLASS EXPOSURE $5M+</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-02</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
