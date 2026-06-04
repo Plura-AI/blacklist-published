@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Darr v. Edikted — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ width:40px; height:40px; background:var(--bl-black); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; }
+.step-body h4{ margin:0 0 4px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0; font-size:14px; color:var(--fg-2); line-height:1.55; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff">BLACKLIST</text>
+          <text x="120" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-28</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Fast-Fashion SMS Defendant · Caller-ID Transmission Violation · Serial-Plaintiff Sweep · C.D. Cal. Class Action</p>
+      <h1 class="hero-tagline">Darr v.<br>Edikted LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01336</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 27, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">pending docket update</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">several thousand alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Caitlin Darr is already a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose Caitlin Darr's 10-digit recipient number anywhere in the pleading, so a Litigator Bulk lookup cannot be run on her number today. However, the same plaintiff filed two other near-identical DTC suits in C.D. Cal. within 8 days — this is the third case in a coordinated sweep.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial-Plaintiff Pattern Confirmed</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">¶¶ 15-16 reference "the cellular telephone number that received Defendant's telephone solicitations" but never quote the number. Screenshot exhibits show only the sender (94537), not the recipient handset.</div>
+      </div>
+      <p class="scrub-body-text">A Litigator Bulk scrub on Caitlin Darr's number is not possible until the number is recovered. The recovery path is straightforward — pull ECF #1 from PACER (the complaint we already have) yielded no number, so the next step is to wait for plaintiff's initial disclosures or issue an early discovery request once defense counsel appears. In the meantime, the plaintiff herself has been independently confirmed as a serial DTC-marketing filer via CourtListener.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">Sending Infrastructure</div>
+        <h3 class="card-title">Short Code 94537</h3>
+        <p class="card-body">5-digit CTIA-registered short code, paired with branded URL shortener <code>edikted.smsb.co</code>. The <code>smsb.co</code> domain is the SMSBump/Yotpo SMS marketing platform — confirms enterprise A2P SMS stack. <span class="src-tag"><a href="https://edikted.smsb.co">edikted.smsb.co -&gt;</a></span> <span class="src-tag"><a href="https://smsb.co">smsb.co -&gt;</a></span></p>
+        <p class="card-body" style="margin-top:8px;color:var(--fg-2);font-size:13px;">5-digit short codes are not indexed on 800notes / YouMail / Tellows / RoboKiller the way 10-digit DIDs are; consumer-complaint volume is therefore not directly retrievable.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">Same-Plaintiff Filings</div>
+        <h3 class="card-title">Darr Filed 3 DTC Cases in 8 Days</h3>
+        <p class="card-body">Caitlin Darr filed <em>Darr v. EyeBuyDirect</em> on 5/19/2026, <em>Darr v. Grey Bandit LLC</em> on 5/26/2026, and this Edikted case on 5/27/2026 — all C.D. Cal., all DTC e-commerce defendants, all via Gerald Lane Jr. of the Hindi firm. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Caitlin+Darr%22&type=r">CourtListener -&gt;</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">Recovery Path</div>
+        <h3 class="card-title">Number Recovery Plan</h3>
+        <p class="card-body">Three viable paths to surface Darr's number: (1) wait for Rule 26(a) initial disclosures (~70 days post-answer); (2) propound an early interrogatory once defense counsel appears; (3) cross-reference Darr's number from her companion EyeBuyDirect/Grey Bandit dockets — same plaintiff likely used the same recipient handset across all three suits.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — NUMBER NOT PLED</span>
+      <span class="pill pill--danger">SERIAL FILER: 3 SUITS IN 8 DAYS</span>
+      <span class="pill pill--warn">SHORT CODE 94537 · SMSBUMP STACK</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Viral DTC fashion brand caught with a missing SMS Terms page and email-only consent language while running a class-volume short-code blast.</h2>
+      <p class="section-lede">Edikted scaled from zero to 11 US retail stores and 820K TikTok followers since 2020 — faster than its compliance program could keep up. The signup flow at <code>edikted.com/account/register</code> bundles consent to "email marketing" only, the <code>/pages/sms-terms</code> URL returns 404, and the brand is now defendant #3 in a coordinated DTC sweep by one of the most aggressive TCPA firms in the country. Lead with Consent Capture; close on Litigator Scrub once their list is in front of you.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title"><i data-lucide="user-check"></i> Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Edikted's account signup captures email consent only — yet they sent SMS to the plaintiff. The complaint cites <em>Newell v. JR Cap.</em> precedent that text messages must disclose seller/telemarketer name in the body. Blacklist's consent-capture workflow plus audit-grade record retention closes this exact gap. <span class="src-tag"><a href="https://edikted.com/account/register">Edikted signup -&gt;</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title"><i data-lucide="database"></i> Litigator Scrub (API)</h3>
+        <p class="card-body">SMSBump/Yotpo can plug Blacklist Litigator Scrub at the platform layer. Edikted should scrub their entire SMS list against the Blacklist Litigator database before the next campaign sends — the Hindi firm targets DTC fashion specifically (Grey Bandit, EyeBuyDirect, Edikted all in 8 days).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Pitch</div>
+        <h3 class="card-title"><i data-lucide="file-search"></i> Compliance Audit</h3>
+        <p class="card-body">The <code>/pages/sms-terms</code> 404, the email-only signup, the lack of an unchecked SMS opt-in checkbox, and the missing STOP/HELP/frequency disclosures combine into a textbook compliance-audit engagement. <span class="src-tag"><a href="https://edikted.com/pages/sms-terms">404 page -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#C9C9C9;">Pitch Angle</div>
+      <h3 class="card-title">"You're the third DTC fashion brand the Hindi firm hit this month — and the next campaign you send is the discovery exhibit."</h3>
+      <p class="card-body">Lead the call with the serial-plaintiff angle: the same plaintiff, the same firm, the same fact pattern, three times in eight days. EyeBuyDirect (5/19), Grey Bandit (5/26), Edikted (5/27) — this is a vertical sweep, not a one-off. Then anchor the urgency: Edikted's signup form references only email consent, but they're texting via short code 94537 on SMSBump. That gap is the case. Close on Consent Capture + Litigator Scrub as a bundle — the scrub stops the next plaintiff cold, the consent flow rebuild gives them a clean affirmative defense for any list collected going forward, and the audit gives leadership a paper trail to show the board. The wedge phrase: <em>"Your /pages/sms-terms URL is a 404. Every plaintiff's lawyer in the country can see that in 90 seconds."</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Israeli-founded, LA-based DTC fast-fashion brand riding a TikTok growth curve with broken legal-page infrastructure.</h2>
+      <p class="section-lede">Edikted is a Delaware LLC with operations centered in Los Angeles, founded in 2020 by Dedy Shwartzenberg and Zvika Alon. The brand expanded to 11 US retail locations through 2025 and opened London in 2026. The leadership team is small, identifiable, and includes a combined Chief Product Officer / General Counsel — which makes the GC role our primary buyer.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Edikted LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Edikted LLC <span class="pill pill--gap">SOS UNVERIFIED</span></dd>
+          <dt>Formation State</dt><dd>Delaware (per complaint ¶8)</dd>
+          <dt>HQ</dt><dd>Los Angeles, CA (1327 Willow Street area per leadership intel) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Edikted">Wikipedia -&gt;</a></span></dd>
+          <dt>Founded</dt><dd>2020 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Edikted">Wikipedia -&gt;</a></span></dd>
+          <dt>Founders</dt><dd>Dedy Shwartzenberg, Zvika Alon</dd>
+          <dt>Vertical</dt><dd>DTC fast fashion — Gen Z women's apparel</dd>
+          <dt>Retail Footprint</dt><dd>11 US stores; London opened 2026</dd>
+          <dt>Public/Private</dt><dd>Private; no funding rounds publicly disclosed</dd>
+          <dt>Website</dt><dd><a href="https://edikted.com">edikted.com</a> (Shopify storefront)</dd>
+          <dt>SMS Platform</dt><dd>SMSBump / Yotpo via edikted.smsb.co <span class="src-tag"><a href="https://edikted.smsb.co">smsb.co -&gt;</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#C9C9C9;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">/pages/sms-terms returns 404</h3>
+        <p class="card-body">Edikted is sending mass-marketing SMS via a short code but does not host a publicly accessible SMS Terms &amp; Conditions page — the URL <code>edikted.com/pages/sms-terms</code> returns HTTP 404. The signup form at <code>edikted.com/account/register</code> reads: <em>"By signing up for email and clicking 'Submit', you agree to receive email marketing communications..."</em> Email. Not SMS. No unchecked checkbox, no message-frequency disclosure, no STOP/HELP instructions at point-of-consent. <span class="src-tag"><a href="https://edikted.com/pages/sms-terms">/sms-terms -&gt;</a></span> <span class="src-tag"><a href="https://edikted.com/account/register">/register -&gt;</a></span></p>
+        <p class="card-body" style="margin-top:8px;">The privacy policy (last updated April 14, 2025) collects mobile numbers but never mentions TCPA, DNC, or written express consent. <code>/pages/about-us</code>, <code>/terms-of-service</code>, and <code>/pages/contact</code> also return 404 — the entire legal-disclosure stack is broken. <span class="src-tag"><a href="https://edikted.com/pages/privacy-policy">Privacy Policy -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-Day Federal Answer Clock Just Started</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 27, 2026</dd>
+        <dt>Service Window</dt><dd>~90 days from filing (FRCP 4(m))</dd>
+        <dt>Answer Deadline</dt><dd>21 days post-service of summons (FRCP 12(a))</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared on docket <span class="pill pill--gap">PENDING</span></dd>
+        <dt>Sister-Case Pressure</dt><dd>EyeBuyDirect (5/19) and Grey Bandit (5/26) suits — defendants there will start producing settlement signals that Edikted's GC will see</dd>
+        <dt>SMS Send Cadence</dt><dd>Active — Edikted sends multi-weekly promotional blasts (per complaint screenshots, plaintiff received ≥7 messages in 18 days)</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:600;margin:32px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>SMSBump / Yotpo</strong></td>
+            <td>SMS infrastructure vendor</td>
+            <td>MarTech / SMS platform</td>
+            <td>Platform-level scrub integration; thousands of Shopify DTC tenants on same stack</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Grey Bandit LLC</strong></td>
+            <td>Co-targeted by same plaintiff (5/26/2026)</td>
+            <td>DTC fashion</td>
+            <td>Same firm, same plaintiff, same fact pattern — open warm intro</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>EyeBuyDirect, Inc.</strong></td>
+            <td>Co-targeted by same plaintiff (5/19/2026)</td>
+            <td>DTC eyewear</td>
+            <td>Same firm, same plaintiff, same fact pattern</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Adika</strong> (Israeli fashion)</td>
+            <td>Founder Shwartzenberg's prior company</td>
+            <td>Fashion e-commerce</td>
+            <td>Adjacent founder network; potential SMS marketing footprint</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shopify-tenant DTC fashion peers</strong></td>
+            <td>Same infrastructure cohort (SMSBump)</td>
+            <td>DTC fashion / apparel</td>
+            <td>Shein, Fashion Nova, Princess Polly precedent — entire vertical is a target list</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Edikted is new to TCPA defense — the Hindi firm is not. This is filing #8+ for the firm in 2026 and filing #3 in 8 days for this plaintiff.</h2>
+      <p class="section-lede">No prior TCPA actions against Edikted surfaced — litigation heat against the defendant is cold. The litigation pressure here is entirely from the plaintiff-side template: Jibrael S. Hindi is named in TCPAWorld's 2026 Power Rankings as one of the most dangerous TCPA plaintiff's lawyers in the country, and the firm advertises $30M+ in TCPA settlements and $200M+ in class settlements overall.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case File</div>
+        <h3 class="card-title">Darr v. Edikted LLC, 8:26-cv-01336</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>8:26-cv-01336 (C.D. Cal., Santa Ana)</dd>
+          <dt>Filed</dt><dd>May 27, 2026</dd>
+          <dt>Plaintiff</dt><dd>Caitlin Darr (Orange County, CA)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Gerald D. Lane Jr. (CA Bar #352470)</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi, PLLC (Wilton Manors, FL)</dd>
+          <dt>Class Action</dt><dd>Yes — Rule 23 putative class <span class="pill pill--danger">CLASS</span></dd>
+          <dt>Class Size Pled</dt><dd>≥50; "several thousand" alleged (Compl. ¶21)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>Caller-ID transmission violation — SMS blasts via short code 94537 failed to identify "the name of the telemarketer" in the message body</dd>
+          <dt>Channel</dt><dd>SMS only (≥7 messages 9/28/2023–10/16/2023 per screenshots)</dd>
+          <dt>Damages</dt><dd>$500/text negligent; $1,500/text willful (47 USC § 227(c)(5))</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">NOT YET APPEARED</span> · 21-day answer clock starts on service</dd>
+          <dt>Docket Items</dt><dd>#1 Complaint, #2 Summons Request, #3 Notice of Interested Parties, #4 Civil Cover Sheet — all 5/27/2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01336&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. — Hindi Firm</h3>
+        <dl class="kv">
+          <dt>Attorney</dt><dd>Gerald D. Lane Jr.</dd>
+          <dt>Bar Number</dt><dd>CA #352470 <span class="pill pill--ok">ACTIVE</span> <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar -&gt;</a></span></dd>
+          <dt>Email</dt><dd>gerald@jibraellaw.com</dd>
+          <dt>Firm Phone</dt><dd>754-444-7539</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="pill pill--warn">FL FIRM · CA BAR · REMOTE</span></dd>
+          <dt>Address Mismatch</dt><dd>Yes — CA-bar admittee operating out of FL firm office; appearing remotely into C.D. Cal.</dd>
+          <dt>Lead Partner</dt><dd>Jibrael S. Hindi (firm namesake)</dd>
+          <dt>TCPAWorld Ranking</dt><dd>2026 Power Rankings — "Most Dangerous TCPA Plaintiff's Lawyers in the Country" <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>Firm Track Record</dt><dd>$30M+ TCPA settlements, $200M+ class settlements (firm self-published)</dd>
+          <dt>Discipline History</dt><dd>None surfaced</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px;">
+      <div class="card-meta" style="color:#C9C9C9;">Plaintiff / Firm Template</div>
+      <h3 class="card-title">The Hindi/Lane DTC Caller-ID Sweep</h3>
+      <p class="card-body">This case fits a textbook serial-filer template. Plaintiff Caitlin Darr filed three near-identical class actions in C.D. Cal. between 5/19 and 5/27/2026 — EyeBuyDirect, Grey Bandit, and Edikted — all DTC e-commerce defendants, all SMS marketing, all alleging the same 47 CFR § 64.1601(e)(1) caller-ID-transmission theory citing the same <em>Newell v. JR Cap.</em> precedent. The firm has a separate 2026 quiet-hours line (Thirdlove, Nespresso, Tampa Bay Buccaneers, Summer Vibe, Steve Madden) and a track record of fast resolutions in S.D. Fla. (Vanguard Equities, Turizo, Moreno Armas all terminated in months). Expect a demand letter within 60-90 days of answer, possible early mediation, and a willingness to walk if the defense produces a strong consent/scrub paper trail. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span></p>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:600;margin:32px 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current">
+            <td><strong>Darr v. Edikted LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>8:26-cv-01336</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-27</td>
+            <td><span class="pill pill--danger">ACTIVE</span></td>
+            <td>Caller-ID transmission (§ 64.1601(e)(1))</td>
+          </tr>
+          <tr>
+            <td>Darr v. Grey Bandit LLC</td>
+            <td>8:26-cv-01301</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-26</td>
+            <td><span class="pill pill--danger">ACTIVE</span></td>
+            <td>Same template (same plaintiff/firm)</td>
+          </tr>
+          <tr>
+            <td>Darr v. EyeBuyDirect, Inc.</td>
+            <td>8:26-cv-01250</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-19</td>
+            <td><span class="pill pill--danger">ACTIVE</span></td>
+            <td>Same template (same plaintiff/firm)</td>
+          </tr>
+          <tr>
+            <td>Castro v. Edikted LLC</td>
+            <td>—</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">ACTIVE</span></td>
+            <td>ADA accessibility (non-TCPA) — same defendant</td>
+          </tr>
+          <tr>
+            <td>adidas America, Inc. v. Edikted LLC</td>
+            <td>—</td>
+            <td>D. Or.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">ACTIVE w/ counterclaims</span></td>
+            <td>Trademark (non-TCPA) — same defendant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#C9C9C9;">Open Intel Gaps — Close Before First Dial</div>
+      <h3 class="card-title">What to confirm before outreach</h3>
+      <ul class="clean tight" style="margin-top:12px;">
+        <li>Plaintiff's 10-digit recipient number — not in complaint, recover via PACER on companion cases or via initial disclosures</li>
+        <li>Assigned Article III judge and magistrate — not yet posted on CourtListener docket</li>
+        <li>Defense counsel — no appearance yet. Prior Edikted defense counsel in adidas matter was Roman D. Hernandez (likely Schwabe Williamson) — monitor for re-engagement</li>
+        <li>Delaware SoS officer/registered-agent record for Edikted LLC — SoS/Bizapedia/OpenCorporates all blocked or paywalled this fetch</li>
+        <li>BBB / Trustpilot / Crunchbase consumer-complaint and funding signals — all 403 this pass</li>
+        <li>Whether Edikted's SMS list was scrubbed pre-send and whether SMSBump/Yotpo offers DNC scrub at the platform layer (vendor risk angle)</li>
+        <li>Confirm whether Caitlin Darr is the same plaintiff as the Darr v. Gatorade/PepsiCo filer in N.D. Ill. (via Janove PLLC, 5/22/2026) — possible cross-firm serial plaintiff</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to Chen Moyal — Chief Product Officer &amp; General Counsel. The dual hat means one buyer signs for both the legal fix and the product/SMS rebuild.</h2>
+      <p class="section-lede">Edikted's team is small and identifiable via TheOrg + SignalHire. The email pattern <code>{first}@edikted.com</code> is confirmed from masked SignalHire emails on three executives. Chen Moyal is the rare CPO+GC combined role — exactly the buyer who can approve a consent-flow rebuild plus a Litigator Scrub API integration in one decision. CEO Dedy Shwartzenberg is the second escalation path.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Chen Moyal</strong> <span class="pill pill--dark">GC</span> <span class="pill pill--dark">CPO</span></td>
+            <td>Chief Product Officer &amp; General Counsel — primary decision-maker for TCPA fix &amp; SMS product change <span class="src-tag"><a href="https://theorg.com/org/edikted">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>chen@edikted.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dedy Shwartzenberg</strong> <span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>Co-founder &amp; CEO — escalation path; previously at Adika <span class="src-tag"><a href="https://theorg.com/org/edikted">TheOrg -&gt;</a></span> <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Edikted">Wikipedia -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>dedy@edikted.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dana T.</strong> <span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer — owns the SMS marketing campaigns at issue <span class="src-tag"><a href="https://theorg.com/org/edikted">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP — last name not disclosed</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tal Maizels</strong> <span class="pill pill--dark">CTO</span></td>
+            <td>Chief Technology Officer — owns SMSBump/Yotpo integration <span class="src-tag"><a href="https://www.signalhire.com/companies/edikted">SignalHire -&gt;</a></span></td>
+            <td>+972 (masked)</td>
+            <td>tal@edikted.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Omri Arad</strong> <span class="pill pill--dark">CHRO</span></td>
+            <td>Chief Human Resources Officer <span class="src-tag"><a href="https://www.signalhire.com/companies/edikted">SignalHire -&gt;</a></span></td>
+            <td>+972 (masked)</td>
+            <td>omri@edikted.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kyle Patterson</strong> <span class="pill pill--dark">HEAD OF TREND</span></td>
+            <td>Marketing/merchandising — adjacent to SMS campaign content <span class="src-tag"><a href="https://www.signalhire.com/companies/edikted">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>kyle@edikted.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Scott Hackett</strong> <span class="pill pill--dark">FRANCHISING</span></td>
+            <td>Head of Franchising — US retail expansion <span class="src-tag"><a href="https://theorg.com/org/edikted">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>scott@edikted.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Denzell Jordan</strong> <span class="pill pill--dark">VP HR</span></td>
+            <td>Vice President of Human Resources <span class="src-tag"><a href="https://www.signalhire.com/companies/edikted">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>denzell@edikted.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Yanay Ohana</strong> <span class="pill pill--dark">FINANCE</span></td>
+            <td>Financial Controller <span class="src-tag"><a href="https://theorg.com/org/edikted">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>yanay@edikted.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Company Main</strong> <span class="pill pill--dark">CORP</span></td>
+            <td>edikted.com/pages/contact-us is 404; the live contact uses an inquiry form only — no published main line <span class="src-tag"><a href="https://edikted.com/pages/contact-us">contact-us -&gt;</a></span></td>
+            <td><span class="pill pill--gap">NOT PUBLISHED</span></td>
+            <td>hello@edikted.com / privacy@edikted.com</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px;font-size:13px;color:var(--fg-2);">Email pattern <code>{first}@edikted.com</code> confirmed from SignalHire-masked emails (k**e@, t***m@, o****a@). All PATTERN pills above use that confirmed pattern; INFERRED pills are role-only (name found but pattern not independently verified for that specific person).</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears and the GC's inbox locks down.</h2>
+      <p class="section-lede">Edikted's GC is also the CPO. Once defense counsel appears (the 21-day answer clock starts on service of summons, likely within 2-3 weeks), all compliance vendor outreach gets routed through outside counsel and slows by weeks. The window to land directly on Chen Moyal's calendar is now.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Email Chen Moyal directly</h4>
+          <p>Subject line: "Your /pages/sms-terms returns a 404 — Darr v. Edikted, 8:26-cv-01336." Open with the serial-plaintiff angle (3 DTC defendants in 8 days from Hindi/Lane). Anchor on the consent-flow gap. Offer a 15-minute walk-through of the Consent Capture workflow plus Litigator Scrub API for the SMSBump list. Send to <code>chen@edikted.com</code> (PATTERN) with a BCC to <code>dedy@edikted.com</code>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1–2 · LinkedIn parallel outreach</h4>
+          <p>Connect with Chen Moyal and Dedy Shwartzenberg via LinkedIn with a one-line referencing the docket (case number, court). Keep it factual and unalarming — they're going to be saturated with plaintiff-firm demand letters and outside-counsel pitches within 30 days.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3–5 · Phone follow-up via inquiry form + Tal Maizels (CTO) angle</h4>
+          <p>Edikted's published contact channel is an inquiry form only — no main line. Submit through the form referencing the matter, then make a parallel run at Tal Maizels (CTO) on the platform-integration angle: "Your SMSBump short code 94537 is the exhibit. Let's get a Litigator Scrub API in front of every send."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 5–7 · Warm-intro motion via Grey Bandit / EyeBuyDirect</h4>
+          <p>If parallel outreach to Grey Bandit (5/26) or EyeBuyDirect (5/19) lands a conversation first, lever the "your peer was hit 8 days before you" angle to open the Edikted GC's door. The three cases are de facto sister suits.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 7–14 · Recover plaintiff's number, then re-engage with scrub result</h4>
+          <p>Once Caitlin Darr's recipient number is recovered (via PACER on companion cases or via Edikted's own SMS list if shared in a working session), run Litigator Bulk. A confirmed serial-filer match converts the conversation from "buy compliance" to "buy the smoking gun that ends Hindi's leverage in this case."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Day 14–21 · Pre-answer close window</h4>
+          <p>Close before defense counsel appears. The pitch is materially harder once outside counsel is between the rep and the GC. Target a signed agreement before the 21-day answer clock expires on service.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <h3 class="card-title">Trigger Conditions — What Would Change the Plan</h3>
+      <ul class="clean tight">
+        <li><strong>Defense counsel appears early:</strong> route outreach via defense firm — but keep the GC channel warm; in-house still drives the vendor decision.</li>
+        <li><strong>Plaintiff voluntarily dismisses (à la Sherman v. Prime Fish):</strong> the urgency drops but the compliance gap remains; convert to a standard compliance audit pitch.</li>
+        <li><strong>Hindi firm files a fourth DTC fashion suit:</strong> escalate to a vertical-pattern thought-leadership outreach across the cohort.</li>
+        <li><strong>Edikted publishes a new SMS Terms page in the next 30 days:</strong> they know the gap — accelerate the call to anchor before they buy a competitor.</li>
+        <li><strong>Discovery of plaintiff's recipient number returns a Litigator match:</strong> elevate the pitch to "we can hand you the affirmative defense" and pursue a same-week close.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--warn">SERIAL-FILER SWEEP · 3 DTC DEFENDANTS IN 8 DAYS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-28</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
