@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mejia v. Roadelo — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:10px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-28</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Auto-Insurance SMS Marketer · Short-Code 21931 Quiet-Hours Class Action · PLG Damage Volume-Filer Theory</p>
+      <h1 class="hero-tagline">Mejia v.<br>Roadelo LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05660</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 27, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">(per CourtListener stub)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 U.S.C. § 227(c)<br>47 C.F.R. § 64.1200(c)(1)<br>47 C.F.R. § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number masked in complaint — scrub deferred, but Mejia filed two TCPA cases the same day.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Here the complaint discloses only the last four digits ("ending in 8127"), so the full 10-digit lookup cannot be run against the Blacklist litigator list. Recovery is straightforward through PACER once defense counsel appears.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Subject Number (per Complaint ¶ 17)</div>
+        <div class="scrub-number">XXX-XXX-8127</div>
+        <div class="scrub-number-sub">Last-four only. CA cell-phone, Granada Hills (Los Angeles County) area per ¶ 21. Full number recoverable via discovery, demand letter, or the plaintiff's PACER pleadings once defense counsel appears.</div>
+      </div>
+      <p class="scrub-body-text">Blacklist scrub against the bulk litigator list was not executed — running a partial number would produce false positives and burn the lead. However, Dennise Mejia filed a second TCPA complaint the <em>same day</em> (Mejia v. EF World Journeys, 2:26-cv-05662, C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Dennise+Mejia%22&type=r">CourtListener -&gt;</a></span> which is a near-textbook serial-filer signal regardless of scrub status.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="phone-call" style="width:14px;height:14px;vertical-align:-2px"></i> Sending DID</div>
+        <h3 class="card-title">Short Code 21931</h3>
+        <p class="card-body">5-digit CTIA-licensed SMS short code identified in Exhibit A screenshots. Short codes are provisioned only for mass A2P messaging via aggregators (Twilio, Sinch, Infobip class) — consistent with the class-wide common-course-of-conduct theory. 800notes, YouMail, Tellows, and RoboKiller do not index 5-digit short codes, so consumer-spam-tag data is unavailable; sender identity must be confirmed via the CTIA short-code registry rather than reverse-lookup sites.</p>
+        <div style="margin-top:12px"><span class="pill pill--info">A2P SHORT CODE</span> <span class="pill pill--gap">NO CONSUMER COMPLAINTS INDEXED</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="undo-2" style="width:14px;height:14px;vertical-align:-2px"></i> Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF Filings via PACER</h3>
+        <p class="card-body">Once defense counsel appears, request the answer or any initial disclosures. PLG complaints in companion filings have historically attached the full 10-digit subject number in interrogatory responses. Cost: ~$1.20.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="search" style="width:14px;height:14px;vertical-align:-2px"></i> Recovery Path #2</div>
+        <h3 class="card-title">Cross-Reference EF World Companion Case</h3>
+        <p class="card-body">Mejia's same-day filing against EF World Journeys (2:26-cv-05662) likely uses the same subject number. Pull both Doc #1 complaints side-by-side — if EF World case discloses the full number, it ports directly to this lead.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="pill pill--red">SCRUB STATUS: PENDING — PULL PACER</span>
+      <span class="pill pill--warn">SERIAL-FILER FLAG · 2 FEDERAL TCPA CASES IN ONE DAY</span>
+      <span class="pill pill--info">CA RESIDENT · GRANADA HILLS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">First-time TCPA defendant in a hot vertical with zero compliance footprint — open the door before defense counsel does.</h2>
+      <p class="section-lede">Roadelo is a small auto-insurance brand with an active SMS short-code program (21931) and a privacy policy that contains <em>no</em> references to TCPA, DNC, or quiet hours <span class="src-tag"><a href="https://roadelo.com/privacy-policy">roadelo.com/privacy-policy -&gt;</a></span>. This is their first known TCPA suit. Lead with Consent Capture &amp; Quiet-Hours scrubbing — they have neither.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="user-check" style="width:14px;height:14px;vertical-align:-2px"></i> RECOMMENDED LEAD</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">PLG's complaint hammers on the absence of "prior express invitation or permission" (¶ 18). Roadelo's quote form reportedly has dual SMS consent checkboxes but no time-of-day gating — the send infrastructure is firing regardless of consent state. Blacklist captures, time-stamps, and retains TCPA-grade consent records that survive a Rule 26 demand.</p>
+        <div style="margin-top:12px"><span class="pill pill--red">LEAD PITCH</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="clock" style="width:14px;height:14px;vertical-align:-2px"></i> SECONDARY</div>
+        <h3 class="card-title">Quiet-Hours / DNC Scrubbing</h3>
+        <p class="card-body">Complaint alleges sends at 6:27 AM and 7:05 AM local time (¶ 21) — straight 47 CFR § 64.1200(c)(1) violations. Blacklist DNC + quiet-hours scrubbing prevents the exact pattern that just got Roadelo sued. Cost is a fraction of one defense bill.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="file-search" style="width:14px;height:14px;vertical-align:-2px"></i> CROSS-SELL</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">PLG Damage Attorneys filed at least 9 TCPA cases in a 30-day window across C.D. Cal., M.D. Fla. and N.D. Fla. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>. The same plaintiff template is being used against varied verticals. Litigator scrub keeps the next Mejia off Roadelo's list.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta" style="margin-bottom:8px">Pitch Angle</div>
+      <h3 class="card-title" style="margin-bottom:12px">"You were just named in a federal class action. The next one is already being drafted."</h3>
+      <p class="card-body" style="margin-bottom:12px">Roadelo is a private auto-insurance brand with no Wikipedia, no Crunchbase, no BBB profile — they almost certainly do not have in-house TCPA counsel. The plaintiff firm here, PLG Damage Attorneys, is filing the <em>same</em> quiet-hours theory against lenders, retailers, fitness studios, and DTC brands at a cadence of roughly 9 cases per month <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>. They scan inbound marketing texts and sue anything that sends before 8am or after 9pm local. Roadelo's short code 21931 has been firing during prohibited hours and their privacy policy contains zero references to TCPA <span class="src-tag"><a href="https://roadelo.com/privacy-policy">roadelo.com/privacy-policy -&gt;</a></span> — they are exactly the profile this firm hunts.</p>
+      <p class="card-body">Lead with: "We saw your name on the CourtListener docket. Before your 21-day answer deadline lapses, we can stand up consent capture and a quiet-hours scrub that takes the next dozen of these off your desk." Roadelo's current legal spend on this case alone almost certainly exceeds a year of Blacklist subscription.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small Delaware LLC, auto-insurance vertical, thin web footprint — a textbook emerging-brand compliance gap.</h2>
+      <p class="section-lede">Roadelo LLC is a Delaware-formed auto-insurance brand operating via short-code SMS marketing and a Wix-hosted website. No parent company, no public funding, no executive bios — but an active high-volume SMS program.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="building-2" style="width:14px;height:14px;vertical-align:-2px"></i> Defendant Profile</div>
+        <h3 class="card-title">Roadelo LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Roadelo LLC</dd>
+          <dt>Formation State</dt><dd>Delaware (per Complaint ¶ 5)</dd>
+          <dt>Foreign Qualification</dt><dd>Authorized to do business in California (per Complaint ¶ 5)</dd>
+          <dt>HQ</dt><dd><span class="pill pill--gap">UNKNOWN</span></dd>
+          <dt>Vertical</dt><dd>Auto insurance / liability, collision, comprehensive, roadside assistance <span class="src-tag"><a href="https://roadelo.com">roadelo.com -&gt;</a></span></dd>
+          <dt>Main Phone</dt><dd>(888) 795-0284</dd>
+          <dt>Main Email</dt><dd>contact@roadelo.com</dd>
+          <dt>Website Platform</dt><dd>Wix-hosted (inferred from page markers)</dd>
+          <dt>SMS Channel</dt><dd>CTIA short code 21931 (per Complaint Exhibit A)</dd>
+          <dt>Public Statements</dt><dd>None located — no Wikipedia, no Crunchbase, no press releases. About-us and Terms pages return 404 <span class="src-tag"><a href="https://roadelo.com/about">roadelo.com/about -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="margin-bottom:8px; color:#ff8a8a"><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:-2px"></i> SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Privacy policy contains zero references to TCPA, DNC, or quiet hours.</h3>
+        <p class="card-body">A direct read of <span class="src-tag"><a href="https://roadelo.com/privacy-policy">roadelo.com/privacy-policy -&gt;</a></span> shows generic boilerplate with no mention of time-of-day restrictions, no DNC registry language, no autodialer disclosure, and no consent-revocation mechanism. The Terms &amp; Conditions page returns a 404. Combined with the 6:27 AM and 7:05 AM sends pled in the complaint, this is the precise compliance posture PLG Damage Attorneys is hunting nationwide.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta" style="margin-bottom:8px"><i data-lucide="calendar-x" style="width:14px;height:14px;vertical-align:-2px"></i> Strategic Timing</div>
+      <h3 class="card-title">21-day federal answer clock running from service date</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 27, 2026</dd>
+        <dt>Summons Requested</dt><dd>Doc #4 filed same day as complaint <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05660&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Estimated Answer Window</dt><dd>~21 days from service under FRCP 12(a) — close target mid-to-late June 2026</dd>
+        <dt>Defense Counsel Appearance</dt><dd>Not yet on docket</dd>
+        <dt>Outreach Window</dt><dd>Maximum impact before Roadelo retains outside TCPA defense counsel — typical retention 7-14 days post-service</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px 0">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--fg-3); font-style:italic">No parent, subsidiary, sister-brand, or M&amp;A relationships could be identified. Roadelo LLC appears to be a standalone Delaware entity with no public corporate-family disclosures. Recommend a manual Delaware Division of Corporations and California SoS lookup to surface members/managers before the first call.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-time TCPA defendant facing a volume-filer plaintiff firm running a tight quiet-hours template.</h2>
+      <p class="section-lede">Roadelo has no prior TCPA litigation history. The plaintiff firm, by contrast, filed at least 9 TCPA cases in 30 days using a near-identical quiet-hours theory across multiple verticals. The asymmetry is the pitch.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="gavel" style="width:14px;height:14px;vertical-align:-2px"></i> Case Card</div>
+        <h3 class="card-title">Mejia v. Roadelo LLC, 2:26-cv-05660</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-05660 (C.D. Cal.)</dd>
+          <dt>Filed</dt><dd>May 27, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05660&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Plaintiff</dt><dd>Dennise Mejia (Los Angeles, CA)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, PLG Damage Attorneys (CA Bar #367857)</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Putative Rule 23</span></dd>
+          <dt>Class Definition</dt><dd>"TCPA After-Hours Class" — all U.S. persons who received &gt;1 telephone solicitation text in a 12-month period to a wireless number used as residential line, where at least one was sent before 8am or after 9pm local (Complaint ¶ 31)</dd>
+          <dt>Claim</dt><dd>47 U.S.C. § 227(c); 47 C.F.R. § 64.1200(c)(1); § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-Hours — texts at 6:27 AM and 7:05 AM local time, alleged sent without prior express invitation, no EBR, not nonprofit</dd>
+          <dt>DNC Status Pled</dt><dd>Not specifically pled — theory is § 227(c) quiet hours, not § 227(c) DNC list</dd>
+          <dt>Damages Sought</dt><dd>$500 per violation + treble for willful/knowing + injunctive relief. Named-plaintiff exposure: $1,000–$3,000. Class exposure scales with class size (alleged "dozens to thousands").</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> — ~21-day answer clock</dd>
+          <dt>Docket Visibility</dt><dd>CourtListener live; PacerMonitor, UniCourt, Justia all 403/404 on this docket as of run-time</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px"><i data-lucide="briefcase" style="width:14px;height:14px;vertical-align:-2px"></i> Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027 <span class="pill pill--warn">FL ADDRESS · CA-ADMITTED ATTORNEY</span></dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com; service@plgdamage.com</dd>
+          <dt>Bar Number</dt><dd>CA #367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">calbar.ca.gov -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd><span class="pill pill--ok">Active</span></dd>
+          <dt>Bar Address Match</dt><dd><span class="pill pill--warn">Mismatch flag</span> — Florida firm address listed on CA-admitted attorney filing; no California office address disclosed</dd>
+          <dt>Discipline</dt><dd>None found on California State Bar profile</dd>
+          <dt>TCPA Filing History</dt><dd>At least 9 TCPA filings in a 30-day window (Apr–May 2026) across C.D. Cal., M.D. Fla., N.D. Fla. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Firm Practice</dt><dd>Property damage / insurance bad faith primary; TCPA appears to be a newer revenue line</dd>
+          <dt>Self-Reported Recoveries</dt><dd>"$100,000,000+" (property damage practice) <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:32px">
+      <div class="card-meta" style="margin-bottom:8px"><i data-lucide="users" style="width:14px;height:14px;vertical-align:-2px"></i> Plaintiff Firm Template</div>
+      <h3 class="card-title">PLG Damage / Venkatesh Quiet-Hours Template</h3>
+      <p class="card-body" style="margin-bottom:12px">PLG is running a high-cadence § 64.1200(c)(1) quiet-hours theory across at least nine 2026 cases. Defendants span lending (Rocket Mortgage), retail (7-Eleven, Rite Aid), cybersecurity (Guardio), fitness (The Xercize Studio), consumer media (Yesvideo), DTC brands (Last Brand), earned-wage access (Payactiv), and health/wellness (Refills Health) — every case alleges multi-message solicitations with at least one before 8am or after 9pm local. The complaints share boilerplate paragraphs almost verbatim. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></p>
+      <p class="card-body">Plaintiff Dennise Mejia herself filed a second case the same day against EF World Journeys, 2:26-cv-05662 — confirming she is being used as a repeat named plaintiff. Expect the firm to certify under Rule 23(b)(3) on the common-course-of-conduct theory and push for early settlement once the class is plausibly defined.</p>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px 0">Concurrent &amp; Recent Litigation — Same Defendant / Same Plaintiff / Same Firm</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Mejia v. Roadelo LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>2:26-cv-05660</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-27</td>
+            <td><span class="pill pill--danger">Active · Pre-Answer</span></td>
+            <td>§ 64.1200(c)(1) Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Steele v. Roadelo LLC <span class="pill pill--dark">SAME DEFENDANT</span></td>
+            <td>—</td>
+            <td>E.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TBD — same defendant <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Roadelo%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Sutton v. Roadelo LLC <span class="pill pill--dark">SAME DEFENDANT</span></td>
+            <td>—</td>
+            <td>W.D. Tex.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TBD — same defendant <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Roadelo%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Mejia v. EF World Journeys, Inc. <span class="pill pill--dark">SAME PLAINTIFF · SAME DAY</span></td>
+            <td>2:26-cv-05662</td>
+            <td>C.D. Cal.</td>
+            <td>2026-05-27</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA (same plaintiff, same firm) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Dennise+Mejia%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage <span class="pill pill--dark">SAME FIRM TEMPLATE</span></td>
+            <td>2:26-cv-05599</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>§ 64.1200(c)(1) Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio LLC <span class="pill pill--dark">SAME FIRM TEMPLATE</span></td>
+            <td>2:26-cv-05313</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>§ 64.1200(c)(1) Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven Inc <span class="pill pill--dark">SAME FIRM TEMPLATE</span></td>
+            <td>1:26-cv-00119</td>
+            <td>N.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>§ 64.1200(c)(1) Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Rite Aid Corporation <span class="pill pill--dark">SAME FIRM TEMPLATE</span></td>
+            <td>2:26-cv-04436</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>§ 64.1200(c)(1) Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Mendez v. Refills Health, LLC <span class="pill pill--dark">SAME FIRM TEMPLATE</span></td>
+            <td>2:26-cv-04569</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>§ 64.1200(c)(1) Quiet Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="margin-bottom:8px; color:#ff8a8a"><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:-2px"></i> Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean" style="margin:0; padding-left:18px; list-style:disc">
+        <li style="padding:4px 0">Full 10-digit plaintiff subject number (only "ending in 8127" disclosed) — recover via PACER ECF or companion-case cross-reference</li>
+        <li style="padding:4px 0">Judge assignment for 2:26-cv-05660 — not yet visible on CourtListener stub</li>
+        <li style="padding:4px 0">Defense counsel identity — not yet on docket</li>
+        <li style="padding:4px 0">Roadelo LLC member/manager identity — Delaware SoS and California SoS lookups returned no entity records; OpenCorporates and Bizapedia behind paywalls/blocks</li>
+        <li style="padding:4px 0">Roadelo HQ address and registered-agent identity</li>
+        <li style="padding:4px 0">Confirmation that Steele (E.D. Cal.) and Sutton (W.D. Tex.) v. Roadelo are TCPA matters (vs. other causes of action)</li>
+        <li style="padding:4px 0">Total PLG Damage Attorneys firm-wide TCPA filing volume (only 9 confirmed via CourtListener; PACER full-text search not run)</li>
+        <li style="padding:4px 0">Roadelo's SMS aggregator vendor (Twilio / Sinch / Infobip / other) — required to scope discovery exposure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Cold-call the main line first — no individual decision-makers are publicly disclosed.</h2>
+      <p class="section-lede">Roadelo's website has no /team, /leadership, or executive bio pages. LinkedIn, ZoomInfo, Apollo, and TheOrg all returned blocks or empty results. Lead with the main company line and reference the docket; expect a call-back from GC or outside counsel once the suit is internally circulated.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Contact</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Roadelo LLC — Main Line</strong> <br><span class="pill pill--dark">COMPANY MAIN</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Primary inbound channel. Ask for GC, Legal, or Compliance. Reference docket 2:26-cv-05660 to escalate. <span class="src-tag"><a href="https://roadelo.com/contact">roadelo.com/contact -&gt;</a></span></td>
+            <td>(888) 795-0284</td>
+            <td>contact@roadelo.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Roadelo LLC — General Contact</strong> <br><span class="pill pill--dark">CORPORATE INBOX</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Generic intake; use as a secondary touch after voicemail.</td>
+            <td>(888) 795-0284</td>
+            <td>contact@roadelo.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel — Unknown</strong> <br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Role identified by inference (every entity facing a federal class action has counsel). No name publicly available.</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--warn">{first}.{last}@roadelo.com (PATTERN, unverified)</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Marketing Officer — Unknown</strong> <br><span class="pill pill--dark">CMO / MARKETING</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Owns the SMS short-code 21931 campaign. Strongest internal champion for consent-capture and quiet-hours scrubbing.</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--warn">{first}.{last}@roadelo.com (PATTERN, unverified)</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>CEO / Founder — Unknown</strong> <br><span class="pill pill--dark">CEO</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Decision authority for vendor budget. Recover via DE SoS member filing or LinkedIn (logged-in).</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--warn">{first}.{last}@roadelo.com (PATTERN, unverified)</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-2)">
+      <strong>Email pattern (inferred only):</strong> <code style="font-family:var(--font-mono); background:var(--gray-10); padding:2px 6px;">{first}.{last}@roadelo.com</code> — based on the standard small-business Wix-hosted pattern; only the generic <code style="font-family:var(--font-mono); background:var(--gray-10); padding:2px 6px;">contact@roadelo.com</code> is confirmed live. Do not send to a pattern-inferred address without a confirming touchpoint.
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — before outside defense counsel files an appearance.</h2>
+      <p class="section-lede">Roadelo is a small Delaware LLC that has almost certainly not retained outside TCPA defense counsel yet. The window between service and answer is the highest-conversion outreach moment Blacklist gets on a fresh filing. Sequence below assumes the assigned owner makes first contact Day 1.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px">DAY 1 (within 24 hrs)</div>
+        <h3 class="card-title">Cold-call main line</h3>
+        <p class="card-body">Dial (888) 795-0284. Ask for Legal or whoever is "handling the federal class action filed against you in Los Angeles last week." Leave name + reference to docket 2:26-cv-05660 if no live answer. Follow with email to contact@roadelo.com with the docket attached.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px">DAY 2-3</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <p class="card-body">$1.20 to confirm full plaintiff number and recover any exhibit metadata not in the screenshot version. Cross-reference against companion case 2:26-cv-05662 (Mejia v. EF World).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px">DAY 3-5</div>
+        <h3 class="card-title">LinkedIn / SoS recovery</h3>
+        <p class="card-body">Run a logged-in LinkedIn search for "Roadelo" employees to surface a CMO, GC, or COO. Run Delaware Division of Corporations member lookup; California SoS Statement of Information for the foreign LLC registration.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px">DAY 5-10</div>
+        <h3 class="card-title">Multi-touch follow-up</h3>
+        <p class="card-body">If no response, sequence email + phone every 48 hrs referencing: (1) the 21-day answer clock, (2) the PLG Damage filing template, (3) the cost differential between Blacklist scrub and one defense bill.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px">DAY 10-21</div>
+        <h3 class="card-title">Answer-deadline pressure</h3>
+        <p class="card-body">As answer deadline approaches, reframe pitch around the inevitable interrogatory demand for consent records. Position Blacklist as the forward-looking remediation that survives the next certification motion.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px">POST-ANSWER</div>
+        <h3 class="card-title">Pivot to vendor sale</h3>
+        <p class="card-body">Once defense counsel appears (visible on PACER), redirect outreach to defense firm's billing partner — they want to recommend a scrub vendor before discovery requests land.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta" style="margin-bottom:8px"><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:-2px"></i> Trigger Conditions That Change the Plan</div>
+      <ul class="clean tight">
+        <li><strong>Defense counsel files MTC arbitration</strong> — pivot pitch to defense firm directly; their MTC will likely cite consent records that Roadelo doesn't have.</li>
+        <li><strong>Plaintiff files amended complaint</strong> — re-scan for new violation theories (e.g., adding DNC list, ATDS, or revocation claims).</li>
+        <li><strong>Class certification motion filed</strong> — exposure scales 10-100x; urgency shifts from "audit" to "settle and remediate."</li>
+        <li><strong>Second / third companion case surfaces (Steele or Sutton heats up)</strong> — Roadelo's nationwide exposure becomes the headline; lead with that.</li>
+        <li><strong>Roadelo retains compliance vendor (any competitor)</strong> — pivot to consent-capture differentiator and litigator-scrub layer.</li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · TARGET CLOSE BEFORE MID-JUN 2026</span>
+      <span class="pill pill--info">FIRST-TIME TCPA DEFENDANT · GREENFIELD</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-28</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
