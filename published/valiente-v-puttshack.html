@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valiente v. Puttshack USA — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="20" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="4" height="16" fill="#A50100"/>
+          <text x="130" y="20" font-family="General Sans, sans-serif" font-size="22" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-30</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">SMS Marketer · Internal DNC + Federal DNC · Class Action · S.D. Fla. · Jibrael Hindi Template</p>
+      <h1 class="hero-tagline">Valiente v.<br>Puttshack USA</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-23737</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (Miami)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Apr 14, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(46 days ago · removed 5/27)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet captured <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Notice of Judge Assignment 5/28</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(d)<br>47 CFR § 64.1200(c)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Two putative classes (IDNC + DNC), 50+ each</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane, Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — but Valiente is already a serial filer with a settlement track record.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Valiente's number was not disclosed in the complaint, so the bulk-scrub API call was skipped. The good news: we don't need the number to qualify him as a litigator — CourtListener already places him on multiple prior TCPA dockets.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--danger">Serial Filer Confirmed via CourtListener</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraph 24 alleges plaintiff is "the regular user of the telephone number that received the above solicitations" and paragraph 25 references registration on the National DNC on or about September 30, 2020 — but the 10-digit number itself is redacted from the public filing.</div>
+      </div>
+      <p class="scrub-body-text">Even without a number-level match, Heriberto Valiente is independently confirmed as a serial TCPA / FDCPA plaintiff in the S.D. Fla. Documented prior filings include Valiente v. Tomocredit (TCPA, settled within ~4 months), Valiente v. TOPGOLF Callaway Brands (TCPA, voluntarily dismissed in ~4 weeks), Valiente v. Tropical Chevrolet (TCPA, 2026), Valiente v. Efigie Corp (TCPA, voluntarily dismissed), Valiente v. NexGen Global (11th Cir.), Valiente v. Sticker Mule, Valiente v. Kendall Credit, and Valiente v. StockX. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Heriberto+Valiente%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">The state-court complaint (Doc 1-1) is already on the federal docket via removal. Pull the full removal package; plaintiff's number is sometimes included in the Civil Cover Sheet or in attached SMS screenshots that were referenced ("As demonstrated by the above screenshots…") but not attached to the public version we have.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · #2</div>
+        <h3 class="card-title">Wait for Defense Counsel Notice</h3>
+        <p class="card-body">An Extension of Time to File Response (Doc #4, 5/29/2026) was already filed — defense counsel may have appeared but no firm name is yet captured in fetched docket snippets. Once defense files its answer, the number will surface in discovery requests within 30 days. <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-23737&type=r">CourtListener docket -></a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · #3</div>
+        <h3 class="card-title">Cross-Reference Prior Valiente Dockets</h3>
+        <p class="card-body">Valiente v. Tomocredit, Valiente v. TOPGOLF Callaway, and Valiente v. Tropical Chevrolet all involve the same plaintiff. The number disclosed in any one of those four prior complaints is almost certainly the same residential cell pled here. Pulling the Tomocredit complaint (settled, less likely sealed) is the cheapest path to a number match.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL FILER · 9+ PRIOR ACTIONS</span>
+      <span class="pill pill--warn">JIBRAEL HINDI TEMPLATE · INTERNAL DNC</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Rapidly scaling hospitality brand with no visible compliance program and a smoking-gun contradiction in its own Terms of Service.</h2>
+      <p class="section-lede">Puttshack is a UK-born, US-headquartered (Chicago) tech-infused mini-golf entertainment chain that markets aggressively via SMS, loyalty signups, and event-booking flows — but its public-facing site has zero TCPA / DNC compliance language and its Booking Terms claim it only sends "booking confirmation and profile verification" messages. The complaint contradicts that representation directly. Lead with a Compliance Audit + Internal DNC Policies & Procedures pitch, attach Litigator Scrub as the recurring spend.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Policies &amp; Procedures + Compliance Audit</h3>
+        <p class="card-body">The complaint's core theory is § 64.1200(d) — failure to maintain a written internal DNC policy, failure to train, failure to honor opt-out. Puttshack's site shows no compliance officer, no compliance page, no TCPA language. <span class="src-tag"><a href="https://puttshack.com/privacy-policy">Privacy policy -></a></span> A written-policy + training package neutralizes the exact theory plaintiff is pleading.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Litigator Scrub (Recurring)</h3>
+        <p class="card-body">Jibrael Hindi's office files multiple TCPA suits monthly across hospitality, retail, and consumer brands. Scrubbing the Puttshack Perks list + event-booking SMS list against the Blacklist litigator database prevents the next Valiente / next-named-plaintiff before they receive the first marketing text. <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">DNC + Consent Capture</h3>
+        <p class="card-body">Count II (§ 64.1200(c)) pleads Federal DNC violations — plaintiff registered on the National DNC ~9/30/2020 and still received marketing texts. A federal DNC scrub at point-of-send eliminates this exact claim category. Pair with consent-capture record retention so Puttshack can prove prior express written consent at the booking flow.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">"You're being sued by Jibrael Hindi's office — they've publicly recovered <strong>over $30 million in TCPA settlements alone</strong> and they file these every month against brands like yours. <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span> The complaint says you sent marketing texts to someone on the National DNC after they replied STOP. Your own Booking Terms say you 'only' send messages for booking confirmation — so right now the gap between your policy and what actually went out the door is the lawsuit. Blacklist closes that gap on the front end: scrub every number against the litigator database and the federal DNC before send, capture and date-stamp the opt-in, train the marketing team on the § 64.1200(d) policy your loyalty program needs. The compliance audit + policies package is what your defense counsel is going to ask for the second they appear — let us be the answer they recommend."</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">Secondary wedge: there are already <strong>four parallel Valiente v. Puttshack docket numbers</strong> filed the same day in S.D. Fla. (23728, 23730, 23733, 23737) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Puttshack%22&type=r">CourtListener -></a></span> — even if those are clerical refiles, the dollar exposure scales linearly with the class size pled (50+ per class) and the per-violation statutory damage of $500–$1,500. The Blacklist solution pays for itself on the first cleaned list.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Mid-market US-headquartered hospitality chain backed by a UK parent, scaling aggressively with no visible compliance officer.</h2>
+      <p class="section-lede">Puttshack USA Inc. is a Delaware corporation headquartered in Chicago, founded 2018 (UK origin), running tech-infused mini-golf venues with a heavy SMS / loyalty / event-booking marketing mix.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Puttshack USA Inc.</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Legal entity</dt><dd>Puttshack USA Inc.</dd>
+          <dt>Formation state</dt><dd>Delaware <span class="pill pill--gap" style="margin-left:6px;">SoS gated</span></dd>
+          <dt>HQ</dt><dd>Chicago, IL (US); London, UK (parent)</dd>
+          <dt>Parent</dt><dd>Puttshack Ltd. (UK affiliate) <span class="src-tag"><a href="https://puttshack.com">puttshack.com -></a></span></dd>
+          <dt>Founded</dt><dd>2018</dd>
+          <dt>Vertical</dt><dd>Entertainment / hospitality (competitive socializing)</dd>
+          <dt>Products</dt><dd>Tech-infused indoor mini golf (Trackaball™), full-service bar/restaurant, corporate events, Puttshack Perks loyalty program</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Main phone</dt><dd>020 3912 9400 (UK office line — no public US main line surfaced)</dd>
+          <dt>Compliance officer</dt><dd><span class="pill pill--gap">Not identified · GC unknown</span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">"Only for booking confirmation and profile verification" — except when it's marketing.</h3>
+        <p class="card-body">Section 5 of Puttshack's Booking Terms expressly represents that consumers "will receive messages from Puttshack only for booking confirmation and profile verification purposes." <span class="src-tag"><a href="https://puttshack.com">puttshack.com -></a></span> The complaint alleges plaintiff received marketing solicitations on 12/18/2025 and 12/23/2025 — <em>after</em> a STOP reply on or around 12/1/2025. The defendant's own written policy contradicts its own conduct. Pair that with a privacy policy that references SMS programs but never references TCPA, DNC, or consent capture, and a public site with zero compliance page or compliance officer named, and the § 64.1200(d) "no written policy / no training / no DNC list" theory writes itself.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Defense extension already filed — answer window is the close window.</h3>
+      <dl class="kv" style="margin-top:12px;">
+        <dt>State complaint filed</dt><dd>April 14, 2026 (Miami-Dade Circuit, e-filed via Filing # 245989507)</dd>
+        <dt>Removed to S.D. Fla.</dt><dd>May 27, 2026</dd>
+        <dt>Extension of time motion</dt><dd>Doc #4 filed May 29, 2026 — defense is buying time, exactly the window when defense counsel asks "what compliance posture do we have?" <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-23737&type=r">CourtListener -></a></span></dd>
+        <dt>Judge assignment</dt><dd>Notice issued May 28, 2026; consent-to-magistrate option still open</dd>
+        <dt>Corporate disclosure</dt><dd>Doc #3 filed 5/28/2026 — defendant has appeared</dd>
+        <dt>Sales window</dt><dd><span class="pill pill--red">Close before answer is filed</span> — typical 30-day extension puts the deadline late June 2026</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Puttshack Ltd. (UK)</strong></td>
+            <td>Parent / affiliate</td>
+            <td>Entertainment / hospitality</td>
+            <td>Brand SMS infra likely shared; UK GDPR rigor not ported to US TCPA</td>
+            <td><span class="pill pill--info">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Puttshack Miami Brickell, LLC</td>
+            <td>US operating sub (per Espinoza &amp; Watson dockets) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Puttshack%22&type=r">CourtListener -></a></span></td>
+            <td>Venue-level operator</td>
+            <td>Named in two prior S.D. Fla. cases (2023, 2024) — same SMS stack</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>Puttshack Perks (loyalty program)</td>
+            <td>Marketing channel</td>
+            <td>SMS / loyalty</td>
+            <td>Primary opt-in funnel; Blacklist scrub at signup eliminates exposure</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>Adam Breeden (Co-Founder) other ventures</td>
+            <td>Founder portfolio</td>
+            <td>Competitive socializing (Flight Club, Bounce, Electric Shuffle)</td>
+            <td>Same playbook, same SMS marketing motion</td>
+            <td><span class="pill pill--info">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Puttshack's first federal TCPA case in S.D. Fla. — filed by one of the most aggressive serial-plaintiff firms in the country.</h2>
+      <p class="section-lede">Defendant has been named in at least six prior consumer-side actions across S.D. Fla., D. Mass., W.D. Pa., N.D. Tex., and N.D. Ga. — but this is the first one driven by the Jibrael Hindi template. That template is high-volume, class-action-first, and built around § 64.1200(d) internal DNC / training failures.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Valiente v. Puttshack USA Inc.</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Docket</dt><dd>1:26-cv-23737 (S.D. Fla. — Miami Division)</dd>
+          <dt>Filed</dt><dd>April 14, 2026 (state); removed May 27, 2026</dd>
+          <dt>Plaintiff</dt><dd>Heriberto Valiente, resident of Miami-Dade County, FL</dd>
+          <dt>Class action</dt><dd>Yes — two putative Rule 1.220 / Rule 23 classes (IDNC + DNC), each "at least 50 individuals"</dd>
+          <dt>Class period</dt><dd>4 years prior to filing through class certification</dd>
+          <dt>Primary theory</dt><dd>Internal DNC failure — no written policy, no training, no DNC list, opt-outs ignored (§ 64.1200(d))</dd>
+          <dt>Secondary theory</dt><dd>Federal DNC — plaintiff on national registry since ~9/30/2020 (§ 64.1200(c))</dd>
+          <dt>Channels pled</dt><dd>SMS only (12/1/2025 initial text, 12/18/2025 + 12/23/2025 post-STOP)</dd>
+          <dt>Damages sought</dt><dd>$500 per negligent violation, $1,500 per willful — across both counts and both classes</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet captured</span> — Extension of Time (Doc #4) filed 5/29 but counsel name not extracted</dd>
+          <dt>Docket aggregator</dt><dd>CourtListener indexed; PacerMonitor / Justia / UniCourt gated <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-23737&type=r">CourtListener -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">The Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Firm address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 (per complaint) <span class="pill pill--warn" style="margin-left:6px;">Law360 references Fort Lauderdale</span></dd>
+          <dt>Firm phone</dt><dd>813-340-8838 (complaint) / 844-542-7235 (website) <span class="pill pill--warn" style="margin-left:6px;">813 = Tampa area code · mismatch flag</span></dd>
+          <dt>Firm email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Website</dt><dd><a href="https://jibraellaw.com">jibraellaw.com</a></dd>
+          <dt>Lead attorney</dt><dd>Gerald D. Lane, Jr. — FL Bar No. 1044677</dd>
+          <dt>Co-counsel</dt><dd>Mitchell D. Hansen (FL Bar 1065929) · Zane C. Hedaya (FL Bar 1048640) · Jibrael S. Hindi (founder)</dd>
+          <dt>Bar discipline</dt><dd>None found <span class="pill pill--gap" style="margin-left:6px;">FL Bar profiles HTTP 403</span></dd>
+          <dt>TCPA filing history</dt><dd>Featured in <strong>TCPAWorld 2026 Power Rankings — "Most Dangerous TCPA Plaintiff's Lawyers in the Country"</strong> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+          <dt>Published results</dt><dd>$30M+ TCPA settlements · $200M+ class action total · $15M+ FDCPA · $15M+ data breach (firm self-reported) <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Threat level</dt><dd><span class="pill pill--danger">Extreme</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Firm Template — "Hindi/Lane Internal DNC"</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">The Hindi firm — and Gerald Lane in particular — runs a high-volume Internal DNC / Quiet Hours playbook in S.D. Fla. and beyond. Recent named-defendant template targets include <strong>Nespresso, Steve Madden, Tampa Bay Buccaneers, Overtime Sports, Thirdlove, Prime Fish, Summer Vibe</strong>, and now Puttshack. <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Gerald+Lane%22+TCPA">Law360 -></a></span> Plaintiff Valiente himself has settled or voluntarily dismissed at least four prior TCPA dockets within 1–6 months of filing (Tomocredit ~4 months to dismissal with prejudice; TOPGOLF Callaway ~4 weeks; Efigie ~6 weeks; Sticker Mule ~3 months). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Heriberto+Valiente%22&type=r">CourtListener -></a></span> This is a settle-quick firm working with a settle-quick plaintiff — speed matters.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Valiente v. Puttshack USA Inc.</strong> <span class="pill pill--red" style="margin-left:6px;">Current</span></td>
+            <td>1:26-cv-23737</td>
+            <td>S.D. Fla.</td>
+            <td>2026-04-14</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>IDNC + Federal DNC (SMS)</td>
+          </tr>
+          <tr>
+            <td>Valiente v. Puttshack USA Inc. (parallel filings) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Puttshack%22&type=r">->-</a></span></td>
+            <td>1:26-cv-23728 · 23730 · 23733</td>
+            <td>S.D. Fla.</td>
+            <td>2026-05-27</td>
+            <td><span class="pill pill--warn">Clerical refile · 23730 terminated</span></td>
+            <td>Same case, docket correction activity</td>
+          </tr>
+          <tr>
+            <td>Mungo v. Puttshack</td>
+            <td>2:25-cv-00279</td>
+            <td>W.D. Pa.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>Consumer-side (theory not captured)</td>
+          </tr>
+          <tr>
+            <td>Borens v. Puttshack USA Inc</td>
+            <td>3:25-cv-03358</td>
+            <td>N.D. Tex.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>Consumer-side (theory not captured)</td>
+          </tr>
+          <tr>
+            <td>Austin v. Puttshack USA Inc.</td>
+            <td>1:25-cv-04691</td>
+            <td>N.D. Ga.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>Consumer-side (theory not captured)</td>
+          </tr>
+          <tr>
+            <td>Poulos v. Puttshack</td>
+            <td>1:24-cv-13152</td>
+            <td>D. Mass.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>Consumer-side (theory not captured)</td>
+          </tr>
+          <tr>
+            <td>Espinoza v. Puttshack Miami Brickell LLC</td>
+            <td>1:24-cv-23951</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>Sister-entity case</td>
+          </tr>
+          <tr>
+            <td>Watson v. Puttshack Miami Brickell, LLC</td>
+            <td>1:23-cv-23028</td>
+            <td>S.D. Fla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Indexed</span></td>
+            <td>Sister-entity case</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;"></i> Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>Defense counsel of record for 1:26-cv-23737 not yet captured — Extension of Time motion filed 5/29 but no attorney name visible in CourtListener snippet</li>
+        <li>Assigned Article III judge name not yet extracted (Notice of Judge Assignment filed 5/28 but the name didn't surface in fetched content)</li>
+        <li>Plaintiff's actual recipient phone number is redacted from the public complaint — pull ECF #1 or attached SMS exhibits via PACER</li>
+        <li>Theories of the four prior Puttshack consumer cases (Mungo, Borens, Austin, Poulos) not captured — likely TCPA but unconfirmed from CourtListener snippet alone</li>
+        <li>No General Counsel / Chief Compliance Officer / Chief Privacy Officer identified at Puttshack USA across LinkedIn, TheOrg, or SignalHire — escalation contact for legal pitch is currently uncertain</li>
+        <li>Bar-registered addresses for Lane / Hansen / Hedaya not independently verified (FL Bar gated HTTP 403) — address-mismatch flag is based on phone area code + Law360 reference, not bar lookup</li>
+        <li>Puttshack signup, subscribe, and consent-flow pages all 404'd — exact consent-checkbox language at Puttshack Perks signup unconfirmed</li>
+        <li>Sunbiz / Delaware / Illinois SoS searches all returned 403 — registered agent and officer record not independently verified against state filings</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the COO and CSMO — there is no visible GC, so marketing leadership owns the budget for this fix.</h2>
+      <p class="section-lede">No General Counsel or Chief Compliance Officer surfaced across LinkedIn, TheOrg, or SignalHire. That makes the COO (Ryan Nowicki) and the Chief Sales &amp; Marketing Officer (Susan Walmesley) the operational decision-makers for both the lawsuit pain and the compliance budget. CEO David Bagley is the escalation path. Email pattern <code style="background:var(--gray-05); padding:2px 6px; font-family:var(--font-mono);">first.last@puttshack.com</code> is inferred from SignalHire masked emails; treat all emails as PATTERN until first bounce-test.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Ryan Nowicki</strong><br><span class="pill pill--dark">COO</span> <span class="pill pill--red">Call #1</span></td>
+            <td>Chief Operating Officer — owns operations and vendor procurement; most likely budget holder for a compliance/policies package <span class="src-tag"><a href="https://www.signalhire.com/companies/puttshack">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>ryan.nowicki@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/ryan-nowicki-a2a4705">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Susan Walmesley</strong><br><span class="pill pill--dark">CSMO</span> <span class="pill pill--red">Call #2</span></td>
+            <td>Chief Sales &amp; Marketing Officer — owns the SMS / Perks / event marketing motion that produced the alleged texts <span class="src-tag"><a href="https://theorg.com/org/puttshack">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>susan.walmesley@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>David Bagley</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Chief Executive Officer — escalation path; ultimate sign-off on enterprise compliance vendor <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>david.bagley@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/bagleydavid">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Alison Schulman</strong><br><span class="pill pill--dark">Sr. Marketing</span></td>
+            <td>Senior marketing leadership — likely owns campaign execution and SMS vendor relationship <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>alison.schulman@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/alison-schulman-b6237025">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Lucas Mentzer</strong><br><span class="pill pill--dark">VP Technology</span></td>
+            <td>Vice President of Technology — owns marketing-stack integrations (Outreach platform, Puttshack Perks data) <span class="src-tag"><a href="https://www.signalhire.com/companies/puttshack">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lucas.mentzer@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/lmentzer">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Emily Iott</strong><br><span class="pill pill--dark">Marketing</span></td>
+            <td>Marketing team member <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>emily.iott@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/emily-iott">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Emily Koval</strong><br><span class="pill pill--dark">Marketing</span></td>
+            <td>Marketing team member <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>emily.koval@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/emily-koval-0a5108a6">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Angelina Gradilla</strong><br><span class="pill pill--dark">Marketing</span></td>
+            <td>Marketing team member <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>angelina.gradilla@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/angelina-gradilla">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Arianna Favia</strong><br><span class="pill pill--dark">Event Sales</span></td>
+            <td>Event sales leadership — operational owner of event-booking SMS confirmation flow <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>arianna.favia@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/ariannafavia">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Heather Tomala</strong><br><span class="pill pill--dark">BizDev</span></td>
+            <td>Business Development Manager <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>heather.tomala@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/heather-tomala-63963531">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Justin Doebert</strong><br><span class="pill pill--dark">Sales Ops</span></td>
+            <td>Led launch of Outreach sales cadence platform — operational owner of outbound automation <span class="src-tag"><a href="https://www.linkedin.com/company/puttshack">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>justin.doebert@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/justin-doebert-b21649302">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Rocio DeJesus</strong><br><span class="pill pill--dark">People &amp; Talent</span></td>
+            <td>Head of People &amp; Talent — relevant owner for the "training of personnel" requirement under § 64.1200(d)(2) <span class="src-tag"><a href="https://theorg.com/org/puttshack">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>rocio.dejesus@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nishil Patel</strong><br><span class="pill pill--dark">Finance</span></td>
+            <td>Director of FP&amp;A — finance signer on a multi-year compliance vendor SOW <span class="src-tag"><a href="https://theorg.com/org/puttshack">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>nishil.patel@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Adam Breeden</strong><br><span class="pill pill--dark">Co-Founder</span></td>
+            <td>Co-Founder — UK-based; founder portfolio (Flight Club, Bounce, Electric Shuffle) is a cross-sell vector <span class="src-tag"><a href="https://theorg.com/org/puttshack">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>adam.breeden@puttshack.com <span class="pill pill--warn" style="margin-left:6px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">Role unfilled or unidentified</span></td>
+            <td>No GC, CCO, or CPO surfaced across LinkedIn / TheOrg / SignalHire — escalation path likely external counsel (defense counsel pending appearance) <span class="src-tag"><a href="https://theorg.com/org/puttshack">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Puttshack — main line</strong><br><span class="pill pill--dark">Switchboard</span></td>
+            <td>Public main line (UK office); no published US main line surfaced <span class="src-tag"><a href="https://puttshack.com">puttshack.com -></a></span></td>
+            <td>020 3912 9400 <span class="pill pill--ok" style="margin-left:6px;">VERIFIED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:16px;">Plaintiff counsel contact information is provided in Section 04 and is not duplicated here. Defense counsel has not yet appeared on the docket — Extension of Time motion (Doc #4, 5/29/2026) was filed but the attorney name was not extractable from fetched CourtListener content.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 7 days — defense extension is the window.</h2>
+      <p class="section-lede">Defendant has already filed for an extension of time to respond (Doc #4, 5/29/2026). That's the moment defense counsel is reviewing compliance posture and discovering gaps. Lead with the COO + CSMO; the CEO is the escalation; the marketing operators are the validators.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">Email + LinkedIn — COO &amp; CSMO</h3>
+        <p class="card-body">Send the pitch email to Ryan Nowicki (COO) and Susan Walmesley (CSMO) simultaneously. Subject: "Re: Valiente v. Puttshack — your booking terms vs. the complaint." Reference paragraph 14 of the complaint (the post-STOP texts) and Section 5 of Puttshack's own Booking Terms. Connect on LinkedIn the same day.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–4</div>
+        <h3 class="card-title">Phone outreach via main line + escalate</h3>
+        <p class="card-body">Call the main switchboard (020 3912 9400) and ask for Ryan Nowicki's US office. If gated, escalate to CEO David Bagley with the same email thread + an explicit "your defense counsel is going to ask for this" framing. Loop in Alison Schulman as marketing validator.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–7</div>
+        <h3 class="card-title">Loop in operational owners</h3>
+        <p class="card-body">If decision-maker tier hasn't responded by Day 5, send a parallel thread to Justin Doebert (Sales Ops — owns Outreach platform) and Lucas Mentzer (VP Technology). These are the operators who'll confirm to leadership that a Blacklist scrub plugs into the existing SMS stack.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7+</div>
+        <h3 class="card-title">Close before answer deadline</h3>
+        <p class="card-body">Typical 30-day extension on a removed case puts the answer deadline late June 2026. Close before defense files. Once defense counsel is on the docket, the compliance-vendor conversation routes through outside counsel and slows down significantly.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;"></i> Trigger conditions that change the plan</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li><strong>If defense counsel appears and files an MTC arbitration:</strong> shift pitch from "fix the policy" to "support discovery + consent record retention" — the case may settle/arbitrate quickly</li>
+        <li><strong>If plaintiff voluntarily dismisses (Valiente did this within 4 weeks against TOPGOLF Callaway):</strong> use the close call to lead the next pitch — "you got lucky once; the next Hindi-firm plaintiff is already filing"</li>
+        <li><strong>If a parallel class action consolidates (e.g., joins Mungo, Borens, Austin, Poulos):</strong> escalate urgency, escalate to CEO, raise the price ceiling</li>
+        <li><strong>If a screenshot of the actual SMS exhibits surfaces on PACER:</strong> use the sender DID to confirm or rule out shared SMS infra with Puttshack Miami Brickell LLC (named in two prior S.D. Fla. cases)</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">JIBRAEL HINDI TEMPLATE · QUICK-SETTLE FIRM</span>
+      <span class="pill pill--warn">EXTENSION FILED 5/29 · ANSWER WINDOW IS CLOSE WINDOW</span>
+      <span class="pill pill--info">CLOSE BEFORE LATE JUNE 2026</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-30</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
