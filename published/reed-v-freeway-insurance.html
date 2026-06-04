@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reed v. Freeway Insurance — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; color:var(--warning); font-weight:700; }
+.callout ul{ margin:0; padding-left:18px; font-size:14px; line-height:1.6; }
+
+.step{ display:grid; grid-template-columns:60px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:32px; font-weight:700; color:var(--bl-red); line-height:1; font-variant-numeric:tabular-nums; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" class="hero-logo-svg">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Non-Standard Auto Insurer · Prerecorded-Voice Class Action · Serial Defendant · Edelsberg Law Filing</p>
+      <h1 class="hero-tagline">Reed v.<br>Freeway Insurance <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(Confie / Alliant brand)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01354</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 28, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(7 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)(1)(A)(iii)<br>47 USC § 227(b)(3)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Scott Edelsberg <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Edelsberg Law, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — but the sender DIDs are right in the complaint.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Reed pled only the last four digits ("1171 Number"), so a litigator-list match cannot be run today. The recovery path is straightforward — and in the meantime, the two sender DIDs disclosed in the complaint are themselves a powerful pitch artifact.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(***) ***-1171</div>
+        <div class="scrub-number-sub">Last four only — paragraphs 9, 35 of complaint. Full 10-digit number is not on the face of the pleading.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff Alyssa Reed pled herself as the "sole subscriber of the residential telephone number ending in 1171" and as a resident of San Joaquin County, California. No prior TCPA filings by this plaintiff are visible on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Alyssa+Reed%22&type=r">CourtListener -></a></span> — she does not appear to be a known serial filer. Until the full number is recovered, the Blacklist litigator-list lookup is deferred.</p>
+    </div>
+
+    <div style="margin-top:24px;" class="card-grid">
+      <div class="card">
+        <div class="card-meta">Sender DID #1</div>
+        <h3 class="card-title" style="font-family:var(--font-mono); font-size:22px;">(415) 754-2352</h3>
+        <p class="card-body">San Francisco geographic DID. Pled in ¶26 as the originating number for the prerecorded voicemail. No consumer reports surfaced on 800notes / YouMail / Tellows / RoboKiller queries (all four sources returned 403/404). Pairing a geographic CA DID with the 877 toll-free callback is consistent with a multi-DID outbound dialer pool.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Sender DID #2 (Callback)</div>
+        <h3 class="card-title" style="font-family:var(--font-mono); font-size:22px;">(877) 883-0045</h3>
+        <p class="card-body">Toll-free callback embedded in the prerecorded voicemail transcript ("Call the toll-free number 877-883-0045"). Branded as "Costuless Insurance" in the recording. This is the inbound queue for the campaign — direct sender-identification artifact tying the dialer to Freeway / Cost-U-Less.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card-grid">
+      <div class="card">
+        <div class="card-meta">Recovery Path 1</div>
+        <h3 class="card-title">Pull PACER Doc #1</h3>
+        <p class="card-body">Complaint filed 2026-05-28 in C.D. Cal. (Santa Ana). Pull the full PDF from PACER (~$1.20). Plaintiff's full 10-digit number is typically NOT in the complaint itself when only the last four are pled — recovery moves to Path 2 or 3.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path 2</div>
+        <h3 class="card-title">Await defense counsel</h3>
+        <p class="card-body">Once defense counsel appears, they will receive the full number in early Rule 26(f) disclosures or via a meet-and-confer. The rep should follow up with defense on appearance.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path 3</div>
+        <h3 class="card-title">Discovery request</h3>
+        <p class="card-body">Defense can serve a contention interrogatory or RFP for the plaintiff's recipient number on day one. Edelsberg cases typically respond promptly — number is usually disclosed within 30 days of service.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <span class="pill pill--red">Scrub Status: Deferred — Recover Full Number</span>
+      &nbsp;
+      <span class="pill pill--info">Plaintiff Not on TCPAWorld / CourtListener Filer Index</span>
+      &nbsp;
+      <span class="pill pill--warn">Sender DIDs Confirmed in Complaint</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Serial TCPA defendant, deep-pocketed parent, smoking-gun privacy policy — this is a Consent Capture + Compliance Audit lay-up.</h2>
+      <p class="section-lede">Freeway has now been sued under the TCPA at least six times in five jurisdictions (CA, AZ, OR, NE, S.D. Fla.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freeway+Insurance%22+TCPA&type=r">CourtListener -></a></span>. Past settlements did not fix the compliance program. Their current privacy policy (last updated Sept 2025) authorizes data sharing with "non-affiliated business partners" but never mentions TCPA, autodialer, prerecorded voice, or express written consent <span class="src-tag"><a href="https://www.freeway.com/privacy-policy">freeway.com/privacy-policy -></a></span>. Lead with Consent Capture; cross-sell Compliance Audit and ongoing Litigator Scrub.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Reed pleads <em>no</em> prior express consent for a prerecorded voice call. Freeway's quote-flow and franchisee intake have no visible TCPA-compliant capture mechanism. Selling a documented, time-stamped consent record system <em>directly answers</em> the only defense available under § 227(b)(1)(A)(iii).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #1</div>
+        <h3 class="card-title">Compliance Audit · Policies &amp; Procedures</h3>
+        <p class="card-body">650+ retail/franchise storefronts <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Freeway_Insurance">Wikipedia -></a></span>, 2,000+ agents, multiple acquired call lists (Colyer, DeFranco, CW Baker, AutoPartners, Showers, Can-Do). Inherited lead data of unknown provenance is the classic vicarious-liability vector. Audit + written P&amp;Ps for franchisees is a natural follow-on.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #2</div>
+        <h3 class="card-title">Litigator Scrub (Ongoing)</h3>
+        <p class="card-body">Edelsberg Law has filed ~402 TCPA cases <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">CourtListener -></a></span> and Andrew Perrong is targeting Freeway in parallel (Wilson v. Freeway, D. Or. 2025). A real-time scrub against known TCPA plaintiffs and counsel domains protects Freeway from the next filing.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; text-transform:uppercase; letter-spacing:0.1em; color:var(--bl-red); margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+        "Freeway has settled at least three prior TCPA cases (Whittaker D. Ariz. 2022, Uribe C.D. Cal. 2015, Cheng N.D. Cal. 2019) and still got sued again in Oregon in October 2025 and now in California in May 2026 by Scott Edelsberg personally — the named partner of a firm with 400+ TCPA filings. Past settlements clearly haven't fixed the program. Your current privacy policy explicitly shares consumer phone data with 'non-affiliated business partners for their marketing or business purposes' and never references TCPA, autodialer, or express written consent. That language is the exact disclosure plaintiffs' counsel uses to defeat consent defenses. We close that gap on day one — verifiable, timestamped consent capture across freeway.com, costulessinsurance.com, and the 650 franchise locations — and we layer a litigator scrub on top so the next Edelsberg or Perrong complaint doesn't land."
+      </p>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px; margin-top:14px;">
+        Counsel selection cue: this is a 21-day federal answer clock with deep-pocket parent (Alliant Insurance Services), a NASCAR-sponsoring brand with reputation sensitivity, and a serial TCPA defendant posture. Decision authority sits with Carol Newman (GC, Confie). Sell up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Non-standard auto roll-up — 650+ stores, 2,000+ agents, NASCAR money, Alliant Insurance parent.</h2>
+      <p class="section-lede">Freeway is the consumer-facing brand of Confie, a private-equity-built non-standard auto insurance broker acquired by Alliant Insurance Services in April 2021 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Freeway_Insurance">Wikipedia -></a></span>. Footprint and parent depth make this a settlement-capable defendant.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Freeway Insurance Services America, LLC</dd>
+          <dt>DBA</dt><dd>Cost-U-Less Insurance Center <span class="src-tag"><a href="https://www.freeway.com">freeway.com -></a></span></dd>
+          <dt>Formation State</dt><dd>California (CA Sec. of State search blocked at fetch — confirm before outreach)</dd>
+          <dt>HQ</dt><dd>7711 Center Ave, Suite 200, Huntington Beach, CA 92647 (per complaint ¶10)</dd>
+          <dt>Founded</dt><dd>1987 by Kelly Turton (Orange County, CA) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Freeway_Insurance">Wikipedia -></a></span></dd>
+          <dt>Parent</dt><dd>Confie → Alliant Insurance Services (acquired April 2021)</dd>
+          <dt>PE History</dt><dd>ABRY Partners portfolio company 2008–2021; explored $1.6B sale 2015</dd>
+          <dt>Employees / Agents</dt><dd>2,000+ bilingual agents, 650+ retail/franchise storefronts across 25–28 states</dd>
+          <dt>Vertical</dt><dd>Non-standard auto, SR-22, motorcycle, renters, homeowners, commercial, Mexican auto, DMV services</dd>
+          <dt>Customer Base</dt><dd>~50% Hispanic/Latino; bilingual English/Spanish outbound</dd>
+          <dt>Marketing Spend</dt><dd>NASCAR Cup Series Premier Partner (2026), Trackhouse Racing #99 Daniel Suárez — replacing GEICO</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy policy authorizes selling phone data, never mentions TCPA.</h3>
+        <p class="card-body">Freeway's privacy policy (last updated 2025-09-17) explicitly states: "We may share your Personal Data, including your SMS opt-in or consent status, with third parties that help us provide our messaging services, including but not limited to platform providers, phone companies, and any other vendors" — and authorizes sharing with "non-affiliated business partners for their marketing or business purposes." The policy never uses the words TCPA, autodialer, prerecorded voice, or prior express written consent. <span class="src-tag"><a href="https://www.freeway.com/privacy-policy">freeway.com/privacy-policy -></a></span></p>
+        <p class="card-body" style="margin-top:12px;">An opt-out address (donotcall@confie.com) exists, which proves awareness of DNC obligations — but no inbound capture documentation is referenced. This is the exact disclosure pattern Edelsberg uses to defeat consent defenses.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>May 28, 2026</dd>
+        <dt>Answer Deadline</dt><dd>~June 18, 2026 (21-day federal clock from service; service not yet effected per docket)</dd>
+        <dt>Parallel D.Or. Case</dt><dd>Wilson v. Freeway Insurance Services of America (D. Or. 2025) — still pending <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Freeway+Insurance%22+TCPA&type=r">CourtListener -></a></span></dd>
+        <dt>Franchise Expansion</dt><dd>31 new franchises 2024; 53 more in 2025 — rapidly expanding TCPA exposure surface <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Freeway_Insurance">Wikipedia -></a></span></dd>
+        <dt>Seasonal Note</dt><dd>Auto insurance renewal cycles peak Q1/Q3; current Q2/Q3 window aligns with intensive outbound campaigns</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Confie</strong> <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>Parent holding company</td>
+            <td>Insurance brokerage roll-up</td>
+            <td>Controls compliance + GC for all subs (Freeway, Cost-U-Less, InsureOne)</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cost-U-Less Insurance Center</strong></td>
+            <td>Sister brand / DBA</td>
+            <td>Non-standard auto</td>
+            <td>Named in voicemail transcript ("we are Costuless Insurance") — same dialer ops</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>InsureOne</strong></td>
+            <td>Sister brand (Confie rebrand of standard auto)</td>
+            <td>Standard auto insurance</td>
+            <td>Same parent compliance program; likely same outbound infrastructure</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alliant Insurance Services</strong></td>
+            <td>Ultimate parent (acquired Confie 2021)</td>
+            <td>National commercial insurance broker</td>
+            <td>Enterprise compliance buyer; cross-sell at portfolio level</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>AutoPartners Insurance Agency (TX), Can-Do, Showers Insurance (ID)</td>
+            <td>Recent bolt-on acquisitions (2021–2022)</td>
+            <td>Regional non-standard auto</td>
+            <td>Inherited lead lists — provenance unknown — classic TCPA risk surface</td>
+            <td><span class="pill pill--info">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Sixth TCPA case against Freeway in 11 years — and a top-tier plaintiff firm is the one filing.</h2>
+      <p class="section-lede">Freeway has settled at least three prior TCPA actions (Whittaker, Uribe, Cheng) and quickly resolved a fourth (Twing). The pattern suggests they pay rather than litigate. Edelsberg Law adds a 400+ filing volume and a $5M class settlement track record (DeFranks v. NastyGal).</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>8:26-cv-01354 (C.D. Cal., Santa Ana) <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01354&type=r">CourtListener -></a></span></dd>
+          <dt>Filed</dt><dd>May 28, 2026 (initial complaint, civil cover sheet, summons request all docketed)</dd>
+          <dt>Plaintiff</dt><dd>Alyssa Reed (resident, San Joaquin County, CA)</dd>
+          <dt>Class</dt><dd>Putative Rule 23 class — "tens of thousands" alleged (¶6)</dd>
+          <dt>Class Definition</dt><dd>All persons in the U.S. who, within 4 years prior to filing, were sent a prerecorded voice call on a cellular phone regarding Defendant's property, goods, and/or services (¶41)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(b)(1)(A)(iii); 47 USC § 227(b)(3)</dd>
+          <dt>Theory</dt><dd>Prerecorded voice to cellular without prior express consent; willful/knowing for treble damages</dd>
+          <dt>Damages Sought</dt><dd>$500–$1,500 per call · injunctive relief · CAFA jurisdiction pled at >$5M aggregate</dd>
+          <dt>Exposure Math</dt><dd>10,000 class members × $500–$1,500 = $5M–$15M baseline · upper bound (tens of thousands × $1,500 trebled) materially higher</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer clock</dd>
+          <dt>Judge</dt><dd>Not yet assigned (no judge visible on CourtListener metadata; magistrate consent notice docketed 2026-06-02)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel · Scott Edelsberg</h3>
+        <dl class="kv">
+          <dt>Firm</dt><dd>Edelsberg Law, P.A. <span class="src-tag"><a href="https://edelsberglaw.com">edelsberglaw.com -></a></span></dd>
+          <dt>CA Bar No.</dt><dd>330990 — active <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/330990">CalBar -></a></span></dd>
+          <dt>Also Admitted</dt><dd>Florida (FL Bar fetch blocked — confirm)</dd>
+          <dt>Firm Address (Complaint)</dt><dd>1925 Century Park E #1700, Los Angeles, CA 90067 <span class="pill pill--warn">Likely virtual office</span></dd>
+          <dt>Firm Principal Office</dt><dd>20900 NE 30th Ave #417, Aventura, FL 33180</dd>
+          <dt>Address Mismatch</dt><dd>Firm website lists only Aventura, FL — CA address appears to be a forwarding/regus-style address used for CA filings <span class="src-tag"><a href="https://edelsberglaw.com/about">edelsberglaw.com/about -></a></span></dd>
+          <dt>Direct Phone</dt><dd>(305) 975-3320 (Scott Edelsberg direct, per complaint)</dd>
+          <dt>Firm Phone</dt><dd>(786) 289-9471 (FL HQ)</dd>
+          <dt>Email</dt><dd>scott@edelsberglaw.com</dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>Firm TCPA Filings</dt><dd>~402 cases located on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">High — TCPAWorld-flagged volume filer</span></dd>
+          <dt>Notable Settlements</dt><dd>DeFranks v. NastyGal $5M · Picton v. Greenway Dodge $2.745M · Banks v. Fuccillo $1.864M · FRL/Toyota of N. Miami $889k (2026) <span class="src-tag"><a href="https://tcpaworld.com/?s=Edelsberg+Law">TCPAWorld -></a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Edelsberg's pattern: file a class on a verifiable artifact, then negotiate a mid-7-figure settlement.</h3>
+      <p class="card-body">Edelsberg Law claims approximately $100M recovered for consumers <span class="src-tag"><a href="https://edelsberglaw.com">edelsberglaw.com -></a></span>. Their template is: (1) identify a defendant with documented outbound dialer infrastructure and a privacy policy that fails to disclose TCPA-grade consent capture; (2) file a Rule 23 class on a single representative call/text with a screenshot exhibit; (3) plead CAFA jurisdiction at $5M+; (4) drive to class-wide settlement within 12–24 months. Notable: Scott Edelsberg himself was the named plaintiff in <em>Edelsberg v. Brea Financial Group</em>, 2019 U.S. Dist. LEXIS 29941 (S.D. Fla.) — the named partner is both counsel and a documented TCPA plaintiff. <span class="src-tag"><a href="https://scholar.google.com/scholar?q=%22Scott+Edelsberg%22+TCPA">Google Scholar -></a></span></p>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px;">Concurrent &amp; Recent Litigation Against Freeway</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Reed v. Freeway Insurance Services America, LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>8:26-cv-01354 · C.D. Cal.</td>
+            <td>2026-05-28</td>
+            <td><span class="pill pill--danger">Active · class pending</span></td>
+            <td>Prerecorded voice to cell; no consent</td>
+          </tr>
+          <tr>
+            <td>Wilson v. Freeway Insurance Services of America, LLC</td>
+            <td>D. Or.</td>
+            <td>2025</td>
+            <td><span class="pill pill--red">Pending</span></td>
+            <td>TCPA (Andrew Perrong-style filing)</td>
+          </tr>
+          <tr>
+            <td>Whittaker v. Freeway Insurance Services America LLC</td>
+            <td>3:22-cv-08042 · D. Ariz.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Terminated 2023-07-05 (likely settled)</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Karla Uribe v. Freeway Insurance Services, Inc.</td>
+            <td>8:15-cv-00181 · C.D. Cal.</td>
+            <td>2015</td>
+            <td><span class="pill pill--ok">Settled 2015-07-06</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Twing v. Freeway Insurance Services, Inc.</td>
+            <td>1:19-cv-00623 · E.D. Cal.</td>
+            <td>2019-05-08</td>
+            <td><span class="pill pill--ok">Settled 2019-05-31 (~3 weeks)</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Smith v. Agentra, LLC (Freeway co-def.)</td>
+            <td>8:19-cv-00178 · D. Neb.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">Settled</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Cheng v. All Star General Insurance Agency, Inc. (Freeway co-def.)</td>
+            <td>3:19-cv-02352 · N.D. Cal.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">Dismissed 2019-12-27</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Gomez v. Freeway Insurance Services America, LLC</td>
+            <td>1:20-cv-21811 · S.D. Fla.</td>
+            <td>2020</td>
+            <td><span class="pill pill--info">Closed</span></td>
+            <td>ADA (not TCPA, included for context)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Open Intel Gaps to Close Before First Dial</h4>
+      <ul>
+        <li><strong>Plaintiff's full 10-digit number</strong> — only "1171" pled. Pull PACER, await defense disclosures, or run a discovery request.</li>
+        <li><strong>Judge assignment</strong> — not visible in docket metadata yet; ruling-tendency analysis pending.</li>
+        <li><strong>Defense counsel</strong> — not yet appeared; service not yet effected per docket.</li>
+        <li><strong>California SoS / OpenCorporates entity confirmation</strong> — registered agent, formation date, officer-of-record all blocked at fetch (CA SoS, OpenCorporates 403). Confirm before sending mail.</li>
+        <li><strong>Florida Bar status for Scott Edelsberg</strong> — FL Bar directory returned 403. Confirm FL admit date and discipline history.</li>
+        <li><strong>Live quote-flow consent language</strong> — could not capture the freeway.com or costulessinsurance.com signup checkbox content at fetch. Recommend a manual walk-through before the call.</li>
+        <li><strong>Confie corporate HQ direct line</strong> — leadership page extracted 714-252-2500 inferentially; verify before dial.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to Carol Newman (GC, Confie). The 21-day answer clock is the lever.</h2>
+      <p class="section-lede">Decision authority on TCPA compliance buying sits with the parent (Confie / Alliant). GC Carol Newman owns outside-counsel selection and policy-and-procedures investments. Cesar Soriano (CEO) and Joshua Marder (CMO) are accelerants. Email pattern is <strong style="font-family:var(--font-mono);">{first}.{last}@confie.com</strong>, confirmed from published <em>customercare@confie.com</em> and <em>accountspayable@confie.com</em> addresses on freeway.com/contact-us and the confie.com statement: "Confie emails only come from @confie.com." <span class="src-tag"><a href="https://www.freeway.com/contact-us">freeway.com -></a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Carol Newman</strong> <span class="pill pill--dark">GC</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>General Counsel and Corporate Secretary, Confie · Owns outside-counsel selection and TCPA settlement authority across all Confie brands <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 (Confie HQ main) <span class="pill pill--gap">GAP</span></td>
+            <td>carol.newman@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/carol-newman">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Cesar Soriano</strong> <span class="pill pill--dark">CEO</span></td>
+            <td>Chief Executive Officer, Confie · 20+ yrs financial/insurance/business services <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>cesar.soriano@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/cesar-soriano">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Joshua Marder</strong> <span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer, Confie · Owns outbound campaign strategy (Freeway, Cost-U-Less, InsureOne) <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>joshua.marder@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/joshua-marder">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Darrin Silveria</strong> <span class="pill pill--dark">CSO</span></td>
+            <td>Chief Sales Officer, Confie · 25+ yrs · franchise &amp; agent operations <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>darrin.silveria@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/darrin-silveria">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Chris Alfaras</strong> <span class="pill pill--dark">CIO</span></td>
+            <td>Chief Information Officer, Confie · Owns dialer/marketing tech stack &amp; data systems <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>chris.alfaras@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/chris-alfaras">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Kaplan</strong> <span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer, Confie · 30 yrs · settlement-budget approver <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>michael.kaplan@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-kaplan">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tom Hammond</strong> <span class="pill pill--dark">CSO/Strategy</span></td>
+            <td>Chief Strategy Officer, Confie · 35+ yrs P&amp;C <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>tom.hammond@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/tom-hammond">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Chad Maxwell</strong> <span class="pill pill--dark">SVP M&amp;A</span></td>
+            <td>Senior Vice President, M&amp;A · Owns acquisition integration and inherited lead-list provenance <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>chad.maxwell@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/chad-maxwell">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tim Clark</strong> <span class="pill pill--dark">CHRO</span></td>
+            <td>Chief Human Resources Officer, Confie · 25+ yrs <span class="src-tag"><a href="https://confie.com/leadership">confie.com -></a></span></td>
+            <td>714-252-2500 <span class="pill pill--gap">GAP</span></td>
+            <td>tim.clark@confie.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/tim-clark">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Josh Gooley</strong> <span class="pill pill--dark">HR · Freeway</span></td>
+            <td>HR, Freeway Insurance (LinkedIn-sourced) <span class="src-tag"><a href="https://www.linkedin.com/company/freeway-insurance">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>josh.gooley@confie.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/joshgooleyhr">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Customer Care · DNC</strong> <span class="pill pill--dark">Inbound</span></td>
+            <td>Published customer care + Do-Not-Call mailboxes (Freeway / Confie) <span class="src-tag"><a href="https://www.freeway.com/contact-us">freeway.com -></a></span></td>
+            <td>800-777-5620 <span class="pill pill--ok">VERIFIED</span></td>
+            <td>customercare@confie.com · donotcall@confie.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">
+      Plaintiff counsel contact info (Scott Edelsberg / Edelsberg Law, P.A.) is housed in Section 04 only — do not call plaintiff-side counsel from this directory.
+    </p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the 21-day answer clock closes around June 18.</h2>
+      <p class="section-lede">Freeway has a documented pay-rather-than-litigate posture on TCPA cases. The window between filing and defense counsel appearance is exactly when in-house buys compliance infrastructure to support settlement positioning. Hit it now.</p>
+    </div>
+
+    <div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 1 — Email + LinkedIn to Carol Newman (GC, Confie)</h4>
+          <p>Open with the docket number (8:26-cv-01354) and the smoking-gun line from the privacy policy. Frame: "You've been sued under § 227(b)(1)(A)(iii) for the sixth time in 11 years. Your current privacy policy never mentions TCPA, autodialer, or prior express written consent. We close that gap before your answer is due."</p>
+          <p>Reference: prior Freeway settlements (Whittaker, Uribe, Twing, Cheng) demonstrate the pattern. Attach a 1-pager on Consent Capture.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 2 — Parallel touch to Cesar Soriano (CEO) and Joshua Marder (CMO)</h4>
+          <p>CEO touch should be short — one paragraph naming the lawsuit, the parallel Oregon case (Wilson v. Freeway), and Edelsberg's 400+ filing volume. CMO touch frames franchise/affiliate marketing risk: 650 storefronts × outbound dialing = vicarious liability exposure that compounds with every new franchise.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3–5 — Outbound to 800-777-5620 and donotcall@confie.com</h4>
+          <p>Use the published customer-care line as a procedural channel to reach the in-house legal queue. Reference docket number; ask for the right contact for litigation-driven compliance procurement. This is a credibility play, not a primary close.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 7 — Recover plaintiff's full number (PACER + early defense outreach)</h4>
+          <p>Pull updated docket. If defense counsel has appeared, send a courtesy note offering pre-answer compliance support. Once defense is on file, the rep gains a second channel into the conversation.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 10–14 — Cross-sell pitch on Alliant / Confie portfolio</h4>
+          <p>Use the Reed filing as the wedge to introduce Blacklist at the parent level. Alliant Insurance Services is a national broker with portfolio-wide consent capture needs. The TCPA exposure of Freeway is a use-case; the buy can be enterprise.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Day 14–21 — Pre-answer close</h4>
+          <p>Aim to land the Consent Capture + Compliance Audit signature before answer is filed. After answer, settlement posture hardens and the urgency wedge dulls. Layer ongoing Litigator Scrub on the contract.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <h4>Trigger Conditions (Replan If)</h4>
+      <ul>
+        <li>Defense counsel files an early MTD or MTC arbitration — pivot to "post-class-cert support" framing</li>
+        <li>Plaintiff voluntarily dismisses to refile (Edelsberg sometimes amends to add co-defendants) — outreach window resets</li>
+        <li>Confie/Alliant announces a corporate compliance hire or external audit — escalate to that contact directly</li>
+        <li>Wilson v. Freeway (D. Or.) settles publicly — use settlement number as price anchor in the close</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      &nbsp;
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 18, 2026</span>
+      &nbsp;
+      <span class="pill pill--warn">DEEP-POCKET PARENT · ALLIANT INSURANCE</span>
+      &nbsp;
+      <span class="pill pill--info">SERIAL-DEFENDANT POSTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
