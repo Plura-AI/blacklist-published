@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colon v. Blue Sky Coverage — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.step-num{ font-family:var(--font-mono); font-size:14px; font-weight:600; color:var(--bl-red); margin-bottom:4px; letter-spacing:0.05em; }
+.step-body{ font-size:15px; line-height:1.6; color:var(--fg-1); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="20" font-family="General Sans, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="20" font-family="General Sans, sans-serif" font-size="22" font-weight="400" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Insurance Lead-Gen SMS Marketer · Federal DNC Violation · Hindi/Lane Class Action · C.D. Cal.</p>
+      <h1 class="hero-tagline">Colon v.<br>Blue Sky Coverage</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05916</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 2, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr.<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred pending PACER pull, but plaintiff's counsel is a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Colon complaint does not disclose the recipient cell number — only that it has a California area code and was DNC-registered on December 28, 2004. Litigator scrub is deferred until the number is recovered.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Cell</div>
+        <div class="scrub-number">NOT DISCLOSED IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only that plaintiff's number has a California area code and was registered on the National DNC Registry on December 28, 2004 (21+ years on the list). No 10-digit number appears anywhere in the four-corners of the pleading.</div>
+      </div>
+      <p class="scrub-body-text">Without the recipient number, the Blacklist litigator-list cross-check cannot be run. Plaintiff <strong>Steve Colon</strong> does not appear in the CourtListener / RECAP archive for prior TCPA actions <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Steve+Colon%22+TCPA&type=r">CourtListener -&gt;</a></span> — so he is not (yet) a known repeat plaintiff. However, plaintiff's counsel <strong>Gerald D. Lane Jr.</strong> and the <strong>Law Offices of Jibrael S. Hindi</strong> are confirmed serial filers, ranked in TCPAWorld's 2026 Power Rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span>.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:6px">Sender SMS Short Code</div>
+        <div class="card-title" style="font-family:var(--font-mono)">86109</div>
+        <div class="card-body">5-digit A2P short code used to text plaintiff with the message <em>"BlueSkyCoverage: Steve, protect your loved ones with a Life Insurance Plan. Visit: insure.co/…"</em> (per complaint exhibit). Short codes are dedicated mass-marketing infrastructure registered via the CTIA/carrier process — not P2P. Third-party complaint aggregators (800notes, YouMail, Tellows, RoboKiller) do not index 5-digit short codes, so consumer-spam reporting cannot be retrieved through those channels.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:6px">Sender Landing Domain</div>
+        <div class="card-title" style="font-family:var(--font-mono)">insure.co</div>
+        <div class="card-body">Generic insurance-vertical domain referenced in the SMS body. Registered via GoDaddy since 2010-11-23, last updated 2025-10-06 — active marketing/redirect infrastructure <span class="src-tag"><a href="https://www.whois.com/whois/insure.co">whois.com -&gt;</a></span>. Notably <strong>not</strong> the defendant's branded blueskycoverage.com domain, suggesting affiliate or lead-aggregator funnel.</div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="undo-2"></i> Recovery Path · #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Document #1 (complaint) on PACER may contain redacted recipient number in the unsealed exhibit. Cost ~$1.20. Most efficient first step.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="clock"></i> Recovery Path · #2</div>
+        <h3 class="card-title">Wait for defense counsel notice</h3>
+        <div class="card-body">Once defense counsel appears and answers, Rule 26(a) disclosures and the meet-and-confer will surface the recipient number. Typical answer window: 21 days post-service.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="search"></i> Recovery Path · #3</div>
+        <h3 class="card-title">Discovery request to plaintiff</h3>
+        <div class="card-body">Defendant's first Interrogatory should pin down the exact recipient number, dates of receipt, and consent provenance. Standard Hindi-firm pattern — they will provide it.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">SERIAL-FILER FIRM CONFIRMED</span>
+      <span class="pill pill--info">PLAINTIFF NOT IN RECAP — FIRST KNOWN FILING</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Insurance lead-gen SMS shop with no public TCPA/DNC policy, no named compliance officer, and a short-code campaign blasting DNC-registered consumers — close on Federal DNC scrubbing.</h2>
+      <p class="section-lede">This is a textbook Blacklist DNC scrubbing deal. Defendant's business model is built on outbound SMS via short code 86109 routed through insure.co landing pages, with the privacy policy admitting the company self-classifies as a "data broker" sharing phone numbers with "hundreds" of Third Party Partners <span class="src-tag"><a href="https://blueskycoverage.com/privacy">blueskycoverage.com/privacy -&gt;</a></span>. They already pay for Jornaya and ActiveProspect TrustedForm consent capture — meaning they know TCPA exists — yet plaintiff (DNC-registered for 21 years) still received marketing texts. That gap is the wedge.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="database"></i> Recommended Lead Pitch</div>
+        <h3 class="card-title">Federal DNC Scrubbing</h3>
+        <div class="card-body">Primary violation pled is 47 CFR § 64.1200(c) — texting consumers on the National DNC Registry. Blacklist's DNC scrub eliminates this entire claim category at the API level before the SMS platform fires.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta"><i data-lucide="user-check"></i> Secondary</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Once the plaintiff number is recovered from PACER, run it against the Blacklist litigator list to demonstrate to defendant counsel exactly how scrub would have flagged this exact recipient. Powerful demo.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta"><i data-lucide="briefcase"></i> Tertiary</div>
+        <h3 class="card-title">Policies &amp; Procedures Audit</h3>
+        <div class="card-body">No publicly visible compliance page, no named CCO, no on-site terms/signup flow reachable at standard URLs. Internal DNC policy infrastructure is likely missing — sell the compliance audit + written DNC P&amp;P package.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta" style="margin-bottom:8px">Pitch Angle</div>
+      <h3 class="card-title">"You already pay for Jornaya. You already pay for ActiveProspect. You're one DNC scrub away from this not happening again."</h3>
+      <div class="card-body">
+        <p>The rep opens by acknowledging that Blue Sky Coverage already understands TCPA risk — the marketing stack on blueskycoverage.com loads Jornaya and ActiveProspect TrustedForm <span class="src-tag"><a href="https://blueskycoverage.com">blueskycoverage.com -&gt;</a></span>, both consent-capture vendors deployed specifically because of TCPA. The problem is that consent capture alone does not protect against §227(c) Federal DNC claims when the lead source itself didn't honor DNC registration. The plaintiff here was on the DNC list for <strong>21 years</strong> before getting the BlueSkyCoverage text. No amount of Jornaya certificate evidence will save the §227(c) count — only a real-time DNC scrub at the dispatch layer will.</p>
+        <p>The second beat is class size and pattern. Plaintiff's counsel is Jibrael Hindi's firm — TCPAWorld 2026 Power Rankings, 10+ active TCPA class actions across S.D. Fla., M.D. Fla., N.D. Cal., E.D. Cal., S.D. Cal., now C.D. Cal. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span>. The complaint alleges a class "in the several thousands." If Blue Sky's short-code 86109 campaign hit even 1,000 DNC-registered numbers, exposure at $500/violation is $500K minimum, $1.5M at willful. Blacklist's annual scrub subscription is a rounding error against that math. The rep should reference the Hindi firm's settlement velocity (Curtis, JumpStartMD, Infobridge, Petruso all closed within months of filing) to underline that this is going to settle — the only question is whether Blue Sky pays once or pays again next quarter for the next plaintiff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Florida-headquartered insurance lead-gen LLC operating under a CA mailing address, with an Apollo Interactive parent footprint and "hundreds" of downstream lead buyers.</h2>
+      <p class="section-lede">Rovner &amp; Company LLC d/b/a Blue Sky Coverage is a private insurance lead-generation operator. The public-facing brand quotes home, auto, health, life, Medicare, and pet insurance, but the actual business is buying clicks, capturing leads, and reselling phone numbers downstream to carriers, brokers, call centers, and lead aggregators.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Rovner &amp; Company LLC d/b/a Blue Sky Coverage</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Legal Entity</dt><dd>Rovner &amp; Company LLC <span class="pill pill--gap">Sunbiz not confirmed</span></dd>
+          <dt>Formation State</dt><dd>Unknown — complaint alleges FL HQ <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05916&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>HQ (per complaint)</dt><dd>Miami, FL</dd>
+          <dt>Mailing Addr. (per site)</dt><dd>531 Main Street, Suite 902, El Segundo, CA 90245 <span class="src-tag"><a href="https://blueskycoverage.com/contact">blueskycoverage.com/contact -&gt;</a></span> <span class="pill pill--warn">FL/CA Mismatch</span></dd>
+          <dt>DBA</dt><dd>Blue Sky Coverage</dd>
+          <dt>Parent / Operator</dt><dd>Apollo Interactive, Inc. (per blueskycoverage.com privacy policy — compliance inbox routes to compliance@apollointeractive.com) <span class="src-tag"><a href="https://blueskycoverage.com/privacy">privacy policy -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Insurance lead generation / brokerage</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Website</dt><dd>blueskycoverage.com <span class="src-tag"><a href="https://blueskycoverage.com">site -&gt;</a></span></dd>
+          <dt>Revenue / Employees</dt><dd>Not disclosed — BBB, Crunchbase, Glassdoor all blocked enrichment</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8"><i data-lucide="alert-triangle"></i> Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy policy admits self-classification as a "data broker" — shares consumer phone numbers with "hundreds" of Third Party Partners.</h3>
+        <div class="card-body">
+          <p>The blueskycoverage.com privacy policy explicitly discloses that the company is self-classified as a "data broker" under Texas Data Broker Law and shares consumer phone numbers with "hundreds" of Third Party Partners including call centers and lead buyers <span class="src-tag"><a href="https://blueskycoverage.com/privacy" style="color:#fff">privacy policy -&gt;</a></span>.</p>
+          <p style="margin-top:12px">This is a TCPA plaintiff's lawyer's dream paragraph. It establishes (a) systemic high-volume outbound contact, (b) downstream vicarious-liability theory across the entire partner network, and (c) admission that consumer numbers leave Blue Sky's hands without any documented downstream DNC-honor obligation. Combined with the lack of a public compliance page or named CCO, there is no defensible §64.1200(d) internal DNC program on the public record.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-meta"><i data-lucide="calendar-x"></i> Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock + immediate scrub remediation window</h3>
+      <dl class="kv" style="margin-top:12px">
+        <dt>Complaint Filed</dt><dd>June 2, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05916&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Service Status</dt><dd>Summons requested 2026-06-02; no proof of service on docket yet</dd>
+        <dt>Answer Deadline</dt><dd>~21 days post-service under FRCP 12 — likely late June / early July 2026</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+        <dt>Active SMS Campaign</dt><dd>Short code 86109 + insure.co domain still active (insure.co WHOIS updated 2025-10-06) <span class="src-tag"><a href="https://www.whois.com/whois/insure.co">whois.com -&gt;</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Related Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Cross-Sell Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Apollo Interactive, Inc.</strong></td>
+            <td>Parent / operator (per privacy policy compliance routing)</td>
+            <td>Insurance lead-gen platform</td>
+            <td>If Apollo operates blueskycoverage.com plus sister insurance brand sites, the same SMS/lead-gen infrastructure powers all of them. One scrub program covers the portfolio.</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>insure.co</strong></td>
+            <td>Landing/redirect domain in SMS messages</td>
+            <td>Insurance click-through</td>
+            <td>Possible affiliate/aggregator. If owned by Blue Sky / Apollo, it is the consumer-facing layer of the same campaign. If owned by a third party, it is a downstream lead buyer that may also need scrubbing.</td>
+            <td><span class="pill pill--warn">Medium — confirm ownership</span></td>
+          </tr>
+          <tr>
+            <td><strong>Short code 86109 (carrier-of-record TBD)</strong></td>
+            <td>SMS dispatch infrastructure</td>
+            <td>Aggregator / messaging platform</td>
+            <td>Whoever runs 86109 is the technical chokepoint — if Blacklist integrates at that layer, the scrub fires before the carrier hands the message off.</td>
+            <td><span class="pill pill--info">Medium — leverage as integration story</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First known TCPA action against Blue Sky — but plaintiff's firm has 10+ active class actions and a "settle quickly, file again" pattern.</h2>
+      <p class="section-lede">There is no prior TCPA docket against Rovner &amp; Company / Blue Sky Coverage in the CourtListener / RECAP archive <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Blue+Sky+Coverage%22+TCPA&type=r">CourtListener -&gt;</a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Rovner+%26+Company%22+TCPA&type=r">CourtListener -&gt;</a></span>. This is litigation heat: <strong>cold today, warming fast</strong>. A serial-filer firm has identified them as a soft target; without remediation, copycat filings are very likely.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <h3 class="card-title">Colon v. Rovner &amp; Company LLC d/b/a Blue Sky Coverage</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Docket</dt><dd>2:26-cv-05916 (C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05916&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 2, 2026</dd>
+          <dt>Plaintiff</dt><dd>Steve Colon (Los Angeles County, CA)</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Putative Rule 23 class</span></dd>
+          <dt>Class Definition</dt><dd>All US persons texted &gt;1 time in a 12-mo period regarding defendant's goods/services, with number on the National DNC Registry ≥30 days, no business relationship in prior 18 mo, no inquiry in prior 3 mo (4-year lookback)</dd>
+          <dt>Class Size Pled</dt><dd>"at least 50 persons … believed to be in the several thousands"</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c); 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Federal DNC — defendant initiated &gt;1 marketing text in 12 months to a DNC-registered cell, no prior business relationship, no inquiry, no signed authorization</dd>
+          <dt>Channel</dt><dd>SMS (short code 86109)</dd>
+          <dt>Damages</dt><dd>$500/violation negligent · $1,500/violation willful · injunctive relief · fees &amp; costs</dd>
+          <dt>Named-Pltf Exposure</dt><dd>2 texts pled → $1,000 (negligent) to $3,000 (willful) on named plaintiff alone</dd>
+          <dt>Class Math</dt><dd>If class = 1,000: $1.0M–$3.0M · If class = "several thousands" (3,000): $3.0M–$9.0M</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · ~21-day answer clock</dd>
+          <dt>Docket Aggregators</dt><dd>PacerMonitor 404 · Justia blocked · UniCourt 404 — only CourtListener has indexed this case so far</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. — Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>(754) 444-7539</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Firm Website</dt><dd>jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">site -&gt;</a></span></dd>
+          <dt>Lead Atty Bar</dt><dd>Gerald D. Lane Jr. — CA Bar #352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -&gt;</a></span> · admit date not extracted</dd>
+          <dt>Bar Address Match</dt><dd><span class="pill pill--warn">Mismatch flagged</span> Counsel admitted in CA but firm operates from Wilton Manors, FL</dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPA Ranking</dt><dd>Hindi recognized in TCPAWorld 2026 Power Rankings — "Most Dangerous TCPA Plaintiff's Lawyers in the Country" <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>TCPA Volume</dt><dd>10+ active TCPA class actions identified across S.D. Fla., M.D. Fla., N.D. Cal., E.D. Cal., S.D. Cal., C.D. Cal. (2024–2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">Extreme</span></dd>
+          <dt>Notable Wins</dt><dd>11th Cir. revival of TCPA suit against "Wolf of Wall Street" Jordan Belfort (2023) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span></dd>
+          <dt>Firm Public Marketing</dt><dd>Advertises +$30M TCPA, +$200M class action, +$15M FDCPA, +$15M data breach, +$10M mass arb, +$10M FCRA in aggregate recoveries</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Plaintiff Firm Template · Hindi/Lane Federal DNC</div>
+      <h3 class="card-title">Single-count §227(c) DNC class action, screenshot exhibit, Rule 23 class "in the several thousands," $500/$1,500 statutory model.</h3>
+      <div class="card-body">
+        <p>The Hindi/Lane firm template is a tight, repeatable §227(c) Federal DNC class complaint: (1) plaintiff is DNC-registered for many years, (2) defendant sent &gt;1 marketing text in a 12-month window, (3) no business relationship, no inquiry, no signed authorization, (4) class definition is the standard 4-year-lookback DNC class with the 18-month / 3-month business-relationship carveouts, (5) statutory damages plus injunction. The same template has been deployed against UrbanStems (2026), American Future Technology (2025), Regal Business Group (2025), Portfolio Recovery Associates (2025), Infobridge (2024), LA Tropicana Food (2024), Authentic Sport Specialty (2025), JumpStartMD (2024), Millionaire Media (2025), and Vanguard Equities (2024) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Gerald+Lane%22+TCPA&type=r">CourtListener -&gt;</a></span>.</p>
+        <p style="margin-top:12px">Settlement velocity in the firm's docket is fast: Curtis, JumpStartMD, Infobridge, Petruso, Hernandez, and Moses all terminated within months of filing. The firm is also actively pursuing certification — <em>Moses v. Millionaire Media</em> has a class cert hearing set for 3/5/2026 before Judge Chhabria <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span>. Insurance is a relatively new vertical for this firm; Blue Sky may be the wedge case for the next batch of insurance-vertical filings.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Colon v. Rovner &amp; Co. d/b/a Blue Sky Coverage</strong></td>
+            <td>2:26-cv-05916</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-02</td>
+            <td><span class="pill pill--red">Current · Pre-Answer</span></td>
+            <td>§227(c) Federal DNC — SMS</td>
+          </tr>
+          <tr>
+            <td colspan="6" style="background:var(--gray-05); font-weight:600; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3);">Plaintiff firm — other recent TCPA actions (representative)</td>
+          </tr>
+          <tr>
+            <td>Lane v. UrbanStems, Inc.</td><td>—</td><td>S.D. Fla.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td><td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Curtis v. Authentic Sport Specialty</td><td>—</td><td>S.D. Cal.</td><td>2025</td>
+            <td><span class="pill pill--ok">Terminated quickly</span></td><td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Moses v. Millionaire Media LLC</td><td>—</td><td>N.D. Cal.</td><td>2025</td>
+            <td><span class="pill pill--danger">Class cert 3/5/2026</span></td><td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Petruso v. Portfolio Recovery Associates</td><td>—</td><td>M.D. Fla.</td><td>2025</td>
+            <td><span class="pill pill--ok">Terminated quickly</span></td><td>TCPA / debt</td>
+          </tr>
+          <tr>
+            <td>Vazquez v. American Future Technology</td><td>—</td><td>E.D. Cal.</td><td>2025</td>
+            <td><span class="pill pill--info">Active</span></td><td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Andrighetto v. JumpStartMD</td><td>—</td><td>N.D. Cal.</td><td>2024</td>
+            <td><span class="pill pill--ok">Terminated quickly</span></td><td>TCPA / health</td>
+          </tr>
+          <tr>
+            <td>Hindi v. Vanguard Equities, LLC</td><td>—</td><td>S.D. Fla.</td><td>2024</td>
+            <td><span class="pill pill--info">Active</span></td><td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8"><i data-lucide="alert-triangle"></i> Open intel gaps to close before first dial</div>
+      <div class="card-body">
+        <ul class="clean tight" style="margin-top:12px">
+          <li><strong>Plaintiff recipient cell number</strong> — pull from PACER ECF #1 or wait for Rule 26(a) disclosures. Cannot run litigator scrub without it.</li>
+          <li><strong>Sunbiz / CA SoS record for Rovner &amp; Company LLC</strong> — all corporate registry queries (Sunbiz, CA SoS, Bizapedia, OpenCorporates) failed with 403/human-check. Manual lookup required to identify registered agent, formation state, and managing member.</li>
+          <li><strong>Relationship between Rovner &amp; Company LLC and Apollo Interactive, Inc.</strong> — privacy policy routes compliance inquiries to compliance@apollointeractive.com, but the corporate relationship (parent? operator? white-label?) is unconfirmed.</li>
+          <li><strong>Named decision-makers</strong> — TheOrg, LinkedIn company pages, ZoomInfo, SignalHire, and Apollo Sales all returned 404/403/410. No named executive identified for either Blue Sky Coverage or Rovner &amp; Company. Manual LinkedIn Sales Navigator pull required.</li>
+          <li><strong>FL/CA address discrepancy</strong> — complaint pleads Miami, FL HQ; website lists 531 Main Street, Suite 902, El Segundo, CA 90245 as mailing address. Confirm which is operational HQ.</li>
+          <li><strong>Short code 86109 carrier of record</strong> — CTIA short code registry not accessed; aggregator/messaging platform identity unknown.</li>
+          <li><strong>Assigned Article III judge + magistrate</strong> — case is too new; assignment not yet on docket.</li>
+          <li><strong>Defense counsel</strong> — none appeared yet; ~21-day answer clock starts on service.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named executives surfaced — use the company contact channels and the Apollo Interactive compliance inbox while LinkedIn Sales Navigator is run.</h2>
+      <p class="section-lede">Defendant operates a minimal public presence: no /team, /leadership, or /about-us page lists named executives, and all third-party org-chart sources (TheOrg, LinkedIn company page, ZoomInfo, Apollo, SignalHire) returned 404/403/410 <span class="src-tag"><a href="https://blueskycoverage.com/about">about page -&gt;</a></span>. The fastest path is the published compliance routing inbox plus a manual LinkedIn pull for Rovner &amp; Company LLC's managing member.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th style="min-width:200px">Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>General Inquiries</strong><br><span class="pill pill--dark">Company main</span></td>
+            <td>Public-facing inbox listed on blueskycoverage.com <span class="src-tag"><a href="https://blueskycoverage.com/contact">site -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not listed — form only</span></td>
+            <td>info@blueskycoverage.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Compliance Inbox</strong><br><span class="pill pill--dark">Apollo Interactive</span></td>
+            <td>Compliance contact routing per blueskycoverage.com privacy policy — Apollo Interactive operates the site <span class="src-tag"><a href="https://blueskycoverage.com/privacy">privacy -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not listed</span></td>
+            <td>compliance@apollointeractive.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Managing Member · Rovner &amp; Co LLC</strong><br><span class="pill pill--dark">Decision-maker</span></td>
+            <td>Identity not on public website or in any accessible corporate registry source — pull via Sunbiz / CA SoS manual lookup, then LinkedIn Sales Nav</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span> <em style="font-size:12px; color:var(--fg-3)">(likely pattern: {first}.{last}@blueskycoverage.com or @apollointeractive.com)</em></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / CCO</strong><br><span class="pill pill--dark">Role-only</span></td>
+            <td>No named GC or Chief Compliance Officer identified on site or in third-party sources. Compliance function appears to be routed through the Apollo Interactive shared inbox.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>compliance@apollointeractive.com (best available)</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>VP Marketing / Head of Lead-Gen</strong><br><span class="pill pill--dark">Role-only</span></td>
+            <td>Owner of the short-code 86109 SMS campaign. Not named publicly. Likely sits inside Apollo Interactive given the lead-gen infrastructure overlap.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr style="background:var(--gray-05)">
+            <td colspan="5" style="font-weight:600; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3);">Mailing addresses on file</td>
+          </tr>
+          <tr>
+            <td><strong>Site mailing address</strong></td>
+            <td colspan="3">531 Main Street, Suite 902, El Segundo, CA 90245 <span class="src-tag"><a href="https://blueskycoverage.com/contact">site -&gt;</a></span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pleaded HQ</strong></td>
+            <td colspan="3">Miami, FL (per Complaint ¶10) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05916&type=r">CourtListener -&gt;</a></span> <span class="pill pill--warn">Conflicts with CA site address</span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-meta">Email pattern</div>
+      <div class="card-body">No personal email surfaced in public sources. Only generic info@blueskycoverage.com and compliance@apollointeractive.com confirmed. Best-guess pattern for outreach: <strong>{first}.{last}@blueskycoverage.com</strong> or <strong>{first}.{last}@apollointeractive.com</strong>. Use <span class="pill pill--warn">PATTERN</span> confidence on any inferred address; verify with a tool such as Hunter/Apollo before sending.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within the next 7 days — defense counsel will pick this up first.</h2>
+      <p class="section-lede">Case was filed June 2, 2026 and has not yet been answered. Once defense counsel files an appearance and engages outside breach-of-compliance consultants, the window for Blacklist to walk in as the remediation vendor narrows. Get in front of the GC equivalent (or Apollo Interactive compliance) before they retain a competing compliance vendor.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="step-num">DAY 0–1</div>
+        <h3 class="card-title">Pull PACER ECF #1 + run Sunbiz manual lookup</h3>
+        <div class="step-body">Spend $1.20 to retrieve the unredacted complaint and any exhibits with the plaintiff number. In parallel, run a manual Sunbiz search for "Rovner &amp; Company LLC" and fictitious name "Blue Sky Coverage" to identify managing member and registered agent. Run the same lookup on CA SoS for the El Segundo entity.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="step-num">DAY 1–2</div>
+        <h3 class="card-title">LinkedIn Sales Navigator pull on Apollo Interactive + Blue Sky Coverage</h3>
+        <div class="step-body">Identify named decision-makers — particularly any title containing "Compliance," "Legal," "General Counsel," "VP Marketing," or "Head of Lead Generation." Apollo Interactive is the highest-likelihood employer location given the privacy-policy routing.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="step-num">DAY 2–3</div>
+        <h3 class="card-title">First outreach to compliance@apollointeractive.com</h3>
+        <div class="step-body">Subject line: "Colon v. Blue Sky Coverage (2:26-cv-05916) — DNC scrub remediation." Lead with the specific docket number to demonstrate awareness. Reference the §227(c) DNC theory and the firm's other 10 active filings to underline that this is not a one-off. Offer a 15-minute call to walk through the scrub integration.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="step-num">DAY 3–5</div>
+        <h3 class="card-title">Direct outreach to identified managing member / GC</h3>
+        <div class="step-body">Once the Sunbiz + LinkedIn pull surfaces a named individual, send a personalized follow-up. Pattern-inferred email + LinkedIn InMail. Reference the privacy-policy "data broker" disclosure as the single most damaging fact for their defense posture.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="step-num">DAY 5–7</div>
+        <h3 class="card-title">Litigator scrub demo once plaintiff number surfaces</h3>
+        <div class="step-body">After PACER pull (or once defense counsel notices appearance and Rule 26 disclosures land), run the recovered recipient cell against the Blacklist litigator list. Use the result as proof-of-concept on the demo call — "this exact number would have been blocked at API call."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="step-num">DAY 7–21</div>
+        <h3 class="card-title">Close on annual DNC scrub + Litigator Scrub + P&amp;P audit package</h3>
+        <div class="step-body">Target close before the answer deadline (likely late June / early July 2026). The pitch is that Blacklist's scrub program is the documented remediation defendant will point to in its answer/mediation as proof of post-suit compliance — turning a $1.5M–$9M exposure into a defensible record.</div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <div class="card-meta" style="color:#A8A8A8"><i data-lucide="alert-triangle"></i> Trigger conditions — re-prioritize if any of these happen</div>
+      <div class="card-body">
+        <ul class="clean tight" style="margin-top:12px">
+          <li><strong>Defense counsel notices appearance</strong> — escalate to direct outreach to defense counsel; offer to be the named remediation vendor for the answer/mediation record.</li>
+          <li><strong>Hindi/Lane firm files a second TCPA action against Blue Sky / Apollo</strong> — urgency goes from "high" to "critical"; pitch becomes portfolio-wide scrub for the entire Apollo Interactive site network.</li>
+          <li><strong>Short code 86109 is taken down or migrates to a new code</strong> — signals defendant is in active remediation mode; accelerate the conversation before they pick a competing vendor.</li>
+          <li><strong>Plaintiff voluntarily dismisses to amend (Rule 41)</strong> — signals defense is negotiating; this is the prime window to be the named compliance vendor in the settlement docs.</li>
+          <li><strong>Class certification motion filed</strong> — exposure math hardens; defense will be most receptive to scrub spend immediately after the motion lands.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE LATE JUNE 2026</span>
+      <span class="pill pill--info">PRIMARY PRODUCT: FEDERAL DNC SCRUBBING</span>
+      <span class="pill pill--info">SECONDARY: LITIGATOR SCRUB + P&amp;P AUDIT</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
