@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Burkholder v. John Doe 1-10 — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:16px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ width:40px; height:40px; background:var(--bl-black); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; }
+.step-title{ font-weight:600; font-size:16px; margin:0 0 4px; }
+.step-body{ font-size:14px; color:var(--fg-2); line-height:1.55; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-05-29</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Pro Se Attorney-Plaintiff · John Doe Defendants · TCPA + FTSA Stacked Claims · Unmasking Discovery Pending</p>
+      <h1 class="hero-tagline">Burkholder v.<br>John Doe 1–10</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">6:26-cv-01142-JSS-DCI</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">M.D. Fla. (Orlando)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">May 22, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(7 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Julie S. Sneed (Art. III)<br>Daniel C. Irick (Mag.)</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC §227(b)<br>47 USC §227(c)<br>Fla. Stat. §501.059<br>Fla. Stat. §501.601</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">John Burkholder <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Pro Se (Burkholder Law, Sanford FL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number is fully pled — but Blacklist API returned a TLS error. Manual re-scrub required.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Burkholder discloses two numbers in the complaint — both are now litigator-trap numbers regardless of any scrub outcome. The automated API call failed at the certificate layer; a manual lookup needs to be re-run before first dial.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="phone-call"></i> Scrub Status</div>
+        <span class="pill pill--warn">API ERROR · MANUAL RESCRUB REQUIRED</span>
+        <span class="pill pill--danger">PLAINTIFF NUMBERS DISCLOSED IN COMPLAINT</span>
+      </div>
+
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Primary Plaintiff Cell (DNC since 2016-07-12, FL DNC since 2018-04-01)</div>
+        <div class="scrub-number">(954) 999-8003</div>
+        <div class="scrub-number-sub">Disclosed in complaint ¶3, ¶6, ¶12, ¶28, ¶36 and as Burkholder's e-signature contact. Also published as Burkholder Law business line — number serves both personal/DNC role and law-firm role simultaneously.</div>
+      </div>
+
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Secondary Mixed-Use Line (cell + business)</div>
+        <div class="scrub-number">(407) 630-0122</div>
+        <div class="scrub-number-sub">Disclosed in complaint ¶3, ¶13, ¶36. Pleaded as a "mixed-use personal/business" cellular line — exposes any caller to §227(b) ATDS/prerecorded liability to the extent it qualifies as a cell number.</div>
+      </div>
+
+      <p class="scrub-body-text">Blacklist Bulk API returned <code>invalid peer certificate: Expired</code> for both numbers on initial automated lookup. <span class="src-tag">(internal API trace)</span> This is an infrastructure error, not a scrub result — both numbers must be re-checked manually against the litigator database before the owner reaches out. The 800notes / YouMail / Tellows / RoboKiller cross-checks all returned HTTP 403/404 and produced no consumer-spam intel on either DID. <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01142&type=r">CourtListener docket -&gt;</a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-meta">Recovery Path 1</div>
+        <h3 class="card-title">Re-run Blacklist Bulk lookup manually</h3>
+        <p class="card-body">Both 954-999-8003 and 407-630-0122 are pled verbatim in the complaint. A fresh internal scrub against the litigator list will confirm whether either DID is already on the Blacklist database — and a hit makes the close trivial.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path 2</div>
+        <h3 class="card-title">Confirm professional-plaintiff status</h3>
+        <p class="card-body">Burkholder is a Florida-barred attorney suing pro se. The primary number is simultaneously his personal cell AND his published law-firm line — a posture that signals litigation-aware plaintiff. Flag both DIDs as known litigator traps regardless of scrub outcome. <span class="src-tag"><a href="https://tcpaworld.com/?s=Burkholder">TCPAWorld -&gt;</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path 3</div>
+        <h3 class="card-title">Cross-check prior pro se filings</h3>
+        <p class="card-body">CourtListener returned no prior TCPA matches for this John Burkholder (Sanford FL), but Justia and PacerMonitor were inaccessible. Re-query before first dial to confirm whether this is a first-time filer or a repeat pro se litigator. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22John+Burkholder%22&type=r">CourtListener -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: API ERROR — RESCRUB BEFORE DIAL</span>
+      <span class="pill pill--danger">PLAINTIFF IS LICENSED FL ATTORNEY · PRO SE</span>
+      <span class="pill pill--info">BOTH DIDS NOW LITIGATOR-TRAP NUMBERS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Doe defendants today, named defendants in 60–90 days — the entire prospect pool here is "anyone who dialed 954-999-8003 or 407-630-0122."</h2>
+      <p class="section-lede">This is an inverted lead. The complaint names no defendant entities — only "John Doe 1 through John Doe 10." That means our sales opportunity is not one company; it's the population of marketers, lead-gen platforms, and dialer operators who placed any call or text to either of Burkholder's disclosed numbers in the relevant window. Lead with Litigator Scrub. Burkholder's two numbers should be flagged in the Blacklist database today so future client scrubs catch them before another marketer becomes Doe #11.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Two disclosed plaintiff DIDs (954-999-8003 and 407-630-0122) tied to a pro se attorney-plaintiff who has stacked four statutes against unknown callers. These numbers belong on the litigator list today. The pitch to any prospect: "If you'd been scrubbing against Blacklist, you wouldn't be Doe #4."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Florida)</h3>
+        <p class="card-body">The primary number has been on the Federal DNC since July 12, 2016 and the Florida DNC since April 1, 2018 (¶12, ¶28). Any prospect who placed calls to it failed both scrubs simultaneously — a §227(c) and §501.059 stack.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Product</div>
+        <h3 class="card-title">Policies &amp; Procedures / Internal DNC</h3>
+        <p class="card-body">Count IV pleads failure to maintain written DNC policies and procedures and an internal DNC list (47 CFR §64.1200(d)). Plaintiff alleges multiple STOP requests were ignored — a textbook internal-DNC failure. Any defendant that surfaces will need a documented program immediately.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">"The plaintiff filed first, then is going fishing through discovery. You don't want to be what he catches."</h3>
+      <p class="card-body">Burkholder is a Florida-barred attorney representing himself against unknown callers. He has stacked federal TCPA §227(b) (ATDS + prerecorded voice), federal §227(c) (DNC), federal §64.1200(d) (internal DNC), Florida's FTSA §501.059, the Florida Telemarketing Act §501.601, AND common-law intrusion upon seclusion — a maximum-damages, six-count complaint. <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01142&type=r">CourtListener -&gt;</a></span> He will subpoena carrier records to identify the actual callers, then amend to name them. Once a marketer's name shows up in an amended complaint, the cost of Litigator Scrub is rounding error compared to the statutory damages stack ($500–$1,500 per call across multiple statutes).</p>
+      <p class="card-body" style="margin-top:12px">Use this lead as a top-of-funnel campaign trigger: any client running outbound voice or SMS into Florida should have 954-999-8003 and 407-630-0122 on their suppression list today. The pitch writes itself — "here's a live federal complaint, here are the plaintiff's two numbers, here's what a single missed scrub looks like in court."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">No defendant entity to profile — opportunity sizing is on the discovery pipeline, not on a single named company.</h2>
+      <p class="section-lede">The complaint pleads ten John Doe defendants and explicitly states Burkholder will amend once "their identities are ascertained through discovery, carrier subpoenas, and investigation" (¶7). Until that happens, there is no parent entity, no formation state, no HQ, no revenue band to report. This section is intentionally thin — re-run corporate enrichment after the first amended complaint drops.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">John Doe 1 through John Doe 10</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Unknown — pleaded as ten Doe defendants <span class="pill pill--gap">UNKNOWN</span></dd>
+          <dt>Alleged Role</dt><dd>"Unknown individuals, entities, lead generators, dialer platforms, marketing vendors, or their principals" (¶7)</dd>
+          <dt>Vertical</dt><dd>Unknown <span class="pill pill--gap">GAP</span></dd>
+          <dt>Channels Used</dt><dd>Voice + SMS, ATDS + prerecorded/artificial voice alleged (¶16, ¶36)</dd>
+          <dt>Acted Through</dt><dd>Lead generators, dialing platforms, third-party marketing vendors as agents (¶18)</dd>
+          <dt>Liability Theory</dt><dd>Actual authority, apparent authority, agency, ratification, vicarious liability (¶18)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Calls and texts continued "despite multiple explicit requests to STOP"</h3>
+        <p class="card-body">Whoever the actual caller turns out to be, Count IV (¶32) pleads failure to maintain written DNC policies and procedures and an internal DNC list per 47 CFR §64.1200(d). Plaintiff specifically alleges the calls "continued and escalated" after explicit STOP requests (¶15). That is not an edge case — that is a textbook internal-DNC failure and the easiest count to prove at summary judgment.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">~60–90 day window before discovery unmasks the defendants</h3>
+      <dl class="kv">
+        <dt>Filing Date</dt><dd>May 22, 2026</dd>
+        <dt>Doe Discovery</dt><dd>Expedited carrier subpoenas typical for unmask cases — expect amended complaint Q3 2026</dd>
+        <dt>Answer Deadline</dt><dd>Not yet running — defendants not yet served/identified <span class="pill pill--gap">PENDING</span></dd>
+        <dt>Why This Matters</dt><dd>The list of "everyone who dialed 954-999-8003 in the relevant window" is exactly the lead list for outbound BDR work. Get the two DIDs into the Blacklist database now; revisit when the amended complaint names actual entities.</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px">
+      <table class="tbl">
+        <caption style="text-align:left; padding:16px; font-weight:600; font-size:14px; border-bottom:1px solid var(--border-1)">Related Entities (Cross-Sell Candidates)</caption>
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--fg-3); padding:24px;">No related entities identified — defendants are unnamed Does. Cross-sell table will populate after the amended complaint identifies the actual callers and their corporate affiliations.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Six-count maximum-damages stack filed pro se by a Florida-barred attorney — a sophisticated playbook against unknown callers.</h2>
+      <p class="section-lede">Burkholder isn't a layperson with a TCPA grievance — he's a Florida attorney who chose to stack every available federal and state statute plus a common-law tort. The litigation posture is aggressive even though no defendant has appeared. Public-source research did not surface other TCPA filings by this Burkholder, but several primary databases were inaccessible.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Burkholder v. John Doe 1–10</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>6:26-cv-01142-JSS-DCI <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01142&type=r">CL -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>May 22, 2026</dd>
+          <dt>Court</dt><dd>M.D. Fla., Orlando Division</dd>
+          <dt>Article III Judge</dt><dd>Julie S. Sneed</dd>
+          <dt>Magistrate</dt><dd>Daniel C. Irick</dd>
+          <dt>Plaintiff</dt><dd>John Burkholder (pro se), Seminole County, FL</dd>
+          <dt>Class Action</dt><dd>No — individual action <span class="pill pill--info">INDIVIDUAL</span></dd>
+          <dt>Counts</dt><dd>I. FTSA §501.059 · II. FL Telemarketing Act §501.601 · III. 47 USC §227(c) + §64.1200 · IV. §227(c) + §64.1200(d) Internal DNC · V. §227(b)(1)(A)(iii) + (b)(3) ATDS/Prerecorded · VI. Intrusion Upon Seclusion</dd>
+          <dt>DNC Status Pled</dt><dd>Federal DNC since 2016-07-12; FL DNC since 2018-04-01 (¶12)</dd>
+          <dt>Channels</dt><dd>Voice + SMS</dd>
+          <dt>Damages Sought</dt><dd>$500–$1,500 per violation (TCPA + FTSA stacked) · treble for willful · injunctive relief · costs · fees</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared — Doe defendants <span class="pill pill--gap">PENDING SERVICE</span></dd>
+          <dt>Docket Notes</dt><dd>CourtListener caption misspells plaintiff as "Burholder" — search both spellings <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Burkholder%22+TCPA&type=r">CL -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel · Self-Represented</div>
+        <h3 class="card-title">John Burkholder (Pro Se)</h3>
+        <dl class="kv">
+          <dt>Role</dt><dd>Plaintiff AND counsel — same person <span class="pill pill--warn">PRO SE ATTORNEY</span></dd>
+          <dt>Firm</dt><dd>Burkholder Law (solo)</dd>
+          <dt>Address</dt><dd>2398 Stevens Ave., Sanford, FL 32771 (Seminole County, M.D. Fla. Orlando Div.)</dd>
+          <dt>Phone</dt><dd>(954) 999-8003 — also the plaintiff number at issue</dd>
+          <dt>Email</dt><dd>John@BurkholderLaw.com</dd>
+          <dt>Website</dt><dd>burkholderlaw.com <span class="pill pill--gap">SITE FETCH FAILED</span></dd>
+          <dt>FL Bar Number</dt><dd>Not verifiable — FL Bar directory returned HTTP 403 <span class="pill pill--gap">UNVERIFIED</span></dd>
+          <dt>Bar Address Match</dt><dd>Not checkable until Bar directory is accessible</dd>
+          <dt>Discipline History</dt><dd>Not verifiable — Bar directory inaccessible <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22John+Burkholder%22+TCPA">Law360 -&gt;</a></span></dd>
+          <dt>TCPA Filing Volume</dt><dd>No prior matches found on TCPAWorld, Law360, Google Scholar, or this Burkholder on CourtListener <span class="src-tag"><a href="https://tcpaworld.com/?s=Burkholder">TCPAWorld -&gt;</a></span> <span class="src-tag"><a href="https://scholar.google.com/scholar?q=%22John+Burkholder%22+TCPA">Scholar -&gt;</a></span></dd>
+          <dt>Power Ranking</dt><dd>Not listed</dd>
+          <dt>Notable Pattern</dt><dd>Same 954 number serves three roles in this case: plaintiff's personal cell, the plaintiff's law-firm business line, AND the e-signature contact on the complaint. Worth flagging — the "residential" character of the DNC claim is partially undercut by the published business use.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Pro se attorney-plaintiff, John Doe defendants, six-count maximum-stack</h3>
+      <p class="card-body">No established template name applies here (this is not a Hindi/Lane or PLG/Gutierrez pattern — those involve named firms with high-volume client docket). Instead, this is the <strong>attorney-plaintiff-pro-se</strong> pattern: a licensed lawyer who files in their own name against unknown callers to weaponize discovery for unmasking. The hallmarks Burkholder hits cleanly: (1) two disclosed numbers in the complaint, (2) detailed DNC registration dates, (3) every available statute pleaded, (4) "STOP" requests pleaded specifically to set up internal-DNC and willfulness, (5) common-law tort tacked on for damages flexibility, (6) Doe defendants to keep the discovery aperture wide. <span class="src-tag"><a href="https://www.pacermonitor.com/search?q=John+Burkholder+TCPA">PacerMonitor -&gt;</a></span></p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px">
+      <table class="tbl">
+        <caption style="text-align:left; padding:16px; font-weight:600; font-size:14px; border-bottom:1px solid var(--border-1)">Concurrent &amp; Recent Litigation</caption>
+        <thead>
+          <tr><th>Case Name</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Burkholder v. John Doe 1–10</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>6:26-cv-01142-JSS-DCI</td>
+            <td>2026-05-22</td>
+            <td><span class="pill pill--red">ACTIVE · DOES NOT YET ID'D</span></td>
+            <td>TCPA §227(b) + §227(c) + FTSA + FL Telemarketing Act + Intrusion</td>
+          </tr>
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--fg-3); padding:24px;">No other TCPA actions located by/against this John Burkholder of Sanford FL across CourtListener, TCPAWorld, Law360, Google Scholar. Note: Justia (HTTP 403), PacerMonitor (404), UniCourt (404) were inaccessible — re-check via PACER directly. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Burkholder%22+TCPA&type=r">CL -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:middle"></i> Open intel gaps to close before first dial</h4>
+      <ul style="margin:8px 0 0 20px; padding:0; font-size:14px; line-height:1.7;">
+        <li>Run manual Blacklist Bulk re-scrub of 954-999-8003 and 407-630-0122 — initial API call failed at the TLS certificate layer.</li>
+        <li>Verify Burkholder's FL Bar number, admission date, address-of-record, and discipline history — Florida Bar directory returned HTTP 403 on automated lookup.</li>
+        <li>Confirm whether this is Burkholder's first TCPA action or part of a pattern — Justia, PacerMonitor, and UniCourt all inaccessible; pull PACER directly via the M.D. Fla. CM/ECF lookup. <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/FLMDC">PACER -&gt;</a></span></li>
+        <li>Check whether Burkholder has filed FTSA cases in Florida state court — federal databases would not capture pure-state-law filings.</li>
+        <li>Identify any sender DIDs in the docket — none are pled in the complaint. Expect them to surface in early discovery / carrier subpoenas.</li>
+        <li>No prior CourtListener / TCPAWorld / Law360 hits for this Burkholder do not prove a clean record — they prove the public databases were partially blocked. Re-check after PACER pull.</li>
+        <li>954 area code vs. Seminole County residence — confirm whether plaintiff retains the 954 as a legacy cell or whether it was relocated; this can affect the "residential" character of his §227(c) claim.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">There is no defendant to call yet — but the future prospect pool is anyone outbound-dialing into Florida.</h2>
+      <p class="section-lede">No corporate defendant has been identified, so there are no decision-makers (GC, CCO, CMO, etc.) to surface. This section will populate after the amended complaint names entities. In the meantime, the only documented contact on the docket is the pro se plaintiff himself — listed below for awareness only. <strong>Do not contact plaintiff's counsel; Burkholder IS plaintiff's counsel.</strong></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--fg-3); padding:32px;">
+              <strong style="display:block; margin-bottom:8px; color:var(--fg-1);">No defendant decision-makers identified.</strong>
+              Defendants are pleaded as "John Doe 1 through John Doe 10" (¶7). No corporate name, no Secretary-of-State filing, no officer roster, no email-pattern domain. This table will populate after the first amended complaint identifies the actual callers — re-run Stage 2 enrichment at that point.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--info)">
+      <div class="card-meta" style="color:var(--info)">For awareness only · not a sales contact</div>
+      <h3 class="card-title">Plaintiff Counsel of Record (Pro Se)</h3>
+      <dl class="kv">
+        <dt>Name</dt><dd>John Burkholder <span class="pill pill--info">PRO SE — PLAINTIFF &amp; COUNSEL</span></dd>
+        <dt>Firm</dt><dd>Burkholder Law (per complaint signature block)</dd>
+        <dt>Address</dt><dd>2398 Stevens Ave., Sanford, FL 32771</dd>
+        <dt>Phone</dt><dd>(954) 999-8003 (per complaint signature) <span class="pill pill--warn">SAME AS PLAINTIFF DID AT ISSUE</span></dd>
+        <dt>Email</dt><dd>John@BurkholderLaw.com (per complaint signature)</dd>
+        <dt>FL Bar No.</dt><dd>Not verifiable — FL Bar directory returned 403 <span class="pill pill--gap">UNVERIFIED</span></dd>
+      </dl>
+      <p class="card-body" style="margin-top:12px"><strong>Outreach posture:</strong> Burkholder is the plaintiff. He is not a Blacklist prospect. This row exists solely so the owner does not accidentally call the plaintiff thinking they have reached defense counsel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Treat this lead as a database update + watch-list trigger — not a same-week dial campaign.</h2>
+      <p class="section-lede">There is no entity to sell into today. The action plan is: (1) get the two plaintiff DIDs flagged in the Blacklist database immediately, (2) lock a docket-watch on this case for the amended complaint, and (3) use the existing record as a top-of-funnel content asset for outbound Florida prospects right now.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4 class="step-title">Within 24 hours — manual re-scrub + database flag</h4>
+          <p class="step-body">Re-run Blacklist Bulk lookup on (954) 999-8003 and (407) 630-0122 against the litigator list. The initial API call returned a TLS certificate error — that's an infrastructure failure, not a clean result. Regardless of the manual scrub outcome, both DIDs should be flagged as litigator-trap numbers tied to a live federal complaint.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4 class="step-title">Within 72 hours — PACER pull + Bar verification</h4>
+          <p class="step-body">Pull ECF Doc #1 (complaint) and Doc #3 (the May 28, 2026 order) from PACER directly via M.D. Fla. CM/ECF. Verify Burkholder's FL Bar number, admission date, address of record, and discipline status (Florida Bar directory was 403-blocked on automated lookup). Confirms whether plaintiff is a first-time filer or has a state-court FTSA history. <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/FLMDC">PACER -&gt;</a></span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4 class="step-title">This week — convert into outbound content for Florida prospects</h4>
+          <p class="step-body">A pro se Florida attorney just filed a six-count complaint against unknown callers and disclosed the two numbers he wants the world to scrub against. That's perfect outbound copy for any current Blacklist conversation with a Florida-facing client. The wedge: "Here is the live complaint. Here are the two numbers. Here is what one missed scrub costs in M.D. Fla."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4 class="step-title">Docket watch — alert on amended complaint</h4>
+          <p class="step-body">Set CourtListener / PACER docket alert for 6:26-cv-01142-JSS-DCI. The trigger event is the first amended complaint that names actual defendant entities (carrier subpoenas typically resolve in 60–90 days). When that drops, re-run Stage 2 enrichment on the named entities and convert this report into a real outbound lead. <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-01142&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h4 class="step-title">Sister-case sweep — search for the actual marketer</h4>
+          <p class="step-body">If Burkholder has filed parallel TCPA/FTSA cases under his own name in other Florida federal or state dockets, those may already name the same caller (different statute, same dialer). Re-run CourtListener and PacerMonitor queries by hand on the broader Burkholder universe once the public databases are unblocked.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px">
+      <div class="card-meta" style="color:#A8A8A8">Trigger conditions that change the plan</div>
+      <ul class="clean tight" style="margin-top:8px">
+        <li><strong style="color:#fff">Amended complaint drops naming actual entities</strong> — convert this report into a normal lead-report workflow; Stage 2 enrichment on the new defendants becomes the priority.</li>
+        <li><strong style="color:#fff">Defense counsel appears on behalf of an unmasked Doe</strong> — that defendant is now a normal Blacklist prospect; the case becomes a hot lead.</li>
+        <li><strong style="color:#fff">Burkholder voluntarily dismisses before unmasking</strong> — indicates settlement; the database flag on his two DIDs remains, but case-specific outreach ends.</li>
+        <li><strong style="color:#fff">Manual scrub returns a Blacklist match</strong> — confirms the litigator-list infrastructure is working; surfaces the DIDs for any future client scrub immediately.</li>
+        <li><strong style="color:#fff">PACER pull reveals other Burkholder TCPA filings</strong> — escalates the "professional plaintiff" framing; widens the DID flag to any other numbers he uses.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+      <span class="pill pill--warn">URGENCY: MEDIUM — DATABASE UPDATE, NOT FIRST-DIAL</span>
+      <span class="pill pill--info">DOCKET WATCH ACTIVE · WAITING ON AMENDED COMPLAINT</span>
+      <span class="pill pill--red">FLAG DIDS WITHIN 24 HOURS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-05-29</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
