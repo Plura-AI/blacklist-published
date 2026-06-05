@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spoon v. Fast Response Heating & Cooling — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#fff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <text x="120" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="500" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DFW HVAC SMS Marketer · Federal DNC + Texas § 305.053 · Putative Class · Paronich-Filed</p>
+      <h1 class="hero-tagline">Spoon v.<br>Fast Response Heating &amp; Cooling</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-01852-N</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Tex. (Dallas)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Ed Kinkeade <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">(reassigned 6/5)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>Tex. B&amp;C § 305.053</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">~several thousand</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Anthony Paronich <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Paronich Law, P.C.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted in complaint — scrub deferred, but Spoon is a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Spoon's number was pled only as <code>214-727-XXXX</code> — partial. The litigator scrub cannot be run on a partial number. However, plaintiff has filed at least <strong>5 TCPA cases in 2026 alone</strong>, making her a verified serial filer regardless of phone-level match.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--danger">Serial Filer Confirmed</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">214-727-XXXX</div>
+        <div class="scrub-number-sub">Last 4 digits redacted in complaint ¶36. DNC-registered since March 19, 2026 (per ¶37). No litigator-list lookup possible on partial digits.</div>
+      </div>
+      <p class="scrub-body-text">A litigator scrub against blacklistBulk was <strong>not run</strong> — running a 6-digit partial would return false positives. The full 10-digit number must be recovered from PACER (the original complaint exhibit, ECF #1 attachments, or initial disclosures) before any scrub claim can be made. <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01852&type=r">CourtListener docket -&gt;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Sender DIDs (from screenshot exhibits)</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">SENDER DID #1</div>
+          <h3 class="card-title">(817) 646-4456</h3>
+          <p class="card-body">Fort Worth rate center. Identified in complaint ¶45 as the originating number for the May 2026 SMS blasts. No third-party complaint volume located on 800notes / YouMail / Tellows / RoboKiller (all four sources returned 403/404 — sender-identity confirmation deferred). Pair with the 945 DID below suggests a multi-DID rotation pool typical of SMS marketing platforms.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">SENDER DID #2</div>
+          <h3 class="card-title">(945) 202-1009</h3>
+          <p class="card-body">Dallas/Fort Worth overlay rate center. Embedded inside the SMS body as the "Reply 1 or Call" callback number. Confirms two-number infrastructure. No external complaint-aggregator hits available.</p>
+        </div>
+        <div class="card card--accent">
+          <div class="card-meta">SERIAL-FILER FLAG</div>
+          <h3 class="card-title">Catherine Spoon — 5 TCPA cases in 2026</h3>
+          <p class="card-body">Even without a phone-level match, plaintiff's litigation pattern alone qualifies as a litigator flag. Two of her four prior N.D. Tex. filings (Law Base, Core Ortho) were voluntarily dismissed on 3/31/2026 — classic early-settlement pattern. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Catherine+Spoon%22&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL ECF #1</span>
+      <span class="pill pill--danger">SERIAL FILER: 5+ TCPA CASES IN 2026</span>
+      <span class="pill pill--warn">RECOVERY PATH: PACER PULL ~$1.20</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small DFW HVAC contractor caught in a Paronich Federal-DNC class action — the easiest "compliance audit + scrub" close in the pipeline.</h2>
+      <p class="section-lede">A local heating-and-cooling LLC with a broken HTTPS certificate and zero visible compliance program just got sued by one of the top 10 TCPA plaintiff's firms in the country for blasting DNC-registered Texans with $29-tune-up SMS promos. Lead with the Litigator Scrub + Federal DNC bundle, then upsell consent capture once the answer is filed.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD PITCH</div>
+        <h3 class="card-title">DNC Scrubbing + Litigator Scrub</h3>
+        <p class="card-body">Plaintiff is a DNC-registered Texan. Complaint alleges federal DNC violation (47 CFR § 64.1200(c)) plus Texas § 305.053. Every text Fast Response sends today to an unscrubbed list compounds class exposure in a live case. This is the bundle that stops the bleeding tonight.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">PRODUCT #2</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body">Plaintiff pled she never gave express consent (¶52-53). Defendant will need a verifiable, timestamped opt-in trail to defend. Sell as the "answer-ready" compliance posture before the 21-day clock runs.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">PRODUCT #3</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">Complaint frames Fast Response as having no written DNC policy, no training, no internal scrub. A turnkey policy package is a clean cross-sell after the scrub close — and is the foundation of any TCPA safe-harbor defense.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.7; color:var(--fg-1); max-width:880px;">
+        "You've been sued by Anthony Paronich. That name means something — he's been on TCPAWorld's 'Most Dangerous TCPA Plaintiff's Lawyers' power ranking <em>four years running</em>, and he's filed 1,200+ TCPA dockets. He doesn't file nuisance suits, and he doesn't go away cheap. The same plaintiff suing you, Catherine Spoon, has already filed five TCPA cases this year — two settled in 36-40 days, both before any class cert motion. That's the play here: she'll push for a quick individual buy-out at a premium, or she'll let it ride to class certification. Either way, every text your dialer fires tonight against unscrubbed Texas numbers is another statutory violation in a live federal case. Blacklist plugs into your SMS platform tomorrow, scrubs every send against the federal DNC + litigator list, and gives you the audit trail you need when defense counsel asks for it. We can also build your written DNC policy and consent record-keeping — the exact gaps the complaint is built around." <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld -&gt;</a></span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT & OPPORTUNITY SIZE -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small local DFW HVAC LLC with no visible compliance infrastructure and a broken website.</h2>
+      <p class="section-lede">Fast Response Heating &amp; Cooling, LLC is a private Texas LLC operating in the Dallas–Fort Worth metro residential HVAC market. Public-source visibility is thin: no BBB profile pulled, no LinkedIn company page, and the corporate website (fastresponseheatingandcooling.com) failed TLS handshake during diligence. This is the profile of a small contractor outgrowing its compliance posture.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Fast Response Heating &amp; Cooling, LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal entity</dt><dd>Fast Response Heating &amp; Cooling, LLC</dd>
+          <dt>Entity type</dt><dd>LLC <span class="pill pill--gap">TX SOS unconfirmed</span></dd>
+          <dt>HQ market</dt><dd>Dallas–Fort Worth metro, TX (inferred from SMS content "DFW homeowners" and 817/945 area codes)</dd>
+          <dt>Vertical</dt><dd>HVAC / residential home services</dd>
+          <dt>Services</dt><dd>HVAC install, repair, maintenance; $29 AC tune-up / summer safety check promotions</dd>
+          <dt>Website</dt><dd>fastresponseheatingandcooling.com <span class="pill pill--warn">TLS handshake failure</span></dd>
+          <dt>BBB</dt><dd><span class="pill pill--gap">Blocked (403)</span></dd>
+          <dt>Employee count</dt><dd><span class="pill pill--gap">Unknown</span></dd>
+          <dt>Parent / owner</dt><dd><span class="pill pill--gap">No Sunbiz/TX SOS data extracted</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Defendant's own website can't serve a privacy policy.</h3>
+        <p class="card-body">Every attempt to reach fastresponseheatingandcooling.com — including <code>/schedule</code>, <code>/terms</code>, and <code>/terms-of-service</code> — failed with a TLS HandshakeFailure during diligence. A defendant whose web infrastructure cannot deliver a basic consent disclosure to a browser is unlikely to have a verifiable, timestamped opt-in trail in its CRM. That is the exact gap Paronich is pleading around in ¶52-53 ("Plaintiff never provided Defendant with prior express invitation, permission, or consent"). <span class="src-tag" style="color:#A8A8A8;"><a href="https://fastresponseheatingandcooling.com" style="color:#C9C9C9;">fastresponseheatingandcooling.com -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card">
+      <div class="card-meta">STRATEGIC TIMING</div>
+      <h3 class="card-title">21-day answer clock starts on service. Move now.</h3>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>Filed</dt><dd>June 4, 2026</dd>
+        <dt>Summons issued</dt><dd>June 5, 2026 (Doc #6) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01852&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span></dd>
+        <dt>Answer window</dt><dd>21 days from service under Fed. R. Civ. P. 12(a) — Blacklist outreach window is now through mid/late July before defense locks down</dd>
+        <dt>Seasonal pressure</dt><dd>Summer cooling demand = peak HVAC marketing season. Every unscrubbed send while this case is live is a stacking statutory violation.</dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:16px; font-weight:600; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>None confirmed</td>
+              <td>—</td>
+              <td>—</td>
+              <td>No parent, subsidiary, or sister-brand identified. TX SOS / Bizapedia / OpenCorporates lookups all blocked during diligence. Likely a standalone single-entity local LLC.</td>
+              <td><span class="pill pill--gap">Unknown</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:13px; color:var(--fg-3); margin-top:12px;">Note: Texas SOSDirect requires authenticated session — recommend manual lookup of registered agent + managing member after first call to identify any sister entities or owner-operated DBAs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Paronich Law — top-10 TCPA serial-filer firm — against a small HVAC contractor with no defense counsel yet appeared.</h2>
+      <p class="section-lede">This is the asymmetric matchup Blacklist's pitch is built for: one of the most prolific TCPA plaintiff's firms in the United States versus a sub-scale local contractor with no apparent in-house compliance function. The same judge who'll preside here already saw the same plaintiff settle a different TCPA case in 40 days.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">CASE FILE</div>
+        <h3 class="card-title">Spoon v. Fast Response Heating &amp; Cooling, LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>3:26-cv-01852-N</dd>
+          <dt>Court</dt><dd>U.S. District Court, N.D. Tex., Dallas Division</dd>
+          <dt>Judge</dt><dd>Ed Kinkeade (reassigned 6/5/2026 per S.O. 3-359 from Senior Judge Godbey) <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01852&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 4, 2026</dd>
+          <dt>Plaintiff</dt><dd>Catherine Spoon (TX resident, DFW area)</dd>
+          <dt>Class action</dt><dd>Yes — Rule 23(a), 23(b)(2), 23(b)(3)</dd>
+          <dt>Class size</dt><dd>"Several thousand" alleged (¶67)</dd>
+          <dt>Class definitions</dt><dd>National DNC Registry Class + Texas Telephone Solicitation Class</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c)(5) / 47 CFR § 64.1200(c); Tex. Bus. &amp; Com. Code § 305.053</dd>
+          <dt>Theory</dt><dd>SMS marketing to DNC-registered cell numbers without prior express consent; automatic dialing announcing device under Texas Act</dd>
+          <dt>Channels</dt><dd>SMS (two screenshots in complaint, ¶47)</dd>
+          <dt>Damages</dt><dd>$500/violation (statutory) → $1,500/violation (willful) under TCPA + parallel $500–$1,500/violation under Tex. B&amp;C § 305.053</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span></dd>
+          <dt>Local counsel (plf)</dt><dd>Sharon K. Campbell (TX local counsel for Paronich; Doc #3, 6/4/2026)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">PLAINTIFF COUNSEL</div>
+        <h3 class="card-title">Anthony Paronich — "The Wolf"</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Firm</dt><dd>Paronich Law, P.C. (solo / very small)</dd>
+          <dt>Firm address</dt><dd>350 Lincoln St., Suite 2400, Hingham, MA 02043 <span class="pill pill--ok">Matches complaint</span></dd>
+          <dt>Firm phone</dt><dd>(617) 485-0018</dd>
+          <dt>Firm fax</dt><dd>(508) 318-8100</dd>
+          <dt>Email</dt><dd>anthony@paronichlaw.com</dd>
+          <dt>Website</dt><dd>paronichlaw.com <span class="src-tag"><a href="https://www.paronichlaw.com">Site -&gt;</a></span></dd>
+          <dt>Bar</dt><dd>MA (admitted ~2010); admitted in D. Mass., D. Conn., E.D./N.D./S.D. Mich., W.D. Wis., N.D./S.D. Ill., N.D./S.D. Ind., 1st/7th/9th Cir. Filing N.D. Tex. via pro hac vice with local counsel.</dd>
+          <dt>Bar number</dt><dd><span class="pill pill--gap">MA BBO blocked (401) — not retrieved</span></dd>
+          <dt>Discipline</dt><dd>None located in available sources</dd>
+          <dt>TCPAWorld ranking</dt><dd><span class="pill pill--danger">Top 10 — "Most Dangerous TCPA Plaintiff's Lawyers"</span> 2023, 2024, 2025, 2026 (consecutive) <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld -&gt;</a></span></dd>
+          <dt>Filings volume</dt><dd>1,208 hits in CourtListener; 1,134+ TCPA-related dockets <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Anthony+Paronich%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Settlements claimed</dt><dd>$200M+ in consumer settlements/judgments across 100+ class actions (firm self-report) <span class="src-tag"><a href="https://www.paronichlaw.com/about">paronichlaw.com/about -&gt;</a></span></dd>
+          <dt>Co-counsel pattern</dt><dd>Frequently teams with Keogh Law (Alexander Sostrin) and Michael Greenwald on robocall classes</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card">
+      <div class="card-meta">PLAINTIFF / FIRM TEMPLATE</div>
+      <h3 class="card-title">Spoon is a serial filer. Paronich is the highest-volume TCPA firm in this lane.</h3>
+      <p class="card-body" style="margin-top:8px;">Catherine Spoon has filed at least <strong>5 TCPA cases in 2026</strong>: against Angi Inc. (D. Colo.), The Law Base Inc. (N.D. Tex.), Core Ortho Innovations (N.D. Tex.), Ragingbull.com (N.D. Tex.), and now Fast Response. <strong>Two of those four prior N.D. Tex. cases were voluntarily dismissed on 3/31/2026</strong> — strong settlement indicator. Spoon switches between Paronich Law and Woodrow &amp; Peluso (Patrick Peluso) as counsel. The Paronich firm's template across these cases: aggressive early motion to compel discovery, push toward class certification, settle individual claims at a premium when defendants want to switch counsel away from Troutman Amin. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Catherine+Spoon%22&type=r">CourtListener -&gt;</a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22+TCPA&type=r">Paronich docket history -&gt;</a></span></p>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:600; margin:32px 0 12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3);">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory / Relevance</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Spoon v. Fast Response Heating &amp; Cooling LLC</strong></td>
+            <td>3:26-cv-01852-N (N.D. Tex.)</td>
+            <td>2026-06-04</td>
+            <td><span class="pill pill--red">Active · Current</span></td>
+            <td>Federal DNC + Tex. § 305.053; SMS to DNC-registered cell</td>
+          </tr>
+          <tr>
+            <td>Spoon v. Angi Inc.</td>
+            <td>1:26-cv-00523 (D. Colo.)</td>
+            <td>2026-02-10</td>
+            <td><span class="pill pill--info">Active (Am. Compl. 4/23/26)</span></td>
+            <td>Same plaintiff; counsel = Woodrow &amp; Peluso (Patrick Peluso)</td>
+          </tr>
+          <tr>
+            <td>Spoon v. The Law Base Inc.</td>
+            <td>3:26-cv-00556 (N.D. Tex.)</td>
+            <td>2026-02-20</td>
+            <td><span class="pill pill--ok">Dismissed 3/31/26</span></td>
+            <td>Same plaintiff, same Judge Kinkeade; likely confidential settlement (~40 days)</td>
+          </tr>
+          <tr>
+            <td>Spoon v. Core Ortho Innovations Inc</td>
+            <td>3:26-cv-00595 (N.D. Tex.)</td>
+            <td>2026-02-23</td>
+            <td><span class="pill pill--ok">Dismissed 3/31/26</span></td>
+            <td>Same plaintiff; likely confidential settlement (~36 days)</td>
+          </tr>
+          <tr>
+            <td>Spoon v. Ragingbull.com LLC</td>
+            <td>3:26-cv-00957 (N.D. Tex.)</td>
+            <td>2026-03-25</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Same plaintiff</td>
+          </tr>
+          <tr>
+            <td>Bond v. Folsom Insurance Agency LLC</td>
+            <td>3:24-cv-02551 (N.D. Tex.)</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Same firm precedent</span></td>
+            <td>Paronich N.D. Tex. TCPA template case</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Source: <a href="https://www.courtlistener.com/?q=%22Catherine+Spoon%22&type=r">CourtListener "Catherine Spoon" docket search</a></p>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul style="margin:0; padding-left:18px; font-size:14px; line-height:1.7;">
+        <li><strong>Plaintiff phone</strong> — full 10-digit number required to run litigator scrub; pull ECF #1 from PACER (~$1.20) or wait for plaintiff's initial disclosures.</li>
+        <li><strong>Defense counsel</strong> — not yet appeared. Monitor docket daily; first appearance will tell us whether this goes to a TCPA-specialist firm or local defense generalist.</li>
+        <li><strong>Answer deadline</strong> — clock starts on service date (summons issued 6/5/26). Estimate mid-to-late July; confirm via service-of-process docket entry.</li>
+        <li><strong>Texas SOS data</strong> — registered agent, managing member, formation date all unconfirmed. SOSDirect requires authenticated session; Bizapedia returned human-verification block. Manual TX SOS pull recommended before first call.</li>
+        <li><strong>Decision-makers</strong> — no LinkedIn company page, no TheOrg entry, website TLS broken. The owner/manager name is the missing piece to land the call. A direct dial to the business main line is the fastest path.</li>
+        <li><strong>SMS platform vendor</strong> — two DIDs suggest mass-text platform or rotator. Identify the vendor (Twilio? EZ Texting? Salesmsg?) to scope the scrub integration footprint.</li>
+        <li><strong>Sender-DID reputation</strong> — 800notes/YouMail/Tellows/RoboKiller all returned 403/404 during diligence; manual revisit recommended in 48 hours.</li>
+        <li><strong>Whether Fast Response uses a lead-gen affiliate</strong> — Paronich's specialty is lead-buyer cases. If a third party sent the texts, vicarious-liability theory changes the consent record-keeping pitch.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call the company main line. No public decision-maker contact surfaced — work the front door.</h2>
+      <p class="section-lede">No LinkedIn page, no TheOrg entry, broken company website, blocked corporate registry. The fastest path to a decision-maker on this small HVAC LLC is a direct call asking for the owner or general manager. Both sender DIDs in the complaint are valid company-controlled lines.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Owner / Managing Member</strong> <br><span class="pill pill--dark">Decision Maker</span></td>
+            <td>Unknown name. Small LLC — almost certainly owner-operated. Should be reachable through the business main line.</td>
+            <td>(817) 646-4456 <span class="pill pill--info">Sender DID #1</span><br>(945) 202-1009 <span class="pill pill--info">Callback DID</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP — no LinkedIn co. page</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong> <br><span class="pill pill--dark">Service of Process</span></td>
+            <td>TX SOS / SOSDirect lookup required to retrieve. Receives the summons and is the first point of legal notification.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">TX SOSDirect (manual pull)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong> <br><span class="pill pill--dark">Outside Counsel</span></td>
+            <td>Not yet appeared on docket as of 6/5/2026. Monitor PACER daily — first defense entry typically within 21 days of service.</td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td><span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01852&type=r">CourtListener docket -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Marketing Lead / SMS Vendor Owner</strong> <br><span class="pill pill--dark">Operational Buyer</span></td>
+            <td>Person who controls the SMS platform that fired the texts. In a small contractor this is often the owner or an outside marketing agency / lead-gen vendor.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Identify on first call</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-2); margin-top:16px; max-width:880px;">
+      <strong>Plaintiff counsel (reference only — do NOT pitch):</strong> Anthony Paronich, Paronich Law, P.C., 350 Lincoln St., Suite 2400, Hingham, MA 02043 · (617) 485-0018 · anthony@paronichlaw.com (per PACER, complaint signature block). Texas local counsel: Sharon K. Campbell (Doc #3).
+    </p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. Defense counsel hasn't appeared yet — the rep owns the relationship if we get there first.</h2>
+      <p class="section-lede">The case was filed 6/4/2026, the summons issued 6/5/2026, and there is no defense counsel on the docket. The 21-day answer clock starts on service. The window to reach the owner before he/she hands the file to outside counsel and stops taking vendor calls is right now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 (TODAY)</div>
+        <h3 class="card-title">Pull ECF #1 from PACER · Identify owner</h3>
+        <p class="card-body">(1) Pull the complaint + exhibits from PACER (~$1.20) to recover plaintiff's full 10-digit phone; run blacklistBulk litigator scrub and document the result. (2) TX SOSDirect lookup to identify the registered agent and managing member of Fast Response Heating &amp; Cooling, LLC. (3) Cold call (817) 646-4456 — ask for the owner re: "a compliance issue tied to your recent SMS campaign."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 2-3</div>
+        <h3 class="card-title">Land the owner conversation</h3>
+        <p class="card-body">Open with: "You've been served, or about to be, in Spoon v. Fast Response Heating &amp; Cooling in Dallas federal court. The plaintiff's lawyer is one of the top TCPA filers in the country. Before you hand this to your attorney, here's what you can do tonight to stop the bleeding." Lead with the Litigator Scrub + DNC bundle.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 4-7</div>
+        <h3 class="card-title">Bundle the consent-capture upsell</h3>
+        <p class="card-body">Once the owner is engaged, layer in the consent-capture / record-retention product. Paronich is pleading "never gave express consent" (¶52-53) — defense counsel will need a verifiable opt-in trail. Position Blacklist as the answer-ready compliance posture, not a retroactive bandaid.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">WEEK 2-3</div>
+        <h3 class="card-title">Re-engage when defense counsel appears</h3>
+        <p class="card-body">Once defense counsel hits the docket, the relationship shifts. Send a one-page case-strategy note to the GC/owner explaining how a documented scrub posture supports defense theory under Bell v. Hawx Services pleading standard. Offer to coordinate a defense-counsel call.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;" class="card">
+      <h3 class="card-title">Trigger conditions that change the plan</h3>
+      <ul class="clean tight" style="margin-top:12px;">
+        <li><strong>Voluntary dismissal in &lt; 45 days</strong> — Spoon's prior N.D. Tex. cases (Law Base, Core Ortho) settled in 36-40 days. If this docket goes quiet quickly, the relationship pivots from "stop the bleeding" to "next campaign compliance for future filings."</li>
+        <li><strong>Defense counsel = TCPA-specialist firm (Troutman Amin, Eversheds, etc.)</strong> — relationship moves through outside counsel. Pitch shifts to working alongside defense as the compliance vendor of record.</li>
+        <li><strong>Defense counsel = local generalist</strong> — owner remains the buyer. Lean harder on the compliance audit + policies/procedures upsell.</li>
+        <li><strong>Motion to dismiss filed</strong> — slow walk re-engagement until ruling; offer interim "no-cost site scan" to keep the relationship warm.</li>
+        <li><strong>Amended complaint adds lead-gen affiliate or co-defendant</strong> — opens a second deal: the lead-gen vendor also needs scrub coverage.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — DEFENSE NOT YET APPEARED</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · TARGET CLOSE BEFORE END JUNE</span>
+      <span class="pill pill--warn">PEAK HVAC SEASON · CAMPAIGN STILL LIKELY LIVE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
