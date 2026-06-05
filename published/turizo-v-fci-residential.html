@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turizo v. FCI Residential — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.gap-callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.gap-callout h4{ margin:0 0 12px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.gap-callout ul{ margin:0; padding-left:20px; font-size:14px; color:var(--fg-1); }
+.gap-callout li{ margin-bottom:6px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" class="hero-logo-svg">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">FL Multifamily TCPA Defendant · Putative Class Action · Removed from Broward State Court · Jibrael Hindi Firm</p>
+      <h1 class="hero-tagline">Turizo v.<br>FCI Residential <span style="color:var(--bl-red); font-weight:500; font-size:0.55em;">d/b/a The Park at Kendall Apartments</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">0:26-cv-61632</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (Ft. Lauderdale)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(5 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">XXXX placeholder</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 U.S.C. § 227<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">TCPA (2 counts)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Awad / Hedaya / Lane<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Jibrael S. Hindi, PLLC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed in the removal pleading — scrub deferred, but Turizo + Hindi firm warrant pre-dial attention.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The only document available at this time is the Notice of Removal — the underlying class action complaint (CACE-26-006808) was filed in Broward state court and is referenced but not embedded in the federal docket entry. Scrub is deferred pending recovery of the state-court complaint or the federal Composite Exhibit 1.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Recover State Complaint First</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN REMOVAL PLEADING</div>
+        <div class="scrub-number-sub">The Notice of Removal does not reproduce the plaintiff's cell number. The actual class action complaint is referenced as Composite Exhibit 1 (Broward Cir. Ct. Case No. CACE-26-006808) but was not available via PACER, PacerMonitor, Justia, or UniCourt at fetch time. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22FCI+Residential+Corporation%22&type=r">CourtListener →</a></span></div>
+      </div>
+      <p class="scrub-body-text">A Blacklist litigator-scrub lookup was <strong>not run</strong> because the recipient phone number is not in any pleading currently indexed. Do not represent to prospects that a scrub was performed. The plaintiff's name (Ryan Turizo, Broward County, FL) returned no prior federal filings in the available indexes, but the Hindi firm's pattern (see Section 04) makes prior FTSA / consumer filings in Florida state court a near-certainty worth confirming before close.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · #1</div>
+        <h3 class="card-title">Pull state-court complaint from Broward Clerk</h3>
+        <div class="card-body">CACE-26-006808 (17th Jud. Cir., Broward County). The class complaint was filed April 24, 2026 and is attached to the removal as Composite Exhibit 1 — once any party uploads the federal Doc #1 attachments, the cell number, screenshots, and DID artifacts should all surface.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · #2</div>
+        <h3 class="card-title">PACER pull of Doc #1 attachments</h3>
+        <div class="card-body">Estimated ~$1.20 to retrieve the full Notice of Removal with Composite Exhibit 1 (the state complaint, summons, civil cover sheet, and the May 27, 2026 Order Setting Case Management Conference). This is the cheapest path to the recipient number.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · #3</div>
+        <h3 class="card-title">Confirm via early Rule 26(f) disclosures</h3>
+        <div class="card-body">Once defense counsel (Ty D. Robare, Jimerson Birr P.A.) appears and the parties exchange initial disclosures, the plaintiff's number and any retained sender-DID intel will be discoverable.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL CACE-26-006808</span>
+      <span class="pill pill--danger">JIBRAEL HINDI FIRM — EXTREME THREAT</span>
+      <span class="pill pill--warn">PRIOR HINDI MULTIFAMILY TARGETING CONFIRMED</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Florida multifamily operator caught in the Hindi firm's expanding TCPA dragnet — no visible compliance infrastructure, single defendant, prime greenfield close.</h2>
+      <p class="section-lede">This is a textbook Blacklist target: a privately held Florida apartment developer/operator sued under the TCPA by one of the most prolific consumer-side firms in the country, with no publicly accessible privacy policy, terms, or consent capture page. Lead with consent capture + DNC scrubbing. Cross-sell litigator scrub once the recipient number surfaces.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">FCI Residential's corporate site (<code>fciresidential.com</code>) actively refused connections during compliance audit, and the implicated property site (<code>parkatkendallapts.com</code>) does not resolve in DNS. There is no preservable opt-in evidence trail for the marketing texts allegedly at issue. Lead with documented consent capture as the existential gap. <span class="src-tag"><a href="https://jibraellaw.com">Hindi firm site →</a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <div class="card-body">Multifamily lead funnels rely on third-party ILS feeds (Apartments.com, Zillow, Rent.com) that frequently push numbers without TCPA consent or DNC suppression. Position pre-dial scrubbing as the upstream fix — not just for this property but across FCI's portfolio.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell Once Number Surfaces</div>
+        <h3 class="card-title">Litigator Scrub Subscription</h3>
+        <div class="card-body">Once CACE-26-006808 is pulled and Turizo's cell is captured, a retroactive scrub match (or a clean result) is a fast yes/no closer. The Hindi firm cycles named plaintiffs — Turizo may already be in the database via a prior FTSA filing.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+        FCI Residential just got sued by the Jibrael Hindi firm — which publicly advertises <strong>$30M+ in TCPA settlements</strong> and is featured in TCPAWorld's 2026 "Most Dangerous TCPA Plaintiff's Lawyers" power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span>. Three attorneys (Awad, Hedaya, Lane Jr.) staffed this complaint — that is not a nuisance filing, that is a vehicle for class certification or material settlement. <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span>
+      </p>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-1); max-width:880px; margin-top:12px;">
+        The opening line is operational, not legal: <em>"Your fciresidential.com is unreachable and parkatkendallapts.com doesn't resolve — when Hindi's team asks in discovery for your opt-in records and the URL of the page where Turizo gave consent, what do you produce?"</em> That question lands because the defendant is sitting on real-money exposure (statutory TCPA damages × every class member who received the same campaign) with no visible record-keeping infrastructure. Blacklist's consent capture + DNC scrub is the operational answer they can buy this week. The 30-day answer clock from May 5, 2026 service makes urgency real.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Privately held Coral Gables multifamily developer/operator — small org chart, no compliance officer visible, multi-property portfolio.</h2>
+      <p class="section-lede">FCI Residential Corporation is a Florida-domiciled real estate operator headquartered in Coral Gables. Public-source intel is thin — corporate site is offline behind a connection reset and Sunbiz returned 403 — but the org chart on TheOrg gives us a workable contact map and the property name (Park at Kendall) confirms portfolio scale.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>FCI Residential Corporation</dd>
+          <dt>d/b/a</dt><dd>The Park at Kendall Apartments (subject property)</dd>
+          <dt>Entity Type</dt><dd>Florida Corporation</dd>
+          <dt>HQ</dt><dd>2199 Ponce de Leon Blvd, Suite 401, Coral Gables, FL <span class="src-tag"><a href="https://theorg.com/org/fci-residential">TheOrg →</a></span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Parent (suspected)</dt><dd>Forman Capital affiliate (unverified) <span class="pill pill--gap">GAP</span></dd>
+          <dt>Vertical</dt><dd>Multifamily apartment development &amp; property management</dd>
+          <dt>Website Status</dt><dd><span class="pill pill--danger">fciresidential.com refused connection</span></dd>
+          <dt>Subject Property Site</dt><dd><span class="pill pill--danger">parkatkendallapts.com does not resolve in DNS</span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No accessible consent evidence trail</h3>
+        <div class="card-body">
+          During compliance audit on 2026-06-09, FCI Residential's corporate website actively reset the connection and the implicated property site (Park at Kendall) failed DNS resolution entirely. There is no publicly indexed privacy policy, terms of service, opt-in disclosure, or consent checkbox language visible anywhere. <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.multifamilyexecutive.com/?s=FCI+Residential" style="color:#C9C9C9;">MFE search →</a></span><br><br>
+          If Hindi's team serves a Rule 34 demand for "all documents evidencing plaintiff's consent to receive text messages," the defendant has no preservable URL, no archived consent form, and no Wayback snapshot of the opt-in page tied to the marketing channel that triggered the suit.
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Service window: 30-day answer deadline running from May 5, 2026 service</h3>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Apr 24, 2026:</strong> Class action complaint filed in Broward Cir. Ct. (CACE-26-006808)</li>
+          <li><strong>May 5, 2026:</strong> Defendant served with summons &amp; complaint (per Notice of Removal ¶6)</li>
+          <li><strong>May 27, 2026:</strong> State court Order Setting Case Management Conference</li>
+          <li><strong>Jun 4, 2026:</strong> Removed to S.D. Fla. (Doc #1)</li>
+          <li><strong>Jun 5, 2026:</strong> Clerk's Notice of Judge Assignment and Optional Consent <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22FCI+Residential+Corporation%22&type=r">CourtListener →</a></span></li>
+          <li><strong>~Jun 11, 2026:</strong> Federal answer deadline (7 days post-removal under Fed. R. Civ. P. 81(c)(2)) — <strong>defendant must act this week</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>The Park at Kendall Apartments</td>
+              <td>d/b/a / subject property</td>
+              <td>Multifamily lease-up</td>
+              <td>Direct — alleged source of texts</td>
+              <td><span class="pill pill--red">PRIMARY</span></td>
+            </tr>
+            <tr>
+              <td>FCI Residential portfolio (other communities)</td>
+              <td>Same operator</td>
+              <td>Multifamily</td>
+              <td>Same lead-funnel infra — likely same exposure</td>
+              <td><span class="pill pill--danger">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Forman Capital (suspected affiliate)</td>
+              <td>Possible parent / capital partner</td>
+              <td>Real estate finance</td>
+              <td>Indirect — investor risk exposure</td>
+              <td><span class="pill pill--info">MEDIUM (verify)</span></td>
+            </tr>
+            <tr>
+              <td>ILS lead vendors (Apartments.com, Zillow, Rent.com)</td>
+              <td>Lead-source partners</td>
+              <td>Real estate marketing</td>
+              <td>Upstream consent failure point</td>
+              <td><span class="pill pill--info">REFERRAL</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Hindi firm running its Florida multifamily playbook — high-volume serial filer, contingency-only, picks defendants intentionally.</h2>
+      <p class="section-lede">Defendant has one confirmed prior federal TCPA suit (Robinson v. FCI Residential, 0:22-cv-60237, S.D. Fla. — remanded). The Hindi firm has staffed this complaint with three attorneys and is publicly featured in TCPAWorld's 2026 power rankings — this is not a low-effort matter.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Turizo v. FCI Residential Corporation</h3>
+        <dl class="kv">
+          <dt>Docket (Federal)</dt><dd>0:26-cv-61632 (S.D. Fla.)</dd>
+          <dt>Docket (State)</dt><dd>CACE-26-006808 (Broward Cir. Ct.)</dd>
+          <dt>Filed (State)</dt><dd>April 24, 2026</dd>
+          <dt>Served</dt><dd>May 5, 2026</dd>
+          <dt>Removed</dt><dd>June 4, 2026</dd>
+          <dt>Plaintiff</dt><dd>Ryan Turizo (Broward County, FL) — individually and on behalf of class</dd>
+          <dt>Plaintiff Counsel</dt><dd>Samuel J. Awad, Zane C. Hedaya, Gerald D. Lane, Jr.</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi, PLLC</dd>
+          <dt>Class Status</dt><dd>Putative Rule 23 — definition not yet visible</dd>
+          <dt>Claims</dt><dd>2 counts under 47 U.S.C. § 227 (TCPA)</dd>
+          <dt>Theory</dt><dd><span class="pill pill--gap">TBD — pull state complaint</span></dd>
+          <dt>Defense Counsel</dt><dd>Ty D. Robare, Jimerson Birr, P.A. (Jacksonville) — appeared via Notice of Removal</dd>
+          <dt>Defense Posture</dt><dd>Aggressive jurisdictional removal (prior Robinson case was remanded — suggests removal may face challenge)</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel / Firm</div>
+        <h3 class="card-title">Law Offices of Jibrael S. Hindi, PLLC <span class="pill pill--danger" style="margin-left:8px;">EXTREME THREAT</span></h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>1-844-542-7235 <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Firm Email</dt><dd>jibrael@jibraellaw.com</dd>
+          <dt>Website</dt><dd><a href="https://jibraellaw.com">jibraellaw.com</a></dd>
+          <dt>Headcount</dt><dd>Boutique — 4+ named attorneys</dd>
+          <dt>Practice Mix</dt><dd>TCPA, FTSA, FDCPA, FCRA, Privacy, Mass Arb, Fair Housing, Class Actions</dd>
+          <dt>Fee Model</dt><dd>Pure contingency ("ZERO Upfront Attorney Fees")</dd>
+          <dt>Published Results</dt><dd>$30M+ TCPA settlements, $200M+ class action settlements (aggregate) <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>2026 Ranking</dt><dd>TCPAWorld 2026 Power Rankings — featured among "Most Dangerous TCPA Plaintiff's Lawyers" <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Discipline</dt><dd>None found in available FL Bar sources <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?lName=Hindi&fName=Jibrael">Fla. Bar →</a></span></dd>
+          <dt>Bar Numbers</dt><dd><span class="pill pill--gap">GAP — confirm via Fla. Bar individual lookups</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Hindi/Awad/Hedaya/Lane — Quiet Hours + Florida Multifamily Expansion</h3>
+      <div class="card-body">
+        The Hindi firm's signature play is a Rule 23 putative class under <strong>47 C.F.R. § 64.1200(c)(1)</strong> ("Quiet Hours") — targeting marketing texts sent before 8 a.m. or after 9 p.m. local time. The firm has run this template against Nespresso, Steve Madden, ThirdLove, the Tampa Bay Buccaneers, Overtime Sports, Summer Vibe, and PrimeFish Seafood across 2025-2026. <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Gerald+Lane%22+TCPA">Law360 (Lane) →</a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span><br><br>
+        Real estate / multifamily is an emerging vertical for the firm — apartment lease-up campaigns frequently push leads from ILS aggregators into outbound SMS funnels without rigorous consent capture. The fact that three named attorneys signed the Turizo complaint, combined with the firm's prior 2022 swing at FCI Residential (Robinson, remanded), tells you this defendant is now a named target on the firm's roadmap.
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current">
+              <td><strong>Turizo v. FCI Residential Corporation</strong></td>
+              <td>0:26-cv-61632 (S.D. Fla.)</td>
+              <td>Jun 4, 2026 (removed)</td>
+              <td><span class="pill pill--red">ACTIVE — CURRENT</span></td>
+              <td>TCPA 47 U.S.C. § 227, putative class</td>
+            </tr>
+            <tr>
+              <td>Robinson v. FCI Residential Corp.</td>
+              <td>0:22-cv-60237 (S.D. Fla.)</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">Terminated — remanded Feb 3, 2022</span></td>
+              <td>Same defendant; remanded to state court by Judge Dimitrouleas <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22FCI+Residential+Corporation%22&type=r">CourtListener →</a></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="gap-callout">
+      <h4>⚠ Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Plaintiff's recipient cell number — pull CACE-26-006808 from Broward Clerk or PACER Doc #1 Composite Exhibit 1</li>
+        <li>Specific TCPA theory — Quiet Hours? Federal DNC? Express Consent? (extracted as "other" pending complaint pull)</li>
+        <li>Class definition + alleged class size — not visible in removal pleading</li>
+        <li>Judge assignment for 0:26-cv-61632 — Clerk's notice issued Jun 5 but judge name not yet indexed</li>
+        <li>Federal answer deadline confirmation (Fed. R. Civ. P. 81(c)(2) — typically 7 days post-removal)</li>
+        <li>Sender DID / shortcode used to text Turizo — not in Notice of Removal; required for sender-side intel</li>
+        <li>Bar numbers and admission dates for Awad, Hedaya, Lane Jr. — Fla. Bar pages did not return parseable profile data</li>
+        <li>Confirmation of FCI Residential's corporate parent (suspected Forman Capital affiliation — unverified)</li>
+        <li>Whether plaintiff Ryan Turizo has prior FTSA / consumer filings in FL state court (no federal hits found)</li>
+        <li>FCI Residential's full FL property portfolio — for cross-sell sizing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with PJ Fanjul, Jr. (President) and Marianne Conner (Marketing). Marketing owns the SMS funnel — Marketing buys the fix.</h2>
+      <p class="section-lede">FCI Residential is a small org with no publicly visible General Counsel or Chief Compliance Officer. Lead with the President's office for authority, and parallel-path Director of Marketing for operational ownership of the lead-funnel that produced the alleged texts. All emails below are PATTERN-inferred from TheOrg directory data; the corporate site is offline so no email pattern could be confirmed against a published address.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn / Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PJ "Pepe" Fanjul, Jr.</strong><br><span class="pill pill--dark">PRESIDENT</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>President of FCI Residential. Highest-authority signer; closes on this if Marketing can't.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>pj.fanjul@fciresidential.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/pj-fanjul">LinkedIn</a> · <span class="src-tag"><a href="https://theorg.com/org/fci-residential">TheOrg →</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Marianne Conner</strong><br><span class="pill pill--dark">MARKETING</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Director of Marketing — owns SMS/email lead funnel; primary operational buyer of consent capture + DNC scrub.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>marianne.conner@fciresidential.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/marianne-conner">LinkedIn</a> · <span class="src-tag"><a href="https://theorg.com/org/fci-residential">TheOrg →</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael J. Getz</strong><br><span class="pill pill--dark">DEVELOPMENT</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Development Director — relevant for portfolio-wide cross-sell context (property pipeline = future lease-up SMS campaigns).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>michael.getz@fciresidential.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-getz">LinkedIn</a> · <span class="src-tag"><a href="https://theorg.com/org/fci-residential">TheOrg →</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Andrea Martinez</strong><br><span class="pill pill--dark">OPERATIONS</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Operations Manager — likely day-to-day owner of property-level CRM (Yardi/RealPage/Entrata).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>andrea.martinez@fciresidential.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/andrea-martinez">LinkedIn</a> · <span class="src-tag"><a href="https://theorg.com/org/fci-residential">TheOrg →</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--gap">GAP</span></td>
+            <td>No GC, VP Legal, or Chief Compliance Officer publicly identified. May be outsourced to outside counsel (now Jimerson Birr).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>Not found on TheOrg / LinkedIn</td>
+          </tr>
+          <tr>
+            <td><strong>Ty D. Robare, Esq.</strong><br><span class="pill pill--dark">DEFENSE COUNSEL</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Counsel for FCI Residential. Florida Bar No. 1054101. Jimerson Birr, P.A. — Jacksonville. Appeared via Notice of Removal Jun 4, 2026.</td>
+            <td>(904) 389-0050</td>
+            <td>trobare@jimersonfirm.com</td>
+            <td>Per Notice of Removal signature block</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-2);">
+      <strong>Email pattern:</strong> <code>{first}.{last}@fciresidential.com</code> — <span class="pill pill--warn">INFERRED (no published email confirmed)</span>. Confirm via test send / phone bridge before bulk outreach. <strong>Company main phone:</strong> not recovered — corporate site offline.
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; margin:0 0 8px;">Plaintiff Counsel (reference only — do not pitch)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Firm</th></tr></thead>
+          <tbody>
+            <tr><td>Samuel J. Awad</td><td>Counsel for Plaintiff</td><td>samuel@jibraellaw.com</td><td>The Law Offices of Jibrael S. Hindi, PLLC</td></tr>
+            <tr><td>Zane C. Hedaya</td><td>Counsel for Plaintiff</td><td>zane@jibraellaw.com</td><td>The Law Offices of Jibrael S. Hindi, PLLC</td></tr>
+            <tr><td>Gerald D. Lane, Jr.</td><td>Counsel for Plaintiff</td><td>gerald@jibraellaw.com</td><td>The Law Offices of Jibrael S. Hindi, PLLC</td></tr>
+            <tr><td>Jibrael S. Hindi</td><td>Firm Principal (not on this caption)</td><td>jibrael@jibraellaw.com</td><td>1-844-542-7235 · 1515 NE 26th St, Wilton Manors, FL 33305</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the federal answer deadline (~Jun 11) is the leverage window.</h2>
+      <p class="section-lede">Defendant was served May 5, removed Jun 4, and faces a ~7-day federal answer clock under Fed. R. Civ. P. 81(c)(2). Outreach inside this window lands with maximum urgency — the prospect is actively scoping the cost of defense and the value of a compliance fix.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Pull the state complaint</h3>
+        <div class="card-body">PACER pull of Doc #1 Composite Exhibit 1 OR Broward Clerk direct query on CACE-26-006808. Capture: (a) Turizo's cell number, (b) date/time/content of alleged text(s), (c) sender DID/shortcode, (d) specific TCPA theory pled. Run litigator scrub on the recovered number — close the loop in Section 01.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2</div>
+        <h3 class="card-title">Open with Marketing</h3>
+        <div class="card-body">Email Marianne Conner (Director of Marketing). One-sentence wedge: "You were just sued by the Hindi firm — your fciresidential.com is down and parkatkendallapts.com doesn't resolve. We document opt-in capture for multifamily operators so this stops being a class action." Cc PJ Fanjul, Jr. for authority signal.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2-3</div>
+        <h3 class="card-title">Phone bridge + bar-question close</h3>
+        <div class="card-body">Live call to FCI Residential main line (recover via Sunbiz refresh or front-desk receptionist). Ask one question: "What URL do you produce in discovery as the source of Turizo's consent?" If the answer is "I don't know," position consent capture as the immediate fix and DNC scrubbing as the upstream prevention.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3-5</div>
+        <h3 class="card-title">Loop in defense counsel</h3>
+        <div class="card-body">Email Ty Robare at Jimerson Birr (trobare@jimersonfirm.com). Position Blacklist as the operational compliance layer he can recommend to his client as part of the remediation story for the answer/motion strategy. Defense counsel is often the fastest channel to authorize a compliance spend.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5-10</div>
+        <h3 class="card-title">Cross-sell the portfolio</h3>
+        <div class="card-body">Once Park at Kendall is signed, expand to the full FCI Residential community portfolio — pitch scrub-per-property pricing. Reference the Robinson v. FCI Residential 2022 remand as evidence the operator has a recurring exposure pattern that benefits from a standing scrub subscription.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Trigger Conditions</div>
+        <h3 class="card-title">What changes the plan</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Defendant files motion to remand → urgency increases (case bounces back to FL state court, FTSA exposure stacks)</li>
+            <li>Defense files MTC arbitration → de-prioritize; revisit after ruling</li>
+            <li>Voluntary dismissal / Rule 41 → likely settled; pivot to portfolio cross-sell</li>
+            <li>Class certification briefing scheduled → escalate urgency for consent capture</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~7-DAY FEDERAL ANSWER WINDOW · CLOSE BEFORE JUN 11</span>
+      <span class="pill pill--warn">PULL CACE-26-006808 TO UNLOCK SCRUB</span>
+      <span class="pill pill--info">CROSS-SELL FCI PORTFOLIO POST-CLOSE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
