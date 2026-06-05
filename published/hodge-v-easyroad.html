@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hodge v. Easy Road Policy — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="2" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Auto Insurance Lead-Gen Defendant · Quiet-Hours + Federal DNC · 22 SMS Blasts · Class Action · E.D. Cal.</p>
+      <h1 class="hero-tagline">Hodge v.<br>Easy Road Policy LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-02045-DAD-CKD</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Cal. (Sacramento)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(today)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Dale A. Drozd<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Mag. Carolyn K. Delaney</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">§ 64.1200(c)(1) + (c)(2)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Two Rule 23 classes</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred, but the firm signature alone justifies outreach.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Hodge complaint pleads only the last four digits ("ending in 3380") of plaintiff's cell. A litigator-list scrub against a partial number is not valid, so this is logged as DEFERRED — not a match and not a miss.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow">Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(XXX) XXX-3380</div>
+        <div class="scrub-number-sub">Last four only. Sacramento / North Highlands, CA cell. On National DNC Registry since March 6, 2009 per complaint ¶ 21. Full number must be pulled from ECF #1 (PACER) or via a Rule 26 disclosure to enable a Blacklist Litigator Scrub.</div>
+      </div>
+      <p class="scrub-body-text">What was checked: plaintiff name "Jady Hodge" was cross-referenced against CourtListener — no prior TCPA filings located <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jady+Hodge%22&type=r">CourtListener →</a></span>. What was NOT checked: full 10-digit number against the Blacklist Litigator list (cannot scrub a partial). What is known: the SAME defendant was sued less than a month earlier by another plaintiff (Steele v. Easy Road Policy LLC, E.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Easy+Road+Policy%22&type=r">CourtListener →</a></span> — Easy Road is a repeat target, even if Hodge herself is not (yet) a serial filer.</p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">Sender DID</div>
+          <h3 class="card-title">Short Code 95349</h3>
+          <div class="card-body">
+            <p>5-digit SMS short code. Identified the sender as "EasyRoad" / "EasyRoadPolicy" in 22 messages between Mar 12 – Apr 27, 2026 per complaint Ex. A. Links in messages pointed to <code>app.easyroadpolicy.com</code> AND <code>app.maplecoverage.com</code> — strong indicator of shared SMS infrastructure across multiple insurance brands.</p>
+            <p style="margin-top:12px; color:var(--fg-2); font-size:13px;">Short codes are not indexed by 800notes / YouMail / Tellows / RoboKiller. Sender identity here is established by the complaint screenshots themselves, not crowd-sourced reputation data. Recommended pivot: usshortcodedirectory.com / CTIA registry for registrant of record.</p>
+            <div style="margin-top:12px;"><span class="pill pill--info">CTIA-Registered Short Code</span> <span class="pill pill--warn">Shared w/ Maple Coverage</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path · Option 1</div>
+          <h3 class="card-title">Pull ECF #1 from PACER</h3>
+          <div class="card-body">Some filers list the full plaintiff number in attached civil-cover-sheet exhibits or initial disclosures. Cost ≈ $1.20. First call should reference "PACER pull pending" so we don't oversell scrub status.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path · Option 2</div>
+          <h3 class="card-title">Wait for Rule 26(a) Disclosures</h3>
+          <div class="card-body">Plaintiff must produce the Subject Number in initial disclosures (~70-90 days post-service) and again in interrogatory responses. Defense counsel will have it day-one of discovery — sell the scrub now so it's plumbed in by then.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path · Option 3</div>
+          <h3 class="card-title">Sender-Side Reverse Lookup</h3>
+          <div class="card-body">Easy Road's SMS aggregator logs for short code 95349 contain every recipient number sent during the Mar 12 – Apr 27 window. Defense team can match Sacramento area codes (916 / 279) against its own send log to identify Hodge and isolate the class.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF: NO PRIOR TCPA FILINGS FOUND</span>
+      <span class="pill pill--warn">DEFENDANT: REPEAT TARGET (STEELE V. EASY ROAD, MAY 2026)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A shell-thin Delaware lead-gen insurer with no compliance infrastructure, 22 quiet-hours violations on the record, and a serial-filer firm already circling.</h2>
+      <p class="section-lede">Easy Road Policy is a green-field defendant — Wix template website, fabricated testimonials, no privacy policy actually deployed, no compliance officer, no LinkedIn presence. They have ZERO of what Blacklist sells, and they just got hit with their second TCPA class action in 30 days. Lead with DNC Scrubbing + Consent Capture; close on the AEP-style insurance season urgency.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Complaint alleges 22 marketing SMS to a number on the National DNC Registry since 2009. There is no scrubbing in their pipeline today. This is the strict-liability hook — no ATDS argument required, no "what is a residential line" debate. Pure 47 CFR § 64.1200(c)(2) exposure.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Secondary</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Their signup flow bundles SMS consent into the "Get a Quote" button click and discloses only "informational" messaging — yet the complaint is about marketing texts. The scope of consent doesn't match the actual outreach <span class="src-tag"><a href="https://easyroadpolicy.com/signup">easyroadpolicy.com →</a></span>. A real consent-capture solution rebuilds prior express written consent and creates 4-year retention logs.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Compliance Audit + Policies & Procedures</h3>
+        <div class="card-body">No published privacy policy, no T&Cs, no internal DNC list discipline. A P&P audit is the post-suit cleanup product that defense counsel will need to attach to their answer / safe-harbor argument under 47 CFR § 64.1200(c)(2)(i).</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <div class="card card--accent">
+        <div class="card-body">
+          <p>"You were just sued for the second time in 30 days for the same conduct — 22 marketing SMS sent before 8 a.m. local time to a Sacramento consumer whose number has been on the federal DNC list since 2009. PLG Damage Attorneys files 6-8 TCPA class actions a month <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span>. You are now on their template. Your website's consent flow only authorizes 'informational' messages — yet the texts in the exhibit are marketing — so the prior-express-written-consent defense is dead before discovery starts. Blacklist's DNC scrub + consent-capture stack closes both gaps before the next plaintiff files. We can be live on short code 95349 in 5 business days."</p>
+          <p style="margin-top:12px;">Second angle, if defense counsel is on the call: the safe-harbor under 47 CFR § 64.1200(c)(2)(i) requires <em>established and implemented</em> reasonable practices and procedures. Without a Blacklist scrub or equivalent, that affirmative defense is unavailable — and the complaint specifically pleads its absence (¶ 57). Selling scrub now is a defense-attorney's argument-builder for the answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Delaware shell-LLC running an auto-insurance lead-gen brand on a Wix template — likely co-operated with Maple Coverage.</h2>
+      <p class="section-lede">Easy Road Policy LLC has no discoverable corporate footprint outside the complaint itself. No Crunchbase, no Wikipedia, no NAIC license listing, no LinkedIn company page. The website is a Wix-built marketing single-pager with stock testimonials and broken policy links. Strong signal this is a thin lead-gen operation, not a licensed carrier.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile · Easy Road Policy LLC</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Easy Road Policy LLC (per complaint ¶ 6)</dd>
+          <dt>Entity Type</dt><dd>Delaware Limited Liability Company</dd>
+          <dt>Authorized In</dt><dd>California (per complaint ¶ 6)</dd>
+          <dt>HQ</dt><dd>Unknown — no address published <span class="pill pill--gap">GAP</span></dd>
+          <dt>Parent</dt><dd>Unknown — possible common operator with Maple Coverage</dd>
+          <dt>Vertical</dt><dd>Auto insurance / lead generation</dd>
+          <dt>Website</dt><dd><a href="https://easyroadpolicy.com">easyroadpolicy.com</a> — Wix template, mobile site "under construction" <span class="src-tag"><a href="https://easyroadpolicy.com">verify →</a></span></dd>
+          <dt>App Subdomain</dt><dd><code>app.easyroadpolicy.com</code> — currently returns 404</dd>
+          <dt>NAIC License</dt><dd>Not located in NAIC CIS search <span class="src-tag"><a href="https://content.naic.org/cis_consumer_information.htm">NAIC CIS →</a></span> — likely lead-gen / MGA, not a licensed carrier</dd>
+          <dt>LinkedIn</dt><dd>None located <span class="pill pill--gap">NO PRESENCE</span></dd>
+          <dt>BBB / Trustpilot</dt><dd>Not found / blocked <span class="pill pill--gap">GAP</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No privacy policy. No terms. Fabricated testimonials. Defective consent.</h3>
+        <div class="card-body">
+          <p>Every link to a policy or T&amp;C page on easyroadpolicy.com — /privacy, /privacy-policy, /terms, /about — returns the SAME homepage content <span class="src-tag"><a href="https://easyroadpolicy.com/privacy">/privacy →</a></span> <span class="src-tag"><a href="https://easyroadpolicy.com/terms">/terms →</a></span>. No actual policy is deployed. The signup form references "Terms &amp; Conditions and Privacy Policy" hyperlinks that go nowhere.</p>
+          <p style="margin-top:12px;">Site displays testimonials from "Liam K / MN", "Maya J / NJ", "Lakshya B / WA" — first-name + state-initials format is a classic AI-generated review tell. A stray paragraph on the page reads "GPT-Insights helps investors and fund managers…" — copy-pasted from an unrelated template, never QC'd.</p>
+          <p style="margin-top:12px;">Consent flow on /signup says: <em>"By clicking 'Get a Quote' I agree to receive recurring informational SMS, MMS, or Email messages from EasyRoadPolicy"</em> <span class="src-tag"><a href="https://easyroadpolicy.com/signup">/signup →</a></span>. Two killer defects: (1) consent is bundled into a button click, not a separate unchecked TCPA checkbox; (2) the disclosed scope is "informational" — but the complaint's 22 texts are marketing solicitations.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Move within 21 days of service — defense counsel will not be appointed yet.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Filed</dt><dd>June 4, 2026 (today) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-02045&type=r">CourtListener →</a></span></dd>
+            <dt>Summons Issued</dt><dd>June 4, 2026 (ECF #3)</dd>
+            <dt>Answer Deadline</dt><dd>~21 days post-service (standard FRCP 12(a)(1)(A)(i))</dd>
+            <dt>Defense Counsel</dt><dd>Not yet appeared — call window is wide open</dd>
+            <dt>Concurrent Case</dt><dd>Steele v. Easy Road Policy (E.D. Cal., May 2026) — same defendant, ~30 days earlier <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Easy+Road+Policy%22&type=r">CourtListener →</a></span></dd>
+            <dt>Urgency Driver</dt><dd>Two TCPA suits in 30 days. The third is coming. Sell scrub before it lands.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Maple Coverage</strong><br><span style="color:var(--fg-3); font-size:12px;">app.maplecoverage.com</span></td>
+              <td>Shared SMS infrastructure — sender domain appears in same SMS thread to Hodge</td>
+              <td>Auto insurance / lead-gen</td>
+              <td>Almost certainly same operator. Same short code (95349) routes both brands. One scrub deal covers both books of business.</td>
+              <td><span class="pill pill--danger">HIGH</span></td>
+            </tr>
+            <tr>
+              <td><strong>Unknown parent entity</strong></td>
+              <td>Delaware LLC formation suggests holding-company structure</td>
+              <td>Unknown</td>
+              <td>If a single LLC operator runs Easy Road + Maple Coverage + other brands, the addressable book is larger than either brand alone.</td>
+              <td><span class="pill pill--warn">MEDIUM — DISCOVER VIA DE SOS</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Volume-filer firm, identical-template complaint, second hit on this defendant in 30 days.</h2>
+      <p class="section-lede">PLG Damage Attorneys filed at least 9 TCPA class actions in the 6 weeks leading up to Hodge. Same paragraphs, same theories, different defendants. Easy Road Policy is on the assembly line.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <h3 class="card-title">Hodge v. Easy Road Policy LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-02045-DAD-CKD <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-02045&type=r">CourtListener →</a></span></dd>
+          <dt>Court</dt><dd>U.S.D.C. Eastern District of California (Sacramento)</dd>
+          <dt>Filed</dt><dd>June 4, 2026</dd>
+          <dt>Plaintiff</dt><dd>Jady Hodge — Sacramento, CA (resident of North Highlands per ¶ 26)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, PLG Damage Attorneys</dd>
+          <dt>Class Action</dt><dd>Yes — TWO putative Rule 23 classes</dd>
+          <dt>Class 1</dt><dd>TCPA After-Hours Class — quiet-hours SMS, 4-year lookback</dd>
+          <dt>Class 2</dt><dd>TCPA National DNC Class — solicitations to DNC-listed numbers, 4-year lookback</dd>
+          <dt>Class Size</dt><dd>"Dozens to hundreds or thousands" per ¶ 40</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · 47 CFR § 64.1200(c)(2)</dd>
+          <dt>Primary Theory</dt><dd>Quiet hours (before 8 a.m. local) on a strict-liability basis</dd>
+          <dt>Damages Sought</dt><dd>$500/violation + treble for willful + injunctive relief + fees</dd>
+          <dt>Named-Pl Exposure</dt><dd>22 violations × $500 = $11,000 (base) → $33,000 (treble)</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer deadline post-service</dd>
+          <dt>Docket Note</dt><dd>Initial tracking case 2:26-at-00968 assigned to Judge Drozd / Mag. Delaney</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027 <span class="pill pill--warn">FL FIRM · CA CASE</span></dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com →</a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com</dd>
+          <dt>CA Bar #</dt><dd>367857 — Active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CA Bar →</a></span></dd>
+          <dt>FL Bar #</dt><dd>123711 (inferred) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?lName=Venkatesh&fName=Vinit">FL Bar →</a></span></dd>
+          <dt>Email of Record</dt><dd>vv@plgdamage.com</dd>
+          <dt>Discipline</dt><dd>None on CA bar profile. Firm was named in Ackerman v. Property Litigation Group, PLLC, 0:23-cv-61828 (S.D. Fla. 2023) — civil-rights claim referencing Venkatesh by name; terminated July 2024.</dd>
+          <dt>TCPA Volume</dt><dd>~6–8 TCPA filings/month across CA + FL districts (Apr–May 2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span></dd>
+          <dt>Serial Filer</dt><dd>Yes — 9 TCPA filings located in 6 weeks <span class="pill pill--danger">VOLUME FILER</span></dd>
+          <dt>Co-Counsel</dt><dd>Faythe Gutierrez (CA Bar 310430)</dd>
+          <dt>Primary Practice</dt><dd>Property damage / insurance claims (historical); TCPA class actions (2026 expansion)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Plaintiff Firm Template</h3>
+      <div class="card">
+        <div class="card-body">
+          <p>PLG Damage Attorneys appears to be in rapid expansion mode from FL property-damage roots into nationwide TCPA class actions. The template signatures across 9 filings in 6 weeks include: (1) putative Rule 23 class with both a quiet-hours sub-class AND a DNC sub-class, (2) "regular user and subscriber of a wireless number used as a residential line" pleading, (3) explicit document-preservation demand, (4) jury demand, (5) DNC-since-{date} factual block, (6) granular itemized list of message dates and times (here, 22 dates), (7) sender DID + sender-domain capture from screenshots.</p>
+          <p style="margin-top:12px;">The firm targets verticals with low compliance maturity — retail (7-Eleven, Rite Aid, Last Brand), DTC consumer (Yesvideo, Refills Health), fintech/payroll (Payactiv), fitness (Xercize Studio), mortgage (Rocket), and now lead-gen insurance (Easy Road). Pattern: small-to-mid operators without robust scrub/consent infrastructure.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current-case">
+              <td><strong>Hodge v. Easy Road Policy LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+              <td>2:26-cv-02045</td>
+              <td>E.D. Cal.</td>
+              <td>2026-06-04</td>
+              <td><span class="pill pill--red">Active · Just Filed</span></td>
+              <td>Quiet hours + Federal DNC (SMS)</td>
+            </tr>
+            <tr>
+              <td>Steele v. Easy Road Policy LLC</td>
+              <td>(2:26-at-00792 tracking)</td>
+              <td>E.D. Cal.</td>
+              <td>~May 2026</td>
+              <td><span class="pill pill--warn">Active · Same Defendant</span></td>
+              <td>TCPA — same defendant <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Easy+Road+Policy%22&type=r">CourtListener →</a></span></td>
+            </tr>
+            <tr>
+              <td>Cummings v. 7-Eleven Inc.</td>
+              <td>1:26-cv-00119</td>
+              <td>N.D. Fla.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span></td>
+            </tr>
+            <tr>
+              <td>Hughes v. Guardio LLC</td>
+              <td>2:26-cv-05313</td>
+              <td>C.D. Cal.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Long v. Rocket Mortgage, LLC</td>
+              <td>2:26-cv-05599</td>
+              <td>C.D. Cal.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Fasheh v. The Xercize Studio, LLC</td>
+              <td>8:26-cv-01231</td>
+              <td>C.D. Cal.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Flottman v. Yesvideo, Inc.</td>
+              <td>8:26-cv-01491</td>
+              <td>M.D. Fla.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Rios v. Last Brand, Inc.</td>
+              <td>5:26-cv-02684</td>
+              <td>C.D. Cal.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Ortiz v. Payactiv, Inc.</td>
+              <td>2:26-cv-01460</td>
+              <td>M.D. Fla.</td>
+              <td>May 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Mendez v. Refills Health, LLC</td>
+              <td>2:26-cv-04569</td>
+              <td>C.D. Cal.</td>
+              <td>Apr 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+            <tr>
+              <td>Hughes v. Rite Aid Corporation</td>
+              <td>2:26-cv-04436</td>
+              <td>C.D. Cal.</td>
+              <td>Apr 2026</td>
+              <td><span class="pill pill--info">Same firm</span></td>
+              <td>TCPA — PLG Damage</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Open intel gaps to close before first dial</div>
+      <ul style="margin:0; padding-left:18px;">
+        <li>Full plaintiff phone number — pull ECF #1 from PACER to enable Litigator Scrub validation</li>
+        <li>Delaware SoS entity record for Easy Road Policy LLC — registered agent, officers, formation date all unconfirmed (DE NameSearch JS-rendered; OpenCorporates 403; Bizapedia gated)</li>
+        <li>Confirm whether Maple Coverage shares principals / registered agent with Easy Road (DE SoS cross-check)</li>
+        <li>CTIA / usshortcodedirectory.com lookup for short code 95349 to identify the SMS aggregator of record</li>
+        <li>CA Department of Insurance license search — is Easy Road actually licensed as an insurer in CA or only a lead-gen affiliate?</li>
+        <li>Identify any named officer / authorized signatory — no LinkedIn presence, no team page, no Crunchbase. Decision-maker is currently a GAP across all sources.</li>
+        <li>Confirm Steele v. Easy Road docket and any answer / defense counsel from that case — same lawyer likely takes Hodge</li>
+        <li>Judge Drozd's TCPA ruling tendencies — not retrievable from open sources; Westlaw / Bloomberg pull recommended</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named officer found — start at the front door of easyroadpolicy.com and demand routing to whoever signs for legal.</h2>
+      <p class="section-lede">Easy Road Policy has no LinkedIn page, no team page, no Crunchbase entry, no published officer roster. The only published company email is a generic <code>contact@easyroadpolicy.com</code>. First call is to the published email and any phone disclosed on follow-up. Recommend a parallel Delaware SoS pull within 24 hours to surface the registered-agent + member-manager names.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Easy Road Policy LLC</strong><br><span class="pill pill--dark">COMPANY MAIN</span></td>
+            <td>General company inbox — only published contact channel <span class="src-tag"><a href="https://easyroadpolicy.com/contact">easyroadpolicy.com/contact →</a></span></td>
+            <td>Not published <span class="pill pill--gap">GAP</span></td>
+            <td>contact@easyroadpolicy.com</td>
+            <td>— <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>{First}</strong><br><span class="pill pill--dark">EMAIL PATTERN</span></td>
+            <td>Inferred internal email pattern: <code>{first}@easyroadpolicy.com</code>. No individual mailbox confirmed — pattern derived from generic contact format only.</td>
+            <td>—</td>
+            <td>{first}@easyroadpolicy.com</td>
+            <td>— <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent (DE)</strong><br><span class="pill pill--dark">SOS LOOKUP</span></td>
+            <td>Delaware LLC registered agent of record. Required for service of process and authorized to receive TCPA notices. Pull via DE Division of Corporations.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap">GAP — DE SOS PULL</span></td>
+          </tr>
+          <tr>
+            <td><strong>Member / Manager</strong><br><span class="pill pill--dark">UNKNOWN OFFICER</span></td>
+            <td>LLC member-managers per DE filings. Decision authority on settlements + vendor contracts. Recoverable via DE Annual Report.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Compliance / GC</strong><br><span class="pill pill--dark">ROLE-ONLY</span></td>
+            <td>No compliance officer or GC disclosed on website. Role almost certainly outsourced to outside counsel post-suit. Defense counsel appearance ≈ 21 days post-service.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap">GAP — AWAIT APPEARANCE</span></td>
+          </tr>
+          <tr>
+            <td><strong>Maple Coverage (sister brand)</strong><br><span class="pill pill--dark">CROSS-SELL</span></td>
+            <td>Sender domain in same SMS thread — likely shared operator. Pull DE/CA SoS to confirm common officers. Cross-sell candidate on the same scrub deal.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>app.maplecoverage.com <span class="pill pill--info">INFERRED CO-BRAND</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px;">
+      <p style="font-size:13px; color:var(--fg-2);"><strong>Plaintiff counsel contact</strong> (for awareness only — do NOT contact directly; informational reference for the rep): Vinit R. Venkatesh, PLG Damage Attorneys, (305) 506-4746, vv@plgdamage.com / tcpa-service@plgdamage.com <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com →</a></span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours. They have no defense counsel yet — and a sister suit (Steele) already on the docket.</h2>
+      <p class="section-lede">Easy Road Policy is a small, undefended operator that just absorbed its second TCPA class action in 30 days. The window between "complaint filed" and "defense counsel appears" is when a scrub sale gets made. Once outside counsel is in, the decision moves to "we'll handle it through discovery."</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0 — Today (Jun 4)</div>
+        <h3 class="card-title">Pull PACER #1 + DE SoS</h3>
+        <div class="card-body">Ops pulls ECF #1 from PACER (~$1.20) to (a) confirm full Subject Number for Litigator Scrub and (b) capture any attached civil cover sheet or initial disclosures. In parallel, run Delaware NameSearch + Annual Report request to surface registered agent + member-manager names.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 — Jun 5</div>
+        <h3 class="card-title">Cold email to contact@easyroadpolicy.com</h3>
+        <div class="card-body">Subject line referencing the new docket number — not "we saw you got sued." Frame as "compliance heads-up regarding short code 95349 federal DNC exposure." Attach 1-pager. Cc the registered agent once identified.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3 — Jun 7</div>
+        <h3 class="card-title">First phone outreach</h3>
+        <div class="card-body">Call the company main and the registered agent line. Reference Hodge AND Steele by docket number on the first call. Ask for the person handling SMS marketing or the GC. Be ready for an "outside counsel will reach out" deflection — capture that counsel name for follow-up.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7 — Jun 11</div>
+        <h3 class="card-title">CTIA short-code aggregator pivot</h3>
+        <div class="card-body">If direct outreach stalls, contact the SMS aggregator of record (per usshortcodedirectory.com lookup for 95349). Aggregators have direct financial exposure under FCC regs and often push customers to scrub solutions to keep the code active.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 14 — Jun 18</div>
+        <h3 class="card-title">Defense counsel appearance window</h3>
+        <div class="card-body">Most defendants name outside counsel 7–21 days after service. Watch PACER daily for the notice of appearance — that's the new primary contact. Pivot the pitch to "scrub-as-defense-builder for your safe-harbor argument."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 21–25 — ~Jun 25</div>
+        <h3 class="card-title">Answer deadline pressure</h3>
+        <div class="card-body">FRCP 21-day answer clock is the natural close-date. Defendants who have not scrubbed by their answer cannot claim the 47 CFR § 64.1200(c)(2)(i) safe harbor in the responsive pleading. Time-pressure the close: "scrub on by answer day, or your safe-harbor argument is gone for the next 4 years of exposure."</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Trigger Conditions (re-plan if any fire)</h3>
+      <ul class="clean tight">
+        <li><strong>Defense counsel files MTC arbitration</strong> — pivot to consent-capture pitch (their consent flow is bundled into a button click; arbitration clause may be defective for the same reason)</li>
+        <li><strong>Steele v. Easy Road settles or consolidates</strong> — check terms; settlement may include scrub commitment that we can fulfill</li>
+        <li><strong>Plaintiff amends to add Maple Coverage as co-defendant</strong> — cross-sell becomes joint pitch; address both brands on one call</li>
+        <li><strong>Easy Road shuts down brand</strong> — pivot entire opportunity to Maple Coverage (sister brand on same short code)</li>
+        <li><strong>A third PLG Damage suit lands</strong> — urgency multiplier; reset entire sequence with new docket as proof point</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 2 SUITS IN 30 DAYS</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 25</span>
+      <span class="pill pill--info">LEAD WITH: DNC SCRUBBING + CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
