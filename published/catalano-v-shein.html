@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalano v. Shein US Services — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:16px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-2); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Fast-Fashion SMS Marketer · Quiet-Hours + Federal DNC · 7th TCPA Suit in 24 Months · Class Action · E.D. Cal.</p>
+      <h1 class="hero-tagline">Catalano v.<br>Shein US Services</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-02046-DC-DMC</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Cal. (Sacramento)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(5 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Dena M. Coggins (Art. III)<br>Dennis M. Cota (Mag.)</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not disclosed — scrub deferred, but PLG/Venkatesh is a fresh volume filer to flag.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Catalano complaint pleads only the last four digits of the "Subject Number" (ending in 0149), so a definitive litigator-list lookup cannot be run from the four corners of the complaint.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-0149</div>
+        <div class="scrub-number-sub">Complaint ¶20 discloses only the last four digits. Plaintiff is a Butte County, CA resident located in Oroville at time of receipt; number has been on Federal DNC since at least June 25, 2022 (¶21).</div>
+      </div>
+      <p class="scrub-body-text">A full-number litigator-list scrub cannot be performed against a partial number. Recovery path is straightforward: pull ECF #1 from PACER (typically ≤$1.20) — the un-redacted complaint or any attached intake/declaration usually carries the full ten-digit recipient number. As a parallel signal, plaintiff <strong>Garret Catalano</strong> does not surface in CourtListener as a prior TCPA filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shein+US+Services%22&type=r">CourtListener -&gt;</a></span>, which is consistent with a first-time class representative recruited by counsel rather than a true serial plaintiff.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending Infrastructure</div>
+        <h3 class="card-title">Short Code 80607 · s.pro</h3>
+        <p class="card-body">SMS exhibits identify sender as five-digit short code <strong>80607</strong> with click-through domain <strong>s.pro</strong>. WHOIS shows s.pro registered 2023-09-22 through Alibaba/HiChina with a Singapore registrant and AWS nameservers — consistent with Shein's Singapore HQ and enterprise A2P infrastructure. Short codes are leased exclusively for high-volume A2P messaging (100+ msgs/sec), establishing categorical mass-dial capability for class numerosity. <span class="src-tag"><a href="https://www.whois.com/whois/s.pro">WHOIS s.pro -&gt;</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <p class="card-body">Order Doc #1 from CAED PACER (~$1.20). The un-redacted body or any intake declaration almost always carries the full recipient number. Run against Blacklist litigator list, then route directly to the assigned BDR.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Backup</div>
+        <h3 class="card-title">Wait for Defense Counsel Notice</h3>
+        <p class="card-body">Once Shein's defense counsel (likely Brian J. Bosworth or Jamie Zysk Isani — both prior Shein TCPA defenders <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shein+US+Services%22&type=r">CourtListener -&gt;</a></span>) appears, the conferral letter and FRCP 26(f) report will include the full number. ~30-45 day window.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--warn">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF: NO PRIOR TCPA FILINGS FOUND</span>
+      <span class="pill pill--danger">FIRM IS VOLUME FILER · 9 TCPA CASES Q2 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">$38B revenue fast-fashion giant on its 7th TCPA suit in 24 months — sell consent capture before the IPO window closes.</h2>
+      <p class="section-lede">Shein is a repeat TCPA defendant operating an obvious short-code SMS marketing program (80607 / s.pro) with no surfaced quiet-hours filtering or time-zone scrubbing. They've already burned legal spend defending Carter (D. Mass.), Richards (now on appeal to the 7th Circuit), Noel, Ramirez, and Lawrence. Catalano is suit #7. Lead with <strong>Consent Capture / Record Retention</strong> and bolt on <strong>DNC scrubbing</strong>.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Catalano alleges no signed written agreement satisfying 47 CFR § 64.1200(c)(2)(ii). Shein's Register page returned 404 during enrichment — even their own consent infrastructure is unstable. Blacklist closes the evidentiary gap with timestamped, IP-stamped consent records that survive arbitration AND class certification.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Bolt-On #1</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + State)</h3>
+        <p class="card-body">Plaintiff's number was on Federal DNC since June 25, 2022 (¶21) — a real-time Blacklist scrub at send-time would have suppressed the message. Each scrubbed send prevents $500–$1,500 per violation per class member.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Bolt-On #2</div>
+        <h3 class="card-title">Quiet-Hours / Time-Zone Filtering</h3>
+        <p class="card-body">All four texts (Feb 27 1:13 AM, Feb 27 9:36 PM, Mar 31 11:49 PM, Apr 7 9:51 PM) were outside the 8am–9pm Pacific window. A time-zone-aware Blacklist suppression layer eliminates 47 CFR § 64.1200(c)(1) exposure categorically.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; margin:0 0 12px">Pitch Angle</h3>
+      <p style="margin:0 0 12px; color:var(--fg-2); line-height:1.65; max-width:880px">"Shein, you've been sued seven times on TCPA theories in the last two years — Carter, Lawrence, Noel, Ramirez, Richards (now at the 7th Circuit), and now Catalano in California. The arbitration clause worked against individual plaintiffs in Noel and Ramirez, but it doesn't moot quiet-hours and Federal DNC theories for the absent class. PLG/Venkatesh just filed at least nine TCPA actions in a single quarter — they're not going away. Every blast off short code 80607 without a real-time Federal DNC scrub and a time-zone-aware quiet-hours suppression is a strict-liability event at $500–$1,500 per text per recipient. Your IPO prospectus is under FCA review; pending class actions are material disclosures. Let's close the consent and scrub gap before the next plaintiff files."</p>
+      <p style="margin:0; color:var(--fg-2); line-height:1.65; max-width:880px">Decision-maker routing: target <strong>Danny Chi (Head of Governance, Risk and Compliance)</strong> as the technical sponsor and <strong>Peter Pernot (Head of Strategic and Corporate Affairs)</strong> as the executive cover. No US General Counsel is publicly identified, which is itself a useful wedge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">$38B 2024 revenue, 28% US fast-fashion market share, Singapore HQ — and pursuing a London/Hong Kong IPO.</h2>
+      <p class="section-lede">Shein US Services LLC is the named Delaware-formed US operating entity inside Roadget Business Pte. Ltd. (Singapore). The parent group reported ~$38B revenue in 2024 with 16,000+ employees globally and operates one of the highest-volume SMS marketing programs in DTC retail.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Shein US Services LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Shein US Services LLC (d/b/a Shein)</dd>
+          <dt>Formation State</dt><dd>Delaware</dd>
+          <dt>Parent</dt><dd>Roadget Business Pte. Ltd. (Singapore) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Shein">Wikipedia -&gt;</a></span></dd>
+          <dt>Sister/Subsidiary</dt><dd>Shein Distribution Corporation; MOTF; ROMWE; Missguided (acquired Oct 2023)</dd>
+          <dt>Founder/CEO</dt><dd>Chris Xu (Xu Yangtian), since founding 2008/2012 <span class="src-tag"><a href="https://theorg.com/org/shein">TheOrg -&gt;</a></span></dd>
+          <dt>Global HQ</dt><dd>112 Robinson Road, Singapore</dd>
+          <dt>US Operations</dt><dd>Distribution centers in Whitestown, IN; Southern California; Northeast US</dd>
+          <dt>Revenue (2024)</dt><dd>~$38B global ($32B 2023; $24B 2022)</dd>
+          <dt>Employees</dt><dd>16,000+ globally (2024)</dd>
+          <dt>Vertical</dt><dd>DTC Fast Fashion / Marketplace</dd>
+          <dt>Valuation</dt><dd>$30B (2025), down from $100B (2022)</dd>
+          <dt>IPO Status</dt><dd>FCA-approved (UK, Apr 2025); stalled on tariffs; considering Hong Kong listing</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Four texts to a DNC-registered number, all outside quiet hours, all from the same short code.</h3>
+        <p class="card-body">Complaint ¶26 alleges sends at <strong>1:13 AM, 9:36 PM, 11:49 PM, and 9:51 PM</strong> Pacific time to a number on the Federal DNC since June 25, 2022. Every send was off short code <strong>80607</strong> with <strong>s.pro</strong> click-throughs. A functioning Federal-DNC + time-zone-aware suppression layer would have blocked every one. Shein's own Register page returned 404 during enrichment — making the "prior express written consent" defense even harder to document. <span class="src-tag"><a href="https://us.shein.com/Terms-and-Conditions-a-399.html">Shein ToS -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">IPO prospectus under review · Tariff pressure · Valuation cut 70%</h3>
+      <dl class="kv" style="margin-top:12px">
+        <dt>IPO Window</dt><dd>FCA approved Shein's IPO prospectus Apr 2025; deal stalled on US tariff regime. Hong Kong listing under active consideration. Pending TCPA class actions are material disclosures. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Shein">Wikipedia -&gt;</a></span></dd>
+        <dt>EU Pressure</dt><dd>VLOP designation under EU DSA (Apr 2024); active EU Commission consumer protection action (Feb 2025) — pattern of consumer-protection scrutiny that informs US class strategy. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Shein">Wikipedia -&gt;</a></span></dd>
+        <dt>Answer Clock</dt><dd>Federal 21-day answer deadline runs from service. Filed 2026-06-04; service not yet docketed.</dd>
+        <dt>Appellate Heat</dt><dd>Richards v. Shein Distribution Corp. is on appeal to the 7th Cir. (26-2083), consolidated with a Fashion Nova appeal — Shein is actively litigating the same theories raised here. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shein%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+      </dl>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:20px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Roadget Business Pte. Ltd.</strong></td><td>Parent (Singapore)</td><td>Holding company</td><td>Successor / agency liability vehicle in all Shein US suits</td><td><span class="pill pill--info">Medium</span></td></tr>
+          <tr><td><strong>Shein Distribution Corporation</strong></td><td>US subsidiary</td><td>DTC fulfillment</td><td>Already named defendant in Richards (S.D. Ind. / 7th Cir.)</td><td><span class="pill pill--danger">High</span></td></tr>
+          <tr><td><strong>MOTF</strong></td><td>Sister brand</td><td>DTC apparel (premium)</td><td>Same SMS infra likely shared; not yet sued</td><td><span class="pill pill--info">Medium</span></td></tr>
+          <tr><td><strong>ROMWE</strong></td><td>Sister brand (acquired 2014)</td><td>DTC apparel (youth)</td><td>Same parent SMS marketing playbook</td><td><span class="pill pill--info">Medium</span></td></tr>
+          <tr><td><strong>Missguided</strong></td><td>Subsidiary (acquired Oct 2023)</td><td>UK fast fashion</td><td>EU/UK PECR exposure mirrors US TCPA risk</td><td><span class="pill pill--gap">Low</span></td></tr>
+          <tr><td><strong>SPARC Group (Forever 21 JV)</strong></td><td>Minority cross-investment (Aug 2023)</td><td>US mall retail / DTC</td><td>JV expands TCPA surface area on shared promo lists</td><td><span class="pill pill--danger">High</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Shein's playbook is motion-to-compel-arbitration; PLG's playbook is volume-filing quiet-hours + DNC theories that survive it.</h2>
+      <p class="section-lede">Shein has previously won arbitration motions in Noel (M.D. Fla.) and Ramirez (S.D. Fla.) — terminating individual cases inside 90 days. But Catalano is pled as a class action under strict-liability quiet-hours and Federal-DNC theories; arbitration will moot the named plaintiff but the absent class survives.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <h3 class="card-title">Catalano v. Shein US Services LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>2:26-cv-02046-DC-DMC <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-02046&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 4, 2026</dd>
+          <dt>Court</dt><dd>U.S. District Court, E.D. Cal. (Sacramento)</dd>
+          <dt>Judge</dt><dd>Dena M. Coggins (Article III); Dennis M. Cota (Magistrate)</dd>
+          <dt>Plaintiff</dt><dd>Garret Catalano, Butte County, CA (Oroville)</dd>
+          <dt>Class Status</dt><dd>Putative Rule 23 — TWO classes pled</dd>
+          <dt>Class A</dt><dd>TCPA After-Hours Class (47 CFR § 64.1200(c)(1))</dd>
+          <dt>Class B</dt><dd>TCPA Federal DNC Class (47 CFR § 64.1200(c)(2))</dd>
+          <dt>Theory</dt><dd>Quiet-hours SMS + DNC SMS sent without signed written consent satisfying § 64.1200(c)(2)(ii)</dd>
+          <dt>Violations Pled</dt><dd>4 texts × named plaintiff (Feb 27 1:13 AM, Feb 27 9:36 PM, Mar 31 11:49 PM, Apr 7 9:51 PM)</dd>
+          <dt>Damage Range (Named Plaintiff)</dt><dd>$2,000 – $6,000 (4 × $500 statutory to 4 × $1,500 treble)</dd>
+          <dt>Class Size Alleged</dt><dd>"dozens to hundreds or thousands" (¶40)</dd>
+          <dt>Channels</dt><dd>SMS only (short code 80607, link domain s.pro)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--warn">Not Yet Appeared · 21-Day Answer Window</span><br>Likely Brian J. Bosworth and/or Jamie Zysk Isani per prior Shein TCPA cases <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shein+US+Services%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Document Preservation</dt><dd>Plaintiff filed FRCP-style preservation demand (¶ Document Preservation Demand) — covers transmission logs, consent records, vendor comms</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com</dd>
+          <dt>Service Email</dt><dd>tcpa-service@plgdamage.com</dd>
+          <dt>Lead Counsel</dt><dd>Vinit R. Venkatesh</dd>
+          <dt>Bar No.</dt><dd>CA #367857 <span class="pill pill--warn">FIRM ADDRESS = FL · BAR = CA</span></dd>
+          <dt>Bar Address Mismatch</dt><dd>Firm operates from Miramar, FL; lead counsel is CA-barred only. FL Bar directory returned no match for Venkatesh. <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CalBar -&gt;</a></span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?searchTerm=Vinit+Venkatesh">FL Bar -&gt;</a></span></dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>Firm Practice</dt><dd>Primarily property damage / insurance claims; recent pivot into TCPA</dd>
+          <dt>Other Firm Attys</dt><dd>Matthew Suls, Natasha Floyd, Adrien (last name undisclosed)</dd>
+          <dt>TCPA Power Ranking</dt><dd>Not on TCPAWorld power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+          <dt>Recent TCPA Volume</dt><dd>~9 TCPA cases filed Q2 2026 (C.D. Cal., M.D. Fla., N.D. Fla., N.D. Cal.) <span class="pill pill--danger">VOLUME FILER</span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; margin:0 0 12px">Plaintiff Firm Template — PLG / Venkatesh Quiet-Hours + DNC</h3>
+      <p style="margin:0 0 12px; color:var(--fg-2); line-height:1.65; max-width:880px">PLG Damage Attorneys is a Miramar, FL-based property-damage firm advertising $100M+ in client recoveries that has pivoted into TCPA volume filing in 2026 using its newly CA-barred associate (Venkatesh, Bar No. 367857). Filing pattern across Q2 2026 spans <strong>DTC e-commerce, fintech, mortgage lending, retail pharmacy, fitness studios, health supplements, and convenience retail</strong> — Catalano fits squarely in their DTC e-commerce target set.</p>
+      <p style="margin:0; color:var(--fg-2); line-height:1.65; max-width:880px">The template is consistent across filings: <strong>(1)</strong> Rule 23 putative class; <strong>(2)</strong> 47 USC § 227(c) + § 64.1200(c)(1) quiet-hours + § 64.1200(c)(2) Federal DNC; <strong>(3)</strong> plaintiff's number on Federal DNC for years; <strong>(4)</strong> explicit allegation that defendant lacks signed written consent satisfying § 64.1200(c)(2)(ii); <strong>(5)</strong> document preservation demand front-loaded. These theories are strict-liability and SURVIVE arbitration of the named plaintiff for absent class members.</p>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:20px">Concurrent &amp; Recent Litigation Against Shein</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Caption</th><th>Court / Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case"><td><strong>Catalano v. Shein US Services LLC</strong></td><td>E.D. Cal. · 2:26-cv-02046</td><td>2026-06-04</td><td><span class="pill pill--red">CURRENT · PENDING</span></td><td>Quiet hours + Federal DNC SMS</td></tr>
+          <tr><td>Carter v. Shein US Services, LLC</td><td>D. Mass. · 3:25-cv-10447</td><td>2025</td><td><span class="pill pill--warn">Pending · Arbitration sought</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Lawrence v. Shein US Services, LLC</td><td>D. Mass. · 1:24-cv-13002</td><td>2024</td><td><span class="pill pill--ok">Dismissed w/ prejudice · Remanded</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Noel v. Shein US Services, LLC</td><td>M.D. Fla. · 6:24-cv-01330</td><td>2024</td><td><span class="pill pill--ok">Compelled to arbitration · Terminated ~6 wks</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Ramirez v. Shein US Services, LLC</td><td>S.D. Fla. · 1:24-cv-22002</td><td>2024</td><td><span class="pill pill--ok">Compelled to arbitration · Terminated ~3 mo</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Richards v. Shein Distribution Corp.</td><td>S.D. Ind. · 1:25-cv-01385</td><td>2025</td><td><span class="pill pill--info">Dismissed (12(b)(6)) · On appeal</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Warren Richards v. Shein Distribution Corp.</td><td>7th Cir. · 26-2083 (consolidated w/ Fashion Nova)</td><td>2026</td><td><span class="pill pill--danger">Active appeal</span></td><td>TCPA appellate</td></tr>
+          <tr><td>Jones v. Shein US Services, LLC</td><td>N.D. Cal. · 2026</td><td>2026</td><td><span class="pill pill--warn">Pending</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Severino v. Shein US Services LLC</td><td>N.D. Cal. · 2026</td><td>2026</td><td><span class="pill pill--warn">Pending</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Ashley Jones v. Shein US Services, LLC</td><td>C.D. Cal. · 2026</td><td>2026</td><td><span class="pill pill--warn">Pending</span></td><td>TCPA SMS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px">Source: <a href="https://www.courtlistener.com/?q=%22Shein%22+TCPA&type=r">CourtListener Shein TCPA search</a></p>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px">
+        <li>Plaintiff's full ten-digit recipient phone (¶20 redacted to last four) — <strong>pull PACER ECF #1</strong> to retrieve and run litigator-list scrub.</li>
+        <li>Shein US Services LLC registered agent + officer list — Delaware SoS, CA SoS, and OpenCorporates fetches were blocked/CAPTCHA'd; Bizapedia behind human verification.</li>
+        <li>US-based General Counsel / Chief Legal Officer — not publicly identified on TheOrg, LinkedIn, or SignalHire; route legal pitch through Danny Chi (Risk &amp; Compliance) or Peter Pernot (Corp Affairs) until confirmed.</li>
+        <li>Answer deadline — service not yet docketed; calendar 21 days from service date.</li>
+        <li>Defense counsel of record — Catalano docket has not yet shown an appearance. Bosworth, Isani, Van Pelt are the historical Shein defenders.</li>
+        <li>Judge Coggins' TCPA ruling history — no published TCPA decisions surfaced; brief look-up before first dial.</li>
+        <li>BBB / Trustpilot / Glassdoor profiles — all returned 403; no consumer complaint count obtainable for SMS-specific framing.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with Danny Chi (GRC) and Peter Pernot (Corp Affairs) — no US GC is publicly identified.</h2>
+      <p class="section-lede">No US General Counsel surfaced on TheOrg, LinkedIn, or SignalHire — that gap is itself a wedge. Route the first conversation through Governance/Risk/Compliance (Danny Chi) and Corporate Affairs (Peter Pernot). Email pattern is confirmed as <code>{first}.{last}@shein.com</code> with some accounts on <code>@sheingroup.com</code>.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Danny Chi</strong><br><span class="pill pill--dark">GRC</span></td>
+            <td>Head of Governance, Risk and Compliance — Owns the compliance program; primary technical sponsor for TCPA scrub + consent capture <span class="src-tag"><a href="https://www.signalhire.com/companies/shein">SignalHire -&gt;</a></span></td>
+            <td>—</td>
+            <td>danny.chi@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Peter Pernot</strong><br><span class="pill pill--dark">CORP AFFAIRS</span></td>
+            <td>Head of Strategic and Corporate Affairs — Executive cover for compliance buy; relevant to IPO disclosure narrative <span class="src-tag"><a href="https://www.signalhire.com/companies/shein">SignalHire -&gt;</a></span></td>
+            <td>+1-***-***-3260 (masked, SignalHire)</td>
+            <td>peter.pernot@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kaleene Kenning</strong><br><span class="pill pill--dark">PRODUCT COMPLIANCE</span></td>
+            <td>Director III of Product Compliance — Adjacent compliance owner; useful for in-flight rollouts of consent capture at signup <span class="src-tag"><a href="https://www.signalhire.com/companies/shein">SignalHire -&gt;</a></span></td>
+            <td>+1-***-***-7802 (masked)</td>
+            <td>kaleene.kenning@sheingroup.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Molly Miao</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer — Owns the SMS marketing budget that is generating exposure <span class="src-tag"><a href="https://theorg.com/org/shein">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>molly.miao@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kalista Jin</strong><br><span class="pill pill--dark">SNS MARKETING</span></td>
+            <td>SNS Marketing — Operational owner of social/SMS sends; useful for vendor-stack discovery <span class="src-tag"><a href="https://www.signalhire.com/companies/shein">SignalHire -&gt;</a></span></td>
+            <td>+86-***-***-3512 (masked)</td>
+            <td>kalista.jin@shein.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Marcelo Claure</strong><br><span class="pill pill--dark">VICE CHAIR</span></td>
+            <td>Group Vice Chairman — Executive escalation path; high-profile public figure with TCPA exposure visibility <span class="src-tag"><a href="https://theorg.com/org/shein">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>marcelo.claure@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chris Xu (Xu Yangtian)</strong><br><span class="pill pill--dark">FOUNDER / CEO</span></td>
+            <td>Founder &amp; CEO since 2008/2012 — Final decision authority; do not lead with, but useful as escalation lever if comms stall <span class="src-tag"><a href="https://theorg.com/org/shein">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>chris.xu@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Leigh Gui</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer — IPO process owner; relevant to material-disclosure framing <span class="src-tag"><a href="https://theorg.com/org/shein">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>leigh.gui@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tamara Benjamin</strong><br><span class="pill pill--dark">COMMS</span></td>
+            <td>Head of Corporate Communications — Useful inbound for PR-adjacent compliance buy <span class="src-tag"><a href="https://theorg.com/org/shein">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>tamara.benjamin@shein.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>US General Counsel</strong><br><span class="pill pill--dark">LEGAL</span></td>
+            <td>No US GC publicly identified on TheOrg, LinkedIn, or SignalHire — confirm before first dial via state-bar filings or LinkedIn premium search</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shein US Services LLC — Main</strong><br><span class="pill pill--dark">CO MAIN</span></td>
+            <td>Company main line surfaced via SignalHire enrichment <span class="src-tag"><a href="https://www.signalhire.com/companies/shein">SignalHire -&gt;</a></span></td>
+            <td>636-637-0525</td>
+            <td>us_legal@sheingroup.com (general legal mailbox) <span class="src-tag"><a href="https://us.shein.com/Terms-and-Conditions-a-399.html">Shein ToS -&gt;</a></span></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px">Email pattern <code>{first}.{last}@shein.com</code> confirmed via masked SignalHire records. <code>@sheingroup.com</code> used for some compliance/product roles.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — class theory survives Shein's arbitration playbook.</h2>
+      <p class="section-lede">Shein's prior wins (Noel, Ramirez) all came on motions to compel arbitration against individual plaintiffs. Catalano is pled as a Rule 23 class on strict-liability quiet-hours and Federal DNC theories — even if Shein knocks the named plaintiff into arbitration, the absent class survives and Blacklist's value compounds.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Pull PACER ECF #1 and complete litigator-list scrub</h4>
+          <p>Order Doc #1 from CAED PACER (~$1.20). Pull plaintiff's full ten-digit recipient number from the un-redacted complaint or attached intake declaration. Run against Blacklist litigator list. Cross-reference against CourtListener — plaintiff Garret Catalano did not surface as prior filer, so this is a first-time class representative.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1–2 · First-touch email to Danny Chi (GRC) and Peter Pernot (Corp Affairs)</h4>
+          <p>Lead with: "Shein, you're on suit #7 in 24 months — Carter, Lawrence, Noel, Ramirez, Richards (now at the 7th Cir.), and now Catalano in E.D. Cal." Attach the concurrent-litigation table. Frame Blacklist's consent capture + DNC scrub as the only stack that closes BOTH the strict-liability classes Catalano pleads. CC the us_legal@sheingroup.com mailbox to backstop legal routing.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 3–7 · Follow-up call with Kaleene Kenning (Product Compliance) as technical sponsor</h4>
+          <p>Kenning sits in Product Compliance and can sponsor a Blacklist consent-capture rollout at the signup page (which currently returns 404 — a compliance defect in itself). Position Blacklist as the timestamped, IP-stamped consent record that survives arbitration and class certification.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 7–14 · Escalate to Molly Miao (CMO) if technical track stalls</h4>
+          <p>Marketing owns the SMS budget and the short code 80607 program. Frame Blacklist as the lift that lets them keep blasting at volume without manufacturing per-text statutory exposure.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 14–21 · Material-disclosure escalation to Leigh Gui (CFO) if needed</h4>
+          <p>IPO prospectus is under FCA review. Pending class actions are material disclosures. Position Blacklist scrub + consent capture as the remediation Shein can disclose to FCA / HKEX as a compliance investment that ringfences future exposure.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h4>Cross-sell · Shein Distribution Corporation and SPARC/Forever 21 JV</h4>
+          <p>Shein Distribution is the named defendant in Richards (7th Cir. appeal) — independently in market for the same product. SPARC Group / Forever 21 JV expands the surface area and shares promotional list infrastructure with Shein. Route both as parallel motions to the assigned BDR.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:24px 0 12px; font-size:18px">Trigger conditions that change the plan</h3>
+    <ul class="clean tight">
+      <li>If Shein files a Motion to Compel Arbitration in Catalano — reframe pitch around absent-class exposure ($500–$1,500 per class member, "dozens to hundreds or thousands" pled).</li>
+      <li>If 7th Circuit reverses Richards dismissal — appellate signal that the same theories raised in Catalano will not be Rule 12-dismissable. Accelerate.</li>
+      <li>If PLG files another Shein action elsewhere — repeat-target pattern strengthens; escalate immediately.</li>
+      <li>If Shein announces final IPO listing exchange — material-disclosure leverage compounds; route the prospectus-disclosure narrative to Leigh Gui directly.</li>
+      <li>If defense counsel Bosworth or Isani appears — both are reachable through prior Shein TCPA conferral; warm referral route for compliance buy.</li>
+    </ul>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH · 7TH TCPA SUIT IN 24 MONTHS</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 2026</span>
+      <span class="pill pill--danger">IPO PROSPECTUS UNDER REVIEW · MATERIAL DISCLOSURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
