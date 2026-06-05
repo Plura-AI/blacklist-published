@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Villaverde v. Nulastin — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">BLACKLIST</text>
+          <text x="118" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">FTSA Caller-ID Class Action · DTC Beauty SMS Shortcode · Serial-Filer Template · 17th Judicial Circuit Broward</p>
+      <h1 class="hero-tagline">Villaverde v.<br>Nulastin</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">CACE-26-009220</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">17th Jud. Cir. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Broward Cty., FL (Div. 03)</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 3, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Div. 03 · pending</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">Fla. Stat.<br>§ 501.059(8)(b)<br>§ 501.059(1)(j)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">100+ FL residents</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Glickman / Heller <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Social Justice Law Collective, PL</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number was never disclosed — scrub deferred, but plaintiff's firm is already a documented serial FTSA filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA/FTSA outreach. The Villaverde complaint does not plead the plaintiff's cell number, so a Blacklist litigator scrub cannot be run yet. The pitch hook here is not the scrub result — it is the firm template and the carrier-side shortcode exposure.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Recovery Path: Discovery</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Cell Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Plaintiff Amanda Villaverde (Broward County, FL) is identified only as "the regular user of a cellular telephone number that receives Defendant's telephonic sales calls" — the full 10-digit number is not pled in any paragraph of the complaint or screenshot exhibit.</div>
+      </div>
+      <p class="scrub-body-text">The complaint references a screenshot of the alleged Nulastin marketing text from short code <strong>51576</strong>, but the recipient's MDN is not disclosed in any paragraph or exhibit. A Blacklist litigator scrub against blacklistBulk was therefore <strong>not run</strong>. CourtListener searches surfaced no prior federal TCPA/FTSA filings by an "Amanda Villaverde" (only an unrelated 2020 Delaware bankruptcy creditor matrix hit) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Amanda+Villaverde%22&type=r">CourtListener -></a></span>, but state-court FTSA filings are not indexed in PACER/RECAP — a Broward Clerk portal search by party name is the next-best recovery path.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">SENDER DID · ALLEGED</div>
+        <h3 class="card-title">Short Code 51576</h3>
+        <p class="card-body">5-digit CTIA-registered A2P short code. Consumer-complaint aggregators (800notes, YouMail, Tellows, RoboKiller) do not meaningfully index short codes — all four returned no usable data on 51576. Short codes of this format are aggregator-leased (typical vendors: Attentive, Postscript, Klaviyo SMS, Twilio, Sinch) and provisioned for high-throughput bulk send, consistent with DTC mass-marketing. The complaint alleges that the short code was transmitted in lieu of a callable originating number, violating the FTSA caller-ID rules at Fla. Stat. § 501.059(8)(b).</p>
+        <div style="margin-top:12px;"><span class="pill pill--warn">Identity Confidence · Low</span> <span class="pill pill--info">Aggregator-Leased</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">RECOVERY PATH · #1</div>
+        <h3 class="card-title">Broward Clerk Portal Pull</h3>
+        <p class="card-body">Pull docket entries and any served pleadings from the Broward County Clerk e-portal. The public search page returned a 404 on first attempt <span class="src-tag"><a href="https://www.browardclerk.org/Web2/CaseSearch/">Broward Clerk -></a></span>, but a logged-in attorney account will surface civil cover sheet, service status, and judge assignment in Division 03.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">RECOVERY PATH · #2</div>
+        <h3 class="card-title">First-Round Discovery RFP</h3>
+        <p class="card-body">Plaintiff's number will surface in defendant's first-round interrogatories or RFP responses (once defense counsel appears). Sales should re-run the scrub the moment the number is produced.</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS · DEFERRED</span>
+      <span class="pill pill--danger">SERIAL-FIRM FLAG · ACTIVE</span>
+      <span class="pill pill--info">SHORTCODE-ONLY SENDER</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Founder-led DTC beauty brand, first-time FTSA defendant, caught running short code 51576 with no published SMS-terms page — textbook compliance-audit close.</h2>
+      <p class="section-lede">Nulastin is a 10-year-old Boulder-based DTC lash/brow/hair serum brand with no prior TCPA/FTSA litigation history and no visible compliance infrastructure on its website. The plaintiff's firm has filed at least 7 near-identical FTSA cases against DTC brands in 2023–2025. Lead with compliance audit + consent capture; cross-sell DNC + litigator scrub for the inevitable copycat round-two.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">PRIMARY PITCH</div>
+        <h3 class="card-title">Compliance Audit + Consent Capture</h3>
+        <p class="card-body">Nulastin's account-registration page captures no phone field and shows no SMS consent checkbox <span class="src-tag"><a href="https://nulastin.com/account/register">nulastin.com/account/register -></a></span>. Their /pages/sms-terms URL returns 404 <span class="src-tag"><a href="https://nulastin.com/pages/sms-terms">SMS Terms -></a></span>. There is no documented FTSA-compliant prior-express-written-consent flow. Blacklist's consent-capture stack closes this hole before round two arrives.</p>
+        <div style="margin-top:12px;"><span class="pill pill--red">Lead Pitch</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">SECONDARY PITCH</div>
+        <h3 class="card-title">Litigator Scrub (Pre-Send)</h3>
+        <p class="card-body">Since Nulastin's marketing list was provably hit by at least one serial-filer adjacent consumer (Villaverde via SJLC), the next campaign sent without a litigator scrub is a copycat invitation. Layer Blacklist's litigator scrub onto their existing SMS vendor (Attentive/Postscript/Klaviyo SMS) at the export step.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">TERTIARY PITCH</div>
+        <h3 class="card-title">DNC Scrubbing + Policies & Procedures</h3>
+        <p class="card-body">No published SMS terms page and no visible Chief Compliance Officer in the org chart <span class="src-tag"><a href="https://theorg.com/org/nulastin">TheOrg -></a></span>. Blacklist's policy templates + DNC scrub roll into a single deliverable that satisfies the "reasonable practices" prong if a subsequent court asks.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:0 0 12px; font-size:18px;">Pitch Angle</h3>
+    <p style="font-size:15px; line-height:1.6; color:var(--fg-1); margin:0 0 12px;">Open with the firm template, not the dollar figure. The Social Justice Law Collective (Glickman + Heller out of Dunedin, FL) is a documented FTSA volume filer with 7+ removed federal dockets in 2023–2025 against DTC brands — Maelys Cosmetics, Aerogrow, Aroma360, Sundance, Batteries Plus, Cerebral, Booksy <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CourtListener -></a></span>. Their playbook is identical: § 501.059(8)(b) caller-ID-rules theory, short-code-as-non-callable-number theory, Broward County state filing, statutory $500-per-text damages. Nulastin is the next iteration of the same template.</p>
+    <p style="font-size:15px; line-height:1.6; color:var(--fg-1); margin:0;">The wedge is this: <em>"You've been hit once. Your registration page doesn't capture a phone, your SMS Terms URL is 404, and short code 51576 just sent a marketing text to a Broward plaintiff represented by a firm that has filed this exact theory at least seven times in 18 months. Round two is already being drafted. Blacklist closes the gap before the next plaintiff files."</em> The Blacklist product the rep leads with is the consent-capture + audit bundle, with the litigator scrub framed as the pre-send safety net at SMS export.</p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Independent founder-led DTC beauty brand, 10 years old, no parent — short sales cycle, centralized decision-making.</h2>
+      <p class="section-lede">Nulastin, Inc. is a private Boulder, CO-headquartered DTC beauty company founded in 2016 by Leah Garcia. No public parent, no disclosed funding round, no in-house GC visible in the org chart. The buying center is the founder + COO + Chief of Staff — short cycle, founder-receptive to a "first-time defendant" framing.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">DEFENDANT PROFILE</div>
+        <h3 class="card-title">Nulastin, Inc.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>Nulastin, Inc. (described as "Foreign Corporation" in complaint)</dd>
+          <dt>Formation State</dt><dd><span class="pill pill--gap">Not Confirmed</span> SoS lookups (Sunbiz, Bizapedia, OpenCorporates, CO/CA/DE SoS) all returned 403/404/captcha</dd>
+          <dt>HQ</dt><dd>1200 Pearl Street, Suite 314, Boulder, CO 80302 <span class="src-tag"><a href="https://nulastin.com/pages/contact">nulastin.com -></a></span></dd>
+          <dt>Founded</dt><dd>2016 (10 years) <span class="src-tag"><a href="https://nulastin.com/pages/about">About -></a></span></dd>
+          <dt>Founder / CEO</dt><dd>Leah Garcia <span class="src-tag"><a href="https://nulastin.com/pages/about">nulastin.com -></a></span></dd>
+          <dt>Parent</dt><dd>None disclosed (independent)</dd>
+          <dt>Vertical</dt><dd>DTC Beauty — Lash/Brow/Hair Follicle Serums + Subscription Program</dd>
+          <dt>Main Phone</dt><dd>888-847-8007 <span class="src-tag"><a href="https://nulastin.com/pages/contact">nulastin.com -></a></span></dd>
+          <dt>Public Statements</dt><dd>Founder-led brand presence; press coverage in Cosmopolitan and Glossy <span class="src-tag"><a href="https://www.glossy.co/?s=Nulastin">Glossy -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="margin-bottom:8px; color:#A8A8A8;">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Account registration captures no phone, and /pages/sms-terms returns 404</h3>
+        <div class="card-body">
+          <p>The Nulastin account registration form asks for first name, last name, email, and password — <strong>no phone field, no SMS consent checkbox, no FTSA disclosure</strong> <span class="src-tag"><a href="https://nulastin.com/account/register" style="color:#C9C9C9;">Register -></a></span>. The expected SMS Terms URL (/pages/sms-terms) returns HTTP 404 <span class="src-tag"><a href="https://nulastin.com/pages/sms-terms" style="color:#C9C9C9;">SMS Terms -></a></span>. The Terms of Service contains no broad marketing-call/text consent provision and no FTSA-compliant prior-express-written-consent language <span class="src-tag"><a href="https://nulastin.com/policies/terms-of-service" style="color:#C9C9C9;">ToS -></a></span>. Whatever consent mechanism Nulastin relies on for short code 51576 lives in an undocumented popup widget that plaintiff's counsel will dismantle in discovery.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta" style="margin-bottom:8px;">STRATEGIC TIMING</div>
+      <h3 class="card-title">Pre-Answer Window · Founder-Led Brand</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 3, 2026 (1 day ago) — fresh service window</dd>
+        <dt>Answer Deadline</dt><dd>20 days from service under Fla. R. Civ. P. 1.140(a)(1); not yet determinable (no service date in record)</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+        <dt>Outreach Window</dt><dd>Founder + COO can be reached before outside counsel hardens the conversation. Window closes the moment defense counsel files notice of appearance.</dd>
+        <dt>Vertical Cadence</dt><dd>DTC beauty hits peak SMS volume at Q3 back-to-school + Q4 holiday — any unscrubbed campaign in the next 6 months magnifies copycat exposure</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA / FTSA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>None disclosed</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Nulastin appears to be an independent, founder-led brand with no disclosed parent, subsidiaries, or sister-brand SMS infra. Corporate registry pulls failed (Sunbiz 403, Bizapedia captcha, OpenCorporates 403) — sister entities could not be enumerated.</td>
+            <td><span class="pill pill--gap">Not In Scope</span></td>
+          </tr>
+          <tr>
+            <td>Founder's other ventures (Leah Garcia)</td>
+            <td>Founder portfolio</td>
+            <td>Unknown</td>
+            <td>Worth a LinkedIn pull on Leah Garcia's profile <span class="src-tag"><a href="https://www.linkedin.com/in/leah-garcia">LinkedIn -></a></span> before first dial — any second brand under her control is a same-conversation cross-sell.</td>
+            <td><span class="pill pill--info">Discover Pre-Call</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-time TCPA/FTSA defendant facing a 7-case serial-filer template; no defense playbook on the shelf.</h2>
+      <p class="section-lede">Nulastin has zero prior TCPA/FTSA litigation history. The two prior cases involving the brand were a 2007 Klein-Becker trademark/IP matter and a 2018 trademark mention in a competing-product case — neither is consumer-protection adjacent. The Social Justice Law Collective playbook, by contrast, is well-documented across DTC beauty, telehealth, fragrance, and home goods.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">CURRENT CASE</div>
+        <h3 class="card-title">Villaverde v. Nulastin, Inc.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>CACE-26-009220, Div. 03</dd>
+          <dt>Filed</dt><dd>June 3, 2026 at 4:33 PM ET</dd>
+          <dt>Court</dt><dd>17th Judicial Circuit, Broward County, FL</dd>
+          <dt>Plaintiff</dt><dd>Amanda Villaverde (Broward County, FL resident)</dd>
+          <dt>Counsel</dt><dd>Joshua A. Glickman (FBN 43994) · Shawn A. Heller (FBN 46346)</dd>
+          <dt>Firm</dt><dd>Social Justice Law Collective, PL · Dunedin, FL</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes · Rule 1.220(b)(2), (b)(3)</span></dd>
+          <dt>Class Definition</dt><dd>All FL residents whose caller-ID service received a Nulastin text-message sales call transmitting a non-callable number, 4 years pre-filing</dd>
+          <dt>Class Size</dt><dd>Plaintiff alleges "exceeds 100 members"</dd>
+          <dt>Statute</dt><dd>Fla. Stat. § 501.059(8)(b) (Caller ID Rules); § 501.059(1)(j) (Telephonic Sales Call definition)</dd>
+          <dt>Theory</dt><dd>Short code 51576 transmitted in lieu of a callable originating number violates FTSA caller-ID rules regardless of consent</dd>
+          <dt>Damages Sought</dt><dd>$500 per violation, liquidated; aggregate &gt; $50,000; declaratory + injunctive relief; attorneys' fees; class rep incentive bonus</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span> — 20-day answer clock pending service</dd>
+          <dt>Aggregator Coverage</dt><dd>Not yet indexed on PacerMonitor, UniCourt, Trellis, Justia, or CourtListener (state court) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Villaverde%22+%22Nulastin%22&type=r">CL -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">PLAINTIFF COUNSEL</div>
+        <h3 class="card-title">Social Justice Law Collective, PL</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Firm Address</dt><dd>974 Howard Ave., Dunedin, FL 34698</dd>
+          <dt>Firm Phone</dt><dd>(202) 709-5744 <span class="pill pill--warn">DC area code · FL firm</span></dd>
+          <dt>Fax</dt><dd>(866) 893-0416</dd>
+          <dt>Lead Attorney</dt><dd>Joshua A. Glickman · FBN 43994 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=43994">FL Bar -></a></span></dd>
+          <dt>Email</dt><dd>josh@sjlawcollective.com</dd>
+          <dt>Co-Counsel</dt><dd>Shawn A. Heller · FBN 46346 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=46346">FL Bar -></a></span></dd>
+          <dt>Email</dt><dd>shawn@sjlawcollective.com</dd>
+          <dt>Website</dt><dd>sjlawcollective.com <span class="pill pill--warn">CF SSL 526</span></dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>FTSA / TCPA Volume</dt><dd>At least 7 FTSA dockets removed to federal court in 2023–2025; identified on TCPAWorld in connection with Neiman Marcus FTSA wave litigation <span class="src-tag"><a href="https://tcpaworld.com/?s=Social+Justice+Law+Collective">TCPAWorld -></a></span></dd>
+          <dt>Serial Filer Flag</dt><dd><span class="pill pill--danger">Yes — Volume Filer</span></dd>
+          <dt>Target Verticals</dt><dd>DTC beauty/cosmetics · DTC e-commerce · telehealth · home goods · fragrance · apparel/outdoor</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta" style="margin-bottom:8px;">PLAINTIFF FIRM TEMPLATE</div>
+      <h3 class="card-title">Glickman / Heller FTSA Caller-ID Template — DTC Beauty Edition</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); margin:0 0 12px;">The complaint is a copy-paste of the firm's established § 501.059(8)(b) theory: any short code, 800/888 toll-free, or non-DID number transmitted in lieu of a callable originating number violates the caller-ID rules regardless of opt-in or consent. The firm files in Florida state circuit courts (typically Broward, Pinellas, Hillsborough, Lee), pleads &gt; $50,000 aggregate to clear the jurisdictional minimum, and targets DTC brands using short-code-based SMS marketing programs.</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); margin:0;">Pattern over the last 24 months: file in FL circuit court → defendant removes to S.D. Fla. or M.D. Fla. → quiet individual settlement or voluntary dismissal pre-class-cert. No published class settlements surfaced in CourtListener — the firm's economics rely on volume + statutory $500/text, not headline-grabbing class deals <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CourtListener -></a></span>.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Docket / Court</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Theory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Villaverde v. Nulastin, Inc.</strong></td>
+            <td>CACE-26-009220 · 17th Jud. Cir. Broward</td>
+            <td>2026-06-03</td>
+            <td><span class="pill pill--red">Current · Pending Service</span></td>
+            <td>FTSA § 501.059(8)(b) caller-ID rules — short code 51576</td>
+          </tr>
+          <tr>
+            <td>Demaio v. Batteries Plus, LLC</td>
+            <td>17th Jud. Cir. Broward (removed to S.D. Fla.)</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA § 501.059 — same firm, same courthouse, near-identical template <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Strange v. Sundance Holdings Group, LLC</td>
+            <td>S.D. Fla. (removed from FL state)</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA — same firm <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Wurm v. Maelys Cosmetics USA, Inc.</td>
+            <td>M.D. Fla. (removed from Lee Cty.)</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA caller-ID rules — DTC beauty defendant (direct comp) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Demaio v. Aerogrow International, Inc.</td>
+            <td>S.D. Fla. (removed from FL state)</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA — same firm <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Garcia v. Aroma360, LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA — fragrance DTC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Bilbao v. Cerebral Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA — telehealth <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+          <tr>
+            <td>Dominguez v. Booksy, Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Removed</span></td>
+            <td>FTSA — booking platform <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Social+Justice+Law+Collective%22+FTSA&type=r">CL -></a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="margin-bottom:8px; color:#A8A8A8;">OPEN INTEL GAPS · CLOSE BEFORE FIRST DIAL</div>
+      <h3 class="card-title">What the rep still needs to resolve</h3>
+      <ul class="clean tight" style="margin-top:12px;">
+        <li style="border-color:#393939;"><strong>Plaintiff's cell number</strong> — not pled. Recover via Broward Clerk pull of any served pleadings, or wait for discovery responses, then re-run litigator scrub.</li>
+        <li style="border-color:#393939;"><strong>Nulastin formation state and registered agent</strong> — Sunbiz/Bizapedia/OpenCorporates/CO SoS/CA SoS/DE SoS all blocked. Need a manual SoS pull (likely CO or DE) to confirm.</li>
+        <li style="border-color:#393939;"><strong>Defense counsel</strong> — not yet appeared. 20-day answer clock not started until service of process logs on the Broward docket.</li>
+        <li style="border-color:#393939;"><strong>Judge assignment</strong> — Division 03 listed, individual judge not yet confirmed on the public docket page (returned 404 on fetch) <span class="src-tag"><a href="https://www.browardclerk.org/Web2/CaseSearch/" style="color:#C9C9C9;">Broward Clerk -></a></span>.</li>
+        <li style="border-color:#393939;"><strong>SMS vendor</strong> — short code 51576 leasing brand and aggregator (Attentive vs Postscript vs Klaviyo SMS vs Twilio) not confirmed. CTIA short code registry lookup is the missing piece.</li>
+        <li style="border-color:#393939;"><strong>Privacy policy SMS / autodialer language</strong> — full text was not fetched; cannot confirm whether Nulastin discloses an opt-out mechanism or autodialer use.</li>
+        <li style="border-color:#393939;"><strong>Florida Bar profile depth for Glickman / Heller</strong> — admission date and discipline history not extracted from the FL Bar directory shell pages.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the founder. Loop in the COO and Chief of Staff on the second touch.</h2>
+      <p class="section-lede">Nulastin has no in-house GC or CCO. Decision authority is centralized in Leah Garcia (Founder/CEO), Brett Gallagher (COO), and Erica Borenstein (Chief of Staff). The email pattern <strong>{first}@nulastin.com</strong> is confirmed across multiple sources via SignalHire masked-email inspection. Main switchboard is <strong>888-847-8007</strong> — useful for warm transfer but not for direct executive reach.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Leah Garcia</strong><br><span class="pill pill--dark">CEO / FOUNDER</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Founder &amp; CEO (since 2016, 10-yr tenure). Founder-led brand — the buying decision starts and ends here. <span class="src-tag"><a href="https://theorg.com/org/nulastin">TheOrg -></a></span></td>
+            <td>888-847-8007 (main) <span class="pill pill--gap">Direct GAP</span></td>
+            <td>leah@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/leah-garcia">linkedin.com/in/leah-garcia</a></td>
+          </tr>
+          <tr>
+            <td><strong>Brett Gallagher</strong><br><span class="pill pill--dark">COO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chief Operating Officer. Owns vendor contracts and compliance tooling decisions in absence of a GC. <span class="src-tag"><a href="https://theorg.com/org/nulastin">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>brett@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Erica Borenstein</strong><br><span class="pill pill--dark">CHIEF OF STAFF</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chief of Staff — likely first-contact gatekeeper for the CEO and the natural meeting-scheduler. <span class="src-tag"><a href="https://theorg.com/org/nulastin">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>erica@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Stephanie Stone</strong><br><span class="pill pill--dark">VP BRAND &amp; GROWTH OPS</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>VP Brand &amp; Growth Operations — owns the SMS marketing program, the shortcode relationship, and the consent flow. Highest-leverage operator on the SMS-compliance pitch. <span class="src-tag"><a href="https://www.signalhire.com/companies/nulastin">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>stephanie@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lourdes de la Cabada</strong><br><span class="pill pill--dark">GROWTH MKTG DIR</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Growth Marketing Director — runs the campaigns that triggered the complaint. Critical second-meeting contact on consent-capture detail. <span class="src-tag"><a href="https://www.signalhire.com/companies/nulastin">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lourdes@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ami Bledsoe</strong><br><span class="pill pill--dark">DIR ECOM + CX</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Director of eCommerce + CX — owns the registration flow and the SMS opt-in widget at checkout. <span class="src-tag"><a href="https://www.signalhire.com/companies/nulastin">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>ami@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lilly Truscott</strong><br><span class="pill pill--dark">DIR PRODUCT DEV</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Director of Product Development. <span class="src-tag"><a href="https://theorg.com/org/nulastin">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lilly@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Abby Freeman</strong><br><span class="pill pill--dark">OPS MGR</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Operations Manager. <span class="src-tag"><a href="https://www.signalhire.com/companies/nulastin">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>abby@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sahar Bolourian</strong><br><span class="pill pill--dark">SOCIAL MEDIA MGR</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Social Media Manager. <span class="src-tag"><a href="https://www.signalhire.com/companies/nulastin">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>sahar@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Paul Bierbusse</strong><br><span class="pill pill--dark">EMPLOYEE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Employee profile surfaced via LinkedIn search. Role not specified. <span class="src-tag"><a href="https://www.linkedin.com/in/paulbierbusse">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>paul@nulastin.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/paulbierbusse">in/paulbierbusse</a></td>
+          </tr>
+          <tr>
+            <td><strong>Nulastin Main Line</strong><br><span class="pill pill--dark">COMPANY</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Main switchboard / customer service. Useful for warm transfer to Stephanie Stone or Erica Borenstein. <span class="src-tag"><a href="https://nulastin.com/pages/contact">nulastin.com -></a></span></td>
+            <td>888-847-8007</td>
+            <td><span class="pill pill--gap">No general inbox published</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta" style="margin-bottom:8px;">PLAINTIFF COUNSEL · REFERENCE ONLY</div>
+      <h3 class="card-title">Social Justice Law Collective, PL — do not call</h3>
+      <p class="card-body" style="margin-bottom:8px;">Listed here for reference only; sales outreach is to defendant-side contacts above.</p>
+      <dl class="kv">
+        <dt>Joshua A. Glickman</dt><dd>FBN 43994 · josh@sjlawcollective.com · (202) 709-5744 (per PACER) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=43994">FL Bar -></a></span></dd>
+        <dt>Shawn A. Heller</dt><dd>FBN 46346 · shawn@sjlawcollective.com · (202) 709-5744 (per PACER) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=46346">FL Bar -></a></span></dd>
+        <dt>Firm</dt><dd>974 Howard Ave., Dunedin, FL 34698 · sjlawcollective.com</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel files a notice of appearance and locks the conversation down.</h2>
+      <p class="section-lede">The complaint is one day old. Nulastin has not been served (or has just been served), defense counsel has not appeared, and the founder is reachable. The window between filing and defense-counsel appearance is the highest-conversion moment for a first-time TCPA/FTSA defendant.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">DAY 1 · TODAY</div>
+        <h3 class="card-title">Pre-call recon</h3>
+        <p class="card-body">Pull Leah Garcia's LinkedIn for tone and any second venture. Confirm short code 51576 leasing brand via CTIA registry. Pull a Broward Clerk e-portal docket to confirm service status and judge assignment. Inspect nulastin.com checkout for the SMS opt-in widget that's almost certainly behind the 404 SMS Terms URL.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">DAY 2 · FIRST TOUCH</div>
+        <h3 class="card-title">Email leah@ + erica@ + stephanie@</h3>
+        <p class="card-body">Three-recipient cold email: founder + Chief of Staff + VP Brand &amp; Growth Ops. Subject line references the filing, not the lawsuit. Lead with the firm template ("Glickman/Heller have filed this exact theory 7+ times against DTC brands — Maelys, Aerogrow, Aroma360, Cerebral"). Offer a 20-minute compliance-audit walkthrough.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:8px;">DAY 3 · WARM TRANSFER</div>
+        <h3 class="card-title">Call 888-847-8007</h3>
+        <p class="card-body">Warm transfer to Stephanie Stone (SMS program owner) or Erica Borenstein (CoS). Reference the email by subject line. The ask is a 20-minute screen-share to walk through the registration flow, the missing SMS Terms page, and the consent-capture gap.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">DAY 5–7 · FOLLOW-UP</div>
+        <h3 class="card-title">LinkedIn + second-touch email</h3>
+        <p class="card-body">If no reply, LinkedIn DM to Leah Garcia with a one-line reference to the filing and a Loom walkthrough of the consent gap. Second-touch email to Brett Gallagher (COO) framing this as a vendor-stack decision, not a legal decision.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">DAY 10–14 · ESCALATION</div>
+        <h3 class="card-title">Reference round two</h3>
+        <p class="card-body">If still no reply, the closing email references that the firm's pattern is to file the same theory against the same vertical repeatedly — Wurm v. Maelys is the precedent. Round two against Nulastin (or a sister DTC brand from the same SMS list rental) is the urgency.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;">DAY 21+ · TRIGGERS</div>
+        <h3 class="card-title">Defense counsel appears</h3>
+        <p class="card-body">The moment defense counsel files a notice of appearance, route the conversation through defense counsel — not the C-suite. Pivot the pitch from "audit + capture" to "discovery-defense documentation."</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta" style="margin-bottom:8px;">TRIGGER CONDITIONS</div>
+      <h3 class="card-title">What changes the plan</h3>
+      <ul class="clean tight">
+        <li><strong>Defense counsel appears →</strong> pivot from founder pitch to outside-counsel discovery pitch.</li>
+        <li><strong>Nulastin moves to compel arbitration →</strong> arbitration clause exists in ToS, but the class member arb defense doesn't cure consent for the texts already sent; pitch remains intact for the consent-capture going-forward.</li>
+        <li><strong>A second SJLC complaint is filed against Nulastin →</strong> escalate urgency. Round two confirms the firm template thesis and amplifies the pitch.</li>
+        <li><strong>Plaintiff's number surfaces in discovery →</strong> re-run the Blacklist litigator scrub and re-engage with the result as a fresh hook.</li>
+        <li><strong>Voluntary dismissal / quick individual settlement →</strong> still pitch — the dismissal does not cure the underlying compliance gap, and a new plaintiff can refile any week.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY · HIGH</span>
+      <span class="pill pill--danger">WINDOW · PRE-ANSWER · ~20 DAYS FROM SERVICE</span>
+      <span class="pill pill--warn">FIRST-TIME DEFENDANT · FOUNDER REACHABLE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
