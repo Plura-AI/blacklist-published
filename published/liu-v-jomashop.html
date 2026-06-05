@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liu v. Jomashop — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Luxury Watch SMS Marketer · Quiet-Hours Class Action · Multi-Vendor SMS Stack · C.D. Cal.</p>
+      <h1 class="hero-tagline">Liu v.<br>Jomashop Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03048</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 3, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but the sender short code and SMS stack are fully identified.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Liu's complaint discloses only the last four digits ("8522") of his wireless number, so a litigator-list scrub cannot be run with confidence. The opening pitch must lead with the sender-side intelligence instead: Jomashop's Attentive Mobile short code 96902 is the smoking gun.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:16px;height:16px"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-8522</div>
+        <div class="scrub-number-sub">Only the last four digits are pled (Complaint ¶17). Plaintiff resides in Chino, San Bernardino County, CA. Recovery path: ECF #1 carries no exhibit with the full DID; pull plaintiff's discovery responses or serve a Rule 26 request.</div>
+      </div>
+      <p class="scrub-body-text">The Liu complaint deliberately masks the full 10-digit recipient number — a recurring PLG Damage Attorneys template choice across their other recent C.D. Cal. quiet-hours filings. No blacklistBulk lookup was run because partial-number matches generate false positives. Cross-checking the plaintiff's name against CourtListener returned one prior unrelated bankruptcy (<em>In re Zhengfeng Liu</em>, Bankr. C.D. Cal. 6:19-bk-12793, terminated 2019) and no prior TCPA filings. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Zhengfeng+Liu%22&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <h3 style="margin-top:32px;margin-bottom:16px;font-size:18px;font-weight:600">Sending DID Intelligence</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Short Code · 96902</div>
+        <h3 class="card-title">Attentive Mobile broadcast short code</h3>
+        <div class="card-body">
+          <p>All 14 messages pled in Liu's exhibit set originate from short code <strong>96902</strong>, paired with the branded click-through subdomain <code>jomashop.attn.tv</code> — Attentive Mobile's standard tenant-subdomain pattern. <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive Mobile -&gt;</a></span></p>
+          <p style="margin-top:8px">Crowdsourced complaint databases (800notes / YouMail / Tellows / RoboKiller) do not index 5-digit short codes, so no consumer-spam tags are available. Identification confidence is high on infrastructure grounds alone.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Tracking Domain</div>
+        <h3 class="card-title">ltrk.co (Listrak link-shortener)</h3>
+        <div class="card-body">
+          <p>Early-window messages (2020–2024) route through <code>ltrk.co</code>, the link-shortener domain operated by Listrak — a second SMS/email vendor in Jomashop's stack alongside Attentive. Later messages (2024–2025) shift to <code>jomashop.attn.tv</code>.</p>
+          <p style="margin-top:8px">Two vendors on the same outbound program is a recognized TCPA risk pattern: consent records rarely reconcile cleanly across platforms when a brand migrates carriers mid-list.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender Identification</div>
+        <h3 class="card-title">Jomashop Inc. — confirmed sender</h3>
+        <div class="card-body">
+          <p>Every screenshot in Exhibit A is branded "JOMASHOP" in the message body and routes click-throughs to <code>jomashop.attn.tv</code> or <code>jomashop.com</code>. No agency or sender ambiguity to argue around.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--warn">PARTIAL NUMBER ONLY · LAST-4 "8522"</span>
+      <span class="pill pill--info">SENDER ID: ATTENTIVE 96902 · CONFIRMED</span>
+      <span class="pill pill--gap">PLAINTIFF NOT A KNOWN SERIAL TCPA FILER</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Mid-market DTC defendant on a multi-vendor SMS stack with a five-year quiet-hours pattern and a volume-filer firm circling.</h2>
+      <p class="section-lede">Fourteen alleged quiet-hours violations spanning March 2020 through September 2025 — sent from two different vendors (Listrak then Attentive) to the same number — is not a single-campaign mistake. It is a configuration problem. Lead with Consent Capture / Record Retention plus a Compliance Audit; close on a multi-year scrub subscription.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta" style="color:var(--bl-red)">Lead Pitch · Primary</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">
+          <p>Liu alleges no prior express invitation or permission and no established business relationship within the 18-month window (Complaint ¶¶18–19). Across a five-year send history split between two vendors, Jomashop almost certainly cannot produce a clean, time-stamped opt-in record for this number.</p>
+          <p style="margin-top:8px">Blacklist's consent-capture and retention solution gives defense counsel something to file in opposition to class certification.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">Compliance Audit (Quiet-Hours Configuration)</h3>
+        <div class="card-body">
+          <p>Every one of the 14 pled messages landed before 8:00 a.m. local time at the plaintiff's Chino, CA location — including a 5:02 a.m. send on Nov. 27, 2020 and a 6:26 a.m. send on Sep. 26, 2025. This is a time-zone enforcement failure inside the Attentive/Listrak send-time controls, not a one-off operator error.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">
+          <p>Plaintiff is not a known serial filer. Scrub becomes the upsell, not the wedge — but it's the durable subscription that prevents copycat refiles from PLG's other plaintiffs (Hughes, Long, Fasheh, Ortiz, etc.) once this case becomes visible on the docket.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;margin-bottom:12px;font-size:22px;font-weight:600">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>"You're a major DTC luxury retailer running SMS through Attentive — and historically through Listrak before that. The complaint we're looking at says your platform fired fourteen marketing texts to one consumer in California between 5:02 a.m. and 7:52 a.m. local time over a five-year window. That's not a rogue rep. That's a quiet-hours rule that was never properly configured for the recipient's time zone, on two consecutive vendors. The plaintiff's firm — PLG Damage Attorneys — has filed at least nine other near-identical TCPA complaints in the last sixty days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span>, six of them in this exact court. They aren't going away, and the moment this docket is visible, copycat firms will pull your subscriber list and refile."</p>
+        <p style="margin-top:12px">"Before you respond to the complaint, you need three things: (1) a reconciled consent record across both vendors, (2) a quiet-hours configuration audit, and (3) ongoing scrubbing so the next plaintiff PLG sends at you doesn't already have a docket number. Blacklist closes all three in a single subscription."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A privately-held New York DTC luxury watch retailer with no accessible privacy policy and a two-vendor SMS stack.</h2>
+      <p class="section-lede">Jomashop is one of the largest online luxury watch resellers in the U.S. and runs a multi-category DTC catalog (watches, handbags, sunglasses, beauty, pens). The compliance surface is broad: SMS, email, and on-site capture across at least two marketing platforms.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Jomashop Inc.</dd>
+          <dt>Entity Type</dt><dd>New York Corporation (per Complaint ¶5)</dd>
+          <dt>Formation State</dt><dd>NY</dd>
+          <dt>HQ</dt><dd>New York</dd>
+          <dt>Website</dt><dd><a href="https://www.jomashop.com">jomashop.com</a> <span class="src-tag"><a href="https://www.jomashop.com">Jomashop -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>DTC e-commerce — luxury watches, handbags, sunglasses, apparel, beauty, shoes, pens</dd>
+          <dt>Public / Private</dt><dd>Private</dd>
+          <dt>SMS Platform</dt><dd>Attentive Mobile (jomashop.attn.tv) + historical Listrak (ltrk.co) <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive -&gt;</a></span></dd>
+          <dt>Short Code</dt><dd>96902</dd>
+          <dt>Parent / M&amp;A</dt><dd>Not identified in public records</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No accessible privacy policy or terms — and a five-year quiet-hours pattern</h3>
+        <div class="card-body">
+          <p>Jomashop's <code>/privacy-policy</code>, <code>/terms-of-use</code>, and <code>/about-us</code> pages all return HTTP 404. There is no public-facing consent-to-contact language to point at, no posted opt-out mechanism, and no disclosed TCPA/autodialer disclosure. <span class="src-tag"><a href="https://www.jomashop.com">Jomashop -&gt;</a></span></p>
+          <p style="margin-top:10px">Combined with 14 alleged quiet-hours violations stretching from <strong>March 16, 2020 at 7:45 a.m.</strong> through <strong>September 26, 2025 at 6:26 a.m.</strong> — including pre-6 a.m. sends — this is a multi-year, multi-vendor systemic gap, not a one-off.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Filed yesterday — pre-answer, pre-defense-counsel window is wide open.</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="margin-top:8px">
+          <li><strong>Filing date:</strong> June 3, 2026 (1 day ago)</li>
+          <li><strong>Answer deadline:</strong> 21 days from service (TBD — summons request filed as Doc #4 on filing day) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03048&type=r">CourtListener -&gt;</a></span></li>
+          <li><strong>Defense counsel:</strong> Not yet appeared</li>
+          <li><strong>Judge:</strong> Not yet assigned in CourtListener entries</li>
+          <li><strong>Historical disposition signal:</strong> Prior <em>Cruz v. Jomashop</em> (S.D.N.Y. 2021) — MTD denied, then settled and discontinued; <em>Levin v. Jomashop</em> (C.D. Cal. 2025) terminated ~3 months after filing. Jomashop's pattern is settle, not litigate. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jomashop%22&type=r">CourtListener -&gt;</a></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;margin-bottom:16px;font-size:22px;font-weight:600">Related Entities &amp; Cross-Sell Candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Attentive Mobile</td>
+            <td>SMS Platform Vendor</td>
+            <td>Marketing SaaS</td>
+            <td>Jomashop's current SMS sender — same vendor relationship may surface at other Attentive-powered DTC clients</td>
+            <td><span class="pill pill--info">Indirect</span></td>
+          </tr>
+          <tr>
+            <td>Listrak (ltrk.co)</td>
+            <td>Historical/Concurrent SMS &amp; Email Vendor</td>
+            <td>Marketing SaaS</td>
+            <td>Older Jomashop campaigns routed through ltrk.co; multi-vendor stack is the smoking gun</td>
+            <td><span class="pill pill--info">Indirect</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="background:var(--gray-05);font-style:italic;color:var(--fg-2)">No parent, subsidiary, or sister-brand entities surfaced in public corporate registry searches — NY SoS, Bizapedia, OpenCorporates, and California SoS searches all blocked or returned no data. See gaps in Section 04.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PLG Damage Attorneys is a Florida property-damage firm running a high-velocity TCPA volume-filer side practice — Jomashop is template #10 in 60 days.</h2>
+      <p class="section-lede">The plaintiff is not a serial filer. The firm is. The defense posture should assume nuisance-settlement leverage on the plaintiff side and copycat refiling exposure if the underlying SMS configuration is not fixed.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case File</div>
+        <h3 class="card-title">Liu v. Jomashop Inc.</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>5:26-cv-03048 (C.D. Cal., Riverside Div.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03048&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 3, 2026</dd>
+          <dt>Plaintiff</dt><dd>Zhengfeng Liu (Chino, San Bernardino County, CA)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh (CA Bar #367857)</dd>
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+          <dt>Class</dt><dd>Yes — putative Rule 23 "TCPA After-Hours Class"</dd>
+          <dt>Class Size</dt><dd>"Dozens . . . likely in the hundreds or thousands" (¶34)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1) (quiet hours); 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-Hours / Telephone Solicitation to wireless number used as residential line</dd>
+          <dt>Violation Count</dt><dd>14 alleged SMS messages, 2020-03-16 through 2025-09-26</dd>
+          <dt>Damages Pled</dt><dd>$500/violation statutory; up to $1,500/violation if willful. Per-plaintiff exposure $7,000–$21,000; class exposure scales with subscriber list.</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · 21-day answer deadline runs from service</dd>
+          <dt>Docket Activity</dt><dd>Doc #1 Complaint · Doc #2 Notice · Doc #3 Cert of Interested Parties · Doc #4 Summons Request — all filed 2026-06-03 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03048&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com</dd>
+          <dt>Website</dt><dd><a href="https://plgdamage.com">plgdamage.com</a></dd>
+          <dt>Bar Number</dt><dd>CA Bar #367857 (active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">Cal Bar -&gt;</a></span></dd>
+          <dt>Bar Address</dt><dd><span class="pill pill--warn">Address Mismatch</span> CA-admitted attorney; firm of record is in Miramar, FL. No California office disclosed.</dd>
+          <dt>Discipline</dt><dd>None found on Cal Bar (truncated response — verify before service)</dd>
+          <dt>Primary Practice</dt><dd>Florida property damage / hurricane / water / mold insurance litigation. TCPA is an emerging side practice. <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>TCPA Volume</dt><dd>At least 9 federal TCPA filings April–May 2026 across C.D. Cal. / M.D. Fla. / N.D. Fla. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Co-Counsel</dt><dd>Faythe Gutierrez (CA Bar #310430) — pumps out parallel template complaints</dd>
+          <dt>TCPAWorld Ranking</dt><dd>Not on power-ranking list (emerging filer) <span class="src-tag"><a href="https://tcpaworld.com/?s=Vinit+Venkatesh">TCPAWorld -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--warn">Medium</span> — volume-filer playbook, but no track record of contested class certification or trial outcomes</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;margin-bottom:12px;font-size:22px;font-weight:600">Plaintiff Firm Template — PLG Damage / Venkatesh Quiet-Hours</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>PLG Damage Attorneys runs a near-identical 12–14 page Section 227(c) quiet-hours template across multiple verticals. The recipe is consistent: (1) plaintiff alleges a wireless number used as a residential line, (2) plaintiff alleges 10–20 marketing texts sent before 8:00 a.m. or after 9:00 p.m. local time, (3) class definition tracks the C.F.R. text verbatim, (4) only the last four digits of the plaintiff's DID are pled, (5) no exhibit shows the full sender 10-digit number — only screenshots. The same pleading body has been filed against Rocket Mortgage, 7-Eleven, Rite Aid, Guardio, Payactiv, Yesvideo, Last Brand, Refills Health, The Xercize Studio, and now Jomashop. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span></p>
+        <p style="margin-top:10px">The firm advertises $100M+ recovered — exclusively in property-damage cases. The TCPA practice is recent enough that no settlement amounts, class certifications, or published opinions exist yet. The economic model points to fast nuisance settlements rather than protracted litigation.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;margin-bottom:16px;font-size:22px;font-weight:600">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Liu v. Jomashop Inc.</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span></td>
+            <td>5:26-cv-03048</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-03</td>
+            <td><span class="pill pill--red">Active · Pre-answer</span></td>
+            <td>TCPA Quiet Hours (§ 227(c))</td>
+          </tr>
+          <tr>
+            <td>Levin v. Jomashop, Inc.</td>
+            <td>—</td>
+            <td>C.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Terminated ~3mo</span></td>
+            <td>Consumer claim (waiver of service by Tanya Greene for Jomashop)</td>
+          </tr>
+          <tr>
+            <td>Liz v. Jomashop, Inc.</td>
+            <td>—</td>
+            <td>S.D.N.Y.</td>
+            <td>2024</td>
+            <td><span class="pill">Closed</span></td>
+            <td>Same-defendant consumer</td>
+          </tr>
+          <tr>
+            <td>Chase v. Jomashop, Inc.</td>
+            <td>—</td>
+            <td>M.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill">Closed</span></td>
+            <td>Same-defendant consumer</td>
+          </tr>
+          <tr>
+            <td>Cruz v. Jomashop Inc.</td>
+            <td>—</td>
+            <td>S.D.N.Y.</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Settled 1/5/2023</span></td>
+            <td>MTD denied 11/29/2022; settled post-MTD <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jomashop%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Chosen Figure LLC v. Jomashop Inc.</td>
+            <td>—</td>
+            <td>E.D.N.Y.</td>
+            <td>2025</td>
+            <td><span class="pill">Active</span></td>
+            <td>Commercial</td>
+          </tr>
+          <tr>
+            <td colspan="6" style="background:var(--gray-05);font-weight:600;padding-top:14px">Same-Firm Concurrent TCPA Docket (PLG Damage Attorneys / Venkatesh)</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio LLC</td>
+            <td>2:26-cv-05313</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage, LLC</td>
+            <td>2:26-cv-05599</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours (Redfin SMS)</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Rite Aid Corporation</td>
+            <td>2:26-cv-04436</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Fasheh v. The Xercize Studio, LLC</td>
+            <td>8:26-cv-01231</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Rios v. Last Brand, Inc.</td>
+            <td>5:26-cv-02684</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Mendez v. Refills Health, LLC</td>
+            <td>2:26-cv-04569</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven Inc.</td>
+            <td>1:26-cv-00119</td>
+            <td>N.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo, Inc.</td>
+            <td>8:26-cv-01491</td>
+            <td>M.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+          <tr>
+            <td>Ortiz v. Payactiv, Inc.</td>
+            <td>2:26-cv-01460</td>
+            <td>M.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>TCPA Quiet Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul style="margin:0;padding-left:20px">
+        <li>NY Secretary of State could not be reached — registered agent, formation date, and officer list for Jomashop Inc. are not verified from primary corporate registry sources.</li>
+        <li>Plaintiff's full 10-digit recipient number is masked in the complaint (last-4 "8522") — pull through discovery once defense counsel appears.</li>
+        <li>Judge assignment is not yet visible on CourtListener; defense counsel has not appeared.</li>
+        <li>Jomashop's privacy policy, terms of use, and about-us pages return HTTP 404 — no public-facing consent language to either rebut or quote.</li>
+        <li>BBB, Trustpilot, Crunchbase, Glassdoor, and Wikipedia all blocked — no third-party consumer-sentiment, revenue, or employee-count confirmation.</li>
+        <li>No General Counsel, CMO, or Compliance Officer identified at Jomashop in any public source — TheOrg lists only the CEO/COO layer.</li>
+        <li>Could not confirm whether Jomashop's prior <em>Cruz</em> (S.D.N.Y. 2021) settlement included consent-program remediation obligations.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with Marvin Sternberg (CEO/Founder). No GC has been identified — the founder layer is the buying authority.</h2>
+      <p class="section-lede">TheOrg confirms only the CEO and COO. No General Counsel, CMO, or Compliance Officer is publicly disclosed. The 21-day answer clock will push Jomashop to retain outside counsel quickly; reaching the founder before that happens is the play.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Marvin Sternberg</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>CEO and Founder of Jomashop. Highest decision authority for retaining defense counsel and authorizing remediation spend. <span class="src-tag"><a href="https://theorg.com/org/jomashop">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>marvin@jomashop.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alexander Sternberg</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer. Operational authority over marketing-tech stack (Attentive, Listrak). Likely co-decision-maker on vendor compliance. <span class="src-tag"><a href="https://theorg.com/org/jomashop">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>alexander@jomashop.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Devake Boodram</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>Assistant Buyer, 3–4 year tenure. Inroad/referral path only; not decision authority. <span class="src-tag"><a href="https://www.signalhire.com/companies/jomashop">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>devake@jomashop.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/devake-boodram-943626162">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Eric Guigui</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>Warehouse Manager, 3–4 year tenure. Not decision authority. <span class="src-tag"><a href="https://www.signalhire.com/companies/jomashop">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>eric@jomashop.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lakshmi Hardeo</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>RTV Associate. Surfaced as the source for the @jomashop.com email pattern (SignalHire showed l***@jomashop.com). <span class="src-tag"><a href="https://www.signalhire.com/companies/jomashop">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lakshmi@jomashop.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td colspan="5" style="background:var(--gray-05);font-style:italic;color:var(--fg-2)">No General Counsel, CMO, Chief Compliance Officer, or VP Legal identified at Jomashop in any consulted source. The buying conversation must run through Marvin/Alexander Sternberg until defense counsel appears.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px;background:var(--info-bg);border-left:4px solid var(--info)">
+      <div class="card-meta" style="color:var(--info)">Email Pattern</div>
+      <h3 class="card-title" style="margin-top:6px"><code>{first}@jomashop.com</code></h3>
+      <div class="card-body">
+        <p>Pattern is inferred from a partial SignalHire reveal (<code>l***@jomashop.com</code> for Lakshmi Hardeo). No fully unredacted @jomashop.com address was published in any consulted source. Verify before scaled outreach. <span class="src-tag"><a href="https://www.signalhire.com/companies/jomashop">SignalHire -&gt;</a></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The 21-day answer clock is the wedge.</h2>
+      <p class="section-lede">Defense counsel has not appeared. Service is imminent. Once Jomashop retains outside counsel, the buying decision moves out of Marvin Sternberg's hands and into a litigation-defense procurement process where Blacklist has to compete for attention against a billing meter. The window to sell directly to the founder is the next two weeks.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">Cold-call &amp; email Marvin Sternberg</h3>
+        <div class="card-body step-body">
+          <p>Open on the specific facts: 14 quiet-hours violations from short code 96902 across both Attentive and Listrak, 2020 through 2025. Reference the docket number (5:26-cv-03048) and the answer deadline. Position: "Before your defense counsel retains, you need a consent-record audit and a quiet-hours configuration fix — Blacklist closes both in one engagement."</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Parallel-path Alexander Sternberg (COO)</h3>
+        <div class="card-body step-body">
+          <p>The COO owns the marketing-tech stack. Frame the conversation around operational controls — time-zone enforcement inside Attentive, consent reconciliation between Attentive and Listrak, ongoing scrubbing against the firm's other plaintiff inventory (Hughes, Long, Fasheh).</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 6–14</div>
+        <h3 class="card-title">Pivot to defense counsel once appearance hits</h3>
+        <div class="card-body step-body">
+          <p>Monitor CourtListener for the defense counsel notice of appearance. Once filed, re-route the pitch through counsel as a class-certification-defeat tool ("clean consent records and a documented compliance program make the class unmanageable"). <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03048&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;margin-bottom:16px;font-size:22px;font-weight:600">Trigger Conditions That Change the Plan</h3>
+    <div class="card">
+      <ul class="clean tight">
+        <li><strong>Defense counsel files MTC arbitration</strong> — pivot from class-defeat framing to per-plaintiff scrub-as-insurance.</li>
+        <li><strong>Plaintiff voluntarily dismisses to amend</strong> — likely indicates PLG firm received pushback on the partial-number pleading. Treat as confirmation the firm settles cheap and refocus on long-term scrubbing.</li>
+        <li><strong>PLG files a second TCPA matter against Jomashop</strong> from a different plaintiff in the firm's roster — escalate urgency to same-day; this confirms Jomashop's subscriber list is actively being mined.</li>
+        <li><strong>Cruz-pattern settlement</strong> — if Jomashop signals it will settle quickly (per the 2023 <em>Cruz</em> S.D.N.Y. playbook), close on the recurring-subscription value, not the one-time audit. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jomashop%22&type=r">CourtListener -&gt;</a></span></li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px;display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--info">PRE-SERVICE WINDOW · FOUNDER-LAYER DIRECT</span>
+      <span class="pill pill--danger">14 VIOLATIONS · 5-YEAR PATTERN · 2 VENDORS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
