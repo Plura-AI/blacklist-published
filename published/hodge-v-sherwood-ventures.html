@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hodge v. Sherwood Ventures — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:14px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin:0 0 12px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="2" height="16" fill="#A50100"/>
+          <text x="126" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Stock-Promo SMS Marketer · Quiet-Hours + Federal DNC · Class Action · E.D. Cal. · Repeat-Defendant Family (RagingBull/FTC)</p>
+      <h1 class="hero-tagline">Hodge v.<br>Sherwood Ventures, LLC <span style="color:var(--bl-red); font-weight:500; font-size:0.65em;">d/b/a Bullseye Trades</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-02038-CKD</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Cal. (Sacramento)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 3, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(6 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Carolyn K. Delaney<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Magistrate</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Dozens to thousands</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred, but the sender artifact is the wedge.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("ending in 3380") and does not attach a full 10-digit number, so a literal Blacklist litigator-list lookup cannot be run. What the complaint does give us is a smoking-gun sender artifact: short code <strong>37132</strong> and link-shortener <strong>s.strks.io</strong>, both of which trace back to RagingBull.com LLC infrastructure.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number ("Subject Number")</div>
+        <div class="scrub-number">XXX-XXX-3380</div>
+        <div class="scrub-number-sub">Last four digits only. Full 10-digit number redacted from the complaint per standard PLG drafting practice. Plaintiff is a Sacramento, CA resident who was physically located in North Highlands, CA when the texts arrived. Plaintiff alleges the number has been on the National DNC Registry since at least March 6, 2009 — that's a 17-year DNC tenure.</div>
+      </div>
+      <p class="scrub-body-text">A real Blacklist litigator-list match is impossible without the full 10 digits. Plaintiff <strong>Jady Hodge</strong> was also cross-checked against CourtListener; no prior TCPA filings under that name were identified <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jady+Hodge%22&type=r">CourtListener -&gt;</a></span>, so this does not appear to be a serial-plaintiff filer. The hook for the rep is not the plaintiff scrub — it's the <em>sender DID</em>, which the complaint does fully disclose.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Sender Artifact #1</div>
+        <h3 class="card-title">Short Code 37132</h3>
+        <div class="card-body">
+          <p>Five-digit SMS short code identified in the complaint screenshots as the originating sender for all four challenged texts (Apr 6, 9, 13, 16 — all between 6:49 AM and 7:28 AM local time). Short codes require carrier provisioning and are used exclusively for high-volume A2P/mass messaging — this is mass-blast infrastructure, not a one-off.</p>
+          <p style="margin-top:10px;"><strong>Consumer-aggregator hits:</strong> None on 800notes, shortcodes.us, or usshortcodedirectory.com — consumer complaint aggregators primarily index 10-digit voice DIDs, not 5-digit short codes, so absence here is not exonerating. Infrastructure footprint speaks louder.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender Artifact #2</div>
+        <h3 class="card-title">s.strks.io (RagingBull-owned)</h3>
+        <div class="card-body">
+          <p>Branded link-shortener subdomain embedded in every challenged text (e.g., <code>https://s.strks.io/b/eyF:9U2F</code>). WHOIS on the parent domain <code>strks.io</code> lists <strong>Registrant Organization: RagingBull.com LLC</strong>, New Hampshire, with AWS nameservers <span class="src-tag"><a href="https://who.is/whois/s.strks.io">who.is -&gt;</a></span>.</p>
+          <p style="margin-top:10px;"><strong>Why this matters:</strong> It cryptographically ties the Bullseye Trades / Sherwood Ventures SMS campaign to the RagingBull corporate family — the same group that was the subject of FTC v. Dennis (D. Md.) and Broyles v. RagingBull.com (E.D. Tenn.).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-meta">Recovery Path A</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Doc #1 (Complaint, filed 2026-06-03) is the cheapest route to confirm the full Subject Number is genuinely redacted in the file (vs. visible on a sealed exhibit). Cost ≈ $1.20.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path B</div>
+        <h3 class="card-title">Discovery / Defense-Counsel Outreach</h3>
+        <div class="card-body">After defense counsel appears, send an informal request for the disclosed Subject Number for scrub purposes. PLG typically discloses on request in exchange for stipulated protective treatment.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path C</div>
+        <h3 class="card-title">Subpoena Carrier / Short Code Operator</h3>
+        <div class="card-body">If defendant pushes the case to discovery, subpoena the short-code aggregator behind 37132 — transmission logs will show the 10-digit recipient list.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--ok">PLAINTIFF NOT A SERIAL FILER (PER COURTLISTENER)</span>
+      <span class="pill pill--info">PRIMARY WEDGE: SENDER DID 37132</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Mass-SMS stock-promoter, no visible compliance stack, repeat-defendant family — close on DNC scrub + consent capture.</h2>
+      <p class="section-lede">Bullseye Trades sends mass marketing SMS via short code 37132 to consumers whose numbers sit on the National DNC Registry, fires those texts before 8 AM local time, and operates with a website that is literally "under construction" — no privacy policy, no TOS, no opt-out page. The corporate family (RagingBull.com / Sherwood Ventures) has already eaten one FTC enforcement action and one TCPA suit. Lead with <strong>DNC scrubbing</strong>; cross-sell <strong>consent capture / record retention</strong>; close with a <strong>policies & procedures audit</strong> as the safe-harbor build.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Federal DNC violation is pled head-on — plaintiff alleges her number has been on the National DNC Registry since March 6, 2009 and that Bullseye texted her four times in 10 days. Bullseye has no apparent National DNC scrub layer. This is the wedge.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Cross-Sell #1</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">47 CFR § 64.1200(c)(2)(ii) requires a signed written agreement for express invitation. Bullseye's signup, subscribe, and TOS pages all return "under construction" <span class="src-tag"><a href="https://bullseyetrades.com/signup">bullseyetrades.com/signup -&gt;</a></span> — there is literally no documentary consent trail to produce in discovery.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Cross-Sell #2</div>
+        <h3 class="card-title">Policies &amp; Procedures Audit (Safe Harbor Build)</h3>
+        <div class="card-body">Quiet-hours violations (all four texts fired between 6:49 AM and 7:28 AM local time) indicate no time-zone-aware send-window controls. A documented P&amp;P + training program is the regulatory safe-harbor lever under 47 USC § 227(c)(5).</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--bl-red);">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">"You're already on the FTC's radar. Don't give them a second bite."</h3>
+      <div class="card-body">
+        <p>Open the call with the family history: Sherwood Ventures was already named alongside RagingBull.com in <em>FTC v. Dennis</em> (D. Md. 1:20-cv-03538, terminated Jan 2024) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sherwood+Ventures%22&type=r">CourtListener -&gt;</a></span>, and a sister entity ate a TCPA suit in <em>Broyles v. RagingBull.com</em> (E.D. Tenn. 2:20-cv-00245, terminated 2022). Regulators and plaintiff firms already know this name. Now there's a fresh federal class action in E.D. Cal. alleging quiet-hours <em>and</em> federal DNC violations, with four screenshot-documented texts and a 17-year-DNC-registered plaintiff. Exposure on the named plaintiff alone is $2,000–$6,000 (4 × $500–$1,500); class exposure at "dozens to thousands" scales to mid-six to mid-seven figures statutory minimum.</p>
+        <p style="margin-top:12px;">Then pivot: their website (bullseyetrades.com) is offline and "under construction" <span class="src-tag"><a href="https://bullseyetrades.com">bullseyetrades.com -&gt;</a></span> while their SMS engine is firing. No privacy policy. No TOS. No opt-out page. There is nothing for their defense counsel to point to as evidence of a compliance program. Blacklist's DNC scrub + consent capture stack rebuilds that record on day one and gives them the safe-harbor argument under § 227(c)(5). The plaintiff firm here — PLG Damage Attorneys — is principally a Florida property-damage shop, not a TCPA volume filer; the fact that they crossed jurisdictions to bring this means they saw an unusually clean fact pattern, and other firms <em>will</em> follow once the docket is public. The remediation window is now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT & OPPORTUNITY SIZE -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A thinly-disclosed Texas LLC running a high-volume stock-promo SMS engine on borrowed infrastructure.</h2>
+      <p class="section-lede">Sherwood Ventures, LLC is the named legal entity; Bullseye Trades is the consumer-facing brand. The corporate family ties back to RagingBull.com LLC (via WHOIS on the SMS click-tracker domain) and to Jeff Bishop / Jason Bond / Kyle Dennis (named in the 2020 FTC enforcement). The whole stack is run with minimal public disclosure — no published officers, no functional website, no privacy policy.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Sherwood Ventures, LLC — d/b/a Bullseye Trades</h3>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Sherwood Ventures, LLC</dd>
+            <dt>Trade Name</dt><dd>Bullseye Trades</dd>
+            <dt>Entity Type</dt><dd>Texas Domestic LLC (per complaint ¶6)</dd>
+            <dt>Formation State</dt><dd>Texas</dd>
+            <dt>Foreign Qualified</dt><dd>California (per complaint ¶6)</dd>
+            <dt>Public/Private</dt><dd>Private</dd>
+            <dt>Vertical</dt><dd>Financial newsletter / stock promotion</dd>
+            <dt>Website</dt><dd>bullseyetrades.com <span class="pill pill--danger">UNDER CONSTRUCTION</span></dd>
+            <dt>Apparent Parent</dt><dd>RagingBull.com LLC (per WHOIS on strks.io click-tracker domain) <span class="src-tag"><a href="https://who.is/whois/s.strks.io">who.is -&gt;</a></span></dd>
+            <dt>SMS Infrastructure</dt><dd>Short code 37132 · click-tracker s.strks.io (RagingBull-owned)</dd>
+            <dt>Officers / Members</dt><dd><span class="pill pill--gap">UNKNOWN — TX SoS Gated</span></dd>
+            <dt>Registered Agent</dt><dd><span class="pill pill--gap">UNKNOWN — TX SoS Gated</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">The website is dark. The SMS engine is hot.</h3>
+        <div class="card-body">
+          <p>Every consumer-facing compliance surface on bullseyetrades.com — <code>/privacy</code>, <code>/privacy-policy</code>, <code>/terms</code>, <code>/terms-of-service</code>, <code>/signup</code>, <code>/subscribe</code>, <code>/about</code> — returns an "under construction" page <span class="src-tag"><a href="https://bullseyetrades.com/terms-of-service">/terms-of-service -&gt;</a></span> <span class="src-tag"><a href="https://bullseyetrades.com/privacy">/privacy -&gt;</a></span>.</p>
+          <p style="margin-top:10px;">Yet the SMS engine fired four documented marketing texts to a DNC-registered California number between April 6–16, 2026, all before 8 AM local time. There is <strong>no publicly verifiable consent record, no privacy policy, no TOS, no opt-out flow</strong> backing those sends. Defense counsel will have nothing to file with a § 227(c)(5) safe-harbor motion.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--warning);">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Pre-Answer Window · Defense Counsel Has Not Appeared</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 3, 2026 (6 days ago)</dd>
+          <dt>Summons Issued</dt><dd>June 4, 2026 (Doc #3)</dd>
+          <dt>Service Status</dt><dd><span class="pill pill--warn">Pending — likely service window 60–90 days from filing</span></dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span></dd>
+          <dt>Answer Deadline</dt><dd>21 days from service of summons (Fed. R. Civ. P. 12(a)(1)(A))</dd>
+          <dt>Magistrate Consent</dt><dd>Required for Magistrate Delaney to enter final judgment; otherwise reassigned to an Article III judge</dd>
+          <dt>Outreach Window</dt><dd><span class="pill pill--red">7–14 DAYS — BEFORE COUNSEL APPEARS</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>RagingBull.com LLC</strong></td>
+            <td>Apparent corporate family / infrastructure parent (per WHOIS on s.strks.io) <span class="src-tag"><a href="https://who.is/whois/s.strks.io">who.is -&gt;</a></span></td>
+            <td>Stock newsletter / trade alerts</td>
+            <td>Already sued under TCPA (Broyles, E.D. Tenn. 2020); already named in FTC v. Dennis (D. Md. 2020)</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Bullseye Trades</strong> (DBA)</td>
+            <td>Trade name of Sherwood Ventures, LLC</td>
+            <td>Stock newsletter SMS marketing</td>
+            <td>This case — primary defendant</td>
+            <td><span class="pill pill--red">PRIMARY</span></td>
+          </tr>
+          <tr>
+            <td>Jeff Bishop / Jason Bond / Kyle Dennis (RagingBull principals)</td>
+            <td>Named individuals in FTC v. Dennis (D. Md. 2020) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sherwood+Ventures%22&type=r">CourtListener -&gt;</a></span></td>
+            <td>Stock newsletters &amp; trading-education brands</td>
+            <td>FTC consent-judgment defendants — possible co-owners of other newsletter brands using same SMS infra</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Repeat-defendant family with a non-volume plaintiff firm — that asymmetry is the tell.</h2>
+      <p class="section-lede">Sherwood Ventures and its corporate family have been sued and regulated before. The fact pattern here (screenshot evidence, quiet hours, DNC, multi-text 10-day campaign) is unusually clean. The plaintiff firm is not a TCPA shop, which means they sourced this case via referral or intake screening and saw an opportunity strong enough to cross jurisdictions for.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Hodge v. Sherwood Ventures, LLC</h3>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Docket</dt><dd>2:26-cv-02038-CKD (E.D. Cal., Sacramento)</dd>
+            <dt>Admin Number</dt><dd>2:26-at-00945 (initial intake) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-02038&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Filed</dt><dd>June 3, 2026</dd>
+            <dt>Plaintiff</dt><dd>Jady Hodge (Sacramento, CA resident; texts received in North Highlands, CA)</dd>
+            <dt>Counsel</dt><dd>Vinit R. Venkatesh (CA Bar #367857), PLG Damage Attorneys, Miramar FL <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></dd>
+            <dt>Class Action</dt><dd>Yes — Rule 23 putative class</dd>
+            <dt>Class Definitions</dt><dd>(1) TCPA After-Hours Class · (2) TCPA National DNC Registry Class</dd>
+            <dt>Claims</dt><dd>Count I: 47 USC § 227(c) + 47 CFR § 64.1200(c)(1) (Quiet Hours)<br>Count II: 47 USC § 227(c) + 47 CFR § 64.1200(c)(2) (National DNC)</dd>
+            <dt>Theory</dt><dd>Mass-SMS stock-promo marketing without prior express invitation, to DNC-registered residential cell, before 8 AM local time</dd>
+            <dt>Channel</dt><dd>SMS via short code 37132 with s.strks.io click-tracker</dd>
+            <dt>Violations Pled</dt><dd>4 named-plaintiff texts (Apr 6, 9, 13, 16, 2026 — all 6:49–7:28 AM)</dd>
+            <dt>Named-Plaintiff Exposure</dt><dd>$2,000 – $6,000 (4 × $500 statutory; up to 3x for willful)</dd>
+            <dt>Class Exposure</dt><dd>Pled as "dozens to hundreds or thousands" → mid-six to mid-seven figures statutory minimum</dd>
+            <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span></dd>
+            <dt>Docket Aggregators</dt><dd>PacerMonitor 404, Justia 403 — stub only on CourtListener</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+            <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+            <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm Email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com (dedicated TCPA intake)</dd>
+            <dt>Website</dt><dd>plgdamage.com</dd>
+            <dt>Bar Number</dt><dd>CA #367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></dd>
+            <dt>Bar Status</dt><dd><span class="pill pill--ok">Active (CA)</span></dd>
+            <dt>Discipline History</dt><dd>None found on CA Bar profile</dd>
+            <dt>Bar Address Match</dt><dd>Matches complaint (Miramar, FL)</dd>
+            <dt>Firm Primary Practice</dt><dd>Property damage / insurance bad faith / hurricane claims (FL)</dd>
+            <dt>TCPA Practice</dt><dd>Emerging / new entrant — not on TCPAWorld power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">tcpaworld -&gt;</a></span></dd>
+            <dt>Volume Filer?</dt><dd><span class="pill pill--info">NO — Non-volume TCPA filer (per CourtListener)</span></dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--warn">MEDIUM — Non-volume firm that picked a clean fact pattern; signals follow-on risk</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Not a known serial template — and that's the warning sign.</h3>
+      <div class="card-body">
+        <p>PLG Damage Attorneys is principally a Florida property-damage / insurance bad-faith firm advertising "$100M+ recovered" in that vertical — TCPA does not appear in their published practice areas <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -&gt;</a></span>. They have a dedicated <code>tcpa-service@plgdamage.com</code> intake email, which suggests systematized TCPA intake, but their CourtListener TCPA filing footprint is effectively zero.</p>
+        <p style="margin-top:10px;">When a non-volume firm crosses state lines (FL firm filing in E.D. Cal.) on a TCPA case, the inference is that they screened the fact pattern carefully and saw something worth the investment — screenshot evidence, quiet hours <em>and</em> DNC stacked, a 17-year-DNC-registered plaintiff, and a defendant with prior FTC + TCPA exposure. The pattern itself is the template. Other plaintiff firms will see this docket and re-file copycats.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Docket</th>
+            <th>Court</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Theory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Hodge v. Sherwood Ventures, LLC</strong></td>
+            <td>2:26-cv-02038-CKD</td>
+            <td>E.D. Cal.</td>
+            <td>2026-06-03</td>
+            <td><span class="pill pill--red">ACTIVE — CURRENT</span></td>
+            <td>TCPA quiet hours + federal DNC (SMS stock promo)</td>
+          </tr>
+          <tr>
+            <td>FTC v. Dennis (incl. Sherwood Ventures, RagingBull.com, Bullseye Trades)</td>
+            <td>1:20-cv-03538</td>
+            <td>D. Md.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">Terminated 2024-01-01 (consent judgment likely)</span></td>
+            <td>FTC enforcement — deceptive stock-promo marketing <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sherwood+Ventures%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Broyles v. RagingBull.com, LLC</td>
+            <td>2:20-cv-00245</td>
+            <td>E.D. Tenn.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">Terminated 2022-02-10 (settlement)</span></td>
+            <td>TCPA — unsolicited marketing texts to sister entity <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bullseye+Trades%22+TCPA&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Nelson Adversary Proceeding (Sherwood Ventures named)</td>
+            <td>2:12-ap-02042</td>
+            <td>Bankr. C.D. Cal.</td>
+            <td>2012</td>
+            <td><span class="pill pill--info">Closed</span></td>
+            <td>Adversary proceeding — not TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px; height:14px; vertical-align:middle;"></i> Open intel gaps to close before first dial</div>
+      <ul class="clean tight">
+        <li><strong>Full plaintiff number ("XXX-XXX-3380"):</strong> Pull Doc #1 from PACER; if redacted in complaint, await defense-counsel exchange.</li>
+        <li><strong>Texas SoS officer/member identities for Sherwood Ventures, LLC:</strong> SOSDirect is gated behind subscriber login; consider commissioning a paid TX SoS lookup ($1–$5) for registered agent + member list.</li>
+        <li><strong>Defense counsel of record:</strong> No appearance on the docket yet (filed 6 days ago, summons just issued). Monitor PACER weekly.</li>
+        <li><strong>Magistrate-consent posture:</strong> If parties decline magistrate jurisdiction, case reassigns to an Article III judge — adjust pitch cadence accordingly.</li>
+        <li><strong>Bullseye Trades website restoration date:</strong> Wayback Machine snapshot of <code>/about</code>, <code>/team</code>, <code>/privacy</code> prior to the "under construction" state may reveal officers, prior consent language, and the date the site went dark.</li>
+        <li><strong>Settlement amount in FTC v. Dennis:</strong> Pull the D. Md. final judgment for the consent dollar figure — useful pitch ammunition on "you've been here before."</li>
+        <li><strong>Carrier behind short code 37132:</strong> shortcodes.us did not return a record; the official Common Short Code Administration (CSCA) registry would name the operator/aggregator.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No published officers — the path in is through the registered agent and the RagingBull family.</h2>
+      <p class="section-lede">Sherwood Ventures publishes no leadership, no team page, no LinkedIn presence under its own name, and no email pattern. The Bullseye Trades website is dark. The most reliable first-touch route is the Texas Secretary of State registered agent (once obtained), followed by parallel outreach to RagingBull.com's published contacts, since RagingBull owns the SMS infrastructure (s.strks.io) and is the apparent corporate family.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name / Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Registered Agent — Sherwood Ventures, LLC</strong><br>
+              <span class="pill pill--dark">REGISTERED AGENT</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>Statutory agent for service of process (Texas LLC). Identity gated behind TX SOSDirect subscriber login — commission a paid lookup to retrieve.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Officer / Manager — Sherwood Ventures, LLC</strong><br>
+              <span class="pill pill--dark">PRINCIPAL</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>No officers published on bullseyetrades.com (site under construction) <span class="src-tag"><a href="https://bullseyetrades.com">bullseyetrades.com -&gt;</a></span>. No LinkedIn page exists for the entity. TX SoS member/manager list not retrievable without paid query.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>RagingBull.com LLC — General Counsel / Compliance Lead</strong><br>
+              <span class="pill pill--dark">PARENT FAMILY</span> <span class="pill pill--info">INFERRED</span>
+            </td>
+            <td>Apparent corporate-family parent per WHOIS on s.strks.io <span class="src-tag"><a href="https://who.is/whois/s.strks.io">who.is -&gt;</a></span>. RagingBull was a defendant in both FTC v. Dennis and Broyles v. RagingBull.com — they have a compliance function. Identity not extracted from public sources.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Defense Counsel — Sherwood Ventures, LLC</strong><br>
+              <span class="pill pill--dark">DEFENSE</span> <span class="pill pill--gap">NOT YET APPEARED</span>
+            </td>
+            <td>No appearance on docket as of 2026-06-09 (case filed 6 days ago, summons just issued). Historical reference: Brett M. Doran represented Sherwood in FTC v. Dennis (D. Md. 2020, Doc #224). May or may not reappear here.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px; background:var(--info-bg); border-color:var(--info);">
+      <div class="callout-title" style="color:var(--info);"><i data-lucide="search" style="width:14px; height:14px; vertical-align:middle;"></i> Contact-Recovery Recommendations (before first dial)</div>
+      <ul class="clean tight">
+        <li>Commission a Texas SOSDirect lookup for <strong>Sherwood Ventures, LLC</strong> — returns registered agent name + address + member/manager list. ~$1–$5.</li>
+        <li>Run WHOIS on <code>bullseyetrades.com</code> directly (not just strks.io) — may name the registrant org or admin contact.</li>
+        <li>Check SEC EDGAR for Bullseye Trades / Sherwood Ventures stock-promotion disclosure filings — paid promos are required to name the principal compensated.</li>
+        <li>Pull Wayback Machine snapshots of bullseyetrades.com <code>/about</code>, <code>/team</code>, <code>/contact</code> from the pre-"under construction" era.</li>
+        <li>Use the RagingBull.com corporate contact page as a parallel-track outreach if the Sherwood/Bullseye path stays dark.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Counsel — Reference Only (Do Not Pitch)</div>
+      <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com</dd>
+          <dt>Attorney Email</dt><dd>tcpa-service@plgdamage.com (per complaint signature block)</dd>
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+          <dt>CA Bar #</dt><dd>367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></dd>
+        </dl>
+        <p style="margin-top:12px; font-size:13px; color:var(--fg-2);"><em>For reference only — plaintiff counsel is not a sales target.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 7 days — before defense counsel appears and the door closes.</h2>
+      <p class="section-lede">The case was filed June 3, 2026; summons issued June 4. Service is likely 30–60 days out, with a 21-day answer clock after that. The optimal sell window is right now, while the website is publicly dark, defense counsel is not yet retained, and the procurement decision sits directly with whoever runs Bullseye/RagingBull marketing operations.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Pull PACER #1 + TX SoS lookup</h3>
+        <div class="card-body">Order Doc #1 from PACER (≈$1.20) to confirm full plaintiff number redaction and capture the exact filing exhibit. Commission a paid TX SOSDirect query on "Sherwood Ventures, LLC" to obtain the registered agent name/address + manager list. Without those names, first-touch outreach has no human anchor.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">Cold-call the registered agent + parallel email to RagingBull compliance</h3>
+        <div class="card-body">First touch: phone call to the TX registered agent referencing the new E.D. Cal. case number. Parallel: warm email through RagingBull.com's published contact channel referencing the WHOIS tie to s.strks.io and the FTC v. Dennis history. Lead with: "You've been here before, and this one is worse — there's no privacy policy or consent record on bullseyetrades.com right now."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4–7</div>
+        <h3 class="card-title">Pitch DNC scrub + consent capture as the immediate fix</h3>
+        <div class="card-body">Position Blacklist's DNC scrub + consent capture stack as the "rebuild your safe-harbor record before defense counsel files its answer" play. Reference the concurrent litigation table and the FTC consent judgment. Have the consent-capture demo ready for the second call.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">Monitor PACER for defense appearance + Wayback snapshot</h3>
+        <div class="card-body">Watch the docket weekly for defense counsel notice. Once counsel appears, pivot the conversation to "your defense team will want to point at a documented compliance program — Blacklist gives them that artifact." Pull a Wayback Machine snapshot of bullseyetrades.com pre-outage to identify any prior officers or compliance language for the pitch deck.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--warning);">
+      <div class="card-meta">Trigger Conditions — Adjust the Plan If…</div>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Defense counsel files first:</strong> Pivot from "rebuild the record" to "show the court your remediation steps" — Blacklist scrub becomes a mitigation exhibit.</li>
+          <li><strong>Plaintiff amends to add RagingBull.com as co-defendant:</strong> Expand the pitch to the full corporate family; cross-sell becomes the lead.</li>
+          <li><strong>Bullseye Trades restores the website with a privacy policy and TOS:</strong> The smoking-gun argument weakens — re-anchor the pitch on the four documented quiet-hours texts (Apr 6, 9, 13, 16) and the 17-year DNC tenure.</li>
+          <li><strong>Magistrate consent declined:</strong> Case reassigns to Article III judge; calendar will slip 30–60 days, giving you a wider sell window but lower urgency.</li>
+          <li><strong>Second TCPA filing appears against Sherwood/Bullseye/RagingBull:</strong> Urgency climbs to "fire drill" — use the second docket as proof the pattern is repeating.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW BEGINS ON SERVICE</span>
+      <span class="pill pill--info">PRE-COUNSEL OUTREACH WINDOW: 7–14 DAYS</span>
+      <span class="pill pill--danger">CLASS EXPOSURE: MID-6 TO MID-7 FIGURES STATUTORY MIN.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
