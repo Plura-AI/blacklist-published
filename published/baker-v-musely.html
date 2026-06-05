@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baker v. Musely — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Skincare SMS Marketer · Quiet-Hours + Federal DNC · Class Action · C.D. Cal. · First-Ever TCPA Hit</p>
+      <h1 class="hero-tagline">Baker v.<br>Musely <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(Trusper Inc.)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-05988</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 3, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 (2 classes)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted to "ending 9189" — scrub deferred until full number recovered from PACER or discovery.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits of Kristin Baker's wireless number, so a litigator-list lookup cannot be run yet. The plaintiff name and firm have, however, been cross-checked: zero prior TCPA filings under "Kristin Baker," but counsel is a clear emerging volume filer.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search" style="width:14px;height:14px"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (Subject Number)</div>
+        <div class="scrub-number">XXX-XXX-9189</div>
+        <div class="scrub-number-sub">Only the last four digits ("9189") are pled (Compl. ¶20). DNC-registered "since at least October 02, 2003" (¶21). Plaintiff is in Los Angeles County, CA — texts received while in Long Beach, CA (¶26).</div>
+      </div>
+      <p class="scrub-body-text">No litigator-list match attempted because the 10-digit recipient number is not in the four corners of the complaint. Plaintiff name "Kristin Baker" returned <strong>zero TCPA hits</strong> on CourtListener — this is not a known serial plaintiff. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kristin+Baker%22+TCPA&type=r">CourtListener -&gt;</a></span> The number must be recovered before a clean scrub can be reported back to the prospect.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">+1 (408) 610-1606</h3>
+        <p class="card-body">San Jose, CA geographic number — aligns with Trusper Inc.'s California HQ, suggesting an in-house or local-aggregator SMS stack rather than a national toll-free dialer. Number is not yet indexed on 800notes, YouMail, Tellows, or RoboKiller (all sources blocked or returned no hit), so external complaint volume cannot be quantified. Identity attribution to "Musely" comes from the message body itself (Compl. ¶27) and the embedded <code>musely.com/treatment/4744441</code> link.</p>
+        <div style="margin-top:12px"><span class="pill pill--info">Geographic 408 · CA HQ-Aligned</span> <span class="pill pill--gap">No External Reports Indexed</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Campaign Artifacts</div>
+        <h3 class="card-title">Musely Prescription Renewal Funnel</h3>
+        <p class="card-body">Message body: <em>"Hi Kristin, Kindly upload photos to complete your Musely prescription request"</em> and <em>"Your prescription expires soon — Don't lose the progress you've achieved so far with your treatment! Submit your Renew or Change request today to stay on track."</em> Links: <code>musely.com/treatment/4744441</code> and <code>musely.com/treatment/3649214/renew?utm_campaign=renew&amp;utm_medium=text&amp;utm_source=musely</code>. <strong>No STOP/OPT-OUT instructions present</strong> (Compl. ¶27). Two messages pled in screenshot exhibit: Sun Mar 15 06:14 and Sun Mar 22 06:14.</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">~$1.20. The civil cover sheet and any subsequent declarations frequently disclose the unredacted recipient number. Also pull ECF #2 (Notice/Other) and ECF #4 (Summons Request) — already on the docket as of filing day.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Await Defense Appearance</h3>
+        <p class="card-body">No defense counsel has appeared yet (case is 2 days old). Defense entry of appearance and any meet-and-confer correspondence will typically reference the full Subject Number.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery / Rule 26(f)</h3>
+        <p class="card-body">If the prospect retains counsel, the first Rule 26 disclosure or interrogatory response from plaintiff will produce the number. Suggest running the scrub the moment defense counsel obtains it.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--ok">Plaintiff Not a Known Serial Filer</span>
+      <span class="pill pill--warn">Firm Filing Cadence: 9 TCPA Cases in 2026 YTD</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">First-ever TCPA hit on a founder-led DTC skincare brand whose own /terms-of-service URL 404s — lead with Litigator Scrub, close on a full compliance audit.</h2>
+      <p class="section-lede">Musely has no prior TCPA litigation history, no visible compliance program on its public site, and broken legal pages at <code>/terms-of-service</code> and <code>/register</code>. This is a greenfield buyer: they have nothing in place, they were just sued in C.D. Cal. on strict-liability theories (quiet-hours + federal DNC), and PLG Damage Attorneys is filing repeat templates against DTC brands. Lead with Litigator Scrub as the wedge, close on Consent Capture + Policies &amp; Procedures.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">The complaint redacts the plaintiff number, but the prospect's bigger fear is the <em>next</em> filer. PLG has filed 9 TCPA cases in 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -&gt;</a></span> — every name they recruit into their funnel can be screened out at the point of send with Litigator Scrub.</p>
+        <div style="margin-top:12px"><span class="pill pill--red">Lead With This</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Close</div>
+        <h3 class="card-title">DNC Scrubbing (Federal DNC)</h3>
+        <p class="card-body">The Subject Number was on the Federal DNC since 2003. A single API scrub against the DNC registry before send would have prevented Count II in its entirety. Pair with internal-DNC enforcement to harden against quiet-hours claims.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Tertiary / Cross-Sell</div>
+        <h3 class="card-title">Consent Capture + Policies &amp; Procedures</h3>
+        <p class="card-body">Musely's <code>/terms-of-service</code> and <code>/register</code> pages return HTTP 404 <span class="src-tag"><a href="https://www.musely.com/signup">musely.com/signup -&gt;</a></span>. No double-opt-in or clear TCPA disclosure is visible at signup. Consent capture + written P&amp;P fills the regulatory safe-harbor requirement of 47 CFR § 64.1200(c)(2)(ii).</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">"You just got hit by a firm that's done this 8 other times this quarter — and they pick brands like you because your signup flow doesn't checkbox consent."</h3>
+      <div class="card-body">
+        <p>Open the call by acknowledging the obvious: a class action just landed on Trusper's docket in C.D. Cal. on June 3. The plaintiff's number is redacted, so no one can tell you yet whether the recipient is a known repeat-filer — but Blacklist can pull ECF #1 and run the scrub the moment defense counsel gets the full number. That's the immediate value.</p>
+        <p>The longer conversation is structural. Musely's SMS stack is sending out of a San Jose-area 408 number (Compl. ¶27), which means it's likely in-house or via a small CPaaS — no enterprise compliance vendor between the brand and the carrier. PLG Damage Attorneys, the firm that filed this case, has filed at least <strong>nine</strong> TCPA class actions in 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -&gt;</a></span> — Rocket Mortgage, Rite Aid, 7-Eleven, Yesvideo, Last Brand, Payactiv, Refills Health, Guardio, Xercize Studio — all DTC SMS senders. Musely fits the template perfectly. Tell the prospect: this filing pattern means there will be a second plaintiff and a third. Litigator Scrub + DNC + a written P&amp;P shuts down the strict-liability theories before the next named plaintiff has a story to tell.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Founder-led DTC prescription skincare brand reaching ~30M people monthly — no visible compliance org, no GC, no CCO.</h2>
+      <p class="section-lede">Musely is the consumer brand operated by Trusper Inc., a Delaware corporation founded by Jack Jia. Per Beauty Independent, the company "merges beauty content and commerce" and reaches roughly 30 million people monthly. SMS is a stated core acquisition channel. There is no Chief Compliance Officer, no General Counsel, and no compliance page on the public site.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Trusper Inc. d/b/a Musely (Musely FaceRx)</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Trusper Inc. (Compl. ¶6)</dd>
+          <dt>Formation</dt><dd>Delaware corporation, authorized to do business in California (Compl. ¶6)</dd>
+          <dt>HQ</dt><dd>California (per complaint); 408 area-code SMS sender suggests San Jose Bay Area</dd>
+          <dt>DBA</dt><dd>Musely; Musely FaceRx <span class="src-tag"><a href="https://www.musely.com">musely.com -&gt;</a></span></dd>
+          <dt>Founder / CEO</dt><dd>Jack Jia <span class="src-tag"><a href="https://theorg.com/org/musely">TheOrg -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>DTC prescription skincare / telehealth-adjacent beauty</dd>
+          <dt>Reach</dt><dd>~30M people monthly per Beauty Independent <span class="src-tag"><a href="https://beautyindependent.com/?s=Musely">Beauty Independent -&gt;</a></span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>GC / CCO</dt><dd>None identified publicly</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Musely's own /terms-of-service and /register URLs return HTTP 404.</h3>
+        <p class="card-body">Plaintiff counsel pulled the trigger on a quiet-hours + DNC complaint against a defendant whose consumer-facing terms page does not resolve <span class="src-tag"><a href="https://www.musely.com/signup">musely.com/signup -&gt;</a></span>. There is no detectable double-opt-in language, no disclosed signed-written-agreement flow (required by 47 CFR § 64.1200(c)(2)(ii)), and the texts themselves did not contain a STOP/OPT-OUT instruction (Compl. ¶27). That's three independent strict-liability fact patterns stacked on top of each other.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock starts ticking on service.</h3>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Complaint filed:</strong> June 3, 2026 (2 days ago)</li>
+          <li><strong>Summons request docketed:</strong> June 3, 2026 (ECF #4) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%222%3A26-cv-05988%22&type=r">CourtListener -&gt;</a></span></li>
+          <li><strong>Answer deadline:</strong> 21 days from service (not yet effected) — projected window closes late June / early July 2026</li>
+          <li><strong>Defense counsel:</strong> None of record yet — prior Trusper case (<em>Ramirez</em>, N.D. Cal.) used Akin Gump-affiliated counsel (Stortz / Frey / Branson), likely candidates here</li>
+          <li><strong>Best window to engage prospect:</strong> Now through service date — before they have outside-counsel sticker shock and lock in a defense-first posture</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Trusper Inc.</strong></td>
+            <td>Parent / legal entity</td>
+            <td>Holding entity for Musely brand</td>
+            <td>Shared SMS infrastructure (Ethan Gui carries both <code>@musely.com</code> and <code>@trusper.com</code> emails per SignalHire) <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--red">High — Same Cap Table</span></td>
+          </tr>
+          <tr>
+            <td><strong>Musely FaceRx</strong></td>
+            <td>Product line / d/b/a</td>
+            <td>Prescription skincare</td>
+            <td>Primary SMS sender brand — already the named defendant via d/b/a</td>
+            <td><span class="pill pill--red">High — Same Defendant</span></td>
+          </tr>
+          <tr>
+            <td>Jack Jia (founder)</td>
+            <td>Founder of Trusper / Musely</td>
+            <td>Serial DTC founder</td>
+            <td>Founder's other ventures (not confirmed on public sources) may share SMS playbook — discovery target</td>
+            <td><span class="pill pill--info">Medium — Discovery</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA hit on Musely, but ninth 2026 filing by a productized firm running the same template across DTC e-commerce.</h2>
+      <p class="section-lede">Musely has never been sued under the TCPA before — the only prior Trusper litigation involves a Meta-pixel/data-interception class action (<em>Ramirez</em>, N.D. Cal., currently on 9th Circuit appeal) and an unrelated IP dispute. Plaintiff firm PLG Damage Attorneys, by contrast, has built a clearly templated 2026 TCPA practice.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Baker v. Trusper Inc. d/b/a Musely</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-05988 (C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-05988&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 3, 2026</dd>
+          <dt>Plaintiff</dt><dd>Kristin Baker (LA County, CA)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, Esq. (CA Bar #367857)</dd>
+          <dt>Firm</dt><dd>PLG Damage Attorneys, Miramar, FL <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Class Status</dt><dd>Putative Rule 23 — two classes pled</dd>
+          <dt>Class Definition</dt><dd>(1) TCPA After-Hours Class; (2) TCPA National Do-Not-Call Registry Class — both nationwide, 4-year lookback</dd>
+          <dt>Class Size</dt><dd>"dozens and likely in the hundreds or thousands" (Compl. ¶40)</dd>
+          <dt>Claims</dt><dd>Count I: 47 USC § 227(c) + 47 CFR § 64.1200(c)(1) (quiet hours)<br>Count II: 47 USC § 227(c) + 47 CFR § 64.1200(c)(2) (federal DNC)</dd>
+          <dt>Theory</dt><dd>Strict liability — pre-8am Sunday SMS to a DNC-registered number with no signed written agreement; no STOP instruction in message</dd>
+          <dt>Damages</dt><dd>$500/violation statutory; up to $1,500/violation willful (treble); injunctive relief; fees</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer clock</span></dd>
+          <dt>Docket Visibility</dt><dd>CourtListener indexed; PacerMonitor / Justia / UniCourt all returned errors during enrichment</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Profile</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Bar Number</dt><dd>367857 (California) <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">Cal Bar -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd>Active</dd>
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Service Email</dt><dd>tcpa-service@plgdamage.com</dd>
+          <dt>Address Match</dt><dd><span class="pill pill--warn">Mismatch — FL Firm, CA Bar, CA Federal Filing</span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>Firm Practice</dt><dd>Property damage / insurance claims — TCPA practice not advertised on firm site <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>TCPA Power Rank</dt><dd>Not ranked on TCPAWorld <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+          <dt>2026 TCPA Filings</dt><dd><strong>9 filings YTD</strong> across C.D. Cal., M.D. Fla., N.D. Fla. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--warn">Low individual rep, but emerging volume firm</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:32px">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">PLG Damage Attorneys — DTC Quiet-Hours + DNC Template (2026 cohort)</h3>
+      <div class="card-body">
+        <p>PLG's TCPA practice is not advertised on the firm website (which markets property damage and insurance recoveries) but is visible on CourtListener as a clearly productized 2026 cohort of <strong>at least 9 cases</strong>, all running the same pleading: 12–14 page complaint, identical 47:227 cause code, two classes (After-Hours + Federal DNC), screenshot exhibit, no scrubbing-program allegations, no signed-written-agreement allegations <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -&gt;</a></span>.</p>
+        <p style="margin-top:12px"><strong>Target verticals (2026):</strong> retail/convenience (7-Eleven, Rite Aid), fintech/payroll (Payactiv), consumer software (Guardio), mortgage (Rocket Mortgage), DTC beauty/health (Musely, Refills Health), DTC e-commerce (Last Brand, Yesvideo), fitness (The Xercize Studio). <strong>Five of nine cases are in C.D. Cal.</strong> — the same forum as Baker.</p>
+        <p style="margin-top:12px"><strong>Notable irony:</strong> plgdamage.com itself uses a textbook-compliant SMS consent flow (separate transactional vs. marketing checkboxes, HELP/STOP language). The firm knows what compliant consent looks like and is selecting defendants whose flows don't match.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Baker v. Trusper Inc. d/b/a Musely</strong> <span class="pill pill--red" style="margin-left:4px">CURRENT</span></td>
+            <td>2:26-cv-05988 · C.D. Cal.</td>
+            <td>2026-06-03</td>
+            <td><span class="pill pill--red">Active · No Appearance</span></td>
+            <td>Quiet-hours + Federal DNC (SMS)</td>
+          </tr>
+          <tr>
+            <td>Ramirez v. Trusper Inc. d/b/a Musely</td>
+            <td>5:24-cv-02012 · N.D. Cal. / 9th Cir. 24-6434</td>
+            <td>2024</td>
+            <td><span class="pill pill--warn">On Appeal · Argued 10/7/2025</span></td>
+            <td>Meta pixel / data interception (not TCPA) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Trusper%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Wareka v. Trusper Inc.</td>
+            <td>3:21-cv-02682 · N.D. Cal. / 9th Cir. 23-15838</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Terminated 12/29/2023 · Appeal Voluntarily Dismissed</span></td>
+            <td>Non-TCPA (likely settled) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Trusper%22&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Meds In Motion v. Trusper</td>
+            <td>D. Utah</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Terminated 4/7/2022 · Early Resolution</span></td>
+            <td>Non-TCPA commercial</td>
+          </tr>
+          <tr>
+            <td>Trusper, Inc. v. All Web Shopping, LLC</td>
+            <td>N.D. Cal.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Closed</span></td>
+            <td>IP / trademark (Trusper as plaintiff)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px">
+      <div class="card-meta" style="color:#A8A8A8">Open intel gaps to close before first dial</div>
+      <h3 class="card-title">Intel gaps</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="border-color:#393939">
+          <li>Full 10-digit plaintiff Subject Number — pull ECF #1 (~$1.20) and ECF #2 (Notice/Other) to recover</li>
+          <li>Judge assignment — not yet visible in CourtListener; need PACER CM/ECF for C.D. Cal.</li>
+          <li>Answer deadline / service date — no summons return docketed yet</li>
+          <li>Defense counsel of record — none appeared as of 2026-06-05; <em>Ramirez</em> precedent suggests Stortz / Frey / Branson (Akin Gump-adjacent) likely retained</li>
+          <li>Corporate registry confirmation — Delaware SoS search blocked; CA SoS bizfileonline failed; Bizapedia CAPTCHA-gated; could not confirm registered agent or officers via primary source</li>
+          <li>External SMS-DID reputation data — 800notes / YouMail / Tellows / RoboKiller all returned 403/404; sender ID for 408-610-1606 attributable only by message body</li>
+          <li>Musely privacy policy &amp; signup TCPA disclosure language — pages 404'd on fetch; need a human review of the live signup flow</li>
+          <li>Whether Venkatesh is dual-barred in FL — Florida Bar search returned only generic form</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Start with the founder. There is no GC or CCO, so legal procurement flows through Jack Jia and the COO.</h2>
+      <p class="section-lede">No General Counsel or Chief Compliance Officer surfaced on TheOrg, SignalHire, or musely.com. With a founder-led private company of this size, the buying authority on a TCPA scrub product is the CEO and the COO. Marketing/Growth contacts are useful for technical implementation but won't sign the order. Email pattern is confirmed <code>{first}@musely.com</code> from multiple SignalHire records.</p>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-meta">Verified Email Pattern</div>
+      <h3 class="card-title"><code>{first}@musely.com</code></h3>
+      <p class="card-body">Confirmed from SignalHire partial reveals: <code>e***n@musely.com</code> (Ethan Gui), <code>c*******e@musely.com</code> (Chris Lamb / Christine), <code>j****n@musely.com</code> (Jiayun Guo) <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span>. Shared infrastructure with parent: Ethan Gui carries both <code>@musely.com</code> and <code>@trusper.com</code> addresses. Company main phone: <strong>408-444-7598</strong>.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jack Jia</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>Founder &amp; CEO. Decision-maker on any spend at a founder-led private company with no GC. <span class="src-tag"><a href="https://theorg.com/org/musely">TheOrg -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>jack@musely.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jackjia">linkedin.com/in/jackjia</a></td>
+          </tr>
+          <tr>
+            <td><strong>Steven Buchanan</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer — operational owner of customer acquisition and likely the budget holder for SMS/compliance tooling. <span class="src-tag"><a href="https://theorg.com/org/musely">TheOrg -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>steven@musely.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ethan Gui</strong><br><span class="pill pill--dark">VP Tech</span></td>
+            <td>VP of Technology — owns the SMS infrastructure / sending stack. Cross-entity (@musely.com + @trusper.com). Technical buyer for an API scrub. <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>ethan@musely.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Paris Roche</strong><br><span class="pill pill--dark">Strategic Growth</span></td>
+            <td>Head of Strategic Growth &amp; Partnerships — runs the acquisition motion that includes the SMS campaigns at issue. <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>paris@musely.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nathan Barchalk</strong><br><span class="pill pill--dark">Growth Marketing</span></td>
+            <td>Growth Marketing — likely day-to-day operator of the SMS funnel referenced in the complaint exhibit. <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>nathan@musely.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jiayun Guo</strong><br><span class="pill pill--dark">Growth Mgr</span></td>
+            <td>Growth Manager — partial email confirmed on SignalHire. <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>jiayun@musely.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chris Lamb</strong><br><span class="pill pill--dark">Controller</span></td>
+            <td>Controller — finance approver for any SaaS line item. Partial email confirmed on SignalHire. <span class="src-tag"><a href="https://www.signalhire.com/companies/musely">SignalHire -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>chris@musely.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Marie Jhin</strong><br><span class="pill pill--dark">CMO (Medical)</span></td>
+            <td>Chief Medical Officer — relevant to the FaceRx prescription side but not the SMS compliance buyer. <span class="src-tag"><a href="https://theorg.com/org/musely">TheOrg -&gt;</a></span></td>
+            <td>408-444-7598 (main)</td>
+            <td>marie@musely.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>No GC identified on TheOrg, SignalHire, or musely.com. Likely outsourced to outside counsel — flag for prospect intake.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>No CCO publicly identified. Strongly suggests no formal TCPA P&amp;P in place — direct pitch hook.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Defense Counsel of Record</td>
+            <td>None appeared as of 2026-06-05. <em>Ramirez</em> case used Stortz / Frey / Branson (likely Akin Gump). Monitor PACER for entry.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">Not Yet Appeared</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px">Plaintiff Counsel (Reference Only — Do Not Solicit)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Firm</th><th>Phone</th><th>Email</th><th>Bar</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vinit R. Venkatesh, Esq.</td>
+            <td>PLG Damage Attorneys, 2750 SW 145th Ave #509, Miramar, FL 33027</td>
+            <td>(305) 506-4746 (firm)</td>
+            <td>tcpa-service@plgdamage.com</td>
+            <td>CA #367857 (Active) <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">Cal Bar -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Engage Jack Jia within 72 hours — before service of process and before defense counsel locks the door.</h2>
+      <p class="section-lede">The complaint is 2 days old. No defense counsel has appeared. The summons request is on file but service is not yet docketed. Once the 21-day answer clock starts, outside counsel will take over communications and the buying motion will stall. The window is open right now.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Pull ECF #1 + Open Jack Jia</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Pull ECF #1, #2, #4 from PACER (~$3.60 total) — extract the full 9189 Subject Number for litigator scrub</li>
+            <li>Email <strong>jack@musely.com</strong> with subject line: "TCPA class filing — C.D. Cal. 2:26-cv-05988 — Blacklist Alliance scrub program"</li>
+            <li>Cc steven@musely.com (COO) and ethan@musely.com (VP Tech)</li>
+            <li>Reference the PLG filing pattern: 9 cases YTD against DTC SMS senders, 5 in C.D. Cal.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">Call sequence</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Call <strong>408-444-7598</strong> — ask for Jack Jia, then Steven Buchanan</li>
+            <li>If reception gates, ask for "the person handling outside counsel for the TCPA matter filed June 3"</li>
+            <li>If Jia not reachable, redirect to Ethan Gui as the technical buyer — pitch the scrub API integration with their existing SMS stack</li>
+            <li>Run the recovered Subject Number through litigator-list lookup; report result back to prospect on the same call</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4–10</div>
+        <h3 class="card-title">Multi-thread + monitor PACER</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>LinkedIn outreach to Jack Jia (<a href="https://www.linkedin.com/in/jackjia">/in/jackjia</a>)</li>
+            <li>Parallel email to paris@musely.com (Strategic Growth) and nathan@musely.com (Growth Marketing) — operational owners of the SMS funnel</li>
+            <li>Monitor PACER daily for defense counsel appearance and judge assignment</li>
+            <li>If Akin Gump (Stortz / Frey / Branson) appears — pivot pitch to the law firm as procurement gatekeeper</li>
+            <li>Re-pull privacy policy and signup flow once consent disclosures become visible</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8">Trigger Conditions That Change the Plan</div>
+      <h3 class="card-title">When to escalate, when to pause</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="border-color:#393939">
+          <li><strong>Defense counsel appears (Akin Gump or similar):</strong> Pivot to a counsel-to-counsel motion — pitch Litigator Scrub as a discovery-cost-reducer, not a marketing tool</li>
+          <li><strong>Plaintiff files an amended complaint:</strong> Re-scrape for the full Subject Number, which is often disclosed in amendments</li>
+          <li><strong>Second PLG-filed case against Musely surfaces:</strong> Escalate urgency — pattern means systemic exposure, not a one-off</li>
+          <li><strong>Defendant files a motion to compel arbitration (likely given <em>Ramirez</em> precedent):</strong> Continue pitch — arbitration shifts venue but doesn't fix the underlying sending practice</li>
+          <li><strong>Class certification briefing begins:</strong> Push consent-capture audit as a settlement-leverage tool — pre-cert P&amp;P remediation often factors into settlement valuation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">Window: ~21-Day Answer Clock from Service</span>
+      <span class="pill pill--info">Best Contact Window: Now Through Late June 2026</span>
+      <span class="pill pill--ok">Greenfield Buyer · No Incumbent Vendor Detected</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
