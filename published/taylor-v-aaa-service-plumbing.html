@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taylor v. AAA Service Plumbing — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout h4{ margin:0 0 12px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.callout ul{ margin:0; padding-left:18px; font-size:14px; color:var(--fg-1); line-height:1.6; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:600; color:var(--bl-red); line-height:1; }
+.step-title{ font-size:17px; font-weight:600; margin:0 0 6px; }
+.step-body{ font-size:14px; line-height:1.6; color:var(--fg-2); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="128" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="140" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Federal DNC + Prerecorded Voice · Home Services · Perrong/Paronich Tandem · Putative Class</p>
+      <h1 class="hero-tagline">Taylor v.<br>AAA Service Plumbing</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-02474</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">D. Colo. (Denver)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 USC § 227(b)<br>47 CFR § 64.1200(c)/(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — 3 Rule 23 classes<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"Hundreds" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Perrong &amp; Paronich <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Perrong Law LLC + Paronich Law, P.C.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number is redacted in the complaint — scrub deferred until PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the area code (530) and masks the line, so no blacklistBulk lookup was attempted. Recovery path is described below.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(530) XXX-XXXX</div>
+        <div class="scrub-number-sub">Complaint ¶18 discloses only the area code; line number is intentionally masked. Plaintiff is a Colorado resident using a California area-code mobile, registered on the National DNC Registry &gt;31 days before the calls.</div>
+      </div>
+      <p class="scrub-body-text">The full plaintiff DID is not on the face of the complaint. A blacklistBulk lookup against a partial number would be meaningless and is not run. The number will appear in ECF #1's unredacted exhibits or in defense counsel's first set of interrogatories. Plaintiff <strong>Tashina Taylor</strong> has no other federal docket hits in CourtListener — she is a first-time named plaintiff, not a known serial filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Tashina+Taylor%22&type=r">CourtListener -&gt;</a></span>. The serial-filer signal lives on the <em>plaintiff counsel</em> side, not the plaintiff. See Section 04.</p>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:24px 0 16px;">Sending DIDs Identified in Complaint</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">SMS Sender · Toll-Free</div>
+        <h3 class="card-title">(833) 923-3331</h3>
+        <p class="card-body">Toll-free DID used to send the original "AAA Plumbing Heating and Electric" SMS pitch (Nov 12, 2025 screenshot, complaint ¶23). External complaint aggregators (800notes, YouMail, Tellows, RoboKiller) returned no public reports — likely a fresh Podium-issued number with low consumer-side visibility.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">SMS Sender · Tennessee LATA</div>
+        <h3 class="card-title">(615) 552-0912</h3>
+        <p class="card-body">Nashville-area number used for the April 15, 2026 "Storm season" SMS <em>after</em> the consumer received an unsubscribe confirmation (complaint ¶25). Out-of-state area code on a Colorado plumber is a textbook signal of a third-party SMS platform (Podium) or lead-gen vendor stack.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Voice DID · Denver Local · Smoking Gun</div>
+        <h3 class="card-title">(303) 313-3333</h3>
+        <p class="card-body">Primary outbound voice number. Source of the prerecorded "Glenn from AAA" furnace-tune-up message (Jan 17, 2026) and at least four additional calls on Feb 21, Mar 25, and May 14 (complaint ¶26-29). Almost certainly the defendant's main business line and the company switchboard.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">SMS Sender · Denver Local</div>
+        <h3 class="card-title">(720) 386-0411</h3>
+        <p class="card-body">Appears in the April 15 "whole-home generator" SMS as the callback number (complaint ¶25 screenshot). Second local-presence DID — confirms a rotating pool of at least four sender numbers tied to one defendant.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Recovery Path Before First Dial</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Step 1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">Unredacted exhibit images or attorney-eyes-only filing may contain the full plaintiff DID. Cost ~$1.60 for a 16-page complaint at the PACER rate cap.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 2</div>
+        <h3 class="card-title">Wait for defense counsel notice of appearance</h3>
+        <p class="card-body">Once defense counsel files an answer or 12(b) motion, Rule 26(a)(1) disclosures will surface the plaintiff number within 14 days of the Rule 26(f) conference.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 3</div>
+        <h3 class="card-title">Discovery request to plaintiff</h3>
+        <p class="card-body">Plaintiff's first set of interrogatories will require disclosure of the recipient DID. Defense counsel should issue Interrogatory #1: "State the full 10-digit number on which You received any communication from Defendant."</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF: FIRST-TIME NAMED, NOT A SERIAL FILER</span>
+      <span class="pill pill--danger">COUNSEL: PERRONG/PARONICH TANDEM — EXTREME THREAT</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small Colorado home-services LLC with a Podium SMS stack, four rotating DIDs, and the Perrong/Paronich tandem on the other side. Lead with DNC scrubbing + consent capture.</h2>
+      <p class="section-lede">AAA Service Plumbing is the kind of defendant that gets re-sued within 90 days if they don't fix the pipe. The complaint stacks three independent statutory theories (Federal DNC, Internal DNC, Prerecorded Voice) and the plaintiff bar is among the most prolific in the country. The wedge is simple: their outbound stack is leaking on every dimension Blacklist scrubs.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <p class="card-body">Plaintiff was on the Federal DNC &gt;31 days before the calls, <em>and</em> received a "Stop" acknowledgment that her unsubscribe was effective — and then got called again. This is a textbook dual DNC failure. Blacklist's daily DNC + internal suppression list scrubbing solves both at the dialer/messaging-platform layer.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Secondary</div>
+        <h3 class="card-title">Consent Capture + Record Retention</h3>
+        <p class="card-body">Defendant uses Podium (c.podium.co confirmed in screenshot exhibits) to send SMS, but multi-DID number rotation across 833/615/303/720 strongly implies consent records are not tied to a single number-of-record. Per-number auditable consent is the discovery point that will sink this case.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">Internal DNC (§ 64.1200(d)) claim requires the defendant to have written policies, training, and a maintained do-not-call list. A small ~11-50 employee plumbing LLC almost certainly has none. Blacklist's policies-and-procedures kit is the safe-harbor backstop.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:40px 0 12px;">Pitch Angle</h3>
+    <p style="font-size:15px; line-height:1.7; color:var(--fg-1); max-width:880px;">Open on the threat profile: "You've been sued by Andrew Perrong and Anthony Paronich. Between the two of them, they have over a thousand TCPA dockets on file. They don't file nuisance suits — they file class actions and they settle them. The Medguard Alert matter settled within six weeks of filing <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22+TCPA&type=r">CourtListener -&gt;</a></span>. The Orbit Energy class action settled in 2022 with Paronich as class counsel. This is a production line."</p>
+    <p style="font-size:15px; line-height:1.7; color:var(--fg-1); max-width:880px;">Then pivot to the fix: "The complaint says your Podium texts kept going after a 'Stop' confirmation was logged. That's not a Podium bug — that's a missing layer between Podium and your customer list. Blacklist sits between your contact database and your messaging platform, scrubs every send against the Federal DNC, your own internal suppression list, and known litigator lists, and gives you the audit trail Perrong is about to demand in interrogatories. The answer deadline starts ticking on service. Get the layer in place before defense counsel files."</p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Private Colorado plumbing/HVAC/electrical LLC running a Podium + multi-DID outbound stack with no visible compliance function.</h2>
+      <p class="section-lede">AAA Service Plumbing is a small private trades business operating from Fort Collins and Golden, Colorado, doing business as AAA Service Plumbing, Heating &amp; Electric. The corporate registry could not be programmatically retrieved (Colorado SoS returned 403), but the complaint and LinkedIn confirm the entity, vertical, and footprint.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">AAA Service Plumbing LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>AAA Service Plumbing LLC</dd>
+            <dt>DBA</dt><dd>AAA Service Plumbing, Heating &amp; Electric</dd>
+            <dt>Entity Type</dt><dd>Colorado LLC (per complaint ¶6)</dd>
+            <dt>Offices</dt><dd>Fort Collins, CO and Golden, CO (per complaint ¶6)</dd>
+            <dt>Vertical</dt><dd>Home services — plumbing, HVAC, electrical</dd>
+            <dt>Ownership</dt><dd>Private</dd>
+            <dt>Headcount (est.)</dt><dd>~11-50 (LinkedIn company page band)<br><span class="src-tag"><a href="https://www.linkedin.com/company/aaa-service-plumbing">LinkedIn -&gt;</a></span></dd>
+            <dt>Likely Principal</dt><dd>Ken Mulac (only individual surfaced on LinkedIn company page)<br><span class="src-tag"><a href="https://www.linkedin.com/in/ken-mulac-6b2910127">LinkedIn -&gt;</a></span></dd>
+            <dt>Website</dt><dd>aaaserviceplumbing.com <span class="pill pill--warn">FETCH BLOCKED</span></dd>
+            <dt>Main Voice DID</dt><dd>(303) 313-3333 (from prerecorded VM, ¶28)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Acknowledged "Stop" — Then Texted Again</h3>
+        <p class="card-body">On Nov 25, 2025 the plaintiff replied STOP and received the system confirmation: <em>"You have successfully unsubscribed. You will no longer receive messages from this business…"</em> (complaint ¶23). On April 15, 2026 — <strong>141 days later</strong> — the same business sent a new "Storm season is here in Colorado" SMS from a different DID (615-552-0912 → callback 720-386-0411) advertising whole-home generators (¶25). A prerecorded voicemail on Jan 17, 2026 from "Glenn at AAA Heating, Plumbing and Electrical Services" advertising a $39 furnace tune-up confirms the same campaign reached the plaintiff via voice as well (¶28). Three independent statutory theories from one fact pattern.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Answer-Clock and Copycat Window</h3>
+      <p class="card-body">Complaint filed June 4, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-02474&type=r">CourtListener -&gt;</a></span>. Summons issued same day (Doc #1-2). Defense counsel has not appeared. Once served, Fed. R. Civ. P. 12(a)(1)(A)(i) puts the answer deadline 21 days out. Home services / HVAC is a top-target TCPA vertical — once Perrong/Paronich file one, copycats from Mike Wolf, Avi Kaufman, and the Hindi/Lane firms typically follow inside 60-90 days. The window to install scrubbing and document a fix is <strong>now</strong>.</p>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AAA Service Plumbing, Inc.</strong></td>
+            <td>Predecessor or sister entity — appears as party in <em>Federated Mutual Ins. Co. v. Enright</em> (D. Colo. 2015) alongside Michael Enright <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22AAA+Service+Plumbing%22&type=r">CourtListener -&gt;</a></span></td>
+            <td>Plumbing / HVAC</td>
+            <td>Possible same outbound stack; insurance-coverage history suggests prior claim activity</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Podium (vendor)</strong></td>
+            <td>SMS messaging platform — sender_domain c.podium.co confirmed in complaint exhibits (¶23, ¶25)</td>
+            <td>SaaS / customer engagement</td>
+            <td>Not a defendant; vendor-side audit log will be the discovery battleground</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA action against this defendant — but the plaintiff bar is a 1,400-case operation that does not file to lose.</h2>
+      <p class="section-lede">No prior TCPA suits exist against AAA Service Plumbing LLC. The threat profile lives entirely on the plaintiff-counsel side: Perrong is featured in the TCPAWorld 2026 Power Rankings and Paronich claims involvement in 100+ class actions totaling $200M+ in settlements.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card · Active</div>
+        <h3 class="card-title">Taylor v. AAA Service Plumbing LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>1:26-cv-02474 (D. Colo.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-02474&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Filed</dt><dd>June 4, 2026 (Doc #1, 16 pages, filing fee $405)</dd>
+            <dt>Plaintiff</dt><dd>Tashina Taylor (CO resident, 530- area-code mobile)</dd>
+            <dt>Class Status</dt><dd><span class="pill pill--danger">Putative Rule 23(b)(2)/(b)(3)</span> — three classes pled</dd>
+            <dt>Class Size</dt><dd>"At minimum, in the hundreds" (¶55)</dd>
+            <dt>Claims</dt><dd>Count I: 47 USC § 227(c)(5) / 47 CFR § 64.1200(c) — Federal DNC<br>Count II: 47 USC § 227(b) — Prerecorded voice to cell<br>Count III: 47 USC § 227(c)(5) / 47 CFR § 64.1200(d) — Internal DNC</dd>
+            <dt>Damages Sought</dt><dd>$500 per violation; $1,500 per willful violation; injunctive relief; fees</dd>
+            <dt>Named Plaintiff Exposure</dt><dd>~6 voice calls + 3 SMS pled, multiple counts each → $3,000–$22,500 named-plaintiff statutory range; class exposure (hundreds × multi-violation × $500-$1,500) → low seven-figure floor</dd>
+            <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer clock on service</span></dd>
+            <dt>Judge</dt><dd>Not yet assigned per docket fetch <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-02474&type=r">CourtListener -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel — Lead</div>
+        <h3 class="card-title">Andrew Roman Perrong · Perrong Law LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm Address</dt><dd>2657 Mount Carmel Avenue, Glenside, PA 19038</dd>
+            <dt>Firm Phone</dt><dd>(215) 225-5529</dd>
+            <dt>Email</dt><dd>a@perronglaw.com</dd>
+            <dt>PA Bar #</dt><dd>333687 (admitted ~2023) <span class="src-tag"><a href="https://www.padisciplinaryboard.org/for-the-public/find-attorney/attorney-detail/333687">PA Disciplinary Board -&gt;</a></span></dd>
+            <dt>Discipline</dt><dd>No formal PA discipline. Federal judge in E.D. Pa. (May 2023) characterized conduct as "gamesmanship of the lowest order" on a pre-licensure default motion <span class="src-tag"><a href="https://tcpaworld.com/?s=Perrong">TCPAWorld -&gt;</a></span></dd>
+            <dt>Power Ranking</dt><dd><span class="pill pill--danger">TCPAWorld 2026 Most-Dangerous List</span></dd>
+            <dt>Filings Volume</dt><dd>615+ TCPA-tagged dockets/cases per CourtListener (firm-wide) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Perrong+Law%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Notable</dt><dd><em>Perrong v. Bally's Corp.</em> (D.R.I.) — MTD denied; standing-on-serial-filer-status rejected. <em>Perrong v. Bradford</em> (3d Cir. Oct 2025) — state-lawmaker TCPA immunity ruling. <em>Perrong v. QuoteWizard</em> (2025) — DNC + prerecorded.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel — Co-Counsel</div>
+        <h3 class="card-title">Anthony Paronich · Paronich Law, P.C.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm Address</dt><dd>350 Lincoln Street, Suite 2400, Hingham, MA 02043</dd>
+            <dt>Firm Phone</dt><dd>(617) 485-0018</dd>
+            <dt>Email</dt><dd>anthony@paronichlaw.com</dd>
+            <dt>Bar Lookup</dt><dd><span class="pill pill--gap">MA Bar registry fetch failed</span></dd>
+            <dt>Track Record</dt><dd>Firm-self-reported 100+ class actions, $200M+ in aggregate settlements/judgments <span class="src-tag"><a href="https://paronichlaw.com">paronichlaw.com -&gt;</a></span></dd>
+            <dt>Filings Volume</dt><dd>1,134+ TCPA-tagged dockets per CourtListener (firm-wide) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Notable Settlements</dt><dd>$6.5MM RVM settlement (NRS); $35.7MM demand in pending Dec-2025 robocall class; Perrong v. Orbit Energy &amp; Power final approval May 27, 2022 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Perrong%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Vertical Targets</dt><dd>Home services, healthcare, trucking, retail, education, MLM/supplements <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Plaintiff / Firm Template</h3>
+    <p style="font-size:15px; line-height:1.7; max-width:880px;">The Perrong/Paronich tandem follows a consistent template: identify a regional consumer-facing business with an SMS or prerecorded outbound program, build a fact pattern with screenshot-quality exhibits showing both the marketing message <em>and</em> the unsubscribe acknowledgment, then plead Federal DNC + Internal DNC + Prerecorded Voice in the alternative to maximize statutory-damages stacking. Quick voluntary dismissals after individual settlement are common (e.g., Perrong v. Nordic Energy Services voluntarily dismissed 2 weeks after filing) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Perrong%22+TCPA&type=r">CourtListener -&gt;</a></span>. The class-wide cases that survive MTD go all the way to certification and settlement (Mathine v. Medguard Alert — notice of settlement 6 weeks post-filing) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Paronich+Law%22+TCPA&type=r">CourtListener -&gt;</a></span>.</p>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Concurrent &amp; Recent Plaintiff-Firm Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Taylor v. AAA Service Plumbing LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>D. Colo.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active · Filed Jun 4</span></td>
+            <td>Federal DNC + Internal DNC + Prerecorded</td>
+          </tr>
+          <tr>
+            <td>Mathine v. Medguard Alert, Inc.</td>
+            <td>D. Conn.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Settled (Notice 1/21/2025)</span></td>
+            <td>TCPA — undisclosed amount</td>
+          </tr>
+          <tr>
+            <td>Newell v. Foley Carrier Services, LLC</td>
+            <td>D. Conn.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Pending</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Value City Furniture, Inc.</td>
+            <td>S.D. Ohio</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Active — § 227(c) MSJ briefing</span></td>
+            <td>Federal DNC</td>
+          </tr>
+          <tr>
+            <td>Brockington v. Yoli, LLC</td>
+            <td>E.D. Tenn.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Pending</span></td>
+            <td>TCPA — MLM/supplements</td>
+          </tr>
+          <tr>
+            <td>Brockington v. Hume Health, LLC</td>
+            <td>E.D. Tenn.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Pending</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Wilson v. Inbox Health Corp.</td>
+            <td>D. Conn.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Pending</span></td>
+            <td>TCPA — healthcare billing</td>
+          </tr>
+          <tr>
+            <td>Wright v. Post University, Inc.</td>
+            <td>D. Conn.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Pending</span></td>
+            <td>TCPA — education</td>
+          </tr>
+          <tr>
+            <td>Perrong v. Orbit Energy &amp; Power, LLC</td>
+            <td>E.D. Pa.</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Class settlement final approval 5/27/2022</span></td>
+            <td>TCPA class</td>
+          </tr>
+          <tr>
+            <td>Perrong v. Bradford (immunity appeal)</td>
+            <td>3d Cir.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Decided Oct 2025</span></td>
+            <td>TCPA — state-lawmaker immunity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Full 10-digit plaintiff DID is masked in the complaint — pull ECF #1 attachments from PACER and check Civil Cover Sheet for unredacted exhibits.</li>
+        <li>Colorado Secretary of State entity record could not be retrieved (SoS returned 403) — registered agent, managing member, and formation date are unknown. Manual lookup at coloradosos.gov before first call.</li>
+        <li>No assigned judge yet on the docket — recheck CourtListener in 48-72 hours; assignment will drive defense-counsel-of-choice intel.</li>
+        <li>Defense counsel has not appeared. Most Colorado plumbing LLCs of this size use their general business counsel or insurance-panel counsel — Federated Mutual Insurance was the carrier in the 2015 Enright matter and may again be on coverage.</li>
+        <li>Defendant website (aaaserviceplumbing.com) refused all programmatic fetches — privacy policy, terms, and consent disclosures could not be inspected. Manual browser visit needed to confirm whether SMS consent language exists on intake forms.</li>
+        <li>Ken Mulac (LinkedIn) is the only employee surfaced — owner/principal status not yet confirmed. ZoomInfo, SignalHire, Apollo all refused. Confirm via SoS managing-member field.</li>
+        <li>Did the same SMS campaign hit Tashina Taylor's actual mobile, or was the 530 area-code line an older number she used during the original service relationship? Discovery question for early Rule 26 conference.</li>
+        <li>No public consumer-aggregator reports surfaced on any of the four sender DIDs (800notes/YouMail/Tellows/RoboKiller all 403/404) — numerosity will need Podium platform records via subpoena.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call the main business line and ask for the owner. The org is small enough that there is no GC layer.</h2>
+      <p class="section-lede">AAA Service Plumbing is a ~11-50 person trades business with no surfaced GC, CCO, or VP Legal. The decision-maker is whoever signs the LLC operating agreement — almost certainly the managing member. Start with the main number on the prerecorded voicemail and ask for the owner by name once verified.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Ken Mulac</strong><br>
+              <span class="pill pill--dark">Likely Owner / Principal</span>
+            </td>
+            <td>Only individual surfaced on AAA Service Plumbing's LinkedIn company page out of ~11-50 employees indicated. Title not explicitly listed; almost certainly the managing member or operations principal. Confirm against Colorado SoS managing-member field.<br><span class="pill pill--info">INFERRED · LINKEDIN</span></td>
+            <td>(303) 313-3333<br><span class="pill pill--warn">PATTERN · Main co. line from prerecorded VM (¶28)</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/ken-mulac-6b2910127">linkedin.com/in/ken-mulac-6b2910127</a><br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>AAA Service Plumbing — Main</strong><br>
+              <span class="pill pill--dark">Switchboard</span>
+            </td>
+            <td>Primary business voice line, identified by the defendant itself in the Jan 17, 2026 prerecorded voicemail (¶28: <em>"Please call us back as soon as you can at 303-313-3333"</em>). Use this to confirm the owner's name and ask for legal/compliance.</td>
+            <td>(303) 313-3333<br><span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">GAP — no info@/contact@ surfaced</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Registered Agent</strong><br>
+              <span class="pill pill--dark">Service of Process</span>
+            </td>
+            <td>Colorado SoS business search returned HTTP 403 — registered agent not retrievable programmatically. Pull manually from coloradosos.gov before first call so service-of-process intel is in hand.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>GC / CCO</strong><br>
+              <span class="pill pill--dark">Role Only</span>
+            </td>
+            <td>No in-house GC or CCO identifiable for an LLC of this size. Likely outsourced to defense counsel once appearance is filed — which has not happened as of this report.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Defense Counsel</strong><br>
+              <span class="pill pill--dark">External Counsel</span>
+            </td>
+            <td>Not yet appeared. 21-day answer clock starts running on service. Most likely candidates: defendant's general business counsel or Federated Mutual Insurance panel counsel (Federated was carrier in the 2015 Enright matter). Recheck PACER in 7-10 days post-service.</td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 16px;">Plaintiff Counsel (Reference Only — Do Not Pitch)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name</th><th>Firm</th><th>Phone</th><th>Email</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Andrew Roman Perrong<br><span class="pill pill--danger">PA Bar #333687 · TCPAWorld 2026 Power List</span></td>
+            <td>Perrong Law LLC<br>2657 Mount Carmel Ave, Glenside, PA 19038</td>
+            <td>(215) 225-5529 (per PACER)</td>
+            <td>a@perronglaw.com</td>
+          </tr>
+          <tr>
+            <td>Anthony Paronich<br><span class="pill pill--danger">100+ class actions · $200M+ aggregate</span></td>
+            <td>Paronich Law, P.C.<br>350 Lincoln St., Ste. 2400, Hingham, MA 02043</td>
+            <td>(617) 485-0018 (per PACER)</td>
+            <td>anthony@paronichlaw.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The owner does not know yet, and defense counsel is not yet on the file.</h2>
+      <p class="section-lede">The complaint was filed June 4. The defendant is small enough that the principal may not even be aware until service hits the registered agent. There is a narrow window — before defense counsel files an appearance and clamps down on direct contact — where the rep can reach the owner directly and offer to be part of the fix.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h3 class="step-title">Day 0-1 · Pull PACER #1 + Colorado SoS lookup</h3>
+          <p class="step-body">Spend ~$1.60 to pull the unredacted ECF #1 from PACER and check the Civil Cover Sheet + exhibits for the full plaintiff DID. In parallel, run a manual Colorado SoS business search at coloradosos.gov for AAA Service Plumbing LLC to get the registered agent and managing-member name (the SoS portal blocked our automated fetch).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h3 class="step-title">Day 1-2 · First dial — main line, ask for the owner</h3>
+          <p class="step-body">Call (303) 313-3333 — the verified main business line from the prerecorded voicemail. Ask for Ken Mulac by name once confirmed via SoS. If reception screens, the open is: <em>"I'm calling about the federal class action filed against you on June 4th in Denver. We help home-services companies fix the DNC and consent issues before defense counsel takes over the conversation."</em></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h3 class="step-title">Day 2-3 · Pitch the wedge — Podium audit + DNC layer</h3>
+          <p class="step-body">Lead with DNC scrubbing as the primary product. Show that the "Stop"-then-text-141-days-later pattern (¶23-25) is fixable at the layer between Podium and the customer list. Pitch consent capture / per-DID auditable consent as the secondary. Position policies-and-procedures as the safe-harbor backstop for the § 64.1200(d) Internal DNC count.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h3 class="step-title">Day 5-10 · Monitor PACER for defense counsel appearance</h3>
+          <p class="step-body">Once defense counsel files a notice of appearance, route the conversation through them — but the relationship with the principal is already established. If defense counsel is insurance-panel (likely Federated Mutual carryover from the 2015 Enright matter), offer to brief them directly on the scrub layer as part of the mitigation narrative.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h3 class="step-title">Day 14-21 · Pre-answer install window</h3>
+          <p class="step-body">Goal is to have the Blacklist scrub layer live in the Podium send path <strong>before</strong> the answer is filed. Documented remediation pre-answer is a settlement-leverage point counsel can use in early Rule 26(f) discussion. The Perrong/Paronich pattern shows they settle individual cases fast when the defendant has cleaned up; the holdouts are the ones who keep texting.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Trigger conditions</h3>
+    <ul style="font-size:15px; line-height:1.7; max-width:880px;">
+      <li><strong>If defense counsel files a 12(b)(6) MTD instead of an answer:</strong> the conversation slows but exposure does not — plaintiff bar in this district has won MTDs on weaker fact patterns. Keep the install timeline on track.</li>
+      <li><strong>If plaintiff voluntarily dismisses within 30 days:</strong> read as quick individual settlement (Perrong template). Still close the scrub deal — copycats are the bigger risk.</li>
+      <li><strong>If a second TCPA suit lands against AAA in any district:</strong> urgency goes to maximum. Lead the next call with the new docket.</li>
+      <li><strong>If Federated Mutual or another carrier denies coverage:</strong> the defendant is paying out of pocket — scrub ROI math gets dramatically better.</li>
+    </ul>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW ON SERVICE</span>
+      <span class="pill pill--warn">COPYCAT WINDOW: 60-90 DAYS</span>
+      <span class="pill pill--info">FIRST DIAL TARGET: (303) 313-3333</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
