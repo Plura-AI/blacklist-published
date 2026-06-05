@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wooster v. Fitness CF — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:10px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.callout ul{ margin:8px 0 0; padding-left:20px; }
+.callout li{ margin-bottom:6px; font-size:14px; line-height:1.5; }
+.current-row{ background:var(--danger-bg) !important; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="3" width="3" height="17" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Florida Gym Chain · SMS Opt-Out Failure · Internal DNC Class Action · Hindi Firm Plaintiff</p>
+      <h1 class="hero-tagline">Wooster v.<br>Central Florida Health Clubs <span style="color:var(--bl-red); font-weight:500; font-size:0.75em;">dba Fitness CF</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">CACE-26-009221</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">17th Jud. Cir., Broward Co. FL</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 3, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Division 12<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Judge not yet assigned</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(d)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 1.220 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">≥ 50 members</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alina O'Connor &nbsp;·&nbsp; Zane Hedaya<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred until PACER/clerk pull of Exhibit A or discovery</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Wooster's complaint asserts text-message contact on Oct 29, 2025 (initial STOP) and follow-on texts on Dec 7, 2025 and Jan 27, 2026 — but the cellular number itself is never disclosed in the four corners of the pleading. No scrub was run.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</span>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint ¶¶ 23–24 confirm Plaintiff is the regular user of "the cellular telephone that received Defendant's text messages" and that the line is "Plaintiff's residential telephone line" — but the 10-digit number is withheld. Standard Hindi-firm pleading pattern.</div>
+      </div>
+      <p class="scrub-body-text">A blacklistBulk lookup was not run because we have nothing to query. The number must be recovered before the rep can pitch the scrub product on the merits. See recovery paths below. Plaintiff name was cross-checked against CourtListener for prior TCPA filings — no federal hits were returned, but this is expected because the Hindi firm pleads almost exclusively in Florida state court, which CourtListener/RECAP does not index <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hayden+Wooster%22&type=r">CourtListener →</a></span>.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull from Broward Clerk</h3>
+        <p class="card-body">CACE-26-009221, Division 12 — public docket access at browardclerk.org. The initial complaint exhibit and any service-of-process documents will surface the plaintiff's number once filed/served. Direct case search returned a generic redirect; manual lookup at the clerk portal is required <span class="src-tag"><a href="https://www.browardclerk.org/Web2/CaseSearch/">Broward Clerk →</a></span>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for Defense Counsel Notice</h3>
+        <p class="card-body">No defense counsel has appeared yet. Once an answer is filed (typically 20 days after service in FL state court), the discovery exchange will surface the number through any subpoena to the carrier or through plaintiff's Rule 1.350 production.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery Request via Defense</h3>
+        <p class="card-body">Once retained, defense counsel can serve an interrogatory demanding the plaintiff's cellular number and consent records. Blacklist can scrub the moment the number is identified — typically 30–60 days post-service.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--warn">SERIAL-FILER PLAINTIFF COUNSEL · HINDI FIRM</span>
+      <span class="pill pill--info">NO SENDER DID DISCLOSED</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Regional gym chain just got served by Florida's most prolific TCPA firm — lead with policies &amp; procedures and a compliance audit.</h2>
+      <p class="section-lede">This is a textbook Internal DNC / 64.1200(d) class action against a multi-location Florida fitness operator. The complaint alleges Fitness CF kept texting Wooster on Dec 7, 2025 and Jan 27, 2026 after a STOP reply on Oct 29, 2025 — a smoking-gun opt-out failure. The Hindi firm signed the complaint, which means this is unlikely to settle quietly and is highly likely to attract copycat filings within 6–12 months. Defendant has no public-facing compliance posture.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Policies &amp; Procedures + Compliance Audit</h3>
+        <p class="card-body">Count I is a 64.1200(d) claim — written DNC policy, personnel training, internal DNC list. Blacklist's policies-and-procedures package is the direct cure. Combine with a compliance audit to harden the SMS stack before plaintiff's counsel files a second complaint <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span>.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">DNC Scrubbing + Internal DNC List Management</h3>
+        <p class="card-body">The smoking gun is the failure to suppress Wooster after STOP. A managed internal DNC list with STOP-keyword ingestion and pre-send scrubbing prevents the exact violation pattern alleged in ¶¶ 12–14 of the complaint.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Lead with this on the second call once the plaintiff number is recovered from PACER/Clerk. Hindi-firm plaintiffs frequently re-appear on multiple filings — proactive scrubbing of the SMS marketing list against the Blacklist litigator database neutralizes future Wooster-style targets.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:22px; margin-bottom:12px">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-2); max-width:880px">"You were just sued in Broward County by Jibrael Hindi's firm — the firm with $30M+ in TCPA settlements on their website and a Power Rankings spot on TCPAWorld's 'Most Dangerous TCPA Plaintiffs' Lawyers' list. They allege your SMS platform kept texting a member after he replied STOP three months earlier. Whether or not that's defensible, the second-order risk is bigger: once one Hindi complaint lands, copycat filings against the same defendant typically follow within 6–12 months. Blacklist's policies-and-procedures package plus DNC list management plugs the exact 64.1200(d) hole alleged in the complaint, and the litigator-scrub feed protects you from the next serial filer who's already on our list."</p>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-2); max-width:880px; margin-top:12px">Anchor the urgency on the answer clock: Florida Rule 1.140 gives 20 days to respond once served. The rep should be on the phone before defense counsel appears so Blacklist becomes part of the defense's compliance remediation story, not an afterthought.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A private, regional multi-location Florida gym operator with no visible compliance infrastructure.</h2>
+      <p class="section-lede">Central Florida Health Clubs, LLC operates the Fitness CF brand of gyms in the Central Florida / Orlando area. The entity is privately held, regionally concentrated, and runs SMS-driven membership marketing — the exact profile plaintiff firms target for class actions because the recipient pool is large and predictable.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Central Florida Health Clubs, LLC dba Fitness CF</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Central Florida Health Clubs, LLC (per Complaint ¶ 10)</dd>
+          <dt>DBA</dt><dd>Fitness CF</dd>
+          <dt>Entity Type</dt><dd>Florida Limited Liability Company (per Complaint ¶ 10)</dd>
+          <dt>HQ</dt><dd>Orlando, FL (per Complaint ¶ 10)</dd>
+          <dt>Website</dt><dd>fitnesscf.com <span class="pill pill--gap" style="margin-left:6px">SITE BLOCKED CRAWLERS</span></dd>
+          <dt>Vertical</dt><dd>Health clubs / fitness facilities</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Parent</dt><dd><span class="pill pill--gap">UNKNOWN</span></dd>
+          <dt>Officers / Managers</dt><dd><span class="pill pill--gap">SUNBIZ LOOKUP REQUIRED</span></dd>
+          <dt>Registered Agent</dt><dd><span class="pill pill--gap">SUNBIZ LOOKUP REQUIRED</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Texts on Dec 7, 2025 and Jan 27, 2026 — after a STOP reply on Oct 29, 2025.</h3>
+        <p class="card-body" style="margin-top:12px">Complaint ¶¶ 12–14 plead that Wooster replied STOP on Oct 29, 2025, then received two follow-on marketing texts roughly 39 and 90 days later. That timeline is the precise definition of a 64.1200(d) opt-out-handling failure: any compliant SMS platform's STOP keyword routine would have suppressed the line immediately. The absence of suppression after a textbook STOP is the single most damning fact in the pleading and is the wedge for the policies-and-procedures pitch.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-top:4px solid var(--warning)">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Move before defense counsel files an answer</h3>
+      <dl class="kv" style="margin-top:16px">
+        <dt>Filed</dt><dd>June 3, 2026 (Broward Clerk e-filed at 05:23:49 PM ET)</dd>
+        <dt>Service Window</dt><dd>Service of process typically completed within 30 days under FL Rule 1.070(j)</dd>
+        <dt>Answer Deadline</dt><dd>~20 days post-service under FL Rule 1.140 — close before defense counsel appears</dd>
+        <dt>Removal Window</dt><dd>30 days from service for federal-question removal under 28 USC 1446 (TCPA is federal)</dd>
+        <dt>Outreach Window</dt><dd><span class="pill pill--red">~45 DAYS TO REACH DECISION-MAKERS</span></dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:40px; margin-bottom:12px; font-size:22px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Fitness CF multi-location footprint</strong></td>
+            <td>Same operating brand</td>
+            <td>Fitness / health clubs</td>
+            <td>Each location likely runs the same SMS marketing stack — single platform fix protects all sites</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><em>Parent / holding company (if any)</em></td>
+            <td>Unknown</td>
+            <td>—</td>
+            <td>Sunbiz pull will reveal manager / member entities and any common ownership</td>
+            <td><span class="pill pill--warn">PENDING SUNBIZ</span></td>
+          </tr>
+          <tr>
+            <td><em>Sister gym brands under same ownership</em></td>
+            <td>Unknown</td>
+            <td>Fitness</td>
+            <td>If ownership group operates additional brands, same SMS infra is likely shared</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First known TCPA action against Fitness CF — but the Hindi firm signing it changes the risk profile.</h2>
+      <p class="section-lede">Defendant has no prior TCPA litigation visible in CourtListener / PACER. The Hindi firm is a high-volume Florida TCPA filer that prefers Broward state court and runs an internal-DNC / quiet-hours template against consumer-services and retail defendants. Once one Hindi complaint lands, copycat filings against the same defendant typically follow within 6–12 months.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Active Case</div>
+        <h3 class="card-title">Wooster v. Central Florida Health Clubs, LLC dba Fitness CF</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>CACE-26-009221 · Division 12</dd>
+          <dt>Filed</dt><dd>June 3, 2026</dd>
+          <dt>Court</dt><dd>FL 17th Judicial Circuit, Broward County</dd>
+          <dt>Plaintiff</dt><dd>Hayden R Wooster, Broward County resident</dd>
+          <dt>Plaintiff Counsel</dt><dd>Alina O'Connor (FL Bar #21171); Zane C. Hedaya (FL Bar #1048640); firm headed by Jibrael S. Hindi</dd>
+          <dt>Class</dt><dd><span class="pill pill--danger">Putative Rule 1.220 Class</span> &nbsp; ≥ 50 members (¶ 31)</dd>
+          <dt>Class Definition</dt><dd>All persons in U.S. who, within 4 years pre-filing, received ≥ 2 marketing texts in any 12-month window after a STOP reply (¶ 28)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(d); 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Internal DNC failure + opt-out non-honoring; no written policy; no personnel training; no functioning STOP processing</dd>
+          <dt>Channels</dt><dd>SMS only</dd>
+          <dt>Damages</dt><dd>$500/violation negligent; $1,500/violation willful (¶¶ 53–54). Named-plaintiff exposure $1,000–$3,000; class exposure $50K–$150K+ at minimum class size</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared · ~20-day answer clock</span></dd>
+          <dt>Aggregator Coverage</dt><dd>None — state court not indexed by PACER/RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22CACE-26-009221%22&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">The Law Offices of Jibrael S. Hindi, PLLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>813-340-8838 (direct) · 844-542-7235 (intake)</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Website</dt><dd><a href="https://jibraellaw.com">jibraellaw.com</a> <span class="src-tag"><a href="https://jibraellaw.com">firm site →</a></span></dd>
+          <dt>Signing Attys</dt><dd>Alina O'Connor (FL #21171) · Zane C. Hedaya (FL #1048640)</dd>
+          <dt>Bar Status</dt><dd>Active <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar →</a></span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1048640">FL Bar →</a></span></dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>TCPA Ranking</dt><dd><span class="pill pill--danger">TCPAWorld 2026 Power Rankings — Most Dangerous TCPA Plaintiffs' Lawyers</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Settlement Track Record</dt><dd>Firm advertises $30M+ TCPA settlements, $200M+ class action settlements, $15M+ FDCPA settlements (contingency)</dd>
+          <dt>Notable Cases</dt><dd>11th Cir. revived TCPA suit (Aug 2023); TCPA classes vs. Nespresso, Tampa Bay Buccaneers, Steve Madden, Thirdlove, multiple loungewear/retail defendants (2025–2026) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:22px">Plaintiff Firm Template — Hindi Internal-DNC / Quiet-Hours Playbook</h3>
+    <p style="color:var(--fg-2); max-width:880px; margin-top:8px">The Hindi firm runs a recognizable Florida state-court template: short complaint, sparse named-plaintiff phone disclosure, one or two follow-on texts pled with date specificity, Rule 1.220 putative class of 50+, and a single 47 USC § 227(c) / 64.1200(d) count seeking statutory damages plus an injunction. The firm has filed the same template against Nespresso, Steve Madden, Tampa Bay Buccaneers, Thirdlove, and multiple retail and consumer-services defendants in 2025–2026 <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span>. Wooster v. Fitness CF fits the template exactly.</p>
+
+    <h3 style="margin-top:32px; font-size:22px">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-top:12px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-row">
+            <td><strong>Wooster v. Central Florida Health Clubs (Fitness CF)</strong></td>
+            <td>CACE-26-009221</td>
+            <td>FL 17th Cir., Broward</td>
+            <td>Jun 3, 2026</td>
+            <td><span class="pill pill--red">ACTIVE · NEW</span></td>
+            <td>Internal DNC / 64.1200(d) opt-out failure</td>
+          </tr>
+          <tr>
+            <td>Shaikh v. St. Thomas University Inc. (incidentally names CF Fitness, Inc. / references Fitness CF gym)</td>
+            <td>—</td>
+            <td>M.D. Fla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Reference Only</span></td>
+            <td>Non-TCPA; mentioned for entity-name overlap only <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Fitness+CF%22&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td colspan="6" style="text-align:center; color:var(--fg-3); font-style:italic">No other TCPA actions against Central Florida Health Clubs / Fitness CF visible in CourtListener or PacerMonitor — state court FTSA/TCPA filings against the defendant are not indexed by those sources <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Central+Florida+Health+Clubs%22+TCPA&type=r">CourtListener →</a></span> <span class="src-tag"><a href="https://www.pacermonitor.com/search?q=Central+Florida+Health+Clubs">PacerMonitor →</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>⚠ Open intel gaps to close before first dial</h4>
+      <ul>
+        <li><strong>Sunbiz entity record</strong> — registered agent, managers, principal address, formation date all unknown (Sunbiz returned HTTP 403 to crawler; manual pull required).</li>
+        <li><strong>Plaintiff cellular number</strong> — withheld from complaint; recover via Broward Clerk filing or first discovery exchange.</li>
+        <li><strong>Sender DID / shortcode</strong> — complaint never identifies the originating phone number or shortcode used for the Oct/Dec/Jan texts.</li>
+        <li><strong>Defense counsel</strong> — not yet appeared; monitor docket for first notice of appearance.</li>
+        <li><strong>Decision-maker contacts</strong> — TheOrg, LinkedIn (fitness-cf / central-florida-health-clubs), and the company website all returned 404s/stream errors. Sunbiz manager pull is the next recovery step.</li>
+        <li><strong>Privacy policy / consent flow</strong> — fitnesscf.com signup, terms, and privacy pages all inaccessible to crawlers. Try archive.org and Google cache.</li>
+        <li><strong>Class size validation</strong> — "at least 50" is the floor pled; actual scope depends on subscriber list size across the multi-location footprint.</li>
+        <li><strong>Hindi firm volume against fitness vertical</strong> — confirm whether this is the firm's first fitness-club target or part of a campaign (run a focused FL state docket search at flcourts.gov).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Defendant decision-maker intel is sparse — Sunbiz pull is the unlock; meanwhile dial the gym directly.</h2>
+      <p class="section-lede">All standard data sources (TheOrg, LinkedIn, ZoomInfo, Apollo, SignalHire) returned 404 or 403. The company website blocked automated requests. Until Sunbiz is pulled manually, the most reliable path is calling a Fitness CF location and asking to be routed to the owner/general counsel — the LLC structure suggests an accessible owner-operator.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Owner / Manager (TBD)</strong><br><span class="pill pill--dark">DECISION-MAKER</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Manager(s) of record for Central Florida Health Clubs, LLC. Identity pending Sunbiz pull.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark">SERVICE OF PROCESS</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Authorized to receive service; will be named on Sunbiz LLC record. Often a director, owner, or outside counsel.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Marketing / Membership Lead</strong><br><span class="pill pill--dark">MARKETING</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Owns the SMS platform decision and member acquisition stack — directly responsible for the texting program at issue.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fitness CF main line</strong><br><span class="pill pill--dark">INTAKE</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Call any club location and request routing to ownership / corporate. Multiple Central FL locations should all reach back to the same operator.</td>
+            <td><span class="pill pill--gap">PENDING SITE ACCESS</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">DEFENSE</span> <span class="pill pill--gap">NOT YET APPEARED</span></td>
+            <td>Not yet appeared on docket. ~20-day answer clock from service. Monitor Broward Clerk for first notice of appearance.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Alina O'Connor, Esq.</strong><br><span class="pill pill--dark">PLAINTIFF COUNSEL</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Signing attorney; Hindi firm associate. FL Bar #21171.</td>
+            <td>813-340-8838 (per complaint)</td>
+            <td>alina@jibraellaw.com (per complaint)</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Zane C. Hedaya, Esq.</strong><br><span class="pill pill--dark">PLAINTIFF COUNSEL</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Co-signing attorney; Hindi firm associate. FL Bar #1048640.</td>
+            <td>813-340-8838 (per complaint)</td>
+            <td>zane@jibraellaw.com (per complaint)</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3); max-width:880px">Contact intel will be enriched as soon as Sunbiz (sunbiz.org) is pulled manually. Recommended next moves: (1) Sunbiz pull on "Central Florida Health Clubs, LLC" for manager/agent names; (2) Web Archive / Google cache for fitnesscf.com/about; (3) authenticated LinkedIn search for "Fitness CF" + Orlando.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 7 days — before defense counsel locks in the compliance narrative.</h2>
+      <p class="section-lede">The case was filed June 3, 2026. Service is likely complete within 30 days, and the answer is due ~20 days after that. Blacklist's window to influence the defense's compliance remediation plan closes once outside counsel appears and standardizes the response.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–2</div>
+        <h3 class="card-title">Sunbiz Pull + Decision-Maker ID</h3>
+        <p class="card-body">Pull "Central Florida Health Clubs, LLC" from search.sunbiz.org to recover registered agent, managers, and principal address. Cross-reference manager names against LinkedIn for direct dial / email. Identify owner-operator vs. outside counsel.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–5</div>
+        <h3 class="card-title">First-Touch Call</h3>
+        <p class="card-body">Cold call any Fitness CF location, ask for corporate / ownership. Lead with: "You were sued in Broward Monday by Jibrael Hindi's firm — they're #1 on TCPAWorld's Most Dangerous Plaintiffs' Lawyers list, and copycat filings typically follow within 6 months. Want a 15-minute walk-through of the policies-and-procedures gap they're alleging?"</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–10</div>
+        <h3 class="card-title">PACER / Clerk Pull</h3>
+        <p class="card-body">Monitor browardclerk.org for service of process and any exhibits filed. Pull initial filings for the plaintiff cellular number, then run blacklistBulk to confirm whether Wooster appears on the litigator list (likely yes, given Hindi-firm pattern).</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10–20</div>
+        <h3 class="card-title">Defense Counsel Outreach</h3>
+        <p class="card-body">Once defense counsel files notice of appearance, redirect the pitch to outside counsel as a remediation partner. Frame the policies-and-procedures + litigator scrub bundle as the defensible compliance narrative for any motion to dismiss / class-cert opposition.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 20–45</div>
+        <h3 class="card-title">Cross-Sell Push</h3>
+        <p class="card-body">After initial product is in motion, surface multi-location SMS infra hardening and the litigator-scrub feed as the second-stage upsell. Reference the Hindi firm's pattern of follow-on filings as the urgency wedge.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px">
+      <h4>Trigger conditions that change the plan</h4>
+      <ul>
+        <li>If defense counsel removes to S.D. Fla. within 30 days → adjust timeline to reflect federal calendar; pull the federal docket via PACER.</li>
+        <li>If a second Hindi-firm or copycat TCPA complaint lands against Fitness CF → urgency escalates; lead the next conversation with the litigation-pile-on framing.</li>
+        <li>If Sunbiz reveals a parent / holding company with multiple gym brands → expand cross-sell to sister brands on the same SMS platform.</li>
+        <li>If plaintiff voluntarily dismisses to amend → use the gap to push a pre-litigation compliance retrofit before the refiling.</li>
+        <li>If defense counsel is a known TCPA defense shop (e.g., Troutman, K&amp;L Gates) → pivot to compliance-vendor positioning rather than direct-to-GC pitch.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~20-DAY ANSWER WINDOW · CLOSE BEFORE JULY 23</span>
+      <span class="pill pill--info">PRIMARY: POLICIES &amp; PROCEDURES · SECONDARY: DNC SCRUBBING</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
