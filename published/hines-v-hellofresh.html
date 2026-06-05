@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hines v. HelloFresh — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--warning); font-weight:700; }
+.pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 40" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="28" fill="#ffffff" font-family="General Sans, sans-serif" font-size="26" font-weight="700" letter-spacing="-0.5">BLACKLIST</text>
+          <rect x="138" y="8" width="4" height="24" fill="#A50100"/>
+          <text x="150" y="28" fill="#ffffff" font-family="General Sans, sans-serif" font-size="26" font-weight="400" letter-spacing="-0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Meal-Kit DTC SMS Marketer · Quiet-Hours Class Action · Repeat TCPA Defendant · S.D. Cal.</p>
+      <h1 class="hero-tagline">Hines v.<br>HelloFresh</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-03392-RSH-AHG</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Robert S. Huie<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Allison H. Goddard (Mag.)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">47 CFR § 64.1200(c)(1)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff phone not disclosed — scrub deferred, but PLG/Venkatesh is a confirmed volume filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Hines complaint masks the Subject Number to the last-four ("0335"), so a blacklistBulk lookup cannot run. The plaintiff's firm, however, is on the radar — and the defendant's litigation history makes the scrub almost beside the point.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(XXX) XXX-0335</div>
+        <div class="scrub-number-sub">Only the last four digits appear in the complaint (¶17). No 10-digit number to scrub against the Blacklist litigator list.</div>
+      </div>
+      <p class="scrub-body-text">The complaint pleads the "Subject Number" only by trailing four digits and asserts the line is wireless used as a residential replacement (¶17). Because no full 10-digit number was pled, a Blacklist litigator-list scrub cannot be executed. Recovery options below.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender Identification</div>
+        <h3 class="card-title">Short Code 20132 · h.sfmsg.co</h3>
+        <div class="card-body">
+          <p>Exhibit A shows messages sent from common short code <strong>20132</strong> with click-tracking domain <strong>h.sfmsg.co</strong>. The "sfmsg" subdomain is consistent with a Salesforce Marketing Cloud / Sinch SMS stack — enterprise A2P infrastructure, not 1:1 communication. Short code 20132 returned no public consumer-complaint hits on 800notes, YouMail, Tellows, or RoboKiller (sources blocked / not indexed for short codes).</p>
+          <p style="margin-top:10px"><span class="pill pill--info">SHORT CODE</span> <span class="pill pill--info">SFMC / SINCH STACK</span></p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull PACER Doc #1 + Exhibit A</h3>
+        <div class="card-body">Recover the unredacted Subject Number via Exhibit A (Doc 1-2, PageID.13). The Exhibit shows the message-detail screenshot which may reveal the full number once the certified copy is pulled (~$1.20).</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Discovery / Counsel Notice</h3>
+        <div class="card-body">Once defense counsel appears (HelloFresh historically uses Sheppard Mullin / Kelley Drye), Rule 26 disclosures will surface the full number <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22HelloFresh%22+TCPA&type=r">CourtListener -></a></span>.</div>
+      </div>
+    </div>
+
+    <div class="pill-row">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--warn">PLAINTIFF NUMBER MASKED IN COMPLAINT</span>
+      <span class="pill pill--info">PLAINTIFF FIRST-TIME TCPA FILER (NO PRIOR HINES TCPA HITS)</span>
+      <span class="pill pill--danger">DEFENDANT IS A REPEAT TCPA TARGET</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Public-company repeat TCPA defendant with a fixable send-time problem and an $8.5M precedent staring at it.</h2>
+      <p class="section-lede">HelloFresh has been sued under the TCPA at least 8 times since 2019, with a publicly-reported ~$8.5M class settlement in Murray (D. Mass. 2021) — the prior cost-of-inaction baseline. Lead with quiet-hours scrubbing (a problem that disappears with proper timezone gating) and back it up with a litigator-list integration on the SFMC stack the marketing team is already using.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Quiet-Hours / Send-Time Compliance</h3>
+        <div class="card-body">The only violation pled is § 64.1200(c)(1) quiet hours — texts sent at 6:33 AM and 7:34 AM Pacific. This is the easiest, cheapest TCPA violation to prevent: timezone-aware send-window gating at the SFMC layer. Open with this because it's a problem with a known fix.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Litigator Scrub (Pre-Send)</h3>
+        <div class="card-body">PLG Damage filed 9+ TCPA class actions in April-May 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -></a></span>. The firm is scaling. Pre-send scrubbing against the BL litigator list intercepts plaintiffs before they get on the list.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary / Cross-Sell</div>
+        <h3 class="card-title">Consent Capture & Audit</h3>
+        <div class="card-body">HelloFresh signup states "Terms and conditions will be shown during checkout" <span class="src-tag"><a href="https://www.hellofresh.com">hellofresh.com -></a></span> — consent is post-hoc, not at phone capture. /terms and /about/privacy-notice return 404. Discovery nightmare for the defense.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="background:var(--bl-red-tint); border-color:var(--bl-red); margin-top:32px">
+      <h4 style="color:var(--bl-red)">Pitch Angle</h4>
+      <p style="margin:0 0 10px">"You've been here before. Murray cost you about $8.5M. Wilson, Salvant, and Schwartz are still pending. Hines was filed yesterday in San Diego and it's the same fact pattern — a 6:33 AM text from short code 20132. The fix is a five-line config change at the SFMC layer that gates send times against recipient timezone. The scrub catches the rest. We can have you compliant before the answer deadline lands."</p>
+      <p style="margin:0">Lead with the marketing decision-maker (Samayoa, US CMO) and copy the GC track (Ries, group; van der Valk, director-level) so the conversation has air-cover. The board-level pressure is real — HFG-DE traded near 52-week lows in 2024 and management is in cost-cut mode <span class="src-tag"><a href="https://www.cnbc.com/quotes/HFG-DE">CNBC -></a></span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">€7.7B publicly-traded meal-kit conglomerate with 7.1M global customers and a documented opt-out failure pattern.</h2>
+      <p class="section-lede">Grocery Delivery E-Services USA Inc. is the US operating entity of HelloFresh SE (FWB:HFG), the world's largest meal-kit company. Multiple acquired brands, a heavy short-code SMS footprint, and a prior £140,000 UK ICO fine for the exact same conduct alleged here.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Grocery Delivery E-Services USA Inc. d/b/a HelloFresh</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Entity type</dt><dd>Delaware Corporation (per ¶5 of complaint)</dd>
+          <dt>US HQ</dt><dd>New York, NY</dd>
+          <dt>Parent</dt><dd>HelloFresh SE (Berlin, Germany) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/HelloFresh">Wikipedia -></a></span></dd>
+          <dt>Public listing</dt><dd>FWB:HFG (Frankfurt, MDAX) <span class="src-tag"><a href="https://www.cnbc.com/quotes/HFG-DE">CNBC -></a></span></dd>
+          <dt>Revenue</dt><dd>€7.7B (2024, global); US ~60% <span class="src-tag"><a href="https://en.wikipedia.org/wiki/HelloFresh">Wikipedia -></a></span></dd>
+          <dt>Employees</dt><dd>~21,783 FTE (2024, global)</dd>
+          <dt>Founded</dt><dd>November 2011</dd>
+          <dt>Founders</dt><dd>Dominik Richter, Thomas Griesel, Jessica Nilsson</dd>
+          <dt>Vertical</dt><dd>Meal-kit / RTE / DTC subscription</dd>
+          <dt>D/b/a brands</dt><dd>HelloFresh, EveryPlate, Factor (Factor75), Green Chef, Chefs Plate (CA), Youfoodz (AU)</dd>
+          <dt>Marketing stack</dt><dd>Salesforce Marketing Cloud / Sinch (inferred from h.sfmsg.co sender domain); short code 20132</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">UK ICO already fined HelloFresh £140,000 in January 2024 — for the same conduct.</h3>
+        <div class="card-body">
+          <p>The UK Information Commissioner's Office fined HelloFresh for sending millions of spam texts and emails AND for continuing to contact customers after they asked to stop <span class="src-tag"><a href="https://en.wikipedia.org/wiki/HelloFresh">Wikipedia -></a></span>. This is not a one-off — it's a documented pattern of failing to honor opt-out and consent boundaries.</p>
+          <p style="margin-top:10px">Layer that against: hellofresh.com signup says "Terms and conditions will be shown during checkout" (consent is post-hoc, not at phone capture); /terms and /about/privacy-notice both return 404; no compliance officer is named publicly. The defense will have to explain why a regulator-fined company didn't fix it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Pressure compounds in Q3 2026.</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Filed</dt><dd>June 4, 2026 (1 day ago)</dd>
+          <dt>Answer due</dt><dd>~21 days from service (target late June 2026)</dd>
+          <dt>Concurrent cases</dt><dd>Wilson (N.D. Ga. 2025) and Salvant (N.D. Ga. 2025) and Schwartz (D. Mass. 2025) all pending</dd>
+          <dt>Stock pressure</dt><dd>HFG-DE near 52-week lows; management in cost-cut mode <span class="src-tag"><a href="https://www.cnbc.com/quotes/HFG-DE">CNBC -></a></span></dd>
+          <dt>Distribution closures</dt><dd>Newnan GA + Grand Prairie TX shut 2024-2025 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/HelloFresh">Wikipedia -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Litigation Cost Curve</div>
+        <h3 class="card-title">$8.5M prior settlement is the anchor.</h3>
+        <div class="card-body">
+          <p>Murray v. Grocery Delivery E-Services (D. Mass.) settled for approximately $8.5M publicly reported. Engen (D. Minn. 2019) saw HelloFresh's motion to compel arbitration <strong>denied</strong> on 4/10/2020 — adverse precedent the defense has to navigate again.</p>
+          <p style="margin-top:10px">61+ dockets reference "Grocery Delivery E-Services" on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Grocery+Delivery+E-Services%22&type=r">CourtListener -></a></span>; 176 cases involving the entity overall. This is a serial defendant, not unlucky.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>HelloFresh SE</strong></td>
+            <td>Parent (Berlin / FWB:HFG)</td>
+            <td>Public-co holding</td>
+            <td>Group-level GC (Christian Ries) is the policy owner across all US brands</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Factor75 LLC</strong></td>
+            <td>Subsidiary (acquired 2020, $277M)</td>
+            <td>Ready-to-eat meals</td>
+            <td>Co-defendant in Schwartz (D. Mass. 2025) — same TCPA exposure</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>EveryPlate</strong></td>
+            <td>Sister DTC brand</td>
+            <td>Value meal-kit</td>
+            <td>Marketing run by Hayley Raymond / Cole Swecker — likely same SFMC short-code infra</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Green Chef</strong></td>
+            <td>Subsidiary (acquired 2018)</td>
+            <td>Organic meal-kit</td>
+            <td>Same US marketing org; same compliance regime</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chefs Plate</strong></td>
+            <td>Subsidiary (Canada)</td>
+            <td>Meal-kit</td>
+            <td>Canadian CASL exposure parallel to TCPA</td>
+            <td><span class="pill pill--info">LOW</span></td>
+          </tr>
+          <tr>
+            <td><strong>Youfoodz</strong></td>
+            <td>Subsidiary (Australia)</td>
+            <td>Meal-kit</td>
+            <td>Out of US TCPA scope</td>
+            <td><span class="pill pill--gap">NOT IN SCOPE</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Eighth-known TCPA class against HelloFresh since 2019, filed by a volume PLG attorney with a 2026 docket spree.</h2>
+      <p class="section-lede">The defense template is well-rehearsed (Sheppard Mullin / Kelley Drye, motion to compel arbitration, early settlement). The plaintiff template is the PLG/Venkatesh "DTC quiet-hours" wedge — short form, single-count quiet-hours putative class. The pattern points to early-settlement posture.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Hines v. Grocery Delivery E-Services USA Inc.</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>3:26-cv-03392-RSH-AHG <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03392&type=r">CourtListener -></a></span></dd>
+          <dt>Filed</dt><dd>June 4, 2026</dd>
+          <dt>Court</dt><dd>S.D. Cal. (San Diego)</dd>
+          <dt>Article III Judge</dt><dd>Robert S. Huie (appointed 2022)</dd>
+          <dt>Magistrate</dt><dd>Allison H. Goddard</dd>
+          <dt>Plaintiff</dt><dd>Nicholas Hines (San Diego County, CA)</dd>
+          <dt>Plaintiff counsel</dt><dd>Vinit R. Venkatesh, PLG Damage Attorneys (CA Bar #367857)</dd>
+          <dt>Class status</dt><dd>Putative Rule 23 class <span class="pill pill--danger">CLASS ACTION</span></dd>
+          <dt>Class definition</dt><dd>TCPA After-Hours Class — all US wireless residential subscribers who received &gt;1 solicitation text in any 12-month period before 8:00 AM or after 9:00 PM local time</dd>
+          <dt>Class size pled</dt><dd>"dozens and likely in the hundreds or thousands"</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c) and 47 CFR § 64.1200(c)(1) (quiet hours)</dd>
+          <dt>Theory</dt><dd>Texts sent at 6:33 AM and 7:34 AM Pacific (El Cajon, CA) from short code 20132</dd>
+          <dt>Damages</dt><dd>Up to $500/violation, treble for willful — 2 pled violations + class</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared · ~21-day answer deadline</dd>
+          <dt>Docket aggregators</dt><dd>PACER/PacerMonitor/Justia/UniCourt/CASD all 403/404 at run time</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+          <dt>Firm address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+          <dt>Firm phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+          <dt>TCPA service email</dt><dd>tcpa-service@plgdamage.com</dd>
+          <dt>General email</dt><dd>info@plgdamage.com</dd>
+          <dt>Website</dt><dd>plgdamage.com</dd>
+          <dt>Bar number</dt><dd>CA Bar #367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -></a></span></dd>
+          <dt>Bar address</dt><dd><span class="pill pill--warn">MISMATCH</span> Counsel is CA-barred but firm is FL-based; no CA office disclosed</dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPA filing history</dt><dd>9+ TCPA class actions filed Apr-May 2026 (7-Eleven, Guardio, Rocket Mortgage, Yesvideo, Rite Aid, Xercize Studio, Last Brand, Payactiv, Refills Health) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>TCPAWorld ranking</dt><dd>Not yet ranked — no TCPAWorld coverage</dd>
+          <dt>Other firm attorneys</dt><dd>Matthew Suls, Natasha Floyd, Adrien (last name unknown)</dd>
+          <dt>Firm's core practice</dt><dd>Property damage / insurance bad faith — TCPA is an emerging side practice</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">PLG Damage "DTC Quiet-Hours" wedge</h3>
+      <div class="card-body">
+        <p>Single-count quiet-hours complaint, 10 pages, against a DTC subscription brand. Plaintiff number masked to last four. No prior plaintiff history retrievable — none of 23 "Nicholas Hines" hits on CourtListener match this person <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nicholas+Hines%22&type=r">CourtListener -></a></span>, suggesting first-time TCPA plaintiff steered by the firm. The PLG Q2 2026 docket spree (9+ filings) targets DTC subscription, fintech/EWA, mortgage, pharmacy, and consumer-tech verticals. Meal-kit fits the profile exactly.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px">Concurrent &amp; Recent Litigation Against HelloFresh / Grocery Delivery E-Services</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Hines v. Grocery Delivery E-Services USA Inc.</strong></td>
+            <td>3:26-cv-03392 · S.D. Cal.</td>
+            <td>2026-06-04</td>
+            <td><span class="pill pill--red">CURRENT · OPEN</span></td>
+            <td>Quiet hours (227(c))</td>
+          </tr>
+          <tr>
+            <td>Wilson v. Grocery Delivery E-Services USA Inc.</td>
+            <td>N.D. Ga.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">PENDING · ARBITRATION DEFENSE TEED UP</span></td>
+            <td>TCPA — defendant reserved arbitration rights 10/27/2025</td>
+          </tr>
+          <tr>
+            <td>Salvant v. Grocery Delivery E-Services USA, Inc.</td>
+            <td>N.D. Ga.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">PENDING</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Schwartz v. HelloFresh SE / Factor75 LLC</td>
+            <td>D. Mass.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">PENDING</span></td>
+            <td>TCPA (Kelley Drye defense)</td>
+          </tr>
+          <tr>
+            <td>Spath v. Grocery Delivery E-Services USA Inc.</td>
+            <td>M.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">TERMINATED ~7 DAYS POST-REMOVAL</span></td>
+            <td>TCPA — likely settled</td>
+          </tr>
+          <tr>
+            <td>McClure v. Grocery Delivery E-Services USA Inc.</td>
+            <td>N.D. Cal.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">CLOSED</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>AKORBI BPO LLC v. Grocery Delivery E-Services USA Inc.</td>
+            <td>E.D. Tex.</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">SETTLED</span></td>
+            <td>Vendor / TCPA-adjacent</td>
+          </tr>
+          <tr>
+            <td>Tippett v. Grocery Delivery E-Services USA Inc.</td>
+            <td>S.D.N.Y.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">TERMINATED 4 MOS · LIKELY SETTLED</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Flanagan v. Grocery Delivery E-Services USA Inc.</td>
+            <td>S.D.N.Y.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">CLOSED</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Geierman v. Grocery Delivery E-Services USA Inc.</td>
+            <td>N.D. Cal.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">CLOSED</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Murray v. Grocery Delivery E-Services US</td>
+            <td>1st Cir. / D. Mass.</td>
+            <td>2019</td>
+            <td><span class="pill pill--danger">SETTLED ~$8.5M (publicly reported)</span></td>
+            <td>TCPA class</td>
+          </tr>
+          <tr>
+            <td>Engen v. Grocery Delivery E-Services USA Inc.</td>
+            <td>D. Minn.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">SETTLED · MTC ARB DENIED 4/10/2020</span></td>
+            <td>TCPA — adverse arbitration precedent</td>
+          </tr>
+          <tr>
+            <td>Dawson v. Grocery Delivery E-Services USA Inc.</td>
+            <td>S.D.N.Y.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">DISMISSED W/PREJ ~2 MOS · LIKELY SETTLED</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px">
+        <li>PACER / PacerMonitor / Justia / UniCourt / CASD all returned 403/404 — full docket sheet and defense counsel appearance not yet observable; check PACER directly when answer is filed</li>
+        <li>Plaintiff's full 10-digit Subject Number is masked in complaint — pull Exhibit A via PACER (~$1.20) to confirm full number for scrub</li>
+        <li>Delaware SoS / California SoS / Bizapedia / OpenCorporates all blocked — registered agent, formation date, and US officers of record not retrieved from corporate registries</li>
+        <li>BBB, Crunchbase, Glassdoor, Trustpilot, FTC, FCC, California AG sources all returned 403/404 — no independent compliance reputation data available</li>
+        <li>HelloFresh /terms and /about/privacy-notice URLs returned 404 — could not directly analyze arbitration clause or consent language (but their absence is itself a finding)</li>
+        <li>Short code 20132 not indexed by 800notes / YouMail / Tellows / RoboKiller — sender complaint volume unknown; consider U.S. Short Code Registry lookup for lessee/CTIA data</li>
+        <li>Judge Huie's TCPA-specific tendencies not surfaced (appointed 2022, relatively new to bench)</li>
+        <li>Vinit Venkatesh's bar admission date and any FL Bar status not confirmed (CalBar profile page returned navigation chrome only)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the US CMO (Samayoa). Copy the Group GC (Ries) and US Director of Legal (van der Valk).</h2>
+      <p class="section-lede">HelloFresh's email pattern is <strong>{first}.{last}@hellofresh.com</strong>, confirmed against SignalHire-indexed published addresses (hayley...d@hellofresh.com, patricia...i@hellofresh.com, m...k@hellofresh.com). All emails below carry a PATTERN pill unless verified.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jorge Samayoa</strong><br><span class="pill pill--dark">CMO</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>CMO, HelloFresh US — owns the marketing org that runs the SFMC stack <span class="src-tag"><a href="https://www.linkedin.com/company/hellofresh">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jorge.samayoa@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jorgeesamayoa">in/jorgeesamayoa</a></td>
+          </tr>
+          <tr>
+            <td><strong>Dr. Christian Ries</strong><br><span class="pill pill--dark">GROUP GC</span></td>
+            <td>Group General Counsel, SVP &amp; Member of Senior Mgmt Team <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>christian.ries@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lorijn van der Valk</strong><br><span class="pill pill--dark">DIRECTOR LEGAL</span></td>
+            <td>Director of Legal — likely US-side legal contact for litigation matters <span class="src-tag"><a href="https://www.linkedin.com/company/hellofresh">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lorijn.vandervalk@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Assaf Ronen</strong><br><span class="pill pill--dark">PRES + CEO NA</span></td>
+            <td>President HelloFresh Group &amp; CEO HelloFresh North America <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>assaf.ronen@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/assafronen">in/assafronen</a></td>
+          </tr>
+          <tr>
+            <td><strong>Edward Boyes</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>Chief Customer Officer (Group) — owns customer-experience policy <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>edward.boyes@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Adam Kalikow</strong><br><span class="pill pill--dark">SVP / MD</span></td>
+            <td>Senior Vice President &amp; Managing Director — US ops <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>adam.kalikow@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/adamkalikow">in/adamkalikow</a></td>
+          </tr>
+          <tr>
+            <td><strong>Marisa Micciantuono</strong><br><span class="pill pill--dark">DIGITAL LIFECYCLE</span></td>
+            <td>Head of Digital Lifecycle &amp; Loyalty — directly responsible for SMS lifecycle messaging <span class="src-tag"><a href="https://www.signalhire.com/companies/hellofresh">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>marisa.micciantuono@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hayley Raymond</strong><br><span class="pill pill--dark">MKTG · EVERYPLATE</span></td>
+            <td>Head of Marketing, EveryPlate (sister brand on same infra) <span class="src-tag"><a href="https://www.signalhire.com/companies/hellofresh">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>hayley.raymond@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cole Swecker</strong><br><span class="pill pill--dark">GM · EVERYPLATE</span></td>
+            <td>General Manager, EveryPlate <span class="src-tag"><a href="https://www.signalhire.com/companies/hellofresh">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>cole.swecker@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dan Seidel</strong><br><span class="pill pill--dark">GLOBAL COO</span></td>
+            <td>Global Chief Operating Officer <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>dan.seidel@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Uwe Voss</strong><br><span class="pill pill--dark">CTO/CTRANSFORMATION</span></td>
+            <td>Chief Transformation Officer <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>uwe.voss@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fabien Simon</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Group Chief Financial Officer <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>fabien.simon@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dominik Richter</strong><br><span class="pill pill--dark">CO-FOUNDER · CEO</span></td>
+            <td>Co-Founder &amp; CEO, HelloFresh SE <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>dominik.richter@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thomas Griesel</strong><br><span class="pill pill--dark">CO-FOUNDER · CEO INT'L</span></td>
+            <td>Co-Founder &amp; CEO, International <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>thomas.griesel@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ana Garcia</strong><br><span class="pill pill--dark">SVP PEOPLE</span></td>
+            <td>Global Senior Vice President, People <span class="src-tag"><a href="https://theorg.com/org/hellofresh">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>ana.garcia@hellofresh.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sari Cohen</strong><br><span class="pill pill--dark">US MARKETING</span></td>
+            <td>US Marketing Team <span class="src-tag"><a href="https://www.linkedin.com/company/hellofresh">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>sari.cohen@hellofresh.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/saricohen">in/saricohen</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3)"><strong>Email pattern:</strong> {first}.{last}@hellofresh.com — confirmed against three published addresses on SignalHire <span class="src-tag"><a href="https://www.signalhire.com/companies/hellofresh">SignalHire -></a></span>. <strong>Main switchboard:</strong> Not publicly disclosed (NY HQ at 28 Liberty St) <span class="pill pill--gap">GAP</span>. <strong>Vendor stack:</strong> SFMC / Sinch (inferred from h.sfmsg.co + short code 20132). <strong>Plaintiff counsel</strong> (for reference, NOT outreach): Vinit R. Venkatesh, (305) 506-4746, tcpa-service@plgdamage.com.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Reach the US CMO before the 21-day answer clock runs.</h2>
+      <p class="section-lede">The complaint was filed yesterday. HelloFresh's historic playbook is fast settlement (Tippett 4 months, Dawson 2 months, Spath 7 days post-removal). The window where compliance spend feels cheap relative to settlement risk is right now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2 · Open</div>
+        <h3 class="card-title">Email Samayoa (US CMO) + cc van der Valk (Director Legal)</h3>
+        <div class="card-body">Subject line references Hines and Murray. Lead message: "You've been here before. The fix is at the send-time gating layer." Attach a one-pager on quiet-hours scrubbing. No pressure to schedule — invite a 15-minute call.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3-5 · Escalate</div>
+        <h3 class="card-title">Loop Ries (Group GC) + Micciantuono (Digital Lifecycle)</h3>
+        <div class="card-body">If no reply, escalate to the group GC track and the lifecycle-marketing head who actually owns the SFMC send-time config. Reference Engen MTC denial (4/10/2020) and Wilson arbitration-reservation filing.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 6-10 · Cross-sell</div>
+        <h3 class="card-title">Pitch EveryPlate / Factor / Green Chef in parallel</h3>
+        <div class="card-body">Reach Raymond + Swecker (EveryPlate) and the Factor75 marketing lead. Same infra means same risk and same fix. The group GC will value a single-vendor solution across brands.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10-21 · Answer Window</div>
+        <h3 class="card-title">Time the close to the answer filing</h3>
+        <div class="card-body">When defense counsel appears (likely Sheppard Mullin / Petersen / Pruitt), use that as a re-engagement trigger. The board narrative shifts the moment a 14-D filing or earnings call gets a TCPA litigation update.</div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Trigger conditions</div>
+      <h3 class="card-title">What changes the plan</h3>
+      <ul class="clean tight" style="margin-top:12px">
+        <li><strong>Defense moves to compel arbitration:</strong> Pull the Engen 2020 order — the defense knows arbitration was denied on similar facts. Use it as a credibility wedge with Ries.</li>
+        <li><strong>Plaintiff voluntarily dismisses to amend:</strong> Suggests engineered settlement posture. Accelerate the close — defense will look for a vendor narrative for the next 10-K.</li>
+        <li><strong>Schwartz or Wilson reaches class cert:</strong> Group GC's risk calculus changes overnight. Re-pitch with cross-class-action ammunition.</li>
+        <li><strong>HelloFresh files a Q2/Q3 earnings update mentioning TCPA litigation:</strong> Reach out same day with a written compliance-program proposal.</li>
+        <li><strong>Plaintiff Exhibit A becomes available via PACER:</strong> Recover the full Subject Number and re-run the litigator scrub. Update Section 01 in any follow-on memo.</li>
+      </ul>
+    </div>
+
+    <div class="pill-row">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE LATE JUNE 2026</span>
+      <span class="pill pill--warn">REPEAT DEFENDANT · $8.5M PRIOR SETTLEMENT ANCHOR</span>
+      <span class="pill pill--info">CROSS-SELL: FACTOR75, EVERYPLATE, GREEN CHEF</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
