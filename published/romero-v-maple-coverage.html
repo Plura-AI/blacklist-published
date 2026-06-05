@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Romero v. Maple Coverage — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--bl-red); }
+.step-title{ font-size:17px; font-weight:600; margin:0 0 4px; }
+.step-body{ font-size:14px; line-height:1.6; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Auto Insurance Lead-Gen SMS · Quiet-Hours Violation · Putative Rule 23 Class · Short Code 24068</p>
+      <h1 class="hero-tagline">Romero v.<br>Maple Coverage LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">7:26-cv-05376</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Cal.</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(5 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Unassigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(pending)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred pending PACER recovery</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("6404"), so no scrub was run. The sender artifact — SMS short code <strong>24068</strong> — is the only telephony identifier we can work with today.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-6404</div>
+        <div class="scrub-number-sub">Partial number only — last four digits pled at Complaint ¶17. Plaintiff alleges the wireless line is used "primarily for personal, family, and household purposes" as a residential-line replacement (the predicate required by 47 CFR § 64.1200(e) and § 64.1200(c)(1)).</div>
+      </div>
+      <p class="scrub-body-text">No BlacklistBulk lookup was performed because the full 10-digit recipient number is not in the four corners of the complaint. We will not claim a match or no-match on a 4-digit suffix. Recovery path below.</p>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:12px;">Sender Artifact (Inbound DID — from Exhibit A screenshot)</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">Common Short Code</div>
+          <h3 class="card-title">24068</h3>
+          <div class="card-body" style="font-size:14px;">
+            <p style="margin:0 0 8px">5-digit CSCA-registered common short code. Shortcodes are provisioned for high-throughput campaigns — by design, this is mass-messaging infrastructure. Reverse-lookup directories (800notes, YouMail, Tellows, RoboKiller) do not index 5-digit shortcodes the way they index 10-digit DIDs, so consumer-complaint volume cannot be confirmed via open web.</p>
+            <p style="margin:0"><strong>Sender identification:</strong> Exhibit A screenshot shows two texts from "24068" branded "MapleCoverageEXP" with links to <code>app.maplecoverage.com</code> and <code>accepted.maplecoverage.com</code> — the shortcode is operated for/by Maple Coverage. Lessee/aggregator identity (Twilio, Sinch, Infobip, Vibes, etc.) is not publicly confirmed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:12px;">Recovery Path</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Step 1</div>
+          <h3 class="card-title">Pull ECF #1 (Complaint) from PACER</h3>
+          <div class="card-body" style="font-size:14px;">Case Doc #1 confirmed on the docket aggregator. <span class="src-tag"><a href="https://www.courtlistener.com/?q=7%3A26-cv-05376&type=r">CourtListener -&gt;</a></span> Cost ~$1.20. Plaintiff's full number is sometimes in the body of the complaint itself or in the civil cover sheet attachment.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Step 2</div>
+          <h3 class="card-title">Watch for defense counsel notice</h3>
+          <div class="card-body" style="font-size:14px;">In the parallel Maple Coverage case <em>Sundstrom v. Ocean Reef Media et al.</em> (W.D. Wash. 3:26-cv-05036), Marisa L. Berlinger appeared for Maple Coverage and the company filed an Answer rather than an MTD. Defense pleadings frequently disclose the plaintiff's number in admission/denial of ¶17. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">CourtListener -&gt;</a></span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Step 3</div>
+          <h3 class="card-title">Discovery request (Rule 26(f) initial disclosures)</h3>
+          <div class="card-body" style="font-size:14px;">If counsel doesn't surface it earlier, the plaintiff's recipient number is required disclosure under FRCP 26(a)(1)(A)(iii) as a "computation of damages" data element.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF: NEW FILER · NOT IN COURTLISTENER PRIOR FILINGS</span>
+      <span class="pill pill--warn">SENDER: CSCA SHORTCODE 24068</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Lead-gen auto-insurance shop with a smoking-gun consent flow and a third quiet-hours suit in six months — close on consent capture + quiet-hours scrubbing.</h2>
+      <p class="section-lede">Maple Coverage is a Wix-templated SMS marketer that just took its third TCPA hit of 2026. Its sign-up "consent" is a button click, not an opt-in checkbox; the published privacy and terms URLs both render the homepage; the texts go out before 8 a.m. local time. Lead with consent capture and quiet-hours scrubbing.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended lead pitch</div>
+        <h3 class="card-title">Consent capture &amp; record retention</h3>
+        <div class="card-body" style="font-size:14px;">Maple's "click 'Get a Quote' = electronic signature" pattern is not TCPA-compliant express written consent under 47 CFR § 64.1200(f)(9). <span class="src-tag"><a href="https://maplecoverage.com">maplecoverage.com -&gt;</a></span> They need a real two-step opt-in with disclosure + affirmative action, and a record-keeping system that survives discovery.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary pitch</div>
+        <h3 class="card-title">Quiet-hours / time-zone scrubbing</h3>
+        <div class="card-body" style="font-size:14px;">The 47 CFR § 64.1200(c)(1) 8 a.m.–9 p.m. local-time guard is strict-liability and trivially preventable by pre-send time-zone scrub. Romero's complaint shows two texts at 7:57 a.m. and 6:59 a.m. Pacific — exactly the failure mode Blacklist's scrub prevents.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-sell</div>
+        <h3 class="card-title">Litigator Scrub + Internal DNC policies</h3>
+        <div class="card-body" style="font-size:14px;">Plaintiff firm PLG Damage Attorneys is filing high volume across CA/FL districts. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span> Maple is now on their list and will be re-tested. Litigator Scrub + a documented internal DNC policy (required under § 64.1200(d)) close the loop.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Pitch Angle</h3>
+    <p style="font-size:15px; line-height:1.6; color:var(--fg-2); max-width:880px;">
+      Maple Coverage just got hit for the third time in 2026 — N.D. Cal., E.D. Tenn., and a multi-defendant case in W.D. Wash. where they're a co-defendant with Ocean Reef Media, State Farm, Progressive and Curb Sure. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22+TCPA&type=r">CourtListener -&gt;</a></span> The current case alleges <em>two</em> texts before 8 a.m. local time from short code 24068 — the kind of strict-liability quiet-hours violation that scrubs prevent for fractions of a cent per send. Their public sign-up form treats a button click as "electronic signature," their privacy-policy and terms-of-service URLs both serve the homepage, and their site is still rendering Wix's default <code>info@mysite.com</code> placeholder in source code. <span class="src-tag"><a href="https://maplecoverage.com">maplecoverage.com -&gt;</a></span>
+    </p>
+    <p style="font-size:15px; line-height:1.6; color:var(--fg-2); max-width:880px;">
+      Translation: there is no compliance program here. They are a Delaware LLC with no published GC, no published HQ, no published officers — they will buy a turnkey scrub + consent stack because they can't build one. The wedge is the answer-deadline clock and the fact that PLG Damage is a volume filer that will come back. Open the call on the W.D. Wash. co-defendant pattern (joint-and-several with State Farm / Progressive) — that's the conversation that makes the GC, or whoever is signing the checks, take the meeting.
+    </p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Delaware LLC selling auto insurance through a Wix template — subsidiary of Ocean Reef Media in a lead-gen affiliate ecosystem.</h2>
+      <p class="section-lede">Maple Coverage's public footprint is intentionally thin. The strongest corporate-structure signal comes from a parallel TCPA case in W.D. Wash., where the corporate disclosure identifies Maple Coverage as a subsidiary of Ocean Reef Media LLC, sued alongside State Farm, Progressive, and Curb Sure LLC.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Maple Coverage LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal entity</dt><dd>Maple Coverage LLC <span class="pill pill--gap">DE SoS LOOKUP BLOCKED</span></dd>
+            <dt>Formation state</dt><dd>Delaware <span class="src-tag">(complaint ¶5)</span></dd>
+            <dt>HQ</dt><dd>Not disclosed on public site <span class="src-tag"><a href="https://maplecoverage.com">maplecoverage.com -&gt;</a></span></dd>
+            <dt>Parent</dt><dd>Ocean Reef Media LLC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">(per Corp Disclosure, W.D. Wash. Sundstrom) -&gt;</a></span></dd>
+            <dt>Vertical</dt><dd>Auto insurance + roadside / lead-gen <span class="src-tag"><a href="https://maplecoverage.com">maplecoverage.com -&gt;</a></span></dd>
+            <dt>DBAs</dt><dd>MapleCoverage · MapleCoverageEXP · Maple Insurance</dd>
+            <dt>Web stack</dt><dd>Wix-hosted (default <code>info@mysite.com</code> placeholder still in source) <span class="src-tag"><a href="https://maplecoverage.com">maplecoverage.com -&gt;</a></span></dd>
+            <dt>SMS infra</dt><dd>CSCA shortcode <strong>24068</strong>; subdomains <code>app.maplecoverage.com</code>, <code>accepted.maplecoverage.com</code></dd>
+            <dt>Published GC</dt><dd><span class="pill pill--gap">None published</span></dd>
+            <dt>Officers</dt><dd><span class="pill pill--gap">None published</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No published Privacy Policy. No published Terms. A button click as "electronic signature."</h3>
+        <div class="card-body">
+          <p style="margin:0 0 12px;">Both <code>/privacy</code> and <code>/terms</code> return the homepage content — Maple has no published privacy policy and no terms of service. <span class="src-tag"><a href="https://maplecoverage.com/privacy" style="color:#fff;">/privacy -&gt;</a></span> <span class="src-tag"><a href="https://maplecoverage.com/terms" style="color:#fff;">/terms -&gt;</a></span></p>
+          <p style="margin:0;">The sign-up form's consent reads: <em>"By clicking 'Get a Quote' I agree to receive recurring informational SMS, MMS, or Email messages from MapleCoverage. My selection serves as my electronic signature..."</em> That is not TCPA-compliant express written consent — it's a button click bundled with quote submission, and the disclosure says "informational" while plaintiff alleges marketing texts. This is the language that will be quoted back at the company by every TCPA firm that files next.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day answer clock + an active multi-district litigation wave</h3>
+        <div class="card-body" style="font-size:14px;">
+          <ul class="clean tight">
+            <li><strong>Jun 4, 2026</strong> — Complaint filed (Doc #1) <span class="src-tag"><a href="https://www.courtlistener.com/?q=7%3A26-cv-05376&type=r">CourtListener -&gt;</a></span></li>
+            <li><strong>~Jun 25, 2026 (21 days post-service)</strong> — FRCP 12 answer deadline window (assuming service shortly after filing)</li>
+            <li><strong>Concurrent:</strong> Brockington (E.D. Tenn.) and Sundstrom (W.D. Wash. — multi-defendant with State Farm/Progressive) are both live <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">CourtListener -&gt;</a></span></li>
+            <li><strong>Window:</strong> Best window for a paid scrub conversation is now — before they're forced into a global compliance fix as part of any consolidated settlement.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Ocean Reef Media LLC</td>
+              <td>Parent of Maple Coverage <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">(Sundstrom Corp Disclosure) -&gt;</a></span></td>
+              <td>Media / lead-gen</td>
+              <td>Named TCPA co-defendant in W.D. Wash. — runs the lead pipeline</td>
+              <td><span class="pill pill--red">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Curb Sure LLC</td>
+              <td>Sister entity / co-counsel (Berlinger represents both) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">CourtListener -&gt;</a></span></td>
+              <td>Insurance / roadside</td>
+              <td>Named TCPA co-defendant in W.D. Wash. Sundstrom</td>
+              <td><span class="pill pill--red">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>State Farm</td>
+              <td>Downstream buyer of Maple's leads (per Sundstrom)</td>
+              <td>Insurance carrier</td>
+              <td>Already a Blacklist-class enterprise; relevant as joint-and-several exposure narrative</td>
+              <td><span class="pill pill--info">NOT IN SCOPE</span></td>
+            </tr>
+            <tr>
+              <td>Progressive</td>
+              <td>Downstream buyer of Maple's leads (per Sundstrom)</td>
+              <td>Insurance carrier</td>
+              <td>Already a Blacklist-class enterprise; relevant as joint-and-several exposure narrative</td>
+              <td><span class="pill pill--info">NOT IN SCOPE</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Third TCPA suit of 2026 against Maple — plaintiff firm is a high-volume PLG/Gutierrez-style filer running across CA and FL.</h2>
+      <p class="section-lede">Maple's litigation posture in the parallel W.D. Wash. case was to answer rather than move to dismiss. The PLG Damage TCPA practice is newly launched but already at 9+ filings in spring 2026 alone.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case</div>
+        <h3 class="card-title">Romero v. Maple Coverage LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>7:26-cv-05376 <span class="pill pill--warn">N.D. Cal. prefix unusual — confirm via PACER</span></dd>
+            <dt>Filed</dt><dd>Jun 4, 2026</dd>
+            <dt>Plaintiff</dt><dd>America Romero (Monterey County, CA)</dd>
+            <dt>Counsel</dt><dd>Vinit R. Venkatesh, PLG Damage Attorneys (CA Bar 367857) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CalBar -&gt;</a></span></dd>
+            <dt>Class</dt><dd>Putative Rule 23 — "TCPA After-Hours Class," 4-year lookback, "dozens to hundreds or thousands"</dd>
+            <dt>Theory</dt><dd>Quiet-hours strict-liability under 47 CFR § 64.1200(c)(1) and (e)</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); 47 CFR § 64.1200(e)</dd>
+            <dt>Damages</dt><dd>$500 per violation + treble (willful); 2 violations pled named-plaintiff = $1,000–$3,000 floor; class-wide exposure $1M–$10M+</dd>
+            <dt>Defense counsel</dt><dd>Not yet appeared (~21-day answer window). In parallel W.D. Wash. case, Marisa L. Berlinger represents Maple Coverage. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Docket</dt><dd>Doc #1 Complaint · Doc #2 Proposed Summons · Case Assigned by Intake (all 2026-06-04)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com</dd>
+            <dt>Bar number</dt><dd>367857 (CA) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CalBar -&gt;</a></span></dd>
+            <dt>Bar status</dt><dd><span class="pill pill--ok">Active</span></dd>
+            <dt>Discipline</dt><dd>None found in available sources</dd>
+            <dt>Practice areas</dt><dd>Property damage, hurricane/storm, insurance claims, TCPA (emerging) <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -&gt;</a></span></dd>
+            <dt>Firm size</dt><dd>30+ attorneys (PLG About page) <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -&gt;</a></span></dd>
+            <dt>TCPA volume</dt><dd>9+ TCPA filings in spring 2026 across CA and FL districts <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Bar address match</dt><dd><span class="pill pill--ok">FL firm address consistent with bar registration</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card">
+        <div class="card-meta">Plaintiff Firm Template</div>
+        <h3 class="card-title">PLG / Venkatesh — Quiet-Hours + Click-Consent Template</h3>
+        <div class="card-body" style="font-size:14px;">
+          <p style="margin:0 0 12px;">PLG Damage's TCPA practice is recently launched (dedicated <code>tcpa-service@plgdamage.com</code> intake address) but already at high volume — at least 9 filings across N.D./M.D. Fla. and C.D./N.D. Cal. in April–May 2026 alone, targeting retail (7-Eleven, Rite Aid), fintech (Rocket Mortgage, Payactiv), insurance (Maple Coverage, Guardio), pharmacy (Refills Health), fitness (Xercize Studio), and e-commerce (Last Brand, Yesvideo). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span></p>
+          <p style="margin:0;">Template signature: short, formulaic complaint pleading two messages outside 8 a.m.–9 p.m. local time, last-four-digits-only recipient number, putative Rule 23 "TCPA After-Hours Class," paired with class numerosity language and a document-preservation demand. They are looking for SMS marketers with weak consent capture and no time-zone scrub — Maple checks both boxes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:12px;">Concurrent &amp; Recent Litigation — Same Defendant</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="current">
+              <td><strong>Romero v. Maple Coverage LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+              <td>7:26-cv-05376</td>
+              <td>N.D. Cal.</td>
+              <td>2026-06-04</td>
+              <td><span class="pill pill--red">Active</span></td>
+              <td>Quiet-hours (§ 64.1200(c)(1))</td>
+            </tr>
+            <tr>
+              <td>Brockington v. Maple Coverage LLC</td>
+              <td>3:26-cv-00228</td>
+              <td>E.D. Tenn.</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Pending</span></td>
+              <td>TCPA (single-defendant)</td>
+            </tr>
+            <tr>
+              <td>Sundstrom v. Ocean Reef Media LLC <em>et al.</em> (Maple Coverage co-D)</td>
+              <td>3:26-cv-05036</td>
+              <td>W.D. Wash.</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Answer filed (Doc #28)</span></td>
+              <td>TCPA — multi-D with State Farm, Progressive, Curb Sure</td>
+            </tr>
+            <tr>
+              <td>Cruz v. Maple Coverage, LLC</td>
+              <td>2:25-cv-03228</td>
+              <td>E.D. Cal.</td>
+              <td>2025</td>
+              <td><span class="pill pill--warn">Status unknown</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Tatum Stewart v. Maple Coverage LLC</td>
+              <td>8:26-cv-01103</td>
+              <td>C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Pending</span></td>
+              <td>TCPA</td>
+            </tr>
+            <tr>
+              <td>Tatum Stewart v. Maple Coverage LLC</td>
+              <td>2:26-cv-05202</td>
+              <td>C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Pending</span></td>
+              <td>TCPA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src-tag" style="margin-top:8px;"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">All entries cross-referenced via CourtListener -&gt;</a></p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>Confirm the assigned Article III judge and the answer deadline — PACER and PacerMonitor returned 404 at scrape time; the "7:" prefix on an N.D. Cal. docket is unusual and warrants direct PACER verification.</li>
+        <li>Identify Maple Coverage's registered agent, manager, and managing member via Delaware Division of Corporations (Bizapedia, OpenCorporates and Sunbiz all blocked at scrape time).</li>
+        <li>Confirm or rule out a California state insurance-producer license — Maple sells auto coverage in CA. The licensed producer's name is typically the highest-confidence corporate contact available.</li>
+        <li>Confirm whether Marisa L. Berlinger will appear for Maple Coverage in this case as she did in W.D. Wash. <em>Sundstrom</em>.</li>
+        <li>Pull ECF #1 to recover the full 10-digit recipient number ending in 6404 so the litigator scrub can actually run.</li>
+        <li>Identify the SMS aggregator/CPaaS behind shortcode 24068 (Twilio, Sinch, Infobip, Vibes, etc.) — relevant for vicarious-liability narrative and consent-record provenance.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No published officers — open on the generic contact line, then escalate via Delaware SoS registered-agent path.</h2>
+      <p class="section-lede">Maple Coverage publishes no team page, no leadership page, no LinkedIn company page, and no HQ phone. The only published contact is a generic <code>contact@maplecoverage.com</code> address. Decision-maker recovery is a state-filings exercise (registered agent, CA DOI producer license) — the table below reflects what is verifiable today.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Maple Coverage — General Inbox</strong> <br><span class="pill pill--dark">COMPANY</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Only published contact channel on maplecoverage.com</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>contact@maplecoverage.com <span class="src-tag"><a href="https://maplecoverage.com">maplecoverage.com -&gt;</a></span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Email pattern (inferred)</strong> <br><span class="pill pill--dark">PATTERN</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Standard {first}.{last}@maplecoverage.com — to be used only after a name is recovered from DE SoS or CA DOI producer-license filings</td>
+            <td>—</td>
+            <td>{first}.{last}@maplecoverage.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Maple Coverage — Registered Agent (DE)</strong> <br><span class="pill pill--dark">CORP REGISTRY</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Delaware Division of Corporations lookup was blocked at scrape time — registered agent is on file but not yet recovered</td>
+            <td><span class="pill pill--gap">Pull from DE SoS</span></td>
+            <td><span class="pill pill--gap">Pull from DE SoS</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Managing Member / GC</strong> <br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not published anywhere on the public site, no LinkedIn company page, no TheOrg profile. Recover via DE SoS annual filing or CA DOI producer license.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Ocean Reef Media LLC — Parent</strong> <br><span class="pill pill--dark">PARENT</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Parent of Maple Coverage per W.D. Wash. <em>Sundstrom</em> Corporate Disclosure — high-value escalation target for an enterprise-level conversation <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Marisa L. Berlinger</strong> <br><span class="pill pill--dark">DEFENSE COUNSEL · PARALLEL CASE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Counsel for Maple Coverage LLC and Curb Sure LLC in W.D. Wash. <em>Sundstrom</em>; likely (but not confirmed) to appear in Romero <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Pull via PACER appearance</span></td>
+            <td><span class="pill pill--gap">Pull via PACER appearance</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:24px 0 12px;">Plaintiff Counsel (informational only — do not solicit)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Firm</th><th>Phone</th><th>Email</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Vinit R. Venkatesh, Esq. <br><span class="pill pill--dark">PLAINTIFF COUNSEL</span></td>
+            <td>PLG Damage Attorneys, Miramar, FL <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></td>
+            <td>(305) 506-4746 <span class="src-tag">(firm line, per PLG website)</span></td>
+            <td>tcpa-service@plgdamage.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move within 72 hours — the answer-deadline window is the wedge, and PLG is filing on signal.</h2>
+      <p class="section-lede">The deal is the answer clock. The 21-day FRCP 12 window from service closes the door on the cheapest version of compliance — after that, every conversation is contaminated by an active dispute and the price of doing nothing goes up.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h4 class="step-title">Day 1 — Pull PACER ECF #1 + civil cover sheet</h4>
+          <p class="step-body">Cost ~$1.20. Two objectives: (a) recover the plaintiff's full 10-digit number ending in 6404 to enable a real BlacklistBulk scrub; (b) confirm the assigned Article III judge so the rep can speak to the courtroom dynamic on the first call. <span class="src-tag"><a href="https://www.courtlistener.com/?q=7%3A26-cv-05376&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h4 class="step-title">Day 1–2 — Recover decision-maker name from Delaware SoS + CA DOI</h4>
+          <p class="step-body">Maple is a Delaware LLC selling auto insurance in California. Both filings disclose at least one named human — registered agent / managing member on the DE side, licensed producer on the CA DOI side. That name is the inbound call target.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h4 class="step-title">Day 2–3 — First outreach: contact@maplecoverage.com + named decision-maker</h4>
+          <p class="step-body">Open with the W.D. Wash. <em>Sundstrom</em> co-defendant pattern (joint-and-several with State Farm and Progressive) — that's the framing that gets escalated. Lead with consent capture and quiet-hours scrubbing as the wedge products. Reference the third 2026 filing as evidence the litigation wave is escalating, not cooling. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Maple+Coverage%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <h4 class="step-title">Day 3–5 — Escalate to Ocean Reef Media (parent)</h4>
+          <p class="step-body">If Maple is unresponsive, the parent's risk function will hear the message. Ocean Reef is itself a named TCPA defendant in W.D. Wash. — they own the consolidated exposure across Maple, Curb Sure, and any other sister entities.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div>
+          <h4 class="step-title">Day 7–14 — Watch the docket + Berlinger appearance</h4>
+          <p class="step-body">Set a CourtListener / PACER alert. Berlinger's appearance (or any other firm's appearance) is a buying signal — defense counsel typically scopes a compliance fix as part of any settlement framework. Position Blacklist as the off-the-shelf component of that fix.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div>
+          <h4 class="step-title">Day 14–21 — Pre-answer close window</h4>
+          <p class="step-body">Drive to close before the answer is filed. After the answer locks in, internal counsel pivots from "prevent the next one" to "win this one" and the conversation cools. Use the close-date pill below.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="background:var(--info-bg); border-color:var(--info); border-left-color:var(--info);">
+      <div class="callout-title" style="color:var(--info);">Trigger conditions that change the plan</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>If Maple files an MTC arbitration: pivot to consent-capture audit as the predicate question and emphasize record-retention for the arbitral forum.</li>
+        <li>If plaintiff voluntarily dismisses to amend: window extends, but treat as confirmation PLG is keeping the heat on — re-pitch immediately.</li>
+        <li>If a fourth concurrent suit lands against Maple: escalate to Ocean Reef Media GC-level conversation; the consolidated exposure narrative now writes itself.</li>
+        <li>If Berlinger appears and immediately negotiates: position scrub + consent capture as the consent-decree-compliant remediation track.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE ~JUN 25, 2026</span>
+      <span class="pill pill--danger">3RD 2026 FILING · PLG VOLUME FILER</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
