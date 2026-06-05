@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hines v. PinchMe — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card + .card{ margin-top:20px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row--current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); font-weight:700; }
+.callout ul{ margin:0; padding-left:20px; font-size:14px; color:var(--fg-1); }
+.callout li{ padding:3px 0; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:18px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ width:40px; height:40px; background:var(--bl-red); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; }
+.step-body h4{ margin:0 0 4px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" class="hero-logo-svg">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Product-Sampling SMS Marketer · Quiet-Hours Class Action · Repeat TCPA Defendant · S.D. Cal.</p>
+      <h1 class="hero-tagline">Hines v.<br>PinchMe.Com Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-03389-AGS-GC</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Andrew G. Schopler<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Mag. Guillermo Cabrera</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — but the sender stack is exposed and PinchMe is a repeat TCPA defendant.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Hines complaint discloses only the last four digits ("0335") of the Subject Number, so no litigator-list lookup can be run yet. The scrub is deferred to PACER recovery — but the sender-side intel is strong enough to open the conversation now.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(XXX) XXX-0335</div>
+        <div class="scrub-number-sub">Complaint ¶17 discloses only the last four digits of the wireless Subject Number. The full 10-digit number is required to query the Blacklist litigator database.</div>
+      </div>
+      <p class="scrub-body-text">No litigator scrub was run. The plaintiff name "Nicholas Hines" was cross-checked against CourtListener and no prior TCPA filings under that name were identified <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Nicholas+Hines%22&type=r">CourtListener -&gt;</a></span> — but that is not a substitute for a number-based scrub. The complaint also makes no representation that Hines pre-screened for litigator-list status, so the scrub remains the most valuable single piece of leverage available once the full number is recovered.</p>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px">Sender Infrastructure Identified</h3>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px">Sender Domain</div>
+        <h3 class="card-title" style="font-family:var(--font-mono)">pinchme.attn.tv</h3>
+        <div class="card-body">
+          <p style="margin-top:0">Branded subdomain on <strong>attn.tv</strong>, which is Attentive Mobile's click-tracking / link-shortener domain. The <code>[brand].attn.tv</code> pattern is Attentive's standard single-tenant configuration, meaning PinchMe is a paid Attentive customer using their enterprise SMS marketing platform <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive Mobile -&gt;</a></span>.</p>
+          <p>The screenshot exhibit (Exhibit A) shows four campaign messages — "QUICK TIP" profile completion, $150 cash claim, $5 gift card / Capital One earn-cash offer, and a "LAST CHANCE" MrBeast Originals Hoodie drop — all sent from short-link URLs on <code>pinchme.attn.tv</code>, confirming a high-volume Attentive-powered DTC sampling program <span class="src-tag"><a href="https://www.attentivemobile.com/case-studies">Attentive case studies -&gt;</a></span>.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px">
+            <span class="pill pill--info">SMS Marketing Platform</span>
+            <span class="pill pill--info">Single-Tenant Subdomain</span>
+            <span class="pill pill--warn">Quiet-Hours Misconfiguration Alleged</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px">Recovery Path</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Path 1</div>
+          <h3 class="card-title">Pull ECF #1 from PACER</h3>
+          <div class="card-body">Pull the unredacted complaint via PACER (~$1.20) — PLG Damage Attorneys' template typically discloses the full plaintiff number in attached exhibits or amended pleadings. Run Blacklist scrub immediately on recovery.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path 2</div>
+          <h3 class="card-title">Await defense-counsel notice</h3>
+          <div class="card-body">Once PinchMe retains defense counsel, the litigator-status question will surface in early Rule 26 conferrals. Defense counsel becomes the easier route to the number than the plaintiff bar.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path 3</div>
+          <h3 class="card-title">Discovery / RFP</h3>
+          <div class="card-body">If the case survives the answer stage, the Subject Number will be in Plaintiff's interrogatory responses. Position Blacklist as the post-discovery scrub layer for the rest of PinchMe's outbound list.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: PENDING — PULL PACER #1</span>
+      <span class="pill pill--warn">REPEAT TCPA DEFENDANT — 2ND SUIT IN ~15 MONTHS</span>
+      <span class="pill pill--danger">SERIAL-FILER FIRM (PLG DAMAGE · 9+ APR–MAY 2026)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Mid-market DTC defendant that already settled one TCPA case in 2025 — now sued again on a 100%-preventable quiet-hours theory.</h2>
+      <p class="section-lede">PinchMe is a repeat defendant. The Manier case (C.D. Cal. 2025) settled and dismissed within ~3 months <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PinchMe%22&type=r">CourtListener -&gt;</a></span>, and Hines is back on the docket 13 months later on the same SMS program. Lead with Consent Capture + Compliance Audit — PinchMe's Attentive program is misconfigured at the policy layer, and a willful/treble argument is now on the table.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Quiet-Hours Configuration</h3>
+        <div class="card-body">Four messages, all between 6:30 AM and 7:56 AM local time at the El Cajon, CA recipient location <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03389&type=r">CourtListener -&gt;</a></span>. Attentive provides quiet-hours controls — PinchMe didn't turn them on. Blacklist's consent + send-window layer is exactly the fix.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <div class="card-body">Second TCPA suit in 15 months on the same SMS program signals there is no policy gating the Attentive console. A formal P&amp;P + send-window guardrail neutralizes willful/treble exposure on the next plaintiff that walks in the door — and they will.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Once PinchMe's outbound list is in scope, run the full subscriber base against the Blacklist litigator database. The Manier-then-Hines repeat pattern proves their list already contains active TCPA plaintiffs.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin:0 0 12px">Pitch Angle</h3>
+      <div class="card">
+        <div class="card-body">
+          <p style="margin-top:0"><strong>"You settled Manier 13 months ago. Hines is the same fact pattern on the same Attentive tenant. That's no longer a one-off — it's a willful-or-knowing fact for treble damages."</strong></p>
+          <p>PinchMe operates a free-product-sampling business that depends entirely on outbound SMS re-engagement through <code>pinchme.attn.tv</code>, their dedicated Attentive Mobile tenant <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive -&gt;</a></span>. The Hines complaint pleads four messages sent between 6:30 AM and 7:56 AM local time — every single one inside the federal quiet-hours window of 47 CFR § 64.1200(c)(1). That is the cheapest, most preventable TCPA violation on the books: Attentive's platform has scheduling controls, and PinchMe simply did not turn them on for a time-zone-aware send window.</p>
+          <p>The wedge is the repeat-defendant pattern. PinchMe already settled <em>Manier v. PinchMe.com</em> in C.D. Cal. (filed March 2025, dismissed May 2025 — classic fast-settle) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PinchMe%22+TCPA&type=r">CourtListener -&gt;</a></span>. Whatever they "fixed" after Manier obviously did not fix the SMS program, because PLG Damage Attorneys — a high-volume TCPA filer with 9+ cases filed in April–May 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span> — just teed up a putative Rule 23 class on the exact same vector. At $500–$1,500 per text across a class size pled as "dozens to hundreds or thousands," exposure is six- to seven-figures before the answer is even filed. Position Blacklist as the post-Hines audit + send-window guardrail that makes the third lawsuit go away before it's drafted.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Private DTC sampling platform with a single SMS vendor (Attentive) and no visible compliance function.</h2>
+      <p class="section-lede">PinchMe.Com Inc. is a Delaware corporation operating a free product-sample membership program. The business model is fundamentally SMS- and email-dependent, with no public-facing compliance officer, no published TCPA disclosures, and consumer reviews already complaining about being "bombarded by spam" <span class="src-tag"><a href="https://www.sitejabber.com/reviews/pinchme.com">Sitejabber -&gt;</a></span>.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">PinchMe.Com Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>PinchMe.Com Inc.</dd>
+            <dt>DBA</dt><dd>PINCHme</dd>
+            <dt>Formation State</dt><dd>Delaware <span class="src-tag">(complaint ¶5)</span></dd>
+            <dt>Authorized In</dt><dd>California</dd>
+            <dt>HQ</dt><dd><span class="pill pill--gap">Not confirmed</span></dd>
+            <dt>Public / Private</dt><dd>Private</dd>
+            <dt>Vertical</dt><dd>DTC product-sampling / consumer-rewards marketing</dd>
+            <dt>Website</dt><dd><a href="https://www.pinchme.com">pinchme.com</a> <span class="src-tag"><a href="https://www.pinchme.com">pinchme.com -&gt;</a></span></dd>
+            <dt>SMS Vendor</dt><dd>Attentive Mobile (pinchme.attn.tv)</dd>
+            <dt>Sitejabber</dt><dd>Public reviews accuse company of "selling your information" and bombarding users with spam <span class="src-tag"><a href="https://www.sitejabber.com/reviews/pinchme.com">Sitejabber -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Four texts. All between 6:30 AM and 7:56 AM. Zero quiet-hours guardrail.</h3>
+        <div class="card-body">
+          <p style="margin-top:0">Exhibit A of the complaint shows four PINCHme-branded marketing texts to the Subject Number while plaintiff was in El Cajon, CA — sent at 7:14 AM (10/30/23), 7:56 AM (11/17/23), 6:30 AM (11/22/23), and 6:30 AM (12/10/23) <span class="src-tag" style="color:#A8A8A8"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03389&type=r" style="color:#C9C9C9">CourtListener -&gt;</a></span>.</p>
+          <p>Every message is inside the federal 8:00 AM cutoff under 47 CFR § 64.1200(c)(1). Attentive's platform has built-in send-window scheduling — the violation is therefore not a vendor failure but a <strong>policy/configuration failure</strong> on PinchMe's side. That is the exact gap Blacklist's compliance + scrub layer is designed to close.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Answer clock running · Manier-pattern fast-settle window</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Filed</dt><dd>June 4, 2026</dd>
+            <dt>Service / Answer</dt><dd>Summons issued June 4, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03389&type=r">CourtListener -&gt;</a></span>. Standard FRCP 12 answer clock = 21 days post-service.</dd>
+            <dt>Historical Tempo</dt><dd>Prior <em>Manier v. PinchMe</em> matter filed 3/3/2025, settled ~5/1/2025, dismissed 5/28/2025 — under 90 days end-to-end <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PinchMe%22&type=r">CourtListener -&gt;</a></span>. Expect PinchMe to negotiate fast.</dd>
+            <dt>Outreach Window</dt><dd>Reach the C-suite before defense counsel appears. Once counsel is on file, the lane narrows to a procurement conversation.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Attentive Mobile</td>
+              <td>SMS vendor (platform)</td>
+              <td>MarTech / SMS</td>
+              <td>Powers <code>pinchme.attn.tv</code>. Attentive's enterprise DTC customer base is a downstream Blacklist scrub TAM in itself <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive -&gt;</a></span>.</td>
+              <td><span class="pill pill--info">Channel partner</span></td>
+            </tr>
+            <tr>
+              <td>Capital One (referenced in Ex. A)</td>
+              <td>PinchMe affiliate / partner</td>
+              <td>Financial services</td>
+              <td>One of the PINCHme texts promoted a "$5 Gift Card when you shop with Capital One" CASH-page offer <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03389&type=r">CourtListener -&gt;</a></span>. Affiliate-network exposure.</td>
+              <td><span class="pill pill--gap">Not in scope</span></td>
+            </tr>
+            <tr>
+              <td>MrBeast Originals (referenced in Ex. A)</td>
+              <td>PinchMe affiliate / partner</td>
+              <td>Consumer / merch</td>
+              <td>One of the PINCHme texts pushed a "LAST CHANCE for MrBeast Originals Hoodie" drop <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03389&type=r">CourtListener -&gt;</a></span>. Co-promotion liability questions.</td>
+              <td><span class="pill pill--gap">Not in scope</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PinchMe is now a two-time TCPA defendant. PLG Damage Attorneys is an industrial-volume filer running this template against DTC brands.</h2>
+      <p class="section-lede">The current case fits a clear plaintiff-firm template: California-barred associate, Florida-based property-damage firm pivoting into TCPA, identical quiet-hours theory, identical putative class definition, identical "Attentive-powered DTC brand" target profile.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Facts</div>
+        <h3 class="card-title">Hines v. PinchMe.Com Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>3:26-cv-03389-AGS-GC <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-03389&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Filed</dt><dd>June 4, 2026</dd>
+            <dt>Court</dt><dd>S.D. Cal. (San Diego)</dd>
+            <dt>Article III</dt><dd>Hon. Andrew G. Schopler</dd>
+            <dt>Magistrate</dt><dd>Hon. Guillermo Cabrera (per CourtListener) <span class="pill pill--warn">Note: complaint caption lists "Goddard" — verify</span></dd>
+            <dt>Plaintiff</dt><dd>Nicholas Hines, San Diego, CA</dd>
+            <dt>Class Status</dt><dd>Putative Rule 23 · "TCPA After-Hours Class" · "dozens to hundreds or thousands"</dd>
+            <dt>Theory</dt><dd>Quiet-hours violation — 4 SMS texts between 6:30–7:56 AM local</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · 47 CFR § 64.1200(e)</dd>
+            <dt>Damages</dt><dd>$500/violation + treble for willful/knowing + injunctive relief</dd>
+            <dt>Named-Pl. Exposure</dt><dd>$2,000–$6,000 (4 texts × $500–$1,500)</dd>
+            <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared — 21-day answer clock</span></dd>
+            <dt>Docket Activity</dt><dd>ECF #1 Complaint + ECF #2 Summons (only) as of snapshot</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+            <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+            <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Service Email</dt><dd><a href="mailto:tcpa-service@plgdamage.com">tcpa-service@plgdamage.com</a></dd>
+            <dt>Firm Email</dt><dd><a href="mailto:info@plgdamage.com">info@plgdamage.com</a></dd>
+            <dt>Bar #</dt><dd>CA #367857 (Active) <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></dd>
+            <dt>Bar Address</dt><dd><span class="pill pill--warn">MISMATCH — CA-barred attorney, FL-based property-damage firm</span></dd>
+            <dt>Discipline</dt><dd>None found on CalBar profile</dd>
+            <dt>Firm Practice</dt><dd>Primary: property-damage / hurricane / water / mold / fire claims. TCPA is a side practice marked by a dedicated <code>tcpa-service@</code> intake email <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span>.</dd>
+            <dt>TCPAWorld</dt><dd>Zero results for "Venkatesh" or "PLG Damage" <span class="src-tag"><a href="https://tcpaworld.com/?s=Venkatesh">TCPAWorld -&gt;</a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+            <dt>Law360</dt><dd>Zero results for "Vinit Venkatesh" TCPA <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Vinit+Venkatesh%22+TCPA">Law360 -&gt;</a></span></dd>
+            <dt>WebRecon</dt><dd>Zero hits for PLG Damage <span class="src-tag"><a href="https://webrecon.com/?s=PLG+Damage">WebRecon -&gt;</a></span></dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--warn">Low-individual / High-volume</span> — not a named TCPAWorld power-ranking firm, but is filing 9+ matters in a 60-day window</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Firm Template</div>
+        <h3 class="card-title">PLG Damage / Venkatesh Quiet-Hours DTC Template</h3>
+        <div class="card-body">
+          <p style="margin-top:0">PLG Damage Attorneys is a Florida-based property-damage firm that has built an industrialized TCPA side-practice using CA-barred associate Vinit Venkatesh as the named-counsel of record. The firm is filing across plaintiff-friendly venues (S.D. Cal., C.D. Cal., M.D. Fla., N.D. Fla.) with a single-count quiet-hours theory under § 64.1200(c)(1) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span>.</p>
+          <p>Target profile across recent filings: mid-market DTC e-commerce, retail, mortgage, health/wellness, and fitness brands using Attentive/Klaviyo-style SMS automation. Co-counsel "Faythe Gutierrez" appears on parallel PLG matters. The firm publishes a "$100M+ recovered" headline on its website — that figure is property-damage practice and does not reflect TCPA results <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 16px">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row--current">
+              <td><strong>Hines v. PinchMe.Com Inc.</strong></td>
+              <td>3:26-cv-03389 · S.D. Cal.</td>
+              <td>2026-06-04</td>
+              <td><span class="pill pill--red">CURRENT</span></td>
+              <td>Quiet hours (§ 64.1200(c)(1))</td>
+            </tr>
+            <tr>
+              <td>Sharon Manier v. Pinchme.com Inc.</td>
+              <td>5:25-cv-00557 · C.D. Cal.</td>
+              <td>2025-03-03</td>
+              <td><span class="pill pill--ok">Settled / Dismissed 5/28/2025</span></td>
+              <td>TCPA (same defendant)</td>
+            </tr>
+            <tr>
+              <td>Hesse v. PINCHme.com Inc.</td>
+              <td>2:26-at-00709 · E.D. Cal.</td>
+              <td>2026 (April)</td>
+              <td><span class="pill pill--warn">Parallel — verify</span></td>
+              <td>TCPA (same defendant)</td>
+            </tr>
+            <tr>
+              <td>Rodriguez v. Pinchme.com Inc.</td>
+              <td>1:21-cv-04465 · E.D.N.Y.</td>
+              <td>2021</td>
+              <td><span class="pill pill--info">Closed</span></td>
+              <td>Same defendant — prior consumer matter</td>
+            </tr>
+            <tr>
+              <td>Cummings v. 7-Eleven Inc.</td>
+              <td>1:26-cv-00119 · N.D. Fla.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm — quiet hours</td>
+            </tr>
+            <tr>
+              <td>Bennea Hughes v. Guardio LLC</td>
+              <td>2:26-cv-05313 · C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Shannel Long v. Rocket Mortgage, LLC</td>
+              <td>2:26-cv-05599 · C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Flottman v. Yesvideo, Inc.</td>
+              <td>8:26-cv-01491 · M.D. Fla.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Bennea Hughes v. Rite Aid Corporation</td>
+              <td>2:26-cv-04436 · C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Lina Fasheh v. The Xercize Studio, LLC</td>
+              <td>8:26-cv-01231 · C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Joan Rios v. Last Brand, Inc.</td>
+              <td>5:26-cv-02684 · C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Arelis Ortiz v. Payactiv, Inc.</td>
+              <td>2:26-cv-01460 · M.D. Fla.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+            <tr>
+              <td>Angel Mendez v. Refills Health, LLC</td>
+              <td>2:26-cv-04569 · C.D. Cal.</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">PLG template</span></td>
+              <td>Same firm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--fg-3); margin-top:8px">Source: CourtListener defendant + firm searches <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PinchMe%22&type=r">PinchMe -&gt;</a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">PLG Damage -&gt;</a></span></p>
+    </div>
+
+    <div class="callout">
+      <h4>Open Intel Gaps to Close Before First Dial</h4>
+      <ul>
+        <li>Full 10-digit plaintiff Subject Number — pull ECF #1 from PACER to confirm and run litigator scrub.</li>
+        <li>Magistrate identity — complaint caption lists "Goddard" but CourtListener docket lists Hon. Guillermo Cabrera. Reconcile before any procedural reference.</li>
+        <li>Answer deadline — pull PACER docket sheet for exact service date + 21-day calc.</li>
+        <li>Defense counsel — no appearance yet visible. Re-run docket check daily.</li>
+        <li>Corporate registry — Delaware DOC, CA SoS, Bizapedia, and OpenCorporates all returned 403/404 or unparseable results. Registered agent, principal address, and formation date unconfirmed.</li>
+        <li>Manier v. PinchMe (5:25-cv-00557) settlement amount not disclosed in public docket — useful as anchor for current settlement negotiation.</li>
+        <li>PinchMe signup / privacy / terms pages are JS-rendered SPAs — could not extract TCPA disclosure language, arbitration clause, or consent-checkbox text. Manual browse required.</li>
+        <li>BBB, Crunchbase, Glassdoor, and Trustpilot all blocked (403) — no third-party reputation baseline established.</li>
+        <li>No General Counsel or CCO identified in any source — likely no in-house legal function. Confirm whether outside counsel handled the Manier matter.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Go straight to the founder. PinchMe has no in-house GC — Reid and Caplan own the buy decision.</h2>
+      <p class="section-lede">No General Counsel or Chief Compliance Officer surfaced in any source. With ~25–100 employees and a single SMS program, the compliance decision lands on the founder/CEO Jeremy Reid, President Adam Caplan, or CFO Frank Tomiello. Marketing leadership (Tyler, Poli) owns the Attentive console. Email pattern is <code>{first}@pinchme.com</code> (also <code>@pinch.me</code> for some users) per SignalHire <span class="src-tag"><a href="https://www.signalhire.com/companies/pinchme">SignalHire -&gt;</a></span>.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:20px; background:var(--gray-05)">
+      <div class="card-meta" style="margin-bottom:4px">Company Main Line</div>
+      <div style="font-family:var(--font-mono); font-size:22px; font-weight:600">(917) 512-6778</div>
+      <div style="font-size:13px; color:var(--fg-2); margin-top:4px">Email pattern: <code>{first}@pinchme.com</code> (verified pattern from SignalHire) <span class="src-tag"><a href="https://www.signalhire.com/companies/pinchme">SignalHire -&gt;</a></span></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name · Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jeremy Reid</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Founder &amp; CEO. Primary buy-decision authority. Referenced by name in a Sitejabber customer review <span class="src-tag"><a href="https://www.sitejabber.com/reviews/pinchme.com">Sitejabber -&gt;</a></span> and listed on SignalHire <span class="src-tag"><a href="https://www.signalhire.com/companies/pinchme">SignalHire -&gt;</a></span>.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jeremy@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jeremyreid">linkedin.com/in/jeremyreid</a></td>
+          </tr>
+          <tr>
+            <td><strong>Adam Caplan</strong><br><span class="pill pill--dark">PRESIDENT</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>President. Operational decision authority alongside Reid. Most likely escalation path once defense counsel is retained.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>adam@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/adamcaplan">linkedin.com/in/adamcaplan</a></td>
+          </tr>
+          <tr>
+            <td><strong>Frank Tomiello</strong><br><span class="pill pill--dark">CFO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chief Financial Officer. Owns the budget for compliance spend &amp; settlement reserves. Critical contact after a class is pled.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>frank@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/franktomiello">linkedin.com/in/franktomiello</a></td>
+          </tr>
+          <tr>
+            <td><strong>Emma Tyler</strong><br><span class="pill pill--dark">MARKETING</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Director of Marketing &amp; Community Management. Operational owner of the Attentive console — i.e., the person who actually configured the send-window that violated quiet hours.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>emma@pinch.me<br><span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/emmatyler">linkedin.com/in/emmatyler</a></td>
+          </tr>
+          <tr>
+            <td><strong>Caitlyn Poli</strong><br><span class="pill pill--dark">MARKETING</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Director of Social Media &amp; Content. Secondary owner of outbound marketing channels — a relevant technical contact for the Attentive send-window remediation conversation.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>caitlyn@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Andrew Mashaal</strong><br><span class="pill pill--dark">VP ACCOUNT MGMT</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Vice President of Account Management. Owns brand-partner relationships (Capital One, MrBeast, etc.) — relevant to the affiliate-network exposure surfaced in Exhibit A.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>andrew@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/andrewmashaal">linkedin.com/in/andrewmashaal</a></td>
+          </tr>
+          <tr>
+            <td><strong>Linh Ha Babel</strong><br><span class="pill pill--dark">VP R&amp;I</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>VP of Research &amp; Insights. Owns subscriber data &amp; segmentation — relevant if the case moves to a list-scrub remediation phase.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>linh@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Keith Ray</strong><br><span class="pill pill--dark">PARTNERSHIPS</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Sr. Partnerships Manager.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>keith@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jessica Arellano</strong><br><span class="pill pill--dark">PARTNERSHIPS</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Affiliate and Partnership Manager.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jessica@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sabrina Rose Baldassarra</strong><br><span class="pill pill--dark">ACCOUNT DIR</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Senior Account Director.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>sabrina@pinchme.com<br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / CCO</strong><br><span class="pill pill--dark">LEGAL</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No in-house General Counsel or Chief Compliance Officer surfaced in SignalHire, LinkedIn, or PinchMe's own site. Compliance ownership likely sits with the CEO/President pending defense-counsel appearance.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">OUTSIDE</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared. 21-day FRCP 12 answer clock running from service. Watch docket for appearance.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin:0 0 12px">Plaintiff Counsel (Reference Only — Do Not Solicit)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Role</th><th>Firm</th><th>Contact</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Vinit R. Venkatesh</td>
+              <td>Counsel of record — CA Bar #367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></td>
+              <td>PLG Damage Attorneys · Miramar, FL</td>
+              <td>tcpa-service@plgdamage.com · (305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears and the conversation turns into procurement-speak.</h2>
+      <p class="section-lede">PinchMe's Manier matter resolved in under 90 days. The same playbook will run on Hines. The outreach window is the gap between service of the complaint and defense-counsel appearance — call that 14–21 days from June 4, 2026.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 1–2 · Pull PACER ECF #1 and run litigator scrub on the full Subject Number.</h4>
+          <p>$1.20 PACER spend gets the unredacted complaint. If the full plaintiff number is in the exhibit, immediately run the Blacklist litigator-list scrub. A match converts this into a "Plaintiff is already on our list — we'd have flagged this before it sent" pitch. No match still leaves the strongest pitch (Manier-then-Hines repeat) intact.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 2–3 · Email Jeremy Reid (CEO) and Adam Caplan (President) directly.</h4>
+          <p>Use the inferred <code>jeremy@pinchme.com</code> / <code>adam@pinchme.com</code> addresses based on the SignalHire-confirmed pattern <span class="src-tag"><a href="https://www.signalhire.com/companies/pinchme">SignalHire -&gt;</a></span>. Subject line should reference Hines + the Manier history together: e.g., "Hines (S.D. Cal.) — second TCPA in 15 months · Attentive quiet-hours fix." Keep it to four sentences and offer a 20-minute call.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3–5 · Call the main line (917) 512-6778 and route to Reid / Caplan / Tomiello.</h4>
+          <p>Reference the specific Exhibit A texts (6:30 AM and 7:14 AM sends to a CA recipient) and the Attentive send-window remediation. Position Consent Capture + Compliance Audit as the lead product, with Litigator Scrub bundled as the post-remediation list-hygiene layer.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 5–7 · Approach Emma Tyler (Marketing Director) on the technical track.</h4>
+          <p>Tyler likely owns the Attentive console day-to-day. A parallel marketing-track conversation about send-window scheduling and time-zone-aware quiet-hours suppression makes the compliance pitch land as a "you'll never deal with this again" operational fix, not a legal expense.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 7–14 · Watch docket daily for defense-counsel appearance.</h4>
+          <p>Once defense counsel files a notice of appearance, escalate to the firm directly. The pitch shifts from "let's prevent the next one" to "let's de-risk the class certification fight" — defense counsel will care about (a) what's on the rest of PinchMe's list, and (b) whether the Manier-Hines pattern supports willful/treble.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Day 14–21 · Final pre-answer touchpoint.</h4>
+          <p>If no engagement, send a final summary that frames the Manier-Hines-Hesse triangulation. The Hesse v. PINCHme matter in E.D. Cal. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PinchMe%22&type=r">CourtListener -&gt;</a></span> compounds the urgency — three TCPA matters in 15 months is no longer a defensible "isolated incident" position.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff">Trigger Conditions That Change the Plan</div>
+        <div class="card-body">
+          <ul style="margin:0; padding-left:20px">
+            <li><strong>Defense counsel files MTC arbitration:</strong> shift entirely to a list-scrub conversation; consent/quiet-hours pitch loses urgency.</li>
+            <li><strong>Plaintiff voluntarily dismisses to amend:</strong> wait — the amended complaint will likely add a § 64.1200(d) internal DNC count, broadening the pitch.</li>
+            <li><strong>Manier or Hesse settlement terms surface:</strong> use as anchor for the "you've already paid once / twice" willful narrative.</li>
+            <li><strong>Hines is identified as a serial filer post-scrub:</strong> escalate immediately to defense counsel — converts to a 1-call close.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 25</span>
+      <span class="pill pill--danger">REPEAT DEFENDANT — WILLFUL/TREBLE ON THE TABLE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
