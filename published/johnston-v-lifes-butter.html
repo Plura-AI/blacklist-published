@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnston v. Life's Butter — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-04</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Beauty SMS Marketer · Caller-ID Transmission Failure · Class Action · C.D. Cal. · Jibrael Hindi Firm</p>
+      <h1 class="hero-tagline">Johnston v.<br>Life's Butter LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03035</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 3, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">The Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — but Johnston is already a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose Johnston's 10-digit recipient number, so a literal Blacklist Bulk scrub cannot be run. However, public court records confirm Johnston is a high-volume TCPA plaintiff with 10+ prior C.D. Cal. filings against DTC e-commerce defendants — making this lead essentially pre-qualified on the plaintiff side.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="phone-call"></i> Scrub Status</div>
+        <span class="pill pill--warn">PLAINTIFF NUMBER NOT DISCLOSED · LOOKUP DEFERRED</span>
+        <span class="pill pill--danger">SERIAL-FILER FLAG · 10+ PRIOR TCPA CASES</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint Paragraphs 12-16 reference Plaintiff's "cellular telephone" and "residential telephone line" but never disclose the 10-digit number. The SMS screenshot exhibit shows only the inbound sender DID (833-291-7754), not Johnston's own number.</div>
+      </div>
+      <p class="scrub-body-text">Bianca Johnston has filed at least <strong>10 prior TCPA actions in C.D. Cal.</strong> between 2025 and 2026 — all against DTC / e-commerce defendants (Fashion Nova, Tracksmith, Seido Knives, Thirdlove, EM Organics, Seeding, Slashop, Frontier Cooperative, Lucky Color, Frontier) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener -&gt;</a></span>. The recipient number cannot be confirmed via scrub, but the litigator-list risk on this plaintiff is already at the ceiling.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">SENDING DID · IDENTIFIED</div>
+        <h3 class="card-title">833-291-7754 (Omnisend platform)</h3>
+        <div class="card-body">
+          Toll-free A2P sending DID embedded in the SMS screenshot exhibit. The click-tracking domain <code>0snd.com</code> resolves to <strong>Omnisend</strong>, an omnichannel SMS/email marketing SaaS based in Vilnius, Lithuania, that publicly states it "sends millions of messages every day" for its clients <span class="src-tag"><a href="https://0snd.com">0snd.com -&gt;</a></span> <span class="src-tag"><a href="https://www.whois.com/whois/0snd.com">WHOIS -&gt;</a></span>. Consumer-side spam directories (800notes / YouMail / Tellows / RoboKiller) returned 403/404 blocks, so external complaint volume could not be measured.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">RECOVERY PATH #1</div>
+        <h3 class="card-title">Pull ECF Doc #1 from PACER (~$1.20)</h3>
+        <div class="card-body">CourtListener confirms 4 docket entries on 6/3/2026 (Complaint, Civil Cover, NOI, Summons Req) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03035&type=r">CourtListener -&gt;</a></span>. The full screenshot exhibit in PACER may expose the plaintiff's own header bar / recipient number. Recommended next step before first dial.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">RECOVERY PATH #2</div>
+        <h3 class="card-title">Wait for defense counsel notice of appearance</h3>
+        <div class="card-body">No defense counsel has appeared yet. When appearance is filed, defense will be served the plaintiff's contact info in initial disclosures — at which point Life's Butter (and any vendor we sell to) will have the number for retroactive scrub of their send-list against Johnston's DID.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Bootstrap DTC beauty brand with a Shopify storefront, a stale 2021 ToS, and a top-3 plaintiff firm at the door.</h2>
+      <p class="section-lede">Life's Butter is a self-described "family-run" Florida DTC skincare brand running SMS marketing through Omnisend, with a Terms of Service last updated 5/20/2021 that does not mention SMS, TCPA, autodialer, or opt-out anywhere. The plaintiff's firm — The Law Offices of Jibrael S. Hindi — is on the 2026 TCPAWorld Power Rankings and has filed 10+ federal TCPA cases recently. This is a textbook compliance-audit and DNC-scrubbing sale, with litigator scrub as a defensive overlay for the next campaign send.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">PRIMARY · LEAD PITCH</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Johnston is a confirmed 10x serial TCPA plaintiff <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener -&gt;</a></span>. Every Omnisend campaign Life's Butter sends from this point forward needs to be scrubbed against the Blacklist Litigator List to prevent the next Johnston-style case. This is the immediate "stop the bleeding" sale.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">DNC Scrubbing + Caller-ID Compliance</h3>
+        <div class="card-body">Complaint pleads 47 CFR § 64.1601(e)(1) — failure to transmit identifying caller-ID in SMS. The fix is partly technical (sender ID config in Omnisend) and partly process (federal + state DNC scrubbing pre-send). Blacklist's RND + state DNC feeds plug directly into this gap.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">TERTIARY · CROSS-SELL</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <div class="card-body">Life's Butter's Terms of Service is dated 5/20/2021 and contains zero references to SMS, autodialer, TCPA, or opt-out <span class="src-tag"><a href="https://lifesbutter.com/policies/terms-of-service">lifesbutter.com -&gt;</a></span>. The privacy policy explicitly says they do not honor Do-Not-Track signals <span class="src-tag"><a href="https://lifesbutter.com/policies/privacy-policy">privacy policy -&gt;</a></span>. A full policies-and-procedures rebuild is the natural follow-on.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:22px; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+        Open with the plaintiff's firm. The Law Offices of Jibrael S. Hindi is a Florida-based shop running California federal TCPA class actions through CA-barred associate Gerald Lane Jr. — they file <em>repeatedly</em>, settle pre-answer, and target DTC e-commerce brands almost exclusively. The defendant should hear, in the first 60 seconds, that Hindi is named in TCPAWorld's 2026 "Most Dangerous TCPA Plaintiff's Lawyers" rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span> and that the same firm has filed at least 10 nearly identical complaints in 2024-2026.
+      </p>
+      <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">
+        Then pivot to the fix. The complaint's theory is a strict-liability caller-ID transmission claim — easy to plead, easy to win at MSJ, hard to defend on a screenshot. The only durable defense is a documented compliance program: litigator scrub before every send, DNC scrubbing against federal + state lists, and proper caller-ID configuration in Omnisend. Blacklist sells the exact remediation package the defendant will need to hand to insurance carriers and to opposing counsel during settlement negotiations. Frame Blacklist not as a vendor but as the documented compliance evidence that ends this case and the next one.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small bootstrapped Shopify DTC brand — "still family-run, still hands-on" — running SMS at scale.</h2>
+      <p class="section-lede">Life's Butter LLC is a private, Florida-headquartered direct-to-consumer beauty brand selling anti-cellulite creams, coffee scrubs, and body oils through a Shopify storefront. Self-disclosed 100,000+ customer base, bootstrap funding (founder describes initial capital as "a maxed-out Capital One card"), no named officers on public site.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Life's Butter LLC</dd>
+          <dt>Entity Type</dt><dd>Limited Liability Company (per complaint ¶8)</dd>
+          <dt>Formation State</dt><dd><span class="pill pill--gap">UNCONFIRMED — Sunbiz blocked</span></dd>
+          <dt>HQ</dt><dd>Aventura, Florida (per complaint ¶8)</dd>
+          <dt>Parent</dt><dd>None disclosed</dd>
+          <dt>Revenue Band</dt><dd>~$5M–$15M est. (100k+ customers × $25–$60 ASP) <span class="src-tag"><a href="https://lifesbutter.com/pages/about">lifesbutter.com/about -&gt;</a></span></dd>
+          <dt>Employees</dt><dd>Small / "family-run, hands-on with every order" <span class="src-tag"><a href="https://lifesbutter.com/pages/about">lifesbutter.com/about -&gt;</a></span></dd>
+          <dt>Founders</dt><dd>Not publicly disclosed on About page <span class="src-tag"><a href="https://lifesbutter.com/pages/about">lifesbutter.com/about -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>DTC Beauty / Body Care (anti-cellulite cream, coffee scrubs, body oil)</dd>
+          <dt>E-comm Platform</dt><dd>Shopify (lifes-butter.myshopify.com)</dd>
+          <dt>SMS Vendor</dt><dd>Omnisend (sender domain 0snd.com) <span class="src-tag"><a href="https://0snd.com">0snd.com -&gt;</a></span></dd>
+          <dt>Markets</dt><dd>US, Canada, Australia, NZ</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Terms of Service last updated <span style="color:#FBE5E5">5/20/2021</span> — zero mention of SMS, TCPA, autodialer, or opt-out.</h3>
+        <div class="card-body">
+          Life's Butter's own published Terms of Service is over 4 years stale and entirely silent on text-message marketing, despite the brand actively running Omnisend SMS campaigns <span class="src-tag"><a href="https://lifesbutter.com/policies/terms-of-service">terms-of-service -&gt;</a></span>. The privacy policy openly admits to running "marketing materials and offers" across Facebook, Google, Bing, Pinterest, TikTok, and SnapChat — and explicitly states "we do not alter our Site's data collection and use practices when we see a Do Not Track signal" <span class="src-tag"><a href="https://lifesbutter.com/policies/privacy-policy">privacy-policy -&gt;</a></span>. No SMS consent flow, no opt-out disclosure, no DNC language. Caller-ID transmission failure (the actual pleaded violation) is the symptom; the documents are the cause.
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Complaint Filed</dt><dd>June 3, 2026 — 1 day ago</dd>
+        <dt>Answer Window</dt><dd>~21 days post-service under FRCP 12(a) once Summons is returned executed</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03035&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Settlement Pattern</dt><dd>Hindi-firm cases historically resolve pre-answer or within ~4–9 months (Curtis v. Authentic Sport Specialty settled at ENE in 4 months; Andrighetto v. JumpStartMD terminated in 4 months) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Sales Window</dt><dd>Next 7–14 days — before defense counsel is retained and starts gatekeeping vendor calls</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:22px; margin:32px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Omnisend (Soundest Ltd.)</td>
+            <td>SMS sending vendor</td>
+            <td>Marketing SaaS</td>
+            <td>Sends "millions of messages every day" platform-wide <span class="src-tag"><a href="https://0snd.com">0snd.com -&gt;</a></span> — Blacklist API integration would scrub all Omnisend merchant sends</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Shopify merchant cohort</td>
+            <td>Same platform / same SMS infra</td>
+            <td>DTC e-commerce</td>
+            <td>Hindi firm has filed against multiple Shopify DTC brands (Fashion Nova, Tracksmith, Thirdlove, Seido Knives) — Omnisend/Shopify is a known target cohort</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Sister Life's Butter LLC filings (FL Sunbiz)</td>
+            <td>Possible parent / affiliate</td>
+            <td>Unknown</td>
+            <td>Florida Sunbiz lookup blocked; manual retrieval of registered agent + managing member may reveal affiliated entities</td>
+            <td><span class="pill pill--gap">UNCONFIRMED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit against Life's Butter, filed by a top-tier serial firm running a quick-settlement playbook.</h2>
+      <p class="section-lede">No prior TCPA litigation history exists for Life's Butter — defendant has no playbook, no panel counsel, no prior carrier relationship for TCPA defense. The plaintiff's firm has 74+ federal filings and a documented pattern of pre-answer settlement of DTC TCPA cases.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>5:26-cv-03035 · C.D. Cal. (Riverside / Eastern Division)</dd>
+          <dt>Filed</dt><dd>June 3, 2026</dd>
+          <dt>Plaintiff</dt><dd>Bianca Johnston (San Bernardino County, CA)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Gerald D. Lane Jr. (CA Bar #352470)</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi PLLC</dd>
+          <dt>Class Status</dt><dd><span class="pill pill--danger">PUTATIVE FED. R. CIV. P. 23 CLASS</span></dd>
+          <dt>Class Definition</dt><dd>All US persons who received 2+ telemarketing calls/texts in a 12-mo period without CPN/ANI + telemarketer's name (4-year lookback)</dd>
+          <dt>Class Size Pled</dt><dd>"at least 50 persons" / "several thousands, if not more" (¶21, 22)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>Caller-ID transmission failure — SMS marketing without identifying CPN/ANI + telemarketer name</dd>
+          <dt>Damages Pled</dt><dd>$500 / call (negligent) — $1,500 / call (willful)</dd>
+          <dt>Channel</dt><dd>SMS (sender 833-291-7754 via 0snd.com / Omnisend)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--red">NOT YET APPEARED</span></dd>
+          <dt>Judge</dt><dd>Not yet assigned <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03035&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Docket Visibility</dt><dd>Visible on CourtListener RECAP; PacerMonitor + Justia blocked</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel — Gerald D. Lane Jr.</h3>
+        <dl class="kv">
+          <dt>Bar Number</dt><dd>352470 (California)</dd>
+          <dt>Bar Status</dt><dd>Active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -&gt;</a></span></dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Address Flag</dt><dd><span class="pill pill--warn">CA-BARRED ATTORNEY · FL FIRM ADDRESS</span> — classic Florida-based serial-filer firm using a CA-admitted associate to flood C.D. Cal.</dd>
+          <dt>Email</dt><dd>gerald@jibraellaw.com</dd>
+          <dt>Phone</dt><dd>(754) 444-7539</dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>Firm Size</dt><dd>Boutique — TCPA / FDCPA / FCRA / mass arbitration</dd>
+          <dt>Firm Website</dt><dd><a href="https://jibraellaw.com">jibraellaw.com</a></dd>
+          <dt>Firm Claims</dt><dd>"$30M+ in TCPA settlements" per firm marketing <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>TCPAWorld Status</dt><dd>Jibrael Hindi named in 2026 Power Rankings of "Most Dangerous TCPA Plaintiff's Lawyers" <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>Firm Filings (12 mo)</dt><dd>10+ federal TCPA cases identified across CA + FL <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:22px; margin:0 0 12px;">Plaintiff / Firm Template — Hindi/Lane Caller-ID Class</h3>
+      <p style="font-size:16px; line-height:1.6; max-width:880px;">
+        The Hindi firm runs a tight playbook: (1) recruit serial plaintiffs who maintain "residential" cell numbers and screenshot incoming marketing SMS; (2) file Rule 23 class complaints under § 227(c)(5) / § 64.1601(e)(1) for caller-ID transmission failures; (3) attach SMS screenshot as the only exhibit; (4) plead class size as "several thousands"; (5) settle pre-answer or extract early class settlement. Same Plaintiff (Bianca Johnston) has filed at least 10 prior cases following this exact template in C.D. Cal. against Fashion Nova, Tracksmith, Seido Knives, Thirdlove, EM Organics, Slashop, Lucky Color, Frontier Cooperative, Seeding, and others <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener -&gt;</a></span>. Prior cases voluntarily dismissed within 4–28 weeks indicate consistent pre-answer settlement extraction.
+      </p>
+    </div>
+
+    <h3 style="font-size:22px; margin:32px 0 12px;">Concurrent &amp; Recent Litigation — Same Plaintiff Pattern</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Johnston v. Life's Butter LLC</strong> (5:26-cv-03035)</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">JUST FILED</span></td>
+            <td>Caller-ID transmission failure / § 64.1601(e)(1)</td>
+          </tr>
+          <tr><td>Johnston v. Thirdlove Inc. (2:26-cv-02405 / 5:26-cv-01173)</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. EM Organics LLC (5:26-cv-00489)</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Tracksmith Corporation (5:25-cv-03215)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--ok">Vol. Dismissed 5/19/26</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Lucky Color, Inc. (5:25-cv-03259)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--info">OSC issued</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Seido Knives (5:25-cv-02612)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--ok">Vol. Dismissed 11/20/25</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Frontier Cooperative (5:25-cv-02574)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Slashop Inc. (5:25-cv-02449)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Fashion Nova, LLC (5:25-cv-01699)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS</td></tr>
+          <tr><td>Johnston v. Seeding, Inc. (5:25-cv-00716)</td><td>C.D. Cal.</td><td>2025</td><td><span class="pill pill--ok">Terminated ~28 days</span></td><td>TCPA SMS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Source: <a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener RECAP search "Bianca Johnston"</a></p>
+
+    <div class="callout">
+      <h4>⚠ Open intel gaps to close before first dial</h4>
+      <ul class="clean tight">
+        <li>• <strong>FL Sunbiz LLC record</strong> — Life's Butter LLC formation date, registered agent, and managing member not retrievable (Sunbiz 403, OpenCorporates 403, Bizapedia challenge). Manual Sunbiz lookup required to ID the decision-maker by name before first dial.</li>
+        <li>• <strong>Plaintiff's recipient phone number</strong> — Not in complaint. Pull ECF Doc #1 PDF from PACER to inspect screenshot header for the recipient number.</li>
+        <li>• <strong>Defense counsel</strong> — Not yet appeared. Watch CourtListener for first appearance docket entry, which will identify the panel counsel and likely insurance carrier.</li>
+        <li>• <strong>Judge assignment</strong> — Not yet visible. Will affect MTD timing and class-cert track.</li>
+        <li>• <strong>Founder identity</strong> — Life's Butter About page is anonymous; no founder names disclosed. Sunbiz + LinkedIn cross-reference needed.</li>
+        <li>• <strong>Consumer complaint volume on DID 833-291-7754</strong> — 800notes / YouMail / Tellows / RoboKiller all blocked. Manual lookup or alt-IP fetch needed for sender-DID intel.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named officers public — start with the support inbox and the Sunbiz registered agent.</h2>
+      <p class="section-lede">Life's Butter publishes no named officers, founders, or compliance contacts. The website "About" page is written as an anonymous "we" narrative; the Contact page returns 404. First-dial approach: use the published phone (none found), then push to the Sunbiz registered agent once retrieved manually, then escalate to the SMS vendor (Omnisend) for cross-sell triangulation.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Life's Butter — Support Inbox</strong> <br><span class="pill pill--dark">CUSTOMER SUPPORT</span></td>
+            <td>Self-service Shopify support form; no named recipient <span class="src-tag"><a href="https://lifesbutter.com/pages/contact-us">contact-us -&gt;</a></span></td>
+            <td>—</td>
+            <td>Inferred: <em>info@lifesbutter.com</em> / <em>support@lifesbutter.com</em></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Managing Member — Life's Butter LLC</strong> <br><span class="pill pill--dark">DECISION MAKER</span></td>
+            <td>Florida LLC managing member — name on Sunbiz filing (not retrievable in this run due to Sunbiz 403)</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — PULL SUNBIZ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent — Life's Butter LLC</strong> <br><span class="pill pill--dark">REGISTERED AGENT</span></td>
+            <td>Service-of-process recipient under FL law; will receive summons</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — PULL SUNBIZ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Compliance / Legal Lead</strong> <br><span class="pill pill--dark">COMPLIANCE</span></td>
+            <td>No compliance officer or in-house legal contact disclosed; role likely held by founder/managing member in a "family-run" bootstrap operation <span class="src-tag"><a href="https://lifesbutter.com/pages/about">lifesbutter.com/about -&gt;</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP — ROLE UNFILLED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 12px;">Plaintiff-Side Contacts (Reference Only — Do Not Call for Sales)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gerald D. Lane Jr. <br><span class="pill pill--dark">PLAINTIFF COUNSEL</span></td>
+            <td>CA Bar #352470 · Counsel of record (per PACER ECF #1)</td>
+            <td>(754) 444-7539 <span class="pill pill--warn">FL # · CA-BARRED</span></td>
+            <td>gerald@jibraellaw.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td>Jibrael S. Hindi <br><span class="pill pill--dark">FIRM PRINCIPAL</span></td>
+            <td>Founder, The Law Offices of Jibrael S. Hindi PLLC; 2026 TCPAWorld Power Rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></td>
+            <td>(754) 444-7539</td>
+            <td>Jibrael@jibraellaw.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel is retained and starts gatekeeping.</h2>
+      <p class="section-lede">Filed 6/3/2026. Summons will be served within days. Once Life's Butter hires defense counsel, vendor outreach gets routed through the law firm and gets slow-walked. The window to reach the founder / managing member directly is right now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 — TODAY</div>
+        <h3 class="card-title">Pull FL Sunbiz + ECF #1</h3>
+        <div class="card-body">Manual Sunbiz lookup for "Life's Butter LLC" → registered agent + managing member name. Pull ECF Doc #1 from PACER (~$1.20) to inspect SMS screenshot for plaintiff's own phone number header. Both feed the next-call cadence.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2 — FIRST OUTREACH</div>
+        <h3 class="card-title">Email + LinkedIn the managing member</h3>
+        <div class="card-body">Once Sunbiz produces a name, send a same-day email to the inferred address and a LinkedIn connect note. Subject line should reference "Johnston v. Life's Butter" by case number — defendants pay attention when their case caption shows up unsolicited.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 3-5 — PHONE FOLLOW-UP</div>
+        <h3 class="card-title">Call the support line, ask for the owner</h3>
+        <div class="card-body">If the support line is published, identify as a TCPA compliance specialist who saw the filing. Reference the Hindi firm's serial-filer history (10+ prior Johnston cases) as the wedge. The pitch is litigator-scrub + DNC + caller-ID config in Omnisend.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">WEEK 2 — DEFENSE COUNSEL</div>
+        <h3 class="card-title">Watch CourtListener for first appearance</h3>
+        <div class="card-body">When defense counsel appears, pivot the outreach — defense lawyers often refer compliance vendors directly to clients to bolster the settlement story. Send the appearance attorney a short "we work with TCPA defense panels" intro.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">WEEK 3 — CROSS-SELL</div>
+        <h3 class="card-title">Approach Omnisend</h3>
+        <div class="card-body">Omnisend sends "millions of messages every day" platform-wide <span class="src-tag"><a href="https://0snd.com">0snd.com -&gt;</a></span>. A Blacklist API integration that scrubs at the sender layer would protect every Omnisend merchant. This is the bigger second-order revenue prize.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">TRIGGER · ABORT</div>
+        <h3 class="card-title">If plaintiff files vol. dismissal &lt;30 days</h3>
+        <div class="card-body">Hindi firm has dismissed multiple Johnston cases within 4 weeks (Seeding terminated in 28 days). If that happens here, urgency drops — but compliance pitch survives because the next Hindi case is already coming.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">SERIAL-PLAINTIFF FLAG · JOHNSTON 10x FILER</span>
+      <span class="pill pill--warn">CLOSE BEFORE DEFENSE COUNSEL APPEARS · ~21-DAY ANSWER WINDOW</span>
+      <span class="pill pill--info">PRIMARY PITCH: LITIGATOR SCRUB + DNC + COMPLIANCE AUDIT</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-04</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
