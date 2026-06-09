@@ -6,6 +6,7 @@
 <title>Blacklist Alliance — Pre-Contact Readiness Checklist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 @font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Light.woff2") format("woff2"); font-weight:300; font-style:normal; font-display:swap; }
 @font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
@@ -1323,7 +1324,7 @@
   <!-- CALL KIT (scripts + objections, unlocks on cleared) -->
   <div id="callkit"></div>
 
-  <div class="persist-note">↺ Progress saves automatically in this browser, per lead. Use <strong>Export</strong> to save a copy of a checklist or move it to another device — <strong>Import</strong> loads it back.</div>
+  <div class="persist-note">↺ Progress saves automatically in this browser, per lead. <strong>Export</strong> downloads two files: a <strong>.json</strong> (import it back to keep working) and a <strong>.pdf</strong> snapshot (read-only, for sharing). <strong>Import</strong> loads a .json back in.</div>
 
 </div>
 
@@ -1912,16 +1913,100 @@
   }
   let _lastCleared = null;
 
+  function exportSlug() {
+    return (state.leadName || "checklist").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "checklist";
+  }
+
   function exportChecklist() {
     saveState();
+    const slug = exportSlug();
+    // 1) JSON — the resume file
     const data = { _app: "bla-precontact-checklist", _v: 1, exportedAt: new Date().toISOString(), state: state };
-    const slug = (state.leadName || "checklist").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "checklist";
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "bla-checklist-" + slug + ".json";
     document.body.appendChild(a); a.click();
     setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 200);
+    // 2) PDF — the read-only snapshot
+    setTimeout(() => {
+      try { buildPdfDoc().save("bla-checklist-" + slug + ".pdf"); }
+      catch (err) { alert("The JSON saved fine. The PDF couldn't generate (the PDF library may not have loaded — check your connection and try again)."); }
+    }, 350);
+  }
+
+  function buildPdfDoc() {
+    if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF not loaded");
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "pt", format: "letter" });
+    const PW = doc.internal.pageSize.getWidth(), PH = doc.internal.pageSize.getHeight();
+    const M = 48, maxW = PW - M * 2;
+    let y = M;
+    const strip = t => (t || "").replace(/<[^>]*>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+    function ensure(h) { if (y + h > PH - M) { doc.addPage(); y = M; } }
+    function text(t, o) {
+      o = o || {};
+      const size = o.size || 10, lh = size * 1.45, indent = o.indent || 0;
+      doc.setFont("helvetica", o.bold ? "bold" : "normal");
+      doc.setFontSize(size);
+      doc.setTextColor(o.color ? o.color[0] : 35, o.color ? o.color[1] : 35, o.color ? o.color[2] : 35);
+      const lines = doc.splitTextToSize(t, maxW - indent);
+      lines.forEach(ln => { ensure(lh); doc.text(ln, M + indent, y); y += lh; });
+    }
+    function gap(h) { y += (h || 8); }
+    const RED = [165, 1, 0], GREEN = [17, 122, 61], GREY = [110, 110, 110];
+
+    // header bar
+    doc.setFillColor(0, 0, 0); doc.rect(0, 0, PW, 30, "F");
+    doc.setTextColor(255, 255, 255); doc.setFont("helvetica", "bold"); doc.setFontSize(12);
+    doc.text("BLACKLIST ALLIANCE", M, 20);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(200, 200, 200);
+    doc.text("Pre-Contact Readiness — Lead Snapshot", PW - M, 20, { align: "right" });
+    y = 52;
+
+    text(state.leadName || "(unnamed lead)", { bold: true, size: 16, color: [0,0,0] });
+    const cleared = isCleared();
+    text(cleared ? "STATUS: CLEARED FOR CONTACT" : "STATUS: NOT CLEARED — vital items outstanding", { bold: true, size: 11, color: cleared ? GREEN : RED });
+    const meta = [];
+    if (state.repName) meta.push("Rep: " + state.repName);
+    meta.push("Exported: " + new Date().toLocaleString());
+    if (state.reportUrl) meta.push("Report: " + state.reportUrl);
+    text(meta.join("   |   "), { size: 9, color: GREY });
+    gap(6);
+
+    // Case details
+    const m = state.merge || {};
+    const f1 = (state.fields && state.fields.f1) || {};
+    const cd = [
+      ["Contact", m.name], ["Company / Defendant", m.company], ["Plaintiff", m.plaintiff],
+      ["Case caption", m.caption], ["Plaintiff cases tracked", m.casecount], ["Lead pitch", m.pitch],
+      ["Key compliance gap", m.gap], ["Prior complaints in our DB", f1.count], ["Earliest on record", f1.earliest]
+    ].filter(r => r[1] !== undefined && r[1] !== null && String(r[1]).trim() !== "");
+    if (cd.length) {
+      text("CASE DETAILS", { bold: true, size: 11, color: RED }); gap(2);
+      cd.forEach(r => text(r[0] + ": " + r[1], { size: 10, indent: 8 }));
+      gap(8);
+    }
+
+    // sections + items
+    CHECKLIST.forEach((section, sIdx) => {
+      const n = sIdx + 1;
+      gap(4);
+      text((n < 10 ? "0" + n : n) + ".  " + strip(section.title), { bold: true, size: 12, color: [0,0,0] });
+      if (section.desc) text(strip(section.desc), { size: 9, color: GREY, indent: 4 });
+      gap(2);
+      section.items.forEach(item => {
+        const done = itemDone(item, sIdx);
+        const box = done ? "[x] " : "[ ] ";
+        text(box + strip(item.label) + (item.vital ? "  (vital)" : ""), { size: 10, indent: 8, color: done ? [35,35,35] : [90,90,90] });
+        const note = state.notes && state.notes[item.id];
+        if (note && note.trim()) text("note: " + note.trim(), { size: 9, color: GREY, indent: 24 });
+      });
+    });
+
+    gap(10);
+    text("Read-only snapshot. To keep working on this lead, import the matching .json export back into the checklist tool.", { size: 8, color: GREY });
+    return doc;
   }
 
   function importChecklist(e) {
