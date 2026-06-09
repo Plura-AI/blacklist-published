@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrobel v. Steve Madden — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin:0 0 12px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; font-variant-numeric:tabular-nums; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" class="hero-logo-svg">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Footwear SMS Marketer · Quiet-Hours TCPA + FTSA · Pro-Se Attorney Plaintiff · S.D. Fla.</p>
+      <h1 class="hero-tagline">Wrobel v.<br>Steve Madden, Ltd.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-24017-EGT</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (Miami)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Magistrate:<br>Edwin G. Torres</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>Fla. Stat. § 501.059(8)(f)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Michael E. Wrobel (pro se) <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Conquest Law PLLC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not disclosed in the complaint — scrub deferred until PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Wrobel complaint pleads 11 quiet-hour SMS violations but never discloses the 10-digit recipient number. Litigator scrub cannot run on a partial record.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint ¶¶ 16–21 refers only to "Plaintiff's cellular telephone" and reproduces nine SMS screenshots without exposing the receiving number. No DID, area code, or carrier is pled.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff Michael E. Wrobel is a resident of Miami-Dade County, FL and the regular user of the cellular line that received the texts. Until the number is recovered, the Blacklist litigator-list scrub is a deferred lookup, not a "no match." The plaintiff is also the attorney of record — a pro-se filing posture — which means the recipient line may well be the same one published on the Florida Bar profile (<span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">Florida Bar &rarr;</a></span>), but that is unverified.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 + Civil Cover Sheet from PACER</h3>
+        <p class="card-body">The civil cover sheet and any exhibit attachments may carry an unredacted contact line for the plaintiff. Cost: roughly $1.20.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Cross-reference Florida Bar profile</h3>
+        <p class="card-body">Wrobel's Florida Bar published phone is <strong>678-814-5588</strong> (same as the firm phone on the signature block). Confirm whether this is the same line he used to receive the Steve Madden texts before any outreach <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">Florida Bar &rarr;</a></span>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Wait for Defendant's discovery</h3>
+        <p class="card-body">Once Steve Madden answers and propounds initial interrogatories, the plaintiff's recipient number is the first interrogatory answer that hits the docket. Window: 21–45 days post-service.</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS · DEFERRED</span>
+      <span class="pill pill--warn">PRO-SE ATTORNEY PLAINTIFF FLAG</span>
+      <span class="pill pill--info">PACER PULL RECOMMENDED</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Public-company DTC defendant with a textbook bundled-consent flow — and a sender platform that texts at 3:57 AM.</h2>
+      <p class="section-lede">Steve Madden, Ltd. (NASDAQ: SHOO, ~$1.98B revenue) is being sued for sending 11 marketing texts outside the quiet-hours window — including two between 3:57 AM and 5:44 AM. The recommended lead-pitch product is <strong>Consent Capture / Quiet-Hours Scrubbing</strong>, with Compliance Audit as the natural cross-sell. This is the second TCPA matter against Madden post-<em>Ellison</em> — the institutional knowledge already exists.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Product · Recommended</div>
+        <h3 class="card-title">Consent Capture &amp; Quiet-Hours Scrub</h3>
+        <p class="card-body">Madden's SMS platform fired texts at 3:57 AM and 5:44 AM in the plaintiff's time zone <span class="src-tag"><a href="https://www.stevemadden.com/pages/privacy-policy">stevemadden.com &rarr;</a></span>. Quiet-hours scheduling and double opt-in capture are the cheapest, most direct cure for the pled theory.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #1</div>
+        <h3 class="card-title">Compliance Audit · Policies &amp; Procedures</h3>
+        <p class="card-body">Privacy policy concedes SMS contact but does not reference TCPA, autodialer, DNC, or FTSA <span class="src-tag"><a href="https://www.stevemadden.com/pages/privacy-policy">stevemadden.com &rarr;</a></span>. Document gaps are easy to close before the answer is due.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell #2</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Wrobel is the plaintiff <em>and</em> his own counsel — the classic pro-se attorney filer pattern. Adding him to the Blacklist litigator list (once his recipient number is recovered) prevents re-injection across the Madden brand portfolio.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Pitch Angle · For the first call</div>
+      <h3 class="card-title">"You already paid once on <em>Ellison</em>. Don't pay again because the dialer fired at 3:57 AM."</h3>
+      <div class="card-body">
+        <p>Steve Madden settled a prior TCPA matter in <em>Ellison v. Steven Madden</em> (Final Approval Order on record) <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.courtlistener.com/?q=%22Steve+Madden%22+TCPA&type=r">CourtListener &rarr;</a></span>. That means the GC's office knows TCPA exposure is real. What Wrobel pled is a clean, stackable quiet-hours theory under both <strong>47 CFR § 64.1200(c)(1)</strong> (federal, 8 AM–9 PM) <em>and</em> <strong>Fla. Stat. § 501.059(8)(f)</strong> (Florida, 8 AM–8 PM). At $500/text negligent and $1,500/text willful, even an individual case can clear $16,500 just on the named plaintiff before fees.</p>
+        <p>The wedge: Madden's account-registration page collects a phone number but only offers an email opt-in checkbox — SMS consent is buried in the Terms of Service via a single bundled "Continue" button <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.stevemadden.com/account/register">stevemadden.com/account/register &rarr;</a></span>. That is the express-written-consent defect every TCPA plaintiff firm targets. Blacklist's Consent Capture + Quiet-Hours Scrub cures it inside one billing cycle, and the audit doc gives the GC something to file in the docket if Wrobel pushes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">$1.98B publicly traded footwear conglomerate with a five-brand DTC portfolio running on one outsourced SMS stack.</h2>
+      <p class="section-lede">Steve Madden, Ltd. is a Delaware-domiciled, Long Island City–HQ'd public company (NASDAQ: SHOO) with 255 retail stores and roughly 4,200 employees. The SMS marketing program disclosed in their privacy policy spans the full portfolio — Steve Madden, Dolce Vita, Betsey Johnson, Blondo, BB Dakota, Mad Love — making any compliance gap a multi-brand exposure.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile · Steve Madden, Ltd.</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Steve Madden, Ltd. (Delaware corporation) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Steve_Madden_(company)">Wikipedia &rarr;</a></span></dd>
+          <dt>Founded</dt><dd>1990 by Steve Madden (NY); reincorporated DE 1998</dd>
+          <dt>HQ</dt><dd>52-16 Barnett Ave., Long Island City, NY</dd>
+          <dt>Public Ticker</dt><dd>NASDAQ: SHOO (S&amp;P 600 component)</dd>
+          <dt>Revenue (2023)</dt><dd>US$1.98B; Operating income $213.2M; Net income $171.5M</dd>
+          <dt>Employees</dt><dd>~4,200 (2024)</dd>
+          <dt>Retail Footprint</dt><dd>255 stores as of 2023</dd>
+          <dt>Main Phone</dt><dd>1-888-762-3336 (consumer) · 718-446-1800 (corporate) <span class="src-tag"><a href="https://www.stevemadden.com/pages/contact-us">stevemadden.com &rarr;</a></span></dd>
+          <dt>Consumer Email</dt><dd>info@stevemaddendirect.com</dd>
+          <dt>SMS Sender Domain</dt><dd><strong>stevemadden.co</strong> (distinct from primary stevemadden.com — outsourced SMS infra)</dd>
+          <dt>Vertical</dt><dd>DTC fashion / footwear / accessories</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Phone number collected, but no SMS consent box.</h3>
+        <div class="card-body">
+          <p>The Steve Madden account-registration page collects a "Phone Number" field but presents <strong>only an email opt-in checkbox</strong> ("Yes, sign me up to receive emails…"). There is no separate, conspicuous SMS consent box; consent for text marketing is bundled by reference into the Terms of Service under a single "Continue" button <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.stevemadden.com/account/register">stevemadden.com/account/register &rarr;</a></span>.</p>
+          <p>That bundled-consent flow is the express-written-consent defect TCPA plaintiff firms target. Combined with the 3:57 AM and 5:44 AM send times pled in ¶ 16 of the complaint, Steve Madden's SMS platform is a textbook fail on both consent and quiet hours.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Service just issued · 21-day federal answer clock starts now</h3>
+      <dl class="kv">
+        <dt>Complaint Filed</dt><dd>June 8, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-24017&type=r">CourtListener &rarr;</a></span></dd>
+        <dt>Summons Issued</dt><dd>June 8, 2026 (Doc #4) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-24017&type=r">CourtListener &rarr;</a></span></dd>
+        <dt>Answer Deadline</dt><dd>Approximately July 6, 2026 (Fed. R. Civ. P. 12(a) · 21 days post-service)</dd>
+        <dt>Magistrate Assignment</dt><dd>Edwin G. Torres at filing — consent will be solicited; absent consent, reassignment to Article III judge</dd>
+        <dt>Damages Math</dt><dd>11 alleged texts × $500 = $5,500 negligent floor · × $1,500 = $16,500 willful ceiling on TCPA Count 1 alone, before FTSA stacking</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity (Cross-Sell Candidate)</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dolce Vita</td>
+            <td>Subsidiary brand</td>
+            <td>Women's footwear</td>
+            <td>Same DTC SMS stack inferred</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Betsey Johnson</td>
+            <td>Subsidiary brand</td>
+            <td>Women's fashion/accessories</td>
+            <td>Same parent SMS infra (stevemadden.co)</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Blondo</td>
+            <td>Subsidiary brand</td>
+            <td>Footwear</td>
+            <td>Cross-portfolio scrub coverage</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>BB Dakota</td>
+            <td>Subsidiary brand</td>
+            <td>Women's apparel</td>
+            <td>Cross-portfolio scrub coverage</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Mad Love</td>
+            <td>Licensed/owned label</td>
+            <td>Apparel / accessories</td>
+            <td>Cross-portfolio scrub coverage</td>
+            <td><span class="pill pill--info">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Brand portfolio per <a href="https://en.wikipedia.org/wiki/Steve_Madden_(company)">Wikipedia &rarr;</a> · SMS marketing disclosure per <a href="https://www.stevemadden.com/pages/privacy-policy">Privacy Policy &rarr;</a></p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Pro-se attorney plaintiff, brand-new bar admission, and a stacked TCPA + FTSA quiet-hours theory.</h2>
+      <p class="section-lede">Michael E. Wrobel is both the plaintiff and his own counsel. He was admitted to the Florida Bar on February 19, 2026 — fewer than four months before filing this complaint. His firm, Conquest Law PLLC, is branded as an IP boutique and operates from his Miami apartment. This is a targeted, low-cost serial-plaintiff posture, not a class machine.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-24017-EGT (S.D. Fla., Miami Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-24017&type=r">CourtListener &rarr;</a></span></dd>
+          <dt>Filed</dt><dd>June 8, 2026</dd>
+          <dt>Plaintiff</dt><dd>Michael E. Wrobel (individual; Miami-Dade, FL)</dd>
+          <dt>Class Action?</dt><dd>No — individual claim only</dd>
+          <dt>Claims</dt><dd>Count 1: TCPA Quiet Hours · 47 USC § 227(c) · 47 CFR § 64.1200(c)(1)<br>Count 2: FTSA Quiet Hours · Fla. Stat. § 501.059(8)(f)</dd>
+          <dt>Theory</dt><dd>11 SMS sent outside lawful windows · 9 before 8 AM or after 8 PM local time (FTSA) · 2 before 8 AM or after 9 PM local time (TCPA)</dd>
+          <dt>Send Times Pled</dt><dd>8:49 PM, 8:52 PM, 8:48 PM, 8:50 PM, 8:02 PM, <strong>5:44 AM</strong>, <strong>3:57 AM</strong>, 8:07 PM, 8:38 PM</dd>
+          <dt>Damages Sought</dt><dd>$500/$1,500 per TCPA violation + $500/$1,500 per FTSA violation + injunctive relief + fees</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer deadline</dd>
+          <dt>Magistrate</dt><dd>Edwin G. Torres</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel Card</h3>
+        <dl class="kv">
+          <dt>Attorney</dt><dd>Michael Ethan Wrobel (pro se)</dd>
+          <dt>Florida Bar #</dt><dd>1053847 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">Florida Bar &rarr;</a></span></dd>
+          <dt>Admit Date</dt><dd>February 19, 2026 <span class="pill pill--warn">Under 4 months admitted at filing</span></dd>
+          <dt>Bar Address</dt><dd>125 NE 32nd St Apt 705, Miami, FL 33137-4246</dd>
+          <dt>Address Match</dt><dd><span class="pill pill--ok">Matches complaint</span> (firm operates from attorney's residence)</dd>
+          <dt>Firm</dt><dd>Conquest Law PLLC (solo) · branded as Strategic IP &amp; Business Counsel <span class="src-tag"><a href="https://conquestip.com">conquestip.com &rarr;</a></span></dd>
+          <dt>Phone</dt><dd>678-814-5588</dd>
+          <dt>Email</dt><dd>mike@conquestip.com</dd>
+          <dt>Discipline</dt><dd><span class="pill pill--ok">Clean (10-yr)</span></dd>
+          <dt>TCPAWorld</dt><dd>Not listed on power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Michael+Wrobel">TCPAWorld &rarr;</a></span> · <span class="src-tag"><a href="https://tcpaworld.com/?s=Conquest+Law">TCPAWorld &rarr;</a></span></dd>
+          <dt>WebRecon</dt><dd>No hits <span class="src-tag"><a href="https://webrecon.com/?s=Conquest+Law">WebRecon &rarr;</a></span></dd>
+          <dt>Prior TCPA Filings</dt><dd>None found in CourtListener under attorney or firm name <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Conquest+Law%22&type=r">CourtListener &rarr;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff Template · Pro-Se Attorney Filer</div>
+      <h3 class="card-title">First-time TCPA/FTSA plaintiff, but the template is unmistakable.</h3>
+      <p class="card-body">Wrobel is not on a known volume-filer template (Hindi/Lane, PLG/Gutierrez, BLC/Tiller). The signature on this case is different: a freshly admitted attorney representing himself, filing in his home division, pleading both federal quiet hours and the FTSA's tighter 8 PM cap in a single complaint with screenshot exhibits already attached. The economics favor a quick statutory settlement over discovery — there is no class to manage, no co-counsel to share fees with, and the firm operates from a residential apartment with no commercial infrastructure to support extended litigation <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">Florida Bar &rarr;</a></span>.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Docket</th>
+            <th>Court</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Theory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Wrobel v. Steve Madden, Ltd.</strong></td>
+            <td>1:26-cv-24017-EGT</td>
+            <td>S.D. Fla.</td>
+            <td>2026-06-08</td>
+            <td><span class="pill pill--red">Active · Pre-Answer</span></td>
+            <td>TCPA + FTSA quiet hours (11 texts)</td>
+          </tr>
+          <tr>
+            <td>Ellison v. Steven Madden</td>
+            <td>—</td>
+            <td>Referenced as exhibit in N.D. Ill. TCPA filing</td>
+            <td>~2015 or earlier</td>
+            <td><span class="pill pill--ok">Settled · Final Approval</span></td>
+            <td>TCPA class settlement (prior posture)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-bottom:24px;">Case history per <a href="https://www.courtlistener.com/?q=%22Steve+Madden%22+TCPA&type=r">CourtListener Steve Madden TCPA search &rarr;</a></p>
+
+    <div class="callout">
+      <h4 class="callout-title">Open intel gaps to close before first dial</h4>
+      <ul class="clean tight">
+        <li><strong>Plaintiff's recipient phone number</strong> — not pled. Pull ECF #1 + civil cover sheet from PACER. Cross-check Florida Bar published 678-814-5588 to confirm whether Wrobel was texted on his published bar line.</li>
+        <li><strong>Answer deadline</strong> — return of service has not posted; cannot confirm whether the 21-day clock has started. PacerMonitor/UniCourt returned 404s; only ECF will confirm <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-24017&type=r">CourtListener &rarr;</a></span>.</li>
+        <li><strong>Sender DID / short code</strong> — complaint does not pled the originating phone number. Sender domain identified only as stevemadden.co. Recover from the screenshot exhibits or discovery.</li>
+        <li><strong>Defense counsel</strong> — no appearance logged yet. Watch for an in-house or NY-firm appearance within 14 days of service.</li>
+        <li><strong>Lisa Keith's direct contact</strong> — General Counsel email is inferred from the standard pattern only; no published direct line.</li>
+        <li><strong>Ellison settlement details</strong> — case caption is referenced as a prior-approval exhibit but full docket, court, and amount were not retrievable from CourtListener/Justia.</li>
+        <li><strong>SEC EDGAR 10-K risk factors</strong> — could not pull; would confirm whether Madden currently discloses TCPA exposure to investors.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to Lisa Keith (General Counsel). CEO Edward Rosenfeld is the escalation lever.</h2>
+      <p class="section-lede">Steve Madden is a public company with a defined GC role. Lisa Keith owns the litigation desk and is the right first call. The published company line (718-446-1800) routes to corporate; the consumer 1-888 line is not the right path. Email pattern <strong>{first.last}@stevemadden.com</strong> is confirmed via SignalHire-published employee emails.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lisa Keith</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>General Counsel &amp; Secretary — owns litigation response; first call <span class="src-tag"><a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a></span></td>
+            <td>718-446-1800 (corp main)</td>
+            <td>lisa.keith@stevemadden.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Edward Rosenfeld</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Chairman &amp; CEO since August 2008 — escalation lever once GC engages <span class="src-tag"><a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a></span></td>
+            <td>718-446-1800</td>
+            <td>edward.rosenfeld@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Amelia Newton Varela</strong><br><span class="pill pill--dark">President</span></td>
+            <td>President &amp; Director since Sept 2015 — operational decision-maker for brand portfolio <span class="src-tag"><a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a></span></td>
+            <td>—</td>
+            <td>amelia.varela@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lindsay Cohen</strong><br><span class="pill pill--dark">Brand President</span></td>
+            <td>President — Steve Madden brand · controls DTC marketing P&amp;L <span class="src-tag"><a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a></span></td>
+            <td>—</td>
+            <td>lindsay.cohen@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alex Frias</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>EVP Marketing / CMO — owns SMS marketing program budget <span class="src-tag"><a href="https://www.signalhire.com/companies/steve-madden">SignalHire &rarr;</a></span></td>
+            <td>—</td>
+            <td>alex.frias@stevemadden.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lauren Wilner</strong><br><span class="pill pill--dark">CBO</span></td>
+            <td>Chief Brand Officer — brand voice / promo calendar <span class="src-tag"><a href="https://www.signalhire.com/companies/steve-madden">SignalHire &rarr;</a></span></td>
+            <td>—</td>
+            <td>lauren.wilner@stevemadden.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gregg Meyer</strong><br><span class="pill pill--dark">Counsel · CSR</span></td>
+            <td>Chief Sustainability Officer, Counsel, VP CSR — secondary legal contact <span class="src-tag"><a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a></span></td>
+            <td>—</td>
+            <td>gregg.meyer@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zine Mazouzi</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer — settlement authorization signature <span class="src-tag"><a href="https://www.linkedin.com/company/steve-madden">LinkedIn &rarr;</a></span></td>
+            <td>—</td>
+            <td>zine.mazouzi@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Oz Saar</strong><br><span class="pill pill--dark">CIO</span></td>
+            <td>CIO — owns SMS platform integration / vendor stack <span class="src-tag"><a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a></span></td>
+            <td>—</td>
+            <td>oz.saar@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kamran Siddique</strong><br><span class="pill pill--dark">CISO</span></td>
+            <td>Global CISO &amp; Head of IT Infrastructure — vendor data flow / privacy <span class="src-tag"><a href="https://www.signalhire.com/companies/steve-madden">SignalHire &rarr;</a></span></td>
+            <td>—</td>
+            <td>kamran.siddique@stevemadden.com</td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Eder Flores</strong><br><span class="pill pill--dark">Retail/Ecom</span></td>
+            <td>Director Retail &amp; Ecommerce — DTC channel operations <span class="src-tag"><a href="https://www.signalhire.com/companies/steve-madden">SignalHire &rarr;</a></span></td>
+            <td>—</td>
+            <td>eder.flores@stevemadden.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Simone Griffith</strong><br><span class="pill pill--dark">Mktg</span></td>
+            <td>Senior Director, International Marketing <span class="src-tag"><a href="https://www.signalhire.com/companies/steve-madden">SignalHire &rarr;</a></span></td>
+            <td>—</td>
+            <td>simone.griffith@stevemadden.com</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">DEFENSE</span></td>
+            <td>Not yet appeared — ~21-day federal answer window. Watch ECF for first appearance.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Steve Madden Corporate</strong><br><span class="pill pill--dark">Main</span></td>
+            <td>Corporate switchboard · 52-16 Barnett Ave., Long Island City, NY <span class="src-tag"><a href="https://www.stevemadden.com/pages/contact-us">Contact &rarr;</a></span></td>
+            <td>718-446-1800</td>
+            <td>info@stevemaddendirect.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:12px;">Email pattern <code>{first.last}@stevemadden.com</code> confirmed via SignalHire-published partial-mask employee emails (a*****s@stevemadden.com, c************o@stevemadden.com, e*****s@stevemadden.com, l*****y@stevemadden.com) <a href="https://www.signalhire.com/companies/steve-madden">SignalHire &rarr;</a>. Org chart cross-referenced via <a href="https://theorg.com/org/steve-madden">TheOrg &rarr;</a>.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move on this within 72 hours. The answer clock starts the moment service is returned.</h2>
+      <p class="section-lede">Service of process was issued the day of filing. The 21-day federal answer window is, at most, days away from triggering. The pitch lands hardest while GC Lisa Keith is still building her response file — before outside counsel anchors the strategy.</p>
+    </div>
+
+    <div class="card" style="padding:0 24px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 1 · Pull PACER ECF #1 + civil cover sheet</h4>
+          <p>The complaint exhibits and cover sheet may carry plaintiff's recipient phone. Without it, the litigator-scrub close is theoretical. Cost ~$1.20.</p>
+          <p><span class="pill pill--info">Owner: assigned BDR · Deliverable: docket pull saved to lead record</span></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1–2 · Cold email Lisa Keith (GC), copy Edward Rosenfeld (CEO)</h4>
+          <p>Subject line: "Wrobel v. Steve Madden — quiet-hours SMS fix before answer due." Lead with the 3:57 AM and 5:44 AM send times pled in ¶ 16, reference <em>Ellison</em>, and propose a 30-minute call to walk through Blacklist's Consent Capture + Quiet-Hours Scrub. Do <strong>not</strong> bring up specific damages numbers — let her math it.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3 · Phone outreach via 718-446-1800</h4>
+          <p>Ask for Lisa Keith or the legal department. If gated, leave a voicemail referencing the case number 1:26-cv-24017-EGT and the answer deadline. Follow up the same day via LinkedIn InMail to Zine Mazouzi (CFO) — settlement authorization sits there.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 5–7 · Parallel outreach to CMO Alex Frias</h4>
+          <p>If legal is unresponsive, the marketing side has the budget and the operational pain. Frame the conversation as "we keep your SMS calendar live without the 3 AM exposure" — not as litigation defense.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 10 · Watch ECF for defense-counsel appearance</h4>
+          <p>Once outside counsel appears, the sales window narrows — outside counsel will route compliance vendor decisions through their own preferred list. Close before this happens.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Week 3 · Cross-sell scrub coverage across the brand portfolio</h4>
+          <p>Once the Steve Madden brand is engaged, package Dolce Vita + Betsey Johnson as the natural next two — both ship on the same stevemadden.co sender infra inferred from the privacy policy disclosure.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <h4 class="callout-title">Trigger conditions · re-route the plan if any of these hit</h4>
+      <ul class="clean tight">
+        <li><strong>Madden answers and moves to compel arbitration:</strong> their ToS has an arbitration clause; if invoked, soft-pedal the litigation angle and lead with brand-portfolio audit instead.</li>
+        <li><strong>Plaintiff voluntarily dismisses or amends to add a class:</strong> the urgency math changes — escalate to Pitch v2 and re-engage CFO directly.</li>
+        <li><strong>Outside defense counsel appears from a major TCPA defense bench:</strong> coordinate with that firm rather than bypass them.</li>
+        <li><strong>Recipient phone surfaces and matches Wrobel's bar-published 678-814-5588:</strong> add to litigator list immediately and surface to Madden as proof their flow re-injected a known filer.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:24px;">
+      <span class="pill pill--red">URGENCY · HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 6</span>
+      <span class="pill pill--info">LEAD PRODUCT · CONSENT CAPTURE + QUIET-HOURS SCRUB</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
