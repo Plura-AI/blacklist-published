@@ -1246,6 +1246,46 @@
     .ck-tab-name { font-size: 8px; }
     .ck-script, .ck-merge, .ck-obj-section, .ck-banner { padding-left: 18px; padding-right: 18px; }
   }
+
+  /* ── EXPORT REMINDER MODAL ── */
+  .export-modal {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.55);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .export-modal.show { display: flex; }
+  .export-card {
+    background: var(--bg-surface, #fff); border: 1px solid var(--black-5);
+    border-top: 5px solid var(--red); max-width: 460px; width: 100%;
+    padding: 28px 30px; box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+  }
+  .export-eyebrow {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--green, #117A3D); margin-bottom: 10px;
+  }
+  .export-title {
+    font-family: var(--font-display); font-size: 24px; letter-spacing: 0.02em;
+    color: var(--ink, #0D0D0D); line-height: 1.1; margin-bottom: 18px;
+  }
+  .export-steps { list-style: none; margin: 0 0 22px; padding: 0; }
+  .export-steps li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 14.5px; line-height: 1.5; color: var(--gray-5, #1F1F1F); padding: 10px 0;
+    border-bottom: 1px solid var(--black-4, #EFEFEF);
+  }
+  .export-steps li span {
+    flex-shrink: 0; width: 24px; height: 24px; background: var(--red); color: #fff;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .export-steps strong { color: var(--red); }
+  .export-ok {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 13px 22px; border: 1px solid var(--red); background: var(--red); color: #fff;
+    cursor: pointer; width: 100%; transition: all 0.15s;
+  }
+  .export-ok:hover { background: var(--red-bright, #C20100); border-color: var(--red-bright, #C20100); }
 </style>
 </head>
 <body>
@@ -1332,6 +1372,18 @@
   <div class="fbrand-logo"><svg role="img" aria-label="Blacklist Alliance" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8"><g id="Layer_1-2" data-name="Layer 1"><g id="Layer_1-3" data-name="Layer 1"><g><path d="M220,19.2h-8l-1.4,4.2h-6.1L213,.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM213.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"></path><path d="M229.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"></path><path d="M246.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#b5001f"></path><path d="M264.3,23.4V.5h6v22.9h-6Z" fill="#b5001f"></path><path d="M287,19.2h-8l-1.4,4.2h-6.1l8.5-22.9h6.6l8.4,22.9h-6.5l-1.5-4.2ZM280.6,14.4h4.9l-2.4-7.3-2.5,7.3Z" fill="#b5001f"></path><path d="M301.6,9.1v14.3h-5.5V.5h6.5l8.5,13.2V.5h5.5v22.9h-5.8s-9.2-14.3-9.2-14.3Z" fill="#b5001f"></path><path d="M318.4,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#b5001f"></path><path d="M360,23.4h-16.2V.5h16v5.2h-10v3.3h9v5.2h-9v4h10.2s0,5.2,0,5.2Z" fill="#b5001f"></path></g><g><path d="M35.6,21.4h-7.2v2h-2.3v-6.5h2.3v2h7.2v2.5Z" fill="#fff"></path><path d="M35.6,16.3h-9.5v-2.5h3.5v-3.5h-3.5v-2.5h9.5v2.5h-3.8v3.5h3.8v2.5Z" fill="#fff"></path><polygon points="33.4 .5 33.4 4.2 31.8 4.2 31.8 .5 29.6 .5 29.6 4.2 28.2 4.2 28.2 .5 26.1 .5 26.1 6.7 35.6 6.7 35.6 .5 33.4 .5" fill="#fff"></polygon></g><g><path d="M48.4,23.4h-9.5V.5h9.2c5,0,8.1,2.2,8.1,6.2s-1.1,3.6-3,4.7c2.3,1,3.6,2.7,3.6,5.1,0,4.3-3.1,6.9-8.4,6.9ZM44.4,5.2v4h3.3c2,0,2.9-.8,2.9-2s-.9-1.9-2.9-1.9h-3.3v-.1ZM44.4,14v4.7h3.5c2.3,0,3.3-.9,3.3-2.4s-1.1-2.3-3.3-2.3c0,0-3.5,0-3.5,0Z" fill="#fff"></path><path d="M58.7,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#fff"></path><path d="M89.8,19.2h-8l-1.4,4.2h-6.1L82.8.5h6.6l8.4,22.9h-6.5l-1.5-4.2ZM83.4,14.4h4.9l-2.5-7.3-2.4,7.3Z" fill="#fff"></path><path d="M96.2,11.9c0-6.7,5.1-11.9,11.7-11.9s11.1,4.2,11.9,10.2h-6.4c-.5-2.9-2.6-4.9-5.4-4.9s-5.5,2.6-5.5,6.5,2.1,6.6,5.5,6.6,4.9-2,5.4-4.9h6.4c-.8,6.1-5.6,10.3-11.9,10.3s-11.7-5.1-11.7-11.9Z" fill="#fff"></path><path d="M121.6,23.4V.5h6v9.6l7.2-9.6h6.9l-8.1,10.7,8.3,12.2h-7.3l-6.9-10.3v10.3h-6.1,0Z" fill="#fff"></path><path d="M143.1,23.4V.5h6v17.5h9.6v5.5h-15.6v-.1Z" fill="#fff"></path><path d="M160.6,23.4V.5h6v22.9h-6Z" fill="#fff"></path><path d="M178.5,23.7c-6,0-9.8-3.2-10.2-8.2h6.1c.1,2.2,1.5,3.5,4,3.5s3.4-.8,3.4-2.2-1-1.7-2.3-2l-4.2-.8c-3.7-.7-6.1-2.8-6.1-6.5s3.8-7.3,8.9-7.3,9.4,3.1,9.7,8.1h-6c-.2-2.1-1.6-3.4-3.6-3.4s-2.9,1-2.9,2.2,1,1.6,2.2,1.9l4.4.9c4.1.8,6.3,2.8,6.3,6.1s-3.7,7.7-9.7,7.7h0Z" fill="#fff"></path><path d="M194.7,23.4V5.9h-7V.5h20.1v5.5h-7v17.5h-6.1v-.1Z" fill="#fff"></path></g><g><rect y=".4" width="22.7" height="23" fill="#b5001f"></rect><g><circle cx="9.4" cy="6.2" r="2.9" fill="#fff"></circle><path d="M10.3,19.6c-1.2-1.1-2-2.6-2-4.4,0-2.8,1.9-5.1,4.5-5.6h-7.1c-1,0-1.9.8-1.9,1.9v5.8c0,.5.5,1,1.1,1h0c.6,0,1.1-.5,1.1-1.1v-4.6h.5v7.1h3.8v-.1Z" fill="#fff"></path><path d="M14,10.4c-2.7,0-4.9,2.2-4.9,4.9s2.2,4.9,4.9,4.9,4.9-2.2,4.9-4.9-2.2-4.9-4.9-4.9ZM14,11.5c2.1,0,3.8,1.7,3.8,3.8s-.3,1.6-.7,2.2l-5.4-5.3c.7-.5,1.4-.7,2.3-.7ZM10.2,15.3c0-.8.2-1.5.7-2.1l5.3,5.3c-.6.4-1.3.7-2.1.7-2.2-.1-3.9-1.8-3.9-3.9Z" fill="#fff"></path></g></g></g></g></svg></div>
   <div class="fmeta">Confidential Internal Tool · Phase 1 Pilot · Pre-Contact Gate</div>
 </footer>
+
+<div class="export-modal" id="exportModal" onclick="if(event.target===this)closeExportModal()">
+  <div class="export-card">
+    <div class="export-eyebrow">✓ Exported — JSON + PDF downloaded</div>
+    <div class="export-title">Two steps in HubSpot before you move on</div>
+    <ol class="export-steps">
+      <li><span>1</span> Upload the <strong>PDF</strong> to HubSpot on this lead's record.</li>
+      <li><span>2</span> Change the <strong>&ldquo;Court Filing Stage&rdquo;</strong> in HubSpot to <strong>&ldquo;Checklist Complete.&rdquo;</strong></li>
+    </ol>
+    <button class="export-ok" onclick="closeExportModal()">Got it</button>
+  </div>
+</div>
 
 <script>
   // ── CHECKLIST DEFINITION ──────────────────────────────────────────────
@@ -1932,6 +1984,16 @@
       try { buildPdfDoc().save("bla-checklist-" + slug + ".pdf"); }
       catch (err) { alert("The JSON saved fine. The PDF couldn't generate (the PDF library may not have loaded — check your connection and try again)."); }
     }, 350);
+    showExportModal();
+  }
+
+  function showExportModal() {
+    const mEl = document.getElementById('exportModal');
+    if (mEl) mEl.classList.add('show');
+  }
+  function closeExportModal() {
+    const mEl = document.getElementById('exportModal');
+    if (mEl) mEl.classList.remove('show');
   }
 
   function buildPdfDoc() {
