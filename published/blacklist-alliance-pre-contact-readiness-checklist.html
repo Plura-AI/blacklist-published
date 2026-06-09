@@ -145,10 +145,11 @@
     padding: 24px 28px;
     margin-bottom: 8px;
     display: grid;
-    grid-template-columns: 1fr 1fr 160px;
+    grid-template-columns: 1fr 1fr auto;
     gap: 20px;
     align-items: end;
   }
+  .lead-actions { display: flex; flex-direction: column; gap: 8px; }
 
   .field label {
     display: block;
@@ -915,13 +916,15 @@
   .ck-banner-sub { font-size: 13px; color: var(--gray-3); margin-top: 8px; position: relative; max-width: 640px; }
 
   .ck-warning {
-    display: flex; align-items: flex-start; gap: 14px;
+    display: flex; align-items: center; gap: 18px;
     background: var(--red-tint);
     border-top: 1px solid var(--red-dark);
     border-bottom: 2px solid var(--red);
-    padding: 16px 32px;
+    padding: 18px 32px;
   }
   .ck-warn-icon { font-size: 22px; flex-shrink: 0; line-height: 1.3; }
+  .ck-boss { width: 92px; flex-shrink: 0; align-self: center; }
+  .ck-boss svg { width: 100%; height: auto; display: block; }
   .ck-warn-title {
     font-family: var(--font-mono); font-size: 11px; font-weight: 500;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--red-bright);
@@ -1266,7 +1269,12 @@
       <label>Rep Name</label>
       <input type="text" id="repName" placeholder="Your name" oninput="saveState()">
     </div>
-    <button class="btn btn-reset" onclick="resetChecklist()">Reset Checklist</button>
+    <div class="lead-actions">
+      <button class="btn" onclick="exportChecklist()">&darr; Export</button>
+      <button class="btn" onclick="document.getElementById('importFile').click()">&uarr; Import</button>
+      <button class="btn btn-reset" onclick="resetChecklist()">Reset</button>
+      <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importChecklist(event)">
+    </div>
   </div>
 
   <!-- REPORT BAR -->
@@ -1313,7 +1321,7 @@
   <!-- CALL KIT (scripts + objections, unlocks on cleared) -->
   <div id="callkit"></div>
 
-  <div class="persist-note">↺ Progress saves automatically in this browser, per lead. Close and come back anytime.</div>
+  <div class="persist-note">↺ Progress saves automatically in this browser, per lead. Use <strong>Export</strong> to save a copy of a checklist or move it to another device — <strong>Import</strong> loads it back.</div>
 
 </div>
 
@@ -1902,6 +1910,63 @@
   }
   let _lastCleared = null;
 
+  function exportChecklist() {
+    saveState();
+    const data = { _app: "bla-precontact-checklist", _v: 1, exportedAt: new Date().toISOString(), state: state };
+    const slug = (state.leadName || "checklist").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "checklist";
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "bla-checklist-" + slug + ".json";
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 200);
+  }
+
+  function importChecklist(e) {
+    const file = e.target && e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function () {
+      let data;
+      try { data = JSON.parse(reader.result); }
+      catch (err) { alert("That file isn't a valid checklist export."); e.target.value = ""; return; }
+      const st = (data && data.state) ? data.state : data;
+      if (!st || typeof st !== "object") { alert("That file isn't a valid checklist export."); e.target.value = ""; return; }
+      if (state.leadName && !confirm("Load \"" + (st.leadName || "this checklist") + "\"? It will replace what's currently on screen (your saved leads are not affected).")) { e.target.value = ""; return; }
+      document.getElementById('leadName').value = st.leadName || "";
+      document.getElementById('repName').value = st.repName || "";
+      state.checked = st.checked || {};
+      state.notes = st.notes || {};
+      state.uploads = st.uploads || {};
+      state.fields = st.fields || {};
+      state.masterConfirm = st.masterConfirm || {};
+      state.coveredOpen = st.coveredOpen || {};
+      state.merge = st.merge || {};
+      state.kit = st.kit || {};
+      state.emailVariant = st.emailVariant || "consultative";
+      state.emailOpen = !!st.emailOpen;
+      state.smsVariant = st.smsVariant || "afteremail";
+      state.smsOpen = !!st.smsOpen;
+      state.loomOpen = !!st.loomOpen;
+      state.loomBeats = st.loomBeats || {};
+      state.activeScript = st.activeScript || "panicked";
+      state.reportUrl = st.reportUrl || "";
+      state.reportRead = !!st.reportRead;
+      state.leadName = st.leadName || "";
+      state.repName = st.repName || "";
+      for (const k in fileBlobs) delete fileBlobs[k];
+      _lastCleared = null;
+      saveState();
+      syncReportBar();
+      render();
+      updateReportStatus();
+      renderCallKit();
+      e.target.value = "";
+      alert("Loaded checklist for: " + (state.leadName || "(unnamed lead)"));
+    };
+    reader.readAsText(file);
+  }
+
   function resetChecklist() {
     if (!confirm("Reset all checks and notes for this lead? This can't be undone.")) return;
     state.checked = {};
@@ -1931,8 +1996,8 @@
 
   // ── CALL KIT — SCRIPTS, CASE MERGE, OBJECTIONS ────────────────────────────
   const UNIVERSAL_OPENER = {
-    line: "Hi, is this {{name}}? This is [Your Name] over at Blacklist Alliance — I'll be quick. I'm calling about the TCPA filing against {{company}}, and depending on timing, I may actually be reaching you before you've even been served. Before you spend a dollar fighting it, you should know the person who filed it, {{plaintiff}}, does this for a living — we're already tracking {{casecount}} cases tied to them. We've done the homework most attorneys bill $500 an hour to dig up. Before I go further — how are you feeling about the whole thing so far?",
-    why: "Opens with the timing edge — real-time leads can land 2–10 days before they're served, so you may be the first to tell them — then stacks the repeat-filer hook (90% of these plaintiffs have 50+ cases) and the $500/hr cost-savings angle, and ends on the open probe. If they say they haven't heard about any lawsuit, that IS the head start: stay calm, confirm the filing is real, and frame it as time on their side, not a scare. Deliver it, then stop talking and listen — their reaction tells you the temperature."
+    line: "Hi, is this {{name}}? This is [Your Name] over at Blacklist Alliance. I'm calling to let you know a TCPA lawsuit was filed against {{company}} — that's case {{caption}}. Depending on timing, you may not have even been served yet, so I wanted you to hear it from me first. The person who filed it, {{plaintiff}}, does this for a living — we're already tracking {{casecount}} cases tied to them, and we've already pulled the research your attorney would bill $500 an hour for. I actually sent you an email and a 60-second video laying it all out — did either of those reach you? If not, I can text you the video right now.",
+    why: "Matt's call: lead as a NOTIFICATION, not a feeler. Most defendants haven't been served yet, so you're often first to tell them — state the filing, the case number, and that they may not be served yet, up front. Then ask if they got the email/video and be ready to text the video link on the spot if they haven't. Their answer to \"did either reach you?\" is your temperature read. Don't open with \"how are you feeling\" — open with the facts, then stop and listen."
   };
 
   const VOICEMAIL = {
@@ -1955,13 +2020,14 @@
       badge: "Calm them, then save them money",
       stance: "Slow them down. You're not the first — and this plaintiff isn't either.",
       blocks: [
-        { label: "Opening — Phone", body: "First off, take a breath — this is a lot more manageable than it feels right now. Here's something that should help: {{plaintiff}} isn't some wronged consumer who stumbled onto you. They file these for a living — we're already tracking {{casecount}} cases tied to them. You're not the target, you're a number on a list. We've already done the research on this exact plaintiff." },
+        { label: "Opening — Phone", body: "First off, take a breath — this is a lot more manageable than it feels right now, and you are not the first person {{plaintiff}} has done this to. They file these for a living — we're tracking {{casecount}} cases tied to them, and we watch this same plaintiff hit a stack of companies at once. You're not the target, you're a name on a list. Here's what should help most: we've already pulled the full research file on this exact plaintiff — and the only reason I could reach you this fast is we track every one of these filings the day it hits." },
         { label: "The cost-savings close", body: "Here's where we save you money: whoever defends this is going to spend hours researching {{plaintiff}} — at around $500 an hour. We've already done that work. We hand you, or your attorney, the complete case file so you're paying for strategy, not Googling. And if you don't have a TCPA attorney yet, we'll connect you with a specialist at a rate we've already negotiated down. Can I send that over?" }
       ],
       notes: [
         "Slow your speech — the 'you're just a number on their list' line calms them fast.",
         "Lead with the plaintiff intel, not the products — it reframes the panic.",
         "Book the consult; the deliverable is the case file, not a pitch.",
+        "If they're too rattled to talk, offer to text the video — let them watch once they've settled.",
         "Same-day: email the lawsuit screenshot + the plaintiff's case count."
       ]
     },
@@ -1970,7 +2036,7 @@
       badge: "Keep their lawyer — cut the bill",
       stance: "You're not replacing counsel. You're cutting what counsel costs them.",
       blocks: [
-        { label: "Opening — Phone", body: "Perfect — keep them, that's exactly right. Here's the thing though: every hour your attorney spends researching {{plaintiff}} is about $500 you're paying for work we've already done. We're tracking {{casecount}} of this plaintiff's cases — the firms they use, how they settle, the whole pattern. We hand your attorney that file so they bill you for strategy, not for digging up what we already have." },
+        { label: "Opening — Phone", body: "Perfect — keep them, that's exactly right. Here's the thing though: every hour your attorney spends researching {{plaintiff}} is about $500 you're paying for work we've already done. We're tracking {{casecount}} of this plaintiff's cases — the firms they use, how they settle, the whole pattern. We hand your attorney that file so they bill you for strategy, not for digging up what we already have. And the whole engagement costs less than a single lawsuit." },
         { label: "Email (short version)", body: "{{name}} — keep your attorney, this isn't about replacing them. {{plaintiff}} has {{casecount}} cases on file with us. Handing your attorney that research saves you roughly $500/hour they'd otherwise bill recreating it. I'll send the case file over — 15-minute call this week to walk it through?" }
       ],
       notes: [
@@ -1985,7 +2051,7 @@
       badge: "Educate, then hand them the file",
       stance: "Explain what we track, then make the cost savings concrete.",
       blocks: [
-        { label: "Opening — Phone", body: "Great question — so here's what we do. Blacklist Alliance tracks TCPA plaintiffs and the firms that file for them. {{plaintiff}}, the person who sued {{company}}, has {{casecount}} cases on file with us. We package all of that research — their history, patterns, the counsel they use — and hand it to you or your attorney, so nobody's paying $500 an hour to rediscover what we already have. And if you need counsel, we connect you with TCPA specialists at pre-negotiated rates. Does that make sense as a starting point?" },
+        { label: "Opening — Phone", body: "Great question — so here's what we do. Blacklist Alliance tracks every TCPA lawsuit filed in the country, every single day — that's how I could reach you this fast. {{plaintiff}}, the person who sued {{company}}, already has {{casecount}} cases on file with us. We package all that research — their history, patterns, the counsel they use — and hand it to you or your attorney, so nobody's paying $500 an hour to rediscover what we already have. 900+ companies run their numbers through us, and honestly, if {{company}} had been one of them, you'd never have gotten this call — that number was already flagged. And if you need counsel, we connect you with TCPA specialists at pre-negotiated rates. Does that make sense as a starting point?" },
         { label: "Diagnostic question", body: "Quick one so I point you the right way — do you have a TCPA attorney on this yet, or are you the one handling it for now? And just so I'm clear, are you the right person to get this case file to?" }
       ],
       notes: [
@@ -2001,12 +2067,14 @@
       stance: "Skip the basics. Lead with intel depth, close on the API.",
       blocks: [
         { label: "Opening — Phone", body: "I'll skip the basics — you clearly know {{plaintiff}} is a serial filer. What you may not have is the full picture: we're tracking {{casecount}} of their cases, the firms behind them, and how each one resolved. That's research your counsel would bill real hours for, and we hand it over complete. Saves you the $500-an-hour discovery on a plaintiff we've already mapped." },
-        { label: "The API / prevention close", body: "And once this one's handled — the reason these never stop is the numbers keep coming back. Our API suppresses known-litigator and high-risk numbers before they ever hit your dialer. 1.7 billion calls a month run through it. {{gap}} is exactly the kind of hole it closes. That's the conversation that keeps you off this list permanently — but first, let's get you the file on {{plaintiff}}." }
+        { label: "The API / prevention close", body: "And once this one's handled — the reason these never stop is the numbers keep coming back. Our API suppresses known-litigator and high-risk numbers before they ever hit your dialer — 2.1 billion calls a month, across 900+ contact centers. Here's the kicker: if {{company}} had been on it, you'd never have gotten this call — {{plaintiff}}'s number was already in our database. {{gap}} is exactly the hole it closes, and the whole thing costs less than a single lawsuit. That's what keeps you off this list permanently — but first, let's get you the file on {{plaintiff}}." }
       ],
       notes: [
         "Lead with intel depth — they respect the database, not a pitch.",
-        "The API (1.7B calls/mo) is the back-end close — current suit first.",
-        "Use real numbers: case count, $500/hr, settlement patterns.",
+        "The API (2.1B calls/mo, 900+ contact centers) is the back-end close — current suit first.",
+        "Killer line: \"if you'd been our customer, you'd never have gotten this call.\"",
+        "Use real numbers: case count, $500/hr, costs less than one lawsuit.",
+        "If they stay skeptical, give them room — offer to text the video so they review on their own time.",
         "They'll test you — know the plaintiff's actual history cold."
       ]
     },
@@ -2015,13 +2083,14 @@
       badge: "Disarm — the intel does the talking",
       stance: "Don't sell. State the facts and offer the easy exit.",
       blocks: [
-        { label: "If they challenge the call", body: "I get it — you get sued over phone calls, then a stranger calls you. I'd be skeptical too. I'm not selling you anything on this call. {{caption}} is public record. I called because the person who sued you, {{plaintiff}}, has done this {{casecount}} times that we're tracking — and we've already pulled the whole file. If that's useful to you or your attorney, I'll send it over. If not, no problem at all." },
+        { label: "If they challenge the call", body: "I get it — you get sued over phone calls, then a stranger calls you. I'd be skeptical too. I'm not selling you anything on this call. {{caption}} is public record. I called because the person who sued you, {{plaintiff}}, has done this {{casecount}} times that we're tracking — and we've already pulled the whole file. If that's useful to you or your attorney, I'll send it over. Tell you what — I'll just text you a 60-second video on it; watch it whenever, or don't. No follow-up unless you want one." },
         { label: "24-hour follow-up email", body: "{{name}} — I know my call caught you at a bad moment, no pitch here. The filing's public, and {{plaintiff}} has {{casecount}} cases on record with us. If you or your attorney ever want that research — it saves the $500/hour someone would bill to recreate it — it's yours. If not, you won't hear from me again." }
       ],
       notes: [
         "Never argue or match energy — the case count is your credibility.",
         "Frame as 'I'm handing you something useful,' not 'I'm selling.'",
         "Offer the easy exit; it lowers hostility every time.",
+        "If they're just suspicious it's a scam, give them room — offer to text the video so they can verify on their own time.",
         "If they hang up, send the soft email exactly 24 hours later."
       ]
     }
@@ -2038,8 +2107,10 @@
       r: "You may be completely right — but {{plaintiff}} files these for a living, {{casecount}} times over, and fighting it still costs money either way. We cut that cost by handing you the research already done." },
     { o: "\"How much does this cost?\"", t: "CURIOUS buying signal disguised as a blocker.",
       r: "A lot less than the $500 an hour your attorney bills to research {{plaintiff}} from scratch — and a rounding error next to a settlement. Quick 15 minutes and I'll give you a real number for {{company}}." },
-    { o: "\"We already scrub / have a compliance program.\"", t: "SOPHISTICATED — pivot to the API as the back-end close.",
-      r: "Good — then you'll get the API immediately: 1.7 billion calls a month run through our suppression before they ever dial. But that's the next conversation — right now the priority is the case you're already in, and we've already got the file on {{plaintiff}}." }
+    { o: "\"We already have a compliance program / we scrub.\"", t: "SOPHISTICATED — loop straight back to the value.",
+      r: "Respectfully — you still got sued on a number that was sitting in our database. Whatever you're running didn't flag {{plaintiff}}; ours would have. If {{company}} had been on our API (2.1 billion calls a month, 900+ contact centers) you'd never have gotten this call. That's the back-end fix — but the priority right now is the case you're already in, and we've already pulled the file on {{plaintiff}}." },
+    { o: "\"You've got the wrong person.\"", t: "Don't push — turn them into your courier.",
+      r: "No problem at all — can I text you a quick 60-second video on the filing so you can forward it to whoever handles legal at {{company}}? That's all I'd ask. It'll save them hours either way." }
   ];
 
   // token replacement — fills case details, shows a placeholder chip when empty
@@ -2368,10 +2439,12 @@
       note: "Pull up the database: {{plaintiff}} has {{casecount}} cases, tracked since {{since}}. Land the line: \u201cyou\u2019re a name on a list, not a target.\u201d" },
     { t: "0:35", key: "savings", title: "Make the cost savings concrete",
       note: "\u201cWe\u2019ve already done the research your attorney would bill ~$500/hour to recreate \u2014 it\u2019s ready to hand over.\u201d" },
-    { t: "0:45", key: "path", title: "Name the path forward",
+    { t: "0:45", key: "api", title: "Tease the API / prevention (~30s)",
+      note: "30 seconds on the back end: our API suppresses known-litigator numbers before they ever dial \u2014 2.1 billion calls a month. Land it: \u201cif {{company}} had been a subscriber, you\u2019d never have gotten this call \u2014 {{plaintiff}}\u2019s number was already in our database.\u201d" },
+    { t: "1:00", key: "path", title: "Name the path forward",
       note: "Have counsel? This saves billable hours. No counsel? We connect you with pre-vetted TCPA attorneys at negotiated rates." },
-    { t: "0:55", key: "close", title: "Soft close",
-      note: "\u201cNo pressure \u2014 reply here or grab 15 minutes and I\u2019ll walk you through it.\u201d Stop at ~60 seconds." }
+    { t: "1:10", key: "close", title: "Soft close",
+      note: "\u201cNo pressure \u2014 reply here or grab 15 minutes and I\u2019ll walk you through it.\u201d Wrap by ~90 seconds." }
   ];
 
   function toggleLoomOutline(e) {
@@ -2411,7 +2484,7 @@
           <span class="ck-loom-head">60-second shot-list</span>
           <span class="ck-loom-count">${done}/${LOOM_BEATS.length} covered</span>
         </div>
-        <div class="ck-loom-meta">Keep it under a minute \u00b7 screen-share + face cam if you can \u00b7 <strong>defendant only</strong>.</div>
+        <div class="ck-loom-meta">Aim for 60\u201390 sec \u00b7 screen-share + face cam \u00b7 set the thumbnail to a screenshot of the lawsuit header \u00b7 turn on filler-word + silence removal \u00b7 <strong>defendant only</strong>.</div>
         <div class="ck-loom-list">${beats}</div>
       </div>`;
   }
@@ -2491,7 +2564,7 @@
         </div>
 
         <div class="ck-warning">
-          <span class="ck-warn-icon">⛔</span>
+          <div class="ck-boss"><svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Matt pointing — defendant only"><path d="M6,150 C6,116 26,103 46,100 L74,100 C94,103 110,116 110,150 Z" fill="#222a36"/><path d="M46,100 L60,118 L53,100 Z" fill="#2c3645"/><path d="M74,100 L60,118 L67,100 Z" fill="#2c3645"/><rect x="59" y="112" width="2" height="20" fill="#1b212b"/><path d="M51,88 h18 v15 l-9,8 -9,-8 Z" fill="#c08a57"/><ellipse cx="31" cy="58" rx="6" ry="9" fill="#cf9a66"/><ellipse cx="85" cy="58" rx="6" ry="9" fill="#cf9a66"/><path d="M30,50 C30,26 42,15 58,15 C74,15 86,26 86,50 C86,74 74,90 58,90 C42,90 30,74 30,50 Z" fill="#d7a26c"/><path d="M58,15 C74,15 86,26 86,50 C86,74 74,90 58,90 C68,78 70,58 68,42 C66,28 62,21 58,15 Z" fill="#c8915c" opacity="0.45"/><path d="M36,40 C40,23 48,17 58,17 C68,17 76,23 80,40 C72,32 66,30 58,30 C50,30 44,32 36,40 Z" fill="#b9885a" opacity="0.3"/><path d="M38,45 L53,50 L52,55 L38,50 Z" fill="#4a3a2a"/><path d="M78,45 L63,50 L64,55 L78,50 Z" fill="#4a3a2a"/><ellipse cx="46" cy="57" rx="4.2" ry="3" fill="#fff"/><ellipse cx="70" cy="57" rx="4.2" ry="3" fill="#fff"/><circle cx="47" cy="57" r="2.2" fill="#2a2018"/><circle cx="69" cy="57" r="2.2" fill="#2a2018"/><path d="M58,58 L53,70 Q58,74 63,70 Z" fill="#c8915c"/><path d="M48,80 Q58,75 68,80 Q62,90 58,90 Q54,90 48,80 Z" fill="#5a2f2a"/><rect x="52" y="80" width="12" height="3.5" fill="#fff" opacity="0.85"/><path d="M31,56 C31,83 44,97 58,97 C72,97 85,83 85,56 C82,65 78,71 72,74 C68,71 64,70 58,70 C52,70 48,71 44,74 C38,71 34,65 31,56 Z" fill="#6f5f4c"/><path d="M40,74 C47,80 51,82 58,82 C65,82 69,80 76,74 C70,87 64,92 58,92 C52,92 46,87 40,74 Z" fill="#8b7c69" opacity="0.55"/><path d="M48,73 Q58,69 68,73 Q58,77 48,73 Z" fill="#5f5040"/><path d="M86,108 C100,104 112,107 116,116 L104,130 C96,126 88,120 86,108 Z" fill="#222a36"/><path d="M104,114 L126,112 L127,125 L106,128 Z" fill="#cf9a66"/><path d="M120,108 q13,0 13,12 q0,12 -13,12 q-7,0 -7,-12 Z" fill="#d7a26c"/><rect x="128" y="115" width="20" height="7" rx="3.5" fill="#d7a26c"/><rect x="119" y="120" width="9" height="4" rx="2" fill="#c8915c"/></svg></div>
           <div>
             <div class="ck-warn-title">SEND TO THE DEFENDANT ONLY</div>
             <div class="ck-warn-text">Never send plaintiff research, case counts, or database intel to the plaintiff or plaintiff's counsel — not in an email, not read aloud, not forwarded. This is a <strong>fireable offense.</strong> Everything below is for the defendant you're pitching.</div>
