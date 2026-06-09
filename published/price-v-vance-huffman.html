@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Price v. Vance and Huffman — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(16px, 1.6vw, 20px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:17px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.row-current{ background:#FBE5E5; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance"><text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="-0.02em">BLACKLIST</text><rect x="118" y="4" width="2" height="16" fill="#A50100"/><text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="500" fill="#ffffff" letter-spacing="-0.01em">ALLIANCE</text></svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Reassigned-Number Defendant · Pro Se Plaintiff · Debt Collector · Zero Public Consent Infrastructure</p>
+      <h1 class="hero-tagline">Price v.<br>Vance and Huffman, LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-01883-B</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Tex. (Dallas)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Jane J. Boyle<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Magistrate TBD (referred 6/9)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)<br>47 USC § 227(c)<br>Tex. Util. §55.121<br>Tex. Bus.&Com. Ch.302 / §305.053</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Pro Se <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Rhonda Price · DeSoto, TX</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number disclosed in full — but blacklistBulk lookup failed at runtime; manual rerun required.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Plaintiff Rhonda Price pled her cell number (214-282-1346) directly in the complaint, including on the text-message screenshots in Exhibit B. The blacklistBulk API call against that number returned a DNS error during this run and must be re-executed manually before first dial.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">SCRUB DEFERRED · API ERROR · MANUAL RERUN REQUIRED</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (per Complaint ¶21, Exhibit B)</div>
+        <div class="scrub-number">214-282-1346</div>
+        <div class="scrub-number-sub">Texas (Dallas) mobile. Pled on National DNC Registry at all relevant times (Compl. ¶16). Plaintiff is the subscriber and "called party"; defendant texted this number believing it belonged to a person named "REBECCA" (Compl. ¶22).</div>
+      </div>
+      <p class="scrub-body-text">The blacklistBulk endpoint returned a DNS lookup failure (<code>api.blacklistalliance.com</code> hostname not resolvable) during automated lookup. Number reputation sources (800notes, YouMail, Tellows, RoboKiller) also returned HTTP 403/404 across the board, so we cannot confirm or deny presence on third-party litigator lists from open data. Re-run the BLB API manually before the first dial — the number is in hand, the lookup just needs to complete.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px;">SENDING DID #1</div>
+        <h3 class="card-title">+1 (504) 732-3106</h3>
+        <p class="card-body" style="margin:6px 0 10px;">Geographic DID, New Orleans LA rate center. Identified in Compl. ¶21 and Exhibit B as the sender of all 7 unauthorized texts to plaintiff. No 800notes / YouMail / Tellows / RoboKiller consumer data retrievable — all four sources returned 403/404.</p>
+        <span class="pill pill--gap">NO PUBLIC DID INTEL · SOURCES BLOCKED</span>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px;">SENDING DID #2</div>
+        <h3 class="card-title">855-206-6697</h3>
+        <p class="card-body" style="margin:6px 0 10px;">Toll-free consumer-facing line embedded in every SMS body and routed to payvhllc.com payment portal. Pairing a 504 geographic with an 855 toll-free is the textbook multi-DID dialer rotation pattern for collection SMS campaigns.</p>
+        <span class="pill pill--warn">DID ROTATION PATTERN · DIALER INFRA</span>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px;">RECOVERY PATH</div>
+        <h3 class="card-title">Re-run BLB lookup on 214-282-1346</h3>
+        <p class="card-body" style="margin:6px 0 10px;">Number is fully disclosed in the complaint — no PACER pull needed. Re-run blacklistBulk against 2142821346 before first dial. If HIT: lead the pitch with "your prospect is already on our litigator list." If CLEAN: pivot to the reassigned-number / RND product angle.</p>
+        <span class="pill pill--red">RERUN BEFORE FIRST DIAL</span>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: DEFERRED — API DNS ERROR</span>
+      <span class="pill pill--info">PLAINTIFF NUMBER: FULLY DISCLOSED</span>
+      <span class="pill pill--gap">SERIAL-FILER PROFILE: NOT CONFIRMED — courtlistener pro se search blocked <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Rhonda+Price%22&type=r">CourtListener →</a></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A small VA debt collector with no public consent infrastructure, a documented wrong-number admission, and a fresh TCPA complaint — lead with RND + FCC Safe Harbor.</h2>
+      <p class="section-lede">Vance and Huffman, LLC just got sued for the exact harm Blacklist's Reassigned Numbers Database (RND) scrub prevents: texting a Texas consumer's reassigned cell from a multi-DID dialer pool with no consent chain. The defendant has already admitted in writing that the number was "reassigned" and reached an "unintended recipient" — then sent four more texts after that admission. This is a fundamentals failure that one scrub query (~$0.0025) would have stopped.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">LEAD PRODUCT</div>
+        <h3 class="card-title">RND + FCC Safe Harbor</h3>
+        <p class="card-body">Reassigned-number is pled as the primary theory. Defendant admitted the number was "reassigned" and reached an "unintended recipient" in writing (Compl. ¶28, Ex. A Email 2). A single RND query before dial would have triggered safe harbor under the FCC's 2018 Second Report and Order.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY PRODUCT</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Plaintiff is pro se but filed a multi-statute complaint (TCPA + Tex. Util. §55.121 + Ch.302 + §305.053 + RFDCPA) — sophisticated profile. Defendant's outbound book needs ongoing scrub against the litigator universe. Cross-sell after RND lands.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">TERTIARY PRODUCT</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <p class="card-body">Plaintiff pled the Subject Number was on the National DNC Registry at all relevant times (Compl. ¶16). Count II is a 47 USC §227(c) claim. Federal DNC scrub is a layered add-on alongside RND.</p>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:4px solid var(--bl-red);">
+      <h3 class="card-title">Pitch Angle</h3>
+      <div class="card-body">
+        <p>Open with the smoking gun: "Your team just got sued in Dallas federal court for texting the wrong person seven times. Your own Director of Operations admitted in writing on March 31 that the number had been reassigned and you 'immediately ceased all further communications' — and then your platform sent four more texts after that email. A single $0.0025 query against the FCC's Reassigned Numbers Database would have flagged that number before the first send."</p>
+        <p>Then close the loop: "Statutory exposure on this one consumer is north of $35,000 before trebling. You're at message 7 — what's stopping message 8? We can have RND + DNC + litigator scrub integrated into your SMS dialer before your answer is due." Vance and Huffman has been sued at least 10 times federally since 2014 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vance+and+Huffman%22+FDCPA&type=r">CourtListener →</a></span> — mostly FDCPA — and this is one of the first TCPA-framed complaints. They have no playbook for this statute. That's the opening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small Virginia debt-collection LLC operating a four-line Wix website with FDCPA mini-Miranda only — no privacy policy, no TCPA acknowledgment, no compliance page.</h2>
+      <p class="section-lede">Vance and Huffman, LLC is a privately held debt-collection LLC headquartered at 55 Monette Pkwy, Smithfield, VA 23430 (per Compl. ¶13). Public corporate intel is extremely thin: Virginia SCC, Bizapedia, OpenCorporates, and BBB all blocked or returned no usable record. The defendant's web presence (payvhllc.com) is a single Wix-templated page with no leadership, compliance, or contact subpages indexed.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>Vance and Huffman, LLC</dd>
+          <dt>Entity type</dt><dd>Limited Liability Company</dd>
+          <dt>Formation state</dt><dd>Virginia (unverified — SCC blocked)</dd>
+          <dt>HQ</dt><dd>55 Monette Pkwy, Smithfield, VA 23430 <span class="src-tag">(per Compl. ¶13)</span></dd>
+          <dt>Website</dt><dd>payvhllc.com <span class="src-tag"><a href="https://www.payvhllc.com">payvhllc.com →</a></span></dd>
+          <dt>Main phone</dt><dd>855-206-6697 (consumer line)</dd>
+          <dt>Vertical</dt><dd>Third-party consumer debt collection</dd>
+          <dt>Ownership</dt><dd>Private LLC · founders / managers not publicly disclosed</dd>
+          <dt>Industry footprint</dt><dd>Not a member of InsideARM / ACA International per available search</dd>
+          <dt>BBB profile</dt><dd>Profile exists at Smithfield, VA location but rating/complaints not retrievable (blocked) <span class="src-tag"><a href="https://www.bbb.org/us/va/smithfield/profile/collections-agencies/vance-and-huffman-llc">BBB →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Written admission of reassigned-number contact — then four more texts.</h3>
+        <div class="card-body">
+          <p>On March 31, 2026, Director of Operations Reese Parker wrote to plaintiff (Compl. Ex. A, Email 2): <em>"Upon learning that the number had been reassigned and that the messages had reached an unintended recipient, we immediately ceased all further communications to that number."</em></p>
+          <p>Plaintiff's Exhibit B documents four additional texts after that email: April 25, April 27, May 9, and May 10, 2026 — all from the same +1 (504) 732-3106 sending DID. Defendant's own platform contradicted its own written representation, on the record, in a federal complaint. That is the entire RND pitch in one fact.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-meta">STRATEGIC TIMING</div>
+        <h3 class="card-title">Pre-answer window · Magistrate referral already entered</h3>
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 8, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01883&type=r">CourtListener →</a></span></dd>
+          <dt>Magistrate referral</dt><dd>Order entered June 9, 2026 (Doc #4) — magistrate TBD</dd>
+          <dt>Service / Answer</dt><dd>Service date not yet on docket; 21-day Rule 12 answer clock will start at service</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared as of last fetch</dd>
+          <dt>Prior settlement pattern</dt><dd>V&amp;H typically terminates individual consumer cases within 5 weeks – 9 months (Graham, Thomas, French, James, Jenkins, Coleman, Knighton, Sexton)</dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">COMPLIANCE INFRASTRUCTURE</div>
+        <h3 class="card-title">Zero public consent chain</h3>
+        <ul class="clean tight">
+          <li>payvhllc.com is a single-page Wix template <span class="src-tag"><a href="https://www.payvhllc.com">payvhllc.com →</a></span></li>
+          <li>No /privacy, /terms, /signup, /about, /contact, /team, /leadership — all returned 404</li>
+          <li>Only FDCPA mini-Miranda disclosed on-site; <strong>no TCPA acknowledgment, no DNC notice, no consent-management language</strong></li>
+          <li>No identifiable Chief Compliance Officer or compliance team</li>
+          <li>Two-DID rotation pattern (504 geographic + 855 toll-free) consistent with high-volume collection-SMS dialing</li>
+          <li>No visible vendor relationship with RND / DNC / litigator-scrub provider</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:18px;">Related Entities &nbsp;·&nbsp; Cross-Sell Candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td colspan="5" style="font-size:13px; color:var(--fg-3);">No parent, subsidiary, or sister-brand structure could be confirmed from public sources. Virginia SCC, OpenCorporates, Bizapedia, and SEC EDGAR all blocked. Cross-sell mapping deferred pending paid-tier corporate intel (e.g., LexisNexis, Vinson SCC manual pull).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Eleventh federal consumer case against V&amp;H since 2014 — but one of the first framed as TCPA. Defendant has no apparent TCPA defense playbook.</h2>
+      <p class="section-lede">Vance and Huffman is a serial FDCPA target, with at least 10 prior federal consumer-protection actions across S.D. Tex., M.D. Fla., S.D.S.C., N.D. Ga., E.D. Mich., C.D. Cal., and W.D. Okla. Almost all are FDCPA-coded; the Price action expands the surface area into 47 USC §227(b)/(c) and Texas-specific telemarketing statutes. V&amp;H's track record is rapid termination — meaning settlement leverage exists, but timing is short.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-01883-B</dd>
+          <dt>Court</dt><dd>U.S. District Court, N.D. Tex., Dallas Division <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01883&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>June 8, 2026</dd>
+          <dt>Judge</dt><dd>Hon. Jane J. Boyle (Article III, GWB appointee 2004); Magistrate TBD per 6/9 referral order</dd>
+          <dt>Plaintiff</dt><dd>Rhonda Price (pro se), Dallas County, TX</dd>
+          <dt>Plaintiff counsel</dt><dd>Pro Se · priceaggies@gmail.com · 1208 Sylvia St, DeSoto, TX 75115</dd>
+          <dt>Class action</dt><dd>No — individual claim</dd>
+          <dt>Primary theory</dt><dd>Reassigned-number / wrong-party SMS without consent</dd>
+          <dt>Statutes</dt><dd>47 USC §227(b); 47 USC §227(c) / NDNCR; Tex. Util. Code §55.121 (ADAD); Tex. Bus.&amp;Com. Code Ch. 302; §305.053 (Mini-TCPA)</dd>
+          <dt>Channel</dt><dd>SMS · 7 messages between Mar 28 – May 10, 2026</dd>
+          <dt>DNC status pled</dt><dd>Yes — Subject Number on NDNCR at all relevant times (Compl. ¶16)</dd>
+          <dt>Damages sought</dt><dd>$10,500 (TCPA §227(b) treble) + $10,500 (NDNCR) + $10,500 (Mini-TCPA) + ADAD + Ch.302 + injunctive relief · total pleaded exposure $35,000+</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared · 21-day answer clock begins at service</dd>
+          <dt>Docket aggregator visibility</dt><dd>CourtListener indexed; PACER/Justia/PacerMonitor blocked at fetch time</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel · Pro Se</h3>
+        <dl class="kv">
+          <dt>Counsel</dt><dd>Rhonda Price (Pro Se)</dd>
+          <dt>Bar number</dt><dd>N/A — plaintiff is not an attorney</dd>
+          <dt>Address of record</dt><dd>1208 Sylvia St, DeSoto, TX 75115 (Dallas County — consistent with N.D. Tex. Dallas Division venue)</dd>
+          <dt>Email</dt><dd>priceaggies@gmail.com</dd>
+          <dt>Discipline history</dt><dd>N/A — pro se</dd>
+          <dt>Prior TCPA filings</dt><dd>None confirmed from open sources <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22priceaggies%40gmail.com%22&type=r">CourtListener →</a></span> (0 hits on plaintiff email; broader name search blocked)</dd>
+          <dt>Profile signal</dt><dd>Sophisticated multi-statute complaint (cites Nkadi v. Arcon Credit Solutions, 2024 WL 4652828; Cranor v. 5 Star Nutrition; Osorio v. State Farm; Reyes v. Lincoln) — uncommon for true first-time pro se. Possible repeat-consumer-plaintiff profile; verify via PACER name search before first dial.</dd>
+          <dt>Threat level</dt><dd>Low-to-moderate — pro se posture limits litigation resources, but volume of statutes pled and quality of pre-suit demand letters indicate a determined plaintiff.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:24px 0 12px; font-size:18px;">Concurrent &amp; Recent Litigation Against Vance and Huffman, LLC</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Theory</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="row-current"><td><strong>Price v. Vance and Huffman, LLC</strong></td><td>N.D. Tex.</td><td>2026</td><td>TCPA (reassigned-number SMS) + Tex. Util./Ch.302/§305.053</td><td><span class="pill pill--red">CURRENT · ACTIVE</span></td></tr>
+          <tr><td>Sexton v. Vance and Huffman LLC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vance+and+Huffman%22+FDCPA&type=r">CourtListener →</a></span></td><td>D.S.C.</td><td>2024</td><td>FDCPA</td><td><span class="pill pill--warn">PENDING · ~9.5mo</span></td></tr>
+          <tr><td>Knighton v. Vance and Huffman, LLC</td><td>M.D. Fla.</td><td>2024</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~4mo</span></td></tr>
+          <tr><td>Balin v. Vance &amp; Huffman, LLC</td><td>S.D. Tex.</td><td>2024</td><td>FDCPA</td><td><span class="pill pill--ok">DISMISSED</span></td></tr>
+          <tr><td>Trapp v. Vance and Huffman, LLC</td><td>E.D. Mich.</td><td>2023</td><td>FDCPA</td><td><span class="pill pill--ok">DISMISSED</span></td></tr>
+          <tr><td>Salvador Diaz v. Vance and Huffman, LLC</td><td>C.D. Cal.</td><td>2023</td><td>FDCPA</td><td><span class="pill pill--ok">DISMISSED</span></td></tr>
+          <tr><td>Coleman v. Vance and Huffman, LLC</td><td>M.D. Fla.</td><td>2022</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~7mo</span></td></tr>
+          <tr><td>Jenkins v. Vance and Huffman, LLC</td><td>M.D. Fla.</td><td>2021</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~3mo</span></td></tr>
+          <tr><td>Dotson v. Enhanced Recovery / V&amp;H LLC</td><td>W.D. Okla.</td><td>2021</td><td>FDCPA</td><td><span class="pill pill--ok">DISMISSED</span></td></tr>
+          <tr><td>James v. Vance and Huffman, LLC</td><td>S.D. Tex.</td><td>2020</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~3.5mo</span></td></tr>
+          <tr><td>French v. Vance and Huffman, LLC</td><td>N.D. Ga.</td><td>2020</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~2mo</span></td></tr>
+          <tr><td>Flynn v. Accredited Mgmt Solutions LLC (incl. V&amp;H)</td><td>W.D. Mich.</td><td>2020</td><td>FDCPA</td><td><span class="pill pill--warn">PENDING</span></td></tr>
+          <tr><td>Gallegos v. Vance and Huffman, LLC</td><td>M.D. Fla.</td><td>2019</td><td>FDCPA</td><td><span class="pill pill--ok">SETTLED</span></td></tr>
+          <tr><td>Thomas v. Vance and Huffman, LLC</td><td>M.D. Fla.</td><td>2018</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~5wk</span></td></tr>
+          <tr><td>Hagedon v. Vance and Huffman</td><td>N.D. Ill.</td><td>2016</td><td>FDCPA</td><td><span class="pill pill--ok">CLOSED</span></td></tr>
+          <tr><td>Graham v. Vance and Huffman, LLC</td><td>S.D. Fla.</td><td>2014</td><td>FDCPA</td><td><span class="pill pill--ok">TERMINATED ~6wk</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">PROFILE</div>
+      <h3 class="card-title">Settlement-prone defendant · No TCPA defense playbook on file</h3>
+      <p class="card-body">V&amp;H's pattern across 10+ prior FDCPA cases is rapid pre-discovery termination (5 weeks to ~9 months). Local defense counsel rotates by district (e.g., Chad Vinson Echols in D.S.C.; McHale/Geiger/Grilli in M.D. Fla.; Berry/Armor in N.D. Ga.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vance+and+Huffman%22+FDCPA&type=r">CourtListener →</a></span>. No N.D. Tex. defense counsel of record has previously appeared for V&amp;H. CourtListener returned 0 hits on the exact phrase "Vance and Huffman" + TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vance+and+Huffman%22+TCPA&type=r">CourtListener →</a></span>, meaning the Price case is one of the first (possibly the first) TCPA-coded action against this defendant. They have no rehearsed answer, no template MTD, and no in-house compliance officer identified. That's a procurement window.</p>
+    </div>
+
+    <div class="callout">
+      <h4>Open Intel Gaps to Close Before First Dial</h4>
+      <ul style="margin:0; padding-left:20px;">
+        <li>Re-run blacklistBulk API against 214-282-1346 — initial automated call failed with DNS error.</li>
+        <li>PACER name search "Rhonda Price" / DeSoto TX across all districts — confirm whether plaintiff is a repeat pro se consumer filer. CourtListener pro se search aborted at fetch time.</li>
+        <li>Virginia SCC manual pull on Vance and Huffman, LLC — identify registered agent, member-managers, formation date. CIS query returned cookie-consent shell.</li>
+        <li>Identify named decision-makers beyond Reese Parker (Director of Operations) — TheOrg, LinkedIn company page, and ZoomInfo all returned 404/403.</li>
+        <li>Confirm email pattern for V&amp;H domain (vhllc.co) — only two emails confirmed (info@vhllc.co, rparker@vhllc.co).</li>
+        <li>Monitor docket daily for appearance of N.D. Tex. defense counsel — first appearance will reveal which firm V&amp;H trusts in Texas.</li>
+        <li>Confirm service date to lock the Rule 12 answer clock.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Reese Parker is the only confirmed decision-maker — and he's already on the record denying liability twice. Call him first.</h2>
+      <p class="section-lede">Public corporate intel on Vance and Huffman is exceptionally thin (TheOrg 404, LinkedIn company page 404, ZoomInfo 403). The only contact surface confirmed by primary source is Reese Parker, Director of Operations, who personally responded to plaintiff's pre-suit demand on March 31 and April 6, 2026 (Compl. Ex. A). He is the operations-side decision-maker. No GC, CCO, CEO, or founder has been publicly identifiable.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Reese Parker</strong><br><span class="pill pill--dark">DIRECTOR OF OPERATIONS</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Personally responded to plaintiff's pre-suit demand on Mar 31 and Apr 6, 2026 (Compl. Ex. A). Admitted in writing that the number was "reassigned" and reached an "unintended recipient." Operations-side authority; likely escalation point to ownership.</td>
+            <td>855-206-6697 <span class="pill pill--warn">PATTERN</span><br><span style="font-size:12px; color:var(--fg-3);">(main company line)</span></td>
+            <td>rparker@vhllc.co <span class="pill pill--ok">VERIFIED</span><br><span style="font-size:12px; color:var(--fg-3);">(per Compl. Ex. A Email 2)</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Vance and Huffman, LLC</strong><br><span class="pill pill--dark">COMPANY MAIN</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>General inbox referenced in pre-suit demand. Use for formal correspondence; route sales outreach through Reese Parker first.</td>
+            <td>855-206-6697 <span class="pill pill--ok">VERIFIED</span></td>
+            <td>info@vhllc.co <span class="pill pill--ok">VERIFIED</span><br><span style="font-size:12px; color:var(--fg-3);">(per Compl. Ex. A)</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / CCO</strong><br><span class="pill pill--dark">ROLE ONLY</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No GC or CCO has been publicly identifiable for V&amp;H. TheOrg 404, LinkedIn company page 404, ZoomInfo 403, payvhllc.com has no /team or /leadership. Likely outsourced or held by an owner-manager.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>CEO / Owner-Manager</strong><br><span class="pill pill--dark">ROLE ONLY</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not publicly disclosed. Recommend Virginia SCC manual pull to identify member-managers; then escalate from Reese Parker.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">NOT YET APPEARED</span> <span class="pill pill--warn">PENDING</span></td>
+            <td>No appearance on docket as of Doc #4 (6/9/2026). V&amp;H typically retains local counsel by district. Monitor PACER daily.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Email pattern (inferred)</strong><br><span class="pill pill--warn">PATTERN</span></td>
+            <td>Confirmed pattern from two data points: info@vhllc.co and rparker@vhllc.co. Implied convention: <code>finitial+lastname@vhllc.co</code>. Use for outbound discovery of additional contacts pending manual research.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — before defense counsel appears and V&amp;H's settlement reflex closes the procurement window.</h2>
+      <p class="section-lede">V&amp;H's track record on individual consumer cases is rapid pre-discovery termination. Once defense counsel files an appearance, the conversation shifts from "buy a scrub product" to "discovery is expensive." The pitch window is the next 2–3 weeks while operations is still owning the response. Lead with Reese Parker.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 0 — TODAY</div>
+        <h3 class="card-title">Re-run BLB · Confirm number disclosure</h3>
+        <p class="card-body">Re-execute blacklistBulk API against 214-282-1346 (initial DNS failure). PACER name search "Rhonda Price" Dallas/DeSoto TX across all districts to confirm or rule out repeat-consumer-plaintiff status. Pull Virginia SCC record on V&amp;H to confirm member-managers above Reese Parker.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 — FIRST DIAL</div>
+        <h3 class="card-title">Call Reese Parker at 855-206-6697</h3>
+        <p class="card-body">Reference the case by docket number (3:26-cv-01883-B). Open with the written admission: "Your March 31 email confirmed the number was reassigned — and your platform sent four more texts after that. That's the entire RND pitch in one fact." Lead with the FCC Safe Harbor RND product. Email same-day to rparker@vhllc.co.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2-3 — ESCALATE</div>
+        <h3 class="card-title">CC info@vhllc.co · Ask for GC / owner intro</h3>
+        <p class="card-body">If Parker engages but punts on procurement authority, ask for the introduction up the chain. If no response, send a written follow-up to info@vhllc.co referencing the seven-text exposure ($35,000+ pleaded) and the absence of any public consent infrastructure on payvhllc.com.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 4-10 — BUNDLE</div>
+        <h3 class="card-title">Pitch the bundle: RND + DNC + Litigator Scrub</h3>
+        <p class="card-body">Once RND lands or has traction, pitch the layered Federal DNC scrub (Count II is a §227(c)/NDNCR claim — same root cause) and ongoing litigator-list scrub. Frame as "the three products that would have prevented all seven violations." Reference the multi-DID rotation (504 + 855) as evidence of high-volume outbound exposure.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 10-21 — MONITOR</div>
+        <h3 class="card-title">Watch PACER for defense appearance</h3>
+        <p class="card-body">First appearance of N.D. Tex. defense counsel changes the conversation. If a known TCPA defense firm appears (Troutman, Hinshaw, Stroock), pivot to "your counsel will tell you the same thing — scrub the book before the next case." If local generalist appears, the procurement window stays open longer.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">TRIGGER CONDITIONS</div>
+        <h3 class="card-title">What changes the plan</h3>
+        <ul class="clean tight">
+          <li>BLB returns a HIT on 214-282-1346 → lead with Litigator Scrub, not RND</li>
+          <li>PACER reveals Rhonda Price has prior pro se TCPA filings → upgrade plaintiff threat level; widen pitch to ongoing scrub subscription</li>
+          <li>Defense counsel appears within 21 days → accelerate; ask for a 30-min product demo before Rule 26(f) conference</li>
+          <li>V&amp;H announces wind-down or sale → escalate to top-of-house immediately</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH · 72-HOUR WINDOW</span>
+      <span class="pill pill--warn">21-DAY ANSWER CLOCK · STARTS AT SERVICE</span>
+      <span class="pill pill--info">PRIMARY: RND + FCC SAFE HARBOR</span>
+      <span class="pill pill--info">SECONDARY: LITIGATOR SCRUB · DNC</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
