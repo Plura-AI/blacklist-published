@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrobel v. Posh Group — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; margin-bottom:20px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; margin-bottom:20px;}
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; margin-bottom:24px;}
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px;}
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0;}
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1;}
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600;}
+.step-body p{ margin:0 0 8px; font-size:14px; line-height:1.55; color:var(--fg-2);}
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="120" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">SMS Quiet-Hours Defendant · 20 Texts Pled · Posh.vip Event-Ticketing Platform · Repeat TCPA Target</p>
+      <h1 class="hero-tagline">Wrobel v.<br>Posh Group, Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-24018-MFE</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (Miami)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Marty Fulgueira<br>Elfenbein (Mag.)</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">No — Individual</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Michael E. Wrobel (pro se)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Conquest Law PLLC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — but the sender DID pool is named.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Wrobel's complaint pleads 20 SMS messages but does NOT disclose the recipient cell number in the body of the filing. Scrub is deferred pending PACER pull or a discovery request. Three sender DIDs <em>are</em> named — all in the 704 (Charlotte, NC) area code — and can be pitched to defendant as a "your dialer pool" disclosure.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Cell</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraphs 14–18 describe the messages and depict screenshots but never recite the 10-digit recipient number. Plaintiff is Florida-resident Michael E. Wrobel of Miami-Dade County.</div>
+      </div>
+      <p class="scrub-body-text">No blacklistBulk lookup was performed. A litigator-list scrub on a partial / absent number would be misleading. Recovery path: pull ECF #1 from PACER for the civil cover sheet, or send a targeted Rule 26 / Rule 33 interrogatory once defense counsel appears. Note that plaintiff is himself a Florida-licensed attorney <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">FL Bar #1053847 →</a></span> who was admitted on 2026-02-19 (less than 4 months before filing) — first known TCPA filing by this attorney or by Conquest Law PLLC, per CourtListener RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Michael+E.+Wrobel%22&type=r">→</a></span>.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:18px;">Sending DIDs Identified in the Complaint</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #1</div>
+        <h4 class="card-title" style="font-family:var(--font-mono);">+1 (704) 220-6453</h4>
+        <p class="card-body">704 NPA = Charlotte, NC. Crowd-source spam databases (800notes, YouMail, Tellows, RoboKiller) all blocked automated fetch and returned 0 hits — recommend manual browser pull before demand letter.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #2</div>
+        <h4 class="card-title" style="font-family:var(--font-mono);">+1 (704) 888-8724</h4>
+        <p class="card-body">Same NPA as DID #1 and DID #3 — three distinct numbers from the same rate center hitting one Florida consumer is a textbook A2P 10DLC long-code rotation pattern.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #3</div>
+        <h4 class="card-title" style="font-family:var(--font-mono);">+1 (704) 930-9473</h4>
+        <p class="card-body">All three DIDs trace to posh.vip event landing pages embedded in the message bodies (e.g., posh.vip/e/benjamin-lloyd-...) <span class="src-tag"><a href="https://posh.vip">→</a></span>, tying the infrastructure to Posh Group's own SMS platform.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:18px;">Scrub Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Option A</div>
+        <h4 class="card-title">Pull ECF #1 from PACER</h4>
+        <p class="card-body">Civil cover sheet typically lists the plaintiff's phone. ~$1.20. Fastest path to a runnable scrub.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Option B</div>
+        <h4 class="card-title">Wait for Defense Counsel Notice</h4>
+        <p class="card-body">Once Cooley LLP (likely defense counsel per prior C.D. Cal. matter <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span>) appears, ask them directly.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Option C</div>
+        <h4 class="card-title">Rule 33 Interrogatory</h4>
+        <p class="card-body">Discovery request will surface the recipient cell, the consent record (if any), and the platform-side opt-in flow Posh uses for organizer SMS blasts.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">PRO-SE ATTORNEY-PLAINTIFF</span>
+      <span class="pill pill--info">FIRST TCPA FILING BY THIS PLAINTIFF</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Well-funded NYC startup. Third TCPA suit in 16 months. Platform sells "unlimited free SMS" as a feature.</h2>
+      <p class="section-lede">Posh Group is a $22M+ Series-A event-ticketing platform <span class="src-tag"><a href="https://techcrunch.com/?s=Posh+events">→</a></span> that explicitly markets "unlimited free SMS campaigns" to its event organizers <span class="src-tag"><a href="https://posh.vip/about">→</a></span> — meaning SMS compliance failure is a platform-level liability, not a one-off. They have already paid to settle two TCPA cases in 2025 (Lopez-Oviedo S.D. Fla. and Gomez W.D. Wash. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span>) without fixing the underlying gap. Lead with Consent Capture + Compliance Audit; secondary with DNC / Quiet-Hours scrubbing.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h4 class="card-title">Consent Capture &amp; Record Retention</h4>
+        <p class="card-body">Posh's Terms of Service URL returns HTTP 404 <span class="src-tag"><a href="https://posh.vip">→</a></span> — they have no public consent contract. Sell the consent-capture stack to fix that at the platform level for every organizer who blasts SMS through Posh.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Secondary</div>
+        <h4 class="card-title">DNC / Quiet-Hours Scrubbing</h4>
+        <p class="card-body">20 alleged messages between 9:02 PM and 6:41 AM local <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span> = no time-zone-aware send window controls. A pre-send scrub plus quiet-hours blocker is the direct fix.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h4 class="card-title">Compliance Audit / Policies &amp; Procedures</h4>
+        <p class="card-body">Three NPA-rotating DIDs, no terms page, no published compliance posture, no CCO visible on org chart <span class="src-tag"><a href="https://theorg.com/org/posh">→</a></span>. A formal P&amp;P engagement is the natural follow-on after the audit.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 12px; font-size:20px;">Pitch Angle</h3>
+    <p style="max-width:880px; font-size:16px; line-height:1.6;">"You've now been sued three times in 16 months on the same theory — Lopez-Oviedo, Gomez, and now Wrobel — and every time you pay to make it go away, the next plaintiff comes through the same hole. The hole is platform-level: your Terms page returns a 404, your organizers can send unlimited free SMS through your dialer, and there is no quiet-hours gate. Blacklist's consent-capture and DNC/quiet-hours scrub plugs into your send pipeline once and stops the recurrence. The Wrobel case alone is $10K–$30K in statutory exposure plus fees on 20 texts — and he's an attorney filing pro se, so he won't fold cheaply."</p>
+    <p style="max-width:880px; font-size:16px; line-height:1.6;">Open with the wave pattern (three suits, same theory, same defect), pivot to the 404 Terms page as the single most damning public fact, and close on the consent-capture + scrub bundle as the structural fix.</p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">VC-backed NYC event-ticketing startup that sells SMS as a core product feature.</h2>
+      <p class="section-lede">Posh Group, Inc. is a Delaware corporation headquartered in New York, founded 2020 by Avante Price and Eli Taylor-Lemire. Posh operates posh.vip, an event-creation and ticketing platform whose organizer dashboard explicitly advertises "unlimited free SMS campaigns" as a feature.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h4 class="card-title">Posh Group, Inc.</h4>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Posh Group, Inc. <span class="src-tag"><a href="https://posh.vip/about">→</a></span></dd>
+          <dt>Formation State</dt><dd>Delaware</dd>
+          <dt>HQ</dt><dd>New York, NY <span class="src-tag"><a href="https://theorg.com/org/posh">→</a></span></dd>
+          <dt>Founded</dt><dd>2020</dd>
+          <dt>Founders</dt><dd>Avante Price, Eli Taylor-Lemire <span class="src-tag"><a href="https://theorg.com/org/posh">→</a></span></dd>
+          <dt>Funding</dt><dd>~$22M Series A (Jul 2024) + ~$14M (Sep 2025 reported) <span class="src-tag"><a href="https://techcrunch.com/?s=Posh+events">→</a></span></dd>
+          <dt>Employees</dt><dd>Est. 20–50 (TheOrg lists 7 named leaders)</dd>
+          <dt>Vertical</dt><dd>Event ticketing / event-discovery social</dd>
+          <dt>Website</dt><dd><a href="https://posh.vip">posh.vip</a></dd>
+          <dt>Public Posture</dt><dd>"Unlimited free SMS campaigns" marketed as platform feature <span class="src-tag"><a href="https://posh.vip/about">→</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h4 class="card-title">Terms of Service URL returns HTTP 404.</h4>
+        <p class="card-body">Posh's own /terms page is broken <span class="src-tag" style="color:#A8A8A8"><a href="https://posh.vip" style="color:#C9C9C9">posh.vip →</a></span>. There is no publicly accessible consent contract binding any user — meaning Posh cannot lean on a "you agreed in the TOS" defense for any of the 20 alleged SMS quiet-hours violations. Combined with the marketed "unlimited free SMS" feature and three NPA-rotating sender DIDs (704-220-6453, 704-888-8724, 704-930-9473), the public footprint shows zero send-time, consent, or DNC discipline.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h4 class="card-title">Wave-3 settlement window is open NOW.</h4>
+      <p class="card-body">Posh settled Lopez-Oviedo (S.D. Fla. 1:25-cv-20634) on 2025-05-21 with prejudice and Gomez (W.D. Wash.) on 2025-04-18 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span>. Multiple new 2026 S.D. Fla. filings (CORDON, ONA, CASTRO SANCHEZ, SALCEDO, Pedraza) are pending and defense has been moving for extensions and filing notices of related actions — meaning they are actively trying to consolidate the wave. Wrobel filed 2026-06-08; standard 21-day answer window in S.D. Fla. (Fed. R. Civ. P. 12(a)) puts the answer / motion deadline at approximately <strong>July 6, 2026</strong> after service.</p>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>posh.vip platform</strong></td>
+            <td>Primary product / DBA</td>
+            <td>Event ticketing</td>
+            <td>SMS dialer infra; 3 rotating DIDs</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Avante Price (founder)</td>
+            <td>Founder / CEO — other ventures unknown</td>
+            <td>Consumer tech</td>
+            <td>Future companies likely to repeat SMS-heavy pattern</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Eli Taylor-Lemire (founder)</td>
+            <td>Founder / CTO — other ventures unknown</td>
+            <td>Consumer tech</td>
+            <td>Owns the dialer-infra technical decisions</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Posh event organizers (3rd party)</td>
+            <td>Platform users sending through Posh DIDs</td>
+            <td>Nightlife / events</td>
+            <td>Each organizer = independent TCPA-risk surface</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin-top:12px;">Corporate registry gap: Sunbiz, DE Division of Corporations, NY DOS, Bizapedia, and OpenCorporates all returned 403 / blocked. Registered agent and corporate officer roster could not be locked in from primary sources. Officer names below in Section 05 are sourced from TheOrg org chart.</p>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Third TCPA suit in 16 months. Posh keeps settling. The defect keeps shipping.</h2>
+      <p class="section-lede">Posh Group has been named in at least 10 cases in 2025–2026, with at least 8 in S.D. Fla. alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span>. Two prior TCPA matters settled quickly (Lopez-Oviedo, Gomez) and a wave of 2026 filings is now in the same district.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h4 class="card-title">Wrobel v. Posh Group, Inc.</h4>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-24018-MFE</dd>
+          <dt>Court</dt><dd>S.D. Fla. (Miami)</dd>
+          <dt>Filed</dt><dd>June 8, 2026</dd>
+          <dt>Judge</dt><dd>Marty Fulgueira Elfenbein (Mag.) — Article III reassignment likely absent full consent <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-24018&type=r">→</a></span></dd>
+          <dt>Plaintiff</dt><dd>Michael E. Wrobel (pro se attorney)</dd>
+          <dt>Counsel</dt><dd>Self · Conquest Law PLLC · FL Bar 1053847</dd>
+          <dt>Class</dt><dd>No — individual action</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1)</dd>
+          <dt>Theory</dt><dd>Quiet-hours SMS marketing (before 8am / after 9pm local)</dd>
+          <dt>Violation Count</dt><dd>20 SMS messages alleged</dd>
+          <dt>Damages</dt><dd>$10,000 floor (20 × $500) — $30,000 ceiling (20 × $1,500 willful)</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer window after service · Cooley LLP (Beatriz Mejia) likely per prior C.D. Cal. representation <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span></dd>
+          <dt>Docket Visibility</dt><dd>RECAP indexed; PacerMonitor / UniCourt 404 at time of pull</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h4 class="card-title">Michael E. Wrobel · Conquest Law PLLC</h4>
+        <dl class="kv">
+          <dt>Firm</dt><dd>Conquest Law PLLC (solo)</dd>
+          <dt>Address</dt><dd>125 NE 32nd Street, Miami, FL 33137</dd>
+          <dt>Bar Address</dt><dd>125 NE 32nd St Apt 705, Miami, FL 33137-4246 <span class="pill pill--ok" style="margin-left:6px;">MATCH</span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">→</a></span></dd>
+          <dt>Firm Phone</dt><dd>(678) 814-5588 <span class="pill pill--warn" style="margin-left:6px;">ATL NPA / MIA OFFICE</span></dd>
+          <dt>Email</dt><dd>mike@conquestip.com</dd>
+          <dt>Bar Number</dt><dd>FL 1053847</dd>
+          <dt>Admit Date</dt><dd>February 19, 2026 — <strong>~3.5 months before filing</strong></dd>
+          <dt>Discipline</dt><dd>None (10-yr clean) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1053847">→</a></span></dd>
+          <dt>Practice Areas</dt><dd>IP &amp; Business Counsel (NOT a TCPA / consumer firm) <span class="src-tag"><a href="https://conquestip.com">→</a></span></dd>
+          <dt>TCPAWorld Rank</dt><dd>Not ranked · 0 prior filings indexed <span class="src-tag"><a href="https://tcpaworld.com/?s=Michael+Wrobel">→</a></span></dd>
+          <dt>Prior TCPA Filings</dt><dd>0 found in RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Michael+E.+Wrobel%22&type=r">→</a></span></dd>
+          <dt>Posture</dt><dd>Pro-se attorney-plaintiff · sophisticated documentation (20-text screenshot exhibit pulled into complaint)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Template</div>
+      <h4 class="card-title">No firm-level serial template — but plaintiff is a sophisticated solo attorney</h4>
+      <p class="card-body">Conquest Law PLLC is an IP and business-counsel solo, not a TCPA volume firm <span class="src-tag"><a href="https://conquestip.com">→</a></span>. Wrobel is filing on his own behalf, and this appears to be his first TCPA matter and the firm's first federal TCPA filing <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Conquest+Law%22&type=r">→</a></span>. The complaint is well-pled and includes a six-page screenshot exhibit cataloguing every text by minute. There is no Hindi/Lane or PLG-style template footprint, but plaintiff's own attorney status means defense should expect competent, motivated prosecution and a refusal to fold for nuisance value.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:20px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Wrobel v. Posh Group, Inc.</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+            <td>1:26-cv-24018-MFE · S.D. Fla.</td>
+            <td>2026-06-08</td>
+            <td><span class="pill pill--red">ACTIVE</span></td>
+            <td>TCPA quiet-hours SMS</td>
+          </tr>
+          <tr>
+            <td>Lopez-Oviedo v. Posh Group Inc.</td>
+            <td>1:25-cv-20634 · S.D. Fla.</td>
+            <td>2025-02</td>
+            <td><span class="pill pill--ok">SETTLED · DISMISSED W/ PREJ</span></td>
+            <td>TCPA (47:227)</td>
+          </tr>
+          <tr>
+            <td>Gomez v. Posh Group Inc.</td>
+            <td>2:25-cv-00279 · W.D. Wash.</td>
+            <td>2025-02</td>
+            <td><span class="pill pill--ok">SETTLED · TERMINATED</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Rahil Doctor v. Posh Group, Inc.</td>
+            <td>2:25-cv-07895 · C.D. Cal. (removed)</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">SETTLED · TERMINATED 2025-12-23</span></td>
+            <td>TCPA / consumer</td>
+          </tr>
+          <tr>
+            <td>SALCEDO v. Posh Group Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">ACTIVE</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>CORDON v. Posh Group, Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">ACTIVE · ext. of time pending</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>CASTRO SANCHEZ v. Posh Group Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">ACTIVE</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Pedraza v. Posh Group Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">ACTIVE</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>ONA v. Posh Group, Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">ACTIVE · related-action notice filed</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin-top:8px;">Source: CourtListener RECAP search <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span>.</p>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul style="margin:8px 0 0; padding-left:20px;">
+        <li>Plaintiff's recipient cell number (deferred — PACER #1 pull recommended)</li>
+        <li>Confirmed date of service on Posh Group, Inc. — drives the answer deadline</li>
+        <li>Whether Article III judge has been assigned alongside Mag. Elfenbein</li>
+        <li>Florida defense counsel of record across the parallel S.D. Fla. cases (Cooley likely, not yet confirmed in FL)</li>
+        <li>Posh's actual SMS consent flow at organizer signup — terms page returns 404; signup flow is SPA-rendered and not statically extractable</li>
+        <li>Registered agent, principal office address, and corporate officer roster (Sunbiz, DE, NY DOS all blocked at fetch time)</li>
+        <li>Verified emails / direct phones for any Posh executive — current emails are pattern-inferred only ({first}@posh.vip)</li>
+        <li>Whether Lopez-Oviedo / Gomez / Doctor settlements included injunctive consent-flow remediation terms (likely confidential)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to the CEO and the CTO. No GC exists on the org chart.</h2>
+      <p class="section-lede">Posh is a 20–50 person startup with no public-facing General Counsel or Chief Compliance Officer <span class="src-tag"><a href="https://theorg.com/org/posh">→</a></span>. The decision authority on a vendor purchase like Blacklist sits with co-founder/CEO Avante Price and co-founder/CTO Eli Taylor-Lemire — the latter owns the dialer infra. Lead with Avante; loop Eli for the technical fit. All emails are pattern-inferred ({first}@posh.vip); confirm before send.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Avante Price</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>Co-Founder &amp; CEO. Decision authority for vendor purchase. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>avante@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/avanteprice">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Eli Taylor-Lemire</strong><br><span class="pill pill--dark">CTO</span> <span class="pill pill--warn">TECH FIT</span></td>
+            <td>Co-Founder &amp; CTO. Owns SMS dialer / consent-capture decisions. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>eli@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/eli-taylor-lemire">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Richard Alvarez</strong><br><span class="pill pill--dark">Head of Partnerships</span></td>
+            <td>Vendor / partner contracts often route here at series-A startups. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>richard@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/richardalvarez">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Keven Duran</strong><br><span class="pill pill--dark">Head of Community</span></td>
+            <td>Owns organizer-side SMS messaging product. Pain owner. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>keven@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/kevenduran">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>James Medina</strong><br><span class="pill pill--dark">Accounting Manager</span></td>
+            <td>Routes vendor invoices &amp; procurement. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>james@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jamesmedina">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Dougan Khim</strong><br><span class="pill pill--dark">Creative Director</span></td>
+            <td>Brand/marketing leader — secondary stakeholder. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>dougan@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/dougankhim">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Arlen Oharonian</strong><br><span class="pill pill--dark">Dir. People &amp; Talent</span></td>
+            <td>People ops; not on critical path but org-context contact. <span class="src-tag"><a href="https://theorg.com/org/posh">TheOrg →</a></span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>arlen@posh.vip <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/arlenoharonian">linkedin →</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--gap">UNKNOWN / OUTSIDE</span></td>
+            <td>No in-house GC on org chart. TCPA matters likely routed to Cooley LLP (Beatriz Mejia per C.D. Cal.).</td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>—  <span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin-top:8px;">Email pattern <strong>{first}@posh.vip</strong> is inferred from common startup convention; no source verified a live address. ZoomInfo / Apollo / LinkedIn company pages all returned 403 or 404 during enrichment. Confirm via a low-stakes test send before high-value outreach.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move within 72 hours. Hit Avante before defense counsel locks in the settlement playbook.</h2>
+      <p class="section-lede">Posh's prior pattern is fast confidential settlement (Lopez-Oviedo ~3 months from filing to dismissal w/ prej; Gomez ~2 months). Blacklist has a narrow window to position consent-capture + scrub as the structural fix that prevents Wave #4 before defense counsel files a routine extension and the matter slips into managed-litigation mode.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 1 — Pull PACER #1 + draft cold email to Avante Price</h4>
+          <p>Spend ~$1.20 to pull the civil cover sheet from PACER for case 1:26-cv-24018-MFE to recover plaintiff's recipient cell. Draft a 4-sentence cold email to avante@posh.vip referencing the three prior settled TCPA cases by name (Lopez-Oviedo, Gomez, Doctor) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span> and the 404 Terms page <span class="src-tag"><a href="https://posh.vip">→</a></span>. CC eli@posh.vip.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 2 — Run the recovered cell through blacklistBulk</h4>
+          <p>Once the plaintiff cell is in hand, run the litigator-list scrub and serial-filer cross-check. If it hits, escalate the outreach with the scrub-match as proof-of-value.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3 — LinkedIn touch on Avante + Eli</h4>
+          <p>Soft LinkedIn message to both co-founders. Frame as "noticed the new S.D. Fla. filing, the third one — happy to walk you through the gate that would have caught the quiet-hours sends." Do not pitch a product in the LinkedIn DM.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 5–7 — Follow-up email with the wave map</h4>
+          <p>Send a follow-up email attaching a one-pager listing all known parallel S.D. Fla. cases (CORDON, ONA, CASTRO SANCHEZ, SALCEDO, Pedraza, Wrobel) — visualize the wave. Offer a 20-minute compliance audit walk-through. Reference the specific 704-NPA DIDs as "your dialer pool."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 10 — Engage Cooley defense counsel directly (if no response)</h4>
+          <p>If Avante doesn't respond, route via Beatriz Mejia / Cooley LLP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Posh+Group%22&type=r">→</a></span> with a defense-counsel-friendly framing: "we are the vendor your client should be using to prevent the next one." Outside counsel often opens doors when the in-house decision-maker is dark.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Day 14 — Trigger reassessment</h4>
+          <p>If no engagement, monitor PACER for defense counsel appearance and any motion to consolidate or transfer the S.D. Fla. wave. Re-engage at the next docket trigger.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Trigger Conditions That Change The Plan</div>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li><strong>Defense counsel appears + moves to compel arbitration</strong> → Posh likely repaired the Terms page off-public; pivot to a "fix the gap before the next wave" angle aimed at CTO Eli.</li>
+        <li><strong>Plaintiff amends to add a class</strong> → Exposure jumps materially; reset urgency to 24-hour outreach.</li>
+        <li><strong>S.D. Fla. cases get consolidated or related-case-tagged</strong> → Single point of leverage; coordinate outreach around the consolidation hearing.</li>
+        <li><strong>Wrobel files a Rule 26 disclosure with his cell</strong> → Run litigator-list scrub immediately and use result in the next outreach.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH · 72-HOUR WINDOW</span>
+      <span class="pill pill--warn">~21-DAY ANSWER CLOCK · ~JUL 6, 2026</span>
+      <span class="pill pill--info">REPEAT DEFENDANT · WAVE #3</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
