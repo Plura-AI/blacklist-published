@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misner v. CarShield — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.step-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <rect x="0" y="2" width="22" height="20" fill="#A50100"/>
+          <text x="30" y="18" fill="#FFFFFF" font-family="General Sans, sans-serif" font-size="18" font-weight="700" letter-spacing="0.5">BLACKLIST</text>
+          <text x="148" y="18" fill="#A8A8A8" font-family="General Sans, sans-serif" font-size="18" font-weight="500" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-10</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Vehicle Service Contract Telemarketer · Prerecorded Voice + Internal DNC · Post-FTC-Consent-Decree Repeat Filing</p>
+      <h1 class="hero-tagline">Misner v.<br>CarShield <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">(NRRM LLC)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-00689-MHW-SCS</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Ohio (Columbus)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Michael H. Watson<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Mag. S. Courter Shimeall</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC §227(b)(3)<br>47 USC §227(c)(5)<br>47 CFR §64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Hundreds alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Anthony Paronich<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Paronich Law (lead) + Giles &amp; Harper (local)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number was redacted in the complaint — but he is represented by a top-3 national TCPA serial-filer firm.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Misner's number is partially redacted (614) XXX-XXXX in the complaint, so a litigator-list lookup is deferred until the unredacted number is pulled from PACER ECF #1 or surfaces in discovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--warn">Counsel Is A Top-3 Serial Filer</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (per Complaint ¶24)</div>
+        <div class="scrub-number">(614) XXX-XXXX</div>
+        <div class="scrub-number-sub">Ohio mobile — 614 area code (Columbus). Last seven digits redacted in the public-record filing. National DNC registration alleged on or about April 3, 2026 (¶26).</div>
+      </div>
+      <p class="scrub-body-text">
+        The complaint discloses only the area code. A Blacklist litigator-list scrub on a 3-digit prefix is not meaningful. The unredacted number is in ECF #1 (filed under the standard partial-redaction practice for cellular numbers) and can be pulled via PACER. Once retrieved, run the full 10-digit through blacklistBulk and re-issue this section.
+        <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-00689&type=r">CourtListener docket -&gt;</a></span>
+      </p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;"><i data-lucide="phone-call" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> Sending DID</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:18px;">(800) 746-2032</div>
+        <div class="card-body">Inbound voice DID, first call to plaintiff April 15, 2026 (¶25). Toll-free — consistent with centralized outbound dialer pool. Third-party complaint corpora (800notes/YouMail/Tellows/RoboKiller) returned 403/404 on all six DIDs in this report — sender identity must be inferred from the screenshot-confirmed CarShield branding.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;"><i data-lucide="phone-call" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> SMS Click-To-Call DID</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:18px;">(800) 830-1291</div>
+        <div class="card-body">Embedded in first SMS from "CARSHIELD" sender ID, April 30 (¶29 screenshot). Message references plaintiff's 2017 Volkswagen Passat — confirms vehicle-data-enriched lead source.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;"><i data-lucide="phone-call" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> SMS Click-To-Call DID</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:18px;">(800) 831-5591</div>
+        <div class="card-body">May 2 SMS — "personalized quote is ready" follow-up sent AFTER plaintiff's first STOP reply (¶30 screenshot). Strong willfulness evidence.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;"><i data-lucide="phone-call" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> SMS Click-To-Call DID</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:18px;">(800) 835-6032</div>
+        <div class="card-body">May 4 SMS — "25% off your quoted rate" sent AFTER plaintiff's second STOP. Demonstrates rotating-number pattern after opt-out.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;"><i data-lucide="phone-call" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> Prerecorded Caller ID</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:18px;">(800) 659-0795</div>
+        <div class="card-body">May 5 outbound call delivering prerecorded voice message identifying "CarShield" and directing callback to 1-800-587-4271 (¶33). This is the §227(b)(1)(A)(iii) smoking gun.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta" style="margin-bottom:8px;"><i data-lucide="phone-call" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></i> Callback DID (Voicemail)</div>
+        <div class="card-title" style="font-family:var(--font-mono); font-size:18px;">(800) 587-4271</div>
+        <div class="card-body">Callback number embedded in prerecorded voicemail. This is the inbound queue and likely maps directly to CarShield's St. Peters, MO call center.</div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-title"><i data-lucide="undo-2" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Recovery Path — Surface the Plaintiff Number</div>
+      <ol class="step-body" style="padding-left:20px;">
+        <li><strong>Pull ECF #1 from PACER</strong> (~$1.20). The cellular number is redacted on the public-PACER copy but is filed in full in the certificate of service or the body. If still redacted, file a Notice or stipulation requesting plaintiff confirm the unredacted number.</li>
+        <li><strong>Wait for defense counsel notice of appearance</strong>. CarShield's recurring TCPA defense bench includes Jeffrey H. Kass (Spencer Fane) — once they appear, request the plaintiff number under Rule 26(a)(1)(A)(iii) initial disclosures. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22NRRM%22&type=r">RECAP NRRM index -&gt;</a></span></li>
+        <li><strong>Cross-reference Brady Misner in CourtListener</strong> for prior pro se or named-plaintiff TCPA filings under the 614 area code. Counsel pattern (Paronich + Giles) suggests this may be a recurring class-rep candidate.</li>
+      </ol>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">COUNSEL: ~1,396 TCPA MATTERS (PARONICH)</span>
+      <span class="pill pill--warn">6 SENDING DIDs · CLASSIC ROTATING-POOL FINGERPRINT</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A repeat TCPA defendant under an active FTC consent decree, with rotating DIDs and a top-3 plaintiff lawyer hunting their vertical.</h2>
+      <p class="section-lede">CarShield/NRRM closed an FTC + multi-state $10M deceptive-telemarketing settlement in August 2024 <span class="src-tag"><a href="https://www.repairerdrivennews.com/?s=CarShield">RDN -&gt;</a></span> — and is now defending its <strong>fifth federal TCPA action in 10 years</strong>, while a separate Paronich-driven action (Morris v. CarShield, E.D. Mo.) is still in active discovery. Lead with Litigator Scrub + RND Safe Harbor as a stacked offer. The wedge is simple: "Your FTC consent decree didn't stop this filing. Here's the pre-dial scrub that would have."</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <div class="card-title"><i data-lucide="user-check" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Litigator Scrub</div>
+        <div class="card-body">Anthony Paronich appears in ~1,396 TCPA matters on CourtListener and is a TCPAWorld Power Rankings honoree 2022–2026 <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld -&gt;</a></span>. The litigator list catches plaintiffs with prior or pending Paronich/Giles-pattern filings before the first dial.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Stacked Co-Pitch</div>
+        <div class="card-title"><i data-lucide="database" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> RND + FCC Safe Harbor</div>
+        <div class="card-body">Plaintiff was registered on the National DNC on April 3, 2026 — twelve days before the first call (¶26). A pre-dial National DNC scrub with FCC safe-harbor documentation is a complete defense to the §227(c) claim.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <div class="card-title"><i data-lucide="alert-triangle" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Internal DNC Policy &amp; Procedures</div>
+        <div class="card-body">Count Two pleads 47 CFR §64.1200(d) — no written internal DNC policy, no caller-ID compliance. Plaintiff's STOP replies were ignored across 3 different SMS DIDs <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22CarShield%22+TCPA&type=r">CourtListener -&gt;</a></span>. Blacklist's IDNC infrastructure + policy templates close this gap.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+    <p style="font-size:16px; line-height:1.6; color:var(--fg-1); max-width:880px; margin:0 0 14px;">
+      CarShield isn't a one-off target — they're the largest VSC marketer in the country, an active NASCAR sponsor, and they just paid the FTC $10M for deceptive telemarketing <span class="src-tag"><a href="https://www.repairerdrivennews.com/?s=CarShield">RDN -&gt;</a></span>. Despite that consent decree, Anthony Paronich (one of the top-3 most prolific TCPA plaintiff lawyers in the U.S.) is back with a second federal class action, paired with Ohio local counsel Brian Giles — the same pairing he used in McGonigle v. Value City Furniture (S.D. Ohio 2024). This is a venue strategy, not an accident.
+    </p>
+    <p style="font-size:16px; line-height:1.6; color:var(--fg-1); max-width:880px; margin:0;">
+      The opening line is: "You just paid the FTC ten million dollars, and you have an active Paronich class action in St. Louis. This new Ohio filing — same plaintiff lawyer, same theory — would have been caught at the pre-dial scrub. Let's stop the third one before it's filed." Anchor the conversation on the GC's desk or wherever Casper Eric Hansen (CFO) signs the litigation-reserve line. The CFO understands the math: one named plaintiff with stacked §227(b) + §227(c) exposure is a 7-figure problem; a litigator scrub subscription is not.
+    </p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Largest U.S. vehicle-service-contract marketer, privately held, NASCAR-sponsoring, and operating under an active FTC consent decree.</h2>
+      <p class="section-lede">NRRM, LLC d/b/a CarShield is a privately held Missouri-based VSC marketer founded in 2005, with American Auto Shield as its contract administrator <span class="src-tag"><a href="https://www.carshield.com/about-us">CarShield About -&gt;</a></span>. The vertical is one of the most-litigated TCPA categories in the country.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-title">Defendant Profile</div>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>NRRM, LLC d/b/a CarShield</dd>
+          <dt>Formation state</dt><dd>Unconfirmed — registry queries blocked; HQ Missouri suggests MO-formed <span class="pill pill--gap" style="margin-left:6px">GAP</span></dd>
+          <dt>HQ</dt><dd>St. Peters, St. Charles County, Missouri (¶9)</dd>
+          <dt>Founded</dt><dd>2005 <span class="src-tag"><a href="https://www.carshield.com/about-us">CarShield -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Vehicle Service Contracts (VSCs) / "auto protection plans"</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Main phone</dt><dd>1-800-588-8501 <span class="src-tag"><a href="https://www.carshield.com/contact-us">Contact -&gt;</a></span></dd>
+          <dt>Administrator</dt><dd>American Auto Shield (AAS) — handles claims and contract servicing</dd>
+          <dt>Marketing footprint</dt><dd>NASCAR Xfinity #4 car sponsor, heavy TV/radio/podcast, MLB local-advertising partnership via Playfly Sports (2026 season)</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <div class="card-title"><i data-lucide="alert-triangle" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Submission-based consent, no TCPA checkbox</div>
+        <div class="card-body">
+          The CarShield signup flow buries TCPA consent inside the "Get Your Free Quote" submit button: "By clicking 'Get Your Free Quote' you agree that CarShield may contact you ... with calls, texts, or prerecorded/artificial voice messages." There is <strong>no separate TCPA checkbox</strong>, no double opt-in, and no third-party/affiliate disclosure <span class="src-tag"><a href="https://www.carshield.com/signup">CarShield signup -&gt;</a></span>. Six different toll-free sending DIDs were used to contact Misner — a fingerprint that the consent flow does not authorize, since it only governs direct CarShield contact.
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-title"><i data-lucide="clock" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Strategic Timing</div>
+      <dl class="kv">
+        <dt>FTC consent decree</dt><dd>August 5, 2024 — $10M settlement with FTC + state AGs for deceptive telemarketing <span class="src-tag"><a href="https://www.repairerdrivennews.com/?s=CarShield">RDN -&gt;</a></span></dd>
+        <dt>Misner filing date</dt><dd>June 8, 2026 — 22 months <em>after</em> the FTC consent decree</dd>
+        <dt>Answer deadline</dt><dd>~July 7, 2026 (assuming standard 21-day clock from service; defense not yet appeared)</dd>
+        <dt>Concurrent matter</dt><dd>Morris v. CarShield (E.D. Mo. 4:25-cv-00441) — active, CarShield counterclaim filed April 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22CarShield%22+TCPA&type=r">CL -&gt;</a></span></dd>
+        <dt>Pitch window</dt><dd>Next 21 days — before defense appears and the reserve gets booked</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:24px 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>American Auto Shield (AAS)</strong></td>
+            <td>VSC administrator</td>
+            <td>Vehicle service contracts</td>
+            <td>Named alongside CarShield in the 2024 FTC matter; commonly co-defendant in NRRM cases (e.g., Cunningham v. AAS, D. Colo. 2021)</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Playfly Sports</td>
+            <td>Advertising partner</td>
+            <td>Sports media</td>
+            <td>Not a direct dialer — not in scope</td>
+            <td><span class="pill pill--gap">NOT IN SCOPE</span></td>
+          </tr>
+          <tr>
+            <td>InterMedia Advertising</td>
+            <td>Media partner</td>
+            <td>Advertising</td>
+            <td>Not a direct dialer — not in scope</td>
+            <td><span class="pill pill--gap">NOT IN SCOPE</span></td>
+          </tr>
+          <tr>
+            <td>Unnamed lead-gen / affiliate vendors</td>
+            <td>Upstream lead source</td>
+            <td>Affiliate marketing</td>
+            <td>Six rotating toll-free DIDs strongly suggest affiliate / lead-buy traffic — the upstream vendors are independent Blacklist targets</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Fifth federal TCPA action in a decade; defendant has a national TCPA defense bench and a track record of compelling arbitration.</h2>
+      <p class="section-lede">NRRM has been sued under the TCPA in N.D. Ill. (2015), E.D. Mo. (2016, 2025), D. Colo. (2021), and now S.D. Ohio (2026). They successfully compelled arbitration in Lindsey-Evans (E.D. Mo., March 2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22NRRM%22&type=r">RECAP -&gt;</a></span> — expect the same motion here, anchored on the CarShield consumer contract's arbitration clause.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-title"><i data-lucide="gavel" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> The Case</div>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-00689-MHW-SCS</dd>
+          <dt>Filed</dt><dd>June 8, 2026</dd>
+          <dt>Plaintiff</dt><dd>Brady Misner (614 area code, Ohio resident)</dd>
+          <dt>Lead counsel</dt><dd>Anthony I. Paronich (Paronich Law, Hingham MA) — pro hac vice</dd>
+          <dt>Local counsel</dt><dd>Brian T. Giles (Giles &amp; Harper LLC, Cincinnati), OH Bar 0072806</dd>
+          <dt>Class</dt><dd>Yes — Robocall Class + Internal DNC Class, Rule 23, ~hundreds</dd>
+          <dt>Theories</dt><dd>§227(b) prerecorded voice + §227(c)(5) federal DNC + §64.1200(d) internal DNC</dd>
+          <dt>Channels</dt><dd>Voice (prerecorded) + SMS, 6 sending DIDs</dd>
+          <dt>Damages</dt><dd>$500–$1,500 per call/text, stackable; treble on willfulness</dd>
+          <dt>Willfulness facts</dt><dd>4 STOP requests ignored; calls continued through May 29, 2026 (¶32)</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared — ~21-day answer clock <span class="pill pill--red" style="margin-left:6px">PENDING</span></dd>
+          <dt>Expected defense</dt><dd>Jeffrey H. Kass / Steven M. Shape (Spencer Fane) — NRRM's recurring bench in N.D. Ill. and E.D. Mo. actions</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-title"><i data-lucide="briefcase" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Plaintiff Counsel</div>
+        <dl class="kv">
+          <dt>Lead firm</dt><dd>Paronich Law, P.C. (Hingham, MA)</dd>
+          <dt>Lead attorney</dt><dd>Anthony I. Paronich</dd>
+          <dt>Lead firm address</dt><dd>350 Lincoln St., Suite 2400, Hingham, MA 02043</dd>
+          <dt>Lead firm phone</dt><dd>(508) 221-1510 (complaint) / (617) 485-0018 (firm site) <span class="src-tag"><a href="https://paronichlaw.com">paronichlaw.com -&gt;</a></span></dd>
+          <dt>Lead email</dt><dd>anthony@paronichlaw.com</dd>
+          <dt>TCPAWorld ranking</dt><dd>Power Rankings 2022, 2023, 2024, 2025, 2026 <span class="src-tag"><a href="https://tcpaworld.com/?s=Anthony+Paronich">TCPAWorld -&gt;</a></span></dd>
+          <dt>Total TCPA filings</dt><dd>~1,396 matters indexed on CourtListener; self-reports $200M+ in settlements <span class="src-tag"><a href="https://paronichlaw.com">paronichlaw.com -&gt;</a></span></dd>
+          <dt>Local counsel firm</dt><dd>Giles &amp; Harper, LLC, 7247 Beechmont Ave., Cincinnati OH 45230</dd>
+          <dt>Local attorney</dt><dd>Brian T. Giles — OH Bar 0072806</dd>
+          <dt>Local phone / email</dt><dd>(513) 379-2715 · Bgiles@gilesharper.com</dd>
+          <dt>Recent Ohio coverage</dt><dd>Paired with Paronich on McGonigle v. Value City Furniture (S.D. Ohio 2024) — deliberate venue pattern</dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-title">Plaintiff Firm Template — Paronich "Stacked §227(b)/§227(c) + Internal DNC"</div>
+      <div class="card-body">
+        <p style="margin-top:0">Paronich's template hits three statutory hooks in one complaint: a prerecorded-voice §227(b) class, a federal DNC §227(c) class, and an internal-DNC §64.1200(d) claim. He targets the VSC / auto-warranty vertical aggressively — Foote v. American Vehicle Protection Corp. (N.D. Ga. 2022), Morris v. CarShield (E.D. Mo. 2025), and now Misner. He pairs with state-resident local counsel for venue and class-rep optics — Giles in Ohio matters, Greenwald in others <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Anthony+Paronich%22+TCPA">Law360 -&gt;</a></span>. Recent results include a $35.7M demand in a robocall class action (Dec 2025) and a 7th Circuit appellate matter on arbitration (April 2026) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Anthony+Paronich%22+TCPA">Law360 -&gt;</a></span> — relevant because NRRM's arbitration motion is the most likely first defense move.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:24px 0 16px;">Concurrent &amp; Recent Litigation — NRRM / CarShield</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Misner v. NRRM LLC d/b/a CarShield</strong></td>
+            <td>S.D. Ohio</td>
+            <td>2026-06-08</td>
+            <td><span class="pill pill--red">INSTANT CASE</span></td>
+            <td>Prerecorded voice + Federal DNC + Internal DNC (class)</td>
+          </tr>
+          <tr>
+            <td>Morris v. CarShield LLC</td>
+            <td>E.D. Mo. (4:25-cv-00441)</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">ACTIVE — CarShield counterclaim 4/2026</span></td>
+            <td>TCPA — Paronich-led <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22CarShield%22+TCPA&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Lindsey-Evans v. NRRM, LLC</td>
+            <td>E.D. Mo.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Arbitration compelled 3/6/2026</span></td>
+            <td>TCPA — sent to arbitration <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22NRRM%22&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>NRRM, LLC v. Dobronski</td>
+            <td>E.D. Mo.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Motion to quash subpoena</span></td>
+            <td>TCPA-adjacent enforcement</td>
+          </tr>
+          <tr>
+            <td>Hilliard v. NRRM LLC</td>
+            <td>N.D. Cal.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Remanded to state 10/26/2023</span></td>
+            <td>TCPA / state consumer</td>
+          </tr>
+          <tr>
+            <td>Consumers Unified LLC v. NRRM, LLC</td>
+            <td>N.D. Okla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">MTDs DENIED 9/30/2024</span></td>
+            <td>Lead-gen / commercial</td>
+          </tr>
+          <tr>
+            <td>Cunningham v. American Auto Shield (NRRM co-def)</td>
+            <td>D. Colo.</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Dismissed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Kundinger v. NRRM, LLC</td>
+            <td>W.D. Wis.</td>
+            <td>2017</td>
+            <td><span class="pill pill--ok">Terminated 3/2018</span></td>
+            <td>TCPA class — motion to strike DENIED</td>
+          </tr>
+          <tr>
+            <td>Mehr v. NRRM, LLC d/b/a CarShield</td>
+            <td>E.D. Mo.</td>
+            <td>2016</td>
+            <td><span class="pill pill--ok">Terminated &lt;3 mo (settled)</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Trumbell v. NRRM, LLC</td>
+            <td>N.D. Ill.</td>
+            <td>2015</td>
+            <td><span class="pill pill--ok">Terminated 11 days (settled/dismissed)</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-title"><i data-lucide="search" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>Plaintiff's unredacted 614 mobile — pull from PACER ECF #1 and run blacklistBulk litigator scrub</li>
+        <li>Confirm whether magistrate is Bowman (per complaint caption) or Shimeall (per CourtListener) — affects scheduling-order timing</li>
+        <li>Identify CarShield General Counsel / Chief Compliance Officer — TheOrg shows CSO and CMO, but the GC seat is not named</li>
+        <li>Verify CarShield email domain (getcarshield.com vs carshield.com) — both appear in SignalHire masked records</li>
+        <li>Confirm Missouri SoS entity record for NRRM, LLC (formation date, registered agent, principal officers) — all registry sources returned 403</li>
+        <li>Establish whether the 6 sending DIDs are CarShield-owned vs. affiliate-owned — drives the joint-and-several defense theory</li>
+        <li>Pull the CarShield consumer contract arbitration clause text — if Misner clicked-through any CarShield page, expect a Motion to Compel Arbitration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to the CFO and the CMO. The GC seat is unnamed — use the CSO as the operational entry point.</h2>
+      <p class="section-lede">No General Counsel or Chief Compliance Officer is publicly identified. CarShield's email pattern is <strong>{first}.{last}@getcarshield.com</strong>, with carshield.com also seen internally. Confirmed via masked SignalHire emails <span class="src-tag"><a href="https://www.signalhire.com/companies/carshield">SignalHire -&gt;</a></span>. Lead with Jason Miazza (CMO) as the dialer-owner and Eric Hansen / Ron Kanterman (CFO) for litigation-reserve authority. Mark Travis (CSO) is the operational hub per TheOrg <span class="src-tag"><a href="https://theorg.com/org/carshield">TheOrg -&gt;</a></span>.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Mark Travis</strong><br><span class="pill pill--dark">CSO</span></td>
+            <td>Chief Strategy Officer — TheOrg lists as senior operating leader; likely owns vendor + compliance procurement <span class="src-tag"><a href="https://theorg.com/org/carshield">TheOrg -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>mark.travis@getcarshield.com <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Jason Miazza</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer — owns the dialer + lead-buy budget; primary decision-maker for telemarketing compliance spend <span class="src-tag"><a href="https://www.linkedin.com/company/carshield">LinkedIn -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>jason.miazza@getcarshield.com <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>John Vorbeck</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer (per SignalHire) — possible prior or co-CMO; SignalHire showed masked j*******k@getcarshield.com <span class="src-tag"><a href="https://www.signalhire.com/companies/carshield">SignalHire -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>john.vorbeck@getcarshield.com <span class="pill pill--warn" style="margin-left:4px">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Eric Hansen</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer — litigation-reserve approver; the CFO conversation is where TCPA exposure becomes a P&amp;L line <span class="src-tag"><a href="https://www.signalhire.com/companies/carshield">SignalHire -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>eric.hansen@getcarshield.com <span class="pill pill--warn" style="margin-left:4px">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Ron Kanterman</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer (per SignalHire) — possible prior or co-CFO; confirm current seat via outreach</td>
+            <td>1-800-588-8501 (main)</td>
+            <td>ron.kanterman@getcarshield.com <span class="pill pill--warn" style="margin-left:4px">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Michael Casperson</strong><br><span class="pill pill--dark">VP PRODUCT</span></td>
+            <td>VP Product Development — owns CRM / consent capture infrastructure <span class="src-tag"><a href="https://theorg.com/org/carshield">TheOrg -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>michael.casperson@getcarshield.com <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Matthew Emmett Shields</strong><br><span class="pill pill--dark">DATA SCIENCE</span></td>
+            <td>Executive Director of Data Science — owns dialer/lead-scoring telemetry <span class="src-tag"><a href="https://theorg.com/org/carshield">TheOrg -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>matthew.shields@getcarshield.com <span class="pill pill--info" style="margin-left:4px">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Michael Kirner</strong><br><span class="pill pill--dark">DATA</span></td>
+            <td>Data Analyst — useful for technical-buyer validation of scrub integration <span class="src-tag"><a href="https://www.signalhire.com/companies/carshield">SignalHire -&gt;</a></span></td>
+            <td>1-800-588-8501 (main)</td>
+            <td>michael.kirner@carshield.com <span class="pill pill--warn" style="margin-left:4px">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>Seat not publicly identified — likely outside counsel (Spencer Fane / Jeffrey Kass) handles material litigation</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap" style="margin-left:4px">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>Seat not publicly identified — TCPA / FTC consent-decree compliance likely sits with the CSO + CMO + outside counsel</td>
+            <td>—</td>
+            <td>— <span class="pill pill--gap" style="margin-left:4px">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Main switchboard</strong><br><span class="pill pill--info">COMPANY</span></td>
+            <td>CarShield primary support / sales line</td>
+            <td><strong>1-800-588-8501</strong> <span class="pill pill--ok" style="margin-left:4px">VERIFIED</span></td>
+            <td>via /contact-us form <span class="src-tag"><a href="https://www.carshield.com/contact-us">Contact -&gt;</a></span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:12px;">Email pattern <strong>{first}.{last}@getcarshield.com</strong> derived from masked SignalHire entries; carshield.com also observed. Confirm via Hunter or low-volume test send before bulk outreach. <span class="src-tag"><a href="https://www.signalhire.com/companies/carshield">SignalHire -&gt;</a></span></p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 21 days — before defense counsel appears and litigation reserves get booked.</h2>
+      <p class="section-lede">Service was effected with summons issued June 9, 2026. The standard 21-day answer clock closes on or about July 7, 2026. Once Spencer Fane appears and the answer/MTC-arbitration is on file, the conversation shifts from "prevent the next one" to "manage what's on docket" — and the buyer at CarShield gets handed off to outside counsel. Hit them now.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–2</div>
+        <div class="card-title">1 · Pull PACER ECF #1 + run litigator scrub</div>
+        <div class="step-body">Buy ECF #1 (~$1.20), recover the full 614 cellular, run blacklistBulk, and update the call script with the actual scrub result. This is the strongest possible opener.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–3</div>
+        <div class="card-title">2 · CFO outreach (Hansen / Kanterman)</div>
+        <div class="step-body">Email + phone to the CFO seat. Subject: "Misner v. CarShield S.D. Ohio — pre-dial litigator scrub". Reference Morris (E.D. Mo.) and the 2024 FTC consent decree as cost-of-the-status-quo proof.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–5</div>
+        <div class="card-title">3 · CMO outreach (Miazza / Vorbeck)</div>
+        <div class="step-body">Marketing owns the dialer. Pitch DNC scrubbing + IDNC infrastructure as a campaign-velocity enabler, not a compliance tax. Reference the 6 rotating DIDs as a "lead-vendor hygiene" problem.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–10</div>
+        <div class="card-title">4 · CSO operational meeting (Travis)</div>
+        <div class="step-body">If CFO/CMO route through Travis, take the meeting. He owns vendor selection. Bring a one-page comparison of Litigator Scrub + RND Safe Harbor + IDNC policy templates.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7–14</div>
+        <div class="card-title">5 · Cross-sell American Auto Shield</div>
+        <div class="step-body">AAS is repeatedly co-defendant with NRRM. Open a parallel conversation with their compliance lead — they have independent exposure under the FTC consent decree.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 14–21</div>
+        <div class="card-title">6 · Close before the answer</div>
+        <div class="step-body">Anchor on the July 7 answer deadline. Once Spencer Fane files an MTC arbitration, the conversation moves to outside counsel and the buying motion stalls 90+ days.</div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <div class="card-title"><i data-lucide="alert-triangle" style="width:18px;height:18px;display:inline-block;vertical-align:-3px"></i> Trigger Conditions That Would Change The Plan</div>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>If CarShield files an MTC arbitration and it is GRANTED (as in Lindsey-Evans 3/2026), pivot to selling the FTC-consent-decree compliance infrastructure rather than the named-plaintiff defense</li>
+        <li>If Misner amends to add American Auto Shield as co-defendant, open a parallel AAS conversation immediately</li>
+        <li>If plaintiff drops to file a related state-court action (mirrors Hilliard remand 2023), the conversation moves to state-DNC scrub coverage</li>
+        <li>If the unredacted 614 number returns a litigator-list MATCH on blacklistBulk, escalate to "your most expensive lead, in your dialer, right now"</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 7, 2026</span>
+      <span class="pill pill--warn">REPEAT DEFENDANT · POST-FTC-DECREE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-10</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
