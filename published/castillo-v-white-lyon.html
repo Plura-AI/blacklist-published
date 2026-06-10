@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Castillo v. White Lyon — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.highlight{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">BLACKLIST</text>
+          <text x="118" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="500" font-size="20" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Internal DNC Class Action · Serial-Plaintiff Filer · Jibrael Hindi Firm · Compliance Vacuum Defendant</p>
+      <h1 class="hero-tagline">Castillo v.<br>White Lyon, LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03179</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(per CourtListener)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class (50+)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">The Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — but Arnold Castillo is already a serial filer (3 cases in 6 weeks).</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Castillo's number is not disclosed in the complaint, so a bulk lookup cannot be run — but his filing pattern is loud enough to carry the conversation without it.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--danger">Serial Plaintiff Flag</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Phone</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraph 23 references "the telephone number that received the above text message solicitations" but does not state the digits. No screenshot exhibits attached. No sending DID disclosed.</div>
+      </div>
+      <p class="scrub-body-text">
+        Without a 10-digit number, the BlacklistBulk litigator-list lookup cannot be run honestly. What we do know: plaintiff <strong>Arnold Castillo</strong> of Riverside County has filed at least three federal TCPA actions in the Central District of California within roughly six weeks — <em>Castillo v. Flexible Finance Inc.</em> (5:26-cv-02178, Apr 28, 2026), <em>Castillo v. MSB Holdings</em> (5:26-cv-02663, May 18, 2026), and the present case against White Lyon (Jun 9, 2026). All three are Riverside-division filings under the same plaintiff name, all represented by the Jibrael S. Hindi firm. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Arnold+Castillo%22&type=r">CourtListener (Castillo cases) →</a></span>
+      </p>
+    </div>
+
+    <h3 style="font-size:18px; margin:32px 0 16px;">Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Step 1</div>
+        <div class="card-title">Pull ECF #1 from PACER</div>
+        <div class="card-body">Defense counsel (once retained) will routinely demand discovery of the recipient number. In the meantime, civil cover sheet (Doc #1) may identify the number — pull for ~$1.20.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Step 2</div>
+        <div class="card-title">Watch the docket for the Initial Order</div>
+        <div class="card-body">Judge assignment in C.D. Cal. typically follows within 1-2 weeks of filing. CourtListener showed only Docs #1-#3 (complaint, summons request, NOIP) as of report generation. <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03179&type=r">CourtListener (5:26-cv-03179) →</a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Step 3</div>
+        <div class="card-title">Cross-check via sister cases</div>
+        <div class="card-body">If Castillo's number was disclosed in <em>Flexible Finance</em> or <em>MSB Holdings</em> filings (Doc #1 or any later amended pleading), it is the same number used here. PACER pull on either sister case is the cheapest path.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER</span>
+      <span class="pill pill--danger">SERIAL FILER — 3 CASES IN 6 WEEKS</span>
+      <span class="pill pill--info">JIBRAEL HINDI FIRM TEMPLATE</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small-LLC SMS marketer caught by a serial filer — a textbook first-time-defendant close.</h2>
+      <p class="section-lede">White Lyon, LLC has no public TCPA litigation history, no visible compliance program, and no responsive corporate website. They were sued by one of the most aggressive TCPA plaintiff firms in the country on an Internal DNC theory that the firm has refined over dozens of cases. Lead with <strong>Policies &amp; Procedures + DNC scrubbing</strong>. Close on the fact that the next class member with a "STOP" reply is another $500–$1,500 statutory hit until the program is in place.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <div class="card-title">Policies &amp; Procedures + Personnel Training</div>
+        <div class="card-body">The complaint alleges (¶¶ 18-21, 47-52) that the defendant lacks the written DNC policy and personnel training required under 47 CFR § 64.1200(d). This is exactly the gap Blacklist's compliance program closes. Lead here — it's the cause of action.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary</div>
+        <div class="card-title">DNC Scrubbing (Internal + Federal)</div>
+        <div class="card-body">Stop the bleeding immediately — every additional SMS to an opted-out consumer is another statutory violation feeding the class. Internal DNC list ingestion + suppression is day-one work.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <div class="card-title">Litigator Scrub</div>
+        <div class="card-body">Once the program is live, ongoing litigator-list scrubbing prevents the next Arnold Castillo from appearing in their funnel. Position as the insurance policy that keeps Hindi from coming back.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:40px 0 12px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p style="margin-top:0;">"You were sued two days ago by a Florida firm that has booked $30M+ in TCPA settlements and is featured in the 2026 TCPAWorld Power Rankings. <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span> Their template is well-rehearsed: file a putative class on Internal DNC, allege you have no written policy and no personnel training, then settle inside 60–120 days for nuisance value plus attorney fees. The plaintiff in your case — Arnold Castillo — has filed three of these in the last six weeks. You are case number three. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Arnold+Castillo%22&type=r">CourtListener →</a></span></p>
+        <p>"The good news: the entire complaint is built on a regulatory framework — 47 CFR § 64.1200(d) — that Blacklist's compliance program is designed to satisfy. Written DNC policy, personnel training, internal DNC list, ten-day honor window. We can have you defensible on every element by the time you file your Answer. Without that, the next 'STOP' reply your platform ignores is another $500-$1,500 statutory violation, multiplied by class size. You alleged at least 50 — even at the floor that's $25,000 to $75,000 before fees and trebling."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A California LLC with a dark website and no discoverable compliance posture.</h2>
+      <p class="section-lede">White Lyon, LLC is headquartered in Corona, California per the complaint (¶ 10). Beyond that, the public record is largely empty — CA SoS, Bizapedia, OpenCorporates, BBB, Crunchbase, Trustpilot, Glassdoor, and the defendant's own website (whitelyon.com) all returned 403/404/timeout during research. That information void is itself the story: this is a small SMS-driven operation with no public-facing compliance infrastructure.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-title">Defendant Profile</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>White Lyon, LLC</dd>
+          <dt>Entity Type</dt><dd>Limited Liability Company</dd>
+          <dt>Formation State</dt><dd><span class="pill pill--gap">Not Confirmed</span> — CA SoS lookup blocked</dd>
+          <dt>HQ</dt><dd>Corona, California (per complaint ¶ 10)</dd>
+          <dt>Website</dt><dd>whitelyon.com <span class="pill pill--warn">Returned 0 bytes / non-responsive</span></dd>
+          <dt>Vertical</dt><dd><span class="pill pill--gap">Unknown</span> — site dark, no product disclosures</dd>
+          <dt>Acquisition Channel</dt><dd>SMS text-message marketing (alleged)</dd>
+          <dt>Parent / Subsidiaries</dt><dd>None identified</dd>
+          <dt>Employees / Revenue</dt><dd><span class="pill pill--gap">Unknown</span> — no Crunchbase or LinkedIn presence found</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <div class="card-title">No website, no privacy policy, no opt-out flow — and the complaint pleads the result.</div>
+        <div class="card-body" style="margin-top:12px;">
+          Every attempt to fetch whitelyon.com — including /signup, /subscribe, /terms, /terms-of-service, /about, /contact — returned null or 404. There is no publicly reachable privacy policy, no TCPA disclosure, no consent flow. The complaint reads that vacuum as conclusive: ¶ 18-21 alleges that the defendant's failure to process plaintiff's STOP request "demonstrates that Defendant has not instituted procedures for maintaining a list of persons who request not to receive text messages" and lacks the required written policy and personnel training under 47 CFR § 64.1200(d).
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-title">Strategic Timing</div>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Filed</dt><dd>June 9, 2026</dd>
+          <dt>Service Status</dt><dd>No proof of service on docket as of report generation <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03179&type=r">CourtListener →</a></span></dd>
+          <dt>Answer Window</dt><dd>21 days from service under FRCP 12(a)(1)(A)(i) — clock not yet started</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+          <dt>Pre-Answer Window</dt><dd><strong>This is the ideal moment to reach the principal/managing member directly</strong> before outside counsel is retained and locks the conversation</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:40px 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="text-align:center; color:var(--fg-3); font-style:italic; padding:24px;">No related entities, parent, subsidiaries, or sister brands identified. White Lyon, LLC presents as a standalone single-entity defendant. CA Secretary of State and OpenCorporates lookups were blocked during research — re-run on the day of dial to confirm.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit against this defendant — by a firm that has run this play dozens of times.</h2>
+      <p class="section-lede">Defendant is a litigation virgin. Plaintiff's counsel is not. The Jibrael S. Hindi firm appears in the 2026 TCPAWorld Power Rankings and advertises $30M+ in TCPA settlements. The case template — Internal DNC under § 64.1200(d), 50+ putative class, statutory damages only — is one this firm files repeatedly across multiple states.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-title">The Case</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>5:26-cv-03179 (C.D. Cal., Riverside Division)</dd>
+          <dt>Filed</dt><dd>June 9, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03179&type=r">CourtListener →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Arnold Castillo (Riverside County, CA)</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Rule 23 putative</span></dd>
+          <dt>Class Definition</dt><dd>All persons in U.S. who, within 4 years of filing, received 2+ text messages within any 12-month period from/on behalf of defendant after replying "STOP" or similar</dd>
+          <dt>Class Size Alleged</dt><dd>At least 50</dd>
+          <dt>Claim</dt><dd>Count I — 47 USC § 227(c) &amp; 47 CFR § 64.1200(d)</dd>
+          <dt>Theory</dt><dd>Internal DNC — failure to honor opt-out, no written policy, no personnel training, no internal DNC list</dd>
+          <dt>Channel</dt><dd>SMS only (no voice, no prerecorded)</dd>
+          <dt>Damages Sought</dt><dd>$500/violation (negligent) · $1,500/violation (willful) · class-wide; injunctive relief; fees</dd>
+          <dt>Named-Plaintiff Exposure</dt><dd>2 alleged post-STOP texts × $500–$1,500 = <strong>$1,000–$3,000</strong> on named claim alone (class math layers on top)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span></dd>
+          <dt>Judges</dt><dd>Not yet assigned per docket aggregator</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-title">Plaintiff Counsel</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Lead Attorney</dt><dd>Gerald D. Lane Jr.</dd>
+          <dt>CA Bar No.</dt><dd>352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar →</a></span></dd>
+          <dt>Bar Status</dt><dd><span class="pill pill--ok">Active</span></dd>
+          <dt>Email</dt><dd>gerald@jibraellaw.com</dd>
+          <dt>Phone</dt><dd>(754) 444-7539</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="pill pill--warn">FL firm filing in CA</span></dd>
+          <dt>Address Match</dt><dd><span class="pill pill--warn">Mismatch</span> — CA-barred attorney working out of a FL firm; no CA office found</dd>
+          <dt>Firm Website</dt><dd>jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Power Ranking</dt><dd>Jibrael Hindi featured in 2026 TCPAWorld Power Rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Settlement Track</dt><dd>$30M+ in TCPA settlements advertised by firm <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Notable Cases</dt><dd>Steve Madden SMS, Tampa Bay Buccaneers, Nespresso, Thirdlove, Overtime Sports — Quiet Hours / Internal DNC templates <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">Extreme — Serial Filer</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:40px 0 12px;">Plaintiff / Firm Template</h3>
+    <div class="card">
+      <div class="card-body">
+        <p style="margin-top:0;"><strong>The Hindi/Lane Internal DNC template.</strong> The Jibrael S. Hindi firm — operating in California through CA-barred Gerald Lane Jr. — runs a repeatable Internal DNC playbook against small-to-mid-cap consumer brands that use SMS marketing. The fact pattern is consistent across filings:</p>
+        <ul class="clean tight">
+          <li>Plaintiff sends "STOP" reply on a single date.</li>
+          <li>Plaintiff alleges 2+ subsequent marketing texts (here: Apr 4 and Apr 28, 2026 after a Feb 6, 2026 STOP).</li>
+          <li>Complaint pleads no written DNC policy, no personnel training, no internal DNC list — all "solely within Defendant's knowledge and control."</li>
+          <li>Claim is limited to 47 USC § 227(c) / 47 CFR § 64.1200(d) only — no ATDS, no prerecorded voice, no quiet-hours claim added here.</li>
+          <li>Class size pled at "at least 50" — minimum threshold for class treatment, designed to survive numerosity without overpromising.</li>
+        </ul>
+        <p>Documented examples from the firm's recent docket include Steve Madden, Tampa Bay Buccaneers, Nespresso, Thirdlove, Overtime Sports, PrimeFish Seafood, and Summer Vibe — all SMS-driven consumer brands. <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></p>
+        <p>The named plaintiff here, Arnold Castillo, is himself a repeat actor — three Hindi-firm-filed TCPA actions in C.D. Cal. between April 28 and June 9, 2026. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Arnold+Castillo%22&type=r">CourtListener →</a></span></p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:40px 0 16px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case Name</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="highlight">
+            <td><strong>Castillo v. White Lyon, LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>5:26-cv-03179</td>
+            <td>Jun 9, 2026</td>
+            <td><span class="pill pill--danger">Active · Class Action</span></td>
+            <td>Internal DNC · § 64.1200(d)</td>
+          </tr>
+          <tr>
+            <td>Castillo v. MSB Holdings</td>
+            <td>5:26-cv-02663</td>
+            <td>May 18, 2026</td>
+            <td><span class="pill pill--info">Active (same plaintiff)</span></td>
+            <td>TCPA (per filing pattern)</td>
+          </tr>
+          <tr>
+            <td>Castillo v. Flexible Finance Inc.</td>
+            <td>5:26-cv-02178</td>
+            <td>Apr 28, 2026</td>
+            <td><span class="pill pill--info">Active (same plaintiff)</span></td>
+            <td>TCPA (per filing pattern)</td>
+          </tr>
+          <tr>
+            <td colspan="5" style="font-style:italic; color:var(--fg-3);">No prior TCPA suits located against White Lyon, LLC — this is their first. Source: <a href="https://www.courtlistener.com/?q=%22White+Lyon%22&type=r">CourtListener (White Lyon search)</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px; height:14px; vertical-align:middle;"></i> Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>Plaintiff's recipient phone number — not pled. Pull PACER Doc #1 or look at sister-case filings to recover.</li>
+        <li>Judge / magistrate assignment — not yet visible on CourtListener. Check docket the morning of dial.</li>
+        <li>Service date on White Lyon — drives the 21-day answer clock.</li>
+        <li>Defendant entity confirmation — CA SoS / Bizapedia / OpenCorporates all blocked or 403'd. Re-run to identify registered agent and managing member.</li>
+        <li>Sender DID / shortcode used in the campaign — not disclosed in complaint, no screenshot exhibit.</li>
+        <li>Outcomes of <em>Castillo v. MSB Holdings</em> and <em>Castillo v. Flexible Finance</em> — could indicate settlement velocity for this template.</li>
+        <li>Jibrael Hindi firm's total cross-jurisdictional TCPA filing count (firm-wide) — power-ranking specifics not retrieved.</li>
+        <li>White Lyon's actual business / vertical — website non-responsive. Try archive.org or LinkedIn before the call.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named officers surfaced — recover via CA SoS, then dial the managing member directly.</h2>
+      <p class="section-lede">Every contact-discovery source (LinkedIn, TheOrg, ZoomInfo, Apollo, RocketReach, Hunter, the company website) returned blocked, 404, or no result. The fastest recovery path is the California Secretary of State business filing (bizfileonline.sos.ca.gov), which will name the registered agent and at least one managing member. That person is the principal — and pre-answer, they are the decision-maker.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Managing Member</strong><br><span class="pill pill--dark">Decision-Maker · Pre-Counsel</span></td>
+            <td>Identity to be recovered from CA Secretary of State filing for White Lyon, LLC. This is the principal who controls retention of defense counsel and any settlement decision before outside counsel is engaged.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark">Service Recipient</span></td>
+            <td>Listed on CA SoS filing. Will receive the summons; often a commercial agent service, sometimes the managing member.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Inquiries</strong><br><span class="pill pill--dark">Main Line</span></td>
+            <td>White Lyon, LLC — Corona, CA HQ per complaint. Website whitelyon.com non-responsive across all attempted pages.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">No LinkedIn company page found</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <div class="callout-title"><i data-lucide="search" style="width:14px; height:14px; vertical-align:middle;"></i> Recovery sequence for the first dial</div>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li><strong>Step 1:</strong> Search "White Lyon" at bizfileonline.sos.ca.gov to retrieve registered agent + managing member name and principal address.</li>
+        <li><strong>Step 2:</strong> Run the manager name through LinkedIn + Apollo to get a direct email and mobile.</li>
+        <li><strong>Step 3:</strong> If the CA SoS principal address is residential, dial it. If commercial, run a Google + Yelp pass on the address for a business phone.</li>
+        <li><strong>Step 4:</strong> Re-attempt whitelyon.com via archive.org (web.archive.org) to recover historical contact info if the site was previously live.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel is retained.</h2>
+      <p class="section-lede">The case is two days old. White Lyon has not been served (no proof of service on docket), no defense counsel has appeared, and the principal is almost certainly looking at a complaint for the first time. That window — between filing and outside-counsel retention — is when a small LLC will entertain a direct conversation about getting compliant. After counsel appears, every conversation routes through them.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0 (today)</div>
+        <div class="card-title">1 · Recover the principal</div>
+        <div class="card-body">Pull CA SoS filing for White Lyon, LLC. Identify managing member + registered agent. Get a direct line and email. Pull PACER Doc #1 in parallel for the plaintiff's phone number.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1</div>
+        <div class="card-title">2 · First-touch email</div>
+        <div class="card-body">Subject: "Castillo v. White Lyon — getting ahead of the next text." 3-sentence email: you've been sued, the cause of action is fixable, here's a 15-minute call to walk you through what § 64.1200(d) actually requires. Attach a 1-pager on Blacklist's P&amp;P + DNC package.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2-3</div>
+        <div class="card-title">3 · Phone follow-up</div>
+        <div class="card-body">Call the principal directly. Open with: "Three things you need to know about the lawyer who filed this." Reference Hindi's $30M+ settlement track and the Castillo serial-plaintiff pattern. Move to: "Here's how we stop the bleeding by Friday."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5-7</div>
+        <div class="card-title">4 · Loop in defense counsel (if retained)</div>
+        <div class="card-body">Once an Answer-deadline attorney appears on the docket, send them the same package framed as "the compliance program that makes the injunctive-relief prayer moot." Defense counsel will sell the program internally as risk mitigation.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 10-14</div>
+        <div class="card-title">5 · Cross-sell to sister-case defendants</div>
+        <div class="card-body">Pull MSB Holdings and Flexible Finance dockets. Same plaintiff, same firm, same template — same pitch. Three leads for the price of one workflow.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Standing</div>
+        <div class="card-title">6 · Trigger conditions</div>
+        <div class="card-body">If defense counsel files an early motion to compel arbitration (TOS likely contains one if site comes back online), pause and re-pitch as "compliance scaffolding for the post-arbitration award world." If plaintiff voluntarily dismisses before service, that's a likely settlement signal — re-pitch as ongoing scrub to prevent recurrence.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH · 72-HOUR WINDOW</span>
+      <span class="pill pill--danger">PRE-COUNSEL WINDOW · DIRECT-TO-PRINCIPAL</span>
+      <span class="pill pill--info">CROSS-SELL: MSB HOLDINGS + FLEXIBLE FINANCE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
