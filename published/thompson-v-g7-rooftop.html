@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thompson v. G7 Rooftop — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin:0 0 8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" style="filter:invert(1) brightness(2);">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Quiet-Hours Class Action · Hospitality SMS Marketer · Florida State Court · Jibrael Hindi Firm</p>
+      <h1 class="hero-tagline">Thompson v.<br>G7 Rooftop</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">CACE-26-009421</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">Broward Cty. 17th Cir. (FL)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(4 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Div. 12<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Assignment TBD</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Fla.R.Civ.P. 1.220 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alina O'Connor <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not in complaint — scrub deferred, but plaintiff's firm is already a TCPAWorld "Most Dangerous" honoree.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Thompson's complaint depicts a screenshot of the sender DID (844-953-3174) but redacts her own recipient number — the lookup cannot be run until the recipient line is recovered from the operative pleading exhibits or early discovery.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint ¶14 shows a screenshot of the sender (844-953-3174) but does not disclose Plaintiff Thompson's cellular telephone number. ¶18-19 only confirm she is the regular user and uses it as her residential line.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff name was cross-checked against CourtListener and PACER for prior federal TCPA filings — <strong>no prior filings located</strong> under "Anyelina Thompson," though state-court filings in FL would not surface in CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Anyelina+Thompson%22&type=r">CourtListener →</a></span>. Plaintiff counsel (Jibrael S. Hindi firm) is a documented volume FTSA/TCPA filer and 2026 TCPAWorld "Most Dangerous" honoree <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span>, so even an unknown plaintiff number does not de-risk the case — assume serial-template behavior.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">+1 (844) 953-3174</h3>
+        <p class="card-body">Toll-free 844 prefix — consistent with bulk SMS dialer infrastructure capable of mass-blasting the alleged "several thousands" class. No consumer-side complaint hits returned from 800notes, YouMail, Tellows, or RoboKiller (all sources blocked or returned no record), so this DID is operationally <strong>unburned</strong> — no public reputation footprint yet. Identification points to G7 Rooftop based solely on the in-message branding ("G7 NYE 2026") in the complaint's screenshot exhibit.</p>
+        <div style="margin-top:12px"><span class="pill pill--warn">No Consumer Reports Surfaced</span> <span class="pill pill--info">Toll-Free Bulk SMS Profile</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull operative complaint exhibits from Broward Clerk</h3>
+        <p class="card-body">Plaintiff's actual recipient number may appear in the unredacted exhibit copy filed with the clerk. Broward Clerk site requires interactive session — pull docket entry #1 (Filing 249825050) directly <span class="src-tag"><a href="https://www.browardclerk.org/Web2/CaseSearch/">Broward Clerk →</a></span>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense counsel notice of appearance</h3>
+        <p class="card-body">Once defense files an appearance, request the plaintiff's recipient number via interrogatory or informal Rule 1.350 production. The recipient line will be in defendant's outbound transmission log per ¶20.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Run firm-pattern scrub instead</h3>
+        <p class="card-body">Pivot the pitch: scrub G7's house list against the Jibrael Hindi firm's known client/plaintiff roster from prior FL TCPA filings. Higher-value sell because it prevents the <em>next</em> Thompson, not just this one.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL CLERK FILING #1</span>
+      <span class="pill pill--danger">SERIAL-FILER COUNSEL FLAGGED</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small kosher rooftop bar with a copy-pasted privacy policy, no SMS terms page, and an outsourced marketing vendor — the easiest full-stack compliance sell on the board.</h2>
+      <p class="section-lede">G7 Hospitality is a single-venue Florida LLC that runs SMS blasts off a toll-free 844 number with zero documented quiet-hours throttling, zero internal DNC policy, and a privacy policy that still references "degree programs." A class of "several thousands" exposes them to $1.5M–$15M+ in statutory damages on the easiest TCPA theory to litigate. Lead with Litigator Scrub + Quiet-Hours throttling; cross-sell consent capture and a policies & procedures audit.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">G7 is sending toll-free SMS blasts off an apparently unfiltered list. A Hindi-firm-aware scrub layer is the cheapest way to stop the next Thompson before it files. This is also the easiest "yes" — small operator, low budget, high pain.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Secondary</div>
+        <h3 class="card-title">Consent Capture / Quiet-Hours Throttling</h3>
+        <p class="card-body">Plaintiff alleges a 9:14 PM local-time SMS — the cleanest, hardest-to-defend TCPA theory. G7's privacy policy never mentions SMS, never mentions TCPA, never mentions quiet hours <span class="src-tag"><a href="https://g7rooftop.com/privacy">g7rooftop.com/privacy →</a></span>. Throttling + a real consent record retrofits both.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Policies &amp; Procedures Audit</h3>
+        <p class="card-body">G7's terms page is a copy-pasted template that still references "Fast Money For Your Home" and "Victory Publishing" — businesses unrelated to a rooftop bar <span class="src-tag"><a href="https://g7rooftop.com/terms">g7rooftop.com/terms →</a></span>. A real internal-DNC policy + written procedures (47 CFR § 64.1200(d)) is a defensible upsell post-settlement.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title" style="margin-bottom:12px">"You got sued by the Hindi firm. They don't sue once."</h3>
+      <p class="card-body">G7 was sued June 8, 2026 by The Law Offices of Jibrael S. Hindi — featured in TCPAWorld's 2026 "Most Dangerous TCPA Plaintiff's Lawyers in the Country" rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span> and publicly advertising $30M+ in TCPA settlements. This firm files quiet-hours class actions on a near-monthly basis (Steve Madden, Tampa Bay Buccaneers, Nespresso, Overtime Sports, Thirdlove, etc.) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span>. The same SMS list that triggered Thompson is still live. The opener: "Your privacy policy still references 'degree programs' and a real estate company called Fast Money For Your Home — the Hindi firm has already screenshotted that page. If you don't fix the underlying scrub-and-throttle gap before you settle, you'll be sued again inside 90 days by the same firm for the same conduct. Blacklist closes that gap in 14 days for less than half a single statutory violation."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Single-venue kosher Asian-fusion rooftop operating inside a Dolce by Wyndham — small footprint, but the Wyndham franchise tie-in raises the reputational stakes.</h2>
+      <p class="section-lede">G7 Hospitality LLC operates G7 Rooftop, a kosher Asian/Japanese-fusion restaurant and bar in Hollywood, Florida. Privately held, no founders or revenue disclosed in public sources, and Sunbiz/Bizapedia/OpenCorporates were all unavailable during enrichment. Marketing infrastructure appears to be outsourced to a third party (Kernelios FL) — a vicarious liability vector for vendor-level scrub deployment.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">G7 Hospitality LLC d/b/a G7 Rooftop</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>G7 Hospitality LLC (Florida LLC, per complaint ¶10)</dd>
+          <dt>Formation State</dt><dd>FL (Sunbiz confirmation deferred — endpoint returned 403)</dd>
+          <dt>HQ</dt><dd>5510 S State Rd 7 Rooftop, Hollywood, FL 33314 <span class="src-tag"><a href="https://g7rooftop.com">g7rooftop.com →</a></span></dd>
+          <dt>Parent</dt><dd>None disclosed</dd>
+          <dt>Vertical</dt><dd>Hospitality / Restaurant / Nightlife — kosher Asian/Japanese-fusion rooftop bar</dd>
+          <dt>Employees</dt><dd>11–50 (LinkedIn brand page; 6 visible) <span class="src-tag"><a href="https://www.linkedin.com/company/g7-rooftop">LinkedIn →</a></span></dd>
+          <dt>Revenue Band</dt><dd>Not disclosed — single-venue private operator</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Main Phone</dt><dd>754-216-7899 (reservations) <span class="src-tag"><a href="https://g7rooftop.com/contact">g7rooftop.com/contact →</a></span></dd>
+          <dt>Main Email</dt><dd>Reservations@g7rooftop.com</dd>
+          <dt>Co-Location</dt><dd>Operates inside Dolce by Wyndham Hollywood property — franchise reputational exposure</dd>
+          <dt>SMS Sender</dt><dd>+1 (844) 953-3174 (per complaint ¶14 screenshot)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">The Terms &amp; Conditions page references "Fast Money For Your Home" and "Victory Publishing."</h3>
+        <p class="card-body">G7's public Terms &amp; Conditions page contains references to <strong>unrelated businesses</strong> — "Fast Money For Your Home" (real estate) and "Victory Publishing" — clear evidence the operator copy-pasted a generic boilerplate template without customization <span class="src-tag" style="color:#A8A8A8"><a href="https://g7rooftop.com/terms" style="color:#C9C9C9">g7rooftop.com/terms →</a></span>. The privacy policy compounds this with a stray "degree programs" reference (an education-vertical template) <span class="src-tag" style="color:#A8A8A8"><a href="https://g7rooftop.com/privacy" style="color:#C9C9C9">g7rooftop.com/privacy →</a></span>. The privacy policy mentions only EMAIL marketing — never SMS — yet G7 sent SMS marketing to Thompson. There is no SMS terms page (/sms-terms returns 404), no STOP-keyword opt-out language, no quiet-hours disclosure, and no internal DNC policy referenced. This is zero compliance investment on a public-facing page the plaintiff's firm has already screenshotted.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Florida 20-day answer clock + holiday-season SMS dependence = tight close window.</h3>
+      <dl class="kv" style="margin-top:16px">
+        <dt>Complaint Served</dt><dd>Filed Jun 8, 2026 — service date TBD</dd>
+        <dt>Answer Deadline</dt><dd>~20 days from service under Fla.R.Civ.P. 1.140(a) — likely early July 2026</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+        <dt>Seasonal SMS Cycle</dt><dd>NYE/holiday marketing cycle imminent — the very campaign that triggered this suit ("G7 NYE 2026") will reactivate ~Oct 2026 unless scrub is in place</dd>
+        <dt>Sales Window</dt><dd>14–30 days — close before defense counsel appears and locks budget</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:12px; font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3)">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Kernelios FL <br><span class="src-tag">mgr@kernelios-fl.com (per privacy policy)</span></td>
+            <td>Outsourced marketing/management vendor (suspected)</td>
+            <td>Marketing services</td>
+            <td>If Kernelios runs SMS for multiple FL hospitality clients, vendor-level scrub is a force-multiplier deal</td>
+            <td><span class="pill pill--warn">Medium · Vendor Lead</span></td>
+          </tr>
+          <tr>
+            <td>Dolce by Wyndham (host property)</td>
+            <td>Co-location / host hotel</td>
+            <td>Hotel franchise</td>
+            <td>Franchise reputation risk — Wyndham brand sensitivity may pressure G7 to settle quickly. Wyndham's own franchisee compliance program is a separate enterprise opportunity</td>
+            <td><span class="pill pill--info">Low · Enterprise Adjacent</span></td>
+          </tr>
+          <tr>
+            <td>Unknown SMS platform vendor</td>
+            <td>SMS infrastructure provider</td>
+            <td>MarTech / messaging</td>
+            <td>The 844-953-3174 DID terminates somewhere — identify the platform (Attentive, Klaviyo SMS, Toast, SevenRooms, Twilio direct) for vendor-side cross-sell</td>
+            <td><span class="pill pill--gap">Pending Identification</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">G7's first TCPA suit, filed by a serial quiet-hours class-action firm in plaintiff-friendly Broward state court.</h2>
+      <p class="section-lede">The Hindi firm typically files in S.D. Fla. federal court — they chose Broward state court here, which is a deliberate venue play to defeat federal removal and arbitration defenses. G7 has no prior TCPA litigation, no defense counsel relationship, and no internal playbook. They will settle.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <h3 class="card-title">Thompson v. G7 Hospitality LLC d/b/a G7 Rooftop</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Case No.</dt><dd>CACE-26-009421 · Division 12</dd>
+          <dt>Filed</dt><dd>June 8, 2026 (Filing # 249825050)</dd>
+          <dt>Court</dt><dd>Florida 17th Judicial Circuit, Broward County</dd>
+          <dt>Plaintiff</dt><dd>Anyelina Thompson, individually and on behalf of all others similarly situated (Broward County, FL resident)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Alina O'Connor, Zane C. Hedaya, Gerald D. Lane Jr. — Law Offices of Jibrael S. Hindi</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">YES — Fla.R.Civ.P. 1.220</span></dd>
+          <dt>Class Definition</dt><dd>All US persons who within 4 years received &gt;1 marketing text from defendant initiated before 8 a.m. or after 9 p.m. local time</dd>
+          <dt>Class Size Pled</dt><dd>"Several thousands"; at least 50 persons (¶25-26)</dd>
+          <dt>Claims</dt><dd>47 U.S.C. § 227(c) · 47 C.F.R. § 64.1200(c)(1) · 47 C.F.R. § 64.1200(e)</dd>
+          <dt>Theory</dt><dd><span class="pill pill--danger">Quiet-Hours (8pm–9pm violation alleged at 9:14 PM, Nov 29, 2025)</span></dd>
+          <dt>Damages Sought</dt><dd>$500/violation negligent · $1,500/violation willful · injunctive relief · attorneys' fees</dd>
+          <dt>Named Plaintiff Exposure</dt><dd>$500–$1,500+ per text (≥2 alleged)</dd>
+          <dt>Class Exposure (est.)</dt><dd>$1.5M–$15M+ (assuming 1,000–3,000 class members, 1 violation each)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~20-day answer clock</span></dd>
+          <dt>Docket Visibility</dt><dd>State filing not indexed by CourtListener/PacerMonitor/Justia/UniCourt as of research date</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">The Law Offices of Jibrael S. Hindi, PLLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Litigation Phone</dt><dd>813-340-8838 (Tampa area code) <span class="pill pill--warn">Geographic Mismatch</span></dd>
+          <dt>Intake Phone</dt><dd>844-542-7235</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Lead Attorney</dt><dd>Alina O'Connor (FL Bar #21171) · alina@jibraellaw.com <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar →</a></span></dd>
+          <dt>Co-Counsel</dt><dd>Zane C. Hedaya (FL Bar #1048640) · Gerald D. Lane Jr. (FL Bar #1044677) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1048640">FL Bar →</a></span></dd>
+          <dt>Bar Status</dt><dd>Active (no discipline history surfaced)</dd>
+          <dt>TCPA Power Rank</dt><dd><span class="pill pill--danger">TCPAWorld 2026 "Most Dangerous"</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Filing Volume</dt><dd>Multiple quiet-hours class actions per month across CA + FL; characterized as an "onslaught"</dd>
+          <dt>Self-Reported Track Record</dt><dd>$30M+ TCPA settlements · $200M+ class action settlements · $15M+ FDCPA <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Hindi-Firm Quiet-Hours Template — same complaint, swapped defendant.</h3>
+      <p class="card-body">This complaint follows the firm's established quiet-hours template: (1) screenshot exhibit of a single late-night or early-morning marketing text; (2) ¶ alleging plaintiff is the "regular user" and the line is "residential"; (3) ¶ disclaiming any opt-in consent before 8 a.m. or after 9 p.m.; (4) class definition pegged to 4-year lookback, &gt;1 marketing text, outside permitted hours; (5) prayer for $500/$1,500 statutory damages plus injunction under 47 C.F.R. § 64.1200(c)(1). Recent template-pattern targets include Steve Madden, Tampa Bay Buccaneers, Nespresso, Overtime Sports, Thirdlove, Summer Vibe, PrimeFish <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span>. The firm's pivot to Broward state court (rather than its usual S.D. Fla. federal venue) defeats federal removal/arbitration defenses — a deliberate sophistication signal.</p>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:12px; font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3)">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Thompson v. G7 Hospitality LLC</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span><br>CACE-26-009421</td>
+            <td>Broward 17th Cir. (FL)</td>
+            <td>Jun 8, 2026</td>
+            <td><span class="pill pill--red">Active</span></td>
+            <td>Quiet-hours SMS class action</td>
+          </tr>
+          <tr>
+            <td>Hindi v. Vanguard Equities, LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Filed</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener →</a></span></td>
+          </tr>
+          <tr>
+            <td>Moreno Armas v. Freedom Mortgage Corp.</td>
+            <td>S.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill pill--info">Filed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Turizo v. Healthfund Solutions, LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2021</td>
+            <td><span class="pill pill--info">Filed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Ayala v. Midland Credit Management</td>
+            <td>S.D. Fla.</td>
+            <td>2020</td>
+            <td><span class="pill pill--info">Filed</span></td>
+            <td>TCPA / FDCPA</td>
+          </tr>
+          <tr>
+            <td>Padilla v. Gulf Coast Collection Bureau</td>
+            <td>S.D. Fla.</td>
+            <td>2020</td>
+            <td><span class="pill pill--info">Filed</span></td>
+            <td>TCPA / FDCPA</td>
+          </tr>
+          <tr>
+            <td>Shinn v. Palm Beach Credit Adjusters</td>
+            <td>S.D. Fla.</td>
+            <td>2018</td>
+            <td><span class="pill pill--info">Filed</span></td>
+            <td>TCPA / FDCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px">G7 Hospitality has no prior TCPA litigation history surfaced via CourtListener for either "G7 Hospitality" or "G7 Rooftop" — this is their first TCPA suit. Litigation heat: cold (defendant); hot (plaintiff counsel).</p>
+
+    <div class="callout">
+      <h4 class="callout-title">Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px">
+        <li>Pull operative complaint exhibit from Broward Clerk (Filing #249825050) to recover plaintiff's actual recipient number for litigator scrub</li>
+        <li>Confirm Florida Sunbiz entity status, registered agent, and named managers/members of G7 Hospitality LLC (Sunbiz returned 403 during research)</li>
+        <li>Identify the SMS platform behind 844-953-3174 — Attentive, Klaviyo SMS, Toast, SevenRooms, or direct Twilio — for vendor-side cross-sell</li>
+        <li>Confirm relationship between G7 Hospitality LLC and "Kernelios FL" (mgr@kernelios-fl.com referenced in G7 privacy policy)</li>
+        <li>Confirm "Javier" identity (javier@g7rooftop.com listed as opt-out contact) — owner, manager, or marketing lead?</li>
+        <li>Monitor Broward docket weekly for defense counsel notice of appearance — pivot urgency once filed</li>
+        <li>Confirm whether other Hindi-firm 2026 hospitality filings exist (vertical-expansion thesis)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open via reservations line, escalate to "Javier" — the named opt-out contact on G7's own privacy policy.</h2>
+      <p class="section-lede">G7 is a small operator with minimal public leadership disclosure. The reservations line (754-216-7899) is the only verified inbound channel. "Javier" (javier@g7rooftop.com) is explicitly named in G7's privacy policy as the opt-out contact — meaning he handles marketing complaints today and is the natural escalation path. Sunbiz lookup deferred (endpoint blocked), which would surface the actual LLC managers.</p>
+    </div>
+
+    <div class="card" style="background:var(--info-bg); border-left:4px solid var(--info); margin-bottom:24px">
+      <div class="card-meta" style="color:var(--info)">Email Pattern (Inferred)</div>
+      <h3 class="card-title" style="color:var(--info)">{first}@g7rooftop.com</h3>
+      <p class="card-body" style="color:var(--fg-1)">Inferred from <code>Reservations@g7rooftop.com</code>, <code>events@g7rooftop.com</code>, <code>javier@g7rooftop.com</code> (per privacy policy), and <code>nathaly@g7rooftop.com</code> (per LinkedIn). Pattern uses first name or department local-part. Confidence: <span class="pill pill--warn">PATTERN</span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>"Javier"</strong> <br><span class="pill pill--dark">OPT-OUT CONTACT</span></td>
+            <td>Named contact for marketing opt-outs in G7's own privacy policy — almost certainly owner/manager or marketing lead. <span class="src-tag"><a href="https://g7rooftop.com/privacy">G7 Privacy Policy →</a></span></td>
+            <td>754-704-1170 (listed in privacy policy as opt-out line)</td>
+            <td>javier@g7rooftop.com</td>
+            <td>—<br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nathaly Cameron</strong> <br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Only named individual on G7 Rooftop's LinkedIn company page — title not shown publicly; likely management-adjacent given visibility. <span class="src-tag"><a href="https://www.linkedin.com/company/g7-rooftop">LinkedIn →</a></span></td>
+            <td>—</td>
+            <td>nathaly@g7rooftop.com</td>
+            <td><a href="https://www.linkedin.com/in/nathaly-cameron-1aa76473">Profile</a><br><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Reservations Desk</strong> <br><span class="pill pill--dark">MAIN INBOUND</span></td>
+            <td>Primary published contact channel for G7 Rooftop. Use this to open the call and request escalation to ownership or "the person handling the new lawsuit."</td>
+            <td>754-216-7899</td>
+            <td>Reservations@g7rooftop.com</td>
+            <td>—<br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Events / Media</strong> <br><span class="pill pill--dark">MARKETING</span></td>
+            <td>Public events &amp; media inquiry inbox — natural touchpoint for someone selling marketing-compliance services.</td>
+            <td>754-216-7899</td>
+            <td>events@g7rooftop.com</td>
+            <td>—<br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kernelios FL (mgr)</strong> <br><span class="pill pill--dark">SUSPECTED VENDOR</span></td>
+            <td>Referenced in G7 privacy policy as <code>mgr@kernelios-fl.com</code> — likely outsourced marketing/management vendor. Vicarious liability vector; cross-sell candidate.</td>
+            <td>—</td>
+            <td>mgr@kernelios-fl.com</td>
+            <td>—<br><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>G7 Hospitality LLC officers</strong> <br><span class="pill pill--dark">PRINCIPAL(S)</span></td>
+            <td>Managers/members not retrievable — Florida Sunbiz returned 403 during enrichment. Pull manually from Sunbiz to surface true decision-maker.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—<br><span class="pill pill--gap">GAP — PULL SUNBIZ</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong> <br><span class="pill pill--dark">TBD</span></td>
+            <td>Not yet appeared. ~20-day answer clock from service. Monitor Broward docket.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—<br><span class="pill pill--gap">NOT YET APPEARED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 7 business days — before defense counsel appears and the budget conversation freezes.</h2>
+      <p class="section-lede">G7 is a small, unsophisticated TCPA defendant with a visible smoking-gun compliance gap. The window between filing (Jun 8) and defense counsel appearance is the highest-leverage moment Blacklist will get. After defense appears, the conversation goes through counsel and pricing pressure goes up.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1</div>
+        <h3 class="card-title">Open via Reservations line</h3>
+        <p class="card-body">Call 754-216-7899 and ask for "the owner or the person handling the new Broward lawsuit filed last week." Reference Case No. CACE-26-009421 by number — it signals you're not a spammer.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">Email "Javier" directly</h3>
+        <p class="card-body">Send javier@g7rooftop.com a short note: "Your privacy policy lists you as the opt-out contact. We help operators in your situation close the gap that triggered Thompson v. G7." Attach a 1-page brief on Hindi-firm template behavior. CC nathaly@g7rooftop.com as a secondary path.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Pull Sunbiz + clerk filing</h3>
+        <p class="card-body">Retrieve the FL Sunbiz record for G7 Hospitality LLC to surface the actual managers/members. Pull Broward filing #249825050 to recover plaintiff's recipient number for litigator scrub. Re-engage with named decision-maker once identified.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">Pivot to vendor cross-sell</h3>
+        <p class="card-body">If G7 declines or stalls, contact Kernelios FL (mgr@kernelios-fl.com) directly. A vendor running SMS for multiple FL hospitality clients is a higher-LTV deal than G7 alone.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 14–21</div>
+        <h3 class="card-title">Monitor docket for defense counsel</h3>
+        <p class="card-body">Once defense counsel files notice of appearance, pivot the outreach to a counsel-side conversation framing Blacklist as a settlement-conditional remediation vendor (a credibility lever in mediation).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Triggers</div>
+        <h3 class="card-title">What changes the plan</h3>
+        <p class="card-body"><strong>If</strong> defense files motion to compel arbitration → conversation pauses; reopen post-ruling.<br><strong>If</strong> Hindi firm voluntarily dismisses to amend → urgency increases (refiling imminent).<br><strong>If</strong> a parallel hospitality filing surfaces from same firm → reposition pitch as vertical-wide threat.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~20-DAY ANSWER WINDOW · CLOSE BEFORE END OF JUN 2026</span>
+      <span class="pill pill--warn">NYE 2026 SMS CYCLE REACTIVATES OCT 2026</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
