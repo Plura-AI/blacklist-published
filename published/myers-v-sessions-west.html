@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Myers v. Sessions West — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">BLACKLIST ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Quiet-Hours Class Action · WY Shell Lead-Gen Operator · Multi-Brand SMS Infrastructure · 21-Day Service Clock Running</p>
+      <h1 class="hero-tagline">Myers v.<br>Sessions West LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">6:26-cv-00275</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Tex. (Tyler)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousands" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — scrub deferred, but two sending DIDs identified for sender-side intel.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Myers complaint does not disclose Plaintiff's cell number anywhere in the pleading — only the screenshots of inbound texts and Plaintiff's residence (Henderson County, Texas). Scrub is deferred until the number is recovered from PACER ECF #1 exhibits, discovery, or a defense-counsel notice.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">PLAINTIFF NUMBER NOT DISCLOSED · LOOKUP SKIPPED</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">The complaint references "Plaintiff's cellular telephone number" but never quotes the 10-digit number. Screenshots show only the sender DIDs (866-483-2523 and 844-433-1861), not Plaintiff's own number. Henderson County, TX residence is the only locating data pled.</div>
+      </div>
+      <p class="scrub-body-text">No blacklistBulk lookup was performed. Recovery requires pulling the unredacted exhibit set via PACER, an early Rule 26(a) disclosure, or a defense-counsel courtesy notice. Plaintiff Kenneth Myers does NOT appear in CourtListener as a repeat TCPA filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kenneth+Myers%22+TCPA&type=r">CourtListener -&gt;</a></span> — this appears to be his first TCPA suit, which lowers the priors that his number is on any litigator list.</p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; font-weight:600;">Sending DIDs Identified from Complaint Screenshots</h3>
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-meta">Sender DID #1</div>
+        <h4 class="card-title" style="font-family:var(--font-mono);">(866) 483-2523</h4>
+        <p class="card-body">Toll-free SMS-enabled long code. Used to send the May 11 and May 19 texts driving consumers to <code>mns.homerefinegroup.com</code> and <code>hfg.homerefinegroup.com</code>. No public complaint history retrievable — 800notes / YouMail / Tellows / RoboKiller all returned 403/404. Toll-free origination + rotating subdomains is consistent with centralized mass-SMS dialer infrastructure.</p>
+        <div style="margin-top:12px;"><span class="pill pill--info">TOLL-FREE · MASS-SMS</span> <span class="pill pill--gap">AGGREGATOR DATA UNAVAILABLE</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Sender DID #2</div>
+        <h4 class="card-title" style="font-family:var(--font-mono);">(844) 433-1861</h4>
+        <p class="card-body">Second toll-free DID, used for May 24 and May 25 texts pointing to <code>dbc.drivercoveragecenter.com</code> — a different vertical (auto insurance) but the same defendant. Number rotation across two campaigns supports the "shell lead-gen aggregator" thesis. No public aggregator data retrievable.</p>
+        <div style="margin-top:12px;"><span class="pill pill--info">TOLL-FREE · MASS-SMS</span> <span class="pill pill--warn">CROSS-VERTICAL ROTATION</span></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; font-weight:600;">Recovery Path</h3>
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-meta">Path A · Fastest</div>
+        <h4 class="card-title">Pull ECF #1 unredacted exhibits</h4>
+        <p class="card-body">PACER fetch of the four screenshot exhibits — Plaintiff's own number may be visible at the top of the SMS conversation header in the source images. Cost: ~$1.20.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path B</div>
+        <h4 class="card-title">Wait for defense counsel notice</h4>
+        <p class="card-body">Once an answer or appearance is filed, defense counsel typically receives a demand letter or pre-suit communication referencing the plaintiff's number. Service window opened June 10 with summons issuance.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path C</div>
+        <h4 class="card-title">Early discovery / Rule 26(a)</h4>
+        <p class="card-body">Plaintiff must disclose the called number under Rule 26(a)(1)(A)(iii) as a basis for damages calculation — typically within 14 days of the Rule 26(f) conference.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--ok">PLAINTIFF: NOT A KNOWN SERIAL FILER</span>
+      <span class="pill pill--warn">FIRM: VOLUME TCPA FILER (10+ in ~30 DAYS)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A Wyoming shell lead-gen operator caught sending SMS at 2:11 AM, 2:36 AM and 3:06 AM — the most preventable TCPA violation on the books.</h2>
+      <p class="section-lede">Sessions West is a textbook compliance-greenfield account: no public-facing website, no compliance officer, no DNC or quiet-hours scrubbing visible on any of its three sender domains, and a Wyoming-LLC structure designed for anonymity rather than process. The complaint pleads four (4) middle-of-the-night texts — a violation a $0.001-per-record time-zone scrub would have prevented entirely. Lead with Litigator Scrub + Consent Capture; cross-sell DNC scrubbing on the second call.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Complaint pleads no prior express invitation or permission for any of the four texts. Sessions West cannot defend without an auditable consent log. This is the wedge — without it they pay the full $500–$1,500 per message statutory range.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Plaintiff is a first-time filer but the firm (PLG Damage) is now a confirmed volume TCPA shop. Defendant's lists will see follow-on plaintiffs from the same firm — a continuous scrub against the BL Alliance litigator database stops the next case before it's filed.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell / Third Call</div>
+        <h3 class="card-title">Compliance Audit + Quiet-Hours Time-Zone Engine</h3>
+        <p class="card-body">2:11 AM and 3:06 AM sends prove there is no time-zone-aware send window enforced. A scrub that blocks any send outside 8:00 AM–9:00 PM local-recipient-time would have eliminated 100% of pled violations.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:20px; font-weight:600;">Pitch Angle</h3>
+    <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">"Sessions West, you just got sued in federal court in Texas over four text messages — the earliest one at 2:11 in the morning. Your sender domain at <em>drivercoveragecenter.com</em> publicly claims you don't run sales funnels or pressure consumers <span class="src-tag"><a href="https://drivercoveragecenter.com/about">DCC About -&gt;</a></span> — yet here's a putative class action saying you blasted marketing texts in the middle of the night to a Texas resident who never consented. Plaintiff's firm has filed ten of these in the last six weeks. They're not going away after this one settles. The cheapest thing you can do — cheaper than the answer brief you owe in 21 days — is plug a real time-zone-aware scrub and consent-capture system into your dialer infrastructure today, so the next plaintiff's lawyer who runs a public-records pull on you doesn't see a second filing waiting to happen."</p>
+    <p style="font-size:16px; line-height:1.65; color:var(--fg-1); max-width:880px;">The wedge is the time stamps. Don't argue consent. Don't argue the merits. Show them the screenshots from their own complaint and ask whether anyone in their organization currently enforces a recipient-local-time send window. The answer is no — and that's the sale.</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Wyoming LLC operating two brand fronts in two unrelated verticals — classic lead-gen aggregator with no compliance posture.</h2>
+      <p class="section-lede">Sessions West LLC is a Wyoming-formed limited liability company with no public-facing parent website, no published leadership, and no visible compliance program. The defendant operates at minimum two consumer-facing brands — Home Refine Group (home improvement) and Driver Coverage Center (auto insurance) — each with its own SMS sender subdomain. The structure is opaque by design.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Sessions West LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>Sessions West LLC</dd>
+          <dt>Entity Type</dt><dd>Limited Liability Company</dd>
+          <dt>Formation State</dt><dd>Wyoming</dd>
+          <dt>Registered Agent</dt><dd><span class="pill pill--gap">UNKNOWN — WY SOS REQUIRES MANUAL LOOKUP</span></dd>
+          <dt>HQ Address</dt><dd>Not disclosed publicly. Phone area code 307 = Wyoming.</dd>
+          <dt>Main Phone</dt><dd>+1 (307) 672-5347 <span class="src-tag"><a href="https://drivercoveragecenter.com/contact">DCC Contact -&gt;</a></span></dd>
+          <dt>Generic Email</dt><dd>help@drivercoveragecenter.com <span class="src-tag"><a href="https://drivercoveragecenter.com/contact">DCC Contact -&gt;</a></span></dd>
+          <dt>Brand Sites</dt><dd>homerefinegroup.com <span class="src-tag"><a href="https://homerefinegroup.com">HRG -&gt;</a></span><br>drivercoveragecenter.com <span class="src-tag"><a href="https://drivercoveragecenter.com">DCC -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Lead generation across home improvement + auto insurance</dd>
+          <dt>Public Statement</dt><dd>DCC site claims "no sales pressure or quote funnels" — directly contradicted by complaint's SMS marketing allegations <span class="src-tag"><a href="https://drivercoveragecenter.com/about">DCC About -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Home Refine Group's /terms page is empty.</h3>
+        <p class="card-body">A brand sending promotional SMS from <code>mns.homerefinegroup.com</code> and <code>hfg.homerefinegroup.com</code> has a /terms URL that renders no SMS terms, no privacy policy, no consent language, no STOP/HELP boilerplate <span class="src-tag"><a href="https://homerefinegroup.com/terms" style="color:#C9C9C9;">HRG Terms -&gt;</a></span>. There is nothing for a consumer or a court to point to as the consent contract. That is a per-se admissions problem before discovery even opens — and a one-call sale for a managed consent-capture solution.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Service window opened June 10 · 21-day federal answer clock running</h3>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>Filed</dt><dd>June 9, 2026</dd>
+        <dt>Summons Issued</dt><dd>June 10, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-00275&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Answer Deadline</dt><dd>21 days after service (FRCP 12(a)) — must compute from service-of-process date</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared <span class="pill pill--gap">NO APPEARANCE FILED</span></dd>
+        <dt>Window of Maximum Pain</dt><dd>Days 0–14 post-service: defendant must retain counsel, evaluate exposure, and decide on early settlement or full defense posture</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px; font-weight:600;">Related Entities &amp; Cross-Sell Candidates</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Home Refine Group<br><span class="src-tag"><a href="https://homerefinegroup.com">homerefinegroup.com -&gt;</a></span></td><td>Brand site / sender domain operator</td><td>Home improvement &amp; renovation</td><td>Active SMS sender (mns., hfg. subdomains); no visible TCPA disclosure</td><td><span class="pill pill--danger">HIGH</span></td></tr>
+          <tr><td>Driver Coverage Center<br><span class="src-tag"><a href="https://drivercoveragecenter.com">drivercoveragecenter.com -&gt;</a></span></td><td>Brand site / sender domain operator</td><td>Auto insurance lead funnel</td><td>Active SMS sender (dbc. subdomain); claims "no sales funnels" yet runs promotional SMS opt-in <span class="src-tag"><a href="https://drivercoveragecenter.com/about">DCC About -&gt;</a></span></td><td><span class="pill pill--danger">HIGH</span></td></tr>
+          <tr><td>Unknown additional brands</td><td>Possible — Sessions West's vertical pattern (home + auto) suggests at least one more lead-gen front in finance or health</td><td>Unknown</td><td>If they exist, same SMS infrastructure likely applies</td><td><span class="pill pill--warn">INVESTIGATE</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA hit on Sessions West, but the plaintiff's firm is a confirmed volume filer — this is patient zero, not patient solo.</h2>
+      <p class="section-lede">No prior TCPA litigation against Sessions West LLC is on CourtListener as of report date. The firm bringing the case, however, has filed at least ten TCPA actions in the prior ~30 days across four federal districts. If Sessions West does not lock down consent and quiet-hours scrubbing now, the second and third complaint from the same firm are almost certain.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Myers v. Sessions West LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>6:26-cv-00275 (E.D. Tex., Tyler Div.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-00275&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 9, 2026</dd>
+          <dt>Plaintiff</dt><dd>Kenneth Myers, Henderson County, TX</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh — PLG Damage Attorneys (FL Bar #24144674)</dd>
+          <dt>Class</dt><dd>Yes — Putative Rule 23 "TCPA After-Hours Class" <span class="pill pill--danger">CLASS ACTION</span></dd>
+          <dt>Class Definition</dt><dd>All U.S. persons who received more than one marketing text within any 12-month period from Defendant before 8 AM or after 9 PM local time, within 4 years prior to filing</dd>
+          <dt>Class Size Pled</dt><dd>≥ 50; "several thousands" believed</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · 47 CFR § 64.1200(e) — Quiet Hours</dd>
+          <dt>Theory</dt><dd>Four SMS at 2:11 AM, 7:44 AM, 2:36 AM, 3:06 AM — three of four outside quiet-hours window; no prior express consent</dd>
+          <dt>DNC Status</dt><dd>Not pled — claim is quiet-hours specific, not Federal DNC</dd>
+          <dt>Damages Sought</dt><dd>$500 negligent / $1,500 willful per violation + injunctive relief + costs</dd>
+          <dt>Named-Plaintiff Exposure</dt><dd>4 texts × $500–$1,500 = $2,000–$6,000 individual</dd>
+          <dt>Class Exposure</dt><dd>Several thousand × multiple texts × $500–$1,500 = potential 7–8 figure range</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · 21-day answer deadline running from service <span class="pill pill--gap">NO APPEARANCE</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Attorney</dt><dd>Vinit R. Venkatesh, Esq.</dd>
+          <dt>Bar Number</dt><dd>FL #24144674 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=24144674">FL Bar -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd>Active <span class="pill pill--ok">ACTIVE</span></dd>
+          <dt>Bar Address</dt><dd>2750 SW 145th Ave Suite 509, Miramar, FL 33027 (matches complaint signature block)</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com/contact">PLG Contact -&gt;</a></span></dd>
+          <dt>Firm Email</dt><dd>vv@plgdamage.com · info@plgdamage.com</dd>
+          <dt>Cross-District Note</dt><dd>FL-barred attorney filing in E.D. Tex. <span class="pill pill--warn">PHV / LOCAL COUNSEL EXPECTED</span></dd>
+          <dt>Firm Core Practice</dt><dd>Property damage / insurance bad faith (per firm site) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>TCPA Track Record</dt><dd>NEW practice area for the firm — 10+ TCPA cases filed Apr–May 2026 across 4 districts <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>TCPAWorld Coverage</dt><dd>Zero hits — firm not yet a recognized TCPA shop <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+          <dt>Discipline History</dt><dd>None found</dd>
+          <dt>Threat Assessment</dt><dd><span class="pill pill--warn">VOLUME FILER · TCPA-INEXPERIENCED</span> — 10 filings in 6 weeks shows volume intent, but lack of TCPAWorld presence + property-damage core suggests they're learning the playbook in public</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px; font-weight:600;">Plaintiff Firm Template</h3>
+    <div class="card" style="margin-top:12px;">
+      <p class="card-body">PLG Damage Attorneys is running a high-velocity quiet-hours TCPA template across at least eight verticals — retail (7-Eleven, Rite Aid), mortgage (Rocket), DTC (Last Brand, Refills Health, Yesvideo), fitness (Xercize Studio), fintech (Payactiv), lead-gen (Centerfield, Guardio), and now home-services lead-gen (Sessions West) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>. The template is consistent: putative Rule 23 class, narrow quiet-hours theory under 47 CFR § 64.1200(c)(1), exhibit-driven pleading with SMS screenshots, named-plaintiff damages low enough to push for early class-wide settlement. No published opinions yet — every case was filed within the prior six weeks <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span>.</p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px; font-weight:600;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Defendant</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case"><td><strong>Myers v. Sessions West LLC</strong></td><td>Sessions West LLC</td><td>E.D. Tex.</td><td>2026-06-09</td><td><span class="pill pill--red">CURRENT</span></td><td>Quiet hours</td></tr>
+          <tr><td>Cummings v. 7-Eleven Inc</td><td>7-Eleven, Inc.</td><td>N.D. Fla. (1:26-cv-00119)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Hughes v. Guardio LLC</td><td>Guardio LLC</td><td>C.D. Cal. (2:26-cv-05313)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Long v. Rocket Mortgage, LLC</td><td>Rocket Mortgage</td><td>C.D. Cal. (2:26-cv-05599)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Flottman v. Yesvideo, Inc.</td><td>Yesvideo</td><td>M.D. Fla. (8:26-cv-01491)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Hughes v. Rite Aid Corporation</td><td>Rite Aid</td><td>C.D. Cal. (2:26-cv-04436)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Post v. Centerfield Media Parent, Inc.</td><td>Centerfield Media</td><td>N.D. Cal. (4:26-cv-03524)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Fasheh v. The Xercize Studio, LLC</td><td>Xercize Studio</td><td>C.D. Cal. (8:26-cv-01231)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Rios v. Last Brand, Inc.</td><td>Last Brand</td><td>C.D. Cal. (5:26-cv-02684)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Ortiz v. Payactiv, Inc.</td><td>Payactiv</td><td>M.D. Fla. (2:26-cv-01460)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+          <tr><td>Mendez v. Refills Health, LLC</td><td>Refills Health</td><td>C.D. Cal. (2:26-cv-04569)</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>TCPA</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul class="clean tight">
+        <li>Plaintiff's 10-digit cell number — pull ECF #1 unredacted exhibits from PACER to confirm and run blacklistBulk scrub</li>
+        <li>Sessions West LLC Wyoming SoS filing — registered agent, organizer, member/manager names (WY SoS requires manual browser session)</li>
+        <li>Reverse-WHOIS on homerefinegroup.com and drivercoveragecenter.com to identify registrant / hosting entity</li>
+        <li>Reverse lookup on +1 (307) 672-5347 to confirm whether it's Sessions West's switchboard or a virtual receptionist</li>
+        <li>Confirm assigned Article III judge once docket text refreshes — currently no judge visible in CourtListener snapshot</li>
+        <li>Defense counsel of record — none appeared as of report; monitor for first appearance to identify GC or outside counsel</li>
+        <li>Compute exact answer deadline from service-of-process date (summons issued June 10, 2026)</li>
+        <li>Confirm whether Plaintiff Kenneth Myers's 2022 reference in Power Home Solar bankruptcy (W.D.N.C. 22-50228) is the same individual — could surface a serial-claimant pattern, but identity match unconfirmed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No published leadership at Sessions West — first call goes through the brand-site switchboard, escalate to whoever signs the answer.</h2>
+      <p class="section-lede">Sessions West LLC operates behind a Wyoming LLC veil with no LinkedIn, TheOrg, or ZoomInfo presence. Both brand sites (Home Refine Group, Driver Coverage Center) publish no team pages and no named individuals. Outreach starts at the only published phone — the 307-area-code Wyoming number on the Driver Coverage Center contact page — and escalates as soon as defense counsel appears on the docket.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Sessions West LLC — Main Line</strong> <span class="pill pill--dark">SWITCHBOARD</span></td>
+            <td>Only published number tied to the defendant's brand infrastructure (307 area code matches WY formation state)</td>
+            <td>+1 (307) 672-5347</td>
+            <td>help@drivercoveragecenter.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span><br><span class="src-tag"><a href="https://drivercoveragecenter.com/contact">DCC Contact -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent (Wyoming)</strong> <span class="pill pill--dark">SERVICE OF PROCESS</span></td>
+            <td>Required disclosure on WY SoS filing — controls receipt of summons and service-of-process notices</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td><span class="pill pill--gap">GAP</span> · WY SoS lookup required</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / Compliance Lead</strong> <span class="pill pill--dark">GC</span></td>
+            <td>Role inferred but no named individual surfaced via LinkedIn / TheOrg / ZoomInfo (all 404/403)</td>
+            <td>Unknown</td>
+            <td>{first}@drivercoveragecenter.com (pattern inferred from help@ alias only)</td>
+            <td><span class="pill pill--gap">GAP</span> · No public team page on either brand site <span class="src-tag"><a href="https://drivercoveragecenter.com/about">DCC About -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>CMO / Marketing Owner</strong> <span class="pill pill--dark">MARKETING</span></td>
+            <td>Owns SMS sender infrastructure across mns., hfg., dbc. subdomains. The person who needs to fix the quiet-hours send window.</td>
+            <td>Unknown</td>
+            <td>{first}@drivercoveragecenter.com (PATTERN — unverified)</td>
+            <td><span class="pill pill--gap">GAP</span> · No leadership disclosed <span class="src-tag"><a href="https://homerefinegroup.com">HRG -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel of Record</strong> <span class="pill pill--dark">OUTSIDE COUNSEL</span></td>
+            <td>None appeared as of report date. 21-day answer clock running from service.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">NOT YET APPEARED</span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-00275&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:20px; font-size:14px; color:var(--fg-2);"><strong>Pattern note:</strong> Inferred email pattern <code>{first}@drivercoveragecenter.com</code> is based on the single published <code>help@</code> alias and is unverified. Any direct outreach to a named individual should be labeled PATTERN, not VERIFIED, until a confirming bounce-test or LinkedIn match is performed.</p>
+
+    <h3 style="margin-top:32px; font-size:18px; font-weight:600;">Plaintiff Counsel (Reference Only — Do Not Pitch)</h3>
+    <div class="card" style="margin-top:12px;">
+      <dl class="kv">
+        <dt>Lead Attorney</dt><dd>Vinit R. Venkatesh, Esq. — FL Bar #24144674 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=24144674">FL Bar -&gt;</a></span></dd>
+        <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+        <dt>Address</dt><dd>2750 SW 145th Ave Suite 509, Miramar, FL 33027</dd>
+        <dt>Phone (per PACER)</dt><dd>(305) 506-4746</dd>
+        <dt>Email</dt><dd>vv@plgdamage.com</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the 21-day answer clock is the leverage.</h2>
+      <p class="section-lede">Sessions West has not yet retained defense counsel. The window where they are evaluating exposure, scrambling for an answer, and making fast vendor decisions is right now. The rep who reaches the GC or compliance owner before outside counsel locks the conversation down has the strongest pitch.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–1 · Today</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">Get the unredacted exhibits. Confirm Plaintiff's recipient number, then run a litigator-list lookup. If the number lands a match — even though Plaintiff isn't a known repeat filer — that becomes the lead with the rep's opening pitch.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">First call to (307) 672-5347</h3>
+        <p class="card-body">Ask for the person responsible for SMS marketing compliance or the General Counsel. Reference the case number and the four time stamps. Don't pitch a product — pitch a 15-minute compliance review. Goal: get to a named decision-maker.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">WY SoS lookup &amp; reverse-WHOIS</h3>
+        <p class="card-body">Have the BDR run the Wyoming SoS filing to surface the registered agent, organizer, and member names. Reverse-WHOIS the two brand domains to find a registrant email. Feed names into LinkedIn for a Sales Navigator pass.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 3–7</div>
+        <h3 class="card-title">Email follow-up to help@ alias</h3>
+        <p class="card-body">Send a one-paragraph note referencing the docket, the quiet-hours theory, and a 24-hour offer of a complimentary scrub audit. CC any LinkedIn-surfaced names found in step 3.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">Monitor docket for defense appearance</h3>
+        <p class="card-body">The moment outside counsel files an appearance, pivot the conversation to them — most TCPA defense firms have preferred scrub-vendor relationships and can be a warm channel to the client.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14–21</div>
+        <h3 class="card-title">Pre-answer urgency close</h3>
+        <p class="card-body">If still unanswered, the answer deadline itself is the close. "You're three days from filing an answer that admits this happened — do you want to file it with a remediation plan already in place, or without one?"</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px; font-weight:600;">Trigger conditions that change the plan</h3>
+    <ul class="clean tight" style="margin-top:12px; background:var(--bg-surface); border:1px solid var(--border-1); padding:16px 24px;">
+      <li><strong>Defense counsel files a motion to compel arbitration</strong> — pivot pitch to consent-flow audit; arbitration only works if there's a defensible consent record</li>
+      <li><strong>Plaintiff amends to add Federal DNC count</strong> — DNC scrubbing becomes the lead product, not quiet-hours</li>
+      <li><strong>Second PLG filing against Sessions West appears</strong> — urgency goes from elevated to critical; lead with Litigator Scrub on a multi-suit defensive posture</li>
+      <li><strong>WY SoS lookup surfaces a known TCPA-defendant officer name</strong> — pivot to direct LinkedIn outreach</li>
+      <li><strong>Defendant files for dismissal under Rule 12(b)(6)</strong> — pitch window narrows; pivot to compliance audit as a long-tail risk-management sell</li>
+    </ul>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JULY 1</span>
+      <span class="pill pill--warn">VOLUME-FILER FIRM · EXPECT FOLLOW-ON SUITS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
