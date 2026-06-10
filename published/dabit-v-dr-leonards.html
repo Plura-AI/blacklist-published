@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dabit v. Dr. Leonard's — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="0.04em">BLACKLIST</text>
+          <rect x="116" y="3" width="3" height="17" fill="#A50100"/>
+          <text x="126" y="18" fill="#ffffff" font-family="General Sans, Arial, sans-serif" font-size="20" font-weight="400" letter-spacing="0.04em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Catalog SMS Marketer · Quiet-Hours Violation · Putative N.D. Cal. Class Action · Jibrael Hindi Template</p>
+      <h1 class="hero-tagline">Dabit v.<br>Dr. Leonard's <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(Midwest Catalog Brands)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">4:26-cv-05509</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Cal. (Oakland)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet identified<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Magistrate consent pending</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Jibrael Hindi is a Tier-1 serial filer. Scrub deferred, but the firm itself is the signal.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. This complaint does not disclose Shadia Dabit's 10-digit cell number anywhere in the pleadings or the four screenshot exhibits — the screenshots only capture the inbound side (shortcode 59186), not the recipient line. Scrub is deferred pending PACER pull.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Serial-Firm Flag Raised</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint refers to "Plaintiff's cellular telephone" but never lists the digits. Screenshots in ¶14 redact / crop the recipient header. Plaintiff resides in Alameda County, CA — most likely 510 / 925 / 341 area code.</div>
+      </div>
+      <p class="scrub-body-text">Even without a recipient-side scrub, the firm-side signal is loud. The Law Offices of Jibrael S. Hindi is featured in TCPAWorld's 2026 Power Rankings discussion of high-volume TCPA plaintiff's firms <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> and has filed at least 12 quiet-hours and SMS class actions across N.D. Cal., C.D. Cal., S.D. Fla., and M.D. Fla. in the last 18 months <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span><span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span>. The associate of record, Gerald D. Lane Jr. (Cal. Bar #352470), is the firm's local-counsel face for California federal cases <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar -></a></span>.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender Identification · Shortcode</div>
+        <h3 class="card-title">SMS Shortcode 59186</h3>
+        <div class="card-body">
+          <p style="margin-top:0">Five-digit U.S. common shortcode used to deliver all four screenshot solicitations ("Dr. Leonards: …"). Shortcodes are <strong>not indexed</strong> by 800notes / YouMail / Tellows / RoboKiller — those directories only track 10-digit DIDs. Identity confirmation requires the U.S. Short Code Registry.</p>
+          <p style="margin:0"><strong>Infrastructure signal:</strong> Registered shortcode + bit.ly link-shortening = classic A2P bulk-SMS stack. Provisioned through a CTIA-aggregator (likely Twilio / Sinch / Infobip / Attentive / Postscript). High-volume marketing capacity is inherent — class numerosity (¶25 "several thousands") is plausible from infrastructure alone.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender Identification · Tracking</div>
+        <h3 class="card-title">bit.ly Tracking Links</h3>
+        <div class="card-body">
+          <p style="margin-top:0">All six exhibited messages use bit.ly URLs (3Zl8NRx, 3Zn3r8o, 4j9bnkJ, 49nSDwC, 47MDKCK, 47U59mn) instead of branded domains. This is characteristic of <em>off-the-shelf</em> SMS blasting and signals that the defendant has not invested in branded link-shorteners or dedicated tracking — a downstream proxy for a thin compliance stack.</p>
+          <p style="margin:0"><strong>Implication:</strong> No quiet-hours throttling appears to be wired into the send platform. The 7:07 AM (May 20) and 7:57 AM (Oct 30) sends in Plaintiff's PT zone (¶15) are the smoking gun.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option 1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Document #1 (Complaint) is the same as Document #1 we've already parsed — the cell number is genuinely absent. The number will surface in Plaintiff's Initial Disclosures (FRCP 26(a)(1)) or Rule 26(f) report, typically 60-90 days post-filing.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option 2</div>
+        <h3 class="card-title">Wait for Defense Counsel Appearance</h3>
+        <div class="card-body">Defense has not appeared on the docket as of 06/10/2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-05509&type=r">CourtListener -></a></span>. Once defense files a notice of appearance, BL outreach to defense gets the number via informal discovery — typical 30-45 day window.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option 3</div>
+        <h3 class="card-title">Discovery Request</h3>
+        <div class="card-body">Plaintiff will be required to identify the receiving number in response to Defendant's first set of interrogatories. This is the latest recovery path but the most certain.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER LATER</span>
+      <span class="pill pill--danger">SERIAL FIRM · 12+ TCPA FILINGS IN 18 MO</span>
+      <span class="pill pill--warn">SHORTCODE LOOKUP NOT INDEXED IN STANDARD DBS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">DTC senior-catalog defendant, second TCPA hit in 18 months, no visible compliance stack — sell consent capture + quiet-hours suppression now.</h2>
+      <p class="section-lede">This is the second TCPA suit against Midwest Catalog Brands LLC in 18 months <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span> and the first targeting the Dr. Leonard's brand specifically. The pleaded violation is a textbook scrub-prevented offense: marketing texts sent at 7:07 AM and 7:57 AM Pacific (¶15). A simple quiet-hours suppression filter would have stopped every single class violation. Lead pitch: <strong>Consent Capture & Quiet-Hours Suppression</strong>, cross-sold with DNC scrubbing for the broader Midwest Catalog Brands portfolio (Carol Wright, Healthful, etc.).</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture & Record Retention</h3>
+        <div class="card-body">The complaint pleads at ¶21 that "Plaintiff never signed any type of authorization permitting or allowing Defendant to send them telephone solicitations before 8 am or after 9 pm." Defendant's exposure here is not the existence of consent — it's the absence of a <em>retrievable</em> consent record showing the time-of-day permissions. Blacklist's consent capture vault is the direct fix.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Secondary Pitch</div>
+        <h3 class="card-title">Policies & Procedures + Compliance Audit</h3>
+        <div class="card-body">Sending at 7:07 AM and 7:57 AM PT (¶15) means the send platform has <em>no time-of-day suppression rules wired in</em>. This is a procedural failure, not a one-off. A P&P engagement plus a quiet-hours suppression layer protects every brand in the Midwest Catalog Brands portfolio, not just Dr. Leonard's.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + State)</h3>
+        <div class="card-body">While this complaint is a 64.1200(c)(1) quiet-hours theory, the next Hindi-firm complaint will be a federal-DNC theory — that's their playbook (see Moses v. Millionaire Media, Hernandez v. LA Tropicana, both N.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span>. Get ahead of it with full federal + state DNC scrub.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; max-width:880px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.06em;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.7; color:var(--fg-1); margin:0 0 12px;">"You just got hit a second time in 18 months by a serial firm — first the McGonigle case in W.D. Wis. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span>, now Dabit in N.D. Cal. The Hindi firm files these in clusters. They've already won early settlements on this exact theory — Curtis v. Authentic Sport Specialty settled at ENE within four months, LA Tropicana terminated in nine. They're filing the same template against Nespresso, ThirdLove, Steve Madden, the Buccaneers <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span>. Your shortcode 59186 sent at 7:07 AM and 7:57 AM Pacific — that's a hardcoded send platform with no quiet-hours suppression. Blacklist installs the suppression layer, captures every opt-in with timestamp and source, and gives you the consent record you'll be asked for at the Rule 26(f) conference."</p>
+      <p style="font-size:15px; line-height:1.7; color:var(--fg-1); margin:0;">The wedge is urgency: defense counsel has not yet appeared, the case management conference clock is already ticking (initial scheduling order issued 06/10/2026, two days after filing), and the McGonigle case in W.D. Wis. proves that the next quiet-hours filing is a matter of months, not years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A privately-held Wisconsin DTC catalog group running multiple senior-targeted brands on the same SMS infrastructure.</h2>
+      <p class="section-lede">Midwest Catalog Brands, LLC is the parent operator of Dr. Leonard's and several other senior-targeted catalog brands. The W.D. Wis. McGonigle case caption identifies the same entity d/b/a "AmeriMark," indicating brand consolidation following the AmeriMark/Oldco AI bankruptcy <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span>. Cross-sell footprint is wide; primary registry data is gapped.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Midwest Catalog Brands, LLC d/b/a Dr. Leonard's</dd>
+          <dt>Entity Type</dt><dd>Limited Liability Company</dd>
+          <dt>Formation State</dt><dd><span class="pill pill--gap">Not Verified</span> — registry sources blocked</dd>
+          <dt>HQ</dt><dd>Monroe, Wisconsin (per Complaint ¶8)</dd>
+          <dt>Other DBAs</dt><dd>AmeriMark (per W.D. Wis. McGonigle caption) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Vertical</dt><dd>DTC catalog retail · senior healthcare &amp; wellness</dd>
+          <dt>Public / Private</dt><dd>Private</dd>
+          <dt>Website</dt><dd>drleonards.com (privacy / consent pages currently unreachable — HTTP/2 stream errors)</dd>
+          <dt>Marketing Stack</dt><dd>SMS shortcode 59186 + bit.ly link tracking</dd>
+          <dt>Public Statements</dt><dd>None located</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">7:07 AM and 7:57 AM Pacific sends — no quiet-hours throttle</h3>
+        <div class="card-body">
+          <p style="margin-top:0">Complaint ¶15 alleges, with screenshot exhibits, that Defendant initiated SMS solicitations at <strong>7:07 AM</strong> (Tue, May 20, 2025) and <strong>7:57 AM</strong> (Thu, Oct 30, 2025) in Plaintiff's Pacific time zone. Both are inside the 47 CFR § 64.1200(c)(1) curfew (before 8 AM local).</p>
+          <p style="margin:0">No SMS marketing platform sold in 2025 — Attentive, Postscript, Klaviyo, Twilio, Sinch — ships <em>without</em> a time-of-day suppression rule. Either the rule was never configured or it was overridden. Either way, this is a procedural failure that exposes every brand in the Midwest Catalog Brands portfolio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock + parallel W.D. Wis. case still alive</h3>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li><strong>Filing Date:</strong> June 8, 2026 — three days ago</li>
+          <li><strong>Initial CMC Scheduling Order issued:</strong> June 10, 2026 (only 2 days post-filing) <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-05509&type=r">CourtListener -></a></span></li>
+          <li><strong>Answer deadline:</strong> 21 days from service (FRCP 12(a)) — likely first week of July 2026 once executed</li>
+          <li><strong>Parallel case:</strong> McGonigle v. Midwest Catalog Brands LLC, W.D. Wis. 3:24-cv-00864 — still pending as of late 2025 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span></li>
+          <li><strong>Holiday catalog window:</strong> Q4 2026 SMS sends are weeks away — every day without a quiet-hours filter is more class members</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.06em;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity / Brand</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dr. Leonard's Healthcare Corp.</strong></td>
+            <td>Brand operated by Midwest Catalog Brands</td>
+            <td>Senior healthcare catalog</td>
+            <td>Subject of instant complaint</td>
+            <td><span class="pill pill--danger">Active Defendant</span></td>
+          </tr>
+          <tr>
+            <td><strong>AmeriMark</strong></td>
+            <td>Sister brand · same parent (per W.D. Wis. caption)</td>
+            <td>Senior catalog / mail-order</td>
+            <td>Same parent already TCPA defendant in McGonigle</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Carol Wright</strong></td>
+            <td>Sister brand (per industry references)</td>
+            <td>Senior catalog</td>
+            <td>Likely shares SMS infrastructure / shortcode stack</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Healthful</strong></td>
+            <td>Sister brand (per industry references)</td>
+            <td>Senior health catalog</td>
+            <td>Likely shares SMS infrastructure / shortcode stack</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Midwest Catalog Brands, LLC (parent)</strong></td>
+            <td>Operating parent</td>
+            <td>Catalog retail holdco</td>
+            <td>Already named in W.D. Wis. McGonigle <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span></td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Second TCPA hit against the same parent in 18 months. The Hindi firm is running the same N.D. Cal. quiet-hours template against half a dozen DTC brands.</h2>
+      <p class="section-lede">The defense has not appeared. There is no evidence of an arbitration clause or compelled-to-arbitration playbook from prior cases. Plaintiff counsel's pattern is to file the same complaint template against multiple defendants in a rolling cadence — settle on the ones that move fast, fight the ones that don't.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Case Facts</div>
+        <h3 class="card-title">Dabit v. Midwest Catalog Brands d/b/a Dr. Leonard's</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>4:26-cv-05509 (N.D. Cal. · Oakland)</dd>
+          <dt>Filed</dt><dd>June 8, 2026</dd>
+          <dt>Plaintiff</dt><dd>Shadia Dabit, Alameda County, CA</dd>
+          <dt>Plaintiff Counsel</dt><dd>Gerald D. Lane Jr. (Cal. Bar #352470)</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi, PLLC (Wilton Manors, FL)</dd>
+          <dt>Class Action</dt><dd>Yes — Putative Rule 23 class</dd>
+          <dt>Class Definition</dt><dd>All US persons in 4-yr period sent &gt;1 marketing text per 12-mo period before 8 AM or after 9 PM local time</dd>
+          <dt>Class Size Alleged</dt><dd>≥ 50; "several thousands, if not more" (¶25)</dd>
+          <dt>Primary Claim</dt><dd>47 USC § 227(c) &amp; 47 CFR § 64.1200(c)(1) — quiet hours</dd>
+          <dt>Theory</dt><dd>SMS sends at 7:07 AM and 7:57 AM Pacific outside the 8 AM – 9 PM curfew</dd>
+          <dt>Channels Pled</dt><dd>SMS only (shortcode 59186)</dd>
+          <dt>Statutory Damages</dt><dd>$500 / call (negligent) &nbsp;·&nbsp; $1,500 / call (willful)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · 21-day answer clock post-service</dd>
+          <dt>Docket Aggregator</dt><dd>Visible on CourtListener; PACER docket retrievable <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-05509&type=r">CourtListener -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Profile</div>
+        <h3 class="card-title">Gerald D. Lane Jr. · Jibrael S. Hindi Firm</h3>
+        <dl class="kv">
+          <dt>Lead Attorney</dt><dd>Gerald D. Lane Jr.</dd>
+          <dt>Cal. Bar #</dt><dd>352470 — Active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">Cal Bar -></a></span></dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi, PLLC</dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>(754) 444-7539</dd>
+          <dt>Firm Email</dt><dd>gerald@jibraellaw.com · Jibrael@jibraellaw.com</dd>
+          <dt>Bar Address Mismatch</dt><dd><span class="pill pill--warn">Yes</span> CA-barred attorney operating from a FL firm — recurring pattern for this firm in CA federal cases</dd>
+          <dt>Discipline History</dt><dd>None located in public sources</dd>
+          <dt>TCPA Volume</dt><dd>12+ TCPA filings found in 2024-2026 across N.D. Cal., C.D. Cal., S.D. Cal., E.D. Cal., S.D. Fla., M.D. Fla. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>TCPAWorld Ranking</dt><dd>Featured in 2026 Power Rankings discussion <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+          <dt>Self-Reported Wins</dt><dd>$30M+ TCPA settlements; $200M+ class settlements <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+          <dt>Notable Cases</dt><dd>vs. Nespresso · ThirdLove · Steve Madden · Tampa Bay Buccaneers · Overtime Sports · 11th Cir. revival of TCPA action against Jordan Belfort <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">High</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:32px">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Jibrael Hindi N.D. Cal. Quiet-Hours Template</h3>
+      <div class="card-body">
+        <p style="margin-top:0">The Hindi firm has standardized a quiet-hours class complaint that travels well in California federal courts. It always pleads: (i) SMS marketing texts received before 8 AM or after 9 PM Pacific, (ii) screenshot exhibits showing the timestamps, (iii) ¶21-style "Plaintiff never signed any authorization permitting … before 8 am or after 9 pm" language, (iv) class definition tied to "more than one marketing text per 12-month period," (v) statutory damages at $500 / $1,500 with class numerosity in the "several thousands." This template is currently active against multiple defendants:</p>
+        <ul class="clean tight">
+          <li>Moses v. Millionaire Media LLC (N.D. Cal.) — heading to class cert before Judge Chhabria <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span></li>
+          <li>Hernandez v. LA Tropicana Food L.P. (N.D. Cal.) — terminated within ~9 months</li>
+          <li>Andrighetto v. JumpStartMD, Inc. (N.D. Cal., 2024)</li>
+          <li>Curtis v. Authentic Sport Specialty, Inc. (S.D. Cal.) — settled at ENE within ~4 months</li>
+          <li>Vazquez v. American Future Technology (E.D. Cal.)</li>
+          <li>Lane v. UrbanStems, Inc. (S.D. Fla., 2026)</li>
+          <li>Lucombe v. Regal Business Group, LLC (M.D. Fla.)</li>
+          <li>Class actions vs. Nespresso, ThirdLove, Steve Madden, Tampa Bay Buccaneers, Sherman v. PrimeFish Seafood <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span></li>
+        </ul>
+        <p style="margin:12px 0 0;"><strong>Playbook:</strong> File rolling complaints, push hard for early ENE / settlement conferences, accept ENE-stage settlements on defendants who move fast, dismiss voluntarily with prejudice when the defense aggressively prepares for cert briefing (see Sherman v. PrimeFish, voluntarily dismissed April 2026).</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.06em;">Concurrent &amp; Recent Litigation Against the Same Defendant Parent</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--bl-red-tint)">
+            <td><strong>Dabit v. Midwest Catalog Brands d/b/a Dr. Leonard's</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>4:26-cv-05509</td>
+            <td>Jun 8, 2026</td>
+            <td><span class="pill pill--danger">Active · Pre-Answer</span></td>
+            <td>TCPA quiet hours (SMS)</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Midwest Catalog Brands LLC (d/b/a AmeriMark)</td>
+            <td>3:24-cv-00864 (W.D. Wis.)</td>
+            <td>Dec 2024</td>
+            <td><span class="pill pill--warn">Pending</span></td>
+            <td>TCPA quiet hours — same parent <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Midwest+Catalog+Brands%22+TCPA&type=r">CourtListener -></a></span></td>
+          </tr>
+          <tr>
+            <td>In re Oldco AI LLC (bankruptcy — Midwest Catalog Brands as creditor/party)</td>
+            <td>23-10438 (Bankr. D. Del.)</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Closed / Resolved</span></td>
+            <td>Bankruptcy — predecessor AmeriMark estate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#FBE5E5">Open Intel Gaps to Close Before First Dial</div>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li>Judge not yet identified — assignment entry exists on docket (Doc #2) but judge name not surfaced in CourtListener excerpt. Pull from PACER.</li>
+          <li>Defense counsel not yet appeared (21-day clock running once service executed).</li>
+          <li>Wisconsin DFI, Bizapedia, OpenCorporates, and Delaware registry all returned 403 / DNS failures — formation state, registered agent, officers, and principal-office data remain unverified.</li>
+          <li>Decision-maker contacts: TheOrg, LinkedIn, ZoomInfo, Apollo, SignalHire, RocketReach, Hunter all returned no usable people data. No CEO, GC, CMO, or Compliance lead identified. Manual lookup via Wisconsin SoS and authenticated LinkedIn Sales Nav recommended.</li>
+          <li>drleonards.com privacy policy, terms of use, and registration / opt-in page all returned HTTP/2 stream errors — current consent disclosure language unverified.</li>
+          <li>BBB, Trustpilot, Glassdoor, FTC, FCC, Crunchbase enforcement and reputation data all blocked — no consumer complaint baseline, no employee count, no revenue band.</li>
+          <li>Shortcode 59186 leaseholder of record not yet pulled from U.S. Short Code Registry.</li>
+          <li>McGonigle (W.D. Wis.) settlement status unknown — could be live settlement model for Dabit.</li>
+          <li>Cal. Bar admission date for Gerald Lane Jr. and full discipline history not confirmed in retrievable Cal Bar profile.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Cold-call the company main line first; LinkedIn / SoS lookup needed to surface a GC or CMO name.</h2>
+      <p class="section-lede">No decision-maker names were surfaceable from the standard people-intel stack — TheOrg, LinkedIn, ZoomInfo, Apollo, SignalHire, RocketReach, and Hunter all returned 403 / 404 / blocked responses, and drleonards.com itself returned HTTP/2 stream errors on every leadership / contact page. The first outbound dial should go through the published Dr. Leonard's customer service line and ask for "the legal department or general counsel"; in parallel, run a manual LinkedIn Sales Navigator + Wisconsin SoS lookup to populate this table before the second touch.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>General Counsel / Legal</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">Unknown</span></td>
+            <td>Decision-maker for TCPA litigation response. Not identified in any retrievable source. Ask company main line.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Marketing Officer</strong><br><span class="pill pill--dark">CMO</span> <span class="pill pill--gap">Unknown</span></td>
+            <td>Owns the SMS marketing program (shortcode 59186). Decision-maker for quiet-hours suppression and consent-capture rollout.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--gap">Unknown</span></td>
+            <td>If one exists. Public web shows no compliance landing page on drleonards.com.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>CEO / President · Midwest Catalog Brands</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--gap">Unknown</span></td>
+            <td>Parent-level decision-maker — historically the gating exec on multi-brand compliance spend. Recommended SoS / LinkedIn lookup.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark">RA</span> <span class="pill pill--gap">Unknown</span></td>
+            <td>WI / DE / IL filings all blocked at registry layer — pull via paid SoS search or Bizapedia premium.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defendant Main Line · Dr. Leonard's</strong><br><span class="pill pill--dark">Front Door</span></td>
+            <td>Dr. Leonard's customer service line is the only verified inbound channel until people-intel is enriched. Ask switchboard for "legal department."</td>
+            <td><span class="pill pill--gap">Pull from drleonards.com when site responds</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-2);">
+      <strong>Confidence legend:</strong>
+      <span class="pill pill--ok">VERIFIED</span> published / cited
+      <span class="pill pill--warn">PATTERN</span> inferred from convention
+      <span class="pill pill--info">INFERRED</span> best-guess
+      <span class="pill pill--gap">GAP</span> role identified, contact unknown
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — defense hasn't appeared yet and the McGonigle case is the proof of repeat exposure.</h2>
+      <p class="section-lede">The case was filed 3 days ago, the initial scheduling order is already out, defense has not yet appeared, and the same parent has a parallel TCPA case still pending in W.D. Wis. Every day without outreach is a day defense counsel gets to dictate the narrative.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 · Today</div>
+        <h3 class="card-title">Cold call Dr. Leonard's main line</h3>
+        <div class="card-body">Ask switchboard for "legal department" or "general counsel." Reference Dabit v. Midwest Catalog Brands, 4:26-cv-05509, N.D. Cal. and the parallel McGonigle case in W.D. Wis. as proof of repeat exposure. Leave a callback if voicemail.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2</div>
+        <h3 class="card-title">Run manual people-intel enrichment</h3>
+        <div class="card-body">Authenticated LinkedIn Sales Navigator + Wisconsin SoS + paid Bizapedia / OpenCorporates for: GC, CMO, CCO, CEO at Midwest Catalog Brands. Pull Dr. Leonard's customer-service phone from a live-browser fetch of drleonards.com (the site appears to be UA-gating bots).</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2-3</div>
+        <h3 class="card-title">LinkedIn InMail to named decision-makers</h3>
+        <div class="card-body">Once names are surfaced, send InMail referencing the McGonigle (W.D. Wis.) and Dabit (N.D. Cal.) cases together — the "second hit in 18 months" framing is the wedge. Position consent capture + quiet-hours suppression as the fix.</div>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-meta">Day 5-7</div>
+        <h3 class="card-title">Pull PACER ECF #1 + monitor for defense appearance</h3>
+        <div class="card-body">Once defense counsel files notice of appearance, pivot the outreach to the firm. They are the gatekeeper to the GC and will route the vendor evaluation.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7-14</div>
+        <h3 class="card-title">Cross-sell pitch to the parent</h3>
+        <div class="card-body">Even if Dr. Leonard's stalls, escalate to Midwest Catalog Brands parent on the multi-brand exposure thesis (AmeriMark, Carol Wright, Healthful all on the same SMS infra).</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14-21</div>
+        <h3 class="card-title">Watch for Hindi firm's next filing</h3>
+        <div class="card-body">If the firm files a third quiet-hours complaint against Midwest Catalog Brands or a sister brand, surface immediately as a "we warned you" moment in the follow-up.</div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <div class="card-meta" style="color:#FBE5E5">Trigger Conditions That Change the Plan</div>
+      <div class="card-body">
+        <ul class="clean tight">
+          <li>If defense counsel files a motion to compel arbitration → pivot pitch to consent-record retention (arbitration depends on a clean consent paper trail).</li>
+          <li>If plaintiff voluntarily dismisses (matches the Sherman v. PrimeFish pattern), the urgency softens but the cross-sell to the parent remains — the firm will be back.</li>
+          <li>If McGonigle (W.D. Wis.) settles publicly, use the settlement number as anchoring data in the Dabit conversation.</li>
+          <li>If defendant publicly attributes the SMS program to a vendor (Attentive, Postscript, Klaviyo), pivot to a co-sell motion with that vendor's compliance team.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 1</span>
+      <span class="pill pill--warn">SECOND TCPA HIT IN 18 MONTHS</span>
+      <span class="pill pill--info">Q4 HOLIDAY SMS CYCLE APPROACHING</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
