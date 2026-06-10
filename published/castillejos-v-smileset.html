@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Castillejos v. Smileset — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin-bottom:8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Teledentistry · SMS Short-Code Marketing · Federal DNC + Texas BCC · Putative Class · Third Concurrent TCPA Class Against Same Defendant</p>
+      <h1 class="hero-tagline">Castillejos v.<br>Smileset <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(Orthotech LLC, SmileDirectClub successor)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">6:26-cv-00184-JAR<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">orig. 5:26-cv-01579 (W.D. Tex.)</span></div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Okla.<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">transferred from W.D. Tex.</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Mar 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(94 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Jason A. Robertson<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">(JAR — also Ferrell v. Orthotech)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(d)(e)<br>Tex. Bus. &amp; Com. § 305.053</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">National + Texas DNC subclass</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Hiraldo / Eisenband <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Hiraldo P.A. + Eisenband Law, P.A. (FL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number redacted to last-4 ("5742") — scrub deferred, but the sender infrastructure tells the whole story.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("5742 Number"). The bigger signal here is the <strong>sender side</strong>: short code 94081 is CTIA-licensed A2P mass-messaging infrastructure that, by design, sends to thousands at once — supporting the "several thousands or more" numerosity allegation on its face.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-5742</div>
+        <div class="scrub-number-sub">Only the last four digits ("5742 Number") appear in the complaint. Plaintiff resides in Comal County, Texas; number registered on the National DNC Registry on March 31, 2017.</div>
+      </div>
+      <p class="scrub-body-text">A blacklistBulk lookup cannot be run on a partial number. Recovery path: pull ECF #1 / Amended Complaint exhibits from PACER, or wait for Orthotech's discovery responses (defense has already moved to dismiss but answer / Rule 26 disclosures will surface the full DID). Plaintiff has no other TCPA filings indexed on CourtListener under "Carlos Castillejos" — this appears to be a one-off plaintiff, not a serial filer. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Carlos+Castillejos%22&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">Sender Identification</div>
+          <h3 class="card-title">Short Code 94081</h3>
+          <div class="card-body">
+            <p>Five-digit SMS short code embedded in the screenshot exhibits. Short codes are CTIA-licensed, leased via the Common Short Code Administration, and provisioned only for high-volume A2P (application-to-person) campaigns — typically 100+ msgs/sec throughput. By design, a short code campaign sending to plaintiff is <strong>simultaneously sending to thousands of others</strong> — supporting the complaint's class-numerosity allegation on its face.</p>
+            <p style="margin-top:12px;"><strong>Branded content:</strong> "SmileSet (powered by SmileDirectClub)" and "$500 bonus" promo with link to <code>cloud.email.smileset.com</code>. No standalone 800notes / YouMail / Tellows / RoboKiller record exists — short codes are not indexed by those 10-digit-DID-focused databases.</p>
+          </div>
+        </div>
+        <div class="card card--accent">
+          <div class="card-meta">Sender Domain</div>
+          <h3 class="card-title">cloud.email.smileset.com</h3>
+          <div class="card-body">
+            <p>The <code>cloud.email.*</code> subdomain pattern is characteristic of <strong>Salesforce Marketing Cloud (ExactTarget)</strong> sending infrastructure — a high-volume ESP. The campaign is clearly a coordinated SMS-plus-email stack with templated, link-bearing content (e.g., <code>?q=0MXpZUofUE</code> tracking parameters).</p>
+            <p style="margin-top:12px;">If number scrubbing isn't gated pre-send at the ESP/CPaaS layer, every new campaign send extends statutory damages exposure across the alleged class. <span class="src-tag"><a href="https://smileset.com">smileset.com -&gt;</a></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Recovery Path · #1</div>
+          <h3 class="card-title">Pull PACER Exhibits</h3>
+          <div class="card-body">An Amended Class Action Complaint was filed (referenced in defendant's reply brief). Pull ECF #1 + amended complaint + exhibits to extract the full 10-digit DID and any additional sender numbers. ~$3-5 PACER fee.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path · #2</div>
+          <h3 class="card-title">Wait for Rule 26 Disclosures</h3>
+          <div class="card-body">If MTD is denied, Rule 26(a) initial disclosures and the first request for production will surface plaintiff's full number plus the campaign-level call-record set. Window: 30 days post-denial.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Recovery Path · #3</div>
+          <h3 class="card-title">Cross-Reference Concurrent Cases</h3>
+          <div class="card-body">Ferrell (E.D. Okla.) and Maniaci (E.D. Mich.) involve the same defendant and same short code 94081. Their docket exhibits may already disclose the same campaign DIDs — saves PACER spend.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: DEFERRED — PULL PACER</span>
+      <span class="pill pill--info">PLAINTIFF: NOT A SERIAL FILER</span>
+      <span class="pill pill--danger">SHORT-CODE A2P MASS SEND</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Third TCPA class action in 12 months against a bankrupt-predecessor's-customer-list operator — the case for compliance writes itself.</h2>
+      <p class="section-lede">Orthotech LLC (d/b/a Smileset) is the explicit corporate successor to SmileDirectClub. It inherited 2M+ legacy contacts of <em>unknown consent provenance</em> from a Chapter 7 bankruptcy and is now sending mass A2P SMS via short code 94081 from a Salesforce Marketing Cloud stack — without an accessible privacy policy or terms page. They are now defending Maniaci (E.D. Mich.), Ferrell (E.D. Okla.), and Castillejos (W.D. Tex. → E.D. Okla.) simultaneously. Lead with <strong>DNC scrubbing + consent capture / record retention</strong>; close on compliance audit.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Plaintiff's number was on the National DNC Registry since <strong>March 31, 2017</strong> — nearly 8 years before the December 2024 send. A pre-send federal + state DNC scrub at the ESP/CPaaS layer would have blocked the texts that started this case. Quote against monthly Salesforce Marketing Cloud send volume.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Companion Product</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">Smileset's <code>/signup</code>, <code>/terms</code>, and <code>/privacy</code> pages all return 404. They cannot show a clean consent record at class cert — and they acquired SmileDirectClub's customer list out of a Ch.7 sale, so legacy consent is almost certainly unrecoverable. Pitch consent capture as the "rebuild from zero" play.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Compliance Audit · Policies &amp; Procedures</h3>
+        <div class="card-body">Internal DNC (47 CFR § 64.1200(d)) requires a written do-not-call policy, training, and a maintained internal suppression list. Successor entity standing up post-Ch.7 = almost certainly no documented program. Audit + P&amp;P bundle is the natural follow-on after the scrub lands.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">"You're the third TCPA class action against Orthotech this year — Maniaci in Michigan, Ferrell in Oklahoma, and now Castillejos transferred into the same Oklahoma courtroom as Ferrell. Same plaintiffs' bar circling the same short code 94081 send program. The Hiraldo/Eisenband team that filed this one has roughly 943 TCPA filings between them on CourtListener and they target DTC consumer brands by pattern — eyewear, dental, edtech, solar. They will not stop until your texting program is fixed. The cheapest version of 'fixed' is a real-time DNC scrub at your Salesforce Marketing Cloud send layer plus a consent-record system that survives class cert. We can have you compliant before your MTD is decided." <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hiraldo%22+TCPA&type=r">CourtListener · Hiraldo TCPA -&gt;</a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Eisenband%22+TCPA&type=r">CourtListener · Eisenband TCPA -&gt;</a></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Successor Liability</div>
+      <h2 class="section-title">A Delaware LLC built on the ashes of SmileDirectClub — same teledentistry model, same customer list, no visible compliance infrastructure.</h2>
+      <p class="section-lede">Orthotech LLC d/b/a Smileset is the named successor to SmileDirectClub following SDC's September 2023 Chapter 11, December 2023 cessation of operations, and January 2024 conversion to Chapter 7. SmileSet acquired SDC's assets, patents (100+), and manufacturing systems out of the bankruptcy.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Orthotech LLC d/b/a Smileset</h3>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Orthotech LLC <span class="pill pill--gap" style="margin-left:6px;">SoS not confirmed</span></dd>
+            <dt>Formation</dt><dd>Delaware (per complaint ¶10)</dd>
+            <dt>HQ</dt><dd>2500 Murfreesboro Pike, STE 105-396, Nashville, TN 37217</dd>
+            <dt>D/B/A</dt><dd>Smileset / SmileSet ("powered by SmileDirectClub")</dd>
+            <dt>Founded</dt><dd>2023–2024 (post-SDC bankruptcy)</dd>
+            <dt>Vertical</dt><dd>DTC Teledentistry · Clear Aligners</dd>
+            <dt>Predecessor</dt><dd>SmileDirectClub (Ch.11 → Ch.7 2023–2024) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/SmileDirectClub">Wikipedia -&gt;</a></span></dd>
+            <dt>Website</dt><dd>smileset.com (no /privacy, /terms, /signup, /about pages found — all 404) <span class="src-tag"><a href="https://smileset.com">smileset.com -&gt;</a></span></dd>
+            <dt>Marketing Stack</dt><dd>Salesforce Marketing Cloud (cloud.email.smileset.com) + SMS short code 94081</dd>
+            <dt>Distribution</dt><dd>Health-E Commerce (FSA Store / HSA Store) FSA/HSA partnership</dd>
+            <dt>Trustpilot</dt><dd>49,634 reviews on homepage (score not retrievable)</dd>
+            <dt>Employees</dt><dd><span class="pill pill--gap">Unknown</span></dd>
+            <dt>Revenue</dt><dd><span class="pill pill--gap">Unknown · private LLC</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No consumer-facing compliance docs accessible</h3>
+        <div class="card-body">
+          <p>The Smileset website's <code>/privacy</code>, <code>/terms</code>, <code>/signup</code>, <code>/about</code>, <code>/team</code>, <code>/leadership</code>, and <code>/contact</code> URLs all return HTTP 404. There is no publicly accessible privacy policy, no terms of service, no published consent-capture flow. <span class="src-tag" style="color:#A8A8A8;"><a href="https://smileset.com" style="color:#C9C9C9;">smileset.com -&gt;</a></span></p>
+          <p style="margin-top:12px;">Plaintiff alleges no prior express written consent, no business relationship, and a DNC registration dating to 2017. With no public consent record and a customer list acquired in a Ch.7 sale, the defendant's class-certification posture is extraordinarily weak.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">The window is right now</h3>
+        <div class="card-body" style="margin-top:12px;">
+          <dl class="kv">
+            <dt>MTD Briefing</dt><dd>Defendant's Motion to Dismiss filed 4/30/2026 (Doc 11); reply granted leave 5/19/2026 — fully briefed before transfer. Ruling will land in E.D. Okla. under Judge Robertson.</dd>
+            <dt>Case Transfer</dt><dd>Transferred from W.D. Tex. (San Antonio) to E.D. Okla. on 6/5/2026 — likely under first-to-file deferring to Ferrell.</dd>
+            <dt>Consolidation Risk</dt><dd>Ferrell v. Orthotech (6:25-cv-00330, E.D. Okla.) is now before the same judge (JAR) — possible consolidation pressure.</dd>
+            <dt>Defense Burn</dt><dd>Orthotech is paying defense counsel on three fronts (E.D. Mich., E.D. Okla. ×2, formerly W.D. Tex.) — burn rate accelerating.</dd>
+            <dt>Pitch Window</dt><dd>Before MTD ruling. If denied, Rule 26 disclosures kick in within 30 days and the compliance fire becomes a discovery fire.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SmileDirectClub (defunct)</strong></td>
+              <td>Predecessor (Ch.7 2024)</td>
+              <td>DTC Teledentistry</td>
+              <td>Legacy customer list of unknown consent provenance now in Smileset's hands</td>
+              <td><span class="pill pill--gap">Not in scope · defunct</span></td>
+            </tr>
+            <tr>
+              <td><strong>Health-E Commerce</strong></td>
+              <td>FSA/HSA distribution partner</td>
+              <td>E-commerce · FSA/HSA</td>
+              <td>Co-marketing partner — may share consumer contact data</td>
+              <td><span class="pill pill--info">Low · partner only</span></td>
+            </tr>
+            <tr>
+              <td><strong>Salesforce Marketing Cloud (ESP)</strong></td>
+              <td>Vendor (inferred from cloud.email.smileset.com)</td>
+              <td>MarTech</td>
+              <td>Send-layer scrub integration point — not a cross-sell target, but Blacklist's API plugs here</td>
+              <td><span class="pill pill--info">Integration · not lead</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Coordinated repeat-filer pressure across three jurisdictions — Orthotech is on a litigation treadmill.</h2>
+      <p class="section-lede">Three concurrent TCPA class actions, two different plaintiffs' firms, one short code. The Castillejos filing is the most recent — and the second to land in front of Judge Robertson in E.D. Okla.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Filed Case</div>
+        <h3 class="card-title">Castillejos v. Orthotech LLC d/b/a Smileset</h3>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Docket</dt><dd>6:26-cv-00184-JAR (E.D. Okla.) <br><span style="color:var(--fg-3); font-size:12px;">originally 5:26-cv-01579 (W.D. Tex., San Antonio Div.)</span></dd>
+            <dt>Filed</dt><dd>March 10, 2026 (W.D. Tex.); transferred June 5, 2026</dd>
+            <dt>Plaintiff</dt><dd>Carlos Castillejos · Comal County, TX · individual subscriber, not a serial filer</dd>
+            <dt>Counsel</dt><dd>Manuel S. Hiraldo (Hiraldo P.A., FL Bar 030380) + Michael Eisenband (Eisenband Law, P.A., FL Bar 94235); Christopher Berman appearance 5/1/2026</dd>
+            <dt>Class</dt><dd>Putative Rule 23 · National DNC subclass + Texas DNC subclass · "several thousands or more"</dd>
+            <dt>Claims</dt><dd>Count I — 47 U.S.C. § 227(c); 47 C.F.R. § 64.1200(c)(d)(e)<br>Count II — Tex. Bus. &amp; Com. Code § 305.053</dd>
+            <dt>Theory</dt><dd>Federal DNC + internal DNC + no prior express written consent · SMS to DNC-registered residential cell since Dec 2024</dd>
+            <dt>Damages</dt><dd>Up to $500 / text statutory ($1,500 if willful) under TCPA + $500 / text under TBCC § 305.053; CAFA threshold pled ($5M+)</dd>
+            <dt>Defense</dt><dd>Allyson Rae-Ann Cady + Mark S. Eisen (pro hac vice — national defense counsel across Orthotech matters); Joseph R. Farris + Jessica E. Garland in Ferrell</dd>
+            <dt>Posture</dt><dd>MTD filed 4/30/2026 (Doc 11) · fully briefed · ruling pending in E.D. Okla. under Judge Robertson</dd>
+            <dt>Aggregator</dt><dd>Indexed on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=6%3A26-cv-00184&type=r">CourtListener -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Hiraldo P.A. + Eisenband Law, P.A.</h3>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Lead Attorney</dt><dd>Manuel S. Hiraldo — FL Bar 030380 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=030380">FL Bar -&gt;</a></span></dd>
+            <dt>Co-Counsel</dt><dd>Michael Eisenband — FL Bar 94235 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=94235">FL Bar -&gt;</a></span></dd>
+            <dt>Firm Address (filing)</dt><dd>515 E. Las Olas Blvd., Ste. 1301, Ft. Lauderdale, FL 33301 <span class="pill pill--warn" style="margin-left:6px;">Address Mismatch</span></dd>
+            <dt>Hiraldo Address (firm site)</dt><dd>246 Shore Court, Lauderdale-by-the-Sea, FL 33308 — different from filing <span class="src-tag"><a href="https://hiraldolaw.com">hiraldolaw.com -&gt;</a></span></dd>
+            <dt>Eisenband Phone</dt><dd>954-732-2792</dd>
+            <dt>Hiraldo Phone</dt><dd>305-336-7466 (complaint) / 954-400-4713 (website) <span class="pill pill--warn" style="margin-left:6px;">Two different numbers</span></dd>
+            <dt>Eisenband Email</dt><dd>MEisenband@Eisenbandlaw.com</dd>
+            <dt>Hiraldo Email</dt><dd>mhiraldo@hiraldolaw.com</dd>
+            <dt>Discipline</dt><dd>None surfaced in available sources</dd>
+            <dt>TCPA Volume</dt><dd>~664 Hiraldo TCPA matches + ~279 Eisenband TCPA matches on CourtListener (≈943 combined) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Hiraldo%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Template</dt><dd>DTC consumer brands (NFL, Kohl's, Harley-Davidson, EyeBuyDirect, MyComputerCareer, Sunrun, Credit Pros, etc.) — pattern repeats <span class="src-tag"><a href="https://tcpaworld.com/?s=Hiraldo">TCPAWorld -&gt;</a></span></dd>
+            <dt>Threat Level</dt><dd><span class="pill pill--danger">High · Serial Filer / TCPAWorld-profiled</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Firm Template</h3>
+      <div class="card">
+        <div class="card-body">
+          <p>Hiraldo and Eisenband are repeat collaborators (PTGMB, DoNotPay, vacation marketing, real estate, etc.) running a high-volume TCPA class practice. Hiraldo has been profiled in TCPAWorld's Plaintiff Attorney Power Rankings discussions for multiple years and has obtained class certification and damages discovery in <em>Ownby v. United 1st Lending, LLC</em>, 2025 WL 81344 (M.D. Fla. Jan. 14, 2025). <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Manuel+Hiraldo%22+TCPA">Law360 -&gt;</a></span></p>
+          <p style="margin-top:12px;">Pattern: DTC consumer brands (eyewear, dental, fitness, solar, edtech, lead-gen, auto warranty) sending SMS/voice marketing to DNC-registered numbers without documented consent. They pursue certification rather than quick walk-aways, and they file in plaintiff-friendly venues (S.D. Fla., M.D. Fla., N.D. Cal., now W.D. Tex.). The Castillejos complaint mirrors the EyeBuyDirect case template almost exactly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation Against Orthotech</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Caption</th><th>Court / Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="current-case">
+              <td><strong>Castillejos v. Orthotech LLC d/b/a Smileset</strong> <span class="pill pill--red" style="margin-left:6px;">This Case</span></td>
+              <td>E.D. Okla. 6:26-cv-00184 <br>(transf. from W.D. Tex. 5:26-cv-01579)</td>
+              <td>Mar 10, 2026</td>
+              <td><span class="pill pill--danger">Active · MTD pending</span></td>
+              <td>Federal DNC + Texas DNC; SMS short code 94081</td>
+            </tr>
+            <tr>
+              <td>Ferrell v. Orthotech, LLC</td>
+              <td>E.D. Okla. 6:25-cv-00330 (Judge JAR)</td>
+              <td>Sep 15, 2025</td>
+              <td><span class="pill pill--warn">Active · first-filed</span></td>
+              <td>TCPA · same defendant · first-to-file lead case <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Orthotech%22+OR+%22Smileset%22&type=r">CourtListener -&gt;</a></span></td>
+            </tr>
+            <tr>
+              <td>Maniaci v. OrthoTech, LLC d/b/a SmileSet</td>
+              <td>E.D. Mich. 2:25-cv-11138 (Judge White)</td>
+              <td>Apr 21, 2025</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>TCPA · plaintiff counsel Anthony Paronich</td>
+            </tr>
+            <tr>
+              <td>Vaughn v. Orthotech LLC</td>
+              <td>N.D. Tex. 3:26-cv-00632 (Judge O'Connor)</td>
+              <td>Feb 26, 2026</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>TCPA · same defendant</td>
+            </tr>
+            <tr>
+              <td>Barton v. OrthoTech LLC</td>
+              <td>W.D. Wash. 3:26-cv-05608</td>
+              <td>Jun 8, 2026</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>TCPA · same defendant · filed 3 days after Castillejos transfer</td>
+            </tr>
+            <tr>
+              <td>Robinson v. OrthoTech, LLC</td>
+              <td>S.D. Fla. 9:25-cv-80355</td>
+              <td>Mar 17, 2025</td>
+              <td><span class="pill pill--ok">Terminated 3/26/2025</span></td>
+              <td>TCPA · dismissed within 9 days — likely settlement</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px; height:14px; vertical-align:-2px;"></i> Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li><strong>Plaintiff's full 10-digit DID</strong> — only last-4 ("5742") disclosed; pull from PACER ECF #1 / amended complaint exhibits.</li>
+        <li><strong>Delaware SoS confirmation for Orthotech LLC</strong> — entity status, registered agent, formation date not yet verified; Bizapedia + OpenCorporates blocked.</li>
+        <li><strong>Orthotech officer / executive roster</strong> — no CEO, GC, CCO, or CMO names located; LinkedIn returned only two non-executive employees (Brandon Clark, Theresa Busic) and TheOrg only has initials.</li>
+        <li><strong>Defense counsel direct contact</strong> — Allyson Rae-Ann Cady and Mark S. Eisen identified by name but no firm/email/phone yet.</li>
+        <li><strong>MTD ruling timing</strong> — fully briefed but no scheduling order surfaced post-transfer.</li>
+        <li><strong>Consent flow / privacy policy</strong> — Smileset's /privacy, /terms, /signup all return 404; need archived snapshot via Wayback or direct request.</li>
+        <li><strong>Confirmation of short code 94081 leaseholder</strong> — U.S. Short Code Registry lookup not yet completed.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the role-alias inbox and Salesforce-Marketing-Cloud admin. The executive layer is dark — open via known employees and verified company channel.</h2>
+      <p class="section-lede">Smileset has published no executive roster — no CEO, GC, CCO, or CMO publicly named. The only verified company channel is the <code>reps@smileset.com</code> recruiting alias. Two individual employees are confirmed on LinkedIn; emails are inferred from a plausible first.last pattern but require validation before sending.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>reps@smileset.com</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Role Alias</span></td>
+            <td>Independent Advocate / 1099 Sales Rep recruiting inbox — only verified Smileset company channel located</td>
+            <td>—</td>
+            <td>reps@smileset.com</td>
+            <td>—</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brandon Clark</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Employee</span></td>
+            <td>Listed at SmileSet on LinkedIn; role not published</td>
+            <td>—</td>
+            <td>brandon.clark@smileset.com <span class="pill pill--info" style="margin-left:4px;">inferred pattern</span></td>
+            <td><a href="https://www.linkedin.com/in/brandon-clark-3b22aa2b">linkedin/brandon-clark</a></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Theresa Busic</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Sales Rep</span></td>
+            <td>Sales Representative · ~6+ months tenure (per LinkedIn)</td>
+            <td>—</td>
+            <td>theresa.busic@smileset.com <span class="pill pill--info" style="margin-left:4px;">inferred pattern</span></td>
+            <td><a href="https://www.linkedin.com/in/theresabusic">linkedin/theresabusic</a></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>CEO / President</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Role only</span></td>
+            <td>Not publicly disclosed — no Smileset team/leadership/about page exists; LinkedIn company page sparse</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Role only</span></td>
+            <td>Not publicly disclosed. Likely outsourced given LLC structure and Ch.7-successor scale-up posture</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Role only</span></td>
+            <td>Not publicly disclosed — no compliance page on smileset.com</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>CMO / Head of Marketing</strong> <br><span class="pill pill--dark" style="margin-top:4px;">Role only</span></td>
+            <td>Owns the Salesforce Marketing Cloud / short-code 94081 send program — this is the operational decision-maker for any scrub integration</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel — Allyson Rae-Ann Cady</strong></td>
+            <td>Counsel of record for Orthotech LLC in Castillejos</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP · firm TBD</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel — Mark S. Eisen</strong></td>
+            <td>Pro hac vice — national defense counsel for Orthotech across Ferrell, Maniaci, Castillejos</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP · firm TBD</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Email Pattern</div>
+        <h3 class="card-title">{first}.{last}@smileset.com <span class="pill pill--warn" style="margin-left:8px; font-size:11px;">INFERRED</span></h3>
+        <div class="card-body">Confirmed domain: <code>smileset.com</code> (via <code>reps@smileset.com</code> role alias). Individual pattern format is inferred from common B2C/DTC convention. Validate with one-off SMTP check before bulk outreach. <span class="src-tag"><a href="https://www.linkedin.com/company/smileset">LinkedIn · Smileset -&gt;</a></span> <span class="src-tag"><a href="https://theorg.com/org/smileset">TheOrg -&gt;</a></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move before the MTD ruling. Open through the verified role alias; escalate to LinkedIn employees; offer pre-discovery scrub.</h2>
+      <p class="section-lede">Orthotech is paying defense counsel on three fronts simultaneously and has no public compliance page. A scrub-plus-consent-capture solution sold now is cheaper than the next class certification fight.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1</div>
+        <h3 class="card-title">Open via verified channel</h3>
+        <div class="card-body">Email <code>reps@smileset.com</code> with a short, role-aware note: "Saw the Castillejos / Ferrell / Maniaci pattern. Want to put you in front of the right person before the MTD ruling lands." Ask for the appropriate marketing-ops or legal contact. Mirror in LinkedIn InMail to Brandon Clark and Theresa Busic asking the same routing question.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">PACER pull + executive sweep</h3>
+        <div class="card-body">Pull ECF #1 + amended complaint + exhibits to recover the full plaintiff DID and confirm sender numbers. In parallel, run a paid Apollo/ZoomInfo sweep on "Smileset" / "Orthotech LLC" for any executive title (CEO, GC, VP Marketing, VP Compliance) — the public layer is dark and the paid layer may surface what LinkedIn does not.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4–7</div>
+        <h3 class="card-title">Tailored pitch to ops/legal</h3>
+        <div class="card-body">Lead with DNC scrub at the Salesforce Marketing Cloud send layer. Reference the 8-year DNC registration on Castillejos's number, the 404 privacy/terms pages, and the three concurrent cases. Position consent capture as the "rebuild from Ch.7" play, and compliance audit as the natural Q3 follow-on. Quote sized to the SMC monthly send volume.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 8–14</div>
+        <h3 class="card-title">Trigger escalation</h3>
+        <div class="card-body">If no response, escalate via LinkedIn to Health-E Commerce contact (their FSA/HSA partner) — partners are sensitive to TCPA risk on co-marketing channels and will route the message. Final fallback: deliver same pitch through defense counsel (Cady / Eisen) once their firm affiliation is confirmed.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Trigger Conditions</div>
+        <h3 class="card-title">What changes the plan</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li><strong>MTD granted in full</strong> — pivot to the Ferrell case (E.D. Okla., still active) as the lead lever; the texting program is still exposed.</li>
+            <li><strong>MTD denied</strong> — urgency spikes; Rule 26 disclosures within 30 days will surface the full call-record set and statutory exposure becomes math.</li>
+            <li><strong>Consolidation with Ferrell</strong> — single judge, single discovery track, single settlement conversation. Pitch becomes "fix it before mediation."</li>
+            <li><strong>Robinson-style early dismissal</strong> — if Castillejos settles fast like Robinson did in S.D. Fla., the rep should reposition the offer toward Ferrell / Maniaci / Vaughn / Barton, where the campaign-level exposure persists.</li>
+            <li><strong>Sixth concurrent case filed</strong> — Barton (W.D. Wash., June 2026) shows the filing cadence accelerating; if a seventh lands, raise urgency tier.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">3 CONCURRENT TCPA CLASSES · 5 IF YOU COUNT VAUGHN + BARTON</span>
+      <span class="pill pill--warn">MTD PENDING · CLOSE BEFORE RULING</span>
+      <span class="pill pill--info">PRE-DISCOVERY WINDOW</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
