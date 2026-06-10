@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graham v. AirTalk Wireless — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row--current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+.callout ul{ margin:8px 0 0; padding-left:20px; }
+.callout li{ font-size:14px; line-height:1.55; padding:3px 0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-09</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">REPEAT TCPA DEFENDANT · LIFELINE SMS MARKETING · INTERNAL-DNC FAILURE · HINDI FIRM SERIAL-FILER TEMPLATE</p>
+      <h1 class="hero-tagline">Graham v.<br>AirTalk Wireless</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">4:26-cv-04492</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Tex. (Houston)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 8, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Sr. Judge Lee H.<br>Rosenthal</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br>≥50 alleged</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Samuel J. Awad / Zane Hedaya<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — but Graham already has a parallel filing against the same defendant.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Graham's complaint does not disclose her recipient number on the face of the pleading — only screenshots of inbound texts to a redacted device. The litigator scrub is deferred until the number is recovered from PACER's ECF #1 exhibit set or via discovery.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Serial-Plaintiff Refile Flag</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Screenshots in ¶¶12-13 redact the recipient. The face of the complaint does not state Graham's 10-digit cell. blacklistBulk lookup intentionally not run — would return false-clean.</div>
+      </div>
+      <p class="scrub-body-text">Cross-check: Graham also filed a prior parallel TCPA case against the same defendant — <em>Graham v. Air Voice Wireless, LLC</em>, 4:26-cv-00155 (N.D. Fla., filed April 3, 2026) — roughly two months before the Houston re-file. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Air+Voice+Wireless%22&type=r">CourtListener -&gt;</a></span> The pattern (refile in a new district two months after the first) is consistent with voluntary dismissal-and-refile, which is itself a serial-plaintiff signal even before the scrub runs.</p>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 16px;">Sender DID — Disclosed in Complaint Screenshots</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">SMS Sender · 855-924-7825</div>
+          <h3 class="card-title">Toll-free 855 SMS DID</h3>
+          <div class="card-body">
+            <p style="margin:0 0 8px;">Appears in every screenshotted text in ¶¶12-13: <code>+1 (855) 924-7825</code>. NANPA toll-free, consistent with a high-volume outbound SMS dialer.</p>
+            <p style="margin:0 0 8px; font-size:13px; color:var(--fg-2)">All four consumer-report aggregators (800notes, YouMail, Tellows, RoboKiller) returned 403/404 — no third-party identification or volume data could be harvested. Sender identification is established by the complaint exhibits themselves, not by consumer-report aggregation.</p>
+            <span class="pill pill--info">SENDER ID FROM EXHIBITS</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Linked Domains in SMS</div>
+          <h3 class="card-title">airtalk.co · netlify.app</h3>
+          <div class="card-body">
+            <p style="margin:0 0 8px;">Texts link to <code>airtalk.co/2EOTCH</code>, <code>airtalkwireless.com/usage-check/...</code>, and <code>airtalkwireless.netlify.app/topup_bogo</code>. <span class="src-tag"><a href="https://airtalkwireless.com">airtalkwireless.com -&gt;</a></span></p>
+            <p style="margin:0; font-size:13px; color:var(--fg-2)">Netlify-hosted subdomain suggests rapid-deploy lead-gen / promo landing pages typical of high-volume SMS marketing programs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 16px;">Recovery Path</h3>
+      <div class="card-grid">
+        <div class="card"><div class="card-meta">Step 1</div><h3 class="card-title">Pull ECF #1 from PACER</h3><div class="card-body">~$1.20 for the unredacted exhibit set. The screenshot metadata or the body text of the first text may reveal Graham's 10-digit cell.</div></div>
+        <div class="card"><div class="card-meta">Step 2</div><h3 class="card-title">Pull N.D. Fla. ECF #1</h3><div class="card-body">Prior <em>Graham v. Air Voice Wireless</em>, 4:26-cv-00155, may have disclosed the number on the face of that earlier pleading.</div></div>
+        <div class="card"><div class="card-meta">Step 3</div><h3 class="card-title">Wait for defense counsel notice</h3><div class="card-body">Once appearance is filed, contact defense, request the plaintiff's discovery-responsive cell, run scrub, package result for settlement leverage.</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: PENDING — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL FILER — JIBRAEL HINDI FIRM</span>
+      <span class="pill pill--warn">REFILE FLAG — N.D. FLA. PARALLEL</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat TCPA defendant with a documented STOP-reply failure, an aggressive serial-filer firm on the other side, and zero visible compliance infrastructure on the public site.</h2>
+      <p class="section-lede">AirTalk was already sued in 2024 (Berkley, N.D.N.Y.) over the same SMS conduct. The 2026 Graham complaint contains a textbook smoking-gun: a screenshot of "Stop" sent by Graham, followed by more marketing texts from the same DID weeks later (¶¶12-13). Lead with <strong>policies & procedures / compliance audit</strong>, layer in <strong>consent capture</strong>, and close on <strong>litigator scrub</strong> once the recipient number is recovered.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Policies & Procedures / Compliance Audit</h3>
+        <div class="card-body">The primary claim is a 47 CFR § 64.1200(d) internal-DNC violation — failure to honor "STOP," failure to maintain a written DNC policy, failure to train personnel. This is the cheapest compliance defect to remediate and the easiest pitch to close. <span class="src-tag"><a href="https://airtalkwireless.com/privacy-policy">airtalkwireless.com -&gt;</a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Layer In</div>
+        <h3 class="card-title">Consent Capture & Record Retention</h3>
+        <div class="card-body">Plaintiff's screenshots show Graham's STOP reply was ignored. Defendant will need to produce opt-in records and opt-out logs in discovery. Consent capture closes the audit-trail gap going forward.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Close On</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Once Graham's number is recovered from PACER, run blacklistBulk to confirm whether she or other Hindi-firm plaintiffs are on Blacklist's litigator list — converts the prospect immediately.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; max-width:880px;">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1);">AirTalk Wireless was sued in August 2024 in N.D.N.Y. (<em>Berkley</em>, 1:24-cv-01004) for materially the same AirTalk promotional-text conduct, and that case terminated within ~2.5 months — a strong settlement signal. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Air+Voice+Wireless%22+TCPA&type=r">CourtListener -&gt;</a></span> Less than two years later, the Jibrael Hindi firm — one of the most prolific TCPA plaintiff shops in the country, with self-reported $30M+ in TCPA settlements <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span> — has filed a federal class action with the same SMS theory and a screenshot exhibit showing an ignored STOP reply.</p>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1); margin-top:12px;">The compliance opportunity is unusually clean: AirTalk's public privacy policy contains no TCPA, DNC, autodialer, or SMS consent language <span class="src-tag"><a href="https://airtalkwireless.com/privacy-policy">airtalkwireless.com/privacy-policy -&gt;</a></span>; there is no public compliance officer; and the signup/register/terms paths return 404. Pitch the rep as the "fix-it-once" partner: standalone internal-DNC list, written policy, personnel training, and a real-time scrub on every outbound SMS. AirTalk serves 1.3M Lifeline subscribers <span class="src-tag"><a href="https://en.wikipedia.org/wiki/AirTalk_Wireless">Wikipedia -&gt;</a></span> — the volume math alone justifies subscription-tier pricing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Houston-based Lifeline wireless carrier with 1.3M subscribers, a CEO with two prior FCC consent decrees, and no visible TCPA compliance infrastructure.</h2>
+      <p class="section-lede">Air Voice Wireless, LLC d/b/a AirTalk Wireless is a private telecom operating as a Lifeline carrier under HTH Communications. Founded in 1999 by Henry Hung Do; rebranded from FeelSafe Wireless to AirTalk in 2022. The CEO's affiliated entities have taken $155K in FCC fines across two prior consent decrees.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Air Voice Wireless, LLC d/b/a AirTalk Wireless</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal entity</dt><dd>Air Voice Wireless, LLC <span class="src-tag"><a href="https://en.wikipedia.org/wiki/AirTalk_Wireless">Wikipedia -&gt;</a></span></dd>
+            <dt>Doing business as</dt><dd>AirTalk Wireless (consumer brand since 2022; formerly FeelSafe Wireless 1999-2022)</dd>
+            <dt>Formation state</dt><dd>Not confirmed — TX SOSDirect requires subscriber login; OpenCorporates / Bizapedia / Sunbiz returned 403/CAPTCHA</dd>
+            <dt>HQ</dt><dd>9920 Brooklet Drive, Houston, TX 77099 <span class="src-tag"><a href="https://airtalkwireless.com/about-us">airtalkwireless.com -&gt;</a></span></dd>
+            <dt>Parent</dt><dd>HTH Communications (since 2021 acquisition) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/AirTalk_Wireless">Wikipedia -&gt;</a></span></dd>
+            <dt>Founded</dt><dd>1999 by Henry Hung Do</dd>
+            <dt>Subscribers</dt><dd>~1.3 million Lifeline subscribers (Nov 2025 press)</dd>
+            <dt>Vertical</dt><dd>Telecom / Lifeline subsidized wireless</dd>
+            <dt>Website</dt><dd>airtalkwireless.com · airtalk.co · airtalkwireless.netlify.app</dd>
+            <dt>Main phone</dt><dd>+1-206-445-7825 (consumer hotline) · 855-924-7825 (SMS sender DID)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy policy has no TCPA, DNC, autodialer, or SMS consent language.</h3>
+        <div class="card-body">
+          <p>The public privacy policy at airtalkwireless.com only states that AirTalk "will not share text messaging originator opt-in data" — it does not describe an internal DNC list, an opt-out workflow, personnel training, or any 47 CFR § 64.1200(d) program elements. <span class="src-tag" style="color:#A8A8A8"><a href="https://airtalkwireless.com/privacy-policy" style="color:#C9C9C9">airtalkwireless.com/privacy-policy -&gt;</a></span></p>
+          <p style="margin-top:8px">Compounding the gap: <strong>CEO Henry Hung Do's other Lifeline entities have already paid two FCC consent decrees</strong> — NewPhone Wireless ($100K, 2021) and Cintex Wireless ($55K, 2017) — for Lifeline rule violations. <span class="src-tag" style="color:#A8A8A8"><a href="https://en.wikipedia.org/wiki/AirTalk_Wireless" style="color:#C9C9C9">Wikipedia -&gt;</a></span> Pattern of regulatory non-compliance across his portfolio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day federal answer clock + Hindi firm pile-on risk</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Complaint filed</dt><dd>June 8, 2026 (S.D. Tex.)</dd>
+            <dt>Initial conference order</dt><dd>Entered June 9, 2026 (Rosenthal form order) <span class="src-tag"><a href="https://www.txs.uscourts.gov/">S.D. Tex. -&gt;</a></span></dd>
+            <dt>Answer deadline</dt><dd>~21 days post-service (date depends on service execution; defense counsel not yet appeared)</dd>
+            <dt>Parallel case</dt><dd><em>Graham v. Air Voice Wireless</em>, 4:26-cv-00155 (N.D. Fla., filed Apr 3, 2026) — same plaintiff, same defendant, ~2 months earlier <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Air+Voice+Wireless%22&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Repeat exposure</dt><dd>Aug 2024 <em>Berkley</em> case (N.D.N.Y.) terminated ~2.5 months post-filing — likely settled. Hindi firm will see this and price up.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 16px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr><td>HTH Communications</td><td>Parent (acquired 2021)</td><td>Device distribution / telecom</td><td>Successor/parent liability angle; controls AirTalk marketing budget <span class="src-tag"><a href="https://en.wikipedia.org/wiki/AirTalk_Wireless">Wikipedia -&gt;</a></span></td><td><span class="pill pill--danger">HIGH</span></td></tr>
+            <tr><td>NewPhone Wireless, LLC</td><td>Sister Lifeline carrier (CEO H. Do)</td><td>Lifeline wireless</td><td>$100K FCC consent decree 2021 — likely same SMS playbook</td><td><span class="pill pill--danger">HIGH</span></td></tr>
+            <tr><td>Cintex Wireless, LLC</td><td>Sister Lifeline carrier (CEO H. Do)</td><td>Lifeline wireless</td><td>$55K FCC consent decree 2017 — same compliance pattern</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+            <tr><td>FeelSafe Wireless (former DBA)</td><td>Prior brand of AirTalk (pre-2022)</td><td>Lifeline wireless</td><td>Same operating entity, just rebranded — any pre-2022 SMS records belong to same defendant</td><td><span class="pill pill--info">LOW</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Second TCPA class action against AirTalk in under two years — and the Jibrael Hindi firm just took over the plaintiff's bench.</h2>
+      <p class="section-lede">Defendant has been here before (Berkley 2024, terminated ~2.5 months post-filing). The current case is filed by the same plaintiff who already filed a parallel TCPA action in N.D. Fla. two months earlier. The plaintiff firm is a documented serial TCPA filer ranked in TCPAWorld's 2026 Power Rankings.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Graham v. Air Voice Wireless, LLC (S.D. Tex.)</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>4:26-cv-04492 (Houston Div.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-04492&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Filed</dt><dd>June 8, 2026</dd>
+            <dt>Judge</dt><dd>Sr. Judge Lee H. Rosenthal (initial conference order entered 6/9/2026) <span class="src-tag"><a href="https://www.txs.uscourts.gov/">S.D. Tex. -&gt;</a></span></dd>
+            <dt>Plaintiff</dt><dd>Jazneria Graham, Leon County, FL resident</dd>
+            <dt>Plaintiff counsel</dt><dd>Samuel J. Awad (FL #1058426) + Zane C. Hedaya (TX #24134450), Law Offices of Jibrael S. Hindi</dd>
+            <dt>Class status</dt><dd><span class="pill pill--danger">PUTATIVE RULE 23 CLASS</span></dd>
+            <dt>Class definition</dt><dd>All U.S. persons who received ≥2 marketing texts in any 12-month period from/on behalf of defendant after replying STOP</dd>
+            <dt>Class size pled</dt><dd>"At least 50" — but realistic numerosity likely thousands given 1.3M Lifeline subscriber base</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1200(d)</dd>
+            <dt>Theory</dt><dd>Internal DNC failure — no written policy, no personnel training, no standalone DNC list; STOP reply ignored (¶¶12-13)</dd>
+            <dt>Channels</dt><dd>SMS only (sender: 855-924-7825)</dd>
+            <dt>Damages</dt><dd>$500/text (negligent) — $1,500/text (willful) per § 227(c)(5)</dd>
+            <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Law Offices of Jibrael S. Hindi, PLLC <span class="pill pill--danger">SERIAL FILER</span></h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Lead attorneys</dt><dd>Samuel J. Awad (FL #1058426, also EDTX) · Zane C. Hedaya (TX #24134450) · Jibrael S. Hindi (principal)</dd>
+            <dt>Firm address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 (complaint) <span class="pill pill--warn">Address mismatch</span></dd>
+            <dt>Law360 reference</dt><dd>"Law Offices of Jibrael Hindi PLLC of Fort Lauderdale, FL" <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span></dd>
+            <dt>Firm phone</dt><dd>813-340-8838 (Tampa area code — distributed practice) · 844-542-7235 toll-free</dd>
+            <dt>Email</dt><dd>samuel@jibraellaw.com · zane@jibraellaw.com · Jibrael@jibraellaw.com</dd>
+            <dt>Bar status (Awad)</dt><dd>Active FL #1058426 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1058426">FL Bar -&gt;</a></span></dd>
+            <dt>TCPAWorld ranking</dt><dd>Named in TCPAWorld 2026 Power Rankings — "Most Dangerous TCPA Plaintiff's Lawyers" <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+            <dt>Self-reported wins</dt><dd>$30M+ TCPA · $200M+ class action · $15M FDCPA · $15M data breach <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+            <dt>Threat level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 12px;">Plaintiff Firm Template — Hindi/Awad Internal-DNC SMS Pattern</h3>
+      <div class="card">
+        <div class="card-body">
+          <p style="margin:0 0 8px;">The Hindi firm runs an industrial-scale TCPA practice across debt collection, mortgage, telecom, healthcare finance, and consumer credit. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span> The Graham complaint follows their signature template: (1) a single plaintiff with an alleged STOP reply, (2) screenshot exhibits of the offending texts, (3) § 227(c)/§ 64.1200(d) internal-DNC theory rather than ATDS, (4) Rule 23 class with "at least 50" pleading. Recent template deployments include actions against Nespresso (Sep 2025), Tampa Bay Buccaneers (Mar 2025), Steve Madden, ThirdLove (Mar 2026), and the 11th Circuit revival vs. Jordan Belfort (Aug 2023). <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></p>
+          <p style="margin:0;">The firm uses Texas co-counsel (Zane Hedaya) to file outside Florida — they have national reach and will chase defendants across districts. Co-counsel pattern with Normand PLLC on appellate work.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr class="row--current"><td><strong>Graham v. Air Voice Wireless</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td><td>4:26-cv-04492</td><td>S.D. Tex.</td><td>Jun 8, 2026</td><td><span class="pill pill--danger">Active · Class</span></td><td>Internal DNC / § 64.1200(d) SMS</td></tr>
+            <tr><td>Graham v. Air Voice Wireless <span class="pill pill--warn" style="margin-left:6px;">SAME PLAINTIFF</span></td><td>4:26-cv-00155</td><td>N.D. Fla.</td><td>Apr 3, 2026</td><td><span class="pill pill--info">Status unconfirmed</span></td><td>Parallel TCPA — refile/forum signal <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Air+Voice+Wireless%22&type=r">CL -&gt;</a></span></td></tr>
+            <tr><td>Berkley v. Air Voice Wireless</td><td>1:24-cv-01004</td><td>N.D.N.Y.</td><td>Aug 15, 2024</td><td><span class="pill pill--ok">Terminated 10/29/24 — likely settled</span></td><td>TCPA SMS (NOS 485) — counsel Shamis &amp; Sullivan <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Air+Voice+Wireless%22+TCPA&type=r">CL -&gt;</a></span></td></tr>
+            <tr><td>Soper III v. Airtalk Wireless</td><td>2:25-cv-02064</td><td>C.D. Cal.</td><td>Mar 5, 2025</td><td><span class="pill pill--gap">Dismissed w/o prej. 4/15/25 (pro se)</span></td><td>Unknown (pro se filer)</td></tr>
+            <tr><td>Air Voice Wireless v. Unlimited Prepaid</td><td>2:17-cv-11013</td><td>E.D. Mich.</td><td>2017</td><td><span class="pill pill--info">Closed</span></td><td>Commercial — defense counsel Soroky / Gurnick / Rose</td></tr>
+            <tr><td>Langer v. Fairmount Avenue Properties</td><td>3:18-cv-00964</td><td>S.D. Cal.</td><td>2018</td><td><span class="pill pill--info">Closed</span></td><td>ADA (AirTalk co-defendant)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:-2px;"></i> Open intel gaps to close before first dial</div>
+      <ul>
+        <li><strong>Recipient phone number</strong> — Graham's 10-digit cell is not on the face of the complaint; pull ECF #1 (and the N.D. Fla. ECF #1) to recover for litigator-scrub.</li>
+        <li><strong>N.D. Fla. parallel case status</strong> — Was 4:26-cv-00155 voluntarily dismissed? Transferred? Still pending? Determines first-filed rule and claim-splitting defense leverage.</li>
+        <li><strong>Defense counsel</strong> — Has not yet appeared in S.D. Tex. The 2017 E.D. Mich. case used Matthew J. Soroky / David C. Gurnick / Howard L. Rose; unclear if AirTalk uses the same firm in 2026.</li>
+        <li><strong>Texas SOS entity record</strong> — Formation state, registered agent, officers all unconfirmed. SOSDirect requires authenticated subscriber login; Bizapedia/OpenCorporates were blocked.</li>
+        <li><strong>Email pattern</strong> — No firstname.lastname pattern confirmed for @airtalkwireless.com or @hth-comm. ZoomInfo / SignalHire / RocketReach all gated. Direct dial unavailable until email pattern is verified.</li>
+        <li><strong>Berkley settlement amount</strong> — Termination details (terms, confidentiality) not in CourtListener summary; PACER docket pull would confirm whether Berkley was a quiet settlement.</li>
+        <li><strong>SMS sender consumer reports</strong> — 800notes / YouMail / Tellows / RoboKiller all returned 403; cannot quantify external consumer-complaint volume around 855-924-7825.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No public C-suite or GC at AirTalk — call the Houston HQ main line first and ask for "the person responsible for SMS marketing compliance."</h2>
+      <p class="section-lede">All public LinkedIn / SignalHire / TheOrg sources turned up rank-and-file employees only; no executive or General Counsel was named. The most reliable inbound path is the main 206-445-7825 consumer hotline + a written demand letter to the Houston HQ. Email pattern unconfirmed.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Henry Hung Do</strong><br><span class="pill pill--dark">FOUNDER / CEO (alleged)</span></td>
+            <td>Founder of Air Voice Wireless (1999); CEO of affiliated Lifeline portfolio. Affiliated entities took $155K in FCC consent decrees (NewPhone 2021, Cintex 2017). <span class="src-tag"><a href="https://en.wikipedia.org/wiki/AirTalk_Wireless">Wikipedia -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Main Houston HQ</strong><br><span class="pill pill--dark">SWITCHBOARD</span></td>
+            <td>9920 Brooklet Drive, Houston, TX 77099 — consumer hotline; ask for SMS compliance / legal. <span class="src-tag"><a href="https://airtalkwireless.com/about-us">airtalkwireless.com -&gt;</a></span></td>
+            <td>+1-206-445-7825 <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">GAP — no info@ published</span></td>
+            <td><a href="https://www.linkedin.com/company/air-voice-wireless">/company/air-voice-wireless</a></td>
+          </tr>
+          <tr>
+            <td><strong>Timothy Swain</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Listed Air Voice Wireless employee on LinkedIn; title not stated. Possible warm-route to compliance team.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/timothy-swain-25b279ba">/in/timothy-swain</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Frank Sarra</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Listed Air Voice Wireless employee on LinkedIn; title not stated.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/frank-sarra-3a5b39318">/in/frank-sarra</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mohit Soni</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>AirTalk Wireless employee per LinkedIn company page <span class="src-tag"><a href="https://www.linkedin.com/company/airtalk-wireless">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">URL not captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dishendra Vishwakarma</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>AirTalk Wireless employee per LinkedIn company page</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">URL not captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sachin Pundir</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>AirTalk Wireless employee per LinkedIn company page</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">URL not captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shai Lam</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>AirTalk Wireless employee per LinkedIn company page</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">URL not captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tyina Rowden</strong><br><span class="pill pill--dark">TECH SUPPORT</span></td>
+            <td>Technical Support Specialist (SignalHire) <span class="src-tag"><a href="https://www.signalhire.com/companies/airtalk-wireless">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Gated by SignalHire</span></td>
+          </tr>
+          <tr>
+            <td><strong>Vivek Saxena</strong><br><span class="pill pill--dark">ASSISTANT</span></td>
+            <td>Assistant role (SignalHire)</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Gated</span></td>
+          </tr>
+          <tr>
+            <td><strong>Uyên Tố</strong><br><span class="pill pill--dark">CS REP</span></td>
+            <td>Customer Service Representative (SignalHire)</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Gated</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 12px;">Plaintiff Counsel (Reference Only — Do Not Pitch)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Firm &amp; Bar</th><th>Phone</th><th>Email</th></tr></thead>
+          <tbody>
+            <tr><td>Samuel J. Awad</td><td>Law Offices of Jibrael S. Hindi · FL #1058426 (also EDTX) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1058426">FL Bar -&gt;</a></span></td><td>813-340-8838 (per PACER)</td><td>samuel@jibraellaw.com</td></tr>
+            <tr><td>Zane C. Hedaya</td><td>Law Offices of Jibrael S. Hindi · TX #24134450</td><td>813-340-8838</td><td>zane@jibraellaw.com</td></tr>
+            <tr><td>Jibrael S. Hindi</td><td>Principal — TCPAWorld 2026 Power Rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></td><td>813-340-8838 / 844-542-7235</td><td>Jibrael@jibraellaw.com</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the answer clock has already started and the Hindi firm is a known fast-mover.</h2>
+      <p class="section-lede">Defendant is freshly served, has no defense counsel of record yet, has a documented compliance gap, and faces a serial-filer firm with a $30M+ TCPA settlement track record. The right time to open the conversation is before defense counsel files an appearance and locks down communications.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Pull PACER ECF #1 (both cases)</h3>
+        <div class="card-body">Cost ~$2.40. Recover Graham's recipient phone from the unredacted exhibits in S.D. Tex. 4:26-cv-04492 and N.D. Fla. 4:26-cv-00155. Run litigator scrub immediately. Confirm N.D. Fla. case status.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2</div>
+        <h3 class="card-title">Cold outreach to Houston HQ</h3>
+        <div class="card-body">Call +1-206-445-7825. Ask for "the person responsible for SMS marketing compliance" or "in-house counsel." Lead with: "AirTalk was sued again Sunday in Houston federal court for ignoring STOP replies — the same conduct as the 2024 N.Y. case. We can help close the compliance gap before defense counsel raises rates."</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 2-3</div>
+        <h3 class="card-title">Send written demand to 9920 Brooklet Drive</h3>
+        <div class="card-body">Certified letter to the Houston HQ addressed to "Legal Department / SMS Compliance Lead" referencing case 4:26-cv-04492 and the privacy-policy gap. Triggers escalation through any internal compliance review.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 3-5</div>
+        <h3 class="card-title">LinkedIn warm path</h3>
+        <div class="card-body">Connect with Timothy Swain and Frank Sarra (verified employees). Ask for the right contact for compliance. Do not pitch on first touch — get the name and route from there.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 5-10</div>
+        <h3 class="card-title">Monitor docket for defense appearance</h3>
+        <div class="card-body">Set CourtListener alert on 4:26-cv-04492. As soon as defense counsel files appearance, pivot the pitch to outside counsel — they buy compliance vendors faster than internal legal does.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 10-21</div>
+        <h3 class="card-title">Escalate to HTH Communications (parent)</h3>
+        <div class="card-body">If no traction at AirTalk operating level, escalate to HTH Communications parent. Cross-sell angle: sister Lifeline carriers (NewPhone, Cintex) likely run the same SMS infrastructure.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:16px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); margin:0 0 12px;">Trigger Conditions That Change The Plan</h3>
+      <ul class="clean tight" style="background:var(--bg-surface); border:1px solid var(--border-1); padding:0 24px;">
+        <li><strong>If N.D. Fla. parallel case is still pending</strong> — defense will likely move to dismiss or transfer under first-filed rule; pitch window may compress to the next 2 weeks before consolidation.</li>
+        <li><strong>If defense counsel = repeat firm (Soroky / Gurnick / Rose from 2017 E.D. Mich.)</strong> — pivot pitch to that firm directly; they already know the entity.</li>
+        <li><strong>If Berkley settlement terms surface</strong> — use the settlement number as anchor for ROI math on the audit + scrub.</li>
+        <li><strong>If defendant files MTC arbitration</strong> — unlikely (terms-of-service URLs returned 404, suggesting no enforceable arbitration clause), but if it happens, pitch consent-capture as the fix.</li>
+        <li><strong>If plaintiff voluntarily dismisses to refile a third time</strong> — Hindi firm signaling a defect; offer to be the compliance partner that ends the litigation cycle.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUN 30</span>
+      <span class="pill pill--warn">REPEAT DEFENDANT — SECOND SUIT IN 2 YEARS</span>
+      <span class="pill pill--info">CROSS-SELL: HTH PARENT + NEWPHONE + CINTEX</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-09</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
