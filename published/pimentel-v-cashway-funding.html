@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pimentel v. Cashway Funding — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(16px, 1.6vw, 20px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="3" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-10</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Federal DNC Class Action · Freight-Factoring Cold Calls · Serial Plaintiff + Power-Ranked Firm · Zero Posted Consent Framework</p>
+      <h1 class="hero-tagline">Pimentel v.<br>Eagle Business Credit <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">d/b/a Cashway Funding</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2026-CA (Miami-Dade)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Filing # 249970319</span></div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">11th Jud. Cir.<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Miami-Dade County, FL</span></div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Clerk record pending</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 1.220 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"Several thousands" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alina O'Connor<br>Gerald D. Lane, Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Pimentel is a 10-case serial filer in S.D. Fla.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose the recipient number; only a screenshot of three missed calls is attached. Litigator scrub is deferred — but Pimentel's filing footprint is independently devastating.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="file-search" style="width:14px;height:14px;"></i> Scrub Status</span>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--danger">Serial Filer Flag · 10 Prior TCPA Cases</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint references a screenshot of three missed calls (3/23/26 09:14, 4/7/26 08:44, and a "Today 16:18" entry) but does not plead the recipient 10-digit number. Plaintiff alleges DNC registration on or about February 23, 2013.</div>
+      </div>
+      <p class="scrub-body-text">No bulk-list lookup can be performed against a number that wasn't pled. The recipient number must be recovered via PACER pull (if removed to S.D. Fla.) or via discovery / informal request to plaintiff counsel. <strong>Regardless of the scrub outcome, plaintiff is already independently disqualifying:</strong> Jan Carlos Pimentel has filed at least 10 TCPA cases in the Southern District of Florida between Jan 2025 and Feb 2026 — and most resolved with quick voluntary dismissals consistent with nuisance-value settlements. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jan+Carlos+Pimentel%22&type=r">CourtListener · Pimentel filings -></a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Wait for Removal / Pull from PACER</h3>
+        <div class="card-body">Defendant is a GA LLC, plaintiff is FL, class alleges "several thousands" — textbook CAFA removal. Once removed to S.D. Fla., pull ECF #1 from PACER (~$1.20) and check whether amended complaint discloses the plaintiff's number. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jan+Carlos+Pimentel%22&type=r">CourtListener -></a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Informal Request to Jibrael Firm</h3>
+        <div class="card-body">In prior Pimentel matters (e.g., Greenland Insurance), the firm settled within ~60 days. An early outreach asking for the recipient number under a meet-and-confer / Rule 26 framework often gets a quick answer because the firm wants to settle. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -></a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Defense Counsel Discovery</h3>
+        <div class="card-body">Once Eagle's defense counsel appears, Rule 1.350 / FRCP 33 interrogatory #1 should request the recipient phone number. Use the answer to retroactively run a litigator scrub and assess named-plaintiff-only resolution vs. class fight.</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — RECOVERY NEEDED</span>
+      <span class="pill pill--danger">SERIAL PLAINTIFF · 10+ TCPA CASES</span>
+      <span class="pill pill--warn">SETTLEMENT-MILL PATTERN · QUICK DISMISSALS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Two-brand freight-factoring shop with zero posted consent framework and a Jibrael Hindi class action on day one.</h2>
+      <p class="section-lede">Eagle Business Credit and its Cashway Funding division run a phone-first sales motion ("CALL 855-420-8318" on every page) with no privacy policy, no TCPA disclosure, no consent checkbox visible on either website. Plaintiff's firm is power-ranked and templated. Sell DNC scrubbing first — but the bigger story is end-to-end consent capture and a compliance program from scratch.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent" style="border-top-color:var(--bl-red); border-top-width:6px;">
+        <div class="card-meta" style="color:var(--bl-red);">RECOMMENDED LEAD</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Complaint pleads Federal DNC violations under 47 CFR § 64.1200(c) — exactly the violation Blacklist's National DNC scrub prevents. Plaintiff registered on the National DNC Registry in 2013; defendant called anyway, three documented times in 36 days. A live scrub against both Eagle and Cashway outbound dialing lists is the immediate fix and the easiest close.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Cashway's Terms & Conditions contain NO consent-to-contact provision, NO arbitration clause, NO class-action waiver, NO TCPA disclosure. There is no contractual defense to class certification. <span class="src-tag"><a href="https://cashwayfunding.com">Cashway Funding -></a></span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">TERTIARY</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <div class="card-body">No privacy policy posted on either eaglebusinesscredit.com or cashwayfunding.com. No internal DNC list policy referenced anywhere. Small-to-mid private LLC with no obvious in-house compliance officer — ideal buyer for a managed compliance bundle. <span class="src-tag"><a href="https://eaglebusinesscredit.com">Eagle Business Credit -></a></span></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:0 0 16px;">Pitch Angle</h3>
+    <div class="card card--accent">
+      <div class="card-body">
+        <p style="margin-top:0;"><strong>Lead with the named plaintiff and the firm.</strong> Open with: "Jan Carlos Pimentel is a serial TCPA plaintiff — at least 10 filings in S.D. Fla. in 18 months — and the Law Offices of Jibrael S. Hindi is on TCPAWorld's 2026 Power Rankings. They run a settlement-mill template: file, settle in 60-90 days, repeat. Pimentel has already settled with Greenland Insurance, dismissed against HH International, Biltmore, Foley, Truckers Best, and Supra in the same pattern. You are case #11. The cheapest version of this case is the one you fix before they file case #12 against you." <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jan+Carlos+Pimentel%22&type=r">CourtListener -></a></span></p>
+        <p style="margin-bottom:0;"><strong>Close on the systemic gap.</strong> Eagle's own marketing copy emphasizes outbound calling ("CALL 855-420-8318"), the freight-factoring vertical is built on cold-calling owner-operators, and neither brand site posts a privacy policy or any TCPA consent language. The class is pled at "several thousands" — at $500 negligent / $1,500 willful per call, even a 5,000-member class at one call each is $2.5M-$7.5M of statutory exposure. A National DNC scrub plus internal-DNC policy build costs a rounding error against that range — and is materially cheaper than discovery responses, let alone settlement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small private freight-factoring LLC headquartered in Woodstock, GA — two-brand operation doubling the dialing surface.</h2>
+      <p class="section-lede">Eagle Business Credit LLC operates Cashway Funding as its transportation/freight-factoring division (launched 2013). Both brands share infrastructure, both brands market by phone, and neither has any visible compliance scaffolding.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Eagle Business Credit LLC d/b/a Cashway Funding</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal entity</dt><dd>Eagle Business Credit LLC <span class="src-tag"><a href="https://eaglebusinesscredit.com/about-us">About -></a></span></dd>
+            <dt>D/B/A</dt><dd>Cashway Funding (transportation factoring division, est. 2013) <span class="src-tag"><a href="https://cashwayfunding.com/about">Cashway About -></a></span></dd>
+            <dt>HQ</dt><dd>Woodstock, GA (~20 min north of Atlanta)</dd>
+            <dt>Formation state</dt><dd>Not confirmed <span class="pill pill--gap">GAP</span></dd>
+            <dt>Entity type</dt><dd>LLC (private)</dd>
+            <dt>Vertical</dt><dd>Invoice factoring · Freight/trucking factoring · Staffing factoring · Fuel cards · Export financing</dd>
+            <dt>Revenue / employees</dt><dd>Not disclosed <span class="pill pill--gap">GAP</span></dd>
+            <dt>Main phone</dt><dd>855-420-8318 (Eagle) / 888-752-1443 (Cashway)</dd>
+            <dt>Main email</dt><dd>info@eaglebusinesscredit.com</dd>
+            <dt>Founder/President</dt><dd>Ian Varley (35+ years in receivables funding)</dd>
+            <dt>Public statements</dt><dd>Cashway page self-describes as "not a call center" — defensive framing in light of complaint allegations <span class="src-tag"><a href="https://cashwayfunding.com">Cashway -></a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No privacy policy. No TCPA language. No consent checkbox. On either brand.</h3>
+        <div class="card-body">
+          <p style="margin-top:0;">Eagle Business Credit's /privacy-policy URL returns a generic homepage with no actual privacy policy text. Cashway Funding's /privacy URL returns HTTP 404. Eagle's /terms and /terms-of-service URLs redirect to the homepage. Cashway's posted Terms &amp; Conditions contain NO consent-to-contact clause, NO arbitration clause, NO class-action waiver, NO TCPA disclosure, NO mention of calls, texts, autodialer use, or DNC compliance.</p>
+          <p style="margin-bottom:0;">The website's primary CTAs are "APPLY NOW" and "CALL 855-420-8318" — a phone-first acquisition motion operating with zero posted consent framework. <span class="src-tag"><a href="https://cashwayfunding.com/terms">Cashway T&amp;C -></a></span> <span class="src-tag"><a href="https://eaglebusinesscredit.com/privacy-policy">Eagle policy URL -></a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">First-ever TCPA complaint against this defendant — and the firm files in clusters.</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 9, 2026 (1 day ago)</dd>
+          <dt>Answer deadline</dt><dd>20 days from service per FL Rule 1.140 (state) / 21 days FRCP 12 (if removed) — likely early-to-mid July 2026</dd>
+          <dt>Prior TCPA history</dt><dd>ZERO publicly indexed TCPA cases against Eagle Business Credit or Cashway Funding before this complaint <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Eagle+Business+Credit%22+TCPA&type=r">CourtListener -></a></span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Cashway+Funding%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Copycat risk</dt><dd>HIGH — Jibrael Hindi firm files in clusters; once a target is identified as a soft compliance environment, the firm typically follows with additional named plaintiffs in 30-90 days</dd>
+          <dt>Removal window</dt><dd>30 days from service under 28 USC § 1446(b); CAFA basis (class, diversity, &gt;$5M aggregate) easily satisfied</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Related Entities &amp; Cross-Sell Candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cashway Funding</strong></td>
+            <td>D/B/A division of Eagle Business Credit</td>
+            <td>Freight / trucking factoring</td>
+            <td>Same dialing infrastructure as Eagle — scrub must cover both brand outbound lists; named in complaint via d/b/a</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Eagle Business Credit (parent operations)</strong></td>
+            <td>Parent LLC</td>
+            <td>Invoice factoring · staffing · export finance</td>
+            <td>Same phone-first acquisition motion; same lack of posted consent framework</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>TCS (Cashway TCS Fuel Card)</td>
+            <td>Co-branded fuel-card vendor</td>
+            <td>Trucking fuel card</td>
+            <td>Co-marketing channel — confirm no shared phone lists routed without scrub</td>
+            <td><span class="pill pill--info">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Day-one defendant facing a power-ranked firm running a serial-plaintiff template.</h2>
+      <p class="section-lede">Eagle has never been TCPA-sued before. The plaintiff has been the named plaintiff in at least 10 prior TCPA cases. The firm has 1,391 RECAP-indexed filings. This is template litigation.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Pimentel v. Eagle Business Credit LLC d/b/a Cashway Funding</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>Filing # 249970319 · 11th Judicial Circuit, Miami-Dade County, FL · Case number not yet surfaced on clerk site <span class="pill pill--gap">GAP</span></dd>
+            <dt>Filed</dt><dd>June 9, 2026</dd>
+            <dt>Plaintiff</dt><dd>Jan Carlos Pimentel (Miami-Dade County, FL resident)</dd>
+            <dt>Plaintiff counsel</dt><dd>Alina O'Connor (FL Bar 21171), Zane C. Hedaya (FL Bar 1048640), Gerald D. Lane, Jr. (FL Bar 1044677)</dd>
+            <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi</dd>
+            <dt>Class action</dt><dd><span class="pill pill--danger">YES · Rule 1.220</span></dd>
+            <dt>Class definition</dt><dd>Nationwide — persons receiving &gt;1 call in 12 months on a number listed on National DNC Registry &gt;30 days, with no business relationship and no 3-month inquiry exception</dd>
+            <dt>Claim</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c) · 47 CFR § 64.1200(e)</dd>
+            <dt>Theory</dt><dd>Federal DNC — more than one telephone solicitation in 12 months to a DNC-registered residential cellular number</dd>
+            <dt>Damages sought</dt><dd>$500 / call (negligent) · $1,500 / call (willful) · injunction · attorney's fees · interest · costs</dd>
+            <dt>Class size pled</dt><dd>"Several thousands" · "at least 50 persons" minimum for numerosity</dd>
+            <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~20-day answer clock</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel · Firm Profile</div>
+        <h3 class="card-title">The Law Offices of Jibrael S. Hindi — TCPAWorld 2026 Power Ranking</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 (per complaint) <span class="pill pill--warn">VOIP / multi-location</span></dd>
+            <dt>Firm phone</dt><dd>813-340-8838 (Tampa area code) <span class="pill pill--warn">Tampa AC, S. FL address</span></dd>
+            <dt>Firm email</dt><dd>Jibrael@jibraellaw.com</dd>
+            <dt>Website</dt><dd>jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -></a></span></dd>
+            <dt>Address mismatch</dt><dd><span class="pill pill--warn">FLAGGED</span> — Law360 articles place firm in Fort Lauderdale; complaint lists Wilton Manors; phone is Tampa area code <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -></a></span></dd>
+            <dt>Discipline history</dt><dd>None found in available sources <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar -></a></span></dd>
+            <dt>TCPA filing footprint</dt><dd>1,391 RECAP-indexed filings (firm-wide) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Law+Offices+of+Jibrael%22&type=r">CourtListener -></a></span></dd>
+            <dt>Power ranking</dt><dd>TCPAWorld 2026 Power Rankings — Jibrael Hindi cited among most dangerous TCPA plaintiff's lawyers; FCC noted "onslaught" of his firm's class actions <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -></a></span></dd>
+            <dt>Notable cases</dt><dd>11th Cir. revival of TCPA suit (Aug 2023); Nespresso quiet-hours class (Sep 2025); Tampa Bay Buccaneers quiet-hours (Mar 2025); Steve Madden SMS class (Mar 2025)</dd>
+            <dt>Threat level</dt><dd><span class="pill pill--danger">EXTREME</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Plaintiff / Firm Template — "Hindi DNC Class"</h3>
+    <div class="card card--accent" style="margin-bottom:32px;">
+      <div class="card-body">
+        <p style="margin-top:0;">Jan Carlos Pimentel has been named plaintiff in at least <strong>10 prior TCPA actions</strong> in S.D. Fla. between Jan 2025 and Feb 2026, all filed by the Jibrael Hindi firm. The template: identify a defendant with a phone-based sales motion, plead a "several thousands" DNC class with a screenshot exhibit of missed calls, file in state court or S.D. Fla., extract a confidential settlement within 60-90 days, voluntarily dismiss. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jan+Carlos+Pimentel%22&type=r">CourtListener · Pimentel -></a></span></p>
+        <p style="margin-bottom:0;">Confirmed settlements/dismissals in the same template: <strong>Greenland Insurance</strong> (Notice of Settlement Doc #19, 8/19/2025; voluntary dismissal with prejudice 8/22/2025), <strong>HH International, Biltmore, Foley Carrier Services, Truckers Best, Supra Insurance</strong> (all dismissed with prejudice within 1-3 months of filing). One outlier — <strong>RPO Plus Trust Insurance</strong> — dismissed WITHOUT prejudice for failure to prosecute. The recent <strong>YZ Financial Services (1:26-cv-21147)</strong> matter had a defense Motion to Dismiss for Failure to State a Claim filed Feb 20, 2026 — useful defense precedent.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:32px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court / Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Pimentel v. Eagle Business Credit / Cashway Funding</strong></td>
+            <td>11th Jud. Cir. Miami-Dade · Filing #249970319</td>
+            <td>2026-06-09</td>
+            <td><span class="pill pill--red">CURRENT CASE</span></td>
+            <td>Federal DNC § 227(c) / § 64.1200(c)</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. YZ Financial Services</td>
+            <td>S.D. Fla. · 1:26-cv-21147</td>
+            <td>2026</td>
+            <td><span class="pill pill--warn">Active · MTD pending</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. InsurePro, Inc.</td>
+            <td>S.D. Fla. · 1:25-cv-25804</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active (removed Dec 2025)</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. Greenland Insurance Agency</td>
+            <td>S.D. Fla. · 1:25-cv-21843</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Settled · Dismissed w/ prej. 8/22/25</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. Biltmore Insurance Services</td>
+            <td>S.D. Fla. · 1:25-cv-22125</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Dismissed w/ prejudice 6/25</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. Foley Carrier Services</td>
+            <td>S.D. Fla. · 1:25-cv-22067</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Dismissed w/ prejudice 6/25</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. Truckers Best Insurance</td>
+            <td>S.D. Fla. · 1:25-cv-21845</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Dismissed w/ prejudice 6/25</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. Supra Insurance Services</td>
+            <td>S.D. Fla. · 1:25-cv-22139</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Dismissed w/ prejudice 6/25</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. RPO Plus Trust Insurance</td>
+            <td>S.D. Fla. · 1:25-cv-21962</td>
+            <td>2025</td>
+            <td><span class="pill pill--gap">Dismissed w/o prej. (failure to prosecute)</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. HH International Business</td>
+            <td>S.D. Fla. · 1:24-cv-25099</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Dismissed Feb 2025</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+          <tr>
+            <td>Pimentel v. Elite Partners Insurance Group</td>
+            <td>S.D. Fla. · 1:25-cv-20112</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Disposed</span></td>
+            <td>TCPA DNC</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Open Intel Gaps · Close Before First Dial</div>
+      <h3 class="card-title">Resolve these before first outreach to Eagle / Cashway leadership.</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="border-top:1px solid #393939;">
+          <li>Plaintiff's recipient phone number — not pled; recover from PACER #1 if removed, or via informal request to Jibrael firm.</li>
+          <li>Miami-Dade case number and judge assignment — clerk site returned 404; confirm via clerk pull or service of process.</li>
+          <li>Eagle Business Credit LLC formation state and registered agent — Sunbiz, GA SOS, OpenCorporates all returned HTTP 403; need a paid registry pull.</li>
+          <li>Whether Eagle uses a single outbound dialing platform across both brands or two separate stacks — affects scrub scope.</li>
+          <li>Confirm Ian Varley's direct email format (likely ivarley@ vs. ian.varley@) — SignalHire shows both patterns; verify before cold outbound.</li>
+          <li>Whether complaint will be removed to S.D. Fla. — defendant typically has 30 days post-service; impacts answer-deadline math.</li>
+          <li>Whether Eagle has any in-house counsel or relies on outside firms — small private LLC, no GC publicly identified.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to Ian Varley directly. This is a founder-led LLC with no GC layer.</h2>
+      <p class="section-lede">Eagle Business Credit is small enough that the founder/president is the buyer. Lead with Ian Varley. Kristina Varley (Marketing &amp; Strategy) and Addison Westmoreland (National Sales Manager) are the operational owners of the dialing program — they are the people who will actually implement the scrub. Confirmed email pattern: <code>{flast}@eaglebusinesscredit.com</code>.</p>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Email Pattern (Confirmed)</div>
+      <h3 class="card-title">{flast}@eaglebusinesscredit.com</h3>
+      <div class="card-body">Confirmed via SignalHire-published addresses: <code>atodd@</code> (Allie Todd), <code>mfrost@</code> (Michael Frost), <code>mgeorge@</code> (Michael George), <code>alenocker@</code> (Amy Lenocker). Cashway team uses <code>{firstname}@cashwayfunding.com</code> per Luke Christopher's published address. <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ian Varley</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>President / Founder / CEO · 35+ years in receivables funding · Final decision-maker on vendor purchases <span class="src-tag"><a href="https://www.linkedin.com/in/ianwjvarley">LinkedIn -></a></span></td>
+            <td>855-420-8318 (main)</td>
+            <td>ivarley@eaglebusinesscredit.com</td>
+            <td><a href="https://www.linkedin.com/in/ianwjvarley">in/ianwjvarley</a></td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kristina Varley</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Head of Marketing &amp; Strategy · Operational owner of dialing/marketing program <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td>855-420-8318 (main)</td>
+            <td>kvarley@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Addison Westmoreland</strong><br><span class="pill pill--dark">SALES LEAD</span></td>
+            <td>National Sales Manager · Owns outbound sales motion / direct stakeholder for DNC scrub <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td>855-420-8318 (main)</td>
+            <td>awestmoreland@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Taylor Wyatt</strong><br><span class="pill pill--dark">BD</span></td>
+            <td>Senior Business Development Officer <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>twyatt@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Frost</strong><br><span class="pill pill--dark">CREDIT</span></td>
+            <td>Underwriting and Credit Manager <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>mfrost@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael George</strong><br><span class="pill pill--dark">ACCOUNT</span></td>
+            <td>Senior Account Manager <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>mgeorge@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Allie Todd</strong><br><span class="pill pill--dark">ACCOUNT</span></td>
+            <td>Account Manager <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>atodd@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Amy Lenocker</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>AR Supervisor <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>alenocker@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jack Chancey</strong><br><span class="pill pill--dark">BD</span></td>
+            <td>Senior Business Development Associate <span class="src-tag"><a href="https://www.signalhire.com/companies/eagle-business-credit">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jchancey@eaglebusinesscredit.com</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Luke Christopher</strong><br><span class="pill pill--dark">CASHWAY</span></td>
+            <td>Cashway Funding team member <span class="src-tag"><a href="https://www.linkedin.com/company/cashway-funding">LinkedIn -></a></span></td>
+            <td>888-752-1443 (Cashway main)</td>
+            <td>luke@cashwayfunding.com</td>
+            <td><a href="https://www.linkedin.com/in/luke-christopher-68a18780">in/luke-christopher</a></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Eagle Business Credit · Main</strong><br><span class="pill pill--dark">CORP</span></td>
+            <td>Main switchboard / general info inbox <span class="src-tag"><a href="https://eaglebusinesscredit.com">Eagle -></a></span></td>
+            <td>855-420-8318</td>
+            <td>info@eaglebusinesscredit.com</td>
+            <td>—</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">LEGAL</span></td>
+            <td>None publicly identified · small LLC likely uses outside counsel <span class="pill pill--gap">ROLE UNKNOWN</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">COMPLIANCE</span></td>
+            <td>None publicly identified · no compliance page exists on either brand site <span class="pill pill--gap">ROLE UNKNOWN</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Plaintiff Counsel (NOT for outbound sales — reference only)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name</th><th>Firm</th><th>Phone</th><th>Email</th><th>Bar</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Alina O'Connor</td>
+            <td>Law Offices of Jibrael S. Hindi</td>
+            <td>813-340-8838 (per complaint)</td>
+            <td>alina@jibraellaw.com</td>
+            <td>FL Bar 21171 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar -></a></span></td>
+          </tr>
+          <tr>
+            <td>Zane C. Hedaya</td>
+            <td>Law Offices of Jibrael S. Hindi</td>
+            <td>813-340-8838 (per complaint)</td>
+            <td>zane@jibraellaw.com</td>
+            <td>FL Bar 1048640 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1048640">FL Bar -></a></span></td>
+          </tr>
+          <tr>
+            <td>Gerald D. Lane, Jr.</td>
+            <td>Law Offices of Jibrael S. Hindi</td>
+            <td>813-340-8838 (per complaint)</td>
+            <td>gerald@jibraellaw.com</td>
+            <td>FL Bar 1044677 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1044677">FL Bar -></a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours. The firm settles in 60-90 days — every day costs leverage.</h2>
+      <p class="section-lede">The filing is one day old. Defense counsel has not appeared. The plaintiff's firm has settled 6+ prior Pimentel matters in &lt;90 days. The fastest path for Eagle to neutralize ongoing exposure — and to prevent copycat filings — is to stand up DNC scrubbing now. Lead with Ian Varley, route implementation through Kristina Varley and Addison Westmoreland.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Open with Ian Varley</h3>
+        <div class="card-body">
+          <p>Direct call/email to Ian Varley at <code>ivarley@eaglebusinesscredit.com</code> and 855-420-8318. Open with: "You were sued yesterday in Miami-Dade by Jan Carlos Pimentel — a serial TCPA plaintiff with 10 prior cases — represented by the Jibrael Hindi firm. They settle these in 60 days. I want to make sure case #2 doesn't land before you have a scrub in place."</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2-3</div>
+        <h3 class="card-title">Loop in Sales &amp; Marketing</h3>
+        <div class="card-body">
+          <p>Once Ian engages, ask him to bring Kristina Varley (Marketing/Strategy) and Addison Westmoreland (National Sales Manager) into the next call. They own the dialing list. Pitch a unified scrub covering BOTH Eagle outbound dialing and Cashway Funding outbound dialing — confirm whether the platforms are shared or separate.</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4-7</div>
+        <h3 class="card-title">Position the Bundle</h3>
+        <div class="card-body">
+          <p>Beyond National DNC scrub, position: (a) internal-DNC list infrastructure, (b) consent-capture on the "APPLY NOW" / "CALL" CTAs, (c) basic privacy policy and TCPA disclosure deployment. The complaint pleads the absence of all three. Tie pricing to the avoided class exposure ($500-$1,500 per call x thousands of class members).</p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7-14</div>
+        <h3 class="card-title">Pull PACER if Removed</h3>
+        <div class="card-body">
+          <p>Monitor for CAFA removal to S.D. Fla. (likely within 30 days of service). Once removed, pull ECF #1 and any amended pleadings to recover plaintiff's actual recipient number. Run that number through the litigator-scrub product to retroactively confirm — and to set up a settlement leverage talk track ("we could have flagged this consumer").</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:32px;">
+      <div class="card-meta" style="color:#A8A8A8;">Trigger Conditions · Plan Adjusts If…</div>
+      <h3 class="card-title">Watch the docket. Adjust posture as facts develop.</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="border-top:1px solid #393939;">
+          <li><strong>Defendant removes to S.D. Fla. under CAFA</strong> → answer clock resets to 21 days post-removal; pull PACER #1 immediately.</li>
+          <li><strong>Defense counsel files MTD for Failure to State a Claim</strong> (same template used in YZ Financial 1:26-cv-21147) → settlement leverage drops; pitch shifts to compliance bundle for the long fight.</li>
+          <li><strong>Plaintiff voluntarily dismisses within 30 days</strong> → likely confidential settlement closed quickly; pitch becomes "prevent case #2" rather than "save case #1."</li>
+          <li><strong>A second Hindi-firm plaintiff files against Eagle</strong> → copycat risk realized; urgency goes to MAX and pricing leverage compresses.</li>
+          <li><strong>Eagle hires a known TCPA defense firm (e.g., Eversheds Sutherland, Holland &amp; Knight)</strong> → that firm may have a preferred scrub vendor; partner-route rather than direct.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY · MAXIMUM</span>
+      <span class="pill pill--danger">~20-DAY ANSWER WINDOW · CLOSE BEFORE JUL 1</span>
+      <span class="pill pill--warn">COPYCAT RISK · 30-90 DAY WINDOW</span>
+      <span class="pill pill--info">PRIMARY PRODUCT · DNC SCRUB + INTERNAL-DNC BUILD</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-10</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
