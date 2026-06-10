@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thomas v. Delta Defense / USCCA — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.step{ display:grid; grid-template-columns:60px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:32px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; color:var(--fg-2); line-height:1.55; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Internal-DNC Class Action · Concealed-Carry Insurance SMS · Repeat-Offender Defendant · 21-Day Answer Clock</p>
+      <h1 class="hero-tagline">Thomas v.<br>Delta Defense / USCCA</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-04128-SRB</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Mo. (Jefferson City)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Stephen R. Bough<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"thousands" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Brady · Berman<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">McShane &amp; Brady / Shamis &amp; Gentile</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred, but the sender DID (87222) is a smoking-gun shortcode.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Ava Thomas's complaint discloses only the last four digits ("2293 Number") — no scrub possible until the full number is recovered. However, the defendant's sending shortcode (87222) is named in the complaint and tied directly to the USCCA marketing program.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(XXX) XXX-2293</div>
+        <div class="scrub-number-sub">Complaint para. 9 references the "2293 Number" only by last-four. No area code, no prefix. Cannot run blacklistBulk against a partial DID.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff Ava Thomas is identified as a Benton County, Missouri resident and sole subscriber of the residential cellular number ending in 2293. The full 10-digit number is not pled in the body of the complaint or in any exhibit. Litigator-list lookup is deferred pending recovery via PACER pull of underlying exhibits, defense counsel notice, or discovery. CourtListener search for "Ava Thomas" prior TCPA filings returned an HTTP 502 — serial-filer status cannot be confirmed or ruled out at this time. <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-04128&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender Identification</div>
+        <h3 class="card-title">Shortcode 87222 — USCCA Marketing</h3>
+        <div class="card-body">
+          <p>Five-digit common shortcode used by Delta Defense / USCCA for membership and concealed-carry insurance broadcast SMS. Confirmed via complaint exhibits showing message body containing <code>uscca.us</code> click-tracking links and signed "Tim, USCCA" (Tim Schmidt, co-founder).</p>
+          <p><strong>Infrastructure read:</strong> Dedicated A2P broadcast channel. Requires CTIA/MMA registration and carrier approval. Provisioned for mass-blast volume — 200,000+ msgs/day capable by design.</p>
+          <p class="src-tag"><a href="https://usshortcodedirectory.com/directory/87222/">US Short Code Directory -&gt;</a></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Aggregator Coverage</div>
+        <h3 class="card-title">Why no consumer-complaint floor</h3>
+        <div class="card-body">
+          <p>800notes, YouMail, Tellows, and RoboKiller index 10-digit DIDs — they do not index 5-digit shortcodes. Numerosity will need to come from defendant's own carrier logs in discovery, or from the CTIA short-code registry.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Buy the complaint (≈$1.20). Phone may appear unredacted in any later-filed exhibit, civil cover sheet, or Rule 26(a)(1) disclosure.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense notice of appearance</h3>
+        <div class="card-body">Once defense counsel appears, send Rule 26(f) outreach offering scrub data in exchange for the plaintiff's full DID.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Cross-reference Benton County, MO records</h3>
+        <div class="card-body">Plaintiff identified as resident of Benton County, MO (pop. ~19k). LexisNexis/TLO trace on "Ava Thomas + Benton County MO + 660 area code" likely yields full DID within hours.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--warn">PULL PACER #1</span>
+      <span class="pill pill--gap">SERIAL-FILER STATUS: UNCONFIRMED</span>
+      <span class="pill pill--info">SHORTCODE IDENTIFIED: 87222</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat-offender defendant with a broken STOP pipeline on a dedicated shortcode — and a class-action settlement that didn't fix it.</h2>
+      <p class="section-lede">Delta Defense / USCCA just settled an essentially identical TCPA class action in E.D. Wis. (<em>John v. Delta Defense</em>, terminated March 16, 2026) and is now being sued again, 12 weeks later, on the same 87222 shortcode for the same internal-DNC failure. Lead with Compliance Audit + Policies &amp; Procedures. The wedge is: "your last settlement didn't fix this — here's what will."</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta" style="color:var(--bl-red)">▸ Recommended Lead Pitch</div>
+        <h3 class="card-title">Compliance Audit + Policies &amp; Procedures</h3>
+        <div class="card-body">Primary violation is 47 CFR § 64.1200(d) — internal DNC. Plaintiff documents <strong>five separate STOP requests</strong> between Feb 22 and Mar 29, 2026, each followed by continued marketing texts. This is a written-policy / training / list-maintenance failure, not a list-hygiene failure. Blacklist's compliance audit + DNC P&amp;P deliverable directly remediates the alleged conduct.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">DNC Scrubbing (Internal DNC List)</h3>
+        <div class="card-body">Operational fix at the send layer. Blacklist's internal-DNC list service intercepts opted-out numbers before they hit the carrier — eliminating the exact pattern (continued texting after STOP) that drives § 227(c)(5) liability.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary / Cross-Sell</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">Secondary allegation is lack of prior express written consent. Aggressive lead-gen funnel (free guides, quizzes, dashcam giveaways) is typical of this vertical. Consent-capture SaaS + 5-year retention is the upsell once the DNC bleed is stopped.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:20px; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-2); max-width:880px;">"Your team settled <em>John v. Delta Defense</em> in March. Twelve weeks later, a new plaintiff in Missouri is suing you on the same 87222 shortcode for the same STOP-ignored pattern — five separate opt-out requests across six weeks, all bulldozed. The first settlement bought you peace with one plaintiff. It did not fix the leak. A new firm (Shamis &amp; Gentile, paired with local Missouri counsel) has now taken the second bite, and they are a class-action shop that publicly reports $1.6B+ in recoveries. Every additional week your shortcode keeps texting opted-out numbers, you are stacking § 227(c)(5) violations at $500 negligent / $1,500 willful per text. Blacklist's compliance audit + internal-DNC scrub closes the gap at the send layer in 30 days — and gives your defense team something concrete to point to in the answer."</p>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-2); max-width:880px; margin-top:12px;">The opening question on the first call: <em>"Who owns the STOP-handling logic on 87222 — is it Delta Defense in-house, or your aggregator?"</em> That single question separates the genuine prospects (in-house = they can buy and integrate) from the dead-ends (managed by Attentive/Twilio = upsell goes through the vendor).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Wisconsin-based concealed-carry insurance and membership operator. Two named entities. Founder-led. Private.</h2>
+      <p class="section-lede">Delta Defense, LLC is the exclusive marketing, recruitment and service provider for the United States Concealed Carry Association, Inc. — the two entities operate as affiliated companies under common founder Tim Schmidt. Both are named as defendants. HQ in West Bend, WI.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entities</dt><dd>Delta Defense, LLC (Wisconsin LLC) and United States Concealed Carry Association, Inc.</dd>
+          <dt>HQ</dt><dd>1000 Freedom Way, West Bend, WI 53095 (per complaint para. 10)</dd>
+          <dt>Founded</dt><dd>2003 by Tim Schmidt <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></dd>
+          <dt>Ownership</dt><dd>Private, founder-controlled</dd>
+          <dt>Vertical</dt><dd>Concealed-carry liability insurance, self-defense legal protection, firearms training, membership</dd>
+          <dt>Member Base</dt><dd>~830,000 (publicly cited industry figure — marketable universe for class numerosity)</dd>
+          <dt>Channels</dt><dd>SMS (shortcode 87222), email (uscca.us / uscca.com), paid digital, affiliate, in-person events</dd>
+          <dt>Public Compliance</dt><dd><span class="pill pill--gap">Not visible</span> All defendant web properties blocked research crawler (HTTP 403). No public CCO, no published DNC policy retrievable.</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5">▸ Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Five STOP requests. Zero compliance.</h3>
+        <div class="card-body">
+          <p>Per complaint paras. 15–18 and exhibits: Plaintiff sent "STOP" to shortcode 87222 on <strong>Feb 22, Mar 4, Mar 7, Mar 15, and Mar 29, 2026</strong>. Defendant continued sending marketing SMS after every single one — including texts on Feb 26, Mar 4, Mar 7, Mar 12, Mar 15, Mar 28, Apr 8, Apr 13, Apr 19, May 5, and May 15.</p>
+          <p>This is not a list-hygiene problem. This is a written-policy + STOP-handler + training failure under 47 CFR § 64.1200(d)(1), (d)(2), (d)(3), and (d)(6) — the four subsections Blacklist's Policies &amp; Procedures product directly addresses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <h3 class="card-title" style="display:flex; align-items:center; gap:8px;"><i data-lucide="clock"></i> Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Filing Date</dt><dd>June 9, 2026 — case is 3 days old as of report generation</dd>
+        <dt>Answer Deadline</dt><dd>~21 days after service under Fed. R. Civ. P. 12(a)(1)(A)(i). Expected window: <strong>late June / early July 2026</strong></dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared. <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-04128&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Prior Case Pattern</dt><dd>Predecessor <em>John v. Delta Defense</em> (E.D. Wis.) was filed Sept 21, 2023 and terminated Mar 16, 2026 — ~30 months end-to-end, likely settlement. This case follows the same trajectory unless P&amp;P remediation is in place before mediation. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Delta+Defense%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Pitch Window</dt><dd>Best contact window is <strong>now through answer filing</strong> — defense counsel will want a compliance story to point at in the answer / motion to dismiss / early mediation.</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px; margin:24px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Delta Defense, LLC</strong><br><span class="src-tag">Named defendant</span></td>
+            <td>Primary marketing / service entity</td>
+            <td>Insurance marketing services</td>
+            <td>Direct — operator of 87222 shortcode and email program</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>U.S. Concealed Carry Association, Inc.</strong><br><span class="src-tag">Named defendant</span></td>
+            <td>Affiliated membership entity (per complaint)</td>
+            <td>Self-defense insurance / membership</td>
+            <td>Direct — beneficiary of marketing SMS</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>Tim Schmidt (founder personal vehicles)</td>
+            <td>Founder of both named entities</td>
+            <td>Firearms / insurance ecosystem</td>
+            <td>Indirect — any additional ventures share marketing playbook</td>
+            <td><span class="pill pill--info">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Concealed-carry instructor affiliate network</td>
+            <td>Affiliate channel partners</td>
+            <td>Firearms training</td>
+            <td>Indirect — affiliates may run their own SMS programs against shared consent records</td>
+            <td><span class="pill pill--gap">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Second TCPA class action against the same defendants on the same shortcode in 33 months. New plaintiff firm. Same broken pipeline.</h2>
+      <p class="section-lede">The predecessor case (<em>John v. Delta Defense</em>, E.D. Wis., terminated March 2026) was defended by Almeida Law Group and likely settled. This case introduces a new plaintiff-firm tandem — McShane &amp; Brady (Kansas City local) + Shamis &amp; Gentile, P.A. (Miami national consumer class action shop) — running the same theory.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Case File</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-04128-SRB (W.D. Mo., Central Div. — Jefferson City) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-04128&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 9, 2026</dd>
+          <dt>Judge</dt><dd>Stephen Rogers Bough (Article III). No specific TCPA rulings surfaced. <span class="src-tag"><a href="https://www.mow.uscourts.gov/">W.D. Mo. -&gt;</a></span></dd>
+          <dt>Plaintiff</dt><dd>Ava Thomas, Benton County, MO</dd>
+          <dt>Class Status</dt><dd><span class="pill pill--danger">Putative Rule 23 Class</span> "thousands" alleged; National Internal Do Not Call Class</dd>
+          <dt>Class Definition</dt><dd>Persons in U.S. who, within 4 years pre-filing, (1) received ≥2 texts in any 12-month window, (2) from/on behalf of Defendant, (3) for promoting Defendant's products, (4) on personal phone, (5) while Defendant lacked compliant 47 CFR § 64.1200(d)(1)–(6) procedures.</dd>
+          <dt>Theory</dt><dd>Internal DNC failure (primary) + lack of express written consent (secondary)</dd>
+          <dt>Statutes</dt><dd>47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1200(d)(1), (2), (3), (6), (e)</dd>
+          <dt>Damages Sought</dt><dd>$500 per negligent violation; $1,500 per willful violation; injunctive relief; aggregate alleged &gt;$5M (CAFA threshold)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> ~21-day answer clock running</dd>
+          <dt>Docket Visibility</dt><dd>RECAP / CourtListener indexed; PacerMonitor entry not surfaced</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel — Local + National Pairing</h3>
+        <dl class="kv">
+          <dt>Lead (Local)</dt><dd>Maureen M. Brady — McShane &amp; Brady, LLC</dd>
+          <dt>Bar No.</dt><dd>57800 (MO) — discipline history: none found in available sources</dd>
+          <dt>Local Firm Address</dt><dd>4006 Central Street, Kansas City, MO 64111</dd>
+          <dt>Local Firm Phone</dt><dd>(816) 888-8010</dd>
+          <dt>Local Firm Email</dt><dd>mbrady@mcshanebradylaw.com <span class="src-tag"><a href="https://mcshanebradylaw.com/">McShane &amp; Brady -&gt;</a></span></dd>
+          <dt>Lead (National)</dt><dd>Christopher E. Berman — Shamis &amp; Gentile, P.A. (Pro Hac Vice forthcoming)</dd>
+          <dt>FL Bar</dt><dd>Pending verification <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?lName=Berman&fName=Christopher">FL Bar -&gt;</a></span></dd>
+          <dt>National Firm</dt><dd>Shamis &amp; Gentile, P.A. — 14 NE 1st Ave, Suite 705, Miami, FL 33132 · (305) 479-2299 <span class="src-tag"><a href="https://www.shamisgentile.com/">Shamis &amp; Gentile -&gt;</a></span></dd>
+          <dt>Firm Practice</dt><dd>Class action, TCPA, data breach, securities fraud, mass torts, HIPAA</dd>
+          <dt>Firm Track Record</dt><dd>$1.6B+ recovered across 200+ cases (firm self-reported). Recent: $889k Toyota of North Miami TCPA settlement (Jan 2026, ~$85/text). <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Shamis+%26+Gentile%22+TCPA">Law360 -&gt;</a> <a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld -&gt;</a></span></dd>
+          <dt>Serial Filer</dt><dd><span class="pill pill--warn">Yes — TCPA-active class shop</span> Not on TCPAWorld Top-10 Power Rankings, but frequently surfaces in TCPA/VPPA dockets</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Shamis &amp; Gentile + Local-Counsel Pattern</h3>
+      <div class="card-body">
+        <p>Standard pairing: a national consumer-class-action shop (Shamis &amp; Gentile, Miami) admits pro hac vice and runs the case substantively; a local boutique (McShane &amp; Brady, KCMO) carries the in-state bar requirement and files. This pattern is consistent with their other consumer class actions — they vet for class viability before filing, push for early classwide settlement, and have demonstrated willingness to accept arbitration push-outs when defense leverages them (per <em>Anderson v. Angie's List</em>, April 2023). <span class="src-tag"><a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld -&gt;</a></span></p>
+        <p>Implication for defendant: this is not a single-plaintiff shakedown. It was filed because the firm pre-modeled class size and economics and concluded it was worth their docket slot. Settlement expectation is in the seven figures, with attorney fees stacked on top.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; margin:24px 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Thomas v. Delta Defense / USCCA</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>2:26-cv-04128-SRB · W.D. Mo.</td>
+            <td>2026-06-09</td>
+            <td><span class="pill pill--danger">Active · Pre-Answer</span></td>
+            <td>Internal DNC (47 CFR § 64.1200(d)) + no express written consent</td>
+          </tr>
+          <tr>
+            <td>John v. Delta Defense LLC, et al.</td>
+            <td>2:23-cv-01253 · E.D. Wis.</td>
+            <td>2023-09-21</td>
+            <td><span class="pill pill--ok">Settled / Terminated 2026-03-16</span></td>
+            <td>TCPA class — same defendants, same broad theory</td>
+          </tr>
+          <tr>
+            <td>Delta Defense v. usconcealedassociation.com</td>
+            <td>1:25-cv-02362 · E.D. Va.</td>
+            <td>2025</td>
+            <td>Active (defendant as plaintiff)</td>
+            <td>Domain / trademark — non-TCPA</td>
+          </tr>
+          <tr>
+            <td>Delta Defense v. deltadefensecareers.com</td>
+            <td>1:23-cv-01752 · E.D. Va.</td>
+            <td>2023</td>
+            <td>Closed</td>
+            <td>Domain / trademark — non-TCPA</td>
+          </tr>
+          <tr>
+            <td>Delta Defense LLC v. 2A Defense LLC</td>
+            <td>2:22-cv-01915 · D. Ariz.</td>
+            <td>2022</td>
+            <td>Closed</td>
+            <td>Trademark — non-TCPA</td>
+          </tr>
+          <tr>
+            <td>Giles v. Delta Defense L L C</td>
+            <td>1:19-cv-01173 · W.D. La.</td>
+            <td>2019</td>
+            <td>Closed</td>
+            <td>Unrelated to TCPA per available data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;"><a href="https://www.courtlistener.com/?q=%22Delta+Defense%22&type=r">CourtListener — Delta Defense docket search -&gt;</a> &nbsp; <a href="https://www.courtlistener.com/?q=%22United+States+Concealed+Carry%22&type=r">CourtListener — USCCA search -&gt;</a></p>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>▸ <strong>Plaintiff's full 10-digit DID</strong> — not pled. Pull PACER #1 + TLO trace on Ava Thomas + Benton County, MO.</li>
+        <li>▸ <strong>Ava Thomas prior TCPA filings</strong> — CourtListener returned HTTP 502 on plaintiff-name search. Re-run to confirm serial-filer status.</li>
+        <li>▸ <strong>Wisconsin DFI corporate filing</strong> — wdfi.org DNS lookup failed. No officer/registered-agent confirmation yet for either named entity.</li>
+        <li>▸ <strong>Missouri SoS foreign-entity registration</strong> — Confirm Delta Defense and/or USCCA are registered to do business in MO (jurisdictional defense risk if not).</li>
+        <li>▸ <strong>87222 shortcode lessee of record</strong> — CTIA / shortcodes.com lookup failed. Confirms whether code is leased to Delta Defense directly or to an SMS aggregator (Attentive, Twilio, etc.) acting on their behalf.</li>
+        <li>▸ <strong>John v. Delta Defense settlement amount</strong> — undisclosed in available docket. Pull PACER docket #65–66 (attorney fees motion 2/13/2026) for the dollar figure to anchor pitch.</li>
+        <li>▸ <strong>Defense counsel of record</strong> — Not yet appeared. Watch for entry of appearance; predecessor case used Almeida Law Group + Mintz.</li>
+        <li>▸ <strong>Judge Bough TCPA tendencies</strong> — no TCPA-specific rulings surfaced. Run additional WDMo TCPA docket search before mediation prep.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Jennifer Keefe (CLO) first. She owns the legal-exposure conversation and has line authority on compliance spend.</h2>
+      <p class="section-lede">Founder/CEO Tim Schmidt is reachable but typically routes legal/compliance to the Chief Legal Officer. Jennifer Keefe is the buyer. Jacob Schmidt (Director of Compliance) is the technical owner of any STOP-handling fix. Email pattern across the org is <code>{first}.{last}@deltadefense.com</code> (inferred from SignalHire masked-email data). Phone direct-dials not surfaced; main switchboard is 877-677-1919.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Confidence</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jennifer Keefe</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">CLO · Buyer</span></td>
+            <td>Chief Legal Officer, Delta Defense. Primary decision-maker on outside-counsel + compliance vendor spend. Most senior legal authority in the company. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>jennifer.keefe@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/jennifer-keefe">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jacob Schmidt</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">Compliance · Tech Owner</span></td>
+            <td>Director of Compliance. Likely owns the operational fix on shortcode 87222 STOP-handling. Pair him with Keefe on the second call. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>jacob.schmidt@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/jacob-schmidt-deltadefense">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tim Schmidt</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">CEO / Founder</span></td>
+            <td>Co-Founder &amp; CEO of Delta Defense / USCCA. His name appears <em>in the message body</em> of the violative texts ("-Tim, USCCA"). Symbolic authority but typically delegates compliance buys. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a> <a href="https://www.linkedin.com/company/delta-defense-llc/">LinkedIn -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>tim.schmidt@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/tim-schmidt-uscca">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Franklin Cole</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer. Owner of the SMS marketing program and aggregator relationship. Will resist if framed as "your team caused this" — lead through Keefe instead. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>franklin.cole@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/franklin-cole">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Matthew Wudy</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">CIO</span></td>
+            <td>Chief Information Officer. Owner of any martech stack integration (CDP, email/SMS platform, consent records). Required for technical scoping call. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>matthew.wudy@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/matthew-wudy">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Adam Lindell</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">VP Data</span></td>
+            <td>VP of Data Engineering &amp; Governance. Likely owns the customer-record / consent-record source of truth. Critical for scrub-integration scoping. <span class="src-tag"><a href="https://www.signalhire.com/companies/delta-defense-llc">SignalHire -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>adam.lindell@deltadefense.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Mike Lowney</strong><br><span class="pill pill--info">INFERRED</span> <span class="pill pill--dark">CSO</span></td>
+            <td>Chief Strategy Officer. Influencer, not decision-maker on compliance buys. Useful air-cover if Keefe is unreachable. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>mike.lowney@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/mike-lowney">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Heidi Ciha</strong><br><span class="pill pill--warn">PATTERN</span> <span class="pill pill--dark">CPO</span></td>
+            <td>Chief People Officer. Not a buyer; useful only for confirming email pattern (SignalHire showed h********a@deltadefense.com — pattern source). <span class="src-tag"><a href="https://www.signalhire.com/companies/delta-defense-llc">SignalHire -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>heidi.ciha@deltadefense.com</td>
+            <td><a href="https://www.linkedin.com/in/heidi-ciha">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Tanner Pruett</strong><br><span class="pill pill--info">INFERRED</span> <span class="pill pill--dark">Strategic Alliances</span></td>
+            <td>Sr. Manager, Strategic Alliances. Vendor-partnership channel — possible warm path-in for Blacklist as a compliance partner. <span class="src-tag"><a href="https://theorg.com/org/delta-defense">TheOrg -&gt;</a></span></td>
+            <td>877-677-1919 (main)</td>
+            <td>tanner.pruett@deltadefense.com</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent (WI)</strong><br><span class="pill pill--gap">GAP</span></td>
+            <td>Wisconsin DFI corporate search failed (DNS lookup error). Bizapedia and OpenCorporates blocked. Re-run before service-of-process related outreach.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared. Predecessor case (E.D. Wis.) used David S. Almeida + Joshua Briones + Mintz Levin team — watch for similar appearance in W.D. Mo. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Delta+Defense%22+TCPA&type=r">CourtListener -&gt;</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:16px;"><strong>Email-pattern source:</strong> SignalHire returned masked emails consistent with <code>{first}.{last}@deltadefense.com</code> for confirmed Delta Defense employees. Secondary brand domain <code>uscca.com</code> also active. PATTERN pill applies until a published mailto on the live website is verified (defendant sites currently HTTP-403 to research crawler).</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within the 21-day answer window. Compliance story before mediation is worth 10x more than after.</h2>
+      <p class="section-lede">The defense team will be drafting an answer and a compliance narrative right now. Blacklist's product is the narrative. Land the first call before defense counsel files an appearance — that is the cleanest window of urgency.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Day 1–2 — Recover plaintiff's full DID</h4>
+        <p>Pull PACER ECF #1 (~$1.20). Run TLO/LexisNexis trace on Ava Thomas + Benton County, MO + likely 660/417 area code. Run blacklistBulk on recovered DID. Capture screenshot of result — that screenshot is the wedge for call #1.</p>
+        <p><strong>Desired outcome:</strong> Either a Litigator List match (best case — adds Litigator Scrub to the pitch stack) or a clean lookup (still useful — "your plaintiff isn't on any list <em>yet</em>; what about the next 50,000?").</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Day 2–3 — First call: Jennifer Keefe (CLO)</h4>
+        <p>Email + LinkedIn touch + main-line transfer. Reference <em>John v. Delta Defense</em> by name. Reference the 87222 shortcode by number. Lead with: "Your last settlement didn't fix the STOP pipeline. Here's the 30-day remediation that will."</p>
+        <p><strong>Desired outcome:</strong> Discovery call scheduled within 5 business days, with Keefe + Jacob Schmidt (compliance) + Matthew Wudy (CIO) on the line.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Day 5–10 — Discovery call: scope the audit</h4>
+        <p>Three questions to ask on this call: (1) Who is the shortcode lessee of record — Delta Defense or an aggregator? (2) Where do STOP requests land — CRM, ESP, or aggregator dashboard? (3) What is the suppression-list propagation SLA between systems? The answers determine which Blacklist product slots in first.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Day 10–21 — Proposal + close before answer is filed</h4>
+        <p>Compliance Audit + Policies &amp; Procedures as the lead SKU. Internal-DNC scrub as the operational bolt-on. Frame as "defense-ready compliance posture in 30 days, on Keefe's desk before the answer goes out." Price the audit to be approvable without board sign-off.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Day 21+ — If defense counsel appears mid-cycle</h4>
+        <p>When the notice of appearance hits the docket, redirect with a copy-and-cc to outside counsel. Compliance audit is more valuable to defense counsel than to in-house — it becomes a Rule 26(a) disclosure asset and an anchor for early mediation. Expect defense counsel to <em>amplify</em> the buy, not block it.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="background:var(--info-bg); border-left-color:var(--info);">
+      <h4 style="color:var(--info)">Trigger conditions that change the plan</h4>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>▸ <strong>Defense files MTD on personal jurisdiction</strong> (defendants are WI; plaintiff is MO) — case may collapse pre-answer. Pivot to E.D. Wis. compliance story instead.</li>
+        <li>▸ <strong>Plaintiff voluntarily dismisses to amend</strong> — usually a sign of settlement talks already opened. Time-shift outreach 30 days, then re-engage as remediation narrative for the refiled case.</li>
+        <li>▸ <strong>Same defense team as <em>John v. Delta Defense</em> appears (Almeida / Mintz)</strong> — they've seen this play before; lead the second call with the John settlement amount as the anchor.</li>
+        <li>▸ <strong>Plaintiff DID recovery turns up serial-filer history</strong> — pivot lead pitch from Compliance Audit to Litigator Scrub.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--info">REPEAT-OFFENDER DEFENDANT · SECOND TCPA CLASS IN 33 MONTHS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
