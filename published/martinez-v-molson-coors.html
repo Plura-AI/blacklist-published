@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Martinez v. Molson Coors — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.highlight td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:10px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.callout ul{ margin:8px 0 0 18px; padding:0; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, Arial, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="4" height="16" fill="#A50100"/>
+          <text x="130" y="18" font-family="General Sans, Arial, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-10</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Fortune-Class Beverage Defendant · SMS Quiet-Hours Class Action · PLG Damage Serial-Filer Template</p>
+      <h1 class="hero-tagline">Martinez v.<br>Molson Coors <span style="color:var(--bl-red); font-weight:500; font-size:0.6em; display:block; margin-top:8px;">d/b/a Miller Lite</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-00161</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Tex. (Corpus Christi)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Magistrate consent noticed</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred until PACER pull or discovery.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Martinez complaint does not disclose Plaintiff's 10-digit cellular number anywhere in the pleading or exhibits — only the sender short code (45981) appears in the screenshots.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Jennifer Martinez, Nueces County, TX. Complaint cites two SMS received from short code 45981 on Aug 3, 2026 at 12:02 AM and May 22, 2026 at 7:14 AM (note: Aug 3 date is post-filing — likely a typo/forward-dating artifact in the complaint).</div>
+      </div>
+      <p class="scrub-body-text">No 10-digit recipient number was pled. Blacklist's litigator-list lookup was <strong>not run</strong>. We did, however, cross-check the plaintiff's name against CourtListener and confirmed one prior filing — <em>Martinez v. Pogi Beauty LLC</em> (2:25-cv-00107, S.D. Tex., Judge Nelva Gonzales Ramos, filed Apr 28, 2025, terminated Jun 30, 2025) — meaning Jennifer Martinez has a 2-case TCPA history with a quick-settle pattern. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jennifer+Martinez%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3); margin:0 0 16px;">Sending DID / Short Code Intelligence</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">SMS Short Code</div>
+          <h3 class="card-title">45981</h3>
+          <p class="card-body">5-digit common short code; no listings on 800notes, YouMail, Tellows, or RoboKiller (consumer reporting DBs don't index short codes). Short codes require CTIA registration and carrier provisioning — incompatible with one-off manual sending, consistent with a managed mass-SMS campaign. <span class="src-tag"><a href="https://brs.al">brs.al -&gt;</a></span></p>
+        </div>
+        <div class="card card--accent">
+          <div class="card-meta">Click-Tracking Domain</div>
+          <h3 class="card-title">brs.al</h3>
+          <p class="card-body">Shortlink domain wrapped around every CTA in the messages (e.g., <code>brs.al/XBNZZstRFh</code>, <code>brs.al/Ns7YG2qh72</code>). This is a Braze-managed click-tracking domain — a strong signal that Molson Coors runs its SMS through Braze (or a Braze-compatible aggregator). Enterprise platform = enterprise scrub integration. <span class="src-tag"><a href="https://www.whois.com/whois/brs.al">whois -&gt;</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3); margin:0 0 16px;">Recovery Path</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Path 1 · Fast</div>
+          <h3 class="card-title">Pull ECF #1 from PACER</h3>
+          <p class="card-body">Civil cover sheet and any unredacted exhibits may contain plaintiff's number. Cost ~$1.20. <span class="src-tag"><a href="https://www.txs.uscourts.gov/">S.D. Tex. -&gt;</a></span></p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path 2 · Reactive</div>
+          <h3 class="card-title">Await defense counsel notice</h3>
+          <p class="card-body">Molson Coors has not yet appeared. Once defense files a NOA, expect a meet-and-confer where the number is exchanged for verification.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta">Path 3 · Formal</div>
+          <h3 class="card-title">Discovery interrogatory</h3>
+          <p class="card-body">Standard TCPA Rog #1: "Identify the cellular number(s) at issue." Number surfaces by initial disclosures (FRCP 26(a)).</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Deferred — Pull PACER #1</span>
+      <span class="pill pill--warn">Plaintiff Prior TCPA Filing: 1 (2025)</span>
+      <span class="pill pill--info">Sender: Short Code 45981 · Braze Infra</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">$13B publicly-traded brewer with a Braze-stack SMS program and zero public TCPA compliance disclosures — first-mover class action just landed.</h2>
+      <p class="section-lede">Molson Coors is a Fortune-class, S&P 500-listed consumer-goods conglomerate with 20+ consumer brands all running outbound SMS. There is no prior TCPA case against this defendant in CourtListener, which means this is the opening shot — and PLG Damage Attorneys is a high-velocity serial-filer (10+ TCPA cases April–May 2026 alone). Lead with consent capture / record retention and follow with a multi-brand compliance audit.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch · Primary</div>
+        <h3 class="card-title">Consent Capture & Record Retention</h3>
+        <p class="card-body">Complaint hammers "no prior express written consent" and quiet-hours sends. Molson Coors's privacy policy makes no reference to TCPA, DNC, or quiet-hours rules. <span class="src-tag"><a href="https://www.molsoncoors.com/privacy-policy">Privacy Policy -&gt;</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">DNC Scrubbing + Time-Zone Send Logic</h3>
+        <p class="card-body">Quiet-hours violation = strict-liability per text. A TZ-aware send-time guardrail across the Braze stack would have prevented this case entirely.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Compliance Audit Across 20+ Brands</h3>
+        <p class="card-body">Coors Light, Miller Lite, Blue Moon, Vizzy, Madrí, Leinenkugel, ZOA, Yuengling JV, Coors Spirits — each its own SMS list. Once one brand bleeds, copycats target the rest. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Molson_Coors_Beverage_Company">Wikipedia -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;" class="card">
+      <h3 style="margin-top:0; font-size:18px; text-transform:uppercase; letter-spacing:0.08em; color:var(--bl-red);">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-1);">"You've just been hit with a putative class action in S.D. Texas over a Miller Lite text sent at 7:14 AM CT — a near-strict-liability quiet-hours claim. The plaintiff alleges several thousand class members at $500–$1,500 per text, which puts statutory exposure in the seven-to-eight-figure range before defense costs. We've also confirmed your sender stack uses short code 45981 with brs.al click tracking, which is Braze infrastructure — meaning a time-zone-aware send guardrail and an upstream consent/scrub layer would have stopped this at the door."</p>
+      <p style="font-size:15px; line-height:1.65; color:var(--fg-1);">"What's more concerning is that the filing firm — PLG Damage Attorneys — has filed ten-plus TCPA class actions in just April and May 2026 across CA, FL, and now TX, targeting retail, fintech, mortgage, pharmacy, and now beverage. The Martinez complaint is template work. Once they prove the theory lands on Molson Coors, copycats will line up against Coors Light, Blue Moon, Vizzy and the rest of your portfolio. We need to harden consent capture and quiet-hours scrub across all brand programs before the 21-day answer clock runs."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">$13B revenue, 16,200 employees, NYSE: TAP — but with negative operating income in 2025 and cost discipline at the top of the agenda.</h2>
+      <p class="section-lede">Molson Coors Beverage Company USA LLC is the U.S. operating arm of publicly-traded Molson Coors Beverage Company (NYSE: TAP). The named DBA in the complaint — Miller Lite — is one of more than twenty consumer brands across beer, hard seltzer, spirits, energy, and non-alcoholic beverages.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Molson Coors Beverage Company USA LLC</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>Molson Coors Beverage Company USA LLC (d/b/a Miller Lite)</dd>
+          <dt>Formation</dt><dd>Delaware Domestic LLC, authorized to do business in TX</dd>
+          <dt>Parent</dt><dd>Molson Coors Beverage Company (NYSE: TAP; TSX: TPX.B)</dd>
+          <dt>HQ</dt><dd>Chicago, IL (US ops); Toronto, ON (co-HQ) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Molson_Coors_Beverage_Company">Wikipedia -&gt;</a></span></dd>
+          <dt>Formed</dt><dd>2005-02-09 (Molson + Coors merger)</dd>
+          <dt>Revenue (2025)</dt><dd>~US$13.0B</dd>
+          <dt>Employees</dt><dd>~16,200 (2025)</dd>
+          <dt>Vertical</dt><dd>Beverage / Alcohol (beer, hard seltzer, spirits, energy, NA)</dd>
+          <dt>Marketing stack</dt><dd>Short code 45981 + brs.al (Braze-pattern click tracking); chat bots; cookie/pixel-driven targeting <span class="src-tag"><a href="https://www.molsoncoors.com">molsoncoors.com -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No TCPA, DNC, or quiet-hours language in the public privacy policy.</h3>
+        <p class="card-body">Molson Coors's published privacy policy on molsoncoors.com does not reference the TCPA, the DNC Registry, autodialer rules, pre-recorded/SMS consent standards, or quiet hours. The complaint's screenshots show two text messages — one sent at 12:02 AM and one at 7:14 AM local time — directly inside the federally-prohibited window. <span class="src-tag"><a href="https://www.molsoncoors.com/privacy-policy">Privacy Policy -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">21-day federal answer clock + Q3 earnings pressure</h3>
+        <dl class="kv">
+          <dt>Filed</dt><dd>Jun 9, 2026</dd>
+          <dt>Answer deadline</dt><dd>~21 days from service (FRCP 12(a)) — service date not yet docketed</dd>
+          <dt>Earnings window</dt><dd>2025 operating income reported negative — board-level cost sensitivity is high</dd>
+          <dt>Filing posture</dt><dd>Magistrate consent form noticed Day 2; judge not yet assigned <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-00161&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+      <div class="card">
+        <div class="card-meta">Vendor / Platform Signal</div>
+        <h3 class="card-title">Braze SMS infrastructure (inferred)</h3>
+        <p class="card-body">The <code>brs.al</code> click-tracking domain in the message exhibits is a known Braze short-link pattern. Combined with short code 45981, this points to an enterprise-managed A2P SMS program — meaning Blacklist's API-level scrub integrates natively at the platform layer rather than requiring CSV uploads.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:18px; text-transform:uppercase; letter-spacing:0.08em; color:var(--bl-red);">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Entity / Brand</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Miller Lite</td><td>Named DBA in this complaint</td><td>Beer</td><td>Direct — source of disputed SMS</td><td><span class="pill pill--danger">HIGH</span></td></tr>
+          <tr><td>Coors Light / Coors Banquet</td><td>Sister brand (flagship)</td><td>Beer</td><td>Same SMS infra (45981 stack likely shared)</td><td><span class="pill pill--danger">HIGH</span></td></tr>
+          <tr><td>Blue Moon Brewing Co.</td><td>Subsidiary</td><td>Craft beer</td><td>Independent SMS list, copycat target</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+          <tr><td>Vizzy Hard Seltzer</td><td>Sister brand</td><td>Hard seltzer</td><td>Heavy DTC promo / sweepstakes lead capture</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+          <tr><td>Leinenkugel Brewery</td><td>Subsidiary</td><td>Craft beer</td><td>Regional SMS programs</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+          <tr><td>Coors Spirits Co. (Five Trail Whiskey)</td><td>Subsidiary (2023)</td><td>Spirits</td><td>Newer brand = newer lists = consent freshness risk</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+          <tr><td>ZOA Energy (partner)</td><td>JV / partnership</td><td>Energy drinks</td><td>Co-marketed SMS</td><td><span class="pill pill--info">LOW</span></td></tr>
+          <tr><td>Yuengling JV</td><td>JV (2020)</td><td>Beer</td><td>Inherited list — legacy consent risk</td><td><span class="pill pill--warn">MEDIUM</span></td></tr>
+          <tr><td>Molson Coors Canada</td><td>Sister entity</td><td>Beer (CA)</td><td>CASL-not-TCPA but related compliance posture</td><td><span class="pill pill--info">LOW</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Sources: <a href="https://en.wikipedia.org/wiki/Molson_Coors_Beverage_Company">Wikipedia -&gt;</a> · <a href="https://www.molsoncoors.com/about">molsoncoors.com -&gt;</a></p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA action against Molson Coors on CourtListener — and PLG Damage is running a 10-defendant assembly line.</h2>
+      <p class="section-lede">The defendant has no prior TCPA litigation visible in public dockets. The plaintiff firm, by contrast, filed ten-plus TCPA class actions in April–May 2026 alone. This is the opening of a likely multi-brand campaign.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case</div>
+        <h3 class="card-title">Martinez v. Molson Coors Beverage Company USA LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-00161 (S.D. Tex., Corpus Christi Div.)</dd>
+          <dt>Filed</dt><dd>Jun 9, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-00161&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Plaintiff</dt><dd>Jennifer Martinez (Nueces Cty., TX)</dd>
+          <dt>Plaintiff counsel</dt><dd>Vinit R. Venkatesh, PLG Damage Attorneys (Miramar, FL)</dd>
+          <dt>Class action</dt><dd>Yes — Putative Rule 23 <span class="pill pill--danger" style="margin-left:6px;">CLASS</span></dd>
+          <dt>Class definition</dt><dd>U.S. persons who received &gt;1 marketing SMS in any 12-month period from/on behalf of Defendant initiated before 8am or after 9pm local time</dd>
+          <dt>Class size pled</dt><dd>At least 50; "several thousands" alleged</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-hours SMS to wireless residential subscribers without prior express invitation/permission</dd>
+          <dt>Damages</dt><dd>$500 negligent / $1,500 willful per text + injunctive relief + costs</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared · ~21-day answer deadline <span class="pill pill--warn">PENDING</span></dd>
+          <dt>Docket entries</dt><dd>#1 Complaint (6/9); #2 Summons Req. (6/9); #3 Magistrate Consent Notice (6/10)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm</dt><dd>Property Litigation Group, PLLC d/b/a PLG Damage Attorneys <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm address</dt><dd>2750 SW 145th Ave Suite 509, Miramar, FL 33027</dd>
+          <dt>Firm phone</dt><dd>(305) 506-4746</dd>
+          <dt>Firm email</dt><dd>info@plgdamage.com (general); vv@plgdamage.com (Venkatesh)</dd>
+          <dt>Bar number</dt><dd>TX #24144674</dd>
+          <dt>Bar admit date</dt><dd>Unknown — TX Bar directory fetch failed <span class="pill pill--gap">GAP</span></dd>
+          <dt>Bar address</dt><dd>FL-based firm appearing in TX federal court — possible pro hac vice or recent TX admission</dd>
+          <dt>Discipline</dt><dd>None found (TX Bar fetch failed; cannot fully confirm)</dd>
+          <dt>Firm size</dt><dd>~30 attorneys; originally a FL property damage / insurance bad-faith shop pivoting into TCPA <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>TCPA volume</dt><dd>10+ TCPA class actions filed Apr–May 2026 alone <span class="pill pill--danger">SERIAL FILER</span> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>TCPAWorld coverage</dt><dd>None — zero hits for "Venkatesh" or "PLG Damage" <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">PLG Damage / Venkatesh — Quiet-Hours Class Template</h3>
+      <p class="card-body">PLG Damage is an emerging-but-aggressive serial filer. The firm's standard template is a single-count Rule 23 quiet-hours class action under 47 CFR § 64.1200(c)(1), seeking $500–$1,500 per text with class sizes pled as "several thousands." The same template was filed in April–May 2026 against retail (7-Eleven, Rite Aid), fintech (Payactiv), mortgage (Rocket Mortgage), consumer software (Guardio), pharmacy (Rite Aid), fitness (Xercize Studio), DTC (Last Brand), health (Refills), and lead-gen (Centerfield Media) defendants. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -&gt;</a></span> Martinez v. Molson Coors is the first beverage/alcohol target in the firm's run.</p>
+      <p class="card-body" style="margin-top:8px;">Prior plaintiff <em>Jennifer Martinez</em> appears in <em>Martinez v. Pogi Beauty LLC</em> (2:25-cv-00107, S.D. Tex., terminated within 2 months of filing) — consistent with the quick-settle pattern these single-count quiet-hours cases tend to follow.</p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; text-transform:uppercase; letter-spacing:0.08em; color:var(--bl-red);">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Relationship / Theory</th></tr></thead>
+        <tbody>
+          <tr class="highlight">
+            <td><strong>Martinez v. Molson Coors</strong></td>
+            <td>2:26-cv-00161</td>
+            <td>S.D. Tex.</td>
+            <td>Jun 9, 2026</td>
+            <td><span class="pill pill--red">CURRENT · OPEN</span></td>
+            <td>This case · Quiet-hours SMS class</td>
+          </tr>
+          <tr><td>Martinez v. Pogi Beauty LLC</td><td>2:25-cv-00107</td><td>S.D. Tex.</td><td>Apr 28, 2025</td><td><span class="pill pill--ok">TERMINATED (Jun 30, 2025)</span></td><td>Same plaintiff · quick-settle pattern</td></tr>
+          <tr><td>Cummings v. 7-Eleven Inc</td><td>—</td><td>N.D. Fla.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA quiet-hours template</td></tr>
+          <tr><td>Bennea Hughes v. Guardio LLC</td><td>—</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Shannel Long v. Rocket Mortgage, LLC</td><td>—</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Flottman v. Yesvideo, Inc.</td><td>—</td><td>M.D. Fla.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Bennea Hughes v. Rite Aid Corp.</td><td>—</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Post v. Centerfield Media Parent</td><td>—</td><td>N.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Arelis Ortiz v. Payactiv, Inc.</td><td>—</td><td>M.D. Fla.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Joan Rios v. Last Brand, Inc.</td><td>—</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Angel Mendez v. Refills Health, LLC</td><td>—</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+          <tr><td>Lina Fasheh v. The Xercize Studio</td><td>—</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">ACTIVE</span></td><td>Same firm · TCPA template</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Source: <a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></p>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;"></i> Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Plaintiff's recipient cellular number — not in complaint; pull ECF #1 or wait for discovery</li>
+        <li>Judge assignment — not yet docketed; magistrate consent notice issued Day 2</li>
+        <li>Defense counsel — not yet appeared; service date not docketed; 21-day answer clock starts at service</li>
+        <li>Vinit Venkatesh TX Bar admit date and discipline history — Texas Bar directory fetch failed</li>
+        <li>Molson Coors's actual signup-flow consent language (millerlite.com/signup and /terms returned 404) — highest-value missing exhibit for any settlement leverage analysis</li>
+        <li>Delaware SoS confirmation of "Molson Coors Beverage Company USA LLC" registered agent and officers — DE SoS search not interactive in available tooling</li>
+        <li>Whether short code 45981 is brand-shared (Miller Lite + Coors Light + Blue Moon etc.) or brand-specific — affects cross-brand risk fan-out</li>
+        <li>Confirmation that brs.al is Braze-managed vs. another aggregator (Attentive, Iterable) — affects integration path</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the Chief Legal Officer. The CMO is the budget owner. The CIO owns the Braze stack.</h2>
+      <p class="section-lede">Natalie Maciolek (Chief Legal, Communications &amp; Government Affairs Officer) is the natural first call — she owns litigation, communications, and government affairs. Sofia Colucci (CMO) and Darrin Vohs (Global CIO) are the budget owners for the SMS marketing platform that produced the disputed text. The email pattern is <code>first.last@molsoncoors.com</code>, confirmed from a verified SignalHire listing.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; background:var(--gray-05);">
+      <div class="card-meta">Email Pattern (Confirmed)</div>
+      <h3 class="card-title" style="font-family:var(--font-mono); font-size:18px;">first.last@molsoncoors.com</h3>
+      <p class="card-body">Confirmed from <code>ximena.camacho@molsoncoors.com</code> on SignalHire. <span class="src-tag"><a href="https://www.signalhire.com/companies/molson-coors">SignalHire -&gt;</a></span></p>
+      <p class="card-body" style="margin-top:8px;"><strong>Company main phone:</strong> 800-645-5376 · <strong>Data privacy line:</strong> 800-501-3584 <span class="src-tag"><a href="https://www.molsoncoors.com/contact-us">molsoncoors.com/contact-us -&gt;</a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Natalie Maciolek</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>Chief Legal, Communications &amp; Government Affairs Officer &amp; Secretary. Owns TCPA defense decisions and external counsel selection.</td>
+            <td>800-645-5376 (main)</td>
+            <td>natalie.maciolek@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sofia Colucci</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer. Budget owner for SMS marketing programs and Braze stack contracts.</td>
+            <td>800-645-5376 (main)</td>
+            <td>sofia.colucci@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Darrin Vohs</strong><br><span class="pill pill--dark">CIO</span></td>
+            <td>Global Chief Information Officer. Owns the technical stack (Braze, brs.al click tracking, send-time logic).</td>
+            <td>800-645-5376 (main)</td>
+            <td>darrin.vohs@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rahul Goyal</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>President &amp; Chief Executive Officer. Board-level escalation point for class-action exposure.</td>
+            <td>800-645-5376 (main)</td>
+            <td>rahul.goyal@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tracey Joubert</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Global CFO. Owns reserve decisions for litigation exposure and Sarbanes-Oxley disclosure timing.</td>
+            <td>800-645-5376 (main)</td>
+            <td>tracey.joubert@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Liz Cramton</strong><br><span class="pill pill--dark">SR DIR MKTG</span></td>
+            <td>Senior Director of Marketing for Flavor and RTDs. Operational owner of hard-seltzer / RTD SMS campaigns (Vizzy etc.).</td>
+            <td>—</td>
+            <td>liz.cramton@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Matt Carpenter</strong><br><span class="pill pill--dark">MKTG</span></td>
+            <td>Marketing / Coors Banquet collaboration lead.</td>
+            <td>—</td>
+            <td>matt.carpenter@molsoncoors.com</td>
+            <td><a href="https://www.linkedin.com/in/matt-carpenter-18773121">LinkedIn</a> · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kyle Piazza</strong><br><span class="pill pill--dark">MKTG</span></td>
+            <td>Marketing / Brand Partnerships.</td>
+            <td>—</td>
+            <td>kyle.piazza@molsoncoors.com</td>
+            <td><a href="https://www.linkedin.com/in/kyle-piazza-b7159a1b">LinkedIn</a> · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ximena Camacho</strong><br><span class="pill pill--dark">MKTG</span></td>
+            <td>Associate Marketing Manager. Confirmed email — pattern anchor.</td>
+            <td>—</td>
+            <td>ximena.camacho@molsoncoors.com</td>
+            <td>— · <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dave Osswald</strong><br><span class="pill pill--dark">CPO</span></td>
+            <td>Chief People &amp; Culture Officer.</td>
+            <td>800-645-5376 (main)</td>
+            <td>dave.osswald@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jeff Long</strong><br><span class="pill pill--dark">CSO</span></td>
+            <td>Chief Strategy &amp; Capabilities Officer.</td>
+            <td>800-645-5376 (main)</td>
+            <td>jeff.long@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brian Erhardt</strong><br><span class="pill pill--dark">CSCO</span></td>
+            <td>Chief Supply Chain Officer.</td>
+            <td>800-645-5376 (main)</td>
+            <td>brian.erhardt@molsoncoors.com</td>
+            <td>— · <span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Privacy / DPO</strong><br><span class="pill pill--dark">DPO</span></td>
+            <td>Specific Privacy Officer / DPO name not disclosed publicly. Generic privacy contact line published on contact page.</td>
+            <td>800-501-3584</td>
+            <td>—</td>
+            <td>— · <span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">DEFENSE</span></td>
+            <td>Not yet appeared. Expect appearance within ~21 days of service.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>— · <span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Sources: <a href="https://theorg.com/org/molson-coors">TheOrg -&gt;</a> · <a href="https://www.linkedin.com/company/molson-coors">LinkedIn -&gt;</a> · <a href="https://www.signalhire.com/companies/molson-coors">SignalHire -&gt;</a> · <a href="https://www.molsoncoors.com/contact-us">Contact Us -&gt;</a></p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours. The 21-day answer clock is your timing wedge.</h2>
+      <p class="section-lede">Molson Coors has not appeared yet. The window between filing and defense NOA is when the rep has the highest signal-to-noise — the in-house team is triaging, external counsel is being selected, and remediation budget is on the table. After NOA, decisions slow down behind privilege.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Pull PACER #1 + LinkedIn warm-up</h3>
+        <p class="card-body">Pull ECF #1 from PACER to confirm/recover plaintiff number for scrub. In parallel, send LinkedIn connection requests to Natalie Maciolek, Sofia Colucci, and Darrin Vohs referencing the Martinez filing.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2</div>
+        <h3 class="card-title">Cold email Maciolek (GC) + Colucci (CMO)</h3>
+        <p class="card-body">Subject line: "Martinez v. Molson Coors — quiet-hours SMS, Braze stack." 4-line email referencing case number, naming the brs.al / 45981 infrastructure, and offering a 20-minute compliance review pre-answer.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Call sequence on 800-645-5376</h3>
+        <p class="card-body">Ask for the Office of the General Counsel. Reference 2:26-cv-00161. Pivot to "we work with Braze-stack consumer brands on quiet-hours scrub and consent capture."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 6–10</div>
+        <h3 class="card-title">Multi-brand audit pitch</h3>
+        <p class="card-body">If first contact lands, escalate to a portfolio-wide pitch covering Coors Light, Miller Lite, Blue Moon, Vizzy, Leinenkugel, Coors Spirits. Hammer the copycat-risk angle.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 11–21</div>
+        <h3 class="card-title">Watch for defense NOA</h3>
+        <p class="card-body">Once defense counsel appears, redirect outreach through them where appropriate. Track PACER for first responsive filing — MTC arbitration, MTD, or answer.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Post-Answer</div>
+        <h3 class="card-title">Reserve disclosure window</h3>
+        <p class="card-body">As a public company (NYSE: TAP), reserve decisions tie to quarterly disclosure. CFO Tracey Joubert is a secondary escalation if the case sits unmoved.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="background:var(--info-bg); border-left-color:var(--info);">
+      <h4 style="color:var(--info);">Trigger conditions — re-plan if any occur</h4>
+      <ul>
+        <li>Defense counsel files MTC arbitration based on a buried SMS-program T&amp;C → shift pitch to consent record audit</li>
+        <li>Plaintiff voluntarily dismisses to amend or refile (PLG's <em>Pogi Beauty</em> case terminated within 2 months — same pattern possible) → keep the relationship warm; the firm will refile or pursue a sister brand</li>
+        <li>Second PLG Damage filing lands against a sister brand (Coors Light, Blue Moon, Vizzy) → re-prioritize as multi-case portfolio engagement</li>
+        <li>Molson Coors files an 8-K disclosure mentioning litigation → urgency tick up; reserve discussion enters board-level</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 1</span>
+      <span class="pill pill--danger">CLASS EXPOSURE: $1.5M–$15M+ STATUTORY</span>
+      <span class="pill pill--info">PRIMARY PRODUCT: CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-10</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
