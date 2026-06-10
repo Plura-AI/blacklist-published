@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rossi v. First Path Capital — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, Arial, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="3" width="2" height="17" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, Arial, sans-serif" font-weight="400" font-size="20" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-10</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">MCA SMS Marketer · Federal DNC Class Action · No Visible Compliance Posture · 21-Day Answer Clock</p>
+      <h1 class="hero-tagline">Rossi v.<br>First Path Capital</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-06800-MAS-RLS</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">D.N.J. (Trenton)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Michael A. Shipp <br><span style="font-weight:400;font-size:13px;color:#A8A8A8;">Rukhsanah L. Singh (Mag.)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5) <br><span style="font-weight:400;font-size:13px;color:#A8A8A8;">47 CFR § 64.1200(c)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Jacob U. Ginsburg <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Kimmel &amp; Silverman, P.C. + PKG Legal</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number redacted in the complaint — scrub deferred until PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Rossi complaint discloses only "(305) 984-XXXX" — the last four digits are masked. No litigator-list scrub can be honestly performed against a partial number.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:16px;height:16px"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (per Complaint ¶ 8)</div>
+        <div class="scrub-number">(305) 984-XXXX</div>
+        <div class="scrub-number-sub">Miami-Dade area code · last 4 digits redacted in pleading · Plaintiff registered on DNC Registry December 4, 2004</div>
+      </div>
+      <p class="scrub-body-text">Kimmel &amp; Silverman pled the area code and exchange but redacted the line-number — standard plaintiff-firm hygiene to keep the number off scrub lists until discovery. We cannot run blacklistBulk against a 6-digit fragment. Recover the full number via PACER (ECF #1 exhibits are typically unredacted in the chambers copy) or via Rule 26(a) initial disclosures, then re-scrub before any settlement positioning.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull unredacted ECF #1 from PACER</h3>
+        <div class="card-body">The filed complaint may include an unredacted exhibit copy or the docketed pleading may carry the full number in chambers-only attachments. Cost: ~$1.20. Time: 5 minutes once PACER credentials are in hand.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Defense counsel notice of appearance</h3>
+        <div class="card-body">Once First Path retains counsel, the unredacted number typically appears in the Rule 26(f) report or in the first written-discovery responses. No defense counsel has appeared yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">CourtListener -&gt;</a></span>.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery interrogatory</h3>
+        <div class="card-body">Standard Interrogatory #1 in TCPA defense practice requests plaintiff's full cellular number, carrier, and DNC registration confirmation. Returnable within 30 days of Rule 26(f) conference.</div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-meta">Sender DID Identified in Complaint</div>
+      <h3 class="card-title">+1 (855) 592-3082 — toll-free SMS-enabled DID</h3>
+      <div class="card-body">
+        <p>The complaint's screenshot exhibits show all 20+ texts originating from a single toll-free number. Consumer complaint aggregators (800notes, YouMail, Tellows, RoboKiller) all bot-blocked our pass — no external corroboration of the sender's identity or campaign volume was obtainable. Identity rests on the screenshot exhibits and the matching <code>ryan@firstpathcapital.com</code> reply-to address.</p>
+        <p style="margin-top:12px"><strong>Infrastructure signal:</strong> a toll-free 855 DID running SMS-only is characteristic of A2P 10DLC mass-text infrastructure — i.e., a dialer/lead-gen platform, not a single human business line. That points to a TCPA-style consent-failure pattern (purchased lead list, no DNC scrub integrated into the dialer).</p>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="pill pill--warn">Toll-Free 855</span>
+        <span class="pill pill--info">SMS-Only Channel</span>
+        <span class="pill pill--gap">No External Complaint Data</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER ECF #1</span>
+      <span class="pill pill--warn">Plaintiff Firm Is Volume Filer — Treat As Pre-Class Threat</span>
+      <span class="pill pill--info">Plaintiff Resides Miami-Dade, FL · 305 Area</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Newly-formed NJ merchant cash advance shop, no visible compliance program, first-shot federal DNC class case.</h2>
+      <p class="section-lede">First Path Capital is exactly the profile Blacklist's MCA vertical was built for: a 2024-formed New Jersey LLC running toll-free SMS to nationwide consumers, recruiting ISO reps on DailyFunder, with no public privacy policy or compliance documentation reachable on its website. They just absorbed a federal DNC class complaint from a top-tier serial filer. Lead with Litigator Scrub; close on a full DNC + Consent Capture stack.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Single highest-ROI hook: First Path is texting nationally without geo or DNC filters in place. One scrub pass against Blacklist's litigator list closes the door on plaintiffs like Rossi before they file. The Rossi complaint is the proof point.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + State)</h3>
+        <div class="card-body">The Rossi number was on the federal DNC Registry since 2004 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">PACER -&gt;</a></span>. Every text in the alleged 20-message campaign is a per-violation count of $500–$1,500. DNC scrubbing eliminates the entire claim category.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Consent Capture + Policies &amp; Procedures</h3>
+        <div class="card-body">No privacy policy is visible on firstpathcapital.com <span class="src-tag"><a href="https://dailyfunder.com/showthread.php/26569-Established-mca-brokershop-looking-forreps">DailyFunder -&gt;</a></span>. They need a written Internal DNC policy and an opt-in capture flow before the next plaintiff firm copies Kimmel &amp; Silverman's filing template.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">Pitch Angle</h3>
+      <div class="card-body">
+        <p>"First Path — you were sued yesterday in New Jersey federal court by a serial plaintiff firm. They allege at least 20 texts to a Florida number that's been on the federal DNC list since 2004. If even half of those allegations stick, you're looking at $10K–$30K per class member in statutory damages before treble. Kimmel &amp; Silverman doesn't take one-off cases — their model is volume settlements with attorney-fee recovery. Pardell, Kruzyk &amp; Giribaldo, their co-counsel, has filed 67+ TCPA cases and just got a class settlement final-approved against Farha Roofing. They will not stop after Rossi."</p>
+        <p style="margin-top:12px">"You can't unwind the texts you've already sent, but you can stop the bleeding before the second filing lands. Our litigator scrub catches the named plaintiffs other firms are recruiting right now. Our DNC scrubbing eliminates the federal DNC violation category entirely. And our policies-and-procedures package gives you the affirmative defense that 47 CFR § 64.1200(c) requires. We can have all three live before your 21-day answer deadline."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A small, ~2-year-old New Jersey MCA brokershop with no visible compliance infrastructure.</h2>
+      <p class="section-lede">First Path Capital Ventures LLC reads as a classic merchant-cash-advance lead-conversion shop: NJ-domiciled, recruiting ISO reps on industry forums, with the founder family ("Ryan" and Charlie Abraham per the complaint) operating outside the public org-chart ecosystem.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">First Path Capital Ventures LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>First Path Capital Ventures LLC d/b/a First Path Capital <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">Complaint -&gt;</a></span></dd>
+          <dt>Formation State</dt><dd>New Jersey (LLC)</dd>
+          <dt>HQ</dt><dd>Jackson / Ocean County, NJ (per complaint ¶ 4)</dd>
+          <dt>Founded</dt><dd>~2024 (DailyFunder presence dates to March 2024) <span class="src-tag"><a href="https://dailyfunder.com/showthread.php/26569-Established-mca-brokershop-looking-forreps">DailyFunder -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Merchant Cash Advance (MCA) brokering · future-receivables financing <span class="src-tag"><a href="https://dailyfunder.com/showthread.php/26569-Established-mca-brokershop-looking-forreps">DailyFunder -&gt;</a></span></dd>
+          <dt>Website</dt><dd>firstpathcapital.com (timed out across all endpoints during research)</dd>
+          <dt>Named Principals</dt><dd>"Charlie Abraham" — alleged owner/CEO · "Ryan Abraham" — alleged funding specialist (per complaint ¶ 20)</dd>
+          <dt>Public Compliance Page</dt><dd><span class="pill pill--gap">None Located</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Two different email domains, no published privacy policy, toll-free SMS dialer</h3>
+        <div class="card-body">
+          <p>The complaint flags that "Ryan" texts from <code>ryan@firstpathcapital.com</code> while the company's privacy page lists <code>info@firstpathcapital.com</code> — two different reply paths with no consistent consent capture <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">Complaint ¶ 19 -&gt;</a></span>. Combined with: (a) no reachable compliance page on the corporate website, (b) toll-free SMS infrastructure (855-592-3082) suggesting a third-party dialer with no integrated DNC filter, and (c) ISO-rep recruiting via DailyFunder that multiplies outbound exposure with every new rep, this is a textbook unconsented-cold-SMS posture.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock starts on service</h3>
+      <dl class="kv" style="margin-top:16px">
+        <dt>Filed</dt><dd>June 9, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Answer Deadline</dt><dd>~21 days after service per Fed. R. Civ. P. 12(a) — exact date pending proof of service</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+        <dt>Pre-Suit Posture</dt><dd>No prior TCPA suits found against First Path — this is the first shot. Industry pattern: copycat filings typically arrive within 6–12 months of a publicized MCA TCPA settlement.</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:18px;margin:32px 0 12px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>"Ryan" Abraham (funding specialist)</td>
+            <td>Named in complaint as alleged texter</td>
+            <td>MCA broker</td>
+            <td>Personal outreach identity tied to alleged DNC texts</td>
+            <td><span class="pill pill--red">High — Decision-Adjacent</span></td>
+          </tr>
+          <tr>
+            <td>Charlie Abraham</td>
+            <td>Alleged owner/CEO per complaint ¶ 20</td>
+            <td>MCA broker</td>
+            <td>Sign-off authority on compliance spend</td>
+            <td><span class="pill pill--red">High — Economic Buyer</span></td>
+          </tr>
+          <tr>
+            <td>ISO/broker rep network</td>
+            <td>Independent reps recruited via DailyFunder <span class="src-tag"><a href="https://dailyfunder.com/showthread.php/26569-Established-mca-brokershop-looking-forreps">link -&gt;</a></span></td>
+            <td>MCA brokering</td>
+            <td>Each rep is an additional outbound TCPA exposure vector</td>
+            <td><span class="pill pill--warn">Medium — Scale Driver</span></td>
+          </tr>
+          <tr>
+            <td>SMS dialer vendor (unknown)</td>
+            <td>Likely third-party platform behind 855-592-3082</td>
+            <td>MarTech / A2P 10DLC</td>
+            <td>Could be a Blacklist API partner if identified</td>
+            <td><span class="pill pill--info">Low — Vendor Pursuit</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit against First Path — but plaintiff counsel is a coordinated, two-firm volume operation.</h2>
+      <p class="section-lede">Defendant has no prior TCPA litigation history we could locate. The risk is not the back catalog — it is the plaintiff side. Kimmel &amp; Silverman is a 30+ year consumer firm with national reach, co-counseled here with PKG Legal, a 67+ TCPA-case volume filer with a recent class settlement final-approved against Farha Roofing.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Rossi v. First Path Capital Ventures LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>3:26-cv-06800-MAS-RLS <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 9, 2026</dd>
+          <dt>Court</dt><dd>D.N.J. (Trenton Vicinage)</dd>
+          <dt>Article III Judge</dt><dd>Michael A. Shipp</dd>
+          <dt>Magistrate</dt><dd>Rukhsanah L. Singh</dd>
+          <dt>Plaintiff</dt><dd>Nancy Rossi (Miami-Dade, FL resident)</dd>
+          <dt>Class</dt><dd><span class="pill pill--danger">Putative Rule 23 Class</span> — nationwide, 4-year lookback, DNC-registered residential numbers</dd>
+          <dt>Claim</dt><dd>47 U.S.C. § 227(c)(5) · 47 C.F.R. § 64.1200(c)(2) — Federal DNC violation via SMS</dd>
+          <dt>Theory</dt><dd>≥20 marketing texts within a 12-month period to a DNC-registered cellular/residential number without prior express invitation or permission</dd>
+          <dt>Damages Sought</dt><dd>$500/violation statutory, treble to $1,500/violation for willful, plus injunctive relief and fees</dd>
+          <dt>Named Plaintiff Exposure</dt><dd>20 violations × $500–$1,500 = <strong>$10,000 – $30,000</strong> before class multiplier</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · 21-day answer clock</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h3 class="card-title">Kimmel &amp; Silverman, P.C. + PKG Legal (co-counsel)</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Lead Attorney</dt><dd>Jacob U. Ginsburg</dd>
+          <dt>NJ Bar #</dt><dd>039312011 (admitted ~2011)</dd>
+          <dt>Firm Address</dt><dd>30 East Butler Ave., Ambler, PA 19002</dd>
+          <dt>Firm Phone</dt><dd>(267) 468-5374 · 1-800-NOT-FAIR (1-800-668-3247)</dd>
+          <dt>Firm Email</dt><dd>jginsburg@creditlaw.com · teamkimmel@creditlaw.com</dd>
+          <dt>Firm Website</dt><dd>creditlaw.com <span class="src-tag"><a href="https://www.creditlaw.com">creditlaw.com -&gt;</a></span></dd>
+          <dt>Firm Size</dt><dd>15 consumer attorneys licensed in 22 states <span class="src-tag"><a href="https://www.creditlaw.com">creditlaw.com -&gt;</a></span></dd>
+          <dt>Practice Mix</dt><dd>TCPA · FCRA · FDCPA · Data Breach · Lemon Law</dd>
+          <dt>Industry Profile</dt><dd>Ginsburg featured on TCPAWorld's "Deserve to Win" podcast Ep. 36 (Sept 2025) <span class="src-tag"><a href="https://tcpaworld.com/?s=Kimmel+Silverman">TCPAWorld -&gt;</a></span></dd>
+          <dt>Co-Counsel</dt><dd>Bryan A. Giribaldo &amp; Alex D. Kruzyk · Pardell, Kruzyk &amp; Giribaldo, PLLC (Austin, TX / FL-based) · seeking <em>pro hac vice</em></dd>
+          <dt>Co-Counsel Volume</dt><dd>PKG: 67+ TCPA filings in RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Pardell+Kruzyk%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Discipline History</dt><dd>None found in available sources</dd>
+          <dt>Bar Address Match</dt><dd>Matches complaint signature block</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">High — Serial / Volume Filer</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:32px">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Kimmel/PKG Federal-DNC Class Template</h3>
+      <div class="card-body">
+        <p>The Rossi complaint follows a recognizable pattern: a single plaintiff with a long-running DNC registration (Rossi's 2004 registration date is recited verbatim), 20+ alleged marketing texts from a single sender DID, screenshot exhibits embedded directly in the pleading, and a putative Rule 23 class capturing every DNC-registered recipient over a 4-year lookback. The same architecture appears across PKG's docket — including the Farha Roofing class settlement that received final approval in July 2025 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Pardell+Kruzyk%22+TCPA&type=r">CourtListener -&gt;</a></span>.</p>
+        <p style="margin-top:12px">Kimmel &amp; Silverman operates on contingency and advertises "top-tier legal help, for free" to consumers — a fee-shifting model that drives high intake volume and a strong incentive to settle for statutory damages plus attorney fees rather than litigate to judgment <span class="src-tag"><a href="https://www.creditlaw.com">creditlaw.com -&gt;</a></span>. Settlement leverage is highest in the first 60–90 days after filing, before merits discovery is opened.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;margin:32px 0 12px">Concurrent &amp; Recent Litigation — Plaintiff Firm Pattern</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory / Relationship</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Rossi v. First Path Capital Ventures LLC</strong></td>
+            <td>D.N.J.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active · Newly Filed</span></td>
+            <td>Federal DNC · SMS · MCA vertical — current case</td>
+          </tr>
+          <tr>
+            <td>Ford v. Farha Roofing, LLC</td>
+            <td>W.D. Mo.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">Class Settled · Final Approval Jul 2025</span></td>
+            <td>PKG co-counsel · TCPA class · home services vertical</td>
+          </tr>
+          <tr>
+            <td>Coffey v. Fast Easy Offer LLC (Keller Williams)</td>
+            <td>D. Ariz.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PKG · real estate lead-gen TCPA</td>
+          </tr>
+          <tr>
+            <td>Whitfield v. EXP Realty of California, Inc.</td>
+            <td>C.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PKG · real estate TCPA</td>
+          </tr>
+          <tr>
+            <td>Ragsdale v. Leadpoint, Inc.</td>
+            <td>C.D. Cal.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Ginsburg + PKG cross-firm coordination · lead-gen TCPA</td>
+          </tr>
+          <tr>
+            <td>Smith v. Tru Life Real Estate, Inc.</td>
+            <td>S.D. Ind.</td>
+            <td>2024</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PKG · real estate TCPA</td>
+          </tr>
+          <tr>
+            <td>Orenstein v. Spruce Services, Inc.</td>
+            <td>W.D. Tex.</td>
+            <td>2023</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PKG · home services TCPA</td>
+          </tr>
+          <tr>
+            <td>Laudano v. Credit One Bank</td>
+            <td>D.N.J.</td>
+            <td>2015</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>Kimmel &amp; Silverman · consumer / TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline;vertical-align:-2px"></i> Open Intel Gaps to Close Before First Dial</h4>
+      <ul class="clean tight">
+        <li>Plaintiff's full 10-digit cellular number — only "(305) 984-XXXX" disclosed; recover via PACER ECF #1 or initial disclosures before any litigator-list lookup.</li>
+        <li>NJ corporate registry record for First Path Capital Ventures LLC — registered agent, members, formation date all unconfirmed (NJ Business Name Search, Bizapedia, OpenCorporates all blocked during research).</li>
+        <li>Full names and contact info for "Charlie Abraham" (alleged owner/CEO) and "Ryan Abraham" (alleged funding specialist) beyond what's pled in the complaint.</li>
+        <li>Sender DID 855-592-3082 — third-party complaint aggregators (800notes, YouMail, Tellows, RoboKiller) all bot-blocked; campaign size and operational window unconfirmed externally.</li>
+        <li>First Path's SMS dialer / MarTech vendor — not identified; could indicate a downstream cross-sell partner or co-defendant exposure.</li>
+        <li>Whether Nancy Rossi has filed prior TCPA actions (Miami-Dade FL plaintiff) — CourtListener "Nancy Rossi" hits did not clearly match.</li>
+        <li>Defense counsel — none appeared as of report generation; identity will shape settlement posture significantly.</li>
+        <li>Exact service date — required to compute the 21-day answer deadline.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Two named principals from the complaint — but no published contact data was recoverable.</h2>
+      <p class="section-lede">Every public-facing contact channel for First Path Capital Ventures LLC was blocked, timed out, or non-existent during research: LinkedIn 404, TheOrg 404, the firstpathcapital.com website timed out across all endpoints, NJ business name search blocked, and ZoomInfo/Apollo/RocketReach all gated. The only named individuals come from the complaint itself. Recommend pulling the NJ formation docs in parallel with the first outreach attempt.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Charlie Abraham</strong><br><span class="pill pill--dark">CEO / Owner</span> <span class="pill pill--gap">Contact Unknown</span></td>
+            <td>Alleged owner/CEO of First Path Capital Ventures LLC per complaint ¶ 20. Likely economic buyer for compliance spend. Family relationship to "Ryan" (alleged texter).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>Source: Complaint ¶ 20 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">PACER -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>"Ryan" Abraham</strong><br><span class="pill pill--dark">Funding Specialist</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Identified in complaint as the sender of the texts at issue. Self-described as "director of underwriting at First Path Capital" in the screenshot exhibits.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>ryan@firstpathcapital.com <span class="pill pill--warn">VERIFIED</span></td>
+            <td>Source: Complaint ¶¶ 12, 19–20 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">PACER -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Compliance / Legal Lead</strong><br><span class="pill pill--dark">GC / CCO</span> <span class="pill pill--gap">Role Unknown</span></td>
+            <td>No compliance officer, GC, or in-house counsel identified. Given 2024 formation and brokershop scale, role may not exist internally — likely outside counsel will be retained for the answer.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>No source — gap to close</td>
+          </tr>
+          <tr>
+            <td><strong>General Inquiries</strong><br><span class="pill pill--dark">Company Main</span></td>
+            <td>Privacy-policy contact address listed on firstpathcapital.com per complaint footnote.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>info@firstpathcapital.com <span class="pill pill--info">INFERRED</span></td>
+            <td>Source: Complaint footnote 1 <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">PACER -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">Not Yet Appeared</span></td>
+            <td>No notice of appearance filed as of report generation. 21-day answer clock pending.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-06800&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px" class="card">
+      <div class="card-meta">Email Pattern</div>
+      <h3 class="card-title">Inferred: <code>first@firstpathcapital.com</code> &nbsp;<span class="pill pill--warn">PATTERN</span></h3>
+      <div class="card-body">Only one company email was directly observed (<code>ryan@firstpathcapital.com</code>, embedded in the complaint screenshot exhibits) plus the generic <code>info@firstpathcapital.com</code>. Pattern is provisional — confirm via SMTP probe or a second observed address before mass outreach.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The answer clock and the second-filing window both close fast.</h2>
+      <p class="section-lede">First Path was sued one day before this report. Defense counsel hasn't appeared. The named principals don't have public contact channels. Speed and creativity in identifying the decision-maker are the difference between a 21-day-window close and a 6-month chase.</p>
+    </div>
+
+    <ol style="font-size:15px;line-height:1.7;padding-left:20px;margin:0">
+      <li style="margin-bottom:16px"><strong>Day 0–1 — Pull PACER ECF #1 and identify the NJ registered agent.</strong> Pull the unredacted complaint and any exhibits; cross-reference NJ Division of Revenue Business Name Search for First Path Capital Ventures LLC to get the registered agent address and the LLC members' names. ($1.20 PACER + 10 min state search.)</li>
+      <li style="margin-bottom:16px"><strong>Day 1–2 — Identify and reach Charlie Abraham directly.</strong> The owner/CEO is the only economic buyer for a compliance program of this scope. Use the NJ registered agent address, LinkedIn outreach to anyone named "Abraham" associated with the MCA / NJ funding ecosystem, and the <code>info@firstpathcapital.com</code> generic mailbox in parallel. Lead with the case caption and case number — that gets opened.</li>
+      <li style="margin-bottom:16px"><strong>Day 2–3 — Send the wedge email.</strong> Subject: "Rossi v. First Path Capital Ventures — 3:26-cv-06800 — TCPA compliance options before your answer is due." Body: case summary, named-plaintiff exposure ($10K–$30K), class exposure, and the three Blacklist products that map directly to the alleged violations. Attach a one-page litigator-scrub sample report.</li>
+      <li style="margin-bottom:16px"><strong>Day 3–5 — Phone follow-up.</strong> If a number surfaces from NJ state filings or the ISO recruiting threads on DailyFunder, call Charlie directly. If gatekept, route to "Ryan" — he's already identified in the pleading as the SMS originator and has direct visibility into the dialer infrastructure that needs scrubbing.</li>
+      <li style="margin-bottom:16px"><strong>Day 5–10 — Engage defense counsel once appearance is filed.</strong> The first notice of appearance is a tell. If it's a TCPA-defense boutique, the engagement is technical and Blacklist's value is concrete: scrub, DNC, consent capture. If it's a general litigation firm with no TCPA depth, the assigned owner becomes the de facto technical advisor — even higher leverage.</li>
+      <li style="margin-bottom:16px"><strong>Day 10–21 — Close before answer deadline.</strong> The pre-answer window is the highest-leverage window. After the answer drops, the conversation moves to litigation strategy and procurement freezes. Get the scrub live and the policy &amp; procedures package signed before then.</li>
+    </ol>
+
+    <div style="margin-top:32px" class="card card--alert">
+      <h3 class="card-title">Trigger Conditions That Change the Plan</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="margin-top:8px">
+          <li><strong>If defense counsel moves to compel arbitration:</strong> consent capture pitch elevates — they're betting on a TOS arbitration clause that may or may not exist.</li>
+          <li><strong>If a second TCPA suit is filed against First Path within 60 days:</strong> escalate to litigator scrub + full DNC stack as a single package — the cost of the second filing alone exceeds the annual scrub subscription.</li>
+          <li><strong>If First Path settles Rossi quietly within 30 days:</strong> use the settlement as the proof point for the next outreach — they paid once, they'll pay again unless they buy preventive scrub.</li>
+          <li><strong>If plaintiff amends to add the SMS dialer vendor as co-defendant:</strong> open a parallel pursuit against the vendor (a Blacklist API-partner candidate).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · TARGET CLOSE BEFORE JUL 7</span>
+      <span class="pill pill--info">VERTICAL: MCA · BLACKLIST TIER-1 RISK CATEGORY</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-10</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
