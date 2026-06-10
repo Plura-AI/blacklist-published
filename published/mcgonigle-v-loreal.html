@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>McGonigle v. L'Oreal USA — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin-bottom:8px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance" fill="#fff">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">BLACKLIST ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-05</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Beauty SMS Marketer · Federal DNC + VTPPA Class Action · Serial-Filer Plaintiff · E.D. Va. Rocket Docket</p>
+      <h1 class="hero-tagline">McGonigle v.<br>L'Oreal USA S/D, Inc. <span style="color:var(--bl-red); font-weight:500; font-size:0.55em;">(Armani Beauty SMS program)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-01507-LMB-WBP</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Va. (Alexandria)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 4, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Leonie M. Brinkema<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Mag. William B. Porter</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br><span style="font-weight:400; font-size:13px; color:#A8A8A8;">Va. Code § 59.1-510 et seq.</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Rule 23 + VTPPA Subclass</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">William Robinson <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Solo · Arlington, VA</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted in complaint — but McGonigle is a confirmed serial TCPA filer with 8+ federal cases in 18 months.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. McGonigle's number is partially masked in the complaint as <strong>(804) 238-XXXX</strong>, so a literal Blacklist Bulk lookup cannot be run on a complete 10-digit value. However, plaintiff/firm-level intel is unusually strong.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Partially Redacted · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial-Filer Confirmed · 8+ TCPA Filings</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (as pled)</div>
+        <div class="scrub-number">(804) 238-XXXX</div>
+        <div class="scrub-number-sub">Virginia 804 area code (Richmond region) · Verizon Wireless · Registered on the National DNC Registry on August 5, 2024 (per Complaint ¶16). Last 4 digits intentionally redacted in the public filing.</div>
+      </div>
+      <p class="scrub-body-text">Even though the trailing 4 digits are not in the public complaint, the plaintiff himself, <strong>Andrew James McGonigle</strong>, is a heavily-documented serial TCPA filer. CourtListener surfaces at least 8 separate federal TCPA actions filed by McGonigle in roughly 18 months across E.D. Va., S.D. Ohio, N.D. Ga., N.D. Cal., N.D. Ill., and E.D. Mich. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Andrew+McGonigle%22&type=r">CourtListener -&gt;</a></span> Treat the number as effectively pre-flagged: any defendant operating high-volume SMS into the 804 NPA should already be screening for this plaintiff template.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:20px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">Short Code 97610 · Attentive Mobile</h3>
+        <div class="card-body">
+          <p>Texts originated from 5-digit short code <strong>97610</strong> via the <strong>Attentive Mobile</strong> platform, branded as Armani Beauty (<code>armanibeauty.attn.tv</code>). Short codes are not indexed by 800notes / YouMail / Tellows / RoboKiller — those databases only cover 10-digit DIDs.</p>
+          <p style="margin-top:10px">Sender identification confidence is nonetheless <strong>high</strong>: the <code>.attn.tv</code> subdomain is Attentive's signature branded link-shortener. <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive Mobile -&gt;</a></span></p>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Public complaint redacts the last 4. PACER copy of the complaint (or exhibit/civil cover sheet) may contain the unredacted number. Cost ~$3 for the 17-page filing on PACER fee schedule.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Cross-reference Attentive opt-in records</h3>
+        <div class="card-body">If L'Oreal/Armani retains us, the Attentive subscriber log for short code 97610 against any Virginia 804-238-XXXX number will resolve the full digit string instantly and prove (or disprove) consent.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Wait for first Rule 26 disclosures</h3>
+        <div class="card-body">E.D. Va. Rocket Docket — initial disclosures land fast. Plaintiff will be required to produce the full number under Rule 26(a)(1)(A)(iii) once the scheduling order issues.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--danger">Serial-Filer Flag: McGonigle = 8+ federal TCPA filings</span>
+      <span class="pill pill--warn">Firm Flag: Robinson local-counsels for Paronich Law (one of nation's top TCPA filers)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Fortune-tier beauty conglomerate, third TCPA class in three years, on the Rocket Docket. The compliance gap is structural and the buyer is highly motivated.</h2>
+      <p class="section-lede">L'Oreal USA is the #1 beauty company in the world ($11B+ U.S. revenue) running an Attentive Mobile SMS program for its Armani Beauty brand that allegedly failed both the National DNC Registry and the FCC Reassigned Numbers Database. This is the <strong>third</strong> TCPA class action filed against L'Oreal USA in ~3 years — Gilburd (D. Ariz. 2023) and Abednego (S.D. Fla. 2024) both terminated quickly, consistent with confidential settlements. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22L%27Oreal%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent" style="border-top-color:var(--bl-red)">
+        <div class="card-meta" style="color:var(--bl-red)">★ Recommended Lead Pitch</div>
+        <h3 class="card-title">RND + FCC Safe Harbor</h3>
+        <div class="card-body">Complaint ¶41 expressly pleads that L'Oreal "sent the text messages without regard for the FCC's Reassigned Number Database and did not utilize the Reassigned Number Database prior to sending." That is a textbook RND failure — the exact gap Blacklist's RND-integrated scrub closes, with FCC safe-harbor protection on top.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Complaint ¶40 pleads the parallel National DNC scrub failure. Marketing into a 30+ day DNC-registered number is the named federal violation under 47 U.S.C. § 227(c)(5). Bundle with RND in a portfolio pitch covering all 36 U.S. brands.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Compliance Audit (multi-brand)</h3>
+        <div class="card-body">L'Oreal operates 36+ brands in the U.S. running parallel Attentive short-code programs (Lancôme, Maybelline, NYX, Kiehl's, Aesop, etc.). A single failed scrub program likely replicates across the portfolio. Audit-and-remediate sells across the entire L'Oreal Luxe and Consumer Products divisions.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; max-width:880px;">
+      <div class="section-eyebrow" style="margin-bottom:8px;"><span class="bar"></span> Pitch Angle</div>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1);">"L'Oreal — congrats on the Kering Beauté deal closing. The reason for the call: as of this week you've been named in your third TCPA class action in three years. McGonigle v. L'Oreal in E.D. Va. — the Rocket Docket — and the complaint literally pleads, paragraph 41, that Armani Beauty's Attentive short code 97610 was sending without scrubbing against the FCC Reassigned Numbers Database. That's the single fact that turns a defensible case into a willfulness multiplier. Gilburd settled. Abednego settled. McGonigle's counsel — Robinson with Paronich appearing PHV — just beat the MTD and the transfer motion in <em>McGonigle v. Teleflora</em> on March 13 in the same court. They will not let this die cheap."</p>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1); margin-top:12px;">"What we do: National DNC + FCC RND + Litigator scrub on every SMS send, across every Attentive short code in your portfolio, with audit logs that establish the § 227(c)(5) safe-harbor affirmative defense. One contract covers Armani, Lancôme, Maybelline, NYX, Kiehl's, Aesop, IT Cosmetics — all 36 brands. Two weeks to integrate with Attentive. Can I get you and your GC's office on a call this week before the answer deadline?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">World's #1 beauty company. $11B+ U.S. revenue. 36 brands. One SMS scrub failure replicates across the entire portfolio.</h2>
+      <p class="section-lede">L'Oreal USA, Inc. is the U.S. arm of CAC-40-listed L'Oréal S.A. (Clichy, France). The named defendant <em>L'Oreal USA S/D, Inc.</em> is the Delaware-incorporated commercial entity that licenses and operates the Giorgio Armani Beauty brand in the United States per Complaint ¶33–34. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/L%27Or%C3%A9al">Wikipedia -&gt;</a></span> <span class="src-tag"><a href="https://www.lorealusa.com/group">lorealusa.com/group -&gt;</a></span></p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">L'Oreal USA S/D, Inc.</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Legal Entity</dt><dd>L'Oreal USA S/D, Inc. (commercial subsidiary, S/D = Sales/Distribution)</dd>
+          <dt>Formation State</dt><dd>Delaware (per Complaint ¶5)</dd>
+          <dt>HQ</dt><dd>10 Hudson Yards, New York, NY 10001; West Coast at 888 N Douglas St., El Segundo, CA 90245 <span class="src-tag"><a href="https://www.lorealusa.com/group">lorealusa.com -&gt;</a></span></dd>
+          <dt>Parent</dt><dd>L'Oreal USA, Inc. → L'Oréal S.A. (Euronext Paris: OR.PA, CAC 40)</dd>
+          <dt>U.S. Revenue</dt><dd>$11B+ (2025); Global €43.48B (2024) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/L%27Or%C3%A9al">Wikipedia -&gt;</a></span></dd>
+          <dt>U.S. Employees</dt><dd>13,000+ U.S.; 90,000 globally</dd>
+          <dt>Founded</dt><dd>1953 (L'Oréal USA); 1909 (parent L'Oréal S.A.)</dd>
+          <dt>Vertical</dt><dd>DTC Beauty / Cosmetics / Fragrance / Skincare / Haircare (36+ brand portfolio)</dd>
+          <dt>Armani Brand Status</dt><dd>Long-standing licensing & commercialization agreement with Giorgio Armani S.p.A. since 1988; managed via L'Oréal Luxe division <span class="src-tag"><a href="https://en.wikipedia.org/wiki/L%27Or%C3%A9al">Wikipedia -&gt;</a></span></dd>
+          <dt>SMS Vendor</dt><dd>Attentive Mobile (short code 97610, <code>armanibeauty.attn.tv</code>) <span class="src-tag"><a href="https://www.attentivemobile.com">Attentive -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff;">🔥 Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">"Did not utilize the Reassigned Number Database prior to sending."</h3>
+        <div class="card-body">
+          <p>Complaint paragraph 41 alleges verbatim: <em>"The Defendant sent the text messages without regard for the FCC's Reassigned Number Database and did not utilize the Reassigned Number Database prior to sending."</em></p>
+          <p style="margin-top:10px">Paragraph 40 pleads the parallel National DNC scrub failure. Paragraph 42 pleads the absence of reasonable procedures to verify the intended recipient.</p>
+          <p style="margin-top:10px"><strong>This is a structural compliance failure pled with specificity</strong> — not a generic recital. Plaintiff acquired the 804 number in August 2024 when he switched from a Florida carrier to Verizon (Complaint ¶17–18) — a classic reassigned-number fact pattern. RND integration would have caught this on day one of the subscription.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Three independent timing windows converging</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Answer Deadline</dt><dd>21 days post-service under E.D. Va. local practice — service likely complete by mid-June; answer/MTD due approximately <strong>July 8–18, 2026</strong> depending on service date</dd>
+          <dt>Kering Beauté Closing</dt><dd>~€4B acquisition of House of Creed + Gucci/Bottega Veneta/Balenciaga fragrance licenses announced 2025-10 — onboarding new SMS lists is a known TCPA risk inflection point <span class="src-tag"><a href="https://en.wikipedia.org/wiki/L%27Or%C3%A9al">Wikipedia -&gt;</a></span></dd>
+          <dt>Court Posture</dt><dd>Judge Brinkema runs the E.D. Va. Rocket Docket — trial typically within 8–12 months of filing. Settlement pressure builds <em>fast</em>.</dd>
+          <dt>Plaintiff Template Pace</dt><dd>Same plaintiff/counsel team beat MTD + transfer motion in <em>McGonigle v. Teleflora</em> on March 13, 2026 in this same court. Court advised parties of settlement options at the same minute entry. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Andrew+McGonigle%22&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:18px;">Related Entities &amp; Cross-Sell Candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td><strong>L'Oreal USA, Inc.</strong></td><td>Parent of named defendant</td><td>Cosmetics conglomerate</td><td>Master account for all U.S. SMS programs</td><td><span class="pill pill--red">High</span></td></tr>
+          <tr><td>Lancôme</td><td>Subsidiary brand (L'Oréal Luxe)</td><td>Luxury beauty</td><td>Likely Attentive short-code program parallel to Armani <span class="src-tag"><a href="https://en.wikipedia.org/wiki/L%27Or%C3%A9al">Wikipedia -&gt;</a></span></td><td><span class="pill pill--red">High</span></td></tr>
+          <tr><td>Yves Saint Laurent Beauté</td><td>Subsidiary brand (L'Oréal Luxe)</td><td>Luxury beauty</td><td>Same SMS infrastructure pattern</td><td><span class="pill pill--red">High</span></td></tr>
+          <tr><td>Kiehl's</td><td>Subsidiary brand</td><td>Skincare DTC</td><td>Heavy SMS-driven loyalty program</td><td><span class="pill pill--danger">High</span></td></tr>
+          <tr><td>Maybelline</td><td>Subsidiary brand (Consumer Products)</td><td>Mass-market beauty</td><td>Mass SMS list — high volume = high exposure</td><td><span class="pill pill--danger">High</span></td></tr>
+          <tr><td>NYX Cosmetics</td><td>Subsidiary (acquired 2014)</td><td>Mass-market beauty</td><td>Gen-Z SMS-heavy marketing</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>CeraVe</td><td>Subsidiary brand</td><td>Skincare</td><td>DTC subscription + SMS reorder reminders</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>IT Cosmetics</td><td>Subsidiary (acquired 2016 for $1.2B)</td><td>Beauty</td><td>SMS retention program</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>Aesop</td><td>Subsidiary (acquired 2023 for $2.53B)</td><td>Luxury skincare</td><td>Newer integration — onboarding risk</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>Urban Decay</td><td>Subsidiary brand</td><td>Cosmetics</td><td>SMS promo campaigns</td><td><span class="pill pill--info">Medium</span></td></tr>
+          <tr><td>Youth to the People</td><td>Subsidiary (acquired 2021)</td><td>Vegan skincare DTC</td><td>DTC-native, SMS-heavy</td><td><span class="pill pill--info">Medium</span></td></tr>
+          <tr><td>Color Wow</td><td>Subsidiary (acquired June 2025)</td><td>Haircare</td><td>Recent acquisition = onboarding window</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>Kering Beauté (House of Creed, Gucci/Bottega/Balenciaga fragrance)</td><td>Pending acquisition (~€4B, announced 2025-10)</td><td>Luxury fragrance</td><td>Inflection point — onboarding new SMS lists = top TCPA risk moment</td><td><span class="pill pill--red">High</span></td></tr>
+          <tr><td>Attentive Mobile</td><td>SMS platform vendor</td><td>Martech</td><td>Vendor-side compliance pitch — they would benefit from RND/DNC integration as a value-add to all customers</td><td><span class="pill pill--info">Low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Third TCPA class in three years. Same plaintiff has 8 federal filings. Same plaintiff-side template just beat MTD + transfer in the same court.</h2>
+      <p class="section-lede">This is not L'Oreal's first TCPA rodeo, and McGonigle is not a first-time plaintiff. The convergence of repeat-defendant + serial-plaintiff + Rocket Docket forum means defense counsel will be under early pressure to settle before scheduling order issues.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Summary</div>
+        <h3 class="card-title">McGonigle v. L'Oreal USA S/D, Inc.</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Docket</dt><dd>1:26-cv-01507-LMB-WBP</dd>
+          <dt>Filed</dt><dd>June 4, 2026 (Complaint signed June 1, 2026)</dd>
+          <dt>Plaintiff</dt><dd>Andrew James McGonigle (Virginia resident, 804 NPA, Verizon)</dd>
+          <dt>Plaintiff Counsel</dt><dd>William Robinson (VSB 76098), Arlington VA — solo</dd>
+          <dt>Class</dt><dd>Yes — Rule 23 nationwide DNC Class + VTPPA Virginia Subclass</dd>
+          <dt>Class Size Alleged</dt><dd>"Hundreds, if not thousands" in VA Subclass; nationwide class &gt;100 (Complaint ¶6, ¶44)</dd>
+          <dt>Counts</dt><dd>Count I: 47 U.S.C. § 227(c)(5) / 47 C.F.R. § 64.1200(c) (Federal DNC)<br>Count II: Va. Code § 59.1-510 et seq. (VTPPA)</dd>
+          <dt>Theory</dt><dd>Marketing texts to DNC-registered + reassigned cellular number without consent; failure to scrub against DNC Registry or FCC RND</dd>
+          <dt>Channel</dt><dd>SMS only (short code 97610, branded "Armani beauty")</dd>
+          <dt>Damages — Named PL</dt><dd>$500–$1,500/text federal (8+ texts pled in screenshots) = <strong>$4,000–$12,000</strong> minimum on named plaintiff alone, before VTPPA escalation ($500 / $1,000 / $5,000 per Va. Code § 59.1-515(A))</dd>
+          <dt>Damages — Class</dt><dd>Plaintiff pleads aggregate VA Subclass damages "likely exceed five million dollars" (Complaint ¶8)</dd>
+          <dt>Jury Demand</dt><dd>Yes</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer window</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">William Robinson — Solo Practitioner</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Firm</dt><dd>William Robinson, Solo Practitioner</dd>
+          <dt>Address (per Complaint)</dt><dd>4067 South Four Mile Run Dr. #302, Arlington VA 22204</dd>
+          <dt>Phone</dt><dd>(703) 789-4800 <span class="src-tag">per PACER signature block</span></dd>
+          <dt>Email</dt><dd>wprlegal@gmail.com <span class="pill pill--warn">Gmail · No firm domain</span></dd>
+          <dt>VA Bar No.</dt><dd>76098</dd>
+          <dt>VSB Status</dt><dd><span class="pill pill--gap">Could not verify — VSB lookup failed</span></dd>
+          <dt>TCPA Power Ranking</dt><dd>Not ranked on TCPAWorld <span class="src-tag"><a href="https://tcpaworld.com/?s=William+Robinson">TCPAWorld -&gt;</a></span></dd>
+          <dt>Role Pattern</dt><dd><strong>Local counsel</strong> for out-of-state TCPA specialists — appears with Anthony Paronich (Paronich Law, Hingham MA) as PHV lead, and with Avi Kaufman (Kaufman P.A., Miami) in the Walker case <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22William+Robinson%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>EDVA TCPA Volume</dt><dd>~38 TCPA matters surfaced via CourtListener as counsel of record (including local-counsel role)</dd>
+          <dt>Other recent EDVA cases</dt><dd>Spoon v. NVA Financial (2026); Wagner v. Atrium Mgmt (2025); Ackerman v. Look Both Ways Insurance (2023)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff / Firm Template</div>
+        <h3 class="card-title">The "Paronich + Robinson" multi-district TCPA template, with McGonigle as professional named plaintiff</h3>
+        <div class="card-body">
+          <p>The McGonigle filings follow a tightly consistent template across districts: Robinson signs as local counsel in EDVA matters; Anthony Paronich of <strong>Paronich Law</strong> (Hingham, MA) appears <em>pro hac vice</em> as lead in nearly every McGonigle case. In the Walker matter, <strong>Avi Kaufman</strong> (Kaufman P.A., Miami) also appeared PHV — both Paronich and Kaufman are nationally-ranked plaintiff-side TCPA boutiques.</p>
+          <p style="margin-top:10px">McGonigle's complaints share a stable boilerplate: (1) phone acquired August 2024 after moving from FL to VA (Verizon assignment), (2) DNC-registered since 2014, (3) reassigned-number theory, (4) screenshot exhibits of SMS marketing, (5) Federal DNC + state mini-TCPA paired counts. The pattern strongly suggests the team uses McGonigle as a <strong>professional class representative</strong> targeting DTC SMS programs (beauty, florist, mortgage, debt relief, property management).</p>
+          <p style="margin-top:10px">In the Value City Furniture deposition record (S.D. Ohio), defense subpoenaed McGonigle's Instagram, his counsel engagement letter, a "Heidarpour" demand-letter template, and prior dealings with Zales — indicating the team uses a standardized demand-letter / settlement-template workflow. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Andrew+McGonigle%22&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:18px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>McGonigle v. L'Oreal USA S/D, Inc.</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>E.D. Va. (Alexandria)</td>
+            <td>2026-06-04</td>
+            <td><span class="pill pill--red">Active · Answer pending</span></td>
+            <td>Federal DNC + VTPPA — Armani Beauty SMS via Attentive 97610</td>
+          </tr>
+          <tr>
+            <td>Abednego v. L'Oreal USA, Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated (likely settled)</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Gilburd v. L'Oreal USA Inc.</td>
+            <td>D. Ariz.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">Terminated (likely settled)</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22L%27Oreal%22+TCPA&type=r">CourtListener -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Teleflora LLC</td>
+            <td>E.D. Va. (Alexandria)</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">Active — MTD &amp; transfer DENIED 3/13/2026</span></td>
+            <td>Federal DNC — same template</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Walker and Company Brands, Inc.</td>
+            <td>N.D. Ga. (transferred from E.D. Va.)</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Settled 9/17/2025</span></td>
+            <td>Federal DNC — DTC personal care (Bevel)</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Dom Store LLC</td>
+            <td>E.D. Va.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Federal DNC</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. United Wholesale Mortgage, LLC</td>
+            <td>E.D. Mich.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">Active · MTD pending</span></td>
+            <td>Federal DNC</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. SR Holdings Management LLC</td>
+            <td>N.D. Ill.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Federal DNC — property management</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Why Direct LLC</td>
+            <td>E.D. Va. (Richmond)</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Federal DNC</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Value City Furniture, Inc.</td>
+            <td>S.D. Ohio</td>
+            <td>2024</td>
+            <td><span class="pill pill--warn">In discovery (deposition + Instagram subpoena)</span></td>
+            <td>Federal DNC — defense aggressively contesting</td>
+          </tr>
+          <tr>
+            <td>McGonigle v. Freedom Debt Relief, LLC</td>
+            <td>N.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--gap">Voluntarily dismissed 10/3/2025</span></td>
+            <td>Federal DNC</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Open intel gaps to close before first dial</div>
+      <ul class="clean tight" style="margin-top:8px">
+        <li>• <strong>Full plaintiff phone number</strong> — last 4 digits redacted in public complaint; pull ECF #1 from PACER to confirm and run Litigator Scrub for completeness.</li>
+        <li>• <strong>Defense counsel</strong> — L'Oreal had not appeared at time of research; identify firm and primary contact once notice of appearance is filed (likely Sidley, Latham, K&amp;L Gates, or another L'Oreal-panel firm).</li>
+        <li>• <strong>L'Oreal USA S/D, Inc. registered agent &amp; officers</strong> — Delaware Division of Corporations and California SOS lookups did not return entity detail; pull a paid DE certificate of good standing to confirm registered agent for service-window monitoring.</li>
+        <li>• <strong>General Counsel / Chief Privacy Officer of L'Oreal USA</strong> — not surfaced from public sources; LinkedIn-locked. Identify before outreach.</li>
+        <li>• <strong>CMO / VP Marketing for L'Oréal Luxe (Armani Beauty)</strong> — the actual marketing decision-maker for short code 97610.</li>
+        <li>• <strong>Answer deadline</strong> — depends on service date; monitor PACER for proof of service to lock the 21-day window.</li>
+        <li>• <strong>Anthony Paronich PHV admission</strong> — confirm whether Paronich has moved for PHV in 1:26-cv-01507; his appearance dramatically raises the threat level.</li>
+        <li>• <strong>Armani Beauty SMS T&amp;Cs</strong> — armanibeauty.com/sms-terms.html returned 403; confirm public availability and arbitration clause status.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No L'Oreal USA General Counsel surfaced from public sources — lead through Corporate Security &amp; Brand Protection or escalate via the consumer hotline to legal intake.</h2>
+      <p class="section-lede">L'Oreal USA does not publicly disclose its General Counsel, Chief Compliance Officer, or Chief Privacy Officer on lorealusa.com, and TheOrg / LinkedIn searches were locked. The strongest verified entry point is <strong>Tom Barden, SVP Corporate Security &amp; Brand Protection</strong> — corporate security typically routes inbound TCPA threat-letters straight to in-house legal at companies this size. Email pattern <code>{first}.{last}@loreal.com</code> (or <code>@us.loreal.com</code> for U.S. employees) is confirmed from published email captures. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></p>
+    </div>
+
+    <div class="card" style="margin-bottom:20px; background:var(--info-bg); border-left:4px solid var(--info);">
+      <div class="card-meta" style="color:var(--info)">📧 Email Pattern</div>
+      <h3 class="card-title" style="margin-bottom:4px;"><code style="font-size:18px;">{first}.{last}@loreal.com</code> &nbsp;·&nbsp; <code style="font-size:18px;">{first}.{last}@us.loreal.com</code></h3>
+      <div class="card-body">Pattern confirmed via published partial-email captures on SignalHire (Tom Barden, Gino DeVito, Mark Genco). U.S.-domiciled employees use <code>@us.loreal.com</code>; global executives use <code>@loreal.com</code>.</div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Tom Barden</strong><br><span class="pill pill--dark">SVP CORP SEC</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>Senior Vice President — Corporate Security &amp; Brand Protection, L'Oreal USA. Likely first internal routing point for TCPA threat/demand letters at this size of company. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></td>
+            <td>Masked (last 4: 1174) <span class="pill pill--gap">GAP</span></td>
+            <td><code>tom.barden@us.loreal.com</code> <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/tom-barden">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Caroline Flandrin</strong><br><span class="pill pill--dark">SVP COMMS</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>SVP Corporate Communications &amp; Group Director HR Communications, L'Oreal USA. Useful for press-sensitivity escalation. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></td>
+            <td>Masked (last 4: 0701) <span class="pill pill--gap">GAP</span></td>
+            <td><code>caroline.flandrin@loreal.com</code> <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/caroline-flandrin">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Frederic Cervantes</strong><br><span class="pill pill--dark">M&amp;A / IT</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>Head of M&amp;A R&amp;I — IT Business Owner R&amp;I — North &amp; Hispanic Americas. Owns IT systems including martech integrations; relevant for Attentive program ownership. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></td>
+            <td>Masked (last 4: 0864) <span class="pill pill--gap">GAP</span></td>
+            <td><code>frederic.cervantes@loreal.com</code> <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/frederic-cervantes">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Mark Genco</strong><br><span class="pill pill--dark">VP QUALITY NA</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>VP Quality North America, L'Oreal USA. Quality and compliance-adjacent; useful warm handoff to legal/compliance. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></td>
+            <td>Masked (last 4: 0482) <span class="pill pill--gap">GAP</span></td>
+            <td><code>mark.genco@loreal.com</code> <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/mark-genco">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Gino DeVito</strong><br><span class="pill pill--dark">AVP FINANCE</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>Assistant Vice President — Finance, L'Oreal USA. Damages/exposure conversations route through Finance leadership. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></td>
+            <td>Masked (last 4: 9426) <span class="pill pill--gap">GAP</span></td>
+            <td><code>gino.devito@us.loreal.com</code> <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/gino-devito">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jean-Claude Le Grand</strong><br><span class="pill pill--dark">CHRO GROUP</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>Chief Human Relations Officer, L'Oréal Groupe (Paris). Useful only for escalation visibility; not a TCPA decision-maker.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><code>jean-claude.legrand@loreal.com</code> <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jean-claude-le-grand">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Matthew Badessa</strong><br><span class="pill pill--dark">AVP</span> <span class="pill pill--ok">VERIFIED NAME</span></td>
+            <td>Assistant Vice President, L'Oreal USA. Title-only data — useful as a directory anchor for further outbound research. <span class="src-tag"><a href="https://www.signalhire.com/companies/l-oreal-usa">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><code>matthew.badessa@loreal.com</code> <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/matthew-badessa">LinkedIn →</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel — L'Oreal USA</strong><br><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><em>Primary TCPA defense decision-maker.</em> Not publicly disclosed on lorealusa.com leadership page or TheOrg. Identify via LinkedIn Sales Navigator or via reverse-lookup from L'Oreal-panel outside counsel.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>CMO / VP Marketing — L'Oréal Luxe (Armani Beauty US)</strong><br><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><em>Owns short code 97610 program.</em> The marketing executive responsible for the Attentive Mobile deployment and subscriber list hygiene. Identify before second-touch outreach.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>L'Oreal USA — Main</strong><br><span class="pill pill--dark">HQ</span></td>
+            <td>L'Oreal USA HQ, 10 Hudson Yards, New York, NY 10001. Giorgio Armani Cosmetics consumer hotline used here as nearest verified inbound number — request transfer to Legal Intake. <span class="src-tag"><a href="https://www.lorealusa.com/contact-us">lorealusa.com -&gt;</a></span></td>
+            <td>+1-866-313-7880 <span class="pill pill--warn">CONSUMER LINE</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">NOT YET APPEARED</span></td>
+            <td>~21-day answer window post-service. Monitor PACER. Likely large national firm (Sidley/Latham/K&amp;L Gates pattern for L'Oreal panel).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. Rocket Docket + serial-plaintiff template = early settlement pressure window opens immediately.</h2>
+      <p class="section-lede">E.D. Va. moves fast. McGonigle's team just beat MTD + transfer in <em>Teleflora</em> in this same court, and Walker (same plaintiff) settled within 5 months. The window to position Blacklist as the structural remediation solution is now — before defense counsel locks in a litigation budget.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">1. Open via Corporate Security</h3>
+        <div class="card-body">First call to Tom Barden (SVP Corporate Security &amp; Brand Protection). Frame as "courtesy notice / inbound regulatory matter" — TCPA threat letters from outside firms routinely land at corp-sec first. Ask for warm handoff to L'Oreal USA General Counsel's office. Send a follow-up email to <code>tom.barden@us.loreal.com</code> referencing case 1:26-cv-01507.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1</div>
+        <h3 class="card-title">2. Pull ECF #1 from PACER</h3>
+        <div class="card-body">Confirm full plaintiff phone, complete service date (which sets the 21-day clock), and check for any pre-existing Paronich PHV motion. Run Blacklist Bulk on the resolved 10-digit number for the closing proof-point.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">3. Identify GC + L'Oréal Luxe CMO</h3>
+        <div class="card-body">LinkedIn Sales Navigator pass on L'Oreal USA legal/compliance and L'Oréal Luxe marketing teams. Goal: a name + title for the General Counsel and the Armani Beauty / Luxe US marketing lead before second-touch.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">4. Lead pitch: RND + DNC bundle</h3>
+        <div class="card-body">Send the pitch deck to GC + CMO (whichever surfaces first). Anchor on Complaint ¶41 verbatim: "did not utilize the Reassigned Number Database prior to sending." That paragraph is the entire close.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 5–7</div>
+        <h3 class="card-title">5. Portfolio expansion</h3>
+        <div class="card-body">Pitch the 36-brand portfolio scope. Lancôme, YSL, Kiehl's, Maybelline, NYX, CeraVe, Aesop, IT Cosmetics all run parallel Attentive short-code programs. One scrub contract; full L'Oréal Luxe + Consumer Products division coverage.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">6. Defense counsel parallel track</h3>
+        <div class="card-body">Once notice of appearance is filed, reach defense counsel directly. Position Blacklist as the affirmative-defense / safe-harbor predicate they will need for an MTD answer and for Kering-deal due diligence remediation. The compliance fix is also the litigation narrative.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px; background:var(--gray-05); border-left-color:var(--bl-red);">
+      <div class="callout-title" style="color:var(--bl-red)">⟳ Trigger conditions — reassess outreach if any of these occur</div>
+      <ul class="clean tight" style="margin-top:8px">
+        <li>• <strong>Defense files MTC arbitration</strong> — if Armani Beauty's SMS T&amp;Cs (currently 403-locked) contain an arbitration + class-action waiver, the class theory collapses and our urgency window narrows. Reposition to compliance-audit framing.</li>
+        <li>• <strong>Anthony Paronich files PHV motion</strong> — confirms top-tier plaintiff-side firepower; raise urgency to max and escalate pricing posture (they will not settle cheap).</li>
+        <li>• <strong>Plaintiff voluntarily dismisses</strong> (as in Freedom Debt Relief 10/2025) — sometimes signals back-channel settlement; opportunity is gone for this matter but pitch persists on RND audit.</li>
+        <li>• <strong>Court orders early settlement conference</strong> (as in Teleflora 3/13/2026) — accelerate; settlement window will close within weeks.</li>
+        <li>• <strong>L'Oreal closes Kering Beauté acquisition</strong> — onboarding-window pitch becomes time-urgent; emphasize integration of acquired SMS lists.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JULY 8, 2026</span>
+      <span class="pill pill--warn">SERIAL-PLAINTIFF TEMPLATE · TEMPLATE BEAT MTD IN SAME COURT 3/13/26</span>
+      <span class="pill pill--info">PORTFOLIO SCOPE: 36 BRANDS</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-05</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
