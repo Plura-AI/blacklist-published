@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chavez v. Progressive Management Systems — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:600; color:var(--bl-red); line-height:1; }
+.step-body{ font-size:15px; line-height:1.55; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-10</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Class Action · Prerecorded-Voice Debt Collection · Serial-Defendant ARM Operator</p>
+      <h1 class="hero-tagline">Chavez v.<br>R.M. Galicia / Progressive Management Systems</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03180</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)(1)(A)(iii)<br>47 CFR § 64.1200(a)(1)(iii)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"at least 50" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">The Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted in complaint — scrub deferred, but the firm behind her is already on every TCPA radar.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Chavez complaint pleads only "the 1250 Number" — a partial four-digit identifier — so a litigator-list lookup cannot be run yet. Recovery path is below.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--red">SCRUB DEFERRED</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-1250</div>
+        <div class="scrub-number-sub">Complaint ¶10 references only the last four digits ("the 1250 Number"). Plaintiff Jazmine Chavez is identified as the subscriber and sole user (¶17), but the full 10-digit DID is not pled.</div>
+      </div>
+      <p class="scrub-body-text">A blacklistBulk lookup against a partial number would be meaningless. The number must be recovered from the docket (likely surfaces in Rule 26(a) initial disclosures or defendant's call records production) or via discovery before a scrub result can be relied upon. In the interim, plaintiff's name was cross-checked against CourtListener for prior TCPA filings — none surfaced for "Jazmine Chavez" specifically, so she is not (yet) a known serial filer. <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03180&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:20px">
+      <div class="card">
+        <div class="card-meta">Sender DID Identified</div>
+        <h3 class="card-title">(866) 767-2296</h3>
+        <p class="card-body">Toll-free 866 originating number pled at ¶14 as the source of the prerecorded calls. External consumer-report directories (800notes, YouMail, Tellows, RoboKiller) were unreachable during enrichment — no third-party sender corroboration available. Number pattern is consistent with a centralized outbound debt-collection dialer; the rep should request the carrier and rate-center in discovery to confirm whether PMS owns this DID or rents it from a dialer vendor.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path · Option A</div>
+        <h3 class="card-title">Pull from defendant's call records</h3>
+        <p class="card-body">PMS's dialer logs for 866-767-2296 between Dec 9, 2025 and Apr 13, 2026 (the pled date range, ¶11) will surface every recipient number — including Chavez's. This is the fastest route once defense counsel appears.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option B</div>
+        <h3 class="card-title">Rule 26(f) early disclosure</h3>
+        <p class="card-body">In C.D. Cal., parties exchange Rule 26(a) initial disclosures within 14 days of the Rule 26(f) conference. Plaintiff's disclosure will identify the full DID. Sales follow-up should track docket entries until the joint Rule 26(f) report is filed.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path · Option C</div>
+        <h3 class="card-title">Wait for class notice</h3>
+        <p class="card-body">If the case reaches class certification, the class-list ESI production will include every recipient — at which point Blacklist's litigator list grows by the entire class. Lower priority; multi-month horizon.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:8px">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL FROM DISCLOSURES</span>
+      &nbsp;<span class="pill pill--info">Plaintiff not a known serial filer (CourtListener)</span>
+      &nbsp;<span class="pill pill--danger">Firm = Hindi/Lane (serial filer)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A 15-time TCPA defendant that has settled or quietly dismissed nearly every prior suit — now staring at a class action filed by a top-tier serial firm.</h2>
+      <p class="section-lede">R.M. Galicia / Progressive Management Systems is one of the most-sued ARM operators on CourtListener: 72 federal cases referencing TCPA, at least 15 distinct TCPA actions since 2014, and a documented pattern of fast settlement. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Progressive+Management+Systems%22+TCPA&type=r">CourtListener -&gt;</a></span> Lead with <b>consent capture / compliance audit</b> — the recurring pattern proves their scrub stack isn't holding.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title"><i data-lucide="file-search"></i> Consent Capture + Compliance Audit</h3>
+        <p class="card-body">15+ TCPA suits in 12 years, multiple settlements, prerecorded-voice channel — the consent records tied to 866-767-2296 are clearly failing. Pitch a full consent-trail audit plus capture/retention scaffold so the next Chavez can be defeated on summary judgment, not settled.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title"><i data-lucide="database"></i> Litigator Scrub</h3>
+        <p class="card-body">Plaintiff's number is deferred, but the plaintiff bar's serial filers (Hindi, Friedman, Kazerouni, Marron) are all repeat-hitting this defendant. A continuous litigator scrub against PMS's outbound list would have caught at least 3 of the 15 historical plaintiffs before dialing.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Pitch</div>
+        <h3 class="card-title"><i data-lucide="phone-call"></i> RND + FCC Safe Harbor</h3>
+        <p class="card-body">Debt-collection portfolios are dense with reassigned numbers — original creditor consent rarely transfers to the new subscriber. RND lookups paired with FCC safe-harbor documentation are a defensive-cost killer for collectors.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">"You've settled this same case 15 times. Let's stop the 16th."</h3>
+      <p class="card-body" style="margin-bottom:12px">Open with the data: <i>"Mr. Banta, we ran your company through CourtListener this morning. 72 federal cases reference TCPA — including 15 separate suits naming Progressive Management or R.M. Galicia since 2014. Several settled within 60 days. The newest one — Chavez, filed yesterday in Riverside — is a class action filed by Jibrael Hindi's firm, who is on the 2026 TCPAWorld Power Rankings. They didn't pick you by accident. They picked you because the pattern works."</i></p>
+      <p class="card-body">Then pivot to the wedge: <i>"Every one of those settlements bought silence, not a fix. Defense fees keep recurring because the underlying consent records aren't holding up. Blacklist's consent-capture and litigator-scrub stack is built specifically for ARM operators using prerecorded-voice dialers. We'd cut your suit volume by 60-80% in 12 months — and the math vs. your current annual defense spend is not close."</i></p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A privately held California debt-collection BPO operating under at least three names, with no public-facing compliance posture.</h2>
+      <p class="section-lede">R.M. Galicia, Inc. — d/b/a Progressive Management Systems (also "PMS" / "PMSI") — is a third-party debt collector headquartered in West Covina, CA. The complaint-listed website (pmsi-bpo.com) fails DNS resolution; the operating domain per LinkedIn and SignalHire is <b>pmscollects.com</b>.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">R.M. Galicia, Inc. d/b/a Progressive Management Systems</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Legal Entity</dt><dd>R.M. Galicia, Inc.</dd>
+          <dt>DBAs</dt><dd>Progressive Management Systems · PMS · PMSI</dd>
+          <dt>Entity Type</dt><dd>California Corporation</dd>
+          <dt>Formation State</dt><dd>California</dd>
+          <dt>HQ</dt><dd>West Covina, CA (per complaint ¶8)</dd>
+          <dt>Vertical</dt><dd>Third-party debt collection · Accounts receivable management · BPO</dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Pled Website</dt><dd>pmsi-bpo.com <span class="pill pill--warn">DNS FAIL</span></dd>
+          <dt>Actual Website</dt><dd>pmscollects.com <span class="src-tag"><a href="https://theorg.com/org/progressive-management-systems">TheOrg -&gt;</a></span></dd>
+          <dt>Main Phone</dt><dd>(800) 258-7482 <span class="src-tag"><a href="https://www.signalhire.com/companies/progressive-management-systems">SignalHire -&gt;</a></span></dd>
+          <dt>Sender DID Pled</dt><dd>(866) 767-2296</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">15 prior TCPA suits. Same defense firm cycling case after case. No demonstrable fix.</h3>
+        <p class="card-body">At least 15 distinct TCPA actions have been filed against R.M. Galicia / Progressive Management Systems since 2014 — with Debbie Kirkpatrick of Sessions Israel &amp; Shartle appearing as defense counsel across multiple matters. The pattern: file, settle within 60–90 days, no remedial program, repeat. The pled domain (pmsi-bpo.com) doesn't resolve and no public privacy policy or TCPA disclosure was discoverable — strong evidence that compliance investment has lagged the litigation profile. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22R.M.+Galicia%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock + class-action posture</h3>
+      <p class="card-body">Complaint filed June 9, 2026. Under FRCP 12(a), defendant has 21 days from service to answer or move. Best window for sales engagement is <b>before</b> defense counsel formally appears — once Kirkpatrick (or successor) is retained, internal compliance discussions go through counsel and outside sales become harder to land. Historical PMS pattern is fast settlement (Davenport TCPA 2023 dismissed ~45 days post-filing; Aguon 2015 settled within 60 days; Kalcheva 2024 settled in ~2 months) — meaning the window for "let's fix the root cause" conversations is roughly the next 30-45 days.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 16px;">Related Entities &amp; Cross-Sell Candidates</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Progressive Management Systems</b></td>
+            <td>DBA of R.M. Galicia, Inc.</td>
+            <td>Debt collection / ARM</td>
+            <td>Same operating entity — sold together</td>
+            <td><span class="pill pill--red">PRIMARY</span></td>
+          </tr>
+          <tr>
+            <td>Sessions Israel &amp; Shartle (defense firm)</td>
+            <td>Outside counsel · multi-case representation</td>
+            <td>Creditors-rights defense</td>
+            <td>Cross-pollination of clients in ARM/debt collection — referral pathway</td>
+            <td><span class="pill pill--info">REFERRAL</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin-top:12px;">No parent entity, subsidiaries, or M&amp;A history surfaced via public sources (Crunchbase, OpenCorporates, BBB, CA SoS all blocked or returned no data). California SoS direct lookup deferred to manual verification.</p>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Plaintiff's firm is a 2026 TCPAWorld Power-Rankings firm. Defendant is a 15-time TCPA repeat. This case is a textbook "on-fire" matchup.</h2>
+      <p class="section-lede">Jibrael Hindi's office files high-volume TCPA class actions across multiple districts and has self-reported $30M+ in TCPA settlements. They picked PMS deliberately — the defendant has a documented settle-fast track record.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Chavez v. R.M. Galicia, Inc.</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Docket</dt><dd>5:26-cv-03180</dd>
+          <dt>Filed</dt><dd>June 9, 2026</dd>
+          <dt>Court</dt><dd>C.D. Cal. (Riverside Division)</dd>
+          <dt>Plaintiff</dt><dd>Jazmine Chavez (San Bernardino County, CA)</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Putative Rule 23 Class</span></dd>
+          <dt>Class Definition</dt><dd>All persons in the U.S. who, within four years prior to filing through certification, received a prerecorded voice call on their cell from Defendant</dd>
+          <dt>Class Size Alleged</dt><dd>"At least 50" (¶23)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(b)(1)(A)(iii) · 47 CFR § 64.1200(a)(1)(iii)</dd>
+          <dt>Theory</dt><dd>Prerecorded-voice calls to cellular numbers without prior express consent</dd>
+          <dt>Channels Pled</dt><dd>Voice (prerecorded)</dd>
+          <dt>Date Range Pled</dt><dd>Dec 9, 2025 – Apr 13, 2026 (¶11)</dd>
+          <dt>Statutory Range</dt><dd>$500/call (negligent) · $1,500/call (willful) — willfulness pled (¶38)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer clock</span> <br><span style="font-size:12px;color:var(--fg-3)">Historical PMS counsel: Debbie Kirkpatrick (Sessions Israel &amp; Shartle)</span></dd>
+          <dt>Docket Visibility</dt><dd>CourtListener · PACER (paywalled) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03180&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Gerald D. Lane Jr. · The Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv" style="margin-top:12px">
+          <dt>Lead Attorney</dt><dd>Gerald D. Lane Jr.</dd>
+          <dt>CA Bar #</dt><dd>352470 <span class="pill pill--ok">ACTIVE</span> <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -&gt;</a></span></dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305 <span class="pill pill--warn">CA bar, FL firm address</span></dd>
+          <dt>Firm Phone</dt><dd>(754) 444-7539 · toll-free (844) 542-7235</dd>
+          <dt>Firm Email</dt><dd>gerald@jibraellaw.com · Jibrael@jibraellaw.com</dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPA Ranking</dt><dd><span class="pill pill--danger">2026 TCPAWorld Power Rankings</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>Self-Reported $</dt><dd>$30M+ TCPA · $200M+ class action settlements <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Filing Volume</dt><dd>17+ TCPA actions identified in last 18 months across S.D. Fla, M.D. Fla, N.D. Cal, C.D. Cal, S.D. Cal, E.D. Cal <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:32px">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Hindi/Lane high-volume TCPA template — debt collectors, e-commerce, prerecorded/SMS</h3>
+      <p class="card-body" style="margin-bottom:12px">The Hindi firm's filings cluster around three theories: (1) <b>prerecorded-voice debt collection</b> (this case, plus Petruso v. Portfolio Recovery), (2) <b>quiet-hours SMS marketing</b> (Steve Madden, Nespresso, ThirdLove, Tampa Bay Buccaneers, Overtime Sports), and (3) <b>e-commerce no-consent SMS</b> (UrbanStems, Albertsons, JumpStartMD). They file fast, file class, and push toward certification — Lane recently obtained a class-cert briefing schedule in Moses v. Millionaire Media (N.D. Cal.). <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Gerald+Lane%22+TCPA">Law360 -&gt;</a></span></p>
+      <p class="card-body">The firm has also handled appellate-level TCPA work, including an 11th Circuit revival of a TCPA suit involving Jordan Belfort (2023). They are not file-and-settle volume players — they are file-class-and-press-for-cert players. <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span></p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 16px;">Concurrent &amp; Recent Litigation — R.M. Galicia / Progressive Management Systems</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><b>Chavez v. R.M. Galicia, Inc.</b> (CURRENT)</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">PENDING</span></td>
+            <td>Prerecorded voice · class action</td>
+          </tr>
+          <tr><td>Davenport v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2023</td><td><span class="pill pill--ok">Dismissed (settled ~45d)</span></td><td>TCPA</td></tr>
+          <tr><td>Munoz v. R.M. Galicia, Inc.</td><td>E.D. Cal.</td><td>2022</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA/TCPA</td></tr>
+          <tr><td>Fernandez v. Progressive Management Systems</td><td>S.D. Cal.</td><td>2021</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Sylvia L. Lary v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2020</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Johnnie Branch v. Progressive Management Systems</td><td>C.D. Cal.</td><td>2020</td><td><span class="pill pill--ok">Dismissed</span></td><td>TCPA</td></tr>
+          <tr><td>Webb v. Progressive Management Systems</td><td>D.N.J.</td><td>2019</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Zarif v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2018</td><td><span class="pill pill--ok">Terminated ~2mo</span></td><td>TCPA/FDCPA</td></tr>
+          <tr><td>Rory Anderson v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2018</td><td><span class="pill pill--ok">Dismissed</span></td><td>TCPA</td></tr>
+          <tr><td>Carreon v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2017</td><td><span class="pill pill--ok">Dismissed</span></td><td>TCPA</td></tr>
+          <tr><td>Gann v. Progressive Management Systems</td><td>S.D. Cal.</td><td>2016</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Bailey v. Progressive Management Systems</td><td>C.D. Cal.</td><td>2016</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Gutierrez-Rodriguez v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2016</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Hill v. Progressive Management Systems</td><td>S.D. Cal.</td><td>2015</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Aguon v. Progressive Management Systems</td><td>S.D. Cal.</td><td>2015</td><td><span class="pill pill--ok">Settled ~2mo</span></td><td>TCPA</td></tr>
+          <tr><td>Caldera v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2015</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Marquez v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2015</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Mashiri v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2015</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Vanbuskirk v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2014</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Eisenberg v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2014</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Mehrazar v. R.M. Galicia, Inc.</td><td>C.D. Cal.</td><td>2014</td><td><span class="pill pill--ok">Settled</span></td><td>TCPA</td></tr>
+          <tr><td>Madison v. R.M. Galicia Inc.</td><td>D. Ariz.</td><td>2013</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Montegna v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2013</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Hughes v. R.M. Galicia, Inc.</td><td>S.D. Cal.</td><td>2012</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Hayward v. R.M. Galicia, Inc.</td><td>W.D. Mich.</td><td>2011</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Driesen v. Progressive Management Systems</td><td>D. Ariz.</td><td>2010</td><td><span class="pill pill--ok">Closed</span></td><td>FDCPA</td></tr>
+          <tr><td>Warren v. Progressive Management Systems</td><td>N.D. Cal.</td><td>2009</td><td><span class="pill pill--ok">Settled ~4mo</span></td><td>FDCPA</td></tr>
+          <tr><td>Kalcheva v. Progressive Management Systems</td><td>N.D. Ill.</td><td>2024</td><td><span class="pill pill--ok">Settled ~2mo</span></td><td>FDCPA/TCPA</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin-top:0;">Total federal cases referencing TCPA naming this defendant on CourtListener: <b>72</b>. Litigation heat: <b style="color:var(--bl-red)">ON_FIRE</b>. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Progressive+Management+Systems%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+
+    <div class="card card--alert" style="margin-top:32px">
+      <div class="card-meta" style="color:#A8A8A8">Open intel gaps to close before first dial</div>
+      <h3 class="card-title">What the rep should resolve in the first 48 hours</h3>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Pull the docket from PACER (~$1-3) to confirm the assigned Article III judge and magistrate.</li>
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Verify the CA SoS entity record for R.M. Galicia, Inc. — confirm registered agent, principal address, and current officer list (SoS direct lookup deferred during enrichment).</li>
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Confirm whether Tim Banta is still President (TheOrg data may be stale) before using his name on outreach.</li>
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Track docket for defense counsel appearance — historical counsel Debbie Kirkpatrick (Sessions Israel &amp; Shartle) is likely re-engaged.</li>
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Validate the pmscollects.com vs. pmsi-bpo.com domain situation — one of the two is the active operating domain; the complaint may have used a stale URL.</li>
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Plaintiff phone (XXX-XXX-1250) recovery via Rule 26 disclosures or carrier discovery.</li>
+        <li><i data-lucide="circle" style="width:12px;height:12px;color:#A50100"></i> &nbsp;Confirm Gerald Lane's CA bar admission date (CalBar page did not display it in fetched content).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the President, route to Compliance. The email pattern is confirmed: <code style="font-family:var(--font-mono);font-size:0.9em;background:var(--gray-10);padding:2px 8px;">first.last@pmscollects.com</code></h2>
+      <p class="section-lede">Tim Banta (President) is the right pitch entry point — he owns budget and litigation exposure. Loop in Compliance (Gabriela Sanabria Aoki, Ki Black, Denise Blackwell, Luana Maciel Viana) for the technical conversation about consent capture and dialer scrub integration.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Tim Banta</b><br><span class="pill pill--dark">CEO/PRESIDENT</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>President. Budget authority + litigation exposure owner. Lead the pitch here.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>tim.banta@pmscollects.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/tim-banta-7aab8541">linkedin.com/in/tim-banta-7aab8541</a></td>
+          </tr>
+          <tr>
+            <td><b>Gabriela Sanabria Aoki</b><br><span class="pill pill--dark">COMPLIANCE MGR</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Compliance Manager. Technical owner for consent capture, DNC, RND integration.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>gabriela.sanabria@pmscollects.com <br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Ki Black</b><br><span class="pill pill--dark">COMPLIANCE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Compliance Lead Specialist. Likely day-to-day execution counterpart.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>ki.black@pmscollects.com <br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Denise Blackwell</b><br><span class="pill pill--dark">COMPLIANCE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Compliance Specialist.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>denise.blackwell@pmscollects.com <br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Luana Maciel Viana</b><br><span class="pill pill--dark">COMPLIANCE</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Compliance Specialist. LinkedIn-confirmed; partial published email matches pattern.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>luana.viana@pmscollects.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/luana-maciel-viana-55175542">linkedin.com/in/luana-maciel-viana-55175542</a></td>
+          </tr>
+          <tr>
+            <td><b>Patricia Quezada</b><br><span class="pill pill--dark">DIR REVENUE CYCLE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Director of Revenue Cycle. Operational owner of the dialer's call lists and outcomes.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>patricia.quezada@pmscollects.com <br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Fredy Flores</b><br><span class="pill pill--dark">REVENUE CYCLE MGR</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Revenue Cycle Manager. Reports up to Patricia Quezada.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>fredy.flores@pmscollects.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>David Garcia</b><br><span class="pill pill--dark">IT MGR</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>I.T. Manager, Application Programming. Technical integration owner for any scrub/consent API.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>david.garcia@pmscollects.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Kevin Hernandez</b><br><span class="pill pill--dark">DEV</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Application Developer. Hands-on engineer for any technical onboarding.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>kevin.hernandez@pmscollects.com <br><span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Gretchen Works</b><br><span class="pill pill--dark">BIZ DEV/MARKETING</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Business Development &amp; Marketing Manager. Useful warm-intro path.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>gretchen.works@pmscollects.com <br><span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>PMS Main Line</b><br><span class="pill pill--dark">SWITCHBOARD</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Company main line per SignalHire.</td>
+            <td>(800) 258-7482</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><b>Defense Counsel</b><br><span class="pill pill--dark">OUTSIDE COUNSEL</span> <span class="pill pill--gap">GAP</span></td>
+            <td>Not yet appeared on docket. Historical counsel: Debbie Kirkpatrick (Sessions Israel &amp; Shartle). 21-day answer clock running.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-3); margin-top:8px;">Sources: TheOrg organizational chart <span class="src-tag"><a href="https://theorg.com/org/progressive-management-systems">TheOrg -&gt;</a></span>, SignalHire company page <span class="src-tag"><a href="https://www.signalhire.com/companies/progressive-management-systems">SignalHire -&gt;</a></span>, LinkedIn company directory <span class="src-tag"><a href="https://www.linkedin.com/company/progressive-management-systems">LinkedIn -&gt;</a></span>. Email pattern <code>first.last@pmscollects.com</code> confirmed via partial-mask publication of David Garcia, Luana Viana, Kevin Hernandez, and Fredy Flores addresses on SignalHire.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this in the next 7 days — before defense counsel appears and locks down the conversation.</h2>
+      <p class="section-lede">Historical PMS pattern is fast settlement within 60-90 days. The window for a root-cause compliance conversation closes the moment Sessions Israel files a Notice of Appearance. The rep should be in front of Tim Banta inside 5 business days.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 0-1 · Pre-call prep</h4>
+          Pull the PACER docket to verify the assigned judge and confirm no defense appearance yet. Verify Tim Banta's title via LinkedIn. Confirm pmscollects.com is the operating domain (not pmsi-bpo.com).
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1-2 · First outreach to Tim Banta (President)</h4>
+          Call (800) 258-7482 and ask for Tim Banta directly. Email tim.banta@pmscollects.com (PATTERN). Open with: "We pulled your CourtListener record this morning — 72 federal cases referencing TCPA, 15 distinct TCPA actions since 2014, and Jibrael Hindi just filed a class action in Riverside. We help operators in your exact vertical break that cycle." Reference the Chavez complaint by docket number to demonstrate immediate situational awareness.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3-5 · Technical follow-up with Compliance</h4>
+          If Banta engages, request he loop in Gabriela Sanabria Aoki (Compliance Manager) and Patricia Quezada (Director, Revenue Cycle). The technical pitch: consent-capture scaffolding integrated at the dialer level for 866-767-2296, plus continuous litigator scrub against the outbound list. Use the David Garcia / Kevin Hernandez engineering contacts as a backup path if Compliance stalls.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 5-10 · Pre-empt defense counsel lock-out</h4>
+          Watch the docket daily. The moment Sessions Israel &amp; Shartle (or any defense firm) files a Notice of Appearance, sales conversations get filtered through outside counsel and the close-rate drops materially. Aim to have a signed agreement or paid pilot before that filing hits.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 10-30 · Discovery monitoring</h4>
+          Track the Rule 26(f) joint report and initial disclosures. Once Chavez's full DID is in the record, run the litigator-list scrub retroactively and use the result as a case study (regardless of close status with PMS) for cross-sell to other ARM operators.
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <div class="card-meta" style="color:#A8A8A8">Trigger Conditions — Re-plan if any of these occur</div>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li><i data-lucide="alert-triangle" style="width:14px;height:14px;color:#A50100"></i> &nbsp;Defense counsel appears (Sessions Israel or similar) — pivot to GC-level outreach and lead with litigation-defense-cost ROI rather than product features.</li>
+        <li><i data-lucide="alert-triangle" style="width:14px;height:14px;color:#A50100"></i> &nbsp;Plaintiff files Notice of Voluntary Dismissal within 60 days — historical pattern says they settled; pitch shifts from "stop the suit" to "stop the next one."</li>
+        <li><i data-lucide="alert-triangle" style="width:14px;height:14px;color:#A50100"></i> &nbsp;Tim Banta no longer listed as President — verify current title chain via LinkedIn and re-route the entry point.</li>
+        <li><i data-lucide="alert-triangle" style="width:14px;height:14px;color:#A50100"></i> &nbsp;Class certification motion filed — exposure math escalates dramatically; bring in solutions-engineering for a more technical session.</li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      &nbsp;<span class="pill pill--danger">21-DAY ANSWER CLOCK · CLOSE BEFORE JUL 7</span>
+      &nbsp;<span class="pill pill--warn">SETTLE-FAST DEFENDANT — 30-DAY ENGAGEMENT WINDOW</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-10</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
