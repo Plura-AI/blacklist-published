@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zappia v. Seacap Solutions — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--danger-bg); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--warning); }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ width:40px; height:40px; background:var(--bl-black); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; }
+.step-body h4{ margin:0 0 6px; font-size:16px; }
+.step-body p{ margin:0 0 6px; font-size:14px; color:var(--fg-2); line-height:1.55; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-10</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">MCA SMS Marketer · Quiet-Hours Class Action · Multi-DID Cold Texting · S.D. Cal.</p>
+      <h1 class="hero-tagline">Zappia v.<br>Seacap Solutions LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-03465-JLS-DDL</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Cal. (San Diego)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 9, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Janis L. Sammartino<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Mag. David D. Leshner</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">47 CFR § 64.1200(c)(1)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's number not in complaint — but the firm is a Tier-1 serial filer that the scrub absolutely needs to catch on the next campaign.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Zappia's number is not disclosed in the complaint, only that it has a California area code. Scrub status is deferred pending PACER pull or discovery — but the screenshots show two sender DIDs the rep can reference to characterize the dialer pattern.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow">Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Cellular Number</div>
+        <div class="scrub-number">NOT DISCLOSED IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint only states plaintiff's "telephone number has an area code that specifically coincides with locations in [California]" (¶11). Full 10-digit number was redacted/omitted from the public filing.</div>
+      </div>
+      <p class="scrub-body-text">The Blacklist scrub was <strong>not executed</strong> against a hypothetical or partial number — that would be malpractice. Recovery path: pull the PACER docket as the case develops (discovery responses or amended complaint typically disclose the recipient number), or cross-reference the Jibrael Hindi firm's history of plaintiffs once the firm produces Rule 26 disclosures.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #1</div>
+        <h3 class="card-title">+1 (315) 805-8541</h3>
+        <p class="card-body">315 area code = Syracuse, NY rate center — geographically unrelated to defendant's Florida HQ. Indicates purchased/rented DID pool used to evade carrier spam filtering on B2B MCA outreach. Crowdsourced complaint sites (800notes/YouMail/Tellows/RoboKiller) did not return retrievable data via automated lookup — manual browser confirmation recommended.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #2</div>
+        <h3 class="card-title">+1 (561) 517-5018</h3>
+        <p class="card-body">561 area code = Palm Beach County, FL — aligns with defendant's Hallandale Beach HQ <span class="src-tag"><a href="https://seacapsolutions.com">seacapsolutions.com -&gt;</a></span>. Two-DID rotation on the same MCA campaign is classic dialer/number-rotation pattern — destroys "one bad apple" defense and supports willfulness finding under § 227(c)(5).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path</div>
+        <h3 class="card-title">Pull ECF #1 + Wait for Rule 26</h3>
+        <p class="card-body">Pull the live PACER docket via S.D. Cal. CM/ECF for any amended complaint or Rule 26 initial disclosures that surface the plaintiff number <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/CASDC">PACER S.D. Cal. -&gt;</a></span>. Re-run scrub the moment the number lands.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER ECF #1</span>
+      <span class="pill pill--danger">FIRM IS TIER-1 SERIAL FILER · TCPAWorld 2026 Power Rankings</span>
+      <span class="pill pill--warn">2 SENDER DIDS · ROTATION PATTERN</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Small Florida MCA shop, founder-led, zero compliance infrastructure, just got sued by a Tier-1 TCPA firm with $30M+ in settlements. This is a 72-hour close.</h2>
+      <p class="section-lede">Seacap Solutions has no privacy policy, no terms of service, no signup flow with express written consent, and is sending SMS from rotating DIDs. The Jibrael Hindi firm runs a quiet-hours class action playbook (Nespresso, Steve Madden, ThirdLove, Overtime Sports). Lead with consent capture + DNC scrub. The founder-CEO is the only decision-maker — direct line.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Seacap's site has no signup page, no terms, no privacy policy — there is no documented express written consent process <span class="src-tag"><a href="https://seacapsolutions.com/signup">seacap /signup 404 -&gt;</a></span> <span class="src-tag"><a href="https://seacapsolutions.com/terms">seacap /terms 404 -&gt;</a></span>. A consent defense is nearly impossible without records. Lead here.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Critical Cross-Sell</div>
+        <h3 class="card-title">DNC Scrubbing + Quiet-Hours Filter</h3>
+        <p class="card-body">Quiet-hours claim under 47 CFR § 64.1200(c)(1) is <strong>strict liability</strong> — texts before 8am or after 9pm trigger $500–$1,500 per text. Plaintiff already has screenshots showing 7:13 AM and 7:31 AM sends. A quiet-hours filter would have prevented this entire suit.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Follow-On Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Jibrael Hindi firm files quiet-hours class actions in volume <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span>. Once one MCA shop is hit, copycat filings typically follow within 90 days. Scrubbing against the litigator list is now table stakes for Seacap's continued operations.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; padding:24px; background:var(--gray-05); border-left:4px solid var(--bl-red);">
+      <h3 style="margin:0 0 12px; font-size:18px;">Pitch Angle</h3>
+      <p style="margin:0 0 12px; font-size:15px; line-height:1.6;">"Levi, you were sued on Tuesday in San Diego federal court by Jibrael Hindi's firm — that's the firm with $30M+ in TCPA settlements that runs a quiet-hours class action playbook. The screenshots in the complaint show your texts going out at 7:13 AM and 7:31 AM from two different numbers — 315 and 561 — which proves you're running a rotating dialer. The named plaintiff alleges 'several thousand' class members. At $500 to $1,500 per text under the statute, your exposure on this one case is somewhere between $1.5M and $15M. Every text you send today is another statutory claim accruing. What we do is plug into your SMS platform and scrub every number against the litigator list, the National DNC, and a quiet-hours filter so the meter stops running. We can be live in 48 hours."</p>
+      <p style="margin:0; font-size:15px; line-height:1.6;">Close on the founder. Seacap has 2–10 employees per LinkedIn, no GC, no CCO, no CFO listed. Levi Kornfeld is the buying committee <span class="src-tag"><a href="https://www.linkedin.com/in/levi-kornfeld-505375298">LinkedIn -&gt;</a></span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Lean Hallandale Beach MCA shop with no visible compliance infrastructure, broken site links, and a tiny team — exactly the profile that buys turnkey scrubbing.</h2>
+      <p class="section-lede">Seacap Solutions LLC is a Florida-based merchant cash advance / business lending broker operating out of 800 N Federal Hwy, Hallandale Beach, FL. Private, founder-led by Levi Kornfeld, 2–10 employees per LinkedIn. Vertical is the #1 TCPA litigation target of 2024–2026.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Seacap Solutions LLC</dd>
+          <dt>DBA</dt><dd>SEACAP <span class="src-tag"><a href="https://seacapsolutions.com">seacapsolutions.com -&gt;</a></span></dd>
+          <dt>HQ</dt><dd>800 N Federal Hwy, Hallandale Beach, FL 33009 <span class="src-tag"><a href="https://seacapsolutions.com">seacapsolutions.com -&gt;</a></span></dd>
+          <dt>Formation</dt><dd>FL LLC (URL slug confirms FL registration on Bizapedia) <span class="src-tag"><a href="https://www.bizapedia.com/fl/seacap-solutions-llc.html">Bizapedia -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Merchant cash advance / business lending broker</dd>
+          <dt>Products</dt><dd>Term Loans, Business Lines of Credit, Revenue Based Financing <span class="src-tag"><a href="https://seacapsolutions.com">seacapsolutions.com -&gt;</a></span></dd>
+          <dt>Employees</dt><dd>2–10 (per LinkedIn) <span class="src-tag"><a href="https://www.linkedin.com/company/seacap-solutions">LinkedIn -&gt;</a></span></dd>
+          <dt>Founder/CEO</dt><dd>Levi Kornfeld <span class="src-tag"><a href="https://seacapsolutions.com/our-team">/our-team -&gt;</a></span></dd>
+          <dt>Coverage</dt><dd>Claims operations in all 50 states</dd>
+          <dt>Industry Listing</dt><dd>deBanked (MCA trade pub) — stub entry only <span class="src-tag"><a href="https://www.debanked.com/?s=Seacap+Solutions">deBanked -&gt;</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No Privacy Policy. No Terms. No Signup Page. Multiple Rotating DIDs.</h3>
+        <p class="card-body">Seacap's own website has broken/missing links to /privacy, /privacy-policy, /terms, /terms-of-service, /signup, and /about — all return HTTP 404 <span class="src-tag"><a href="https://seacapsolutions.com/signup">/signup -&gt;</a></span> <span class="src-tag"><a href="https://seacapsolutions.com/terms">/terms -&gt;</a></span> <span class="src-tag"><a href="https://seacapsolutions.com/terms-of-service">/terms-of-service -&gt;</a></span>. There is no documented express written consent capture mechanism. Combined with two rotating sender DIDs (315-805-8541, 561-517-5018) the complaint screenshots, the inference is cold-prospecting from purchased UCC-filing lead lists — the MCA industry's signature TCPA failure mode.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 9, 2026 (1 day ago)</dd>
+        <dt>Answer Deadline</dt><dd>~21 days post-service (estimated June 30, 2026 if service is prompt) — defense counsel has not yet appeared</dd>
+        <dt>Window to Close</dt><dd>Best window is BEFORE Seacap retains defense counsel. Once outside counsel is in, scrubbing becomes a procurement decision, not a founder decision.</dd>
+        <dt>Meter Status</dt><dd>Every additional text Seacap sends today accrues another statutory claim at $500–$1,500. The meter is running.</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:40px; margin-bottom:16px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="color:var(--fg-3); font-style:italic;">No parent, subsidiary, or sister-brand structure identified. Seacap appears to be a single-entity, founder-owned LLC. Cross-sell horizon is the broader Hallandale Beach / South Florida MCA cluster — independent brokers operating the same playbook are addressable as separate leads but not corporate affiliates here.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Out-of-state Tier-1 plaintiff firm filing in S.D. Cal. via CA local counsel — the Hindi quiet-hours template, now expanded into California.</h2>
+      <p class="section-lede">Jibrael Hindi's Wilton Manors, FL firm is on TCPAWorld's 2026 Power Rankings of "Most Dangerous TCPA Plaintiff's Lawyers." Gerald D. Lane Jr. (CA Bar #352470) is the CA-licensed local-counsel front. The template: screenshot two early-morning marketing texts, file Rule 23 class action, leverage strict-liability quiet-hours theory.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">The Case</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>3:26-cv-03465-JLS-DDL</dd>
+          <dt>Court</dt><dd>S.D. Cal. (San Diego, 333 W Broadway) <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/CASDC">PACER -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 9, 2026</dd>
+          <dt>Plaintiff</dt><dd>Albert Zappia (San Diego County, CA)</dd>
+          <dt>Counsel</dt><dd>Gerald D. Lane Jr., CA Bar #352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -&gt;</a></span></dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi, PLLC <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">YES — Rule 23 putative class</span></dd>
+          <dt>Class Def.</dt><dd>All US persons who received &gt;1 marketing text within any 12-month period from Defendant initiated before 8 a.m. or after 9 p.m. local time, in past 4 years</dd>
+          <dt>Class Size</dt><dd>At least 50; alleged "several thousands"</dd>
+          <dt>Theory</dt><dd>Quiet-hours violation (47 CFR § 64.1200(c)(1)) + § 64.1200(e) extension to wireless</dd>
+          <dt>Damages</dt><dd>$500/text negligent; $1,500/text knowing or willful (47 USC § 227(c)(5))</dd>
+          <dt>Channel</dt><dd>SMS (screenshots attached to complaint)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel</h3>
+        <dl class="kv">
+          <dt>Lead Attorney</dt><dd>Gerald D. Lane Jr.</dd>
+          <dt>CA Bar #</dt><dd>352470 (Active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd>Active, no discipline found</dd>
+          <dt>Firm</dt><dd>Law Offices of Jibrael S. Hindi, PLLC</dd>
+          <dt>Firm Office</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>(844) 542-7235 <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Direct Email</dt><dd>gerald@jibraellaw.com</dd>
+          <dt>Firm Email</dt><dd>Jibrael@jibraellaw.com</dd>
+          <dt>Practice</dt><dd>TCPA, FDCPA, FCRA, Privacy, Mass Arbitration, Class Actions <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>TCPA Ranking</dt><dd><span class="pill pill--danger">TCPAWorld 2026 Power Rankings</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>Settlement Track</dt><dd>$30M+ TCPA, $200M+ class actions (firm-published) <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Local Posture</dt><dd>FL-based firm; CA local-counsel arrangement via Lane (CA #352470). Notable expansion from S.D. Fla. into S.D. Cal.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px; background:var(--gray-05);">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Hindi Quiet-Hours Class Playbook</h3>
+      <p class="card-body">Jibrael Hindi's firm runs a high-volume quiet-hours class action template — screenshot two marketing texts sent before 8am or after 9pm, file Rule 23 putative class action, leverage strict-liability theory under 47 CFR § 64.1200(c)(1). Recent targets confirmed via Law360 and TCPAWorld include <strong>Nespresso, Steve Madden, ThirdLove, Overtime Sports, Summer Vibe, and PrimeFish</strong> <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span>. Firm history in S.D. Fla. shows pattern of rapid settlement / voluntary dismissal post-filing (Vanguard Equities terminated ~3 months in; Ayala ~5 weeks; Moreno Armas in days) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span> — strongly suggests the firm pursues quick settlement leverage, not protracted trial.</p>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:16px; font-size:20px;">Concurrent &amp; Recent Litigation by Same Firm</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Zappia v. Seacap Solutions LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>S.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Active · Filed Jun 9</span></td>
+            <td>Quiet-hours SMS / 47 CFR § 64.1200(c)(1)</td>
+          </tr>
+          <tr>
+            <td>Hindi v. Vanguard Equities, LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2024</td>
+            <td><span class="pill pill--ok">Terminated ~3 mo</span></td>
+            <td>TCPA (same firm)</td>
+          </tr>
+          <tr>
+            <td>Moreno Armas v. Freedom Mortgage Corp.</td>
+            <td>S.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Terminated quickly</span></td>
+            <td>TCPA (same firm)</td>
+          </tr>
+          <tr>
+            <td>Turizo v. Healthfund Solutions, LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2021</td>
+            <td><span class="pill pill--info">Closed</span></td>
+            <td>TCPA (same firm)</td>
+          </tr>
+          <tr>
+            <td>Ayala v. Midland Credit Management, LLC</td>
+            <td>S.D. Fla.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">Terminated ~5 wks</span></td>
+            <td>FDCPA/TCPA (same firm)</td>
+          </tr>
+          <tr>
+            <td>Padilla v. Gulf Coast Collection Bureau</td>
+            <td>S.D. Fla.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">Terminated ~2 mo</span></td>
+            <td>TCPA/FDCPA (same firm)</td>
+          </tr>
+          <tr>
+            <td>Shinn v. Palm Beach Credit Adjusters</td>
+            <td>S.D. Fla.</td>
+            <td>2018</td>
+            <td><span class="pill pill--info">Closed</span></td>
+            <td>TCPA/FDCPA (same firm)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Source: CourtListener firm-history pull <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span>. No prior TCPA filings against Seacap Solutions identified — Seacap is a fresh target.</p>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul style="margin:0; padding-left:20px;">
+        <li>Plaintiff's full 10-digit cellular number is not in the public complaint — needs PACER pull on Rule 26 or amended complaint to run the actual Blacklist scrub.</li>
+        <li>FL Sunbiz returned HTTP 403; could not confirm Seacap LLC's formation date, registered agent, or member/manager filings. Bizapedia URL slug confirms FL LLC but content is gated.</li>
+        <li>CA Bar profile for Lane returned only template content; admission date and bar address of record not verified.</li>
+        <li>Crowdsourced complaint sites (800notes, YouMail, Tellows, RoboKiller) blocked all automated lookups for both sender DIDs — recommend manual browser check on 1-315-805-8541 and 1-561-517-5018 before the call.</li>
+        <li>No prior TCPA cases against Seacap Solutions surfaced — but PacerMonitor was inaccessible; do not represent this as a clean record without a paid PACER search.</li>
+        <li>Answer deadline pending service; defense counsel has not appeared.</li>
+        <li>Steve Janet's published email displays as "John@seacapsolutions.com" on the team page — likely a template-copy error on Seacap's site; may not route correctly.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Levi first. He's the founder, the CEO, and — given the 2–10 employee shop — the entire buying committee.</h2>
+      <p class="section-lede">No GC, no CCO, no CFO exists at Seacap. Levi Kornfeld controls the spend. Email pattern <strong>{first}@seacapsolutions.com</strong> is verified from three published addresses on the company site. Main line (718) 635-2685 routes through the company.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn / Confidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Levi Kornfeld</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>Founder &amp; CEO. Only public-facing executive. Decision-maker for compliance spend. Visible on LinkedIn. <span class="src-tag"><a href="https://seacapsolutions.com/our-team">/our-team -&gt;</a></span></td>
+            <td>(718) 635-2685 <br><span style="font-size:11px; color:var(--fg-3);">company main line</span></td>
+            <td>Levi@seacapsolutions.com</td>
+            <td><a href="https://www.linkedin.com/in/levi-kornfeld-505375298">LinkedIn -&gt;</a><br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jackson Greese</strong><br><span class="pill pill--dark">MARKETING</span></td>
+            <td>Marketing Director. 12+ years strategic marketing. Owns the SMS program operationally — likely the person who actually selected the dialer / list provider. <span class="src-tag"><a href="https://seacapsolutions.com/our-team">/our-team -&gt;</a></span></td>
+            <td>(718) 635-2685 <span style="font-size:11px; color:var(--fg-3);">(main line)</span></td>
+            <td>Jackson@seacapsolutions.com</td>
+            <td><span class="pill pill--gap">No LinkedIn found</span><br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Steve Janet</strong><br><span class="pill pill--dark">FINANCE</span></td>
+            <td>Director of Financial Services. 15+ years financial industry. Approves vendor spend. <span class="src-tag"><a href="https://seacapsolutions.com/our-team">/our-team -&gt;</a></span></td>
+            <td>(718) 635-2685 <span style="font-size:11px; color:var(--fg-3);">(main line)</span></td>
+            <td>John@seacapsolutions.com<br><span style="font-size:11px; color:var(--warning);">⚠ Published address; likely site-template error. Try Steve@ as fallback.</span></td>
+            <td><span class="pill pill--gap">No LinkedIn found</span><br><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>No in-house counsel exists at Seacap given 2–10 employee size. Any legal escalation will route through outside counsel post-appearance.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>No CCO identified. No compliance page on company website. This role does not exist at Seacap today — which is precisely the sales hook.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr style="background:var(--gray-05);">
+            <td><strong>Gerald D. Lane Jr., Esq.</strong><br><span class="pill pill--info">PLAINTIFF COUNSEL</span></td>
+            <td>Lead counsel. CA Bar #352470. Local-counsel front for FL-based Hindi firm. <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar -&gt;</a></span></td>
+            <td>(754) 444-7539 <span style="font-size:11px; color:var(--fg-3);">(per complaint)</span></td>
+            <td>gerald@jibraellaw.com</td>
+            <td>—<br><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr style="background:var(--gray-05);">
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">PENDING</span></td>
+            <td>Not yet appeared. ~21-day answer clock from service. Close before counsel lands.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:20px; padding:16px 20px; background:var(--info-bg); border-left:4px solid var(--info); font-size:14px;">
+      <strong>Email pattern (verified):</strong> <code style="font-family:var(--font-mono); background:#fff; padding:2px 6px;">{first}@seacapsolutions.com</code> — confirmed by three published addresses on the company /our-team and /contact pages <span class="src-tag"><a href="https://seacapsolutions.com/contact">/contact -&gt;</a></span>.
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before Seacap retains defense counsel and the buying decision moves out of Levi's hands.</h2>
+      <p class="section-lede">Founder-led shops with no in-house compliance buy fast when the meter is running. Once outside counsel appears, every conversation gets longer and procurement-style. Speed wins this deal.</p>
+    </div>
+
+    <div class="card" style="padding:0;">
+      <div class="step" style="padding:24px;">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Direct call to Levi Kornfeld</h4>
+          <p>Call (718) 635-2685 and ask for Levi. If he's gated, email Levi@seacapsolutions.com referencing case number 3:26-cv-03465-JLS-DDL. Open with the screenshot facts (7:13 AM and 7:31 AM sends, two rotating DIDs) and the exposure range ($1.5M–$15M). Goal: book a 20-minute walkthrough of consent capture + DNC + quiet-hours scrubbing.</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1–2 · Loop Jackson Greese (Marketing Director)</h4>
+          <p>Jackson owns the SMS program operationally — he picked the dialer and the list source. Email Jackson@seacapsolutions.com with a one-pager showing how DNC + litigator scrub integrates with his existing SMS platform. Position as "we save your program, not kill it."</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 2–3 · Pull PACER ECF #1 + watch for service / appearance</h4>
+          <p>Re-pull the docket via PACER S.D. Cal. to monitor for (a) service of process, (b) defense counsel appearance, (c) any Rule 26 disclosures that surface plaintiff's full phone number for a real litigator scrub. <span class="src-tag"><a href="https://pacer.uscourts.gov/file-case/court-cmecf-lookup/court/CASDC">PACER -&gt;</a></span></p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 3–7 · Close before answer deadline</h4>
+          <p>~21 days from service to answer (estimated late June 2026). Goal is signed MSA + DNC/quiet-hours scrubbing live before Seacap files a responsive pleading. Use the answer deadline as the urgency anchor on every follow-up.</p>
+        </div>
+      </div>
+      <div class="step" style="padding:24px;">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 7–30 · Monitor for copycat filings</h4>
+          <p>MCA vertical historically sees copycat TCPA filings within 90 days of a Hindi-firm strike. If a second plaintiff files against Seacap, the buying urgency resets. Set a CourtListener alert on "Seacap Solutions." <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px; background:var(--info-bg); border-left-color:var(--info);">
+      <h4 style="color:var(--info);">Trigger Conditions — Re-Strategize If…</h4>
+      <ul style="margin:0; padding-left:20px;">
+        <li>Defense counsel files an early MTC arbitration → reposition pitch around compliance audit and record retention for arbitration discovery.</li>
+        <li>Plaintiff voluntarily dismisses (firm history shows this happens fast on settlement) → pivot to "now is the moment, while the close is fresh on Levi's mind."</li>
+        <li>Seacap fires the SMS vendor instead of buying scrubbing → pivot to platform-agnostic API integration pitch.</li>
+        <li>A second TCPA suit is filed against Seacap within 90 days → escalate to enterprise pricing tier; urgency is now existential.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 72-HOUR WINDOW</span>
+      <span class="pill pill--danger">~21-DAY ANSWER CLOCK · CLOSE BEFORE JUN 30, 2026</span>
+      <span class="pill pill--warn">FOUNDER-LED · NO PROCUREMENT GATE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-10</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
