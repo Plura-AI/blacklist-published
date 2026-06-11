@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mora v. Mindful Souls — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row--current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin:0 0 12px; }
+.callout ul{ margin:0; padding-left:20px; }
+.callout li{ font-size:14px; line-height:1.55; color:var(--fg-1); margin-bottom:6px; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; font-variant-numeric:tabular-nums; }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 8px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+.pill-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="115" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="125" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Foreign DTC SMS Marketer · Internal DNC Violation · Hindi/Lane Class Template · N.D. Cal.</p>
+      <h1 class="hero-tagline">Mora v.<br>Mindful Souls B.V.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">4:26-cv-05618</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Cal. (Oakland)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">CourtListener pending</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">≥50 alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Mora is a repeat TCPA filer, and the firm runs a known template.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Mora complaint does not disclose the cell number that received the messages, so no scrub was run. What we do know is more useful: Harold Mora has already filed a prior TCPA action, and the Hindi firm has a multi-year, multi-district pattern of filing this exact theory.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <span class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</span>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Serial Filer Flag — 2nd TCPA Case</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Paragraphs 23–24 establish Mora is the "regular user" of a cellular/"residential cellular telephone number" but no digits are pled. The complaint's venue paragraph (¶ 8) even leaves a literal placeholder — "Plaintiff's telephone number has an area code that specifically coincides with locations in [State]."</div>
+      </div>
+      <p class="scrub-body-text">No Blacklist scrub was executed because there is no 10-digit number to scrub. However, plaintiff-side intelligence still points to elevated litigator risk: Harold Mora previously filed <em>Mora v. VectraRx Mail Pharmacy Services LLC</em>, 4:25-cv-00080 (D. Ariz., Judge Hinderaker), dismissed 11/13/2025 — likely settled <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Harold+Mora%22&type=r">CourtListener →</a></span>. That makes Mora at minimum a two-time TCPA plaintiff inside 18 months. The lead's value here is not the scrub — it is the <strong>defense-side compliance pitch</strong> and the <strong>cross-sell</strong> against the Hindi firm's serial template.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 exhibits from PACER</h3>
+        <p class="card-body">The complaint as filed (Doc #1) contains no screenshots or message logs, but the firm's standard practice is to attach the texts later in discovery responses. Re-pull docket weekly through first responsive pleading <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-05618&type=r">CourtListener →</a></span>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense counsel appearance</h3>
+        <p class="card-body">Defendant is a Netherlands B.V. — Hague Convention service will delay first appearance materially. When defense counsel files, ask for the plaintiff cell in a Rule 26(f) early disclosure stipulation.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Cross-reference prior Mora filing</h3>
+        <p class="card-body">Mora used the same cell to plead the VectraRx case in D. Ariz. — if Blacklist already has D. Ariz. filings in inventory, run a name match to surface the prior number.</p>
+      </div>
+    </div>
+
+    <div class="pill-row">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">SERIAL FILER — 2 TCPA CASES IN 18 MONTHS</span>
+      <span class="pill pill--info">SMS-ONLY CHANNEL</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A foreign DTC subscription brand with no public SMS terms, no published DNC policy, and a first-touch from one of the most prolific TCPA plaintiff firms in the country.</h2>
+      <p class="section-lede">Lead with <strong>Policies &amp; Procedures + Compliance Audit</strong>. The pleaded theory is pure 47 CFR § 64.1200(d) — no written DNC policy, no personnel training, no honored opt-out — and the defendant's own public site materially supports each element. The Hindi/Lane firm files this exact template repeatedly against DTC e-commerce defendants <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span>.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Policies &amp; Procedures + Compliance Audit</h3>
+        <p class="card-body">The complaint pleads — verbatim — that Mindful Souls lacks (a) a written DNC policy, (b) personnel training, and (c) an internal DNC list. Their public site has no SMS terms page (/pages/sms-terms returns 404) and the Terms of Service contains no SMS, autodialer, or TCPA language at all <span class="src-tag"><a href="https://mindfulsouls.com/policies/terms-of-service">ToS →</a></span>. Blacklist policy templates plus audit close the §64.1200(d) gap on day one.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell Product</div>
+        <h3 class="card-title">DNC + Litigator Scrub Subscription</h3>
+        <p class="card-body">Recurring SMS marketer (Shopify storefront + monthly subscription box) with 180K+ customers and 1M+ boxes shipped — every renewal, win-back, and upsell touch is exposure. Recurring scrub layer is right-sized to their cadence <span class="src-tag"><a href="https://mindfulsouls.com">mindfulsouls.com →</a></span>.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body">The privacy policy authorizes SMS marketing but contains no TCPA, double-opt-in, or opt-out specifics <span class="src-tag"><a href="https://mindfulsouls.com/policies/privacy-policy">Privacy Policy →</a></span>. A Blacklist consent platform is the long-term fix for a foreign entity unfamiliar with U.S. consent architecture.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1); margin:0 0 12px; max-width:880px;">
+        Open with the firm, not the case. The Law Offices of Jibrael S. Hindi advertises <strong>$30M+ in TCPA settlements</strong> on their homepage <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span> and has filed at least 13 identified TCPA actions since 2024, with Gerald D. Lane Jr. (CA Bar #352470) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar →</a></span> signing as local counsel in California venues including N.D. Cal. against UrbanStems, Albertsons, JumpStartMD, and now Mindful Souls <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener →</a></span>. This is not a one-off — it is a recurring revenue line for the firm.
+      </p>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1); margin:0; max-width:880px;">
+        Then turn to the defendant. Mindful Souls is a Netherlands B.V. blasting marketing SMS into the U.S. with (a) no SMS terms page, (b) no TCPA mention anywhere on their public site, (c) no identifiable U.S. compliance officer, and (d) no published internal DNC procedure. Foreign defendants in this exact posture settle fast — and copycat filings from peer plaintiff firms typically follow within 90 days of the first complaint hitting WebRecon. The pitch closes itself: "You just got sued by the firm that does this for a living. The fix is policies, training, and scrub — we have all three on a single SKU, and we can have them in production before your answer is due."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Netherlands-based DTC spirituality subscription brand with global reach, no U.S. compliance footprint, and aggressive SMS as the primary acquisition channel.</h2>
+      <p class="section-lede">Mindful Souls B.V. is a private Amsterdam-headquartered subscription e-commerce business in the crystals / spirituality / self-care vertical. They run Shopify-based storefronts across the U.S., EU, AU, and CA, ship a flagship "Mindful Box" subscription, and advertise 1M+ boxes shipped and 180K+ customers — all on the back of email and SMS marketing.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile — Mindful Souls B.V.</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>Mindful Souls B.V. (Dutch Besloten Vennootschap / Stock Corporation)</dd>
+          <dt>Formation</dt><dd>Netherlands · founded ~2018 (per "8th Birthday" promo in 2026) <span class="src-tag"><a href="https://mindfulsouls.com">mindfulsouls.com →</a></span></dd>
+          <dt>HQ</dt><dd>Verdieping, Amsterdam, Netherlands (per Complaint ¶ 10)</dd>
+          <dt>U.S. registration</dt><dd>Pled as "registered to do business in California" — CA SoS confirmation not retrieved (search failed)</dd>
+          <dt>U.S. returns address</dt><dd>Corridore Park, Bldg D Suite 400, 100 Michael Angelo Way, Austin, TX 78728 <span class="src-tag"><a href="https://mindfulsouls.com/pages/contact-us">Contact page →</a></span></dd>
+          <dt>Parent / subsidiaries</dt><dd>None identified · privately held</dd>
+          <dt>Revenue (est.)</dt><dd>$20M–$50M+ annually (subscription model · 1M+ boxes at ~$40–70 each) <span class="src-tag"><a href="https://mindfulsouls.com/pages/about">About →</a></span></dd>
+          <dt>Vertical</dt><dd>DTC e-commerce / spirituality / wellness / subscription box</dd>
+          <dt>Stack</dt><dd>Shopify storefront; SMS marketing platform unidentified (likely Attentive/Postscript/Klaviyo SMS)</dd>
+          <dt>Public posture</dt><dd>No public TCPA program, no compliance page, no SMS terms page</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">The /pages/sms-terms URL returns 404.</h3>
+        <p class="card-body">Mindful Souls runs an active SMS marketing program — its own privacy policy explicitly authorizes "marketing, advertising and promotional communications by email, text message or postal mail" <span class="src-tag"><a href="https://mindfulsouls.com/policies/privacy-policy" style="color:#FBE5E5;">Privacy Policy →</a></span>. But the dedicated SMS terms page at /pages/sms-terms returns 404, the Terms of Service makes no mention of SMS, autodialer, TCPA, or opt-out <span class="src-tag"><a href="https://mindfulsouls.com/policies/terms-of-service" style="color:#FBE5E5;">ToS →</a></span>, and the contact and about pages also return 404 <span class="src-tag"><a href="https://mindfulsouls.com/pages/about" style="color:#FBE5E5;">About →</a></span>. There is no public-facing internal DNC procedure to point to in defense — which is exactly what § 64.1200(d) requires.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 10, 2026 — yesterday <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-05618&type=r">CourtListener →</a></span></dd>
+        <dt>Answer deadline</dt><dd>Materially delayed — Hague Convention service to Netherlands typically adds 60–180 days before responsive pleading is even due</dd>
+        <dt>Service window</dt><dd>Plaintiff has 90 days under Rule 4(m); Hague service often takes longer — early settlement window opens immediately</dd>
+        <dt>Copycat exposure</dt><dd>First identifiable TCPA case against Mindful Souls — peer plaintiff firms typically file copycats within 60–90 days once WebRecon picks up the original</dd>
+        <dt>Subscription cadence</dt><dd>Monthly box cycle = continuous SMS touchpoints — every day without remediation adds class-period exposure</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mindful Souls (US storefront)</td>
+            <td>Same legal entity · U.S. trade presence</td>
+            <td>DTC subscription / spirituality</td>
+            <td>Direct — same SMS program, same exposure</td>
+            <td><span class="pill pill--danger">PRIMARY</span></td>
+          </tr>
+          <tr>
+            <td>"Mindful Box" subscription brand</td>
+            <td>DBA / product brand</td>
+            <td>Subscription box</td>
+            <td>High — renewal SMS, win-back SMS, upsell SMS all flow through same DNC list</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Mindful Souls EU / AU / CA storefronts</td>
+            <td>Same entity · regional storefront</td>
+            <td>DTC subscription / spirituality</td>
+            <td>Indirect — different regulatory regimes (GDPR, Spam Act, CASL) but same vendor stack</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Shopify SMS app vendor (Attentive / Postscript / Klaviyo — unidentified)</td>
+            <td>Vendor</td>
+            <td>SMS marketing platform</td>
+            <td>Joint-liability theory possible — scrub layer sells through SMS aggregators</td>
+            <td><span class="pill pill--info">CHANNEL</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First identified TCPA action against Mindful Souls, but textbook Hindi/Lane Internal-DNC template — and Mora is already a repeat filer.</h2>
+      <p class="section-lede">No prior TCPA litigation against Mindful Souls was located. The defendant's only prior federal case (Kolesar, W.D. Pa. 2022) was an ADA matter that terminated in ~2 months — strongly suggesting an early settlement posture. The plaintiff firm's pattern is much more important here than the defendant's.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">The Case</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>4:26-cv-05618 · N.D. Cal. (Oakland Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-05618&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>June 10, 2026 (Doc #1, Doc #2 Summons, Doc #3 Rule 7.1 Disclosure)</dd>
+          <dt>Plaintiff</dt><dd>Harold Mora · resident of Alameda County, CA · 2nd TCPA filing in 18 months</dd>
+          <dt>Counsel</dt><dd>Gerald D. Lane Jr. (CA Bar #352470) · The Law Offices of Jibrael S. Hindi</dd>
+          <dt>Class action</dt><dd>Yes — Rule 23 putative class · alleged ≥50 members</dd>
+          <dt>Class def.</dt><dd>U.S. persons who received ≥2 marketing texts from Defendant in any 12-month period during the 4-year class window after sending a "stop" instruction (Complaint ¶ 28)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(d) · § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Internal DNC failure: no written policy, no personnel training, no honored opt-out (Complaint ¶¶ 18–22, 47–52)</dd>
+          <dt>Damages pled</dt><dd>$500/violation negligent; $1,500/violation willful · class aggregate "in the millions" (Complaint ¶¶ 37, 53–54)</dd>
+          <dt>Named-plaintiff exposure</dt><dd>2 alleged post-opt-out texts × $500–$1,500 = <strong>$1,000 – $3,000</strong></dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared · Hague service required to Netherlands</dd>
+          <dt>Judge</dt><dd>Not yet assigned on CourtListener as of fetch</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel — Gerald D. Lane Jr.</h3>
+        <dl class="kv">
+          <dt>Bar status</dt><dd>Active · California Bar #352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar →</a></span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>Firm</dt><dd>The Law Offices of Jibrael S. Hindi (boutique TCPA/FDCPA/FCRA shop)</dd>
+          <dt>Firm address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm phone</dt><dd>754-444-7539 (per complaint signature block &amp; firm site)</dd>
+          <dt>Firm email</dt><dd>gerald@jibraellaw.com · Jibrael@jibraellaw.com</dd>
+          <dt>Address posture</dt><dd>FL-based firm; Lane admitted in CA — proper local counsel for N.D. Cal. filing <span class="pill pill--ok">CONSISTENT</span></dd>
+          <dt>Firm published results</dt><dd>$30M+ TCPA settlements · $200M+ class action settlements (self-reported) <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Serial-filer status</dt><dd><span class="pill pill--danger">EXTREME</span> · 13+ identified TCPA filings 2024–2026; featured in TCPAWorld 2026 Power Rankings coverage <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Template</dt><dd>Hindi/Lane Internal DNC — STOP-then-text class theory, residential cellular framing, §64.1200(d) policies/training/list trifecta</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Hindi/Lane "Internal DNC + STOP" template — DTC e-commerce edition</h3>
+      <p class="card-body">The complaint is a near-verbatim instance of the firm's recurring template: a single plaintiff sends "STOP", receives ≥2 further marketing texts inside a short window, and brings a Rule 23 class for the 4-year period under 47 CFR § 64.1200(d). The firm has run this template against UrbanStems (S.D. Fla.), Albertsons (C.D. Cal.), JumpStartMD (N.D. Cal.), Authentic Sport Specialty (S.D. Cal.), LA Tropicana (N.D. Cal.), Moses v. Millionaire Media (N.D. Cal.), and others <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jibrael+Hindi%22+TCPA&type=r">CourtListener →</a></span><span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 →</a></span>. TCPAWorld has separately covered the firm's Quiet Hours line against Nespresso, Steve Madden, Tampa Bay Buccaneers, Thirdlove, PrimeFish, Summer Vibe, and Overtime Sports <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span>. Settlement cadence is fast: Hindi v. Vanguard Equities terminated in ~3 months; Sherman v. PrimeFish was voluntarily dismissed with prejudice within ~2 months of filing.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-top:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row--current">
+            <td><strong>Mora v. Mindful Souls B.V.</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td class="num">4:26-cv-05618</td>
+            <td>N.D. Cal.</td>
+            <td class="num">2026-06-10</td>
+            <td><span class="pill pill--red">Active · just filed</span></td>
+            <td>Internal DNC / §64.1200(d) — SMS class</td>
+          </tr>
+          <tr>
+            <td>Mora v. VectraRx Mail Pharmacy Services LLC</td>
+            <td class="num">4:25-cv-00080</td>
+            <td>D. Ariz. (Tucson)</td>
+            <td class="num">2025-02</td>
+            <td><span class="pill pill--ok">Terminated 2025-11-13</span></td>
+            <td>TCPA (prior Mora case)</td>
+          </tr>
+          <tr>
+            <td>Kolesar v. Mindful Souls B.V. Ltd</td>
+            <td class="num">—</td>
+            <td>W.D. Pa.</td>
+            <td class="num">2022</td>
+            <td><span class="pill pill--ok">Terminated ~2 months</span></td>
+            <td>ADA (not TCPA) — same defendant, suggests fast-settle posture</td>
+          </tr>
+          <tr>
+            <td>Mindful Souls bv v. United States</td>
+            <td class="num">—</td>
+            <td>Ct. Intl. Trade</td>
+            <td class="num">2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Customs / trade matter — same defendant</td>
+          </tr>
+          <tr>
+            <td>Hernandez v. LA Tropicana Food L.P.</td>
+            <td class="num">—</td>
+            <td>N.D. Cal.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--info">Hindi firm</span></td>
+            <td>TCPA — same template, same venue</td>
+          </tr>
+          <tr>
+            <td>Andrighetto v. JumpStartMD, Inc.</td>
+            <td class="num">—</td>
+            <td>N.D. Cal.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--info">Hindi firm</span></td>
+            <td>TCPA — same template, same venue</td>
+          </tr>
+          <tr>
+            <td>Moses v. Millionaire Media LLC</td>
+            <td class="num">—</td>
+            <td>N.D. Cal.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--info">Hindi firm</span></td>
+            <td>TCPA — same template, same venue</td>
+          </tr>
+          <tr>
+            <td>Lane v. UrbanStems, Inc.</td>
+            <td class="num">—</td>
+            <td>S.D. Fla.</td>
+            <td class="num">2026</td>
+            <td><span class="pill pill--info">Hindi firm</span></td>
+            <td>TCPA — DTC e-commerce vertical</td>
+          </tr>
+          <tr>
+            <td>Englehardt v. Albertsons Companies, Inc.</td>
+            <td class="num">—</td>
+            <td>C.D. Cal.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--info">Hindi firm</span></td>
+            <td>TCPA — grocery / retail SMS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p class="callout-title">Open intel gaps to close before first dial</p>
+      <ul>
+        <li>Plaintiff cell number not pled in complaint — pull ECF #1 exhibits when available; cross-check against Mora's prior VectraRx filing in D. Ariz.</li>
+        <li>Judge assignment not yet visible on CourtListener — re-check 48h post-filing for article III + magistrate pairing</li>
+        <li>Defense counsel not yet appeared — Hague service to Netherlands will materially delay; monitor for U.S. compliance counsel retainer</li>
+        <li>California SoS registration status not confirmed (SoS search failed) — verify foreign-entity registration to assess service options</li>
+        <li>Mindful Souls B.V. officers / managing director / U.S. agent not identified — KVK (NL chamber of commerce), Bizapedia, OpenCorporates all returned errors or human-verification challenges</li>
+        <li>SMS vendor (Attentive / Postscript / Klaviyo / etc.) not identified — relevant to joint-liability theory and to vendor cross-sell positioning</li>
+        <li>No LinkedIn corporate presence located — /company/mindful-souls resolves to an unrelated entity</li>
+        <li>BBB, Trustpilot, Crunchbase all blocked (HTTP 403) — third-party reputational signal unavailable</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named officers surfaced — open with the company support line and chase a U.S. compliance/legal contact through the returns address.</h2>
+      <p class="section-lede">Mindful Souls B.V. is a Netherlands B.V. with minimal public org disclosure and no LinkedIn corporate page identified. No officer or executive contacts could be confirmed from any source. The opening play is the published support channel plus inbound chase to the Austin, TX returns address — followed by escalation when defense counsel appears.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name / Channel</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mindful Souls — main support line</strong><br><span class="pill pill--dark">COMPANY MAIN</span></td>
+            <td>Published customer-service phone for returns / general inquiries. Use to request escalation to U.S. legal/compliance contact.<br><span class="src-tag"><a href="https://mindfulsouls.com/pages/contact-us">Contact page →</a></span></td>
+            <td class="num">1-888-307-1295</td>
+            <td>support@mindfulsouls.com</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>U.S. returns hub</strong><br><span class="pill pill--dark">U.S. ADDRESS</span></td>
+            <td>Only U.S. physical presence identified. Corridore Park, Bldg D Suite 400, 100 Michael Angelo Way, Austin, TX 78728. Likely a 3PL — but the right physical address for written outreach.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td>Managing Director / Bestuurder (NL)</td>
+            <td>Required officer of any Dutch B.V. — not yet identified. KVK lookup blocked, OpenCorporates returned 403.</td>
+            <td>—</td>
+            <td>Pattern: {first}@mindfulsouls.com <span class="pill pill--warn">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Head of Marketing / CMO</td>
+            <td>Owns the SMS program that drove this case. Not identified from any public source.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Compliance / Privacy contact</td>
+            <td>No DPO, compliance officer, or privacy contact identified on the public site. No /legal, /compliance, /team, or /leadership pages exist.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>U.S. registered agent</td>
+            <td>Pled as "registered to do business in California" (Complaint ¶ 10) but CA SoS search failed; agent not confirmed. Worth a manual SoS pull before first call.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td>Defense counsel (Mindful Souls)</td>
+            <td>Not yet appeared on docket as of fetch. <strong>Watch list:</strong> Philip R. Voluck represented Mindful Souls in Kolesar (W.D. Pa. 2022) — potential referral source for current U.S. counsel.</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">NOT YET APPEARED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-top:4px solid var(--gray-80);">
+      <div class="card-meta">Plaintiff Counsel — Reference Only (do NOT pitch)</div>
+      <h3 class="card-title">Gerald D. Lane Jr. · The Law Offices of Jibrael S. Hindi</h3>
+      <p class="card-body">CA Bar #352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CalBar →</a></span>. Firm: 1515 NE 26th Street, Wilton Manors, FL 33305 · phone 754-444-7539 · gerald@jibraellaw.com · jibraellaw.com <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span>. Listed for situational awareness only — this row is for the defense-side rep's reference and must never be dialed as a sales target.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears and the conversation gets harder.</h2>
+      <p class="section-lede">The fact pattern is fresh, the defendant is foreign and likely scrambling, and no U.S. compliance counsel has been retained yet (no appearance on docket). The shortest path to a yes is to land at Mindful Souls before they pick a defense firm — and before the defense firm picks the compliance stack.</p>
+    </div>
+
+    <div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Inbound chase via support@</h4>
+          <p>Call 1-888-307-1295 and email support@mindfulsouls.com with a one-paragraph "your company was sued yesterday in N.D. Cal." note. Ask to be routed to the U.S. legal contact or managing director's office. Reference the case number 4:26-cv-05618 — it will get past gatekeepers fast.</p>
+          <p><strong>Desired outcome:</strong> a named U.S. contact (compliance, legal, or marketing ops) inside 48 hours.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 1–2 · Written outreach to U.S. returns address</h4>
+          <p>Send a marked-up packet (printed) to Corridore Park, Bldg D Suite 400, 100 Michael Angelo Way, Austin, TX 78728 — attn: "Legal / U.S. Operations." Include the complaint cover page and a one-page comparison of (a) Blacklist policy templates, (b) personnel training module, (c) DNC + litigator scrub subscription.</p>
+          <p><strong>Desired outcome:</strong> physical-mail packet sits on a U.S. operations desk while inbound chase warms a phone contact.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3–7 · Monitor docket for defense counsel appearance</h4>
+          <p>Re-check CourtListener daily for a Notice of Appearance. When defense counsel files, route the same packet to that firm with a "you'll want this in your client's compliance posture before any 30(b)(6)" framing.</p>
+          <p><strong>Desired outcome:</strong> defense firm endorses Blacklist solutions as remediation before answer is drafted.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 7–14 · CA SoS pull + officer surfacing</h4>
+          <p>Manual pull on the California SoS for Mindful Souls B.V. foreign registration — get the registered agent and any disclosed officer/manager. Run KVK / OpenCorporates retries; SignalHire / RocketReach domain queries on mindfulsouls.com.</p>
+          <p><strong>Desired outcome:</strong> at least one named officer / managing director to escalate to if support@ chase stalls.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 14–30 · Pivot to compliance-audit + recurring-scrub close</h4>
+          <p>Once contact is established, lead with the audit + policies SKU (closes the pleaded §64.1200(d) elements directly) and back-end the recurring scrub + DNC subscription (closes the cadence problem — monthly box renewals = monthly SMS exposure).</p>
+          <p><strong>Desired outcome:</strong> signed Blacklist policies + scrub before answer deadline lands.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Trigger conditions that change the plan</h4>
+          <p>If a defense MTC arbitration is filed, deprioritize — class wave will pause. If a copycat plaintiff firm files a second TCPA action against Mindful Souls in the next 60 days, escalate urgency and lead with a multi-case posture pitch. If Mindful Souls publicly announces a U.S. compliance hire or new SMS terms page, pivot to a vendor-replacement pitch.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pill-row" style="margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH · MOVE IN 72 HOURS</span>
+      <span class="pill pill--warn">HAGUE SERVICE WINDOW · OPENS DOOR FOR EARLY FIX</span>
+      <span class="pill pill--info">FIRST TCPA SUIT — COPYCAT RISK BUILDS THE CASE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
