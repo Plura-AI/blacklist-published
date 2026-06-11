@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waterman v. The General — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Non-Standard Auto Insurer · SMS Marketing · Federal DNC Class Action · Post-Acquisition Compliance Gap</p>
+      <h1 class="hero-tagline">Waterman v.<br>The General <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">(Sentry Insurance subsidiary)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03721</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Tex. (San Antonio)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 DNC class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Christopher E. Berman<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Shamis &amp; Gentile, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred pending PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint pleads only the last four digits ("1294 Number"); no scrub can be run on a partial. Recovery path below.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's recipient number</div>
+        <div class="scrub-number">(XXX) XXX-1294</div>
+        <div class="scrub-number-sub">Complaint ¶ 10 identifies only the last four digits ("1294 Number"). The full 10-digit number is not pled.</div>
+      </div>
+      <p class="scrub-body-text">Lauren Waterman is described as a Bexar County, TX resident and sole subscriber of the "1294 Number." Because the complaint masks all but the last four, the Blacklist litigator-list scrub cannot be executed yet. Plaintiff also does not appear in CourtListener as a prior TCPA filer — she is <strong>not</strong> a known serial plaintiff <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03721&type=r">CourtListener →</a></span>, which actually strengthens the pitch (her firm is the serial actor, not her).</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">(706) 490-6889</h3>
+        <p class="card-body">Georgia geographic long-code used to text a Texas consumer on behalf of a Tennessee-headquartered insurer. Cross-state geographic DID is consistent with a messaging-platform / dialer pool rather than a local business line — a classic affiliate/lead-gen marketing pattern. External consumer-complaint sources (800notes, YouMail, Tellows, RoboKiller) were unreachable during enrichment, so sender identification rests on the complaint screenshots and the embedded <code>geninsur.com</code> shortener.</p>
+        <div style="margin-top:12px;"><span class="pill pill--warn">CROSS-STATE LONG CODE</span> <span class="pill pill--info">GENINSUR.COM SHORTENER</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Embedded Domain</div>
+        <h3 class="card-title">geninsur.com/K0rzQeE</h3>
+        <p class="card-body">Branded short-URL distinct from the customer-facing <code>thegeneral.com</code>. Suggests a marketing-funnel domain owned/operated by The General or an affiliated lead-gen partner. Defendant's About page confirms GAIS sells through "affiliated and unaffiliated partners" <span class="src-tag"><a href="https://www.thegeneral.com/about">thegeneral.com/about →</a></span>, which broadens the vendor-scrub conversation.</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">The unredacted complaint exhibit may contain the full 10-digit number. ~$1.20 fetch. Highest-leverage move before first dial.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense counsel</h3>
+        <p class="card-body">Once defense appears, the full number is typically exchanged in early Rule 26(f) disclosures. No defense counsel has appeared yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03721&type=r">CourtListener →</a></span>.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery / Rule 34 request</h3>
+        <p class="card-body">If retained, defense counsel can serve interrogatories #1–3 asking for plaintiff's full subscriber number, carrier, and DNC registration screenshot.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--ok">PLAINTIFF NOT A SERIAL FILER</span>
+      <span class="pill pill--danger">FIRM IS HIGH-VOLUME (SHAMIS &amp; GENTILE)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Post-acquisition non-standard auto insurer with an SMS funnel, no public privacy policy, and a "tens of thousands" DNC class on the docket.</h2>
+      <p class="section-lede">The General was acquired by Sentry Insurance for $1.7B on Jan 1, 2025 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span>. They are mid-integration, the lead-gen / SMS funnel running through <code>geninsur.com</code> + (706) 490-6889 is still live, and they just got sued for a Federal DNC class action by a known volume filer. Lead with DNC scrubbing; close the round with consent capture and a vendor/affiliate audit.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <p class="card-body">Plaintiff's number was on the National DNC registry since Oct 10, 2012 (Complaint ¶ 26). 10 texts in 4 days from the same DID is a textbook 47 CFR § 64.1200(c) violation. A real-time federal DNC scrub plus an internal-DNC list across The General's affiliate / lead-gen partners would have stopped this campaign cold.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Round Out</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body">Defendant's own quote page brags it doesn't ask for phone numbers <span class="src-tag"><a href="https://www.thegeneral.com/quote">thegeneral.com/quote →</a></span> — directly undermining any "prior express written consent" defense. A consent-capture / record-retention layer with timestamped opt-ins is the only durable fix.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h3 class="card-title">Compliance Audit / Vendor Scrub</h3>
+        <p class="card-body">The General writes through "affiliated and unaffiliated partners" <span class="src-tag"><a href="https://www.thegeneral.com/about">thegeneral.com/about →</a></span> and Texas policies are underwritten by Dairyland County Mutual. A vendor-scrub program limits parent (Sentry) exposure from third-party lead-gen failures.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent">
+      <div class="card-meta">Pitch Angle</div>
+      <h3 class="card-title">"You just got sued for the exact thing we prevent — and your new owner is still integrating."</h3>
+      <p class="card-body" style="margin-bottom:12px;">Open with the post-acquisition angle. Sentry Insurance closed on The General Jan 1, 2025; integration timelines for compliance plumbing typically run 18–36 months. Eighteen months in, the marketing stack at GAIS is still running through Nashville on legacy infrastructure (706 long-code, geninsur.com shortener) while plaintiffs' firms have already noticed. Shamis &amp; Gentile filed Waterman on June 10, 2026 — that's the second TCPA case this firm has aimed at The General's corporate family (Bedient v. Permanent General, M.D. Fla. 2022, was filed by Andrew Shamis) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span>.</p>
+      <p class="card-body">The wedge: "Your last Federal DNC suit (Boger, D. Ariz. 2019) was beaten on personal jurisdiction. This one is in W.D. Tex. with a TX plaintiff and TX-received texts — PJ defense is gone. Johnson v. The General (W.D. Tex. 2025) terminated in 10 weeks <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22The+General+Automobile+Insurance%22+TCPA&type=r">CourtListener →</a></span> — that's the settlement template you're walking into. Blacklist DNC + Litigator Scrub stops the next Waterman before it files. Sentry can underwrite this for the whole portfolio, not just GAIS."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Acquisition Context</div>
+      <h2 class="section-title">A 1963-founded non-standard auto insurer, 1M+ drivers, 1,300 employees — bought by Sentry Insurance 18 months ago.</h2>
+      <p class="section-lede">The General specializes in high-risk / subprime auto coverage — the exact consumer segment that drives outbound SMS marketing volume. Recently changed hands; compliance integration is still in flight.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">The General Automobile Insurance Services, Inc.</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Legal Name</dt><dd>The General Automobile Insurance Services, Inc. (GAIS)</dd>
+          <dt>DBAs</dt><dd>The General; Permanent General Agency (historical) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span></dd>
+          <dt>Founded</dt><dd>1963 (as Permanent General Agency) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span></dd>
+          <dt>HQ</dt><dd>2636 Elm Hill Pike, Suite 100, Nashville, TN 37214 <span class="src-tag"><a href="https://www.thegeneral.com/about">thegeneral.com/about →</a></span></dd>
+          <dt>Employees</dt><dd>~1,300 <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span></dd>
+          <dt>Customers</dt><dd>1M+ insured drivers</dd>
+          <dt>Parent</dt><dd>Sentry Insurance (acquired Jan 1, 2025 for $1.7B from American Family Insurance) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span></dd>
+          <dt>Vertical</dt><dd>Non-Standard / High-Risk Auto Insurance</dd>
+          <dt>Main Phone</dt><dd>1-844-328-0306 (alt: 1-844-327-9870) <span class="src-tag"><a href="https://www.thegeneral.com/about">thegeneral.com/about →</a></span></dd>
+          <dt>Website</dt><dd>thegeneral.com</dd>
+          <dt>Marketing Domain</dt><dd>geninsur.com (SMS shortener — basis of suit)</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Quote page promises "we don't ask for your phone number" — but they texted plaintiff 10 times.</h3>
+        <p class="card-body">From <code>thegeneral.com/quote</code>: "<em>we don't ask you to provide a lot of personal information. That's right — not your name, phone number, or street address.</em>" <span class="src-tag"><a href="https://www.thegeneral.com/quote">thegeneral.com/quote →</a></span> That language directly contradicts any "prior express written consent" defense for the SMS sent from (706) 490-6889 to plaintiff's 1294 Number. Coupled with the fact that <code>/privacy</code>, <code>/privacy-policy</code>, <code>/terms</code>, and <code>/signup</code> all return HTTP 404, the public-facing compliance posture is effectively absent — no surfaced consent language, no DNC disclosure, no TCPA-aware opt-in flow.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">The Sentry integration window is your ally.</h3>
+      <dl class="kv" style="margin-top:12px;">
+        <dt>Sentry Closed</dt><dd>January 1, 2025 — finalized acquisition of GAIS from American Family for $1.7B <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span></dd>
+        <dt>Integration Phase</dt><dd>~18 months in — compliance plumbing typically lags marketing-stack integration</dd>
+        <dt>Case Filed</dt><dd>June 10, 2026 (1 day ago)</dd>
+        <dt>Answer Window</dt><dd>~21 days after service under Fed. R. Civ. P. 12(a)</dd>
+        <dt>Settlement Precedent</dt><dd>Johnson v. The General (W.D. Tex. 2025) terminated in ~10 weeks; D'Angelo (S.D. Cal. 2023) in ~3 months — defendant settles quickly</dd>
+        <dt>Window to Pitch</dt><dd>Before defense counsel files appearance and before Sentry corporate gets routed the matter</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sentry Insurance</strong></td>
+            <td>Parent (acquired GAIS Jan 1, 2025)</td>
+            <td>Multi-line insurance (P&amp;C, life, workers' comp)</td>
+            <td>Enterprise — multi-subsidiary scrub program <span class="src-tag"><a href="https://en.wikipedia.org/wiki/The_General_(insurance)">Wikipedia →</a></span></td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Permanent General Assurance Corp.</strong></td>
+            <td>Predecessor brand / affiliated underwriter</td>
+            <td>Non-standard auto</td>
+            <td>Previously sued under TCPA (Bedient v. Permanent General, M.D. Fla. 2022, by Shamis &amp; Gentile co-counsel) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span></td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dairyland County Mutual</strong></td>
+            <td>Underwriter for The General's TX policies</td>
+            <td>Non-standard auto (TX)</td>
+            <td>Direct TX exposure on the same channel as Waterman</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><strong>American Family Insurance</strong></td>
+            <td>Former parent (sold GAIS to Sentry 2025)</td>
+            <td>Multi-line insurance</td>
+            <td>Residual liability windows on pre-2025 campaigns possible</td>
+            <td><span class="pill pill--info">LOW</span></td>
+          </tr>
+          <tr>
+            <td><strong>"Affiliated &amp; unaffiliated partners"</strong></td>
+            <td>Third-party distribution/lead-gen channel</td>
+            <td>Insurance lead-gen</td>
+            <td>Vendor-scrub program is the right cross-sell — third-party sender liability under FCC ruling</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Third TCPA case against The General in 7 years — and the second by Shamis &amp; Gentile's corporate-family target list.</h2>
+      <p class="section-lede">The General has a settle-fast posture (Johnson terminated in 10 weeks; D'Angelo in 3 months). Plaintiff's firm is a 20+ filing volume shop that just got a DNC class certified in C.D. Cal. on the same theory.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Waterman v. The General Automobile Insurance Services, Inc.</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Docket</dt><dd>5:26-cv-03721 (W.D. Tex., San Antonio Division)</dd>
+          <dt>Filed</dt><dd>June 10, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03721&type=r">CourtListener →</a></span></dd>
+          <dt>Judge</dt><dd>Not yet assigned</dd>
+          <dt>Plaintiff</dt><dd>Lauren Waterman (Bexar County, TX)</dd>
+          <dt>Counsel</dt><dd>Christopher E. Berman — Shamis &amp; Gentile, P.A. (FL)</dd>
+          <dt>Class</dt><dd>Putative Rule 23 — National DNC Registry Class</dd>
+          <dt>Class Size</dt><dd>"Several thousands, if not more" (tens of thousands alleged)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c)(5); 47 CFR § 64.1200(c), (d), (e)</dd>
+          <dt>Theory</dt><dd>Federal DNC + Internal DNC + lack of prior express written consent</dd>
+          <dt>Violations Pled</dt><dd>10 SMS to plaintiff (Jun 10–13, 2025) from (706) 490-6889</dd>
+          <dt>Damages</dt><dd>$500–$1,500 per violation; treble for willful; class aggregate &gt;$5M CAFA threshold pled</dd>
+          <dt>Plaintiff Exposure</dt><dd><strong>$5,000 – $15,000</strong> on her 10 named texts alone</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">NOT YET APPEARED</span> · ~21-day answer clock <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03721&type=r">CourtListener →</a></span></dd>
+          <dt>Docket #2</dt><dd>Request for Issuance of Summons (filed same day)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Christopher E. Berman — Shamis &amp; Gentile, P.A.</h3>
+        <dl class="kv" style="margin-top:12px;">
+          <dt>Firm Address</dt><dd>14 NE 1st Ave., Suite 705, Miami, FL 33132</dd>
+          <dt>Firm Phone</dt><dd>305-479-2299</dd>
+          <dt>Firm Email</dt><dd>info@shamisgentile.com</dd>
+          <dt>Counsel Email</dt><dd>cberman@shamisgentile.com</dd>
+          <dt>Bar State</dt><dd>FL (Bar # not retrievable — FL Bar directory returned HTTP 500) <span class="pill pill--gap">GAP</span></dd>
+          <dt>Firm Size</dt><dd>~9 attorneys + paralegal + CFO/COO <span class="src-tag"><a href="https://www.shamisgentile.com/team">shamisgentile.com/team →</a></span></dd>
+          <dt>Practice</dt><dd>Class Action · TCPA · Data Breach · Mass Torts · Antitrust <span class="src-tag"><a href="https://www.shamisgentile.com">shamisgentile.com →</a></span></dd>
+          <dt>Self-Reported</dt><dd>$1.6B recovered across 200+ cases; $12.5M auto-insurance class settlement featured <span class="src-tag"><a href="https://www.shamisgentile.com">shamisgentile.com →</a></span></dd>
+          <dt>Name Partner</dt><dd>Andrew Shamis — 2025 TCPAWorld Power Rankings firm <span class="src-tag"><a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld →</a></span></dd>
+          <dt>Berman's Profile</dt><dd>More junior — 1 TCPAWorld hit (2022 Top 10); name-partner Shamis drives reputation <span class="src-tag"><a href="https://tcpaworld.com/?s=Christopher+Berman">TCPAWorld →</a></span></dd>
+          <dt>TCPA Filings</dt><dd>20+ on CourtListener; volume filer <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">HIGH</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Shamis &amp; Gentile DNC-Class Playbook</h3>
+      <p class="card-body">Shamis &amp; Gentile targets vertical clusters: insurance, auto, e-commerce/retail, medical, fintech, travel. Theory of choice is Federal DNC + Internal DNC under § 64.1200(c)/(d) with a Rule 23 class. They have proven class certification on this exact theory: <strong>Mason v. Spring EQ LLC</strong> (C.D. Cal.) — DNC class certified September 2025. They already have a settled class against The General's corporate family — <strong>Bedient v. Permanent General Insurance Companies</strong> (M.D. Fla. 2022, terminated ~5.5 months) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span>. They know this defendant's structure, they know the settlement number, and they filed in W.D. Tex. specifically because the D. Ariz. personal-jurisdiction defense (Boger 2020) doesn't work here — Waterman is a TX resident receiving TX texts.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Docket</th>
+            <th>Court</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Theory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--bl-red-tint);">
+            <td><strong>Waterman v. The General</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>5:26-cv-03721</td>
+            <td>W.D. Tex.</td>
+            <td>2026-06-10</td>
+            <td><span class="pill pill--danger">ACTIVE</span></td>
+            <td>Federal DNC · SMS · Class</td>
+          </tr>
+          <tr>
+            <td>Johnson v. The General</td>
+            <td>5:25-cv-00975</td>
+            <td>W.D. Tex. (Biery, J.)</td>
+            <td>2025-08-11</td>
+            <td><span class="pill pill--ok">TERMINATED (~10 wks)</span></td>
+            <td>Consumer claim · likely settled <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22The+General+Automobile+Insurance%22+TCPA&type=r">CL →</a></span></td>
+          </tr>
+          <tr>
+            <td>Mokled v. The General</td>
+            <td>0:25-cv-62313</td>
+            <td>S.D. Fla.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">REMOVED FROM STATE</span></td>
+            <td>Consumer claim</td>
+          </tr>
+          <tr>
+            <td>Mathis v. The General Auto Ins.</td>
+            <td>1:26-cv-00074</td>
+            <td>W.D. Pa.</td>
+            <td>2026</td>
+            <td><span class="pill pill--danger">ACTIVE</span></td>
+            <td>Consumer claim</td>
+          </tr>
+          <tr>
+            <td>Woodburn v. The General</td>
+            <td>—</td>
+            <td>D. Nev.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">SETTLED (~2.5 yrs)</span></td>
+            <td>TCPA <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22The+General+Insurance%22+TCPA&type=r">CL →</a></span></td>
+          </tr>
+          <tr>
+            <td>D'Angelo v. The General</td>
+            <td>3:23-cv-01272</td>
+            <td>S.D. Cal.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">TERMINATED (~3 mo)</span></td>
+            <td>Consumer claim · removed</td>
+          </tr>
+          <tr>
+            <td>Boger v. General Auto Ins.</td>
+            <td>2:19-cv-05094</td>
+            <td>D. Ariz. (Snow, C.J.)</td>
+            <td>2019</td>
+            <td><span class="pill pill--gap">DISMISSED — no PJ</span></td>
+            <td>TCPA · dismissed for lack of personal jurisdiction (TN-based defendant)</td>
+          </tr>
+          <tr>
+            <td>Bedient v. Permanent General</td>
+            <td>8:22-cv-01220</td>
+            <td>M.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">TERMINATED (~5.5 mo)</span></td>
+            <td>TCPA · <strong>filed by Shamis &amp; Gentile</strong> against affiliate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Open intel gaps to close before first dial</div>
+      <h3 class="card-title">Resolve before outreach:</h3>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>• <strong>Plaintiff's full 10-digit number</strong> — pull ECF #1 from PACER (~$1.20). Required to run litigator scrub.</li>
+        <li>• <strong>Berman's FL Bar number and discipline history</strong> — FL Bar directory returned HTTP 500 during enrichment; retry before call.</li>
+        <li>• <strong>Defense counsel identity</strong> — no appearance yet on CourtListener. Watch for filing in next 5–10 business days.</li>
+        <li>• <strong>Judge assignment</strong> — not yet docketed. Check W.D. Tex. San Antonio assignment wheel.</li>
+        <li>• <strong>Corporate registry confirmation</strong> — TN SoS, Bizapedia, OpenCorporates all blocked during enrichment. Confirm GAIS officers/registered agent before pitching specific names.</li>
+        <li>• <strong>geninsur.com ownership</strong> — domain unreachable during enrichment. WHOIS lookup will confirm whether it's owned by GAIS, Sentry, or a third-party lead-gen affiliate (changes who you sell to).</li>
+        <li>• <strong>Sender DID 706-490-6889</strong> — 800notes, YouMail, Tellows, RoboKiller all returned 403/404. Re-check before call for consumer-complaint volume.</li>
+        <li>• <strong>Johnson settlement terms</strong> — not disclosed publicly. If discoverable, use as anchor price.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell to The General's GC in Nashville — and route the cross-sell to Sentry's CEO post-close.</h2>
+      <p class="section-lede">Defendant decision-maker enrichment was sparse due to source blocks (TheOrg 404, LinkedIn login-walled, ZoomInfo 403, no team page on thegeneral.com). Start with the corporate switchboard and confirm the GC by name on first dial, then escalate to Sentry leadership for portfolio-level cross-sell.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pete McPartland</strong><br><span class="pill pill--dark">CEO — PARENT</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Chairman, President &amp; CEO — Sentry Insurance (acquired GAIS Jan 1, 2025). Decision-maker for portfolio-wide compliance procurement. <span class="src-tag"><a href="https://www.thegeneral.com/about">thegeneral.com/about →</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/pete-mcpartland">linkedin/pete-mcpartland</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel — The General</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">GAP — NAME UNCONFIRMED</span></td>
+            <td>Role exists at 2636 Elm Hill Pike. Name not surfaced on public site (no /leadership, /team, /about-us page). Confirm by name on first switchboard call. Primary buyer for DNC scrub.</td>
+            <td>1-844-328-0306 <span class="pill pill--info">SWITCHBOARD</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer — The General</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--gap">GAP — NAME UNCONFIRMED</span></td>
+            <td>No CCO publicly disclosed on thegeneral.com or in press. In insurance, CCO typically owns DNC + consent program. Confirm via Nashville switchboard.</td>
+            <td>1-844-328-0306 <span class="pill pill--info">SWITCHBOARD</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>CMO / VP Marketing — The General</strong><br><span class="pill pill--dark">MARKETING</span> <span class="pill pill--gap">GAP — NAME UNCONFIRMED</span></td>
+            <td>Owns SMS funnel (geninsur.com / 706-490-6889) and affiliate channel. Secondary buyer for consent-capture cross-sell.</td>
+            <td>1-844-328-0306 <span class="pill pill--info">SWITCHBOARD</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel — The General</strong><br><span class="pill pill--dark">OUTSIDE COUNSEL</span> <span class="pill pill--gap">NOT YET APPEARED</span></td>
+            <td>No appearance on Waterman docket as of report date. ~21-day answer clock running from service. Watch CourtListener daily.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Corporate Switchboard — The General</strong><br><span class="pill pill--dark">MAIN LINE</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>2636 Elm Hill Pike, Suite 100, Nashville, TN 37214. Alt line: 1-844-327-9870. <span class="src-tag"><a href="https://www.thegeneral.com/about">thegeneral.com/about →</a></span></td>
+            <td>1-844-328-0306</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px; background:var(--bg-sunken);">
+      <div class="card-meta">Email Pattern</div>
+      <h3 class="card-title">Pattern not confirmed — first call should ask "what's the email convention here?"</h3>
+      <p class="card-body">No emails were exposed on thegeneral.com during enrichment. Common large-corporate conventions to test: <code>first.last@thegeneral.com</code> · <code>firstinitiallast@thegeneral.com</code>. Do NOT send cold email until pattern is confirmed by a live receptionist or a published vendor RFP contact. <span class="pill pill--gap">PATTERN UNCONFIRMED</span></p>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Counsel (not a sales target — reference only)</div>
+      <h3 class="card-title">Christopher E. Berman, Shamis &amp; Gentile, P.A.</h3>
+      <p class="card-body"><strong>Phone:</strong> 305-479-2299 (per PACER signature block) &nbsp; · &nbsp; <strong>Email:</strong> cberman@shamisgentile.com &nbsp; · &nbsp; <strong>Address:</strong> 14 NE 1st Ave., Suite 705, Miami, FL 33132. Listed here for completeness; do not contact directly — engage only through defense counsel once retained.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — the Johnson template terminated in 10 weeks.</h2>
+      <p class="section-lede">The General's settlement clock historically runs fast (Johnson ~10 weeks, D'Angelo ~3 months). Once defense counsel files an appearance, procurement gets routed inside and the deal cycle stretches by 60+ days. Get in before the appearance.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0–1 · Pre-Dial</div>
+        <h3 class="card-title">Close intel gaps</h3>
+        <p class="card-body">Pull ECF #1 from PACER to recover plaintiff's full number; re-run litigator scrub. Retry FL Bar lookup for Berman's number. WHOIS-lookup geninsur.com. Re-check 706-490-6889 on 800notes / YouMail. Confirm Nashville HQ switchboard route.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2 · First Dial</div>
+        <h3 class="card-title">Nashville HQ — GC + CCO</h3>
+        <p class="card-body">Call 1-844-328-0306. Ask for General Counsel by title (name not surfaced; confirm live). Lead with: "Saw the W.D. Tex. filing from Shamis &amp; Gentile yesterday — same firm that did Bedient against Permanent General. Want to share what we did for [insurance peer] before procurement reaches out." Reference Johnson v. The General as anchor.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5 · Follow-up</div>
+        <h3 class="card-title">CMO / VP Marketing</h3>
+        <p class="card-body">Second-touch on the marketing side — they own the geninsur.com funnel and the affiliate channel. Position consent-capture + vendor-scrub as protecting their SMS program from being shut off by the GC after this lawsuit.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 5–10 · Escalation</div>
+        <h3 class="card-title">Sentry Insurance — Pete McPartland's office</h3>
+        <p class="card-body">If Nashville doesn't bite within a week, route the cross-sell pitch to Sentry's CEO office. Frame as parent-portfolio risk: "Your $1.7B acquisition is generating TCPA exposure 18 months in. Here's the enterprise scrub program for the whole Sentry book."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 10–14 · Close Window</div>
+        <h3 class="card-title">Pre-answer urgency push</h3>
+        <p class="card-body">Reference the ~21-day answer clock. Once defense counsel files, procurement routes the deal internally and the cycle elongates. Lock a verbal before appearance.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Triggers</div>
+        <h3 class="card-title">What changes the plan</h3>
+        <p class="card-body">• Defense counsel appearance → pivot pitch through outside counsel.<br>• Motion to compel arbitration → consent-capture pitch gets harder; lead with DNC.<br>• Voluntary dismissal / first amended complaint → re-baseline; check for added co-defendants (Sentry, Dairyland).<br>• Class certification motion → close on enterprise scrub package immediately.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · ACT BEFORE DEFENSE APPEARANCE</span>
+      <span class="pill pill--warn">POST-ACQUISITION INTEGRATION GAP</span>
+      <span class="pill pill--info">SETTLEMENT PRECEDENT: ~10 WEEKS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
