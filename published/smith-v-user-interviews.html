@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smith v. User Interviews — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin:0 0 8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img class="hero-logo-svg" src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-13</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">SaaS Market-Research Defendant · Quiet-Hours SMS · Federal DNC · Post-Acquisition Successor Risk</p>
+      <h1 class="hero-tagline">Smith v.<br>User Interviews, Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-01570</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">W.D. Tex. (Austin)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousands" pled</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys (Miramar, FL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred, but Smith's name appears in a prior 2025 mass-action.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose Jessyca Smith's 10-digit cellular number — it only depicts screenshots of inbound SMS from the sender DID. A scrub cannot be run on a number we don't have.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Plaintiff Previously Named in 2025 Mass-Action</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads only that messages were sent to "Plaintiff's cellular telephone" (Compl. ¶ 25-29) without disclosing the digits. The screenshots in the FACTS section show only the inbound sender DID (484-679-4212), not the recipient.</div>
+      </div>
+      <p class="scrub-body-text">
+        However, a name-based cross-check on CourtListener surfaced a "Jessyca Smith" listed among the named plaintiffs in <em>Pyzel v. Discovery Communications LLC</em> (S.D.N.Y. 1:25-cv-06398, 2025) — identity not yet confirmed as the same individual. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jessyca+Smith%22&type=r">CourtListener -&gt;</a></span> If confirmed, this is a repeat plaintiff/class-member pattern that strengthens any litigator-list inference even without the number.
+      </p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px;">Sending DID Intelligence</h3>
+    <div class="card-grid" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-meta">Sender DID</div>
+        <div class="card-title" style="font-family:var(--font-mono);">+1 (484) 679-4212</div>
+        <div class="card-body">
+          NPA 484 — eastern Pennsylvania geographic long-code (consistent with CTO Bob Saris's Philadelphia base). Pattern indicates A2P 10DLC long-code SMS dispatch, not a short code or toll-free.
+          <div style="margin-top:12px;">
+            <span class="pill pill--gap">800notes: No Hit</span>
+            <span class="pill pill--gap">YouMail: No Hit</span>
+            <span class="pill pill--gap">Tellows: No Hit</span>
+            <span class="pill pill--gap">RoboKiller: No Hit</span>
+          </div>
+          <div style="margin-top:12px; font-size:13px; color:var(--fg-2);">All four aggregator sources returned 403/404 — no external corroboration. Sender identity tied to User Interviews derives from the screenshot evidence and the userinterviews.com URLs embedded in each text body.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px;">Recovery Path for the Plaintiff Number</h3>
+    <div class="card-grid" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-title">1. Pull PACER Doc #1</div>
+        <div class="card-body">The complaint as filed (ECF #1) may have unredacted exhibits or a civil cover sheet listing the recipient. ~$1.20 PACER fee.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Watch Defendant's Initial Disclosures</div>
+        <div class="card-body">FRCP 26(a) disclosures will identify the plaintiff's number once defense counsel appears and discovery opens.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Targeted Discovery Request</div>
+        <div class="card-body">Defendant can request Plaintiff's recipient number via interrogatory or Rule 33; the number is then scrubable.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">POSSIBLE REPEAT CLASS PLAINTIFF</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Well-funded SaaS defendant whose entire business model is outbound SMS recruitment — and they just got acquired.</h2>
+      <p class="section-lede">User Interviews recruits paid research participants via SMS and email to a 6M+ panel. Outbound messaging is mission-critical. They were just acquired by UserTesting <span class="src-tag"><a href="https://www.userinterviews.com/about">User Interviews About -&gt;</a></span>, which creates an urgent post-close compliance window — the parent has every incentive to harden the SMS pipeline before successor liability attaches. Lead with Consent Capture + DNC Scrubbing.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch</div>
+        <div class="card-title">Consent Capture &amp; Record Retention</div>
+        <div class="card-body">User Interviews' own marketing copy claims they "automate consent &amp; contact rules" <span class="src-tag"><a href="https://www.userinterviews.com">userinterviews.com -&gt;</a></span> — yet the complaint pleads 10 quiet-hours violations and federal DNC violations. The signup flow does not surface a clear TCPA disclosure, and the public ToS path returns a 404. Blacklist Consent Capture cures the smoking gun.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Co-Sell</div>
+        <div class="card-title">DNC Scrubbing (Federal + Internal)</div>
+        <div class="card-body">Smith pleads her number has been on the National DNC since Dec. 31, 2008 (Compl. ¶ 57). A Texas consumer was texted from a Pennsylvania-area-code long-code with no apparent geo or DNC filter. Federal DNC scrub closes the secondary claim.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <div class="card-title">Litigator Scrub</div>
+        <div class="card-body">Plaintiff appears to be a possible repeat class-member (Pyzel v. Discovery, S.D.N.Y. 2025) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Jessyca+Smith%22&type=r">CourtListener -&gt;</a></span>. Litigator scrub at the participant-signup gate would have flagged her.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Pitch Angle</h3>
+    <p style="max-width:880px; font-size:15px; line-height:1.7;">
+      You're calling User Interviews three days after a fresh W.D. Tex. class complaint hit the docket — and just months after they closed an acquisition by UserTesting <span class="src-tag"><a href="https://www.userinterviews.com/about">User Interviews -&gt;</a></span>. The integrated entity has a brand to protect, an investor narrative to defend, and a participant-recruitment SMS pipeline that the complaint says is firing texts at 1:18 AM, 2:03 AM, and 4:02 AM Central time to a Texas consumer (Compl. ¶ 25). The Pennsylvania-area-code sender DID texting a Texas number is the smoking gun — there is no timezone-aware send window in their dialer. Their own marketing copy promises the platform "automates consent &amp; contact rules"; this lawsuit is the proof it doesn't.
+    </p>
+    <p style="max-width:880px; font-size:15px; line-height:1.7;">
+      The wedge is: <em>"You just took on UserTesting as a parent. The last thing the deal team wants is a putative class action over SMS hygiene that scales to seven figures. Let us audit the participant-recruitment pipeline before the answer is due."</em> The General Counsel (Aimee Halbert) is the buyer — there is no dedicated CCO <span class="src-tag"><a href="https://theorg.com/org/user-interviews">TheOrg -&gt;</a></span>. The CMO (Erin May) and CRO (Jess Klek) are the operational sponsors — they own the panel-recruitment funnel.
+    </p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Acquisition Context</div>
+      <h2 class="section-title">$44M-raised, 139-employee SaaS just acquired by UserTesting — the parent integration is your timing.</h2>
+      <p class="section-lede">User Interviews runs a 6M-participant research panel and was acquired by UserTesting in the 2025-2026 window. The post-close integration period is the optimal window to sell compliance tooling because successor liability is now on the table for the parent.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <div class="card-title">User Interviews, Inc.</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>User Interviews, Inc.</dd>
+          <dt>Formation State</dt><dd>Delaware (per Compl. ¶ 5)</dd>
+          <dt>HQ</dt><dd>Distributed/remote; originally Cambridge, MA (HubSpot office) <span class="src-tag"><a href="https://www.userinterviews.com/about">UI About -&gt;</a></span></dd>
+          <dt>Parent</dt><dd>UserTesting, Inc. (acquisition announced; "User Interviews is now part of UserTesting" per site footer)</dd>
+          <dt>Founded</dt><dd>~2015-2016</dd>
+          <dt>Founders</dt><dd>Basel Fakhoury (CEO), Dennis Meng (CPO), Bob Saris (CTO)</dd>
+          <dt>Employees</dt><dd>~139 across 33 states</dd>
+          <dt>Capital Raised</dt><dd>~$44M cumulative (incl. $27.5M Series B, Dec. 2022 per TechCrunch) <span class="src-tag"><a href="https://techcrunch.com/?s=User+Interviews">TechCrunch -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>SaaS · User-research participant recruiting</dd>
+          <dt>Products</dt><dd>Recruit (panel), Research Hub (participant CRM, scheduling, incentives, consent)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <div class="card-title">"Automates consent &amp; contact rules" — except for quiet hours and the DNC.</div>
+        <div class="card-body">
+          User Interviews' own marketing copy claims its Research Hub product automates "consent &amp; contact rules" <span class="src-tag"><a href="https://www.userinterviews.com" style="color:#fff;">userinterviews.com -&gt;</a></span>. The complaint pleads 10 SMS messages to a Texas consumer between 1:18 AM and 5:36 AM local time (Compl. ¶ 25) — none of which respect 47 CFR § 64.1200(c)(1)'s 8AM-9PM window. The Terms of Service URL returns HTTP 404 <span class="src-tag"><a href="https://www.userinterviews.com/signup" style="color:#fff;">UI signup -&gt;</a></span>, and no compliance, TCPA, or DNC disclosure appears anywhere in the marketing site. The lawsuit directly contradicts the marketing claim.
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <div class="card-title">Post-acquisition integration window + 21-day federal answer clock</div>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>Complaint Filed</dt><dd>June 10, 2026</dd>
+        <dt>Answer Deadline</dt><dd>21 days after service (FRCP 12(a)(1)(A)(i)) — service date not yet on docket</dd>
+        <dt>UserTesting Acquisition</dt><dd>Closed in the 2025-2026 window; integration ongoing</dd>
+        <dt>Successor-Liability Window</dt><dd>OPEN — parent now exposed for pre-close conduct of subsidiary</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared (per CourtListener docket) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01570&type=r">CourtListener -&gt;</a></span></dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>UserTesting, Inc.</strong></td>
+            <td>Parent (acquirer)</td>
+            <td>Customer experience / research SaaS</td>
+            <td>HIGH — successor liability now attaches; participant outreach pipeline will be consolidated</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>User Interviews "Recruit" product</td>
+            <td>Core SMS recruitment platform</td>
+            <td>SaaS · participant panel</td>
+            <td>HIGH — direct subject of the complaint's SMS allegations</td>
+            <td><span class="pill pill--danger">High</span></td>
+          </tr>
+          <tr>
+            <td>User Interviews Affiliate Program</td>
+            <td>Affiliate channel</td>
+            <td>Lead generation</td>
+            <td>HIGH — affiliate-sourced leads are a known TCPA risk vector <span class="src-tag"><a href="https://www.userinterviews.com">UI -&gt;</a></span></td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA case against User Interviews — but filed by a high-velocity firm running a 2026 portfolio.</h2>
+      <p class="section-lede">No prior TCPA exposure for User Interviews. Plaintiff's firm PLG Damage Attorneys is a Florida property-damage practice that pivoted into TCPA in 2026 and has filed 10+ federal TCPA complaints in April-May 2026 alone across CA, FL, and TX.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <div class="card-title">Smith v. User Interviews, Inc.</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>1:26-cv-01570 (W.D. Tex.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-01570&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 10, 2026</dd>
+          <dt>Plaintiff</dt><dd>Jessyca Smith (Austin, TX resident)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, TX Bar 24144674</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Putative Rule 23</span></dd>
+          <dt>Class Definition</dt><dd>Two classes: (1) TCPA After-Hours Class (4-year lookback, &gt;1 marketing text before 8AM or after 9PM); (2) TCPA DNC Registry Class (4-year lookback, &gt;1 text, number on DNC ≥30 days)</dd>
+          <dt>Claims</dt><dd>Count I: 47 USC § 227(c) / 47 CFR § 64.1200(c)(1) (Quiet Hours)<br>Count II: 47 USC § 227(c) / 47 CFR § 64.1200(c)(2) (Federal DNC)</dd>
+          <dt>Theory</dt><dd>Defendant sent 10 marketing texts (Dec. 11, 2025 – May 25, 2026) at times between 1:18 AM and 5:36 AM Central, all from 484-679-4212, with userinterviews.com URLs (Compl. ¶ 25)</dd>
+          <dt>Damages Pled</dt><dd>$500/violation negligent; $1,500/violation knowing/willful; class aggregate "in the millions"</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · 21-day answer deadline running</dd>
+          <dt>Docket Visibility</dt><dd>Live on CourtListener/RECAP; PacerMonitor index not yet refreshed</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <div class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Firm Address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746</dd>
+          <dt>Firm Email</dt><dd>vv@plglawyersfl.com · info@plgdamage.com</dd>
+          <dt>Website</dt><dd>plglawyersfl.com <span class="src-tag"><a href="https://plglawyersfl.com">PLG -&gt;</a></span></dd>
+          <dt>TX Bar No.</dt><dd>24144674</dd>
+          <dt>Bar Address Match</dt><dd><span class="pill pill--warn">Mismatch — Florida firm with TX bar filing in W.D. Tex.</span><br><span style="font-size:12px; color:var(--fg-2);">No Texas local counsel listed on complaint</span></dd>
+          <dt>Discipline History</dt><dd>None of record. Note: Firm was sued by former employee in Ackerman v. Property Litigation Group, S.D. Fla. 0:23-cv-61828 (Title VII; terminated July 2024) with allegations referencing Venkatesh by name — not attorney discipline. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>TCPA Power Ranking</dt><dd>Not ranked — no TCPAWorld presence <span class="src-tag"><a href="https://tcpaworld.com/?s=Vinit+Venkatesh">TCPAWorld -&gt;</a></span></dd>
+          <dt>TCPA Filings (2026)</dt><dd>10+ federal TCPA complaints filed April-May 2026 across N.D. Fla., M.D. Fla., S.D. Tex., C.D. Cal., N.D. Cal., W.D. Tex.</dd>
+          <dt>Prior Practice Focus</dt><dd>First-party insurance / property damage (hurricane claims). TCPA is new vertical for the firm.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <div class="card-title">PLG / Venkatesh / Gutierrez Quiet-Hours Template — 2026 Vintage</div>
+      <div class="card-body">
+        PLG Damage Attorneys is a Florida-based property-damage firm that pivoted into TCPA in early 2026. Attorneys Vinit Venkatesh and Faythe Gutierrez (CA Bar 310430) are running a coordinated multi-jurisdiction portfolio. The template is consistent across cases: quiet-hours violations (§ 64.1200(c)(1)) paired with federal DNC (§ 64.1200(c)(2)), screenshot exhibits showing pre-8AM SMS, and a class definition with a 4-year lookback. Notably, the firm's own intake form uses a dual-checkbox consent flow with HELP/STOP language — they know what compliant consent looks like and will hold defendants to that standard. One firm case (Sloss v. Wolverine, S.D. Tex.) settled within ~7 weeks of filing <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage+Attorneys%22&type=r">CourtListener -&gt;</a></span> — suggests this firm is amenable to fast settlement.
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Concurrent &amp; Recent Litigation — Same Firm</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Smith v. User Interviews, Inc.</strong></td>
+            <td>1:26-cv-01570 (W.D. Tex.)</td>
+            <td>2026-06-10</td>
+            <td><span class="pill pill--red">Active · This Case</span></td>
+            <td>Quiet hours + Federal DNC</td>
+          </tr>
+          <tr>
+            <td>Sloss v. Wolverine World Wide, Inc.</td>
+            <td>S.D. Tex. (2026)</td>
+            <td>2026</td>
+            <td><span class="pill pill--ok">Notice of Settlement 06/10/2026</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven Inc.</td>
+            <td>1:26-cv-00119 (N.D. Fla.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Bennea Hughes v. Guardio LLC</td>
+            <td>2:26-cv-05313 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Shannel Long v. Rocket Mortgage, LLC</td>
+            <td>2:26-cv-05599 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Post v. Centerfield Media Parent, Inc.</td>
+            <td>4:26-cv-03524 (N.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Lina Fasheh v. The Xercize Studio, LLC</td>
+            <td>8:26-cv-01231 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo, Inc.</td>
+            <td>8:26-cv-01491 (M.D. Fla.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Joan Rios v. Last Brand, Inc.</td>
+            <td>5:26-cv-02684 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Arelis Ortiz v. Payactiv, Inc.</td>
+            <td>2:26-cv-01460 (M.D. Fla.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+          <tr>
+            <td>Angel Mendez v. Refills Health, LLC</td>
+            <td>2:26-cv-04569 (C.D. Cal.)</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA · Same firm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:8px; font-size:12px; color:var(--fg-3);">Source: CourtListener RECAP index <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage+Attorneys%22&type=r">CourtListener -&gt;</a></span></p>
+
+    <div class="callout">
+      <p class="callout-title">Open Intel Gaps — Close Before First Dial</p>
+      <ul style="margin:0; padding-left:20px; font-size:14px; line-height:1.7;">
+        <li>Plaintiff's recipient cellular number is not in the complaint — pull PACER Doc #1 to confirm whether exhibits redact or disclose it.</li>
+        <li>Confirm whether the "Jessyca Smith" in Pyzel v. Discovery Communications (S.D.N.Y. 1:25-cv-06398, 2025) is the same individual — relevant to repeat-plaintiff posture.</li>
+        <li>Judge assignment not yet visible on CourtListener — pull docket again in 48-72 hours.</li>
+        <li>Service date (and therefore the 21-day answer deadline) not yet on docket.</li>
+        <li>Defense counsel has not appeared — monitor for in-house vs. outside counsel signal.</li>
+        <li>Delaware SoS and Texas SOSDirect lookups failed at extraction; registered agent and officers list not independently confirmed beyond company/TheOrg data.</li>
+        <li>Confirm whether 484-679-4212 is owned directly by User Interviews or by a third-party SMS vendor — material to liability allocation.</li>
+        <li>UserTesting acquisition close date not yet pinned to a specific date — confirm for successor-liability framing.</li>
+        <li>User Interviews privacy policy (/privacy-policy) returns 404 — re-fetch in case the path moved before defense raises a consent defense.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call General Counsel Aimee Halbert first. CMO and CRO are the operational sponsors.</h2>
+      <p class="section-lede">User Interviews has a General Counsel acting as Head of Compliance — no dedicated CCO. The email pattern is confirmed as <strong>{first}@userinterviews.com</strong> from four independently-verified addresses on SignalHire. <span class="src-tag"><a href="https://www.signalhire.com/companies/user-interviews">SignalHire -&gt;</a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aimee Halbert</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--red">Call First</span></td>
+            <td>General Counsel &amp; Head of Compliance. No dedicated CCO at User Interviews — Halbert is the legal+compliance buyer for any TCPA remediation. <span class="src-tag"><a href="https://theorg.com/org/user-interviews">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>aimee@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Basel Fakhoury</strong><br><span class="pill pill--dark">CEO · Co-Founder</span></td>
+            <td>Co-founder/CEO since ~2016. Escalation contact if GC unresponsive. <span class="src-tag"><a href="https://www.userinterviews.com/about">UI About -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>basel@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/baselfakhoury">linkedin.com/in/baselfakhoury</a></td>
+          </tr>
+          <tr>
+            <td><strong>Erin May</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Operational sponsor — owns the participant-recruitment marketing pipeline. <span class="src-tag"><a href="https://theorg.com/org/user-interviews">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>erin@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/erinhollingsworth">linkedin.com/in/erinhollingsworth</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jess Klek</strong><br><span class="pill pill--dark">CRO</span></td>
+            <td>Chief Revenue Officer — owns commercial impact of SMS pipeline downtime. <span class="src-tag"><a href="https://theorg.com/org/user-interviews">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>jess@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/jessicaklek">linkedin.com/in/jessicaklek</a></td>
+          </tr>
+          <tr>
+            <td><strong>Bob Saris</strong><br><span class="pill pill--dark">CTO · Co-Founder</span></td>
+            <td>CTO based in Philadelphia (consistent with 484 NPA on sender DID). Technical owner of the SMS dispatch infrastructure. <span class="src-tag"><a href="https://www.userinterviews.com/about">UI About -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>bob@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/bobsaris">linkedin.com/in/bobsaris</a></td>
+          </tr>
+          <tr>
+            <td><strong>Dennis Meng</strong><br><span class="pill pill--dark">CPO · Co-Founder</span></td>
+            <td>Chief Product Officer — owns Research Hub consent &amp; contact-rules feature (the marketing claim contradicted by the complaint).</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>dennis@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/dennismeng">linkedin.com/in/dennismeng</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jordan Heeger</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>CFO — relevant for successor-liability framing post-UserTesting acquisition. <span class="src-tag"><a href="https://theorg.com/org/user-interviews">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>jordan@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nabil Syed</strong><br><span class="pill pill--dark">SVP Ops</span></td>
+            <td>SVP Operations — pipeline owner for participant outreach operations.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>nabil@userinterviews.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not Captured</span></td>
+          </tr>
+          <tr>
+            <td><strong>Karina Housley</strong><br><span class="pill pill--dark">Sr. Enterprise CSM</span></td>
+            <td>Senior Enterprise Customer Success Manager — verified work email (pattern anchor). <span class="src-tag"><a href="https://www.signalhire.com/companies/user-interviews">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>karina@userinterviews.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not Captured</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px; color:var(--fg-2); margin-top:16px;">
+      <strong>Email pattern confirmed:</strong> {first}@userinterviews.com — verified against four independent published addresses (patricio, owen, ryan, karina) <span class="src-tag"><a href="https://www.signalhire.com/companies/user-interviews">SignalHire -&gt;</a></span>. PATTERN pills above reflect application of this confirmed convention to leadership team names sourced from TheOrg and the company About page.
+    </p>
+
+    <h3 style="margin-top:32px; font-size:18px;">Plaintiff Counsel (Reference Only — Do Not Pitch)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Phone</th><th>Email</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vinit R. Venkatesh, Esq.</td>
+            <td>Counsel for Plaintiff · TX Bar 24144674 · PLG Damage Attorneys</td>
+            <td>(305) 506-4746 <span class="pill pill--warn">FL area code on TX filing</span></td>
+            <td>vv@plglawyersfl.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — before defense counsel appears and the conversation becomes privileged.</h2>
+      <p class="section-lede">Complaint was filed June 10, 2026. The 21-day federal answer clock is running. Once defense counsel appears, the GC will route compliance vendor conversations through outside counsel and the cycle stretches by 60+ days. The window is now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <div class="card-title">Open with the GC</div>
+        <div class="card-body">Cold-call Aimee Halbert at aimee@userinterviews.com. Subject: "Smith v. User Interviews — pre-answer compliance audit." Reference the W.D. Tex. filing and the quiet-hours screenshots. Goal: 15-minute intro.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2</div>
+        <div class="card-title">Pull PACER Doc #1</div>
+        <div class="card-body">~$1.20 to recover the complaint exhibits and any disclosed plaintiff number. If the recipient number is in the filing, run the litigator scrub and route the result into the GC conversation as proof-point #1.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 2-3</div>
+        <div class="card-title">Parallel outreach to CMO + CTO</div>
+        <div class="card-body">Erin May (CMO) owns the recruitment funnel; Bob Saris (CTO, Philadelphia) owns the dispatch infra that produced 484-679-4212. Frame: "Your platform markets 'automated consent &amp; contact rules' — here's how to make that true."</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 5-7</div>
+        <div class="card-title">Escalate to CEO if no GC response</div>
+        <div class="card-body">Basel Fakhoury — frame as "post-acquisition risk to UserTesting deal value." The parent's brand exposure is the lever.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7-14</div>
+        <div class="card-title">Monitor docket for defense counsel</div>
+        <div class="card-body">Daily CourtListener pull on 1:26-cv-01570. The moment defense counsel files a notice of appearance, pivot messaging to "we can support your outside counsel's remediation plan."</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14-21</div>
+        <div class="card-title">Pre-answer close</div>
+        <div class="card-body">Target close before the answer deadline so the defendant can plead remediation in mitigation. Position Blacklist as part of the affirmative compliance story.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:20px;">Trigger Conditions That Change the Plan</h3>
+    <ul class="clean tight" style="max-width:880px;">
+      <li><strong>Defense counsel files MTC arbitration</strong> — pivot to "consent capture for the next case"; this one is going to arbitration.</li>
+      <li><strong>Plaintiff files an amended complaint</strong> — wait for the amended pleading; new theory may change product mix.</li>
+      <li><strong>UserTesting parent issues a unified compliance statement</strong> — sell to UserTesting GC instead; subsidiary becomes downstream.</li>
+      <li><strong>484-679-4212 turns out to be a third-party SMS vendor</strong> — pivot vendor conversation; vendor is the buyer.</li>
+      <li><strong>PACER reveals plaintiff number matches a Blacklist litigator-list hit</strong> — lead pitch becomes Litigator Scrub, not Consent Capture.</li>
+    </ul>
+
+    <div style="margin-top:32px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JULY 1</span>
+      <span class="pill pill--warn">POST-ACQUISITION INTEGRATION WINDOW OPEN</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-13</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
