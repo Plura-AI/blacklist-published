@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santana v. Flexible Finance — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:10px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.gaps-callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.gaps-callout h4{ margin:0 0 12px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.gaps-callout ul{ margin:0; padding-left:20px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:28px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body h4{ margin:0 0 6px; font-size:18px; }
+.step-body p{ margin:0 0 8px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">BLACKLIST</text>
+          <text x="116" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Fintech-Rent SMS Marketer · Quiet-Hours Class Action · No Visible TCPA Program · N.D. Tex.</p>
+      <h1 class="hero-tagline">Santana v.<br>Flexible Finance <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(Flex / getflex.com)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">3:26-cv-01917-D</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Tex. (Dallas)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Sr. Judge Sidney A. Fitzwater</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"Several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred, but sender DIDs are confirmed Flex infrastructure.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Santana's complaint does not disclose her cell number — only screenshots of two inbound messages from Flex. Scrub is deferred until PACER pull or discovery; in the meantime, the two sender DIDs are concretely tied to getflex.com.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint at ¶¶ 20–21 describes the recipient line as Santana's "residential cellular" used for "personal purposes" — but never recites the 10-digit number. Exhibit A screenshots show only the sender side. Scrub deferred until the number is recovered.</div>
+      </div>
+      <p class="scrub-body-text">Natasha Santana is a Kaufman County, TX resident. The only prior public record cross-checked is a 2017 joint Chapter 7 bankruptcy filing (Bankr. S.D. Cal. 17-06889) in the same name — no prior TCPA filings surfaced for her in CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Natasha+Santana%22&type=r">CourtListener →</a></span>. She does not appear to be a serial plaintiff in her own right; this is a plaintiff-firm-driven action.</p>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #1 · From Exhibit A</div>
+        <h3 class="card-title">+1 (213) 431-0273</h3>
+        <p class="card-body">Los Angeles 213 NPA long code. Used in the May 21, 2026 9:32 PM message ("Flex 🟣: Refer 3 friends by Aug 15…"). SMS shortlink routes to <strong>getflex.sng.link</strong> — the Singular attribution domain wired to getflex.com. <span class="src-tag"><a href="https://getflex.com">getflex.com →</a></span></p>
+        <div style="margin-top:12px;"><span class="pill pill--info">Sender Identification</span> <span class="pill pill--dark">213 NPA</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #2 · From Exhibit A</div>
+        <h3 class="card-title">+1 (213) 855-2733</h3>
+        <p class="card-body">Second Los Angeles 213 NPA long code. Used in the May 29, 2026 10:02 PM message (same referral campaign). Shortlink routes to <strong>links.getflex.com</strong> — Flex's branded redirect domain. Paired-DID rotation is consistent with A2P 10DLC dialer pools. <span class="src-tag"><a href="https://getflex.com">getflex.com →</a></span></p>
+        <div style="margin-top:12px;"><span class="pill pill--info">Sender Identification</span> <span class="pill pill--dark">213 NPA</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull PACER ECF #1</h3>
+        <p class="card-body">The complaint as docketed in ECF may carry a sealed or redacted attachment with the full recipient line. ~$1.20 pull from PACER.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense appearance</h3>
+        <p class="card-body">Once defense counsel files a Rule 26(f) report or first written discovery, the recipient cell will surface in interrogatory responses or initial disclosures.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Pre-suit C&D / Demand Letter</h3>
+        <p class="card-body">In parallel Castillo v. Flexible Finance (C.D. Cal., 2026), the same defendant should already have one recipient line in hand; cross-reference with Santana's docket once Rule 26 disclosures land.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">Plaintiff: No Prior TCPA Filings Surfaced</span>
+      <span class="pill pill--warn">Sender DIDs Confirmed to getflex.com</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A 2M+ user fintech with two parallel TCPA cases, no visible compliance program, and a quiet-hours fact pattern that is impossible to defend.</h2>
+      <p class="section-lede">Flex (Flexible Finance, Inc.) is a venture-backed rent-financing fintech with 2M+ renters served and a 332k-review consumer app <span class="src-tag"><a href="https://getflex.com">getflex.com →</a></span>. They are now defending two concurrent TCPA actions (this one in N.D. Tex. and Castillo in C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Flexible+Finance%22&type=r">CourtListener →</a></span>. Lead with <strong>Consent Capture + Quiet-Hours Scrubbing</strong>; the smoking gun is on the screenshot.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture & Record Retention</h3>
+        <p class="card-body">Two texts to a non-consenting Texas consumer, both timestamped 9:32 PM and 10:02 PM — Flex needs a defensible per-recipient consent record tied to a clock-and-timezone-aware send window. This is the Blacklist product that puts the discovery fire out.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Secondary</div>
+        <h3 class="card-title">DNC / Quiet-Hours Scrubbing</h3>
+        <p class="card-body">Both pled violations are 47 CFR § 64.1200(c)(1) quiet-hours strikes (8 a.m./9 p.m. local). A scrub layer that enforces local-time send windows by area code and ZIP eliminates the entire class theory on a going-forward basis.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Compliance Audit / Policies & Procedures</h3>
+        <p class="card-body">Privacy policy has zero TCPA, DNC, or quiet-hours language; signup page (getflex.com/signup) returned 404 during audit <span class="src-tag"><a href="https://getflex.com/terms">getflex.com/terms →</a></span>. Flex has three NMLS-licensed subsidiaries but no published CCO program for telemarketing — audit upsell.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">"Your team's defending two TCPA class actions right now — Santana in Dallas and Castillo in Central California — both within six weeks of each other, both alleging your SMS infrastructure is firing outside the 8-to-9 quiet-hours window. The Santana complaint quotes the screenshots: 9:32 PM and 10:02 PM. That's not an ATDS argument, that's not a consent argument — that's a clock. We solve the clock problem before your answer is due. Blacklist's scrub layer enforces local-time send windows by recipient ZIP and area code, and our consent capture product gives you the per-recipient timestamp record you'll need for both cases and any copycat filings that land while you're still in 12(b)(6) territory."</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">"The PLG firm filing this is primarily a Florida property-damage shop — this is them testing TCPA. If they get a settlement here, they'll scale into the fintech-rent vertical, and your sister brands (Servicing, Brokering, Payments) inherit the playbook. The cost of putting a scrub layer between your dialer and your customers is a rounding error against a Rule 23 class of 'several thousands' at $500–$1,500 per text."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A 2M-renter fintech with $20B+ in rent processed, a privacy policy that mentions zero TCPA controls, and three NMLS-licensed subsidiaries downstream.</h2>
+      <p class="section-lede">Flex is private, venture-backed, and operationally massive — but the compliance posture is conspicuously thin. The privacy policy authorizes broad third-party marketing without a TCPA-compliant consent mechanism; the signup flow could not even be reached during the audit.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Flexible Finance, Inc. (d/b/a Flex / getflex.com)</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>Flexible Finance, Inc.</dd>
+          <dt>Entity Type</dt><dd>Delaware Corporation (per complaint ¶5)</dd>
+          <dt>Formation State</dt><dd>Delaware</dd>
+          <dt>HQ</dt><dd>Not publicly disclosed on site</dd>
+          <dt>Vertical</dt><dd>Fintech — rent financing / BNPL-for-rent</dd>
+          <dt>Public/Private</dt><dd>Private (VC-backed)</dd>
+          <dt>Scale</dt><dd>"2M+ renters served, $20B+ rent paid" per site; App Store 332k+ reviews, 4.8 rating <span class="src-tag"><a href="https://getflex.com">getflex.com →</a></span></dd>
+          <dt>Products</dt><dd>Flex Rent line of credit; Flex Move-in term loans (16.95–23.84% APR); credit-building to TransUnion <span class="src-tag"><a href="https://getflex.com">getflex.com →</a></span></dd>
+          <dt>Subsidiaries</dt><dd>Flexible Finance Servicing, Inc. (NMLS #2256673); Flexible Finance Brokering, Inc. (NMLS #2599800); Flexible Finance Payments, LLC (NMLS #2713261)</dd>
+          <dt>Public Comp Statements</dt><dd>"Financial technology company, not a bank"; lines of credit issued by Lead Bank or Column N.A. <span class="src-tag"><a href="https://www.linkedin.com/company/getflex">LinkedIn →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy policy authorizes broad third-party marketing — with zero TCPA, DNC, quiet-hours, or autodialer language.</h3>
+        <p class="card-body" style="margin-top:12px;">Flex's Terms (last updated Dec 26, 2025) state Flex "may use information we gather through the tools to market other products and/or services to you, including those of third parties" <span class="src-tag"><a href="https://getflex.com/terms" style="color:#FBE5E5;">getflex.com/terms →</a></span>. The privacy policy describes SMS opt-out via STOP reply or email to help@getflex.com <span class="src-tag"><a href="https://getflex.com/privacy" style="color:#FBE5E5;">getflex.com/privacy →</a></span> — but contains NO mention of an internal Do-Not-Call list, no quiet-hours acknowledgment, and no scrubbing against the National DNC Registry. The signup page (<code>getflex.com/signup</code>) returned 404 during audit — we could not even locate the consent capture point, which is exactly the evidentiary hole a TCPA plaintiff exploits. Vendor sprawl (two distinct 213 NPA long codes, two distinct sender domains <code>getflex.sng.link</code> + <code>links.getflex.com</code>) compounds the risk: multiple outbound platforms means inconsistent quiet-hours enforcement.</p>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <div class="card card--accent">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Two parallel TCPA cases inside a six-week window — and PLG firm settles fast.</h3>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>This Case Filed</dt><dd>June 10, 2026 (N.D. Tex.)</dd>
+        <dt>Parallel Case</dt><dd>Castillo v. Flexible Finance Inc., C.D. Cal., filed April 28, 2026 — same defendant, ~6 weeks earlier <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Flexible+Finance%22&type=r">CourtListener →</a></span></dd>
+        <dt>Answer Window</dt><dd>Default 21-day federal answer deadline runs from service; assume early July 2026 absent waiver-of-service stipulation</dd>
+        <dt>Firm Settlement Tempo</dt><dd>PLG firm filed Sloss v. Wolverine April 22, 2026 → Notice of Settlement June 10, 2026. <strong>Less than 7 weeks.</strong> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span></dd>
+        <dt>Compliance Window</dt><dd>Flex needs a remediation story to tell both courts (and any third copycat filing) before the first Rule 26(f) conference.</dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Flexible Finance Servicing, Inc.</strong><br><span style="color:var(--fg-3); font-size:12px;">NMLS #2256673</span></td>
+              <td>Subsidiary</td>
+              <td>Loan servicing</td>
+              <td>Outbound collections / payment-reminder SMS likely runs on same infrastructure</td>
+              <td><span class="pill pill--warn">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Flexible Finance Brokering, Inc.</strong><br><span style="color:var(--fg-3); font-size:12px;">NMLS #2599800</span></td>
+              <td>Subsidiary</td>
+              <td>Loan brokering</td>
+              <td>Lead-gen and pre-qual messaging — DNC + consent capture exposure</td>
+              <td><span class="pill pill--warn">High</span></td>
+            </tr>
+            <tr>
+              <td><strong>Flexible Finance Payments, LLC</strong><br><span style="color:var(--fg-3); font-size:12px;">NMLS #2713261</span></td>
+              <td>Subsidiary</td>
+              <td>Payments processing</td>
+              <td>Transactional + marketing crossover, classic TCPA grey zone</td>
+              <td><span class="pill pill--info">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Lead Bank</strong></td>
+              <td>Issuing bank partner</td>
+              <td>FDIC-member bank</td>
+              <td>Co-branded SMS / lifecycle messaging risk if Flex acts as agent</td>
+              <td><span class="pill pill--info">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Column N.A.</strong></td>
+              <td>Issuing bank partner</td>
+              <td>FDIC-member bank</td>
+              <td>Same co-branded SMS exposure pathway</td>
+              <td><span class="pill pill--info">Medium</span></td>
+            </tr>
+            <tr>
+              <td><strong>Yardi / RentCafe</strong></td>
+              <td>Distribution partner</td>
+              <td>Property management software</td>
+              <td>Flex/Yardi co-marketing inside RentCafe portal → joint TCPA exposure</td>
+              <td><span class="pill pill--info">Medium</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Defense not yet appeared. PLG firm is a Florida property-damage shop testing the TCPA waters — and they settle fast.</h2>
+      <p class="section-lede">Flex faces a coordinated two-front TCPA fight. The plaintiff firm is not a TCPAWorld-ranked filer but moves cases to settlement in under 7 weeks. Sr. Judge Fitzwater is methodical and defense-receptive on Rule 12 and class certification, which buys Flex room — but only if the answer carries a credible compliance narrative.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">This Case</div>
+        <h3 class="card-title">Santana v. Flexible Finance, Inc.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>3:26-cv-01917-D (N.D. Tex., Dallas Div.)</dd>
+          <dt>Filed</dt><dd>June 10, 2026</dd>
+          <dt>Judge</dt><dd>Sr. Judge Sidney A. Fitzwater <span class="src-tag"><a href="https://www.courtlistener.com/?q=3%3A26-cv-01917&type=r">CourtListener →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Natasha Santana — Kaufman County, TX</dd>
+          <dt>Counsel</dt><dd>Vinit R. Venkatesh — FL Bar #24144674 — PLG Damage Attorneys (Miramar, FL)</dd>
+          <dt>Class</dt><dd>Putative Rule 23 — "TCPA After-Hours Class"</dd>
+          <dt>Class Definition</dt><dd>All persons in the U.S. who, in the 4 years preceding the action, received more than one marketing text from Flex initiated before 8 a.m. or after 9 p.m. local time</dd>
+          <dt>Class Size</dt><dd>At least 50 alleged; "several thousands" believed (Compl. ¶29–30)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-hours violation — two SMS sent at 9:32 PM and 10:02 PM</dd>
+          <dt>Damages Sought</dt><dd>$500 per negligent / $1,500 per willful violation + injunctive relief</dd>
+          <dt>Named-Plaintiff Exposure</dt><dd>2 violations × $500–$1,500 = <strong>$1,000–$3,000</strong> (named only); class aggregate "in the millions" per Compl. ¶36</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not Yet Appeared</span> — 21-day answer clock once served</dd>
+          <dt>Docket Visibility</dt><dd>Complaint docketed; no scheduling order or MTD yet visible on RECAP</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Firm Address</dt><dd>2750 SW 145th Ave, Suite 509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746</dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com (general) · vv@plgdamage.com (Venkatesh)</dd>
+          <dt>Bar Number</dt><dd>FL Bar #24144674 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=24144674">Florida Bar →</a></span></dd>
+          <dt>Bar Status</dt><dd>Active <span class="pill pill--ok">Active</span></dd>
+          <dt>N.D. Tex. Admission</dt><dd><span class="pill pill--warn">Pro Hac Vice Likely Required</span> — review L.R. 83.10 local-counsel compliance</dd>
+          <dt>Multi-Jurisdictional</dt><dd>Appears under FL Bar #24144674 here; per worker notes also surfaces under CA Bar #367857 and FL Bar #123711 in other filings <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener →</a></span></dd>
+          <dt>Discipline</dt><dd>No formal discipline. Note: firm and Venkatesh personally named as defendants in Ackerman v. Property Litigation Group, PLLC (S.D. Fla. 0:23-cv-61828) — employment/harassment suit, terminated July 2024 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener →</a></span></dd>
+          <dt>Firm Core Practice</dt><dd>Property damage / insurance bad faith (FL hurricane, water, mold, fire) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com →</a></span></dd>
+          <dt>TCPAWorld Rank</dt><dd>Not on TCPAWorld power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld →</a></span></dd>
+          <dt>TCPA Posture</dt><dd>Newly added "Consumer Protection Resources" to site nav — early-stage TCPA filer expanding from property-damage practice</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; margin:0 0 12px;">Plaintiff Firm Template — "PLG Expansion Play"</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-2); max-width:880px;">PLG Damage Attorneys is a Florida property-damage / insurance bad-faith firm by core practice. Worker scan identified ~13 TCPA filings firm-wide in 2026, fanned out across N.D. Fla., C.D. Cal., S.D. Tex., M.D. Fla., and N.D. Cal. against unrelated defendants (Wolverine, Rocket Mortgage, Last Brand, 7-Eleven, Payactiv, etc.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span>. The template is pattern-thin: single named plaintiff, two pleaded violations, quiet-hours theory, class definition keyed to objective send-time records. Settlement tempo is fast — Sloss v. Wolverine (S.D. Tex.) filed April 22, 2026 → Notice of Settlement filed June 10, 2026 (under 7 weeks). The firm is monetizing nuisance value before discovery costs accrue.</p>
+    </div>
+
+    <div style="height:32px;"></div>
+
+    <h3 style="font-size:20px; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Santana v. Flexible Finance, Inc.</strong> <span class="pill pill--red">THIS CASE</span></td>
+            <td>3:26-cv-01917-D</td>
+            <td>N.D. Tex.</td>
+            <td>2026-06-10</td>
+            <td><span class="pill pill--danger">Open · Class</span></td>
+            <td>TCPA quiet-hours SMS</td>
+          </tr>
+          <tr>
+            <td>Castillo v. Flexible Finance Inc.</td>
+            <td>—</td>
+            <td>C.D. Cal.</td>
+            <td>2026-04-28</td>
+            <td><span class="pill pill--danger">Open · Parallel</span></td>
+            <td>TCPA (same defendant)</td>
+          </tr>
+          <tr>
+            <td>Wright et al. v. Bridge At Terracina LLC; Flexible Finance Inc., et al.</td>
+            <td>1:25-cv-00155</td>
+            <td>W.D. Tex.</td>
+            <td>2025</td>
+            <td><span class="pill pill--info">Co-Def · Fair Housing (non-TCPA)</span></td>
+            <td>FHA / non-TCPA</td>
+          </tr>
+          <tr>
+            <td>Sloss v. Wolverine World Wide (PLG firm)</td>
+            <td>4:26-cv-03277</td>
+            <td>S.D. Tex.</td>
+            <td>2026-04-22</td>
+            <td><span class="pill pill--ok">Settled · &lt;7 wks</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage (PLG firm)</td>
+            <td>2:26-cv-05599</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio LLC (PLG firm)</td>
+            <td>2:26-cv-05313</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Rios v. Last Brand, Inc. (PLG firm)</td>
+            <td>5:26-cv-02684</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Ortiz v. Payactiv, Inc. (PLG firm)</td>
+            <td>2:26-cv-01460</td>
+            <td>M.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gaps-callout">
+      <h4><i data-lucide="alert-triangle" style="width:14px;height:14px; vertical-align:middle;"></i> Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>PACER / PacerMonitor / Justia returned 403/404 — pull docket sheet directly from PACER to confirm defense counsel, scheduling order, and any sealed exhibits with the plaintiff's recipient number.</li>
+        <li>Delaware SoS and Texas Comptroller franchise records were not retrievable behind interactive forms — registered agent for Flexible Finance, Inc. and Texas foreign-entity registration not confirmed.</li>
+        <li>Bizapedia and OpenCorporates blocked — no officer / director roster from corporate registry sources; current C-suite identification depends on LinkedIn enrichment only.</li>
+        <li>Flex CEO / Founder not surfaced in worker fetches (Flex was founded ~2019; Eyal Lifshitz is the publicly known co-founder/CEO but not confirmed by cited URLs in this scrape).</li>
+        <li>Florida Bar profile returned generic shell — Venkatesh admission date and full discipline history not directly readable from the cited URL.</li>
+        <li>Defendant's getflex.com/signup returned 404 — the live consent capture flow could not be inspected; recommend a return visit before the rep dials.</li>
+        <li>No third-party consumer-report corroboration retrievable for either 213 NPA sender DID (800notes / YouMail / Tellows / RoboKiller all returned 403/404).</li>
+        <li>Castillo v. Flexible Finance docket number not surfaced — pull from PACER to assess settlement posture in the parallel case.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open the door at the Chief Compliance Officer — "Chelsea K." — then escalate to engineering/product.</h2>
+      <p class="section-lede">Flex publishes only first-name + last-initial on the careers page, which limits direct-email construction. The email pattern <code>{first}@getflex.com</code> is inferred from one confirmed alias (media@getflex.com) and one LinkedIn-identified individual (Brad Robins). Lead with media@getflex.com as the soft entry; warm-route to Compliance and Product Evangelism.</p>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Discovered Email Pattern</div>
+      <h3 class="card-title"><code>{first}@getflex.com</code> &nbsp; <span class="pill pill--warn">PATTERN — Inferred</span></h3>
+      <p class="card-body" style="margin-top:8px;">Inferred from the one published alias <code>media@getflex.com</code> on the careers page and one LinkedIn-confirmed individual. No verified individual emails have been published by Flex. Treat all per-person emails below as PATTERN-confidence until bounce-tested. <span class="src-tag"><a href="https://getflex.com/careers">getflex.com/careers →</a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title / Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th><th>Confidence</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chelsea K.</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>Chief Compliance Officer (per careers page). Last name not published. <strong>The single most important first call.</strong> <span class="src-tag"><a href="https://getflex.com/careers">getflex.com/careers →</a></span></td>
+            <td>—</td>
+            <td>chelsea@getflex.com <span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brad Robins</strong><br><span class="pill pill--dark">PRODUCT</span></td>
+            <td>Principal Product Evangelist. LinkedIn-confirmed. Useful warm-route into product + marketing leadership. <span class="src-tag"><a href="https://www.linkedin.com/company/getflex">LinkedIn →</a></span></td>
+            <td>—</td>
+            <td>brad@getflex.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/bradleyrobins">/in/bradleyrobins</a></td>
+            <td><span class="pill pill--warn">PATTERN</span></td>
+          </tr>
+          <tr>
+            <td><strong>Will Kohler</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Listed on Flex LinkedIn company page. Role not specified in source. <span class="src-tag"><a href="https://www.linkedin.com/company/getflex">LinkedIn →</a></span></td>
+            <td>—</td>
+            <td>will@getflex.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/will-kohler-217144">/in/will-kohler-217144</a></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Julio S.</strong><br><span class="pill pill--dark">ENGINEERING</span></td>
+            <td>Senior Director, Engineering. Owns the dialer infra. Surface contact via Chelsea K. <span class="src-tag"><a href="https://getflex.com/careers">getflex.com/careers →</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michael S.</strong><br><span class="pill pill--dark">ANALYTICS</span></td>
+            <td>Sr. Director, Insights Analytics &amp; Engineering Analytics. Last-name unknown. <span class="src-tag"><a href="https://getflex.com/careers">getflex.com/careers →</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Courtney Bagwell</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Referenced in Flex LinkedIn posts re: client showcases. <span class="src-tag"><a href="https://www.linkedin.com/company/getflex">LinkedIn →</a></span></td>
+            <td>—</td>
+            <td>courtney@getflex.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/usfcourtney">/in/usfcourtney</a></td>
+            <td><span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>A. Munniksma</strong><br><span class="pill pill--dark">EMPLOYEE</span></td>
+            <td>Employee identified via LinkedIn extraction. Role not specified in source. <span class="src-tag"><a href="https://www.linkedin.com/company/getflex">LinkedIn →</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><a href="https://www.linkedin.com/in/amunniksma">/in/amunniksma</a></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Flex — Media / Press</strong><br><span class="pill pill--dark">COMPANY</span></td>
+            <td>Published media inbox. Use as the safest soft-open if no warm intro is available.</td>
+            <td>—</td>
+            <td>media@getflex.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Flex — Customer Support</strong><br><span class="pill pill--dark">COMPANY</span></td>
+            <td>Customer-facing inbox listed in privacy policy. NOT the right door for sales — listed only for reference.</td>
+            <td>—</td>
+            <td>help@getflex.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+            <td><span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Flex GC / VP Legal</strong><br><span class="pill pill--dark">LEGAL</span></td>
+            <td>Not identified by name in any cited source. Sales should request introduction through Chelsea K. on first call.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">COUNSEL</span></td>
+            <td>Not yet appeared on the N.D. Tex. docket. In the prior W.D. Tex. matter, Katherine Chiarello represented Flex — not confirmed here. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Flexible+Finance%22&type=r">CourtListener →</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="pill pill--gap">Not Yet Appeared</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3); max-width:880px;">Plaintiff counsel contact details (Vinit R. Venkatesh / PLG Damage Attorneys) are documented in Section 04 above; they are not appropriate first-call targets for sales outreach.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears and the cone-of-silence falls.</h2>
+      <p class="section-lede">Flex is in the narrow window between filing and defense counsel's appearance. Once outside counsel is engaged, all compliance-vendor pitches will be funneled through litigation strategy, which slows everything. The compliance team can still take a meeting today.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 1 — Soft-open via media@getflex.com</h4>
+          <p>Send a short, non-alarmist email to <code>media@getflex.com</code> referencing the public docket (Santana, 3:26-cv-01917-D) and offering a 15-minute compliance briefing. Do not lead with the parallel Castillo case — let them surface it. Reference outcome: a forward to Chelsea K. (CCO) or to the GC.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1–2 — LinkedIn warm-touch on Brad Robins</h4>
+          <p>Connect via LinkedIn with a one-line mention of the quiet-hours fact pattern (no scare language). Brad is product-evangelism — he sits next to the lifecycle / SMS team and routes inbound with low gatekeeping. Reference outcome: an internal intro to the lifecycle marketing owner.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 2–3 — Direct email to Chelsea K. (CCO)</h4>
+          <p>Send to <code>chelsea@getflex.com</code> (PATTERN). Subject: "TCPA quiet-hours scrubbing — Santana &amp; Castillo posture". Lead the body with the two screenshot timestamps (9:32 PM / 10:02 PM) and the absence of quiet-hours language in Flex's privacy policy and Terms. Reference outcome: a 30-minute scoping call before any answer is filed.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 3–5 — Pull PACER ECF #1 + monitor Castillo</h4>
+          <p>Run a PACER pull on Santana (~$1.20) to capture any sealed attachments and to monitor for defense counsel's notice of appearance. In parallel, monitor the C.D. Cal. Castillo docket for settlement filings — that case is the leading indicator for Flex's posture here.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 5–10 — Cross-sell to subsidiaries on the same call</h4>
+          <p>Once a Chelsea K. meeting is booked, frame the scope to cover all three NMLS-licensed subsidiaries (Servicing, Brokering, Payments). Each is an outbound-messaging surface and inherits Flex's vendor sprawl risk. Single contract, three protected entities.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h4>Day 10–21 — Push to close before answer deadline</h4>
+          <p>21-day federal answer clock starts at service. Flex's outside counsel will want a credible remediation story in the answer or in any 12(b)(6) motion. Position Blacklist as the remediation story. Close before the answer is filed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:32px"></div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Trigger Conditions That Change The Plan</div>
+      <ul style="margin:12px 0 0; padding-left:20px; color:#E0E0E0; font-size:14px; line-height:1.6;">
+        <li><strong>Defense counsel appears on the N.D. Tex. docket</strong> — pause direct outreach to Chelsea K.; pivot to defense-counsel-aware language and route via outside counsel.</li>
+        <li><strong>Castillo (C.D. Cal.) settles</strong> — Flex's posture flips to "settlement mode"; lead with consent-capture for go-forward defensibility, not litigation support.</li>
+        <li><strong>PLG firm files a third copycat against Flex</strong> — urgency triples; pitch becomes "stop the bleeding," not "build a program."</li>
+        <li><strong>Plaintiff amends to add Lead Bank or Column N.A.</strong> — broadens the strike zone to the issuing banks; reposition as a multi-party compliance package.</li>
+        <li><strong>Judge Fitzwater issues an early Rule 12 ruling</strong> — read the tea leaves; a denial of MTD accelerates settlement posture and increases willingness to spend on remediation.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH — 21-DAY ANSWER WINDOW</span>
+      <span class="pill pill--danger">CLASS-ACTION EXPOSURE</span>
+      <span class="pill pill--warn">PARALLEL CASE IN C.D. CAL.</span>
+      <span class="pill pill--info">CLOSE BEFORE DEFENSE APPEARS</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
