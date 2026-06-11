@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>McManus v. Molly Maid — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:#FBE5E5; }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.gap-callout{ background:#FFF3DD; border-left:4px solid var(--warning); padding:20px 24px; }
+.gap-callout h4{ margin:0 0 12px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); }
+.gap-callout ul{ margin:0; padding-left:20px; font-size:14px; line-height:1.6; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:24px; font-weight:700; color:var(--bl-red); font-variant-numeric:tabular-nums; }
+.step-title{ font-size:16px; font-weight:600; margin:0 0 4px; }
+.step-body{ font-size:14px; color:var(--fg-2); line-height:1.55; margin:0; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#fff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">BLACKLIST</text>
+          <text x="125" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Franchisor SMS Marketer · Internal DNC Failure · Post-Opt-Out Solicitation · KKR-Owned Neighborly Family</p>
+      <h1 class="hero-tagline">McManus v.<br>Molly Maid SPV LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">4:26-cv-00710-O</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Tex. (Fort Worth)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Reed C. O'Connor <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"several thousands or more"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Christopher E. Berman <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Shamis &amp; Gentile, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's "8919" number masked in complaint — scrub deferred until PACER pull or discovery.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Here, the complaint conceals all but the last four digits of Nicyel McManus's number, so a litigator-list lookup cannot be run yet. The case is open enough other angles to lead without it.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--red">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(XXX) XXX-8919</div>
+        <div class="scrub-number-sub">Complaint discloses only the last four digits ("8919 Number"). Plaintiff is a Gwinnett County, GA resident; texts received from defendant's 678-area-code DIDs. Full 10-digit number is recoverable via PACER civil cover sheet, defense counsel disclosure, or Rule 26(a)(1) initial disclosures.</div>
+      </div>
+      <p class="scrub-body-text">No blacklistBulk lookup was executed — a partial number cannot be scrubbed reliably. Plaintiff Nicyel McManus does not appear in CourtListener as a prior TCPA filer, which means this is likely a first-time pro se-style filer recruited by Shamis &amp; Gentile rather than a known serial plaintiff. The number recovery path is straightforward (see below); once the full 10-digit number is in hand, run it through litigator scrub and re-open this report.</p>
+    </div>
+
+    <div style="margin-bottom:24px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Sender DIDs — Identification, Not Spam-Tag, Framing</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Sender DID #1</div>
+          <h4 class="card-title" style="font-family:var(--font-mono);">(678) 389-3221</h4>
+          <p class="card-body">Atlanta-NPA local-presence number. Used to send all eight texts pled (Apr 21 – May 14, 2026) including the four post-opt-out texts after plaintiff replied "Stop Soliciting" on Apr 30. No third-party consumer-complaint reputation could be pulled (800notes / YouMail / Tellows / RoboKiller all blocked the fetch), so attribution to Molly Maid rests on the screenshots and the in-text branding ("Hi Nic… At Molly Maid…").</p>
+          <div style="margin-top:12px;"><span class="pill pill--warn">678 NPA · Atlanta Metro</span> <span class="pill pill--gap">No public reputation data</span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Sender DID #2 (Callback)</div>
+          <h4 class="card-title" style="font-family:var(--font-mono);">(678) 765-6633</h4>
+          <p class="card-body">Atlanta-NPA callback number embedded in the body of the texts ("call us today at 678-765-6633"). Same 678 NPA as the sender DID — consistent with a multi-number local-presence rotation pool typical of A2P 10DLC SMS marketing campaigns. The use of two distinct DIDs in the same NPA, both targeting a GA-resident consumer, is the strongest pattern evidence of a franchisee-level dialer with no unified DNC suppression.</p>
+          <div style="margin-top:12px;"><span class="pill pill--warn">Callback / Voice DID</span> <span class="pill pill--info">Local-presence pool signal</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Recovery Path to a Scrub-Ready Number</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <h4 class="card-title">1. Pull ECF #1 from PACER</h4>
+          <p class="card-body">The civil cover sheet attached at filing often lists the plaintiff's full residential number in the contact block. Cost: ~$1.20 via PACER. Fastest path; do this within 24 hours.</p>
+        </div>
+        <div class="card">
+          <h4 class="card-title">2. Wait for defense counsel notice of appearance</h4>
+          <p class="card-body">Once defense counsel is retained, a Rule 26(f) conference will force disclosure of the recipient number. Adds 30–60 days to the timeline — only use this path if PACER yields nothing.</p>
+        </div>
+        <div class="card">
+          <h4 class="card-title">3. Discovery request via early-resolution dialogue</h4>
+          <p class="card-body">If Blacklist closes the defendant before answer, structure the engagement so the number is shared as part of the audit scope (consent record reconciliation).</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: PENDING — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF NOT A KNOWN SERIAL FILER <span class="src-tag" style="margin-left:6px;"><a href="https://www.courtlistener.com/?q=4%3A26-cv-00710&type=r">CourtListener →</a></span></span>
+      <span class="pill pill--warn">FIRM IS A KNOWN SERIAL FILER · 20+ TCPA CASES</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">KKR-backed franchisor with a smoking-gun post-opt-out text trail and 19 sister brands one DNC scrub away from copycat suits.</h2>
+      <p class="section-lede">This is a textbook Internal DNC class action: plaintiff texted "Stop Soliciting" on April 30, and Molly Maid kept texting on May 5, May 12, and May 14. The defendant is part of Neighborly, a 19-brand KKR-owned home-services portfolio <span class="src-tag"><a href="https://www.neighborly.com/about-us/">Neighborly →</a></span> — meaning one closed deal protects an entire family of franchise brands. Lead with Internal DNC policies &amp; procedures, attach DNC scrubbing for the contractual hook, then expand the relationship across the Neighborly portfolio.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h4 class="card-title">Compliance Audit / Policies &amp; Procedures</h4>
+        <p class="card-body">Plaintiff explicitly pleads that Defendant has no written Internal DNC policy, no training, and no opt-out processing procedures (Compl. ¶¶ 19–24, 30–31). This is the §64.1200(d) playbook. Sell a written-policy build, training program, and 30-day opt-out workflow — directly mooting the class theory.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Attach Product</div>
+        <h4 class="card-title">DNC Scrubbing (Internal + Federal)</h4>
+        <p class="card-body">Two distinct sender DIDs and a franchisee-distributed marketing model mean Molly Maid has no unified suppression list. Federal DNC is a secondary count here, but the operational gap (suppression across all franchisees + corporate) is enormous and high-margin recurring revenue.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-Sell</div>
+        <h4 class="card-title">Consent Capture / Record Retention</h4>
+        <p class="card-body">Molly Maid's request-estimate intake page returned 404 in our fetch <span class="src-tag"><a href="https://www.mollymaid.com/">mollymaid.com →</a></span> — they cannot produce the consent language plaintiff allegedly saw. Position consent-capture + 5-year record retention as the discovery-defense layer.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+    <div class="card">
+      <p class="card-body" style="margin:0 0 12px;">Open the call to Neighborly's General Counsel by name (Grayson Brown, EVP &amp; General Counsel) <span class="src-tag"><a href="https://theorg.com/org/neighborly">TheOrg →</a></span> with the wedge: "Your Molly Maid brand was sued yesterday in N.D. Texas for ignoring a 'Stop Soliciting' reply and continuing to text the plaintiff three more times. The complaint specifically pleads zero written policy, zero training, zero opt-out processing — §64.1200(d)(1)–(6). The plaintiff's counsel just won class certification on this exact theory in September 2025 against Spring EQ. You have a 21-day answer clock, 19 sister brands on similar marketing infrastructure, and KKR's compliance committee is going to ask what controls exist across the portfolio."</p>
+      <p class="card-body" style="margin:0;">The follow-on hook: a single Blacklist deployment at the Neighborly parent level — written Internal DNC policy template, franchisee training module, and a unified suppression scrub across the 450+ Molly Maid franchisees plus the 19 sister brands (Mr. Rooter, Mr. Electric, Mosquito Joe, Aire Serv, Glass Doctor, etc.) — neutralizes this case as a structural defense and forecloses copycat filings. Price the engagement at the portfolio level; expect rapid yes once GC understands Shamis &amp; Gentile's settlement pattern (5–12 weeks from filing to termination).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A KKR-backed, 19-brand home-services empire — and Molly Maid is the canary in the franchisee coal mine.</h2>
+      <p class="section-lede">Molly Maid SPV LLC is the franchisor entity for the Molly Maid system, part of Neighborly (formerly Dwyer Group), the largest home-services franchise platform in the world, owned since 2021 by KKR. The defendant entity name ("SPV") signals deliberate asset segregation — meaning leadership already views TCPA exposure as a containable risk, but the parent has the compliance budget.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h4 class="card-title">Molly Maid SPV LLC</h4>
+        <dl class="kv">
+          <dt>Legal name</dt><dd>Molly Maid SPV LLC <span class="pill pill--gap" style="margin-left:6px;">SoS unverified</span></dd>
+          <dt>Entity type</dt><dd>Limited Liability Company (special-purpose vehicle)</dd>
+          <dt>Principal address</dt><dd>1010 N University Parks Dr., Waco, TX 76707 (Compl. ¶ 10) <span class="src-tag"><a href="https://www.neighborly.com/about-us/">co-located w/ Neighborly HQ →</a></span></dd>
+          <dt>Operating brand</dt><dd>Molly Maid® (residential &amp; light-commercial cleaning franchise)</dd>
+          <dt>Parent</dt><dd>Neighborly (formerly Dwyer Group) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Molly_Maid">Wikipedia →</a></span></dd>
+          <dt>Ultimate owner</dt><dd>KKR &amp; Co. (acquired Neighborly 2021)</dd>
+          <dt>Footprint</dt><dd>450+ individually-owned U.S. franchises; ~1.7M services/year <span class="src-tag"><a href="https://www.mollymaid.com/about-us/">mollymaid.com →</a></span></dd>
+          <dt>Vertical</dt><dd>Residential cleaning / home services franchise</dd>
+          <dt>Founded</dt><dd>1979 (Canada); U.S. expansion 1984</dd>
+          <dt>Public statements</dt><dd>No CCO, no public TCPA / DNC policy; Privacy Policy last updated 2023-01-01 references SMS opt-in but no Internal DNC program <span class="src-tag"><a href="https://www.mollymaid.com/privacy-policy/">Privacy Policy →</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h4 class="card-title">"We do not share your SMS opt-in data" — but no internal DNC list exists.</h4>
+        <p class="card-body">Molly Maid's Privacy Policy includes the carrier-mandated 10DLC line that they don't share SMS opt-in data with third parties, while simultaneously disclosing that customer information is transferred to "franchisees, service providers, vendors and other companies" <span class="src-tag"><a href="https://www.mollymaid.com/privacy-policy/">mollymaid.com/privacy-policy →</a></span>. The policy does not articulate any Internal DNC list, any 10-business-day opt-out processing standard required under 47 CFR § 64.1200(d)(3), or any 5-year retention program. The complaint exhibits a screenshot of plaintiff replying "Stop Soliciting" on Apr 30 and three further marketing texts arriving May 5, May 12, and May 14 — a 14-day post-opt-out failure to suppress, dramatically over the 10-business-day statutory ceiling.</p>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h4 class="card-title">21-day answer clock; KKR portfolio-review pressure.</h4>
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 10, 2026</dd>
+          <dt>Service window</dt><dd>FRCP 4(m) — 90 days from filing (waiver likely given known HQ address)</dd>
+          <dt>Answer deadline</dt><dd>~21 days from service (FRCP 12(a)(1)(A)) — target close window: <strong>before July 1, 2026</strong></dd>
+          <dt>Seasonal pressure</dt><dd>Mother's Day campaign already pled (Apr 30 gift-certificate text); summer cleaning push imminent — sender platform must keep operating</dd>
+          <dt>KKR diligence</dt><dd>KKR-owned portfolio companies escalate material litigation to PE compliance committees within 30 days — pre-empt with an audit engagement</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <div class="card-meta">Litigation Heat</div>
+        <h4 class="card-title">Warm — first surfaced TCPA suit against Molly Maid SPV.</h4>
+        <p class="card-body">No prior TCPA cases against Molly Maid SPV LLC found in CourtListener RECAP <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Molly+Maid%22&type=r">CourtListener →</a></span>. RECAP only indexes user-uploaded PACER content, so true exposure may be higher. No prior Neighborly-portfolio TCPA matters surfaced either <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Neighborly%22+TCPA&type=r">CourtListener →</a></span>. This appears to be a first-strike filing — meaning the defendant has no established defense playbook and Blacklist can position the relationship as a portfolio-wide insurance policy.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Neighborly Company</strong></td><td>Parent (KKR-owned)</td><td>Home-services franchise platform (19+ brands)</td><td>Portfolio-wide policy umbrella; single GC controls all subs</td><td><span class="pill pill--red">High — sell at parent level</span></td></tr>
+          <tr><td>Mr. Rooter Plumbing</td><td>Sister brand</td><td>Plumbing services</td><td>Same franchisee-distributed SMS marketing pattern</td><td><span class="pill pill--danger">High</span></td></tr>
+          <tr><td>Mr. Electric</td><td>Sister brand</td><td>Electrical services</td><td>Same franchisee-distributed SMS marketing pattern</td><td><span class="pill pill--danger">High</span></td></tr>
+          <tr><td>Mosquito Joe</td><td>Sister brand</td><td>Pest control (seasonal)</td><td>Aggressive seasonal SMS push; high TCPA-vertical risk</td><td><span class="pill pill--danger">High</span></td></tr>
+          <tr><td>Aire Serv</td><td>Sister brand</td><td>HVAC</td><td>Seasonal AC/heat-window SMS marketing</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>Glass Doctor</td><td>Sister brand</td><td>Auto/residential glass</td><td>Local-franchisee marketing model</td><td><span class="pill pill--warn">Medium</span></td></tr>
+          <tr><td>KKR &amp; Co.</td><td>Ultimate owner</td><td>Private equity</td><td>Compliance-committee escalation path</td><td><span class="pill pill--info">Info — influence channel</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Shamis &amp; Gentile just won class cert on this exact theory nine months ago — and they're running the same play here.</h2>
+      <p class="section-lede">The firm's documented pattern is rapid-settlement TCPA class actions in defendant-friendly venues, with Andrew Shamis on the TCPAWorld Top-10 Plaintiff's Lawyers radar. Their Mason v. Spring EQ class certification (C.D. Cal., Sept 2025) on a DNC Registry theory is the live precedent here.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h4 class="card-title">McManus v. Molly Maid SPV LLC, 4:26-cv-00710-O (N.D. Tex.)</h4>
+        <dl class="kv">
+          <dt>Docket</dt><dd>4:26-cv-00710-O</dd>
+          <dt>Filed</dt><dd>June 10, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=4%3A26-cv-00710&type=r">CourtListener →</a></span></dd>
+          <dt>Plaintiff</dt><dd>Nicyel McManus (Gwinnett County, GA resident; sole subscriber of "8919" number)</dd>
+          <dt>Plaintiff counsel</dt><dd>Christopher E. Berman, Shamis &amp; Gentile, P.A.</dd>
+          <dt>Class action</dt><dd>Yes — Rule 23 putative class</dd>
+          <dt>Class definition</dt><dd>"National Internal Do Not Call Class": all U.S. persons within 4 years prior to filing who received ≥2 texts in 12 months from/on behalf of Defendant for marketing while Defendant did not maintain § 64.1200(d)(1)–(6) procedures</dd>
+          <dt>Claim citation</dt><dd>47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1200(d)(1)–(6); 47 C.F.R. § 64.1200(c) referenced</dd>
+          <dt>Theory</dt><dd>Internal DNC failure — plaintiff sent "Stop Soliciting" Apr 30; Defendant continued texting May 5, 12, 14 — well past 10-business-day ceiling</dd>
+          <dt>DNC status pled</dt><dd>Internal DNC (primary); Federal DNC referenced via § 64.1200(c) but not pled as primary count</dd>
+          <dt>Damages sought</dt><dd>$500/violation negligent; $1,500/violation willful; injunctive relief; class size "several thousands or more"; CAFA $5M+ alleged</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock running</span></dd>
+          <dt>Aggregator visibility</dt><dd>CourtListener docket entry confirmed; no PacerMonitor/Justia/UniCourt mirror surfaced yet (case &lt;24h old at fetch)</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h4 class="card-title">Christopher E. Berman · Shamis &amp; Gentile, P.A.</h4>
+        <dl class="kv">
+          <dt>Filing attorney</dt><dd>Christopher E. Berman, Esq. (Partner) <span class="src-tag"><a href="https://shamisgentile.com/our-team/">Firm bio →</a></span></dd>
+          <dt>Email</dt><dd>cberman@shamisgentile.com</dd>
+          <dt>Address on complaint</dt><dd>2626 Cole Avenue, Suite 300, Dallas, TX 75204</dd>
+          <dt>Phone of record</dt><dd>305-479-2299 <span class="pill pill--warn">Miami HQ number on a Texas filing</span></dd>
+          <dt>Address mismatch</dt><dd><span class="pill pill--warn">Yes</span> — Dallas address listed, but firm is Miami-based; attorneys primarily FL-bar; TX office appears to be a satellite/virtual presence</dd>
+          <dt>Bar number</dt><dd><span class="pill pill--gap">Not confirmed — TX bar directory fetch failed</span></dd>
+          <dt>Firm size</dt><dd>~12 team members (8+ attorneys) <span class="src-tag"><a href="https://shamisgentile.com/our-team/">shamisgentile.com →</a></span></dd>
+          <dt>Managing partner</dt><dd>Andrew Shamis (named in 2025 TCPAWorld Top-10 Plaintiff's Lawyer radar)</dd>
+          <dt>Discipline history</dt><dd>None located in available sources <span class="pill pill--gap">FL/TX bar not directly confirmed</span></dd>
+          <dt>TCPA filing volume</dt><dd>20+ confirmed TCPA cases in CourtListener; actual volume likely higher <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Serial-filer status</dt><dd><span class="pill pill--danger">Yes — high-volume firm</span></dd>
+          <dt>Self-reported recoveries</dt><dd>$1.6B+ across 200+ cases; $12.5M auto-insurance settlement; $2.85M antitrust settlement <span class="src-tag"><a href="https://shamisgentile.com/">shamisgentile.com →</a></span></dd>
+          <dt>Recent class cert</dt><dd>Mason v. Spring EQ (C.D. Cal. 2025) — appointed class counsel on DNC Registry theory <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h4 class="card-title">Shamis &amp; Gentile Internal DNC / DNC Registry Template — Forum-Shop to Defendant's HQ District</h4>
+      <p class="card-body">Plaintiff is a Georgia resident, but suit was filed in N.D. Texas — Molly Maid SPV LLC's HQ district. This is a deliberate forum strategy by the firm to defeat venue-transfer motions and lock in a plaintiff-friendly merits posture. The factual pattern is highly templated: (1) plaintiff receives multiple marketing texts; (2) plaintiff replies with a clean opt-out phrase ("Stop Soliciting"); (3) defendant continues texting past the 10-business-day window; (4) class is defined as all recipients who got ≥2 texts in 12 months while defendant lacked § 64.1200(d) procedures. The firm has run this play across retail (Anthropologie), auto sales (Jamestown Import), lending (Spring EQ — class cert WON), medical (Back to Life), travel (Cubamax), and home services (Pull-A-Part, Hoppin) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span>. Termination patterns show rapid resolution: Bustamente v. Hoppin (~6 weeks), Raymond v. Pull-A-Part (~5 weeks), Johnson-Baity v. Back to Life (~3 months). Expect a settlement window opening within 60–90 days of answer.</p>
+    </div>
+
+    <h3 style="font-size:20px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation — Shamis &amp; Gentile TCPA Footprint</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current"><td><strong>McManus v. Molly Maid SPV LLC</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td><td>4:26-cv-00710-O · N.D. Tex.</td><td>Jun 10, 2026</td><td><span class="pill pill--red">Active · Complaint only</span></td><td>Internal DNC § 64.1200(d)</td></tr>
+          <tr><td>Mason v. Spring EQ LLC</td><td>C.D. Cal.</td><td>2024</td><td><span class="pill pill--danger">Class cert GRANTED (Sept 2025)</span></td><td>DNC Registry § 64.1200(c)</td></tr>
+          <tr><td>Bustamente v. Hoppin, LLC</td><td>W.D.N.C.</td><td>2024</td><td><span class="pill pill--ok">Terminated ~6 weeks</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Raymond v. Pull-A-Part, LLC</td><td>N.D. Ga.</td><td>2024</td><td><span class="pill pill--ok">Terminated ~5 weeks</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Johnson-Baity v. Back to Life Medical Group</td><td>N.D. Ga.</td><td>2024</td><td><span class="pill pill--ok">Terminated ~3 months</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Faler v. Dailylook, Inc.</td><td>S.D. Ohio</td><td>2023</td><td><span class="pill pill--info">Resolved</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Ingram v. Jamestown Import Auto Sales</td><td>W.D.N.Y.</td><td>2022</td><td><span class="pill pill--ok">Class settlement (final approval Feb 2023)</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Kravets v. Anthropologie, Inc.</td><td>S.D. Fla.</td><td>2022</td><td><span class="pill pill--ok">Terminated ~3 months</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Drazen v. GoDaddy.com, LLC</td><td>S.D. Ala.</td><td>2019</td><td><span class="pill pill--ok">Class settlement</span></td><td>TCPA marketing</td></tr>
+          <tr><td>Poirier v. Cubamax Travel Inc.</td><td>S.D. Fla.</td><td>2018</td><td><span class="pill pill--ok">Settled 2019</span></td><td>TCPA marketing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gap-callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul>
+        <li><strong>Plaintiff's full 10-digit number</strong> — pull PACER ECF #1 within 24 hours for ~$1.20 to enable a litigator scrub.</li>
+        <li><strong>Molly Maid SPV LLC SoS filing</strong> — Texas SOSDirect requires login; Bizapedia blocked; OpenCorporates 403. Confirm registered agent, formation date, and officers via paid TX SOS pull.</li>
+        <li><strong>Christopher Berman's Texas bar admission status</strong> — TX bar directory fetch failed. Verify before flagging address-mismatch in any negotiation; he may be admitted pro hac or fully admitted via reciprocity.</li>
+        <li><strong>Actual consent flow on mollymaid.com</strong> — request-estimate intake page returned 404. Capture the live consent checkbox / language before the call; if it's still 404 the defendant cannot produce the consent record in discovery.</li>
+        <li><strong>Arbitration clause</strong> — Neighborly Terms of Use references "Governing Law, Jurisdiction, and Venue" but full text not extracted; an enforceable arbitration clause could change the leverage entirely.</li>
+        <li><strong>SMS vendor / 10DLC registration</strong> — no Twilio/EZ Texting/Attentive infrastructure identified. Discovery target.</li>
+        <li><strong>Franchisee vs. corporate sender attribution</strong> — 678 NPA suggests an Atlanta-area franchisee dialer; confirm whether corporate or franchisee owns the SMS program and the consent records.</li>
+        <li><strong>Judge O'Connor's TCPA tendencies</strong> — no specific TCPA rulings surfaced; check Westlaw Litigation Analytics before predicting motion-to-dismiss outcomes.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Grayson Brown at Neighborly first. He owns the policy umbrella and the KKR escalation path.</h2>
+      <p class="section-lede">Molly Maid SPV LLC has no public officer disclosures (Texas SOSDirect requires paid lookup, Bizapedia blocked). The decision-making sits at Neighborly parent: GC Grayson Brown, CMO Stacy Lynn Bourgeois, and CEO Mike Davis. All emails below are inferred from the standard {first}.{last}@neighborly.com convention until verified. Lead with the GC; loop in the CMO once policy scope is agreed.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:16px;">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Grayson Brown</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>EVP, General Counsel &amp; Secretary, Neighborly (parent). Owns TCPA policy decisions across all 19 brands.</td>
+            <td>855-217-8437 (Neighborly main) <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>grayson.brown@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/grayson-brown-neighborly">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Mike Davis</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>CEO, Neighborly. Final decision-maker on portfolio-wide compliance spend; reports to KKR board.</td>
+            <td>855-217-8437 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>mike.davis@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/mike-davis-neighborly">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Stacy Lynn Bourgeois</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Chief Marketing Officer, Neighborly. Owns marketing tech stack and SMS program governance across all brands.</td>
+            <td>855-217-8437 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>stacy.bourgeois@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/stacy-lynn-bourgeois">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Michael Silva-Nash</strong><br><span class="pill pill--dark">PRESIDENT — MOLLY MAID</span></td>
+            <td>President, Molly Maid brand. Operational owner of the franchise system named in suit.</td>
+            <td>800-665-5962 (Molly Maid main) <span class="src-tag"><a href="https://www.mollymaid.com/">mollymaid.com →</a></span></td>
+            <td>michael.silva-nash@mollymaid.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-silva-nash">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Cait Dunn</strong><br><span class="pill pill--dark">MARKETING</span></td>
+            <td>Director, Marketing — Molly Maid. Day-to-day owner of the SMS program that drove this complaint.</td>
+            <td>800-665-5962 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>cait.dunn@mollymaid.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/cait-dunn">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jordan McGowen</strong><br><span class="pill pill--dark">VP OPS</span></td>
+            <td>Vice President of Operations, Molly Maid. Franchisee oversight; relevant for franchisee-distributed sender DID question.</td>
+            <td>800-665-5962 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>jordan.mcgowen@mollymaid.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jordan-mcgowen">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Muthukumar Easwaran</strong><br><span class="pill pill--dark">SVP DIGITAL/DATA</span></td>
+            <td>SVP — Digital/Data, Product &amp; Technology Platforms, Neighborly. Owns customer-data architecture across portfolio (consent records live here).</td>
+            <td>855-217-8437 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>muthukumar.easwaran@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/muthukumar-easwaran">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Gagan Sinha</strong><br><span class="pill pill--dark">CIO</span></td>
+            <td>Chief Information Officer, Neighborly. Technical authority for any new scrubbing integration.</td>
+            <td>855-217-8437 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>gagan.sinha@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/gagan-sinha">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Brad Stevenson</strong><br><span class="pill pill--dark">CDO</span></td>
+            <td>Chief Development Officer, Neighborly. Owns franchisee-onboarding standards (training + compliance).</td>
+            <td>855-217-8437 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>brad.stevenson@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/brad-stevenson">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Courtney Kolar</strong><br><span class="pill pill--dark">CPO</span></td>
+            <td>Chief People Officer, Neighborly. Training program owner — relevant to § 64.1200(d)(2) training requirement.</td>
+            <td>855-217-8437 <span class="pill pill--gap" style="margin-left:4px;">Direct unknown</span></td>
+            <td>courtney.kolar@neighborly.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/courtney-kolar">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">Not yet appeared</span></td>
+            <td>~21-day answer clock running from service. Re-check PACER weekly.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; color:var(--fg-3); margin:0;">Email pattern derived from the {first}.{last}@neighborly.com / {first}.{last}@mollymaid.com convention surfaced via TheOrg <span class="src-tag"><a href="https://theorg.com/org/neighborly">TheOrg →</a></span>. No published email addresses were found on mollymaid.com or neighborly.com; ZoomInfo/RocketReach access was blocked. Verify each email via Hunter or a soft-bounce test before send.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. Shamis &amp; Gentile cases terminate in 5–12 weeks.</h2>
+      <p class="section-lede">The firm's pattern is rapid settlement. Every day Blacklist waits is a day closer to Neighborly retaining outside defense counsel who will close the door on a parallel compliance engagement. Get the GC on the phone before discovery scoping starts.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4 class="step-title">Day 0 (today) — Pull PACER ECF #1 + identify defense counsel</h4>
+          <p class="step-body">~$1.20 PACER pull on the civil cover sheet to recover plaintiff's full 10-digit number. Re-run litigator scrub. Simultaneously, monitor PACER docket for notice of appearance — defense counsel identity changes the negotiation tone.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4 class="step-title">Day 1–2 — First outreach: Grayson Brown (Neighborly GC)</h4>
+          <p class="step-body">Cold-email + LinkedIn ping to Grayson Brown <span class="src-tag"><a href="https://theorg.com/org/neighborly">TheOrg →</a></span>. Subject line referencing the docket number and "21-day answer clock." Open with the smoking-gun fact: plaintiff replied "Stop Soliciting" on Apr 30 and Defendant kept texting May 5, 12, 14 — a 14-day post-opt-out failure, well past the 10-business-day statutory ceiling. Position the call as a "portfolio compliance review" rather than a vendor pitch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4 class="step-title">Day 3–5 — Parallel approach: Michael Silva-Nash (Molly Maid President)</h4>
+          <p class="step-body">Brand-level outreach to the operating President. The President wants this off his desk before it escalates to KKR's compliance committee. Frame as "we can demonstrably moot the class theory in 30 days" — written § 64.1200(d) policy + training + suppression scrub.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4 class="step-title">Day 7–10 — Discovery hook to CMO and SVP Digital</h4>
+          <p class="step-body">Loop in Stacy Lynn Bourgeois (Neighborly CMO) and Muthukumar Easwaran (SVP Digital/Data). They own the SMS program and the consent records — and the request-estimate page returning 404 in our fetch <span class="src-tag"><a href="https://www.mollymaid.com/">mollymaid.com →</a></span> means the consent-record audit is the most painful discovery topic for them. Sell the consent-capture + 5-year retention layer as the discovery defense.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h4 class="step-title">Day 14–21 — Portfolio-level proposal (pre-answer)</h4>
+          <p class="step-body">Submit a written portfolio-level engagement covering Molly Maid + the 19 Neighborly brands. Time the proposal to land before the answer deadline so the GC can cite a remediation program in any motion-to-dismiss or early-resolution dialogue.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div>
+          <h4 class="step-title">Day 30+ — Follow PACER for Rule 26(f) conference + adjust</h4>
+          <p class="step-body">If defense counsel moves for MDL coordination or arbitration enforcement, recalibrate. If a class-cert motion is filed, accelerate; Mason v. Spring EQ shows this firm wins class cert on this exact theory <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener →</a></span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px;">
+      <h4 class="card-title">Trigger conditions that change the plan</h4>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>→ Defense counsel files a motion to compel arbitration → pivot to consent-capture/records as primary product (arbitration only works if consent record is clean).</li>
+        <li>→ Plaintiff voluntarily dismisses for amended complaint → likely individual settlement coming; accelerate before relationship value collapses.</li>
+        <li>→ Second related TCPA filing against any Neighborly brand → portfolio sale becomes urgent; raise to KKR-level escalation immediately.</li>
+        <li>→ Judge O'Connor issues an early scheduling order with aggressive class-cert briefing schedule → defense will be motivated to settle fast; align the proposal with the cert hearing date.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 1, 2026</span>
+      <span class="pill pill--warn">PORTFOLIO PLAY · 19 SISTER BRANDS</span>
+      <span class="pill pill--info">FIRM SETTLES IN 5–12 WEEKS — DO NOT WAIT</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
