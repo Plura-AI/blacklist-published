@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hampton v. Lendzi — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 24" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-13</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Small-Business Lending Defendant · SMS Quiet-Hours + Federal DNC · PLG Damage Volume-Filer Template</p>
+      <h1 class="hero-tagline">Hampton v.<br>Lendzi <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">(DH &amp; RK Investments LLC)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-06310</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal.</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(3 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 (2 classes)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred pending PACER pull of complaint exhibit.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Hampton complaint identifies the recipient number only by its last four digits ("8602"). No litigator scrub can be run on a partial number.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number ("Subject Number")</div>
+        <div class="scrub-number">XXX-XXX-8602</div>
+        <div class="scrub-number-sub">Only last 4 digits pled (Compl. ¶20). Plaintiff is a Los Angeles, CA resident; the number was on the Federal DNC Registry "since at least March 18, 2026" (Compl. ¶21).</div>
+      </div>
+      <p class="scrub-body-text">A litigator scrub against blacklistbulk cannot be executed on a 4-digit fragment. The complaint pleads (a) Hampton is the regular user/subscriber of the Subject Number, (b) the number is used "primarily for personal, family, and household purposes … as a replacement for a traditional residential landline" (Compl. ¶20), and (c) three SMS messages from <strong>844-702-0760</strong> were received on April 30, May 6, and May 8, 2026 — all between 4:18 AM and 6:54 AM Pacific (Compl. ¶26). The full 10-digit Subject Number is recoverable from PACER ECF #1 (the as-filed complaint with unredacted plaintiff signature block / civil cover sheet) or via the first Rule 26 disclosure.</p>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:24px 0 12px;">Sending DID Intelligence</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID #1</div>
+        <h3 class="card-title">844-702-0760</h3>
+        <p class="card-body">Toll-free (844) number used to transmit all three challenged SMS messages branded as "Morgan @ Lendzi" with the URL <strong>lendzi.com</strong> (Compl. ¶27 &amp; Ex. A). Carrier and rate-center lookups deferred — 800notes, YouMail, Tellows, and RoboKiller all returned 403/404 during enrichment. <span class="src-tag"><a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/?searchField=all&searchText=Lendzi">CFPB consumer complaints search -&gt;</a></span></p>
+        <div style="margin-top:12px;"><span class="pill pill--info">Sender Identified</span> <span class="pill pill--gap">Third-Party Aggregator Data Unavailable</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Screenshot Exhibit</div>
+        <h3 class="card-title">Three SMS · 4:18 AM, 5:09 AM, 6:54 AM PT</h3>
+        <p class="card-body">All three messages sent during federal quiet hours (before 8:00 AM local). First message addresses plaintiff as "JOHN" — a wrong-name salutation that strongly suggests bulk list rental / lead-gen sourcing rather than a direct customer relationship. Third message includes the required STOP language, but only after two prior solicitations were already delivered. Sender domain: lendzi.com.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 12px;">Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h3 class="card-title" style="font-size:16px;"><i data-lucide="file-search" style="width:16px;height:16px;"></i> Pull ECF #1 from PACER</h3>
+        <p class="card-body" style="font-size:14px;">~$1.20 to retrieve the as-filed complaint. Civil cover sheet often lists plaintiff phone in the unredacted page-1 caption block. Highest-probability path to a full 10-digit number.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title" style="font-size:16px;"><i data-lucide="undo-2" style="width:16px;height:16px;"></i> Await Defense Counsel Notice</h3>
+        <p class="card-body" style="font-size:14px;">Once defense counsel files an appearance, the FRCP 26(f) disclosures will surface the full Subject Number to defense — and downstream to Blacklist if the rep is engaged on the matter.</p>
+      </div>
+      <div class="card">
+        <h3 class="card-title" style="font-size:16px;"><i data-lucide="search" style="width:16px;height:16px;"></i> Cross-Reference PLG Filings</h3>
+        <p class="card-body" style="font-size:14px;">The same plaintiff number may already appear in a parallel PLG Damage filing against another defendant. Search the firm's 10 concurrent 2026 TCPA filings for matching 8602-ending numbers.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--warn">PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF NAME: COMMON — IDENTITY UNCONFIRMED VS. 9 PRIOR BANKRUPTCY FILERS NAMED "KIMBERLY HAMPTON"</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Thinly-resourced FL fintech LLC with a smoking-gun signup-form DNC override and an active volume-filer hunting its vertical.</h2>
+      <p class="section-lede">DH &amp; RK Investments d/b/a Lendzi is a small-business lending broker running outbound SMS from a toll-free 844 number with no visible compliance infrastructure. The complaint frames quiet-hours + federal DNC violations — both of which are sold by Blacklist as turnkey scrub products. Lead with <strong>DNC scrubbing + quiet-hours time-of-day controls</strong>, and back-pocket the litigator scrub once PACER #1 is pulled.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <p class="card-body">The complaint directly pleads 47 CFR § 64.1200(c)(2). Lendzi's own apply-page consent language states the consumer agrees to be contacted "even if you're on a Do Not Call list" — meaning the defendant has affirmatively chosen <em>not</em> to scrub against the Federal DNC. This is the cleanest sell on the lead. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Lendzi%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Quiet-Hours / Time-of-Day Controls</h3>
+        <p class="card-body">All three pled SMS were sent between 4:18 AM and 6:54 AM Pacific — well inside the federal 8 PM – 8 AM prohibition. Defendant has no apparent time-zone–aware sending logic. Blacklist's scrub API enforces local-time gating per recipient area code.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Back-Pocket</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body">The apply-page form bundles TCPA consent into a single "Submit" button with no unchecked checkbox and no signed E-Sign record. If Lendzi can't produce a clean PEWC record for the plaintiff (and they can't — plaintiff alleges she never submitted the form), discovery will be brutal. Pitch a consent-capture overhaul as part of the post-case remediation.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:32px 0 12px;">Pitch Angle</h3>
+    <div class="card">
+      <p class="card-body">"You just got named in a putative class action filed June 10 in C.D. Cal. by PLG Damage Attorneys — the same firm that filed ten TCPA cases in the last 30 days against Rocket Mortgage, 7-Eleven, Rite Aid, and others. They specifically target fintech and lending. Your apply-page consent language says customers agree to be contacted 'even if you're on a Do Not Call list' — that single sentence is going to be Exhibit A at certification. Two things we can do today: (1) get every outbound list scrubbed against the Federal DNC before your next blast, and (2) install time-of-day gating so your 844 number physically cannot fire before 8 AM in the recipient's time zone. The named-plaintiff exposure on this case is $1,500–$4,500. The class exposure, if PLG gets certification on a 'hundreds to thousands' class, runs into seven figures. Scrub is cheap insurance — under a week to implement." <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Venkatesh%22+TCPA&type=r">CourtListener firm history -&gt;</a></span></p>
+      <p class="card-body" style="margin-top:12px;">Open with the consent-language exhibit. That is the single most damning fact in the public record — it is voluntary, on-the-record evidence of intent to contact DNC-registered consumers. No amount of vendor-blaming will neutralize it at deposition.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">FL holding-LLC operating a consumer-facing SMB lending broker under the Lendzi brand — thin compliance, Zoho CRM stack, ~16 known employees.</h2>
+      <p class="section-lede">DH &amp; RK Investments LLC is the Florida-formed legal entity. "Lendzi" is the public-facing brand at lendzi.com. No parent company, no PE backer, no public funding records surfaced. The operation reads as a founder-led lead-gen / merchant-cash-advance broker with a small inside sales floor.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">DH &amp; RK Investments LLC d/b/a Lendzi</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>DH &amp; RK Investments LLC (Compl. ¶6)</dd>
+          <dt>Formation State</dt><dd>Florida</dd>
+          <dt>Authorized In</dt><dd>California (per complaint)</dd>
+          <dt>Brand / DBA</dt><dd>Lendzi (lendzi.com)</dd>
+          <dt>Vertical</dt><dd>Small-business lending / MCA brokerage</dd>
+          <dt>Products</dt><dd>Small business loans, merchant cash advance, lending marketplace <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></dd>
+          <dt>HQ</dt><dd>Florida (precise address not confirmed)</dd>
+          <dt>Main Phone</dt><dd>(877) 453-6394 <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></dd>
+          <dt>Employees</dt><dd>~16 surfaced via TheOrg + SignalHire <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>CRM / Tech Stack</dt><dd>Zoho (per "Zoho Administrator" title in org chart) <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></dd>
+          <dt>BBB Profile</dt><dd>Not retrievable (403)</dd>
+          <dt>Sunbiz Record</dt><dd>Not retrievable (403)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Lendzi's apply-page consent language explicitly purports to override the DNC.</h3>
+        <p class="card-body">The signup flow at lendzi.com/apply bundles all consent into a single "Submit" button. The disclosure reads: <em>"consent to receive calls, texts (including SMS/MMS), and emails — including via autodialer or pre-recorded messages — <strong>even if you're on a Do Not Call list</strong>."</em> This is voluntary, on-the-record evidence that the defendant intended to contact DNC-registered numbers. Combined with the wrong-name salutation ("Hey JOHN") in the first SMS to plaintiff Kimberly Hampton — a recipient who alleges she never submitted the form — this points to bulk list rental or third-party lead-gen with no consent provenance per recipient. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Lendzi%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day federal answer clock starts on service.</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 10, 2026</dd>
+        <dt>Service Status</dt><dd>Not yet confirmed on docket (summons request docketed June 10)</dd>
+        <dt>Answer Deadline</dt><dd>~21 days post-service (FRCP 12(a)) — projected window: early-to-mid July 2026</dd>
+        <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+        <dt>Pre-MTD Window</dt><dd>NOW — pre-appearance is the highest-leverage moment to land scrub before defense counsel starts billing</dd>
+        <dt>Vertical Cycle</dt><dd>SMB lending — Q3/Q4 are peak outbound SMS quarters (year-end financing push) — every week of delay multiplies post-suit exposure</dd>
+      </dl>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:24px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lendzi</strong> (operating brand)</td>
+            <td>DBA of DH &amp; RK Investments LLC</td>
+            <td>SMB lending broker</td>
+            <td>Direct defendant — primary sale</td>
+            <td><span class="pill pill--red">PRIMARY</span></td>
+          </tr>
+          <tr>
+            <td>DH &amp; RK Investments LLC</td>
+            <td>Legal entity / holding LLC</td>
+            <td>Holding / unknown other operations</td>
+            <td>If FL Sunbiz reveals sister DBAs under same LLC, cross-sell applies</td>
+            <td><span class="pill pill--warn">INVESTIGATE</span></td>
+          </tr>
+          <tr>
+            <td>PLG Damage Attorneys' other lending-vertical targets (Rocket Mortgage, Payactiv)</td>
+            <td>Same plaintiff firm, same vertical</td>
+            <td>Mortgage, EWA fintech</td>
+            <td>Same plaintiff template — high probability of needing same scrub</td>
+            <td><span class="pill pill--info">PARALLEL OUTREACH</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Cold defendant docket meets a hot plaintiff-firm campaign — PLG Damage filed 10 TCPA cases in ~30 days targeting fintech &amp; lending.</h2>
+      <p class="section-lede">DH &amp; RK Investments has no prior TCPA litigation. But the firm filing this case has a clear, volume-filer signature: a Florida property-damage practice that pivoted into TCPA in April 2026 and is now running a coordinated 10-case CA/FL filing campaign.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Hampton v. DH &amp; RK Investments LLC d/b/a Lendzi</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-06310 (C.D. Cal.)</dd>
+          <dt>Filed</dt><dd>June 10, 2026</dd>
+          <dt>Plaintiff</dt><dd>Kimberly Hampton (LA County, CA resident)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, PLG Damage Attorneys (CA Bar 367857)</dd>
+          <dt>Class</dt><dd>Yes — two putative Rule 23 classes (After-Hours + DNC) (Compl. ¶¶36–37)</dd>
+          <dt>Class Size</dt><dd>"Dozens to hundreds or thousands" (Compl. ¶40)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); 47 CFR § 64.1200(c)(2)</dd>
+          <dt>Primary Theory</dt><dd>Quiet-hours SMS solicitations (4:18 AM, 5:09 AM, 6:54 AM PT)</dd>
+          <dt>Secondary Theory</dt><dd>Federal DNC — Subject Number on DNC since at least March 18, 2026</dd>
+          <dt>Damages Sought</dt><dd>$500/violation statutory + treble for willful; injunctive relief; fees</dd>
+          <dt>Named-Pl. Exposure</dt><dd>$1,500 – $4,500 (3 SMS × $500–$1,500)</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer clock</dd>
+          <dt>Docket Visibility</dt><dd>Visible on CourtListener RECAP (captioned "Hapton v. DH &amp; RK Investments" — scrivener's typo) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06310&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com / tcpa-service@plgdamage.com</dd>
+          <dt>Lead Attorney Email</dt><dd>vv@plgdamage.com</dd>
+          <dt>CA Bar #</dt><dd>367857 <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd>Active <span class="pill pill--ok" style="margin-left:6px;">VERIFIED</span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>Firm Type</dt><dd>FL property-damage / insurance bad-faith firm; TCPA practice launched ~April 2026</dd>
+          <dt>Firm Size</dt><dd>Small/mid — 4+ identified attorneys (Venkatesh, Faythe Gutierrez CA Bar 310430, Matthew Suls, Natasha Floyd)</dd>
+          <dt>TCPA Volume (30d)</dt><dd>10 TCPA filings April–May 2026 across C.D./N.D. Cal. &amp; M.D./N.D. Fla.</dd>
+          <dt>Serial Filer?</dt><dd>Yes — Volume filer in build-out mode <span class="pill pill--warn" style="margin-left:6px;">PATTERN-FORMING</span></dd>
+          <dt>Settlement Data</dt><dd>None published yet — all TCPA cases &lt; 90 days old</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:24px 0 12px;">Plaintiff Firm Template</h3>
+    <div class="card" style="margin-bottom:24px;">
+      <h3 class="card-title">PLG Damage / Venkatesh-Gutierrez 2026 SMS-Vertical Sweep</h3>
+      <p class="card-body">PLG Damage Attorneys (Property Litigation Group, PLLC) is a Miramar, FL firm whose primary practice has historically been property-damage and insurance bad-faith litigation. Starting April 2026, attorneys Vinit Venkatesh and Faythe Gutierrez began rolling out a coordinated TCPA class-action campaign. Their target verticals are predictable: <strong>fintech/lending, mortgage, retail, consumer apps, health/wellness, fitness, media/lead-gen</strong> — exactly the verticals that buy bulk SMS lead lists. Filings are templated: ¶26-style pled timestamps, ¶27-style sender DID + URL identification, two-class structure (After-Hours + DNC), boilerplate Rule 23 allegations. The Hampton complaint maps to the template line-for-line. Expect more lending-vertical filings from this firm through Q3 2026. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span></p>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:24px 0 12px;">Concurrent &amp; Recent Litigation (Plaintiff Firm)</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Defendant</th><th>Court</th><th>Filed</th><th>Theory</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--bl-red-tint);">
+            <td><strong>Hampton v. Lendzi</strong> (this case)</td>
+            <td>DH &amp; RK Investments LLC</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-10</td>
+            <td>Quiet-hours + DNC SMS</td>
+            <td><span class="pill pill--red">ACTIVE — NEW</span></td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage</td>
+            <td>Rocket Mortgage, LLC</td>
+            <td>C.D. Cal. (2:26-cv-05599)</td>
+            <td>2026-05-26</td>
+            <td>SMS (Redfin)</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio</td>
+            <td>Guardio LLC</td>
+            <td>C.D. Cal. (2:26-cv-05313)</td>
+            <td>2026-05-18</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Hughes v. Rite Aid</td>
+            <td>Rite Aid Corporation</td>
+            <td>C.D. Cal. (2:26-cv-04436)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven</td>
+            <td>7-Eleven, Inc.</td>
+            <td>N.D. Fla. (1:26-cv-00119)</td>
+            <td>2026</td>
+            <td>TCPA class</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Ortiz v. Payactiv</td>
+            <td>Payactiv, Inc.</td>
+            <td>M.D. Fla. (2:26-cv-01460)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo</td>
+            <td>Yesvideo, Inc.</td>
+            <td>M.D. Fla. (8:26-cv-01491)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Post v. Centerfield Media</td>
+            <td>Centerfield Media Parent, Inc.</td>
+            <td>N.D. Cal. (4:26-cv-03524)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Fasheh v. Xercize Studio</td>
+            <td>The Xercize Studio, LLC</td>
+            <td>C.D. Cal. (8:26-cv-01231)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Rios v. Last Brand</td>
+            <td>Last Brand, Inc.</td>
+            <td>C.D. Cal. (5:26-cv-02684)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+          <tr>
+            <td>Mendez v. Refills Health</td>
+            <td>Refills Health, LLC</td>
+            <td>C.D. Cal. (2:26-cv-04569)</td>
+            <td>2026</td>
+            <td>TCPA</td>
+            <td><span class="pill pill--info">Active</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#FBE5E5;"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Open intel gaps to close before first dial</div>
+      <h3 class="card-title">Five unknowns to resolve before outreach.</h3>
+      <ul class="clean tight" style="color:#E0E0E0; margin-top:8px;">
+        <li>Full 10-digit plaintiff Subject Number (only "8602" pled) — pull PACER ECF #1 to recover.</li>
+        <li>FL Sunbiz registration for DH &amp; RK Investments LLC — registered agent, manager(s), formation date. Sunbiz returned 403 during enrichment; retry from a different IP or pull via Bizapedia/OpenCorporates manually.</li>
+        <li>Identity confirmation: 9 unrelated bankruptcy filers nationwide also named "Kimberly Hampton." Cannot confirm whether plaintiff has prior TCPA serial-filer history without phone/address match.</li>
+        <li>Lendzi internal General Counsel / Chief Compliance Officer — no GC, CFO, COO, or compliance role identified in TheOrg / SignalHire / LinkedIn. Likely outsourced or absent.</li>
+        <li>Judge assignment — not yet visible on the docket. Once assigned, check the judge's TCPA class-cert history for leverage on settlement timing.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell directly to David Halverson (Co-Founder &amp; CEO). No GC exists — the founder owns the compliance buy.</h2>
+      <p class="section-lede">Lendzi has no identified General Counsel, CFO, COO, or Compliance Officer. In a ~16-person sales-led shop, the CEO is the buyer. Lead with David Halverson, and use Alexander Bone (Technical Ops) as the technical follow-up once the deal commits.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>David Halverson</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--red">CALL #1</span></td>
+            <td>Co-Founder &amp; CEO — buyer of record for compliance/scrub in a founder-led LLC with no GC. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>(877) 453-6394 main <span class="pill pill--gap" style="margin-left:4px;">GAP</span></td>
+            <td>david@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/david-halverson">linkedin.com/in/david-halverson</a></td>
+          </tr>
+          <tr>
+            <td><strong>Alexander Bone</strong><br><span class="pill pill--dark">TECH OPS</span></td>
+            <td>Technical Operations &amp; Strategy Manager — owns the dialer/SMS stack; technical scrub-API integrator. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>alexander@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Navjot Panchhi</strong><br><span class="pill pill--dark">CRM ADMIN</span></td>
+            <td>IT Operations &amp; Zoho Administrator — owns the Zoho CRM that holds the lead lists. Implementation contact. <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></td>
+            <td>—</td>
+            <td>navjot@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>R. Connor Winn</strong><br><span class="pill pill--dark">PARTNERSHIPS</span></td>
+            <td>Director of Strategic Partnerships — vendor procurement role; can champion a Blacklist contract internally. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>connor@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Austin Veal</strong><br><span class="pill pill--dark">SALES MGR</span></td>
+            <td>Sales Manager — owns outbound floor productivity; will fight any compliance friction unless framed as protecting the pipeline. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>austin@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Dean McCarthy</strong><br><span class="pill pill--dark">SALES MGR</span></td>
+            <td>Sales Manager. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>dean@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Jonathan Mayoza</strong><br><span class="pill pill--dark">SALES MGR</span></td>
+            <td>Sales Manager. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>jonathan@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Steven Garcia</strong><br><span class="pill pill--dark">FIN/STRAT</span></td>
+            <td>Finance &amp; Sales Strategy Analyst — useful for ROI framing of scrub cost vs. litigation exposure. <span class="src-tag"><a href="https://theorg.com/org/lendzi">TheOrg -&gt;</a></span></td>
+            <td>—</td>
+            <td>steven@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Scarlett Hite</strong><br><span class="pill pill--dark">RENEWAL SALES</span></td>
+            <td>Renewal Sales Manager / Team Lead. <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></td>
+            <td>—</td>
+            <td>scarlett@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Kelly Arenas</strong><br><span class="pill pill--dark">SALES TRAINER</span></td>
+            <td>Sales Trainer — implements consent &amp; opt-out training across the floor. <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></td>
+            <td>—</td>
+            <td>kelly@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Michael Gigante</strong><br><span class="pill pill--dark">BDR</span></td>
+            <td>Business Development Representative. <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></td>
+            <td>—</td>
+            <td>michael@lendzi.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/michael-gigante-b8aa9762">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Matt Palmer</strong><br><span class="pill pill--dark">AE</span></td>
+            <td>Account Executive.</td>
+            <td>—</td>
+            <td>matt@lendzi.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Abby Moore</strong> · <strong>Andrew Horn</strong> · <strong>Tyler Wark</strong> · <strong>Ralph Ciniski</strong><br><span class="pill pill--dark">AE</span></td>
+            <td>Account Executives (bulk). Use as warm referral path if Halverson is unreachable. <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></td>
+            <td>—</td>
+            <td>{first}@lendzi.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / CCO</strong><br><span class="pill pill--gap">ROLE GAP</span></td>
+            <td>No GC, CCO, VP Legal, CFO, or COO identified across TheOrg, SignalHire, or LinkedIn. Founder owns the buy.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Lendzi Main Line</strong><br><span class="pill pill--dark">SWITCHBOARD</span></td>
+            <td>Company main phone — use as fallback if direct outreach to Halverson fails.</td>
+            <td><strong>(877) 453-6394</strong> <span class="pill pill--ok" style="margin-left:4px;">VERIFIED</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">NOT YET APPEARED</span></td>
+            <td>No defense counsel on docket as of June 13, 2026. ~21-day answer clock runs from service.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Email pattern: <strong>{first}@lendzi.com</strong> — confirmed via SignalHire's masked-snippet previews showing first-initial + last-character patterns matching first-name-only convention. <span class="src-tag"><a href="https://www.signalhire.com/companies/lendzi">SignalHire -&gt;</a></span></p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Action Plan</div>
+      <h2 class="section-title">Move inside the 21-day answer window. Land Halverson before defense counsel appears.</h2>
+      <p class="section-lede">The defendant is a founder-led FL LLC with no in-house lawyer. The case is 3 days old. Every day before defense counsel files an appearance is a day the rep can sell directly to the CEO without a gatekeeper in the way.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (today)</div>
+        <h3 class="card-title">Pull PACER ECF #1 + cold-call Halverson.</h3>
+        <p class="card-body">Spend the $1.20 to pull the as-filed complaint. Civil cover sheet may carry the full plaintiff number. Then dial (877) 453-6394, ask for David Halverson by name, and reference the June 10 C.D. Cal. filing. If you reach VM, leave a 20-second message naming Vinit Venkatesh and PLG Damage. Follow with an email to <strong>david@lendzi.com</strong> with subject "Lendzi — C.D. Cal. 2:26-cv-06310 (PLG Damage filed 6/10) — DNC scrub options."</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">Multi-thread the org.</h3>
+        <p class="card-body">If no response from Halverson, parallel-thread Alexander Bone (Technical Ops — owns the SMS stack) and Connor Winn (Partnerships — owns vendor procurement). Email both. Reference Bone in the Halverson follow-up as a technical reviewer.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4–7</div>
+        <h3 class="card-title">Land the consent-language hook.</h3>
+        <p class="card-body">In every touch, reference the apply-page "even if you're on a Do Not Call list" language. That is the single sentence that makes this case indefensible at class cert. Quote it verbatim. The CEO will recognize it as soon as he sees it — it's on his own website.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 8–14</div>
+        <h3 class="card-title">Pivot if defense counsel appears.</h3>
+        <p class="card-body">Once defense counsel files an appearance (likely week 3), the CEO will route all compliance inquiries through counsel. At that point, switch the pitch from "buy scrub today" to "we are the post-suit remediation vendor your counsel needs to recommend at the meet-and-confer." Position as litigation-mitigation cost, not as compliance procurement.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); margin:24px 0 12px;">Trigger Conditions</h3>
+    <ul class="clean tight card">
+      <li><strong>If defense counsel files an MTD or MTC arbitration</strong> → pause direct sales pitch; switch to remediation-vendor framing for counsel.</li>
+      <li><strong>If PLG Damage files a second case against Lendzi</strong> (likely under a different DBA or with a new plaintiff) → urgency goes from HIGH to CRITICAL; widen outreach to Lendzi's E&amp;O carrier if discoverable.</li>
+      <li><strong>If plaintiff voluntarily dismisses</strong> → likely individual settlement; reverse-engineer the settlement amount as a benchmark for the scrub ROI pitch on the next defendant.</li>
+      <li><strong>If full plaintiff number recovered via PACER #1 and confirmed on litigator list</strong> → reframe lead with Litigator Scrub as the primary product.</li>
+      <li><strong>If FL Sunbiz reveals additional Lendzi-affiliated DBAs under DH &amp; RK Investments</strong> → cross-sell to sister brands immediately.</li>
+    </ul>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--danger">CLASS-ACTION EXPOSURE: 7-FIGURE CEILING</span>
+      <span class="pill pill--info">PLAINTIFF FIRM HEAT: HOT (10 cases / 30 days)</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-13</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
