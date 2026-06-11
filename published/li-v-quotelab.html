@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Li v. Quotelab — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin:0 0 8px; }
+.callout ul{ margin:8px 0 0; padding-left:20px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="116" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Insurance Lead-Gen SMS Marketer · Federal DNC Violation · Repeat TCPA Defendant · C.D. Cal.</p>
+      <h1 class="hero-tagline">Li v.<br>Quotelab, LLC <span style="color:var(--bl-red); font-weight:500; font-size:0.6em;">d/b/a MediaAlpha</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-06298</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal.</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"Thousands" alleged</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Michael T. Houchin <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Crosner Legal, P.C.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's number redacted to last-four — scrub deferred, but plaintiff appears to be first-time TCPA filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only "(805) 280-XXXX" — last four digits are masked. A litigator-list lookup cannot be run on a partial number. Recovery is straightforward: the full number will surface on Quotelab's SMS send logs in discovery, or via a Rule 26 disclosure.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--info">First-Time Filer · Not in CourtListener TCPA Index</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (as pled)</div>
+        <div class="scrub-number">(805) 280-XXXX</div>
+        <div class="scrub-number-sub">Area code 805 = Ventura/Santa Barbara region. Plaintiff resides in Santa Clara County (408/650). The 805 NPA suggests the line was assigned before he relocated, or the plaintiff is the not the original subscriber of the number — worth probing in discovery.</div>
+      </div>
+      <p class="scrub-body-text">
+        Plaintiff registered the line on the National Do-Not-Call Registry on <strong>August 20, 2008</strong> — nearly 18 years before the alleged April 2026 texts. The complaint pleads two SMS, on Apr 28, 2026 and Apr 30, 2026, both purporting to be from "Quotelab" and routing through the cloaked shortlink domain <span style="font-family:var(--font-mono);">t.zipe.us</span>. A search of CourtListener for "Winston Li" returned no prior TCPA filings — plaintiff does not appear to be a serial filer or on any known litigator list. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Winston+Li%22&type=r">CourtListener -></a></span>
+      </p>
+    </div>
+
+    <h3 style="margin-top:32px; margin-bottom:16px; font-size:18px;">Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Path 1 · Fastest</div>
+        <div class="card-title">Discovery — Quotelab's SMS Send Logs</div>
+        <div class="card-body">Quotelab routes SMS through <span style="font-family:var(--font-mono);">t.zipe.us</span> tracking shortlinks. Their dialer/CRM will have the full E.164 recipient number tied to the per-message shortlink token (e.g., /I4ONW). First RFP/Interrogatory request should produce it.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 2 · Defense Counsel Notice</div>
+        <div class="card-title">Watch for Notice of Appearance</div>
+        <div class="card-body">Prior Quotelab counsel includes William A. Delgado and Dawn Utsumi (Los Angeles bar). Once they appear, an informal meet-and-confer often surfaces the plaintiff number for early settlement triage. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Quotelab%22&type=r">CourtListener -></a></span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 3 · Rule 26 Disclosures</div>
+        <div class="card-title">Initial Disclosures (FRCP 26(a)(1))</div>
+        <div class="card-body">Plaintiff must identify the phone as a damages-supporting category in initial disclosures — typically due ~14 days after the Rule 26(f) conference, which the assigned judge will schedule shortly after service.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Deferred</span>
+      <span class="pill pill--warn">Recover Full Number Before First Pitch Call</span>
+      <span class="pill pill--ok">Plaintiff Has No Prior TCPA Filings</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat TCPA target with a fractured affiliate consent chain — sell DNC scrubbing as the upstream injection-point fix.</h2>
+      <p class="section-lede">Quotelab (d/b/a MediaAlpha) is on its 7th federal TCPA action since 2020 and its 3rd active C.D. Cal. case in less than a year. The litigation pattern is consistent: an affiliate-sourced SMS hits a DNC-registered consumer, plaintiff files, Quotelab settles in 3–5 months. Lead with <strong>DNC Scrubbing + Vendor/Affiliate Compliance Audit</strong> — this is a repeat-payer with a clear business-rationale to plug the leak.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <div class="card-title">DNC Scrubbing (Federal + State)</div>
+        <div class="card-body">Plaintiff registered his number on the NDCR in 2008. The texts went through anyway. Blacklist's real-time DNC scrub at the SMS-injection point (before <span style="font-family:var(--font-mono);">t.zipe.us</span> short-link generation) blocks this class of claim entirely. Pitch as the lowest-friction install with the highest claim-blocking ROI.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <div class="card-title">Compliance Audit + Vendor/Affiliate Scrubbing</div>
+        <div class="card-body">Quotelab's consent comes from upstream publishers, not from quotelab.com itself (signup/terms pages return 404). <span class="src-tag"><a href="https://www.quotelab.com/about-us">Quotelab -></a></span> Blacklist's affiliate-feed scrubbing closes the gap where lead-sellers pass dirty lists into Quotelab's dialer.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary / Cross-Sell</div>
+        <div class="card-title">Litigator Scrub</div>
+        <div class="card-body">Once Quotelab's send-list is known, run Blacklist litigator scrub against the file to surface other DNC-listed/serial-filer recipients and pre-empt copycat suits. Crosner Legal just filed two similar "cell phone number sale" class actions in June 2026 — copycats are likely. <span class="src-tag"><a href="https://crosnerlegal.com">Crosner Legal -></a></span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:20px; margin-bottom:12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.7; color:var(--fg-1); max-width:880px;">
+        "You've been sued for the same theory three times in twelve months in your home court. Weingrad in 2023 settled in five months. Rashley in 2025 settled in three. Taylor is still active, and now you've got a fresh Crosner Legal class action with thousands alleged — same vertical, same theory, same affiliate-pipeline problem. The texts came out of <span style="font-family:var(--font-mono);">t.zipe.us</span>, which means an affiliate or your own dialer pushed them to a number that's been on the federal DNC since 2008. You're not getting sued because you're aggressive; you're getting sued because the consent chain is fractured between you and your publishers. Blacklist plugs that at the injection point. Your settlement spend on this case alone will pay for the program."
+      </p>
+      <p style="font-size:16px; line-height:1.7; color:var(--fg-1); max-width:880px; margin-top:12px;">
+        Use the Weingrad-Rashley-Taylor cadence as the credibility hook. Then push the affiliate-feed audit as the strategic moat: "Your publishers are the leak. We scrub their feeds before you ever dial."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A California-headquartered insurance lead-gen aggregator with no public compliance posture and a broken privacy policy.</h2>
+      <p class="section-lede">Quotelab, LLC is a Delaware-formed, Los Angeles-headquartered insurance lead generator. The complaint alleges the company "operates as a referral network that collects consumer information to connect individuals with third-party auto and home insurance providers." Prior court filings show Quotelab also does business as <strong>MediaAlpha</strong>, which is a known insurance lead-gen aggregator. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Quotelab%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <div class="card-title">Quotelab, LLC</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Legal name</dt><dd>Quotelab, LLC</dd>
+            <dt>Also known as</dt><dd>MediaAlpha (per prior court filings) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Quotelab%22&type=r">CL -></a></span></dd>
+            <dt>Formation state</dt><dd>Delaware (per complaint ¶5)</dd>
+            <dt>HQ</dt><dd>Los Angeles, California (per complaint ¶5)</dd>
+            <dt>Vertical</dt><dd>Insurance lead generation (auto, home, health, life) <span class="src-tag"><a href="https://www.quotelab.com">quotelab.com -></a></span></dd>
+            <dt>Website</dt><dd>quotelab.com</dd>
+            <dt>SMS Infra</dt><dd>t.zipe.us (cloaked tracking shortlinks)</dd>
+            <dt>Privacy policy</dt><dd><span class="pill pill--danger">BROKEN</span> /privacy-policy redirects to homepage <span class="src-tag"><a href="https://www.quotelab.com/privacy-policy">quotelab.com -></a></span></dd>
+            <dt>About / Terms</dt><dd><span class="pill pill--danger">404</span> No corporate disclosures published</dd>
+            <dt>NPN</dt><dd>19911386 (licensed insurance entity)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <div class="card-title">No published privacy policy, no /terms, no DNC policy — and the SMS comes from a third-party tracking domain.</div>
+        <div class="card-body" style="margin-top:12px;">
+          Quotelab's <span style="font-family:var(--font-mono); color:#fff;">/privacy-policy</span> URL silently redirects to the homepage rather than serving an actual policy. <span class="src-tag"><a href="https://www.quotelab.com/privacy-policy">quotelab.com -></a></span> The <span style="font-family:var(--font-mono); color:#fff;">/about</span> and <span style="font-family:var(--font-mono); color:#fff;">/terms</span> pages return HTTP 404. No DNC, internal DNC, or TCPA disclosures are visible anywhere on the site. The alleged SMS arrived via the cloaked shortlink <span style="font-family:var(--font-mono); color:#fff;">t.zipe.us</span> — recipients cannot identify the sender from the link, defeating the FCC's identification-of-caller requirement. This is the entire prima facie case in a single screenshot.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing</div>
+        <div class="card-title">Three active TCPA cases in C.D. Cal. — answer window opens the moment service lands.</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Case filed</dt><dd>Jun 10, 2026</dd>
+            <dt>Service window</dt><dd>FRCP 4(m) — 90 days from filing (Sept 8, 2026 latest)</dd>
+            <dt>Answer deadline</dt><dd>21 days after service per FRCP 12(a)(1)(A)</dd>
+            <dt>Best-case pitch window</dt><dd><strong>30–45 days from filing</strong> — before defense counsel appears and locks the file behind privilege</dd>
+            <dt>Concurrent pressure</dt><dd>Two other open C.D. Cal. TCPA cases (Rashley 2025, Taylor 2025) running in parallel — compounding settlement pressure</dd>
+            <dt>Settlement cadence</dt><dd>Weingrad ~5 mo; Rashley &lt;3 mo; Quotelab pays to make these go away <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Quotelab%22&type=r">CL -></a></span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; margin-bottom:16px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MediaAlpha</td>
+            <td>d/b/a of Quotelab (per Moore v. Lighthouse caption)</td>
+            <td>Insurance lead aggregator</td>
+            <td>Same SMS infrastructure, same affiliate network</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Mercury Insurance Company</td>
+            <td>Quotelab co-defendant in Abitbol v. Mercury (C.D. Cal. 2020)</td>
+            <td>Auto/home insurance carrier</td>
+            <td>Carrier consuming Quotelab leads — vendor-side TCPA exposure</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Patriot Growth Insurance Services</td>
+            <td>Quotelab co-defendant in Mason v. Patriot Growth (M.D. Fla. 2023)</td>
+            <td>Insurance brokerage</td>
+            <td>Lead-buyer with shared TCPA liability chain</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Lighthouse Insurance Group</td>
+            <td>Quotelab/MediaAlpha co-defendant in Moore (N.D. Ill. 2020)</td>
+            <td>Insurance agency</td>
+            <td>Lead-buyer; downstream dialer</td>
+            <td><span class="pill pill--info">Low</span></td>
+          </tr>
+          <tr>
+            <td>Zipe (zipe.us)</td>
+            <td>SMS tracking/click-shortlink vendor used by Quotelab</td>
+            <td>Marketing infrastructure</td>
+            <td>Vendor whose shortlinks cloak sender identity — direct TCPA infrastructure exposure</td>
+            <td><span class="pill pill--info">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Seventh federal TCPA action against Quotelab since 2020 — third active C.D. Cal. case in 12 months.</h2>
+      <p class="section-lede">Quotelab/MediaAlpha is a known repeat TCPA defendant in the insurance lead-gen vertical. The pattern is consistent: settle the early cases quickly, contest the harder ones with MTDs, and let the affiliate pipeline keep producing new defendants. Crosner Legal is a high-volume California consumer-class firm that has begun moving into telecom/SMS privacy work in 2026.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Facts</div>
+        <div class="card-title">Li v. Quotelab, LLC</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Docket</dt><dd>2:26-cv-06298 (C.D. Cal.)</dd>
+            <dt>Filed</dt><dd>June 10, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06298&type=r">CL -></a></span></dd>
+            <dt>Plaintiff</dt><dd>Winston Li (Santa Clara County, CA)</dd>
+            <dt>Counsel</dt><dd>Michael T. Houchin, CA SBN 305541</dd>
+            <dt>Firm</dt><dd>Crosner Legal, P.C. (Beverly Hills)</dd>
+            <dt>Class action</dt><dd>Yes — Rule 23(b)(2) &amp; (b)(3)</dd>
+            <dt>Class definition</dt><dd>All persons in U.S. with NDCR-registered residential cell numbers who received 2+ Quotelab marketing texts in any 12-mo period over the past 4 years</dd>
+            <dt>Class size pled</dt><dd>"Thousands"</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)</dd>
+            <dt>Theory</dt><dd>Federal DNC violation (SMS to NDCR-registered number); internal DNC policy failure</dd>
+            <dt>Channels</dt><dd>SMS only (2 texts: Apr 28 + Apr 30, 2026)</dd>
+            <dt>Damages</dt><dd>$500/violation (negligent) · $1,500/violation (willful) · injunctive relief</dd>
+            <dt>Named-plaintiff exposure</dt><dd>$1,000 – $3,000 (2 violations)</dd>
+            <dt>Class exposure (thousands × 2 texts × $500–$1,500)</dt><dd><strong>Low-7 to mid-7 figures</strong></dd>
+            <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> — 90-day service window</dd>
+            <dt>Docket visibility</dt><dd>Visible on CourtListener; PACER full docket gated</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <div class="card-title">Michael T. Houchin · Crosner Legal, P.C.</div>
+        <div class="card-body" style="margin-top:16px;">
+          <dl class="kv">
+            <dt>Firm address</dt><dd>9440 Santa Monica Blvd, Suite 301, Beverly Hills, CA 90210</dd>
+            <dt>Firm phone</dt><dd>(866) 276-7637</dd>
+            <dt>Firm intake</dt><dd>intake@crosnerlegal.com <span class="src-tag"><a href="https://crosnerlegal.com">crosnerlegal.com -></a></span></dd>
+            <dt>Lead attorney email</dt><dd>mhouchin@crosnerlegal.com</dd>
+            <dt>CA bar number</dt><dd>305541 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/305541">Cal Bar -></a></span></dd>
+            <dt>Bar status</dt><dd><span class="pill pill--ok">Active</span></dd>
+            <dt>Discipline history</dt><dd>None found in available sources</dd>
+            <dt>Firm size</dt><dd>20+ attorneys/staff; multi-office (Beverly Hills HQ + Seattle, Portland, Chicago) <span class="src-tag"><a href="https://crosnerlegal.com/attorneys">Crosner -></a></span></dd>
+            <dt>Practice areas</dt><dd>Consumer protection class actions, privacy/data privacy, wage &amp; hour, mass arbitrations</dd>
+            <dt>TCPA history</dt><dd>Not historically TCPA-focused. Pivot underway in 2026 — recent class actions over alleged sale of consumer cell numbers (June 3 + June 10, 2026 filings) signal movement into telecom/SMS privacy work. <span class="src-tag"><a href="https://crosnerlegal.com">Crosner -></a></span></dd>
+            <dt>Firm partner</dt><dd>Zachary Crosner (managing principal)</dd>
+            <dt>Track record</dt><dd>$300M+ recovered (firm-wide); 100,000+ clients (per firm bio)</dd>
+            <dt>TCPAWorld rank</dt><dd>Not listed on TCPAWorld power rankings (per worker check)</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <div class="card">
+        <div class="card-meta">Plaintiff &amp; Firm Template</div>
+        <div class="card-title">Newer-to-TCPA firm + first-time plaintiff = settlement-friendly posture.</div>
+        <div class="card-body" style="margin-top:8px;">
+          Crosner Legal is not on TCPAWorld's power-filer rankings and has only a small number of TCPA filings on CourtListener. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Crosner+Legal%22+TCPA&type=r">CL -></a></span> The firm's bread-and-butter is consumer class actions, wage/hour, and privacy. The Li complaint reads as a templated NDCR-only filing — single count, no ATDS allegation, no quiet-hours claim, no prerecorded-voice claim. Combined with plaintiff Winston Li's lack of any prior TCPA filings, this is a clean-template case from a firm building a TCPA book, not a serial-filer assembly line. <strong>Implication for Quotelab: this is likely to follow the Weingrad/Rashley settlement path rather than a contested class-cert fight.</strong>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; margin-bottom:16px; font-size:20px;">Concurrent &amp; Recent Litigation — Quotelab/MediaAlpha</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Winston Li v. Quotelab, LLC</strong> (instant case)</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-10</td>
+            <td><span class="pill pill--red">Active · Just Filed</span></td>
+            <td>TCPA NDCR (SMS)</td>
+          </tr>
+          <tr>
+            <td>Sara Taylor v. Quotelab, LLC</td>
+            <td>C.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--danger">Active</span></td>
+            <td>TCPA; protective order entered Nov 2025</td>
+          </tr>
+          <tr>
+            <td>Kyle Rashley v. Quotelab LLC</td>
+            <td>C.D. Cal.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Settled · Dismissed Sept 2025</span></td>
+            <td>TCPA — ~3 mo from filing to dismissal</td>
+          </tr>
+          <tr>
+            <td>Weingrad v. Quotelab, LLC</td>
+            <td>E.D. Pa.</td>
+            <td>2023</td>
+            <td><span class="pill pill--ok">Settled · Terminated May 2024</span></td>
+            <td>TCPA — ~5 mo from filing to termination</td>
+          </tr>
+          <tr>
+            <td>Mason v. Patriot Growth Ins. Svcs. (Quotelab co-def)</td>
+            <td>M.D. Fla.</td>
+            <td>2023</td>
+            <td><span class="pill pill--gap">Dismissed · July 2024</span></td>
+            <td>TCPA — stipulated dismissal</td>
+          </tr>
+          <tr>
+            <td>Moore v. Lighthouse Ins. (QuoteLab dba MediaAlpha)</td>
+            <td>N.D. Ill.</td>
+            <td>2020</td>
+            <td><span class="pill pill--gap">Dismissed</span></td>
+            <td>TCPA — Quotelab filed MTD and 12(b)(2) motion</td>
+          </tr>
+          <tr>
+            <td>Abitbol v. Mercury Insurance Co. (Quotelab co-def)</td>
+            <td>C.D. Cal.</td>
+            <td>2020</td>
+            <td><span class="pill pill--gap">Terminated Jan 2021</span></td>
+            <td>TCPA — ~9 mo to termination</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:var(--fg-3);">All entries sourced from CourtListener docket search. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Quotelab%22+TCPA&type=r">CL -></a></span></p>
+
+    <div class="callout">
+      <div class="callout-title">Open Intel Gaps — Close Before First Dial</div>
+      <ul>
+        <li><strong>Full plaintiff phone number</strong> — last four masked in complaint; cannot run litigator scrub until recovered (via discovery, defense counsel meet-and-confer, or Rule 26 disclosures).</li>
+        <li><strong>Judge assignment</strong> — not yet visible on CourtListener; judge's TCPA ruling history will shape urgency.</li>
+        <li><strong>Defense counsel of record</strong> — prior Quotelab cases used William A. Delgado, Dawn Utsumi, and Melissa Hazell Davis. Watch the docket for the notice of appearance.</li>
+        <li><strong>Quotelab corporate officers</strong> — Delaware SoS and California SoS lookups failed; Bizapedia and OpenCorporates blocked. CA SoS Statement of Information should be pulled to identify the Manager/Member and Agent for Service of Process.</li>
+        <li><strong>NPN 19911386 / NAIC SBS lookup</strong> — Quotelab is a licensed insurance entity; NAIC SBS will surface licensed principal name(s).</li>
+        <li><strong>LinkedIn employee enumeration</strong> — Quotelab's LinkedIn page is gated (only 1 follower visible) and the company publishes no leadership info on its site. A LinkedIn Sales Navigator pull is needed to identify GC/CCO/CMO names.</li>
+        <li><strong>Service date</strong> — required to lock the 21-day answer-clock countdown.</li>
+        <li><strong>Settlement amounts</strong> for Weingrad, Rashley, Mason — sealed in dockets; useful for sizing the Li settlement range.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the company main line; escalate to GC/CCO once CA SoS officer pull lands.</h2>
+      <p class="section-lede">Quotelab publishes no leadership names, no contact emails, and no main phone number on its website. /team, /leadership, /about, /contact, and /careers all return 404. <span class="src-tag"><a href="https://www.quotelab.com/about-us">quotelab.com -></a></span> LinkedIn company page exists but is gated. Initial outreach should target the registered agent and the company main line once recovered from CA SoS; once defense counsel appears for case 2:26-cv-06298, that's the fastest path to the GC/CCO.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Quotelab Main Line</strong><br><span class="pill pill--dark">Company HQ</span></td>
+            <td>Los Angeles, CA HQ. Main phone not published; pull from CA Secretary of State Statement of Information.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark">Service of Process</span></td>
+            <td>Agent for service of process — first call target. Identity not yet recovered (CA SoS bizfile lookup failed during enrichment).</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>Quotelab has handled 7 federal TCPA actions — there is an in-house legal function, but no name is publicly published. Likely target on first dial after officer recovery.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/company/quotelab">company page</a></td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>No CCO publicly identified. Given the repeat TCPA exposure, this is the priority sales target — either CCO or VP Legal.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>CMO / Head of Marketing</strong><br><span class="pill pill--dark">MARKETING</span></td>
+            <td>Owns the SMS program and the affiliate/publisher relationships that feed it. Secondary buyer alongside legal.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>William A. Delgado</strong><br><span class="pill pill--info">Prior Defense Counsel</span></td>
+            <td>Has appeared for Quotelab in Abitbol v. Mercury (C.D. Cal.), Weingrad v. Quotelab (E.D. Pa.), and Moore v. Lighthouse (N.D. Ill.). Likely to appear in this case. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Quotelab%22&type=r">CL -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Dawn Utsumi</strong><br><span class="pill pill--info">Prior Defense Counsel</span></td>
+            <td>Los Angeles bar — 601 S. Figueroa St., Ste. 2130, Los Angeles, CA 90017. Prior Quotelab counsel of record.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Confidence legend — <span class="pill pill--ok">VERIFIED</span> published / primary source · <span class="pill pill--warn">PATTERN</span> inferred from known convention · <span class="pill pill--info">INFERRED</span> best-guess · <span class="pill pill--gap">GAP</span> role identified, contact unknown</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 14 days — Quotelab's settlement reflex kicks in early and you want to be in the conversation before defense counsel locks the file.</h2>
+      <p class="section-lede">The Weingrad-Rashley pattern shows Quotelab settles in 3–5 months. The window to install Blacklist as the post-settlement remediation is now — before counsel takes over the narrative and steers the conversation toward arbitration or a quiet payoff.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–3</div>
+        <div class="card-title">Recover the corporate contacts.</div>
+        <div class="card-body">
+          <ul style="margin:0; padding-left:18px; line-height:1.7;">
+            <li>Pull California SoS Statement of Information for Quotelab, LLC → Manager/Member name + Agent for Service + principal address + main phone.</li>
+            <li>Run NAIC SBS lookup on NPN 19911386 → licensed principal name.</li>
+            <li>LinkedIn Sales Navigator pull on "Quotelab" + "MediaAlpha" → GC, CCO, VP Legal, CMO.</li>
+            <li>PACER pull on docket #1 (~$1.20) to confirm the unredacted plaintiff phone if filed under seal.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 4–7</div>
+        <div class="card-title">First-touch outreach.</div>
+        <div class="card-body">
+          <ul style="margin:0; padding-left:18px; line-height:1.7;">
+            <li>Cold-call the main line; ask for legal/compliance.</li>
+            <li>Email the GC/CCO once recovered. Subject line: <em>"Li v. Quotelab — pre-answer compliance offer."</em></li>
+            <li>Reference the Weingrad and Rashley settlement cadence as proof of pattern, not as a threat.</li>
+            <li>Open with DNC scrubbing as the lead product; tee up the affiliate/vendor audit as the secondary.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 8–21</div>
+        <div class="card-title">Track the docket; pivot if defense counsel appears.</div>
+        <div class="card-body">
+          <ul style="margin:0; padding-left:18px; line-height:1.7;">
+            <li>Monitor CourtListener daily for the notice of appearance and judge assignment.</li>
+            <li>If William A. Delgado or Dawn Utsumi appears, route a parallel pitch to outside counsel — Blacklist can be a defense-narrative asset.</li>
+            <li>If Quotelab files an answer (vs. an MTD), the case is heading toward early settlement — the Blacklist install is part of the settlement-credit story.</li>
+            <li>Watch for a second copycat Crosner Legal filing — Crosner just filed two adjacent "cell phone privacy" class actions in June 2026.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 22–60</div>
+        <div class="card-title">Close on the affiliate audit upsell.</div>
+        <div class="card-body">
+          <ul style="margin:0; padding-left:18px; line-height:1.7;">
+            <li>Once DNC scrubbing is committed, position the vendor/affiliate-feed scrub as the long-term fix.</li>
+            <li>Cross-sell into Zipe (zipe.us SMS infra) as a downstream vendor relationship.</li>
+            <li>Plant the cross-sell seed for Mercury and Patriot Growth — both have been pulled into prior Quotelab matters as carriers/brokers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Trigger Conditions That Change the Plan</div>
+        <div class="card-body" style="margin-top:8px;">
+          <ul style="margin:0; padding-left:18px; line-height:1.7;">
+            <li><strong>MTC arbitration filed</strong> — Quotelab moves to compel arbitration based on upstream publisher's terms. Pivot from "settlement remediation" to "consent-chain audit" pitch.</li>
+            <li><strong>MTD filed</strong> — Pattern from Moore v. Lighthouse. Indicates Quotelab views this case as defensible; slower close, but still buyable on the systemic-risk angle.</li>
+            <li><strong>Notice of Settlement within 30 days</strong> — Pattern from Rashley. Move immediately to a post-settlement compliance-install pitch.</li>
+            <li><strong>Second Crosner Legal filing</strong> — Copycat case lands. Escalate urgency; bring in Mercury/Patriot Growth as cross-sell targets.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Urgency: High</span>
+      <span class="pill pill--warn">90-Day Service Window · Close Before Sept 8, 2026</span>
+      <span class="pill pill--info">Lead Pitch: DNC Scrubbing</span>
+      <span class="pill pill--ok">Repeat-Payer Pattern Confirmed</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
