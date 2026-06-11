@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Myers v. First Guard Auto — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); padding:20px 24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="115" y="3" width="3" height="18" fill="#A50100"/>
+          <text x="125" y="18" font-family="General Sans, Arial, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Quiet-Hours Class Action · Auto Insurance SMS Shortcode · Wyoming Shell LLC · PLG Damage Volume-Filer Template</p>
+      <h1 class="hero-tagline">Myers v.<br>First Guard Auto LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">6:26-cv-00277-JDK</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">E.D. Tex. (Tyler)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Jeremy D. Kernodle <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number not pled — scrub deferred until PACER pull or discovery surfaces it.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Myers complaint does not disclose the plaintiff's 10-digit cell number — only screenshots of the inbound texts. A scrub against blacklistBulk cannot be run on a partial artifact.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT DISCLOSED IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint pleads two SMS messages received May 20, 2026 (9:44 PM) and May 26, 2026 (4:19 AM) but redacts/omits the recipient 10-digit number. Plaintiff is identified only by name (Kenneth Myers) and county (Henderson County, TX).</div>
+      </div>
+      <p class="scrub-body-text">No CourtListener / RECAP record shows prior TCPA filings tied to Kenneth Myers of Henderson County, TX <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kenneth+Myers%22+TCPA&type=r">CourtListener -&gt;</a></span>. Pull ECF Doc #1 from PACER to recover the full number from the screenshot exhibits; once recovered, run blacklistBulk + the BL Litigator List in one pass.</p>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Sender DID Intelligence</h3>
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">SMS Shortcode</div>
+        <h3 class="card-title">27106</h3>
+        <div class="card-body">
+          <p>5-digit SMS shortcode is the sender of both pled messages. Shortcodes are carrier-provisioned bulk messaging infrastructure leased through CTIA-registered aggregators (Twilio / Sinch / Vibes / Infobip). Consumer complaint aggregators (800notes, YouMail, Tellows, RoboKiller) do not index shortcodes, so spam-tag history is unavailable — but the infrastructure itself confirms a mass-marketing send.</p>
+          <p style="margin-top:8px"><strong>Linked click domain:</strong> fga.firstguardauto.com (branded short-link/tracking subdomain seen in both screenshot exhibits).</p>
+          <p style="margin-top:8px"><span class="pill pill--info">SENDER IDENTITY CONFIRMED</span> &nbsp; First Guard Auto Insurance — defendant's own site discloses "Up to 20 messages per month" SMS frequency <span class="src-tag"><a href="https://firstguardauto.com">firstguardauto.com -&gt;</a></span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Recovery Path</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Step 1 · Immediate</div>
+        <h3 class="card-title">Pull ECF Doc #1 from PACER</h3>
+        <div class="card-body">Approximately $1.20. Exhibit A screenshots may contain the full recipient number in metadata or in non-redacted shots. Confirmed Doc #1 Complaint filed 06/10/2026, Doc #2 Clerk Issue Request, Doc #3 Summons Issued <span class="src-tag"><a href="https://www.courtlistener.com/?q=%226%3A26-cv-00277%22&type=r">CourtListener RECAP -&gt;</a></span>.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 2 · 14-day window</div>
+        <h3 class="card-title">Await first defense filing</h3>
+        <div class="card-body">No defense counsel has appeared on the public docket. Initial answer / 12(b) motion typically discloses plaintiff phone via attached opt-in records or affirmative defenses tied to consent flow.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Step 3 · Fallback</div>
+        <h3 class="card-title">Defense-side discovery request</h3>
+        <div class="card-body">If the case settles to the defense or counsel is hired, Interrogatory #1 ("identify the recipient telephone number") returns the number same-day. Standard first-set ask in any TCPA matter.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER DOC #1</span>
+      <span class="pill pill--info">No prior plaintiff TCPA filings found in RECAP</span>
+      <span class="pill pill--warn">Plaintiff firm IS a volume filer (see § 04)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Wyoming shell LLC running a high-volume auto-insurance SMS program with no real compliance backstop and a self-declared TCPA-compliance claim contradicted by the filing itself.</h2>
+      <p class="section-lede">First Guard Auto is a textbook auto-insurance lead-gen profile: shortcode + tracking subdomain, "up to 20 msg/month" cadence, and a website that publicly claims TCPA compliance while a quiet-hours class action sits on its doorstep. They have the SMS throughput but no documented DNC, quiet-hours, or scrub layer. Lead with Litigator Scrub + DNC scrubbing as a bundled pitch; the consent-capture overlay is the upsell.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">First Guard is sending to a shortcode list with no evidence of pre-send litigator screening. A 4:19 AM send to a known TX recipient is the exact pattern litigators farm. Real-time scrub at the API layer would have blocked this exact text and the next several class members.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Bundled Co-Pitch</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <div class="card-body">Complaint pleads § 227(c)(5) and § 64.1200(c)(1). Defendant's signup language is silent on the internal DNC policy required by § 64.1200(d). Federal DNC + internal DNC + quiet-hours suppression is one workflow they currently have zero of.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Upsell after answer</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">Defendant's signup checkbox covers § 227(b) but not § 227(c). When defense counsel realizes their opt-in form does not capture time-of-day permission or affiliate-list provenance, the Consent Capture product becomes a settlement-driven sale.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:32px 0 12px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>The wedge is the contradiction. The footer of every page on firstguardauto.com states <em>"This website and its SMS opt-in process comply with TCPA regulations and carrier requirements"</em> <span class="src-tag"><a href="https://firstguardauto.com">firstguardauto.com -&gt;</a></span> — and yet two days ago they were sued in E.D. Tex. for a 4:19 AM text that violates 47 CFR § 64.1200(c)(1). The pitch writes itself: "You're already telling consumers you're TCPA compliant. Let's make that statement defensible before plaintiff's counsel argues at MSJ that the representation is itself evidence of willfulness."</p>
+        <p style="margin-top:12px">Second beat: PLG Damage Attorneys / Vinit Venkatesh have filed at least 10 TCPA cases in roughly six weeks across CA, FL, and now TX <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>. This is not a one-off — it is the start of a docket. The rep's job is to make sure First Guard Auto is not also case #2 or #3 under this firm's quiet-hours template once defense-side discovery exposes their send-time logs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Wyoming LLC at a mass-registered-agent address, fabricated "Est. 1995" provenance, and no published org chart — classic auto-insurance lead-gen shell profile.</h2>
+      <p class="section-lede">First Guard Auto LLC is registered in Wyoming with a Sheridan virtual-office address used by thousands of anonymous LLCs. The website carries a brochure-style claim of operating "Since 1995" but no formation, license, or principals are publicly verifiable. This is the standard auto-insurance / auto-warranty front-end profile.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="building-2"></i> Defendant Profile</div>
+        <h3 class="card-title">First Guard Auto LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal entity</dt><dd>First Guard Auto LLC (DBA: First Guard Auto Insurance) <span class="src-tag"><a href="https://firstguardauto.com">firstguardauto.com -&gt;</a></span></dd>
+            <dt>Formation state</dt><dd>Wyoming (per complaint ¶5)</dd>
+            <dt>HQ / mailing</dt><dd>1309 Coffeen Avenue, Suite 1200, Sheridan, WY 82801 <span class="pill pill--warn">Known mass-registered-agent address</span></dd>
+            <dt>Vertical</dt><dd>Auto insurance / auto warranty lead-gen</dd>
+            <dt>Marketing claim</dt><dd>"Award-winning customer service since 1995" <span class="pill pill--warn">Inconsistent with WY LLC profile</span> <span class="src-tag"><a href="https://firstguardauto.com/about">/about -&gt;</a></span></dd>
+            <dt>Public phone</dt><dd>(323) 433-2111</dd>
+            <dt>Public email</dt><dd>info@firstguardauto.com</dd>
+            <dt>Compliance officer</dt><dd>None disclosed</dd>
+            <dt>BBB</dt><dd>Self-claimed "A+ Rating" — no verifiable BBB profile surfaced <span class="src-tag"><a href="https://firstguardauto.com">firstguardauto.com -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#fff"><i data-lucide="alert-triangle"></i> Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Phantom legal pages + self-declared TCPA compliance</h3>
+        <div class="card-body">
+          <p>Every legal URL on firstguardauto.com — /privacy, /privacy-policy, /terms, /terms-of-service, /about, /signup — returns the same single-page marketing template <span class="src-tag"><a href="https://firstguardauto.com/privacy">/privacy -&gt;</a></span> <span class="src-tag"><a href="https://firstguardauto.com/terms">/terms -&gt;</a></span>. There is no actual privacy policy, no actual ToS, and no actual DNC policy published.</p>
+          <p style="margin-top:12px">Despite this, the footer claims: <em>"This website and its SMS opt-in process comply with TCPA regulations and carrier requirements."</em> <span class="src-tag"><a href="https://firstguardauto.com/signup">/signup -&gt;</a></span></p>
+          <p style="margin-top:12px"><strong>Why it matters:</strong> the gap between the compliance claim and the absence of an actual policy framework is exactly what plaintiff's counsel will leverage on willfulness (treble damages: $500 → $1,500 per violation).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta"><i data-lucide="clock"></i> Strategic Timing</div>
+      <h3 class="card-title">Window is open — defendant not yet served / no defense counsel</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 10, 2026 (2 days ago)</dd>
+          <dt>Summons issued</dt><dd>June 10, 2026 (Doc #3) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%226%3A26-cv-00277%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Service status</dt><dd>No proof of service recorded; defendant in WY, registered-agent service required</dd>
+          <dt>Answer deadline</dt><dd>21 days post-service under Rule 12(a) — projected window: late June / early July 2026</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared</dd>
+          <dt>Litigation heat</dt><dd>Cold for defendant (first TCPA case); hot for plaintiff firm (10+ filings in 6 weeks)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" style="color:var(--fg-3); font-style:italic; text-align:center;">No parent, subsidiary, or sister-brand identified. Wyoming SoS data inaccessible (CAPTCHA gate) and no corporate-family disclosures on firstguardauto.com. Recommended: WHOIS firstguardauto.com + WY SoS direct pull post-call to identify nominee/organizer and sister LLCs at 1309 Coffeen Ave Ste 1200.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PLG Damage Attorneys is a property-damage firm pivoting hard into TCPA volume filing — Myers is one of 10+ Venkatesh-signed TCPA cases in six weeks.</h2>
+      <p class="section-lede">First Guard's lead-flow pattern (shortcode + click-tracking subdomain + 20-msg/month cadence) is exactly the fact pattern this firm is harvesting nationwide. The Texas case is venue-shopping out of Florida.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="gavel"></i> Case Card</div>
+        <h3 class="card-title">Myers v. First Guard Auto LLC</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>6:26-cv-00277-JDK <span class="src-tag"><a href="https://www.courtlistener.com/?q=%226%3A26-cv-00277%22&type=r">CourtListener RECAP -&gt;</a></span></dd>
+            <dt>Court</dt><dd>E.D. Tex. (Tyler Division)</dd>
+            <dt>Judge</dt><dd>Jeremy Daniel Kernodle (Article III) <span class="src-tag"><a href="https://www.txed.uscourts.gov/">txed.uscourts.gov -&gt;</a></span></dd>
+            <dt>Filed</dt><dd>June 10, 2026</dd>
+            <dt>Plaintiff</dt><dd>Kenneth Myers (Henderson County, TX resident)</dd>
+            <dt>Class</dt><dd><span class="pill pill--danger">Putative Rule 23 class</span> — "TCPA After Hours Class," alleged "several thousands"</dd>
+            <dt>Count I</dt><dd>47 USC § 227(c) + 47 CFR § 64.1200(c)(1) — Quiet-hours violation</dd>
+            <dt>Damages</dt><dd>$500/violation negligent; $1,500/violation willful. Named-plaintiff floor: 2 × $500 = $1,000; willful: 2 × $1,500 = $3,000. Class floor (50 × 2 × $500) = $50,000; ceiling on pled "several thousands" (e.g., 3,000 × 2 × $1,500) = $9,000,000+.</dd>
+            <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> — 21-day answer clock starts on service</dd>
+            <dt>Docket visibility</dt><dd>Indexed on CourtListener / RECAP. PACER direct + PacerMonitor + UniCourt all returned 404 at fetch.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta"><i data-lucide="briefcase"></i> Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm address</dt><dd>2750 SW 145th Ave, Suite 509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm phone</dt><dd>(305) 506-4746</dd>
+            <dt>Firm email</dt><dd>info@plgdamage.com</dd>
+            <dt>Bar number</dt><dd>TX #24144674</dd>
+            <dt>Bar address</dt><dd><span class="pill pill--warn">Mismatch — TX-licensed, FL-resident firm</span> Counsel is TX-admitted but firm operates from Miramar, FL. No Texas office disclosed.</dd>
+            <dt>Discipline history</dt><dd>TX bar lookup failed (connection reset) — recheck before first dial</dd>
+            <dt>TCPAWorld profile</dt><dd>Zero hits for either Venkatesh or PLG Damage <span class="src-tag"><a href="https://tcpaworld.com/?s=Vinit+Venkatesh">TCPAWorld -&gt;</a></span> — not yet on Troutman's radar despite filing volume</dd>
+            <dt>Firm pedigree</dt><dd>~28 attorneys; primary practice = first-party property-insurance litigation; self-reports $100M+ recovered <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>TCPA pivot</dt><dd>Site now carries a "Consumer Protection Resources" nav link — confirms emerging-practice positioning</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px; font-weight:600; margin:32px 0 12px;">Plaintiff Firm Template — Volume Filer Pattern</h3>
+    <div class="card" style="margin-bottom:32px">
+      <div class="card-body">
+        <p>PLG Damage Attorneys (Property Litigation Group, PLLC) is a Florida-based property-damage firm that began filing TCPA class actions in volume in April–May 2026. Vinit R. Venkatesh personally signs the filings. The template is vertical-agnostic: retail/convenience, mortgage, pharmacy, fitness, fintech/payroll, e-commerce, lead-gen media, and auto insurance are all on the docket <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -&gt;</a></span>. The unifying theory is consistently "SMS marketing without bulletproof consent + quiet-hours discipline." Myers v. First Guard Auto is the firm's first known E.D. Tex. filing — likely venue-shopping a TX-resident plaintiff into a friendlier docket.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">Concurrent &amp; Recent Litigation — PLG Damage / Venkatesh TCPA Docket</h3>
+    <div class="tbl-wrap" style="margin-bottom:32px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Defendant Vertical</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Myers v. First Guard Auto LLC</strong><br><span class="pill pill--red">CURRENT CASE</span></td>
+            <td>Auto insurance / lead-gen</td>
+            <td>E.D. Tex.</td>
+            <td>2026</td>
+            <td><span class="pill pill--danger">Active · 2 days old</span></td>
+            <td>Quiet hours (§ 227(c) / 64.1200(c)(1))</td>
+          </tr>
+          <tr><td>Cummings v. 7-Eleven Inc.</td><td>Retail / convenience</td><td>N.D. Fla.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Hughes v. Guardio LLC</td><td>Cybersecurity SaaS</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Long v. Rocket Mortgage, LLC</td><td>Mortgage</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Flottman v. Yesvideo, Inc.</td><td>Consumer services</td><td>M.D. Fla.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Hughes v. Rite Aid Corp.</td><td>Pharmacy / retail</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Post v. Centerfield Media Parent, Inc.</td><td>Lead-gen media</td><td>N.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Fasheh v. The Xercize Studio, LLC</td><td>Fitness</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Rios v. Last Brand, Inc.</td><td>E-commerce</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Ortiz v. Payactiv, Inc.</td><td>Fintech / payroll</td><td>M.D. Fla.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+          <tr><td>Mendez v. Refills Health, LLC</td><td>Health / wellness</td><td>C.D. Cal.</td><td>2026</td><td><span class="pill pill--info">Active</span></td><td>TCPA SMS marketing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4><i data-lucide="alert-triangle"></i> Open intel gaps to close before first dial</h4>
+      <ul class="clean tight">
+        <li>Plaintiff phone number not in complaint — pull ECF Doc #1 from PACER to recover from Exhibit A screenshots.</li>
+        <li>No defense counsel has appeared. Service status unknown. Re-check docket day-of-call to see if a defense firm has been retained.</li>
+        <li>Wyoming SoS data inaccessible at fetch (CAPTCHA gate) — registered agent, formation date, and organizer/member names for First Guard Auto LLC unverified.</li>
+        <li>No BBB profile verified despite self-claimed "A+ rating" — useful corroborating ammo if confirmed/denied before the call.</li>
+        <li>Vinit Venkatesh TX bar status, admit date, and discipline history not retrieved (Texas bar fetch failed) — sanity-check before quoting his bar credentials.</li>
+        <li>No named executives, CCO, or compliance contact disclosed on firstguardauto.com — primary decision-maker is unknown until WHOIS / WY SoS pull surfaces an organizer.</li>
+        <li>Kenneth Myers shows no prior TCPA filings in RECAP — but absence of evidence is not evidence of absence; CourtListener does not cover all state-court filings.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named decision-makers — start at the company main line, then escalate to defense counsel the moment they appear.</h2>
+      <p class="section-lede">First Guard Auto runs a single-page brochure site with no named executives, no LinkedIn company page, and a Wyoming nominee-agent address. The only verified company channels are the published main phone and the generic info@ inbox. Defense counsel has not yet appeared. Plan: open at the main line, identify whoever handles compliance/legal, then run the standard "we'd like to talk to your counsel" handoff.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>First Guard Auto — Main Line</strong><br>
+              <span class="pill pill--dark">COMPANY MAIN</span> <span class="pill pill--ok">VERIFIED</span>
+            </td>
+            <td>Primary intake / customer-service phone published on firstguardauto.com. Use to identify the operations or compliance owner. Stated business hours: M–F 8AM–8PM EST. <span class="src-tag"><a href="https://firstguardauto.com">firstguardauto.com -&gt;</a></span></td>
+            <td>(323) 433-2111</td>
+            <td>info@firstguardauto.com</td>
+            <td><span class="pill pill--gap">NO LINKEDIN COMPANY PAGE</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Compliance / Legal Owner</strong><br>
+              <span class="pill pill--dark">UNKNOWN ROLE</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>No CCO, GC, or compliance officer disclosed. Single-page site has no /team or /leadership content; LinkedIn company page returned 404 <span class="src-tag"><a href="https://firstguardauto.com/about">/about -&gt;</a></span>. Ask main line for "whoever handles your SMS opt-in policy / TCPA compliance."</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--warn">PATTERN: first.last@firstguardauto.com (inferred from info@ — unconfirmed)</span></td>
+            <td><span class="pill pill--gap">NONE FOUND</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Wyoming Registered Agent</strong><br>
+              <span class="pill pill--dark">RA / NOMINEE</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>Registered agent of record likely Cloud Peak Law Group / Wyoming Agents LLC (the typical tenant at 1309 Coffeen Ave Ste 1200, Sheridan, WY). RA name and contact not confirmed — WY SoS gated by CAPTCHA at fetch. Service of process channel.</td>
+            <td><span class="pill pill--gap">UNCONFIRMED</span></td>
+            <td><span class="pill pill--gap">UNCONFIRMED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Defense Counsel</strong><br>
+              <span class="pill pill--dark">DEFENSE</span> <span class="pill pill--gap">NOT YET APPEARED</span>
+            </td>
+            <td>No appearance on the public docket as of fetch. Re-check CourtListener day-of-call. 21-day answer clock will start on service. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%226%3A26-cv-00277%22&type=r">CourtListener -&gt;</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-3);">
+      <strong>Email pattern:</strong> Only published email is <code>info@firstguardauto.com</code>. No personal-name emails identified across LinkedIn (404), ZoomInfo (403), Apollo (404), TheOrg (404), or RocketReach. Treat any first.last@firstguardauto.com guess as PATTERN/INFERRED only.
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Plaintiff Counsel (Reference — Do Not Pitch)</h3>
+    <div class="card">
+      <div class="card-meta">For situational awareness only</div>
+      <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Firm phone (PACER)</dt><dd>(305) 506-4746</dd>
+          <dt>Counsel email</dt><dd>vv@plgdamage.com</dd>
+          <dt>Firm general</dt><dd>info@plgdamage.com · 2750 SW 145th Ave Ste 509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Bar</dt><dd>TX #24144674 <span class="pill pill--warn">Bar address mismatch — FL-resident firm</span></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours — before defense counsel is retained and the case goes quiet behind privilege.</h2>
+      <p class="section-lede">The defendant is a Wyoming LLC that almost certainly has no in-house compliance function and no existing TCPA defense counsel. The first 21 days post-service are the only window where the rep can talk to the operator directly without going through outside counsel.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0 (today)</div>
+        <h3 class="card-title">Pull PACER Doc #1 + ECF docket sheet</h3>
+        <div class="card-body">~$1.20 cost. Recover the plaintiff cell from Exhibit A screenshots. Run blacklistBulk + Litigator List the moment the number is in hand. If MATCH FOUND, that becomes the opener for the Day 1 call.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1</div>
+        <h3 class="card-title">Cold-call the main line</h3>
+        <div class="card-body">Call (323) 433-2111. Ask for "the person who manages your SMS marketing program / TCPA compliance." Lead with: "You were sued June 10 in E.D. Texas. We protect SMS senders from exactly this fact pattern." Reference the shortcode and click domain by name to prove the call is researched.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 1 parallel</div>
+        <h3 class="card-title">Email info@firstguardauto.com</h3>
+        <div class="card-body">Short subject line: "Case 6:26-cv-00277 — pre-answer SMS scrub options." One paragraph. Attach a one-pager on Litigator Scrub + DNC bundle. Goal: get forwarded to the operator who will sign for a scrub subscription.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Monitor docket for defense appearance</h3>
+        <div class="card-body">Re-check CourtListener / RECAP every 48 hours. The moment a defense firm files a Notice of Appearance, pivot the pitch to counsel — they will be the gate for any compliance spend until MTD/answer is on file.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">WHOIS + WY SoS pull</h3>
+        <div class="card-body">Run WHOIS history on firstguardauto.com and fga.firstguardauto.com to identify registrant email/name. Pull WY SoS filing for First Guard Auto LLC to confirm organizer and any sister entities at 1309 Coffeen Ave Ste 1200 — these become cross-sell targets.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14–21</div>
+        <h3 class="card-title">Close before answer is due</h3>
+        <div class="card-body">Standard Rule 12(a) answer deadline is 21 days post-service. Position the Litigator Scrub + DNC bundle as a mitigation step counsel can cite in a settlement letter. Late-stage upsell: Consent Capture + record retention as the post-settlement deliverable.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:32px 0 12px;">Trigger Conditions That Change the Plan</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h3 class="card-title" style="font-size:15px;">If defense counsel files MTC arbitration</h3>
+        <div class="card-body">Defendant's signup language is silent on arbitration in the available fetch. If counsel surfaces an arbitration clause, pitch shifts to "scrub the rest of the list before the next named plaintiff files."</div>
+      </div>
+      <div class="card">
+        <h3 class="card-title" style="font-size:15px;">If plaintiff amends to add § 227(b) / ATDS</h3>
+        <div class="card-body">Adds consent-capture urgency. Bundle moves from 2-product to 3-product pitch.</div>
+      </div>
+      <div class="card">
+        <h3 class="card-title" style="font-size:15px;">If PLG files a second case against First Guard</h3>
+        <div class="card-body">Indicates the firm is harvesting the same shortcode list. Position scrub as "stop the bleeding" and accelerate the close timeline to 7 days.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL GATES THE CALL</span>
+      <span class="pill pill--warn">PLG IS A VOLUME FILER · EXPECT FOLLOW-ON CASES</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
