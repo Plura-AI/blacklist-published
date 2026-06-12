@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amerson v. Frame LA Brands — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="2" width="3" height="18" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Apparel SMS Marketer · Federal DNC + SC TPPA · Putative Class · C.D. Cal.</p>
+      <h1 class="hero-tagline">Amerson v.<br>Frame LA Brands</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-06404</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(per RECAP)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)/(d)<br>S.C. Code § 37-21-10</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 (2 classes)</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Scott Edelsberg <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Edelsberg Law, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's number masked in complaint — scrub deferred; pull PACER #1 to recover.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Amerson's complaint discloses only the last four digits ("5406 Number"), so a litigator-list lookup cannot be run yet. Recovery path is short and cheap.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (Greenville County, SC)</div>
+        <div class="scrub-number">XXX-XXX-5406</div>
+        <div class="scrub-number-sub">Complaint ¶10 pleads Plaintiff is the sole subscriber of "the residential telephone number ending in 5406." Full 10-digit number not disclosed. Plaintiff also pleads the number was placed on the federal DNC on June 3, 2004 (¶31).</div>
+      </div>
+      <p class="scrub-body-text">A blacklistBulk lookup against four trailing digits is not a scrub — it is a guess. We are not running it. The cleanest recovery is the standard PACER pull on ECF #1 (the complaint exhibit screenshots may carry sender metadata) plus a 26(f) early-discovery request for the recipient number. As a fallback, plaintiff's counsel typically discloses the full number to defense counsel in pre-answer settlement negotiations.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Sender DID</div>
+        <h3 class="card-title">Short code 97051 · Attentive Mobile</h3>
+        <div class="card-body">
+          <p>Texts were sent from US SMS short code <strong>97051</strong> with branded link domain <code>frame.attn.tv</code> — the <code>attn.tv</code> stem identifies <a href="https://www.attentivemobile.com/">Attentive Mobile</a> as the underlying enterprise SMS platform. <span class="src-tag"><a href="https://www.attentivemobile.com/">attentivemobile.com →</a></span></p>
+          <p>Crowd-source databases (800notes / YouMail / Tellows / RoboKiller) do not index short codes, so no consumer-reported tags are available — but the short-code + Attentive combination is itself the sender ID. This is high-throughput A2P bulk infrastructure designed to push to entire subscriber lists. <span class="src-tag"><a href="https://frame.attn.tv/">frame.attn.tv →</a></span></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">Complaint screenshots (¶16) show 11+ text messages between Feb 8 – Mar 20, 2026. Pulling the PDF directly may surface the full recipient number in the message metadata strip. Cost ≈ $1.20. <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06404&type=r">CourtListener RECAP →</a></span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Await defense counsel notice</h3>
+        <div class="card-body">Defendant has not yet appeared. Once defense counsel is retained, the plaintiff's full number is typically exchanged in the Rule 26(f) conference or in the first settlement demand letter. Watch the docket. <span class="src-tag"><a href="https://www.cacd.uscourts.gov/">cacd.uscourts.gov →</a></span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Cross-check plaintiff history</h3>
+        <div class="card-body">No prior TCPA filings by Elizabeth Amerson surfaced in CourtListener (results returned unrelated bankruptcy/asbestos matters). She appears to be a first-time or low-volume filer — not a serial plaintiff. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Elizabeth+Amerson%22&type=r">CourtListener →</a></span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--info">First-time Plaintiff (no prior TCPA history)</span>
+      <span class="pill pill--warn">DNC since 2004 — 22+ years on registry</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Premium DTC apparel brand running an Attentive SMS program with no DNC scrubbing and a 404'd SMS terms page — textbook compliance gap.</h2>
+      <p class="section-lede">Frame LA Brands operates an active, high-volume marketing-SMS program through Attentive Mobile (short code 97051), but its <code>/pages/sms-terms</code> URL returns a 404 and its privacy policy (last updated May 2023) does not mention TCPA or DNC scrubbing. The wedge is the missing scrub layer. Lead with DNC Scrubbing + RND, attach Consent Capture as the structural fix.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">DNC Scrubbing + Federal DNC Safe Harbor</h3>
+        <div class="card-body">Primary count is 47 USC § 227(c) and 47 CFR § 64.1200(c) — the federal DNC counts. Plaintiff has been on the DNC since 2004 (¶31). Frame's stack lacks any visible DNC scrub layer between Attentive and the send queue. Blacklist DNC scrubbing closes that gap with carrier-grade lists and gives defense counsel an FCC safe-harbor defense to plead.</div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Attach #2</div>
+        <h3 class="card-title">Consent Capture + Record Retention</h3>
+        <div class="card-body">Complaint ¶22-23 pleads no express written consent and no completed form. Frame's signup page exists but its SMS terms page 404s <span class="src-tag"><a href="https://frame-store.com/pages/sms-terms">frame-store.com/pages/sms-terms →</a></span> — meaning even if consent was collected, there is no governing disclosure to point to. Consent Capture fixes that going forward and produces a clean audit trail.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-meta">Cross-sell / Audit</div>
+        <h3 class="card-title">Compliance Audit + Internal DNC P&P</h3>
+        <div class="card-body">Internal DNC violation also pled (47 CFR § 64.1200(d)). Frame has no published compliance officer and no public DNC procedures <span class="src-tag"><a href="https://frame-store.com/pages/privacy-policy">frame-store.com privacy policy →</a></span>. A formal P&P drop-in is the defense-counsel-friendly fix that converts an Edelsberg suit into a settlement posture.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.06em;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">
+        Frame LA Brands just got sued in C.D. Cal. on a Rule 23 putative class action that stacks federal DNC, internal DNC, and the South Carolina TPPA — and the SC TPPA carries up to $5,000 per willful text. Their SMS terms page returns a 404. Their privacy policy was last touched in May 2023 and never mentions TCPA. They're sending through Attentive shortcode 97051 with no visible scrub layer. Plaintiff's counsel — Edelsberg Law — has 407 TCPA dockets indexed on CourtListener and a track record of $5M+ apparel-DTC class settlements (DeFranks v. NastyGal). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">CourtListener →</a></span> This is not a one-off; this is the first strike of a repeatable template.
+      </p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">
+        The pitch is simple: every day Frame keeps texting without DNC scrubbing, the class grows and the per-violation SC TPPA math compounds. Blacklist's federal DNC list plus state DNC overlay plugs directly into Attentive's pre-send hook. The rep should lead with the 404'd SMS terms page as the smoking gun — it's a single URL the brand's GC can verify in 10 seconds, and it proves the compliance program isn't there.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Premium private-equity-backed DTC apparel brand, global retail footprint, no visible TCPA program.</h2>
+      <p class="section-lede">Frame is a 2012-founded LA-based premium denim/ready-to-wear brand with stores in the US, Europe, Asia, and Oceania (new Monaco and Cannes locations). Strong revenue base, sophisticated marketing stack, zero published compliance posture.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile · Frame LA Brands, LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal entity</dt><dd>Frame LA Brands, LLC (California LLC) <span class="src-tag"><a href="https://frame-store.com/">frame-store.com →</a></span></dd>
+          <dt>DBA</dt><dd>FRAME · Frame Denim <span class="src-tag"><a href="https://frame-store.com/">frame-store.com →</a></span></dd>
+          <dt>HQ</dt><dd>3578 Hayden Ave, Suite N-1, Culver City, CA 90232 (per complaint ¶11)</dd>
+          <dt>Founded</dt><dd>2012 by Erik Torstensson &amp; Jens Grede <span class="src-tag"><a href="https://www.linkedin.com/company/frame-denim/">LinkedIn →</a></span></dd>
+          <dt>Parent</dt><dd>Saturday Brand USA Inc. (per 7.1 disclosure in Peterson v. Frame, S.D.N.Y. 2020) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Frame+LA+Brands%22&type=r">CourtListener →</a></span></dd>
+          <dt>Public/Private</dt><dd>Private (PE-backed)</dd>
+          <dt>Vertical</dt><dd>Premium DTC apparel — denim, ready-to-wear, leather, accessories</dd>
+          <dt>Channels</dt><dd>frame-store.com (Shopify) · physical retail (US/EU/Asia/Oceania) · Attentive SMS · email · social</dd>
+          <dt>Marketing stack</dt><dd>Attentive Mobile (SMS, short code 97051) · Shopify · Flow.io (cross-border) <span class="src-tag"><a href="https://frame-store.com/">frame-store.com →</a></span></dd>
+          <dt>Compliance posture</dt><dd>No CCO published · privacy policy last updated May 2023 · no TCPA reference · SMS terms page 404 <span class="src-tag"><a href="https://frame-store.com/pages/sms-terms">/pages/sms-terms →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">SMS terms URL returns HTTP 404</h3>
+        <div class="card-body">
+          <p>Frame runs an active Attentive SMS program at short code <strong>97051</strong> with branded tracking domain <code>frame.attn.tv</code> — but <code>frame-store.com/pages/sms-terms</code> returns <strong>HTTP 404</strong>. <span class="src-tag"><a href="https://frame-store.com/pages/sms-terms" style="color:#fff;">verify →</a></span></p>
+          <p>The privacy policy (last updated May 5, 2023) contains zero references to TCPA, DNC scrubbing, or internal Do-Not-Call procedures despite collecting phone numbers and "Marketing and Communications Data." <span class="src-tag"><a href="https://frame-store.com/pages/privacy-policy" style="color:#fff;">privacy policy →</a></span></p>
+          <p>The About Us page also 404s. There is no public-facing compliance program to plead, period.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Fresh filing · 21-day answer window opens at service</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 11, 2026 (1 day ago)</dd>
+          <dt>Service status</dt><dd>Summons request docketed (ECF #2); no service confirmed <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06404&type=r">CourtListener →</a></span></dd>
+          <dt>Answer window</dt><dd>FRCP 12 default — 21 days from service. No defense counsel of record yet.</dd>
+          <dt>Plaintiff campaign window</dt><dd>Feb 8 – Mar 20, 2026 (11+ texts documented in complaint screenshots)</dd>
+          <dt>Window to close</dt><dd>Before defense counsel files appearance — that's when Frame's GC is most receptive to a structural fix.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Saturday Brand USA Inc.</td>
+            <td>Parent (per S.D.N.Y. 7.1 disclosure)</td>
+            <td>Apparel holding</td>
+            <td>If Saturday Brand owns other DTC labels, same Attentive stack may be deployed brand-wide</td>
+            <td><span class="pill pill--warn">Medium — verify portfolio</span></td>
+          </tr>
+          <tr>
+            <td>FRAME retail (Monaco, Cannes, US, Asia)</td>
+            <td>Same entity, multi-jurisdiction</td>
+            <td>Retail / DTC</td>
+            <td>SMS list likely consolidated across geographies — multi-state DNC exposure</td>
+            <td><span class="pill pill--red">High — in scope</span></td>
+          </tr>
+          <tr>
+            <td>Attentive Mobile (vendor)</td>
+            <td>SMS platform</td>
+            <td>MarTech vendor</td>
+            <td>Not a target — but co-marketing channel for Blacklist's scrub integration</td>
+            <td><span class="pill pill--info">Partner channel</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA strike against Frame — but plaintiff counsel runs a 407-docket TCPA factory.</h2>
+      <p class="section-lede">Frame has been sued before (ADA, copyright, customs), but no prior TCPA cases surfaced. Edelsberg Law, by contrast, has 407 TCPA dockets on CourtListener and a published track record of $5M+ apparel-DTC class settlements. This is a template attack, not an outlier.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Amerson v. Frame LA Brands, LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>2:26-cv-06404 (C.D. Cal., Los Angeles Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06404&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Plaintiff</dt><dd>Elizabeth Amerson (Greenville County, SC)</dd>
+          <dt>Class</dt><dd>Two putative Rule 23 classes: (1) Federal DNC Class (nationwide); (2) SC TPPA Class (SC residents / SC area codes)</dd>
+          <dt>Class size</dt><dd>"Several thousands, if not more" (¶38)</dd>
+          <dt>Claims</dt><dd>Count I: 47 USC § 227(c), 47 CFR § 64.1200(c)/(d) · Count II: S.C. Code Ann. § 37-21-10 et seq.</dd>
+          <dt>Theory</dt><dd>Multiple marketing SMS to DNC-registered residential cell (since 2004) without prior express written consent; sender = short code 97051</dd>
+          <dt>Damages sought</dt><dd>Up to $1,500/text (TCPA treble) + $1,000-$5,000/text (SC TPPA) + injunction + fees</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock from service</span></dd>
+          <dt>Judge</dt><dd>Not yet assigned (per RECAP) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06404&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Scott Edelsberg · Edelsberg Law, P.A.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Lead attorney</dt><dd>Scott Edelsberg, Esq.</dd>
+          <dt>CA bar #</dt><dd>330990 (active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/330990">CalBar →</a></span></dd>
+          <dt>Primary office</dt><dd>20900 NE 30TH Ave #417, Aventura, FL 33180 <span class="src-tag"><a href="https://edelsberglaw.com/">edelsberglaw.com →</a></span></dd>
+          <dt>CA office of record</dt><dd>1925 Century Park E #1700, Los Angeles, CA 90067 <span class="pill pill--warn" style="margin-left:6px;">Address mismatch — virtual/satellite</span></dd>
+          <dt>Phone</dt><dd>305-975-3320 (complaint) · 786-289-9471 (firm site) <span class="pill pill--warn" style="margin-left:6px;">Number mismatch</span></dd>
+          <dt>Email</dt><dd>scott@edelsberglaw.com</dd>
+          <dt>Firm size</dt><dd>6 attorneys (Schwartzbaum, Mandler, Kremer, Delgado, Ramos, Gold) <span class="src-tag"><a href="https://edelsberglaw.com/">edelsberglaw.com →</a></span></dd>
+          <dt>TCPA dockets</dt><dd><strong>407 TCPA-related dockets indexed on CourtListener</strong> <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">CourtListener →</a></span></dd>
+          <dt>Power ranking</dt><dd>Referenced in TCPAWorld 2023 Power Rankings — Top 10 Most Dangerous Plaintiff's Firms <span class="src-tag"><a href="https://tcpaworld.com/?s=Edelsberg">TCPAWorld →</a></span></dd>
+          <dt>Discipline</dt><dd>None identified in available sources</dd>
+          <dt>Notable result</dt><dd>$5M class settlement — DeFranks v. NastyGal (apparel DTC, S.D. Fla. 2020) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Scott+Edelsberg%22+TCPA">Law360 →</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Edelsberg's "DTC apparel + DNC stack" playbook</h3>
+      <div class="card-body">
+        <p>Edelsberg Law's published TCPA history shows a clear preference for DTC consumer brands with active SMS programs. <strong>DeFranks v. NastyGal</strong> ($5M settlement, S.D. Fla. 2020) is the direct analog — same vertical (apparel DTC), same theory (mass-marketing SMS without consent), same outcome blueprint (early class settlement). <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Scott+Edelsberg%22+TCPA">Law360 →</a></span></p>
+        <p>The firm has accelerated in 2025 (Kidd v. TA Fintech, Ramos v. Tomocredit) and recently filed against another DTC consumer brand, <strong>Kinetic Brands LLC</strong>, in S.D. Fla. 2022. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">CourtListener →</a></span> Templates: stack federal DNC (227(c)) + internal DNC (64.1200(d)) + a state-law overlay with higher per-text damages. Here the overlay is South Carolina TPPA ($1,000-$5,000/text). Edelsberg also chose C.D. Cal. — home venue for a Florida-based firm — meaning he has built familiarity with the bench (prior C.D. Cal. matter: Smith v. Zip Capital Group).</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Docket</th>
+            <th>Court</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Theory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Amerson v. Frame LA Brands, LLC</strong></td>
+            <td>2:26-cv-06404</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-11</td>
+            <td><span class="pill pill--red">Active · current</span></td>
+            <td>TCPA DNC + SC TPPA (SMS)</td>
+          </tr>
+          <tr>
+            <td>Wee-Ellis v. Frame LA Brands, LLC</td>
+            <td>2:25-cv-01477</td>
+            <td>E.D.N.Y.</td>
+            <td>2025</td>
+            <td><span class="pill pill--ok">Terminated 5/28/2025 (settlement)</span></td>
+            <td>ADA website accessibility</td>
+          </tr>
+          <tr>
+            <td>Frame LA Brands, LLC v. United States</td>
+            <td>—</td>
+            <td>Ct. Intl. Trade</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>Customs / trade</td>
+          </tr>
+          <tr>
+            <td>Brian Keith v. FRAME LA Brands</td>
+            <td>—</td>
+            <td>C.D. Cal.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>Consumer / ADA</td>
+          </tr>
+          <tr>
+            <td>Portia Mason v. FRAME LA Brands</td>
+            <td>2:22-cv-04499</td>
+            <td>C.D. Cal.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Dismissed 1/18/2023 (settlement)</span></td>
+            <td>Consumer class-style</td>
+          </tr>
+          <tr>
+            <td>Douglass v. Frame LA Brands, LLC</td>
+            <td>—</td>
+            <td>W.D. Pa.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Terminated (~2 weeks — settlement)</span></td>
+            <td>ADA / consumer</td>
+          </tr>
+          <tr>
+            <td>Peterson v. Frame LA Brands</td>
+            <td>1:19-cv-06583</td>
+            <td>S.D.N.Y.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">Dismissed 12/5/2019 (settlement)</span></td>
+            <td>ADA / consumer</td>
+          </tr>
+          <tr>
+            <td>Peterson v. Frame LA Brands</td>
+            <td>—</td>
+            <td>S.D.N.Y.</td>
+            <td>2020</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>ADA / consumer</td>
+          </tr>
+          <tr>
+            <td>Figueroa v. Frame LA Brands</td>
+            <td>—</td>
+            <td>S.D.N.Y.</td>
+            <td>2018</td>
+            <td><span class="pill pill--ok">Closed</span></td>
+            <td>ADA / consumer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">⚠ Open intel gaps to close before first dial</div>
+      <h3 class="card-title">What the rep needs before picking up the phone</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="color:#E0E0E0;">
+          <li>1. Full plaintiff number — pull ECF #1 from PACER ($1.20) to confirm; do not run a litigator scrub on 4 digits.</li>
+          <li>2. Judge assignment — not yet visible in RECAP; check daily.</li>
+          <li>3. Defense counsel — no appearance yet; first appearance is the inflection point.</li>
+          <li>4. Frame's GC / Head of Legal name — no GC identified in fetched LinkedIn data; this is the critical hire we need to surface.</li>
+          <li>5. Frame's CCO / privacy officer — none published; assume none exists, but confirm via LinkedIn search.</li>
+          <li>6. Bar admit date for Scott Edelsberg (CA #330990) — CalBar page returned navigation only; not material to pitch.</li>
+          <li>7. CA SoS officer/manager filing for Frame LA Brands, LLC — bizfile + Bizapedia + OpenCorporates all blocked; need a fresh pull for direct officer names.</li>
+          <li>8. Parent confirmation — Saturday Brand USA Inc. cited from 2020 S.D.N.Y. 7.1 disclosure; verify it's still the parent.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No published GC — go in through the CEO and CPO; loop the founder for reputation leverage.</h2>
+      <p class="section-lede">Frame has no public General Counsel or CCO. The realistic decision path is CEO Silvia Merati (newly arrived from Golden Goose, brand-protection oriented) and Executive Chairman Nicolas Dreyfus. Email pattern <code>{first}.{last}@frame-brand.com</code> is inferred from confirmed <code>careers@frame-brand.com</code>.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Silvia Merati</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>CEO. Joined ~7 months ago (late 2025) from Golden Goose. Brand-protection sensitive given fresh tenure. <span class="src-tag"><a href="https://www.linkedin.com/company/frame-denim/">LinkedIn →</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>silvia.merati@frame-brand.com <span class="pill pill--info">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/silvia-merati-2235b414">Profile →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Nicolas Dreyfus</strong><br><span class="pill pill--dark">Exec Chairman</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Executive Chairman (former CEO 2020-2025). Oversees strategy &amp; risk. The board-level escalation path. <span class="src-tag"><a href="https://www.linkedin.com/company/frame-denim/">LinkedIn →</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>nicolas.dreyfus@frame-brand.com <span class="pill pill--info">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Erik Torstensson</strong><br><span class="pill pill--dark">Co-Founder</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Co-Founder (2012). Creative side. Reputational leverage point — celebrity collaborations (Ritz Paris, Sotheby's). <span class="src-tag"><a href="https://www.linkedin.com/company/frame-denim/">LinkedIn →</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>erik.torstensson@frame-brand.com <span class="pill pill--info">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/erik-torstensson-7a3320">Profile →</a></td>
+          </tr>
+          <tr>
+            <td><strong>Jennifer Chan</strong><br><span class="pill pill--dark">CPO</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Chief People Officer. Joined ~1 month ago (2025). HR/comms angle for compliance program rollout. <span class="src-tag"><a href="https://www.linkedin.com/company/frame-denim/">LinkedIn →</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>jennifer.chan@frame-brand.com <span class="pill pill--info">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No General Counsel identified in any public source. This is the actual TCPA decision-maker — must be surfaced before first dial.</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td>gc@frame-brand.com / legal@frame-brand.com <span class="pill pill--info">PATTERN</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><strong>Client Services Team</strong><br><span class="pill pill--dark">Front desk</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Customer-facing inbox. Use as inbound routing only — escalation will be to CEO/Chairman office. <span class="src-tag"><a href="https://frame-store.com/pages/contact-us">contact-us →</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>clientservices@frame-store.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Careers / HR</strong><br><span class="pill pill--dark">HR</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Confirms corporate email domain = frame-brand.com (employee-facing) vs frame-store.com (customer-facing). <span class="src-tag"><a href="https://frame-store.com/pages/careers">careers →</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>careers@frame-brand.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px; padding:16px; background:var(--gray-05); border-left:4px solid var(--bl-red);">
+      <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:8px;">Email Pattern · INFERRED</div>
+      <div style="font-family:var(--font-mono); font-size:18px; font-weight:600;">{first}.{last}@frame-brand.com</div>
+      <div style="font-size:13px; color:var(--fg-2); margin-top:6px;">Source: confirmed <code>careers@frame-brand.com</code> and <code>clientservices@frame-store.com</code> establish that <strong>frame-brand.com</strong> is the corporate/employee domain and <strong>frame-store.com</strong> is the customer-facing storefront. First.last format is industry-standard; no individual employee email was published to confirm format directly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move this week — before defense counsel files appearance and the conversation becomes adversarial.</h2>
+      <p class="section-lede">The filing is 1 day old. Frame has no defense counsel of record. Their privacy/SMS terms gaps are unambiguous and verifiable in 30 seconds. This is the cleanest window we'll get.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1-2</div>
+        <h3 class="card-title">Surface GC + pull ECF #1</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Pull ECF #1 from PACER (~$1.20) — confirm full plaintiff number for scrub readiness.</li>
+            <li>Run LinkedIn search "Frame LA Brands" + "Counsel"/"Legal"/"Privacy" to surface the GC. Likely fractional or outside counsel.</li>
+            <li>Confirm CA SoS officer/manager filing for Frame LA Brands, LLC (CA SoS bizfile direct lookup).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Day 3-5</div>
+        <h3 class="card-title">First outreach — CEO + Chairman track</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Email Silvia Merati (CEO) and Nicolas Dreyfus (Exec Chairman) in parallel. Subject: "TCPA filing 2:26-cv-06404 — your SMS terms page returns 404."</li>
+            <li>Attach 1-page brief: (a) the 404 URL, (b) the SC TPPA $5,000/text math, (c) DeFranks v. NastyGal as the analog outcome, (d) Blacklist scrub + consent capture as the remediation.</li>
+            <li>Cc clientservices@frame-store.com to force internal routing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Day 6-10</div>
+        <h3 class="card-title">Phone follow-up + warm handoff to GC</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>If no reply by Day 6, call the Culver City HQ main line (verify via LinkedIn / Google Business).</li>
+            <li>Ask for Office of the CEO / Office of the General Counsel by name.</li>
+            <li>Pitch is product-led: federal DNC scrub + state DNC overlay + consent capture for the Attentive integration.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Day 11-21</div>
+        <h3 class="card-title">Defense-counsel parallel track</h3>
+        <div class="card-body">
+          <ul class="clean tight">
+            <li>Monitor docket daily for defense appearance.</li>
+            <li>When defense counsel appears, send a same-day intro positioning Blacklist as the safe-harbor remediation vendor — defense counsel will want this in the answer/12(b)(6) posture.</li>
+            <li>Offer free 1-call audit of Attentive integration as the soft entry.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.06em;">Trigger Conditions</h3>
+      <ul class="clean tight" style="background:var(--bg-surface); border:1px solid var(--border-1); padding:16px 24px;">
+        <li><strong>If defense counsel files MTC arbitration:</strong> pivot pitch to consent capture + record retention (arbitration won't save them if there's no signed consent).</li>
+        <li><strong>If plaintiff voluntarily dismisses to amend:</strong> means Edelsberg is recalibrating the class definition — this is when Frame's GC is most receptive. Reach out same day.</li>
+        <li><strong>If Frame fixes the /sms-terms 404 within 5 days:</strong> they know they're exposed. Pitch becomes scrub-only; consent capture already in motion.</li>
+        <li><strong>If a second TCPA filing lands against Frame:</strong> the floor opens. Escalate to Exec Chairman Dreyfus directly.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Urgency: HIGH</span>
+      <span class="pill pill--warn">21-Day Answer Window · Close Before Defense Files</span>
+      <span class="pill pill--info">Lead Product: DNC Scrubbing + FCC Safe Harbor</span>
+      <span class="pill pill--info">Attach: Consent Capture</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
