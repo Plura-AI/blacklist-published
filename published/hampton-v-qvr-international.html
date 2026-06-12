@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hampton v. QVR International — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; color:var(--fg-2); line-height:1.55; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="115" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">PLG Quiet-Hours SMS Template · 55-Message Class Action · Opaque DE LLC Defendant</p>
+      <h1 class="hero-tagline">Hampton v.<br>QVR International</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-06345</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys (Miramar, FL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred, but Hampton is already filing in pairs.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint pleads only the last four digits ("ending in 8602") — no scrub can run on a 4-digit fragment. However, plaintiff Kimberly Hampton filed at least two TCPA actions in the Central District of California on the same day, which itself is the proof-point the rep can put in front of QVR.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Same-Day Companion Filing Detected</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-8602</div>
+        <div class="scrub-number-sub">Only last-four digits pled in Complaint ¶17. Pasadena, CA (Los Angeles County) was disclosed as the called-party location. No litigator-list scrub possible on a partial number.</div>
+      </div>
+      <p class="scrub-body-text">Hampton's full 10-digit number was withheld from the pleading, which is standard PLG practice. The Blacklist litigator-list cannot be run against a 4-digit fragment. However, the docket itself surfaces a serial-filer signal: Hampton filed <strong>2:26-cv-06348 (Hampton v. 4U Hair Unlimited)</strong> the same day, also in C.D. Cal., also represented by PLG Damage Attorneys. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kimberly+Hampton%22&type=r">CourtListener — Hampton filings →</a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 attachments via PACER</h3>
+        <p class="card-body">Complaint references "Exhibit A" SMS screenshots (¶23). The exhibits may disclose the full recipient number or the sender DID. Estimated cost: ~$3.00. Action owner: BDR pre-call prep.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Cross-check 4U Hair docket (2:26-cv-06348)</h3>
+        <p class="card-body">Hampton's companion case filed the same day may reuse the same recipient number — if 4U's complaint pleads a different last-four, Hampton uses multiple lines for solicitation harvesting.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery / Rule 26 initial disclosures</h3>
+        <p class="card-body">Once defense counsel appears, the number is producible under FRCP 26. Pitch to QVR before that point so they recognize Blacklist as a remediation partner, not a discovery target.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER ECF #1</span>
+      <span class="pill pill--warn">SERIAL-FILER FLAG: SAME-DAY COMPANION CASE</span>
+      <span class="pill pill--info">PLG FIRM: 12 TCPA FILINGS IN 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Opaque Delaware LLC with 55 alleged quiet-hours violations, no resolvable website, and zero visible compliance infrastructure.</h2>
+      <p class="section-lede">QVR International LLC is staring down a Rule 23 class with $27,500–$82,500 of named-plaintiff exposure before certification — and the defendant's own domain (qvrinternational.com) does not resolve via DNS, meaning whatever SMS infrastructure they were running is almost certainly undocumented. Lead with consent capture and DNC scrubbing. The hook is timing: PLG's other 2026 cases have settled in 7–8 weeks. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener — PLG filings →</a></span></p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent capture &amp; record retention</h3>
+        <p class="card-body">Plaintiff pleads no prior express invitation, no EBR, and 55 messages over six months. QVR has no defensible consent record because they have no documented consent infrastructure. Blacklist's consent capture stack is the upstream fix.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Strong Cross-Sell</div>
+        <h3 class="card-title">DNC scrubbing (Federal + Internal)</h3>
+        <p class="card-body">Every alleged message hit a wireless number used as a residential line. A pre-send Federal DNC scrub plus internal-DNC suppression list would have eliminated this case at the source.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Add-On</div>
+        <h3 class="card-title">Compliance audit + policies &amp; procedures</h3>
+        <p class="card-body">No written DNC policy, no time-zone send scheduling, no documented opt-in — these are all 47 CFR § 64.1200(d) gaps that PLG will rotate to in the next complaint amendment if QVR doesn't button them up.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="section-eyebrow" style="margin-bottom:16px"><span class="bar"></span> Pitch Angle</div>
+      <div class="card card--alert">
+        <h3 class="card-title">Open with the same-day filing pattern.</h3>
+        <p class="card-body" style="margin-bottom:12px">The wedge for this call is the plaintiff's behavior, not the statute. Hampton filed <em>two</em> TCPA cases on June 11, 2026 — QVR's case (2:26-cv-06345) and 4U Hair Unlimited's case (2:26-cv-06348) — both through PLG Damage Attorneys, a Florida property-damage firm that has pivoted into a 12-filing-deep TCPA volume practice in 2026. <span class="src-tag" style="color:#A8A8A8"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r" style="color:#C9C9C9">CourtListener →</a></span></p>
+        <p class="card-body" style="margin-bottom:12px">PLG's pattern: file fast, settle in 7–8 weeks (Sloss v. Wolverine: filed 4/22, settled 6/10; Correa v. Fashion Nova: filed 4/6, terminated 6/3). They are not going to trial — they are pricing nuisance. The defendants who pay are the ones with no consent records and no scrub. QVR fits that profile exactly: their own website doesn't resolve, they have no LinkedIn, no BBB, no Crunchbase footprint. They have nothing to defend with.</p>
+        <p class="card-body" style="margin-bottom:0">The pitch: "PLG just put your name on a target list. The next plaintiff is already being recruited. You can either be the defendant that buttons up before the second filing, or you can be the one who pays twice." Position Blacklist as the pre-litigation hardening that the next plaintiff won't survive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Delaware LLC with a non-resolving domain and zero discoverable corporate footprint.</h2>
+      <p class="section-lede">QVR International LLC is opaque by design or by neglect — every public-source check (BBB, Crunchbase, Glassdoor, Wikipedia, LinkedIn, TheOrg) came back empty, and the domain referenced in the complaint (qvrinternational.com) does not resolve via DNS. The company exists on paper as a Delaware LLC authorized in California, but its operational presence is undetectable from the open web.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">QVR International LLC</h3>
+        <dl class="kv">
+          <dt>Legal entity</dt><dd>QVR International LLC</dd>
+          <dt>Formation state</dt><dd>Delaware</dd>
+          <dt>Foreign reg.</dt><dd>Authorized to do business in California (per Complaint ¶5)</dd>
+          <dt>HQ</dt><dd><span class="pill pill--gap">UNKNOWN</span></dd>
+          <dt>Registered agent</dt><dd><span class="pill pill--gap">NOT RETRIEVED</span> — DE SoS search unverifiable via static fetch</dd>
+          <dt>Officers/members</dt><dd><span class="pill pill--gap">UNKNOWN</span></dd>
+          <dt>Vertical</dt><dd><span class="pill pill--gap">UNKNOWN</span> — no operational footprint</dd>
+          <dt>Website</dt><dd>qvrinternational.com — <strong>DNS does not resolve</strong></dd>
+          <dt>BBB / Crunchbase</dt><dd>No profile found</dd>
+          <dt>Public statements</dt><dd>None located</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No resolvable domain = no documentable consent flow.</h3>
+        <p class="card-body">The domain QVR transacts under — qvrinternational.com — does not resolve via DNS. There is no privacy policy, no terms of service, no signup form, no opt-in checkbox language to inspect, and no consumer-facing consent UI. If QVR was running SMS marketing without a live website (or shut the site down mid-campaign), there is functionally no path to producing a defensible consent record under 47 CFR § 64.1200(f)(9). The 55 alleged messages between Nov 28, 2025 and May 28, 2026 (Complaint ¶21) are sitting on no documented opt-in trail.</p>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing — Answer Clock</div>
+        <h3 class="card-title">21-day clock from service</h3>
+        <p class="card-body">Filed June 11, 2026. Summons request docketed same day. Service typically perfects within 30–60 days for a DE LLC via registered agent. Window for pre-answer settlement outreach: <strong>July–August 2026</strong>.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing — PLG Pattern</div>
+        <h3 class="card-title">7–8 week settlement cadence</h3>
+        <p class="card-body">PLG settled Sloss v. Wolverine in 7 weeks and terminated Correa v. Fashion Nova in 8 weeks per CourtListener. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span> Expect a demand letter within 30 days. Sell <em>before</em> the demand lands.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing — Prior Filing</div>
+        <h3 class="card-title">QVR was already sued in Feb 2026</h3>
+        <p class="card-body">Marcia Hasley v. QVR International (5:26-cv-00444, C.D. Cal., filed 2/2/2026). Summons returned executed 2/11; Order to Show Cause issued 3/5 — possible default/service issue. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Qvr+International%22&type=r">CourtListener →</a></span> QVR has prior notice and did not remediate.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Related Entities — Cross-Sell Candidates</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>4U Hair Unlimited, Inc.</td>
+              <td>Co-target of same plaintiff (Hampton)</td>
+              <td>Hair / DTC retail</td>
+              <td>Active C.D. Cal. case 2:26-cv-06348 filed same day</td>
+              <td><span class="pill pill--red">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>QVR registered-agent network</td>
+              <td>Likely shared with sister DE LLCs</td>
+              <td>Unknown</td>
+              <td>Once RA is pulled from DE SoS, sister entities surface</td>
+              <td><span class="pill pill--warn">MEDIUM</span></td>
+            </tr>
+            <tr>
+              <td>PLG defendant pipeline (Guardio, Rocket Mortgage, Rite Aid, Xercize, Last Brand, Fashion Nova, 7-Eleven, Yesvideo, Centerfield)</td>
+              <td>Active PLG TCPA defendants (2026)</td>
+              <td>Lead-gen, fintech, fitness, retail</td>
+              <td>All facing the same PLG quiet-hours template</td>
+              <td><span class="pill pill--info">PARALLEL OUTREACH</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PLG's quiet-hours template, third deployment against QVR-family defendants in 2026.</h2>
+      <p class="section-lede">PLG Damage Attorneys is a Miramar, FL property-damage firm that has pivoted into TCPA volume in 2026. At least 12 TCPA filings tracked in CourtListener this year alone, with a clean 7–8 week settle-or-terminate cadence. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">The Case</div>
+        <h3 class="card-title">Hampton v. QVR International LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>2:26-cv-06345 (C.D. Cal., Los Angeles)</dd>
+          <dt>Filed</dt><dd>June 11, 2026 (1 day ago)</dd>
+          <dt>Plaintiff</dt><dd>Kimberly Hampton (Los Angeles County, CA)</dd>
+          <dt>Class</dt><dd>Putative Rule 23 — "TCPA After-Hours Class"</dd>
+          <dt>Class size pled</dt><dd>"dozens and likely in the hundreds or thousands" (¶34)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-hours — all 55 alleged messages sent before 8:00 AM Pacific to plaintiff in Pasadena</dd>
+          <dt>Violation count</dt><dd>55 messages pled (Nov 28, 2025 – May 28, 2026)</dd>
+          <dt>Damages sought</dt><dd>$500 statutory × 55 = $27,500 floor · 3× treble = $82,500 ceiling (named plaintiff only)</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">NOT YET APPEARED</span> · 21-day answer clock from service</dd>
+          <dt>Docket items</dt><dd>Doc #1 Complaint · Doc #2 Notice · Doc #3 Interested Parties · Doc #4 Summons Request — all 6/11/2026</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+          <dt>Firm phone</dt><dd>(305) 506-4746 <span class="pill pill--info">FL HQ</span></dd>
+          <dt>Firm email</dt><dd>info@plgdamage.com / tcpa-service@plgdamage.com</dd>
+          <dt>Lead attorney email</dt><dd>vv@plgdamage.com</dd>
+          <dt>CA Bar #</dt><dd>367857 <span class="pill pill--ok">Active</span> <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CalBar →</a></span></dd>
+          <dt>Bar-address match</dt><dd><span class="pill pill--warn">MISMATCH FLAG</span> — FL firm address, CA-only admit, no CA office of record</dd>
+          <dt>Discipline</dt><dd>None found <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CalBar →</a></span></dd>
+          <dt>Primary practice</dt><dd>Property damage / insurance (roof, water, mold, pipe burst) — TCPA is a 2026 pivot <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com →</a></span></dd>
+          <dt>TCPA filings 2026</dt><dd><strong>12+</strong> (5+ in C.D. Cal. May–June 2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener →</a></span></dd>
+          <dt>TCPAWorld ranking</dt><dd>Not in power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld →</a></span></dd>
+          <dt>Other firm attys</dt><dd>Faythe Gutierrez (CA Bar 310430), Joseph A. Varona (FL Bar 119812), Matthew Suls, Natasha Floyd</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <div class="card-meta">Plaintiff/Firm Template</div>
+      <h3 class="card-title">The PLG quiet-hours template</h3>
+      <p class="card-body">PLG's 2026 TCPA template is repetitive and identifiable: (1) plaintiff alleges receipt of dozens of SMS messages between roughly 7:30–7:55 AM local time — just under the 8:00 AM threshold; (2) plaintiff pleads only last-four of recipient number, withholding full disclosure to block pre-suit scrub; (3) plaintiff alleges no EBR, no consent, no nonprofit exemption; (4) plaintiff pleads "regular user and subscriber" + "wireless used as residential" to capture § 64.1200(e) wireless-application; (5) Rule 23 class definition is national, four-year lookback. Hampton's complaint follows this template paragraph-for-paragraph, and Hampton has filed at least two cases on the same day using it. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Kimberly+Hampton%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation (PLG / Hampton / QVR)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row-current">
+              <td><strong>Hampton v. QVR International LLC</strong></td>
+              <td>2:26-cv-06345 (C.D. Cal.)</td>
+              <td>2026-06-11</td>
+              <td><span class="pill pill--red">CURRENT CASE</span></td>
+              <td>Quiet hours · § 227(c)</td>
+            </tr>
+            <tr>
+              <td>Hampton v. 4U Hair Unlimited, Inc.</td>
+              <td>2:26-cv-06348 (C.D. Cal.)</td>
+              <td>2026-06-11</td>
+              <td><span class="pill pill--warn">Active · same-day</span></td>
+              <td>Quiet hours (same plaintiff)</td>
+            </tr>
+            <tr>
+              <td>Hasley v. QVR International LLC</td>
+              <td>5:26-cv-00444 (C.D. Cal.)</td>
+              <td>2026-02-02</td>
+              <td><span class="pill pill--warn">OSC issued 3/5/2026</span></td>
+              <td>TCPA (same defendant)</td>
+            </tr>
+            <tr>
+              <td>Sloss v. Wolverine World Wide</td>
+              <td>4:26-cv-03277 (S.D. Tex.)</td>
+              <td>2026-04-22</td>
+              <td><span class="pill pill--ok">Notice of Settlement 6/10</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Correa v. Fashion Nova, LLC</td>
+              <td>0:26-cv-60960 (S.D. Fla.)</td>
+              <td>2026-04-06</td>
+              <td><span class="pill pill--ok">Terminated 6/3</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Salcedo v. Fashion Nova, LLC</td>
+              <td>0:26-cv-61011 (S.D. Fla.)</td>
+              <td>2026-04-08</td>
+              <td><span class="pill pill--ok">Terminated 5/29</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Hughes v. Guardio LLC</td>
+              <td>2:26-cv-05313 (C.D. Cal.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Long v. Rocket Mortgage, LLC</td>
+              <td>2:26-cv-05599 (C.D. Cal.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Fasheh v. The Xercize Studio, LLC</td>
+              <td>8:26-cv-01231 (C.D. Cal.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Post v. Centerfield Media Parent</td>
+              <td>4:26-cv-03524 (N.D. Cal.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Cummings v. 7-Eleven Inc</td>
+              <td>1:26-cv-00119 (N.D. Fla.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+            <tr>
+              <td>Flottman v. Yesvideo, Inc.</td>
+              <td>8:26-cv-01491 (M.D. Fla.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>TCPA (PLG template)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src-tag" style="margin-top:8px"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener — PLG TCPA filings →</a> · <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Qvr+International%22&type=r">CourtListener — QVR docket →</a></span></p>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>• <strong>Full plaintiff number</strong> — pull from PACER ECF #1 attachments (Exhibit A SMS screenshots) so litigator scrub can be retroactively run.</li>
+        <li>• <strong>QVR registered agent + officers</strong> — Delaware SoS and CA SoS bizfile queries both failed via static fetch; sales team should run a paid SoS lookup before outreach.</li>
+        <li>• <strong>QVR operating identity</strong> — qvrinternational.com does not resolve; verify whether QVR operates under a DBA or sister brand that explains the SMS sender identity.</li>
+        <li>• <strong>Sending DID / short code</strong> — Complaint ¶22 calls it "an unknown number"; pull ECF #1 exhibits to capture the sender artifact.</li>
+        <li>• <strong>Judge assignment</strong> — not yet visible on CourtListener; check PACER directly for the article-III and magistrate assignments.</li>
+        <li>• <strong>Hasley case outcome</strong> — confirm whether the Feb 2026 QVR case resulted in default, settlement, or dismissal; OSC suggests service problems.</li>
+        <li>• <strong>Defense counsel</strong> — no appearance yet; reach out before the answer is filed.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No QVR contacts surfaced from open web — registered agent pull is gating step #1.</h2>
+      <p class="section-lede">Every standard contact-discovery source (LinkedIn, TheOrg, ZoomInfo, Apollo, RocketReach, Hunter, BBB) returned empty or gated for QVR International LLC. The domain doesn't resolve. The cleanest path to a decision-maker is the Delaware SoS registered-agent filing, which will surface a member/manager name and a service address. That should be the rep's first action — Blacklist's SoS retrieval is fastest here.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Registered Agent (TBD)</strong><br><span class="pill pill--gap">GAP</span> <span class="pill pill--dark">ENTRY POINT</span></td>
+            <td>Delaware SoS-listed registered agent for QVR International LLC. First documented service point — name surfaces in DE SoS filing upon paid retrieval.</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Member / Manager (TBD)</strong><br><span class="pill pill--gap">GAP</span> <span class="pill pill--dark">DECISION-MAKER</span></td>
+            <td>QVR LLC member/manager per DE formation docs. Will be named on CA foreign-LLC registration as well. Likely sole owner given opacity.</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Main company line</strong><br><span class="pill pill--gap">GAP</span></td>
+            <td>No published company phone — BBB, Crunchbase, Glassdoor all empty; website does not resolve.</td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td><span class="pill pill--gap">UNKNOWN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">GAP</span> <span class="pill pill--warn">Not yet appeared</span></td>
+            <td>No appearance docketed as of 6/12/2026. 21-day answer clock from service. Re-check PACER weekly.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Counsel (reference only — do not pitch)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Name</th><th>Role</th><th>Phone</th><th>Email</th><th>Bar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Vinit R. Venkatesh</td>
+              <td>Lead plaintiff counsel · PLG Damage Attorneys</td>
+              <td>(305) 506-4746 (firm)</td>
+              <td>vv@plgdamage.com · tcpa-service@plgdamage.com</td>
+              <td>CA #367857 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">CalBar →</a></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px">
+      <h4>Why the contact card is empty — and what to do about it</h4>
+      <p style="margin:8px 0 0; font-size:14px; color:var(--fg-2);">QVR International LLC has no LinkedIn page, no TheOrg entry, no BBB profile, no Crunchbase or Glassdoor record, and the domain referenced in the complaint (qvrinternational.com) does not resolve via DNS. This is itself a sales signal: an opaque DE LLC with no operational footprint and no public compliance posture is the highest-probability buyer for end-to-end consent capture and DNC scrubbing. <strong>Step 1 for the assigned owner: pull DE SoS + CA SoS foreign-LLC filings to identify the member/manager and service address.</strong> That contact becomes the first dial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 14 days — beat the demand letter, beat the answer.</h2>
+      <p class="section-lede">PLG's pattern is a demand letter inside 30 days and a settlement inside 8 weeks. The owner has a clean two-week runway before QVR's general counsel (if they have one) gets handed a demand and the conversation becomes "who's defending you" instead of "how do you prevent the next one."</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 0–2 · Pull DE + CA SoS filings</h4>
+          <p>Get registered agent, member/manager name, and the service address. This produces the first dialable contact. Cost: nominal. Owner: BDR pre-call prep.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 0–2 · Pull PACER ECF #1 + Exhibit A</h4>
+          <p>Capture (a) Hampton's full recipient number for retroactive litigator-list cross-check, and (b) the sender DID / short code QVR used. Both inputs are needed for the technical pitch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 3–5 · First call to the member/manager</h4>
+          <p>Open with the PLG settlement cadence (Sloss settled in 7 weeks per CourtListener). Reference the prior Hasley case as evidence QVR has been on PLG's radar since Feb 2026. Lead with consent capture + DNC scrubbing. Cite the same-day Hampton/4U Hair filing as proof the plaintiff is pipelining defendants.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 7 · Email follow-up with the math</h4>
+          <p>55 messages × $500 = $27,500 named-plaintiff floor; × 3 = $82,500 willful ceiling. Class size pled "dozens to hundreds or thousands." Frame Blacklist's quarterly subscription cost as a fraction of single-plaintiff exposure.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 10–14 · Defense-counsel handshake</h4>
+          <p>Once defense counsel appears on PACER, send a one-page Blacklist capability brief to defense counsel framed as "remediation evidence" they can put in front of PLG to support a discount on the class fund.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h4>Day 14+ · Cross-sell to PLG defendant pipeline</h4>
+          <p>Open parallel conversations with the other 2026 PLG defendants (Guardio, Rocket Mortgage, Rite Aid, Xercize Studio, Last Brand, Yesvideo, Centerfield). Same template, same firm, same urgency window.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-top:24px">
+      <h3 class="card-title">Trigger conditions — what changes the plan</h3>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>• <strong>PLG sends a demand letter before Day 14</strong> — shift pitch from "prevent the next one" to "joint-defense remediation evidence" and route through defense counsel.</li>
+        <li>• <strong>QVR defaults (like Hasley may have)</strong> — case becomes uncollectable; pivot effort to the parallel PLG defendant pipeline.</li>
+        <li>• <strong>Defense counsel files MTC arbitration</strong> — slower runway; emphasize compliance audit + policies &amp; procedures as longer-term close.</li>
+        <li>• <strong>PACER reveals QVR shares registered agent with sister entities</strong> — escalate from single-account sale to portfolio.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:8px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY</span>
+      <span class="pill pill--info">PLG SETTLEMENT CADENCE: 7–8 WEEKS</span>
+      <span class="pill pill--dark">PARALLEL OUTREACH: 9 OTHER 2026 PLG DEFENDANTS</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
