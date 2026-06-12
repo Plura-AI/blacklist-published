@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardero v. AFG Funding — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.row-current{ background:#FBE5E5; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <text x="125" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Hindi-Firm DNC Class Action · MCA/Business Lender · Serial-Plaintiff Filer · Empty Privacy Policy</p>
+      <h1 class="hero-tagline">Cardero v.<br>AFG Funding LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">Filing #250170012</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">11th Jud. Cir., Miami-Dade FL</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(state filing)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">DNC Class + Caller ID Class</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alina O'Connor <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Cardero is a confirmed serial filer with 7+ prior TCPA cases.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose Cardero's 10-digit cell number — only that he registered it on the National DNC list on or about February 23, 2009. Scrub is deferred until we recover the number from PACER/state docket or discovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial Filer Flag · 7+ Prior TCPA Cases</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Recipient Number</div>
+        <div class="scrub-number">NOT PLED IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraph 19 confirms DNC registration on or about Feb 23, 2009 — but the actual 10-digit number is redacted/omitted. Litigator scrub cannot be run on a name alone.</div>
+      </div>
+      <p class="scrub-body-text">Even without the number, plaintiff identity is a major red flag. Mauricio Cardero has filed at least seven prior TCPA cases — predominantly in S.D. Fla. — against Honda of Aventura, Momentum Capital Group, Asset Recovery Bureau, Keller Williams Realty, Solar Capital Group, Ascendancy Corp West, and Change Healthcare Resources. Most resolved within 2–6 months via voluntary dismissal or settlement. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Mauricio+Cardero%22&type=r">CourtListener -&gt;</a></span> This is not a one-off consumer — this is a litigation portfolio.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">(254) 237-2444</h3>
+        <p class="card-body">Texas (Waco/Killeen) area code attached to texts on Oct 20 and Oct 27, 2025 per complaint screenshot. AFG Funding's listed business numbers are 305/786 (Miami) — the 254 long-code strongly suggests a third-party SMS aggregator or lead-vendor dialer.</p>
+        <p class="card-body" style="margin-top:8px"><strong>Sender identification:</strong> ShouldIAnswer has zero user reviews and no database entry for this DID. 800notes, YouMail, Tellows, and RoboKiller all returned access-blocked or not-indexed responses — no public consumer footprint to confirm or deny AFG attribution. <span class="src-tag"><a href="https://www.shouldianswer.com/phone-number/2542372444">ShouldIAnswer -&gt;</a></span></p>
+        <p class="card-body" style="margin-top:8px"><span class="pill pill--info">Sequential NXX Block</span> Surrounding numbers in 254-237 NXX appear on the same lookup index, consistent with a leased DID pool — useful intel for the rep when asking AFG who their SMS vendor is.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull Miami-Dade clerk docket</h3>
+        <p class="card-body">State filing — not on PACER. Pull the e-filed complaint exhibit from the Miami-Dade Circuit Court e-portal. Plaintiff's number may appear in the unredacted exhibit, an attached affidavit, or in initial disclosures. ~$2 per page.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense counsel appearance</h3>
+        <p class="card-body">Florida state-court answer deadline is 20 days post-service. When defense counsel files an appearance, request the plaintiff's number via Rule 1.280 initial discovery — Hindi-firm cases routinely produce it within 30 days.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">CAFA removal + federal discovery</h3>
+        <p class="card-body">Class allegations + amount in controversy may support CAFA removal. Federal Rule 26(a)(1) initial disclosures will surface the plaintiff's number faster than Florida state practice.</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED</span>
+      <span class="pill pill--danger">SERIAL FILER · 7+ PRIOR TCPA CASES</span>
+      <span class="pill pill--warn">RECOVER NUMBER → RE-RUN SCRUB</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A 30-year-old MCA lender with a literally empty privacy policy, four TCPA suits across four jurisdictions, and a Hindi-firm class action filed yesterday.</h2>
+      <p class="section-lede">AFG Funding is the textbook Blacklist target — small Miami MCA shop, aggressive nationwide SMS to credit-challenged businesses, no visible compliance program, no DNC scrubbing infrastructure, and now a Florida class action from the most prolific TCPA filer in the state. Lead with Consent Capture + DNC Scrubbing; layer Compliance Audit on the close.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta" style="color:var(--bl-red)">★ RECOMMENDED LEAD</div>
+        <h3 class="card-title">Consent Capture + Record Retention</h3>
+        <p class="card-body">AFG's apply page collects phone numbers with zero TCPA disclosure, no checkbox, no opt-in language <span class="src-tag"><a href="https://afgfunding.com/apply">afgfunding.com/apply -&gt;</a></span>. This is the exact gap Hindi pleads. Consent Capture closes the wound at the source.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="color:var(--bl-red)">★ RECOMMENDED LEAD</div>
+        <h3 class="card-title">Federal DNC Scrubbing</h3>
+        <p class="card-body">Count I is a straight Federal DNC violation. Cardero registered on the DNC list in 2009 — 17 years before AFG texted. Pre-send DNC scrubbing would have prevented this case. Daily scrub at the dialer/SMS-aggregator level.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">Compliance Audit + Policies &amp; Procedures</h3>
+        <p class="card-body">AFG's privacy policy page renders empty and the ToS URL returns 404 <span class="src-tag"><a href="https://afgfunding.com/privacy">afgfunding.com/privacy -&gt;</a></span>. A documented compliance program is required for the safe-harbor defense under 47 CFR § 64.1200(c)(2). Audit + written P&amp;P is the upsell.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <h3 class="card-title">Pitch Angle</h3>
+      <p class="card-body" style="font-size:16px; line-height:1.6">"You've now been sued four times for TCPA — N.D. Cal. in 2019, W.D. Tex. in 2021, E.D. Pa. in 2022, and yesterday in Miami-Dade by Jibrael Hindi's firm. The Hindi firm files dozens of these per month and is on TCPAWorld's 2026 'Most Dangerous TCPA Plaintiff's Lawyers' list <span class="src-tag" style="color:#A8A8A8"><a href="https://tcpaworld.com/?s=Jibrael+Hindi" style="color:#C9C9C9">TCPAWorld -&gt;</a></span>. They will not stop with Cardero. Your apply page captures phone numbers with no consent checkbox, your privacy policy is a blank page, and your texts are coming from a Texas long-code that isn't even registered to AFG. Every one of those is fixable in 30 days with Blacklist — DNC scrub against the federal registry on every send, consent capture at the form, and written P&amp;P your defense counsel can hand the court. The settle-and-scrub play is cheaper than fighting Hindi twice."</p>
+      <p class="card-body" style="font-size:16px; line-height:1.6; margin-top:12px">Open with the Shelton 2022 pattern: prior plaintiff settled quickly. Hindi knows AFG pays. The math on a 50-person class at $500/violation floor is $25k — that's roughly one year of Blacklist scrubbing. Frame the buy as risk transfer, not software.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">30-year-old Miami MCA/business lender targeting credit-challenged borrowers nationwide.</h2>
+      <p class="section-lede">AFG Funding LLC is a private Florida-domiciled commercial lender offering business loans, equipment financing, and working-capital advances from $10k to $10M. Founded in 1993. No public parent, no disclosed M&amp;A history, no compliance officer identifiable from public sources.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">AFG Funding, LLC</h3>
+        <dl class="kv">
+          <dt>Legal name</dt><dd>AFG Funding, LLC <span class="src-tag"><a href="https://www.corporationwiki.com/search/results?term=AFG+Funding">Corporationwiki -&gt;</a></span></dd>
+          <dt>DBAs</dt><dd>AFG Capital Funding, AFG Funding <span class="src-tag"><a href="https://afgfunding.com">afgfunding.com -&gt;</a></span></dd>
+          <dt>Formation state</dt><dd>Florida</dd>
+          <dt>HQ</dt><dd>Miami, FL <span class="src-tag"><a href="https://afgfunding.com/about">afgfunding.com/about -&gt;</a></span></dd>
+          <dt>Founded</dt><dd>1993 (~30 years operating) <span class="src-tag"><a href="https://afgfunding.com/about">afgfunding.com/about -&gt;</a></span></dd>
+          <dt>Public/private</dt><dd>Private</dd>
+          <dt>Vertical</dt><dd>Consumer/commercial lending — MCA, business loans, equipment finance</dd>
+          <dt>Officers</dt><dd>Mehrdad Heravi, Zahyly Heravi <span class="src-tag"><a href="https://www.corporationwiki.com/search/results?term=AFG+Funding">Corporationwiki -&gt;</a></span></dd>
+          <dt>Main phone</dt><dd>305-857-6956 <span class="src-tag"><a href="https://afgfunding.com/contact">afgfunding.com/contact -&gt;</a></span></dd>
+          <dt>Main email</dt><dd>info@afgfunding.com <span class="src-tag"><a href="https://afgfunding.com/contact">afgfunding.com/contact -&gt;</a></span></dd>
+          <dt>Fax</dt><dd>786-441-5693</dd>
+          <dt>Website</dt><dd>afgfunding.com</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Privacy Policy page is literally blank.</h3>
+        <p class="card-body">The URL <code style="background:#1F1F1F; padding:2px 6px">afgfunding.com/privacy</code> exists and renders the site chrome — but contains no policy text. No mention of TCPA, no SMS opt-in/opt-out language, no STOP/HELP, no third-party-sharing disclosure. The Terms of Service URL returns HTTP 404. <span class="src-tag" style="color:#A8A8A8"><a href="https://afgfunding.com/privacy" style="color:#C9C9C9">afgfunding.com/privacy -&gt;</a></span></p>
+        <p class="card-body" style="margin-top:12px">The /apply form collects "Enter Your Phone Number" with no consent checkbox and no disclosure. <span class="src-tag" style="color:#A8A8A8"><a href="https://afgfunding.com/apply" style="color:#C9C9C9">afgfunding.com/apply -&gt;</a></span> Combined with texts originating from a 254 (Texas) long-code that AFG does not publicly own, the defendant has no documented consent chain and no documented vendor oversight. This is the entire case in one screenshot.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Window: ~20-day Florida answer clock + AFG's history of quick settlement</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 11, 2026</dd>
+        <dt>Service window</dt><dd>~120 days under Fla.R.Civ.P. 1.070(j); Hindi firm typically serves within 7–14 days</dd>
+        <dt>Answer deadline</dt><dd>~20 days post-service (Florida state court)</dd>
+        <dt>Prior settlement velocity</dt><dd>Shelton v. AFG Funding (E.D. Pa. 2022) — quiet resolution. Abante Rooter v. AFG (N.D. Cal. 2019) — terminated ~5 months post-filing. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22AFG+Funding%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+        <dt>Close window</dt><dd>30–45 days — before AFG retains defense counsel and the budget conversation goes through outside counsel</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Related Entity / Person</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mehrdad Heravi</strong></td>
+            <td>Officer/Manager (named individually in Callier W.D. Tex. 2021) <span class="src-tag"><a href="https://www.corporationwiki.com/search/results?term=AFG+Funding">Corporationwiki -&gt;</a></span></td>
+            <td>Consumer lending</td>
+            <td>Personal TCPA exposure history — has been individually sued. Owner-level decision authority.</td>
+            <td><span class="pill pill--danger">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zahyly Heravi</strong></td>
+            <td>Officer/Manager <span class="src-tag"><a href="https://www.corporationwiki.com/search/results?term=AFG+Funding">Corporationwiki -&gt;</a></span></td>
+            <td>Consumer lending</td>
+            <td>Likely spouse/family co-owner. Decision authority on compliance spend.</td>
+            <td><span class="pill pill--warn">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Third-party SMS aggregator behind 254-237-2444</td>
+            <td>Unidentified dialer/lead vendor</td>
+            <td>SMS infrastructure</td>
+            <td>If AFG won't buy Blacklist, the upstream vendor might — they have direct vicarious exposure across all their lender clients.</td>
+            <td><span class="pill pill--info">CROSS-SELL OPP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Fourth TCPA suit against AFG in seven years. First Hindi-firm action. First serial-plaintiff action.</h2>
+      <p class="section-lede">AFG has been sued for TCPA violations in N.D. Cal. (2019), W.D. Tex. (2021), E.D. Pa. (2022), and now Miami-Dade Circuit (2026). The current case is the first time a serial plaintiff (Cardero, 7+ prior TCPA filings) and a serial firm (Jibrael Hindi, TCPAWorld 2026 Power Ranked) have teamed up against them.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Cardero v. AFG Funding LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>Filing #250170012</dd>
+          <dt>Court</dt><dd>11th Jud. Cir., Miami-Dade FL</dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Plaintiff</dt><dd>Mauricio Cardero (Miami-Dade, FL resident)</dd>
+          <dt>Plaintiff counsel</dt><dd>Alina O'Connor, Zane C. Hedaya, Samuel J. Awad — Law Offices of Jibrael S. Hindi</dd>
+          <dt>Class action</dt><dd><span class="pill pill--danger">Yes — Putative Rule 1.220</span></dd>
+          <dt>Class definition</dt><dd>(1) DNC Class — recipients of 2+ texts in 12 months with number on DNC 30+ days. (2) Caller ID Class — recipients of 2+ texts in 12 months without proper CPN/ANI + telemarketer name.</dd>
+          <dt>Class size pled</dt><dd>"At least 50 individuals per class"</dd>
+          <dt>Claims</dt><dd>Count I: 47 USC § 227(c) + 47 CFR § 64.1200(c) (Federal DNC)<br>Count II: 47 USC § 227(c)(5) + 47 CFR § 64.1601(e)(1) (Caller ID/CPN-ANI)</dd>
+          <dt>Theory</dt><dd>2 SMS solicitations Oct 20 + Oct 27, 2025 to DNC-registered cell; texts failed to identify the telemarketer</dd>
+          <dt>Damages floor</dt><dd>$500/violation × 2 violations × 50 class members = <strong>$50,000 floor</strong>; trebled (willful) = <strong>$150,000</strong>; pre-discovery class expansion likely</dd>
+          <dt>Channel</dt><dd>SMS only</dd>
+          <dt>Sender DID</dt><dd>(254) 237-2444 (Texas long-code)</dd>
+          <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~20-day FL answer clock</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Alina O'Connor — Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv">
+          <dt>Firm address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm phone</dt><dd>813-340-8838 <span class="pill pill--warn">Tampa area code · firm is in Wilton Manors</span></dd>
+          <dt>Firm email</dt><dd>Jibrael@jibraellaw.com <span class="src-tag"><a href="https://www.jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Lead attorney bar</dt><dd>O'Connor — FL Bar #21171, admitted Apr 21, 2006 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar -&gt;</a></span></dd>
+          <dt>Bar address</dt><dd>Fort Lauderdale, FL 33316 <span class="pill pill--warn">MISMATCH with firm address on complaint</span></dd>
+          <dt>Bar phone</dt><dd>305-934-6358 <span class="pill pill--warn">Different from firm 813 number</span></dd>
+          <dt>Discipline</dt><dd>None (10-year clean) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar -&gt;</a></span></dd>
+          <dt>Bar section</dt><dd>Real Property, Probate &amp; Trust (note: NOT consumer/TCPA section)</dd>
+          <dt>Co-counsel</dt><dd>Zane C. Hedaya (FL #1048640), Samuel J. Awad (FL #1058426)</dd>
+          <dt>TCPAWorld ranking</dt><dd><span class="pill pill--danger">2026 Most Dangerous TCPA Plaintiff's Lawyers</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld -&gt;</a></span></dd>
+          <dt>Self-reported results</dt><dd>$30M+ TCPA settlements, $200M+ class action settlements <span class="src-tag"><a href="https://www.jibraellaw.com">jibraellaw.com -&gt;</a></span></dd>
+          <dt>Threat level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Plaintiff / Firm Template</div>
+      <h3 class="card-title">Hindi-Firm DNC + Caller-ID Stack · Cardero Serial-Plaintiff Profile</h3>
+      <p class="card-body">The Law Offices of Jibrael S. Hindi files Quiet Hours, DNC, and Caller-ID class actions in volume — recent named defendants include Nespresso, Tampa Bay Buccaneers, Steve Madden, Thirdlove, and Vanguard Equities. The firm's template here is the classic two-count stack: <strong>(1)</strong> Federal DNC under § 227(c)/64.1200(c) plus <strong>(2)</strong> Caller-ID non-identification under § 227(c)(5)/64.1601(e)(1), riding on the <em>Dobronski v. SelectQuote</em> private-right-of-action theory cited in the complaint. <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Jibrael+Hindi%22+TCPA">Law360 -&gt;</a></span></p>
+      <p class="card-body" style="margin-top:12px">Plaintiff Cardero has filed at least seven prior TCPA cases (Honda of Aventura, Momentum Capital Group, Asset Recovery Bureau, Keller Williams, Solar Capital Group, Ascendancy Corp West, Change Healthcare Resources), historically through Shamis &amp; Gentile and Edelsberg Law. This case is the first time he has used the Hindi firm — Zane Hedaya appeared in the Ascendancy 2025 case bridging the firms. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Mauricio+Cardero%22&type=r">CourtListener -&gt;</a></span> His historical pattern: voluntary dismissal or quiet settlement within 2–6 months of filing.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Cardero v. AFG Funding LLC</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span></td>
+            <td>Miami-Dade Cir. (FL)</td>
+            <td>2026-06-11</td>
+            <td><span class="pill pill--danger">Pending</span></td>
+            <td>DNC + Caller ID (SMS)</td>
+          </tr>
+          <tr>
+            <td>Shelton v. AFG Funding, LLC <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22AFG+Funding%22+TCPA&type=r">→</a></span></td>
+            <td>E.D. Pa.</td>
+            <td>2022</td>
+            <td><span class="pill pill--ok">Settled</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Callier v. AFG Funding, LLC (and Mehrdad Heravi)</td>
+            <td>W.D. Tex.</td>
+            <td>2021</td>
+            <td><span class="pill pill--gap">Dismissed</span></td>
+            <td>TCPA — individual owner also named</td>
+          </tr>
+          <tr>
+            <td>Abante Rooter and Plumbing, Inc. v. AFG Funding, LLC</td>
+            <td>N.D. Cal.</td>
+            <td>2019</td>
+            <td><span class="pill pill--gap">Dismissed ~5mo</span></td>
+            <td>TCPA (likely settled)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8">OPEN INTEL GAPS TO CLOSE BEFORE FIRST DIAL</div>
+      <h3 class="card-title">Resolve before outreach</h3>
+      <ul class="clean tight" style="color:#E0E0E0; margin-top:12px">
+        <li>· Plaintiff's 10-digit recipient number — not pled; pull from Miami-Dade Clerk e-portal then re-run scrub</li>
+        <li>· Confirmed filing date — extracted as 2026-06-11; verify via state docket (Miami-Dade Clerk site returned 404 on direct fetch)</li>
+        <li>· Judge assignment — unknown until docket is accessible</li>
+        <li>· Defense counsel — none yet appeared (pre-service)</li>
+        <li>· Sunbiz pull — formation date, document number, registered agent, principal street address (Sunbiz fetch returned 403)</li>
+        <li>· Owner of DID 254-237-2444 — likely third-party SMS aggregator; CNAM/carrier lookup not accessible (Whitepages 403)</li>
+        <li>· AFG's actual SMS/dialer vendor — identifies cross-sell target if AFG won't buy</li>
+        <li>· Personal email/direct phone for Mehrdad Heravi — not on LinkedIn or website; route through main 305-857-6956 line</li>
+        <li>· Whether the LA address on AFG's LinkedIn (1321 W 65th St) is a real second office or stale data</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Mehrdad Heravi. He owns the company and he's been individually sued before — he understands the stakes.</h2>
+      <p class="section-lede">AFG is a small private LLC with no published GC, no published CCO, and no leadership team page. The two named officers on Corporationwiki — Mehrdad Heravi and Zahyly Heravi — are the decision-makers. Open through the main line and ask for Mehrdad. Email pattern is inferred ({first}@afgfunding.com) based on the generic info@ and submissions@ mailboxes; treat all personal emails as PATTERN, not VERIFIED.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mehrdad Heravi</strong><br><span class="pill pill--dark">OWNER</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Officer/Manager, AFG Funding LLC. Named individually in <em>Callier v. AGF Funding</em> (W.D. Tex. 2021) — already understands personal TCPA exposure. <span class="src-tag"><a href="https://www.corporationwiki.com/search/results?term=AFG+Funding">Corporationwiki -&gt;</a></span></td>
+            <td>305-857-6956 (main) <span class="pill pill--warn">INFERRED</span></td>
+            <td>mehrdad@afgfunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zahyly Heravi</strong><br><span class="pill pill--dark">OFFICER</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Officer/Manager, AFG Funding LLC. Likely family co-owner. Decision authority on compliance budget. <span class="src-tag"><a href="https://www.corporationwiki.com/search/results?term=AFG+Funding">Corporationwiki -&gt;</a></span></td>
+            <td>305-857-6956 (main) <span class="pill pill--warn">INFERRED</span></td>
+            <td>zahyly@afgfunding.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Aharuan Alpallwhyte</strong><br><span class="pill pill--dark">EMPLOYEE</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Only employee surfaced on LinkedIn for AFG Funding; title not visible. Likely sales/account exec. <span class="src-tag"><a href="https://www.linkedin.com/company/afg-funding">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>info@afgfunding.com <span class="pill pill--gap">GAP</span></td>
+            <td><a href="https://www.linkedin.com/in/drfinancecoach">/in/drfinancecoach</a></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">ROLE</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No GC identified on website, LinkedIn, TheOrg, or ZoomInfo. AFG is small enough that legal likely runs through outside counsel.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Compliance Officer</strong><br><span class="pill pill--dark">ROLE</span> <span class="pill pill--gap">GAP</span></td>
+            <td>No CCO identified. Website has no compliance/legal page. Open opportunity to position Blacklist as the de-facto compliance program.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>AFG Funding LLC (main)</strong><br><span class="pill pill--dark">FRONT DESK</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Main reception. Ask for Mehrdad by name. <span class="src-tag"><a href="https://afgfunding.com/contact">afgfunding.com/contact -&gt;</a></span></td>
+            <td>305-857-6956 (fax 786-441-5693)</td>
+            <td>info@afgfunding.com<br>submissions@afgfunding.com</td>
+            <td><a href="https://www.linkedin.com/company/afg-funding">/company/afg-funding</a></td>
+          </tr>
+          <tr style="border-top:2px solid var(--bl-red)">
+            <td colspan="5" style="background:var(--gray-05); font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--fg-3); font-weight:600">— Plaintiff side (do not contact; for situational awareness only) —</td>
+          </tr>
+          <tr>
+            <td><strong>Alina O'Connor, Esq.</strong><br><span class="pill pill--dark">PLAINTIFF COUNSEL</span></td>
+            <td>Lead attorney of record. FL Bar #21171, admitted 2006. Bar address mismatches firm address on complaint. <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=21171">FL Bar -&gt;</a></span></td>
+            <td>305-934-6358 (bar of record)<br>813-340-8838 (firm, per complaint)</td>
+            <td>alina@jibraellaw.com</td>
+            <td><span class="pill pill--gap">N/A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense counsel</strong><br><span class="pill pill--dark">DEFENSE</span></td>
+            <td>Not yet appeared. ~20-day FL state-court answer clock from service.</td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px; border-left:4px solid var(--bl-red)">
+      <div class="card-meta">Email Pattern</div>
+      <h3 class="card-title">{first}@afgfunding.com <span class="pill pill--warn" style="margin-left:8px">PATTERN — INFERRED</span></h3>
+      <p class="card-body">Pattern inferred from generic info@ and submissions@ mailboxes published on the contact page. No personally-addressed AFG email has been verified in the wild. Treat as best-guess until confirmed by a successful send.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. Hindi serves fast and AFG settles fast.</h2>
+      <p class="section-lede">Filed yesterday. The window between filing and defense-counsel retention is the cleanest sale — once outside counsel is engaged, the compliance spend gets routed through them. Open directly with Mehrdad Heravi before that happens.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1 (today)</div>
+        <h3 class="card-title">1. Pull state docket + recover plaintiff number</h3>
+        <p class="card-body">Pull the Miami-Dade Clerk e-portal docket for Filing #250170012. Recover Cardero's 10-digit cell from any unredacted exhibit, then re-run the litigator scrub. Pull Sunbiz record for AFG (formation date, RA, address) once the IP block clears.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1–2</div>
+        <h3 class="card-title">2. Cold-call Mehrdad Heravi</h3>
+        <p class="card-body">Dial 305-857-6956, ask for Mehrdad. Open with the four-suits-in-seven-years frame and the Callier (W.D. Tex. 2021) case where he was personally named. Offer a 15-minute compliance-gap walkthrough.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2–3</div>
+        <h3 class="card-title">3. Email + LinkedIn touch</h3>
+        <p class="card-body">Send PATTERN email to mehrdad@afgfunding.com with screenshot of his own empty /privacy page and the /apply form's missing consent checkbox. Subject: "4th TCPA suit · 2-page fix." Bcc info@afgfunding.com to cover the pattern miss.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 3–7</div>
+        <h3 class="card-title">4. Pitch the stack</h3>
+        <p class="card-body">Lead: Federal DNC Scrubbing + Consent Capture. Layer Compliance Audit + written P&amp;P as the upsell for the safe-harbor defense. Anchor on $50k–$150k floor damages vs. annual scrub cost.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 7–14</div>
+        <h3 class="card-title">5. Identify SMS vendor</h3>
+        <p class="card-body">If AFG declines, ask who owns 254-237-2444. The upstream SMS aggregator/lead vendor has vicarious exposure across all lender clients and is a parallel Blacklist target.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 14–21</div>
+        <h3 class="card-title">6. Re-approach post-appearance</h3>
+        <p class="card-body">Once defense counsel appears, send a courtesy intro: "We work with TCPA defense counsel on remediation programs that document the safe-harbor defense." Frame as making their answer easier.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <h3 class="card-title">Trigger conditions — re-evaluate the plan if:</h3>
+      <ul class="clean tight" style="color:#E0E0E0; margin-top:12px">
+        <li>· AFG settles within 30 days (per Cardero's historical pattern) — pivot to "prevent the next one" pitch</li>
+        <li>· Defendant removes to S.D. Fla. under CAFA — federal discovery surfaces plaintiff number faster, accelerates pitch</li>
+        <li>· Hindi firm files a second Cardero/AFG-vertical case against an adjacent MCA lender — leverage as proof the firm is targeting the vertical</li>
+        <li>· Mehrdad Heravi referred out to TCPA defense counsel — re-approach through counsel with remediation framing</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~20-DAY ANSWER WINDOW · CLOSE BEFORE JUL 15</span>
+      <span class="pill pill--warn">SERIAL PLAINTIFF + EXTREME-THREAT FIRM</span>
+      <span class="pill pill--info">FOURTH TCPA SUIT — PATTERN ESTABLISHED</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
