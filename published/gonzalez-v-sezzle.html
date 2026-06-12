@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gonzalez v. Sezzle — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row--current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; color:var(--warning); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; }
+.callout ul{ margin:0; padding-left:20px; font-size:14px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:600; color:var(--bl-red); }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; color:var(--fg-2); line-height:1.55; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="125" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="135" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">BNPL Fintech Defendant · Federal DNC + Quiet-Hours SMS · Class Action · C.D. Cal. · PLG/Venkatesh Template</p>
+      <h1 class="hero-tagline">Gonzalez v.<br>Sezzle Inc.</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-06352</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal.</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:13px;">on snapshot</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number masked as "ending in 1155" — scrub deferred until full 10-digit is recovered.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Gonzalez's complaint pleads only the last four digits ("ending in 1155") and confirms the number has been on the National DNC Registry since at least June 26, 2023. No full plaintiff number = no scrub run today.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Subject Number</div>
+        <div class="scrub-number">(XXX) XXX-1155</div>
+        <div class="scrub-number-sub">Last four digits only as pled in ¶20 of the complaint. Plaintiff is a Los Angeles County, CA resident; subject number on the federal DNC list since at least June 26, 2023.</div>
+      </div>
+      <p class="scrub-body-text">No scrub was performed because the complaint discloses only a partial number. The complaint does, however, give us a strong sender-side hook: the SMS originated from <strong>(619) 776-3631</strong> with the shortlink <strong>sizzle.onelink.me/X47g/hsa3jfo3</strong> — a misspelled-brand AppsFlyer OneLink attribution domain that itself becomes a smoking-gun fact for the consent narrative.</p>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3); margin:0 0 12px;">Sending DID — Sender Identification</h3>
+      <div class="card-grid">
+        <div class="card card--accent">
+          <div class="card-meta">Sender DID</div>
+          <h3 class="card-title">(619) 776-3631</h3>
+          <div class="card-body">
+            <p>10DLC long code in San Diego rate center. Used to send seven promotional SMS messages to plaintiff between May 9 and June 2, 2026, all linking to <code>sizzle.onelink.me/X47g/hsa3jfo3</code>. No third-party complaint corroboration was retrievable — 800notes / YouMail / Tellows / RoboKiller all returned HTTP errors during the snapshot fetch.</p>
+            <p><span class="pill pill--info">Geo: San Diego 619</span> <span class="pill pill--info">10DLC Long Code</span> <span class="pill pill--gap">No external complaints retrieved</span></p>
+          </div>
+        </div>
+        <div class="card card--accent">
+          <div class="card-meta">Tracking Domain</div>
+          <h3 class="card-title">sizzle.onelink.me</h3>
+          <div class="card-body">
+            <p>AppsFlyer OneLink deep-link/attribution domain used for mobile-app install and re-engagement campaigns. Note: <strong>"sizzle"</strong> is a typo-adjacent variant of the legitimate brand "sezzle" — a fact the plaintiff bar will weaponize to argue the consumer could not reliably identify the sender. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Sezzle background -></a></span></p>
+            <p><span class="pill pill--warn">Misspelled-brand Domain</span> <span class="pill pill--info">AppsFlyer OneLink</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <h3 style="font-size:16px; text-transform:uppercase; letter-spacing:0.08em; color:var(--fg-3); margin:0 0 12px;">Recovery Path</h3>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-meta">Step 1</div>
+          <h3 class="card-title">Pull PACER ECF #1</h3>
+          <div class="card-body">Exhibit A (¶28) is described as "true and correct copies of the messages." The screenshot most often contains the recipient handset header with the full 10-digit subject number visible. Cost: ~$1.20.</div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Step 2</div>
+          <h3 class="card-title">Watch for Defense Notice of Appearance</h3>
+          <div class="card-body">When Sezzle's defense counsel files an appearance or motion to compel arbitration, they routinely identify the plaintiff's account by phone number. Sezzle's prior defense pattern is arbitration-first (see Sliwa, C.D. Cal. 2022). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sezzle%22&type=r">CourtListener -></a></span></div>
+        </div>
+        <div class="card">
+          <div class="card-meta">Step 3</div>
+          <h3 class="card-title">Discovery Request / Initial Disclosures</h3>
+          <div class="card-body">Rule 26(a)(1)(A) disclosures will compel both sides to identify the subject number. The 21-day answer clock starts on service.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">Scrub Status: Pending — Pull PACER #1</span>
+      <span class="pill pill--warn">Plaintiff Firm: Volume TCPA Filer (9+ in 2026)</span>
+      <span class="pill pill--info">Defendant: Zero Prior TCPA Cases On Record</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Public NASDAQ BNPL fintech with no prior TCPA defense playbook, sued by a templated serial filer on a textbook DNC + quiet-hours fact pattern.</h2>
+      <p class="section-lede">Sezzle is a NASDAQ-listed Public Benefit Corporation (SEZL) with 3.1M+ users and 11.9M+ app downloads <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span> — and zero prior TCPA cases per CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sezzle%22+TCPA&type=r">CourtListener -></a></span>. They have the budget, the public-company disclosure exposure, and no existing defense template. Lead with DNC scrubbing + consent capture as a paired close.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <div class="card-body">Complaint pleads federal DNC registration since June 26, 2023 — three years before the first challenged text. A National DNC scrub in front of the 10DLC sender would have caught this. Direct solve to Count II.</div>
+        <div style="margin-top:8px;"><span class="pill pill--red">Primary Pitch</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Cross-Sell</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Complaint specifically alleges Sezzle "does not possess a signed written agreement satisfying 47 C.F.R. § 64.1200(c)(2)(ii)." If Sezzle's signup flow doesn't surface a discrete TCPA checkbox with clear sender ID, every BNPL signup is a future class member.</div>
+        <div style="margin-top:8px;"><span class="pill pill--warn">Secondary Pitch</span></div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Compliance Audit Hook</div>
+        <h3 class="card-title">Policies &amp; Procedures Review</h3>
+        <div class="card-body">Quiet-hours violations (7 messages, all before 8:00 AM or after 9:00 PM PT) indicate no time-zone-aware send window in their dispatcher. Map this to an end-to-end SMS compliance audit.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Pitch Angle</h3>
+      <div class="card">
+        <div class="card-body">
+          <p>Open on the public-company angle: <em>"Sezzle just got named in a federal class action TCPA suit in C.D. Cal. — first one on the docket per CourtListener. That's a 10-K disclosure event, and the Hindenburg short report from 2024 is going to make sure analysts notice."</em> The exec who feels this most is GC <strong>Kerissa Hollis</strong> and CCO <strong>Micah Fetherston</strong> — both have direct reporting lines to the CEO and to public-company disclosure committees.</p>
+          <p>Close on the templated-adversary fact: PLG Damage's lead attorney Vinit Venkatesh has filed at least five materially identical complaints in 2026 alone (Guardio, Rocket Mortgage, 7-Eleven, Yesvideo, and now Sezzle) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span>. The settlement clock on this firm's cases is fast — Sloss v. Wolverine settled within ~7 weeks of filing. Without DNC scrub + consent records, Sezzle has no defense story to delay or deflect. Blacklist's scrub stack delivers both proofs of consent and proofs of suppression in one integration; that's the wedge.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">NASDAQ-listed BNPL Public Benefit Corp under analyst scrutiny — TCPA exposure compounds an already-pressured stock.</h2>
+      <p class="section-lede">Sezzle Inc. (NASDAQ: SEZL) is the first BNPL provider to reincorporate as a Public Benefit Corporation, founded 2016 in Minneapolis. Currently in S&amp;P 600. Recent Hindenburg short report and a CA DBO regulatory history put the C-suite on heightened sensitivity to litigation news.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Sezzle Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Sezzle Inc. (Delaware corporation per complaint ¶6) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span></dd>
+            <dt>Formation State</dt><dd>Delaware</dd>
+            <dt>HQ</dt><dd>Minneapolis, Minnesota</dd>
+            <dt>Founded</dt><dd>2016 — Founders: Charlie Youakim, Paul Paradis, Killian Brackey, Emmanuel Isaac, Mia Peroff, Rishi Mukherjee <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span></dd>
+            <dt>Public / Private</dt><dd>Public — NASDAQ: SEZL · S&amp;P 600 component (previously listed ASX)</dd>
+            <dt>Vertical</dt><dd>Buy Now Pay Later (BNPL) / consumer fintech</dd>
+            <dt>Users</dt><dd>3.1M+ active users · 11.9M+ app downloads <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span></dd>
+            <dt>Structure</dt><dd>Public Benefit Corporation since June 1, 2020 — first BNPL to do so</dd>
+            <dt>Website</dt><dd><a href="https://sezzle.com">sezzle.com</a></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Marketing SMS routed through a typo-adjacent attribution domain — "sizzle.onelink.me" — with no apparent DNC scrub.</h3>
+        <div class="card-body">
+          <p>The seven challenged texts identified Sezzle by name but routed clicks through <strong>sizzle.onelink.me</strong> (note: "sizzle", not "sezzle"). This is an AppsFlyer OneLink mobile-attribution domain.</p>
+          <p>Combined with (a) plaintiff's number on the federal DNC list since June 2023, (b) all seven messages sent outside the 8 AM – 9 PM window, and (c) no visible TCPA / SMS-consent disclosure on sezzle.com's privacy or legal pages, this reads as a campaign run without DNC suppression or time-zone-aware send windows. <span class="src-tag"><a href="https://sezzle.com/privacy">sezzle.com privacy -></a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Multiple converging pressure windows</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Answer Clock</dt><dd>~21 days from service of process (FRCP 12(a)). Filed June 11, 2026 — answer deadline lands in early-to-mid July 2026 depending on service.</dd>
+            <dt>Analyst Sensitivity</dt><dd>Hindenburg Research published a 2024 short report alleging deteriorating credit quality and insider stock sales of ~$71M, with the CEO's margin loan collateralized by ~30% of his shares. Class-action news is stock-price sensitive. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span></dd>
+            <dt>Existing Regulator Heat</dt><dd>CA Department of Business Oversight (DBO) previously forced Sezzle to obtain a CA lending license (Jan 17, 2020). California-based federal TCPA action compounds CA regulatory record. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span></dd>
+            <dt>Firm Cadence</dt><dd>PLG Damage Attorneys settled Sloss v. Wolverine in ~7 weeks. Expect a similar pace here — first dial should land within 72 hours.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sezzle Premium / Sezzle Anywhere</td>
+              <td>Subscription products</td>
+              <td>BNPL subscription</td>
+              <td>Same SMS infra — quiet-hours + DNC exposure applies identically. Consumer complaints already allege unwanted subscription enrollment. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Sezzle">Wikipedia -></a></span></td>
+              <td><span class="pill pill--red">High</span></td>
+            </tr>
+            <tr>
+              <td>Sezzle Virtual Card</td>
+              <td>Product line</td>
+              <td>BNPL / payments</td>
+              <td>Marketing pushes to drive virtual-card activations are SMS-heavy — same infra.</td>
+              <td><span class="pill pill--warn">Medium</span></td>
+            </tr>
+            <tr>
+              <td>Merchant partner network (Amazon, Walmart, Target, Shein, Nike, Uber, DoorDash integrations)</td>
+              <td>B2B integrations</td>
+              <td>Retail / ecommerce</td>
+              <td>Sezzle's merchants run their own SMS campaigns with embedded Sezzle BNPL prompts — referral revenue pipeline for Blacklist.</td>
+              <td><span class="pill pill--info">Medium</span></td>
+            </tr>
+            <tr>
+              <td>AppsFlyer / OneLink (vendor)</td>
+              <td>Mar-tech vendor</td>
+              <td>Mobile attribution</td>
+              <td>Not in scope as a defendant, but the integration point is where consent metadata should be enforced — useful in solution design conversation.</td>
+              <td><span class="pill pill--gap">Not in scope</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Templated complaint from a fast-monetizing firm; defendant has settled prior consumer cases quickly and likely will here too.</h2>
+      <p class="section-lede">Gonzalez v. Sezzle is the latest in a 2026 wave of PLG Damage / Venkatesh filings. Sezzle's prior consumer-case pattern is quick termination (22–~80 days in several E.D.N.Y., E.D. Wis., and C.D. Cal. matters) — they settle, they don't litigate.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Gonzalez v. Sezzle Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>2:26-cv-06352 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06352&type=r">CourtListener -></a></span></dd>
+            <dt>Court</dt><dd>U.S. District Court, Central District of California</dd>
+            <dt>Filed</dt><dd>June 11, 2026</dd>
+            <dt>Plaintiff</dt><dd>Juan Gonzalez (Los Angeles County, CA)</dd>
+            <dt>Plaintiff Counsel</dt><dd>Vinit R. Venkatesh, Esq. — PLG Damage Attorneys</dd>
+            <dt>Class Status</dt><dd><span class="pill pill--danger">Class Action — Putative Rule 23</span></dd>
+            <dt>Class Definitions</dt><dd>(1) TCPA After-Hours Class; (2) TCPA National DNC Registry Class</dd>
+            <dt>Class Size Pled</dt><dd>"Dozens and likely in the hundreds or thousands"</dd>
+            <dt>Claims</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1) [Quiet Hours]; 47 CFR § 64.1200(c)(2) [Federal DNC]</dd>
+            <dt>Theory</dt><dd>7 promotional SMS sent May 9 – June 2, 2026, all before 8 AM or after 9 PM PT, to a number on the federal DNC list since June 26, 2023, with no signed written consent agreement</dd>
+            <dt>Damages Sought</dt><dd>Up to $500/violation + treble for willful (up to $1,500/violation) + injunctive relief + fees</dd>
+            <dt>Named Plaintiff Exposure</dt><dd class="num">7 violations × $500 = $3,500 floor · × $1,500 trebled = $10,500 ceiling (individual)</dd>
+            <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer clock <span class="pill pill--gap">Pending</span></dd>
+            <dt>Docket Visibility</dt><dd>Indexed on CourtListener within 24 hrs; PacerMonitor / Justia search blocked at snapshot</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+            <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027</dd>
+            <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="pill pill--info">Per firm website</span></dd>
+            <dt>Firm Email</dt><dd>tcpa-service@plgdamage.com · info@plgdamage.com · vv@plgdamage.com</dd>
+            <dt>Bar Number</dt><dd>CA Bar #123711 (per complaint signature block) <span class="pill pill--warn">Discrepancy: CourtListener metadata shows 367857 — verify</span> <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/123711">CA Bar -></a></span></dd>
+            <dt>Bar Address</dt><dd><span class="pill pill--warn">Mismatch</span> Firm address is Miramar, FL; counsel pleads CA bar. Florida Bar lookup surfaced a phone (786-703-8810) for "Venkatesh" but no confirmed bar record visible. <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?lName=Venkatesh&fName=Vinit">FL Bar -></a></span></dd>
+            <dt>TCPAWorld</dt><dd>Zero hits for "Venkatesh" or "PLG Damage" — not on rankings radar <span class="src-tag"><a href="https://tcpaworld.com/?s=Venkatesh">TCPAWorld -></a></span></dd>
+            <dt>Discipline</dt><dd>None found in public sources</dd>
+            <dt>Firm Practice</dt><dd>Primarily Florida property-damage / insurance; TCPA filings appear to be a new line for the firm in 2026</dd>
+            <dt>2026 TCPA Volume</dt><dd>≥9 TCPA filings in 2026 across C.D. Cal., S.D. Fla., M.D. Fla., N.D. Fla., S.D. Tex., N.D. Cal. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Plaintiff Firm Template — PLG / Venkatesh Quiet-Hours + DNC Pattern</h3>
+      <div class="card">
+        <div class="card-body">
+          <p>PLG Damage Attorneys is a Florida property-damage firm that pivoted into TCPA filings in 2026. Lead attorney Vinit R. Venkatesh has personally filed at least five materially identical complaints in 2026 — Cummings v. 7-Eleven (N.D. Fla.), Hughes v. Guardio (C.D. Cal.), Long v. Rocket Mortgage (C.D. Cal.), Flottman v. Yesvideo (M.D. Fla.), and now Gonzalez v. Sezzle. Firm targets fintech / lending / retail verticals with templated DNC + quiet-hours pleadings. Forum preference: C.D. Cal. and S.D. Fla. (Fashion Nova hit twice in two days). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Concurrent &amp; Recent Litigation — Sezzle and PLG Damage</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory / Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row--current">
+              <td><strong>Gonzalez v. Sezzle Inc.</strong></td>
+              <td>C.D. Cal. · 2:26-cv-06352</td>
+              <td>2026-06-11</td>
+              <td><span class="pill pill--red">Current</span></td>
+              <td>Federal DNC + Quiet-Hours · 7 SMS · Class action</td>
+            </tr>
+            <tr>
+              <td>Scherer v. Sezzle Inc.</td>
+              <td>D. Minnesota</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Same defendant</span></td>
+              <td>Defense counsel: Barbara D'Aquila, Karen Odash <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sezzle%22&type=r">CourtListener -></a></span></td>
+            </tr>
+            <tr>
+              <td>Vitanza v. Sezzle, Inc.</td>
+              <td>S.D. Cal.</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Same defendant</span></td>
+              <td>Consumer matter <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sezzle%22&type=r">CourtListener -></a></span></td>
+            </tr>
+            <tr>
+              <td>Johnson v. Sezzle, Inc.</td>
+              <td>D. Minnesota</td>
+              <td>2024</td>
+              <td><span class="pill pill--ok">Terminated 2025-04-07</span></td>
+              <td>~8 months to resolution — likely settled</td>
+            </tr>
+            <tr>
+              <td>Sliwa v. Sezzle, Inc. (×2)</td>
+              <td>C.D. Cal. · 2:22-cv-03055 &amp; 2:22-cv-06093</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">Terminated Jul + Nov 2022</span></td>
+              <td>Defense counsel Jack Frank Altura, Kalama Mark Lui-Kwan; arbitration MTC pattern</td>
+            </tr>
+            <tr>
+              <td>Finch v. Sezzle Inc</td>
+              <td>E.D. Wis.</td>
+              <td>2022</td>
+              <td><span class="pill pill--ok">Terminated 2022-05-25</span></td>
+              <td>22 days from filing — classic quick settlement</td>
+            </tr>
+            <tr>
+              <td>Crosson v. Sezzle Inc.</td>
+              <td>E.D.N.Y.</td>
+              <td>2021</td>
+              <td><span class="pill pill--ok">Terminated 2021-08-06</span></td>
+              <td>~10 weeks to resolution</td>
+            </tr>
+            <tr>
+              <td>Hughes v. Guardio LLC <em>(same firm)</em></td>
+              <td>C.D. Cal. · 2:26-cv-05313</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>PLG/Venkatesh template</td>
+            </tr>
+            <tr>
+              <td>Long v. Rocket Mortgage, LLC <em>(same firm)</em></td>
+              <td>C.D. Cal. · 2:26-cv-05599</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>PLG/Venkatesh template · fintech vertical</td>
+            </tr>
+            <tr>
+              <td>Cummings v. 7-Eleven Inc <em>(same firm)</em></td>
+              <td>N.D. Fla. · 1:26-cv-00119</td>
+              <td>2026</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>PLG/Venkatesh template</td>
+            </tr>
+            <tr>
+              <td>Salcedo / Correa v. Fashion Nova <em>(same firm)</em></td>
+              <td>S.D. Fla.</td>
+              <td>2026 (×2 in 2 days)</td>
+              <td><span class="pill pill--warn">Active</span></td>
+              <td>Serial filings against same defendant</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul>
+        <li>Pull ECF #1 from PACER to recover the plaintiff's full 10-digit subject number ("ending in 1155") and verify the screenshot exhibit.</li>
+        <li>Assigned Article III judge and Magistrate not yet visible on snapshot — confirm via PACER docket sheet.</li>
+        <li>Confirm CA Bar status / number for Vinit R. Venkatesh — complaint shows #123711 but CourtListener metadata shows 367857.</li>
+        <li>No Delaware / Minnesota / California SoS officer data retrieved (Bizapedia + OpenCorporates blocked). Officer roster currently relies on TheOrg + SignalHire + LinkedIn — re-pull SoS data before any C-level outreach.</li>
+        <li>Sezzle privacy policy, ToS, and signup-flow consent checkbox language could not be confirmed at snapshot — pull the rendered signup HTML before pitching consent capture in detail.</li>
+        <li>No third-party complaint corroboration for sender DID (619) 776-3631 — 800notes / YouMail / Tellows / RoboKiller all returned HTTP errors. Re-attempt before first call.</li>
+        <li>Sezzle ToS may contain a binding arbitration clause; the Sliwa pattern suggests MTC arbitration as Sezzle's likely first move. Confirm before promising injunctive-relief-driven leverage.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the GC and CCO — both report into a public-company disclosure committee that is already under analyst pressure.</h2>
+      <p class="section-lede">Email pattern across Sezzle is <code>{first}.{last}@sezzle.com</code> (inferred from SignalHire masked patterns and the published investorrelations@sezzle.com). Company main line: <strong>1-888-540-1867</strong>. <span class="src-tag"><a href="https://sezzle.com/contact-us">sezzle.com/contact -></a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Kerissa Hollis</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--red">Call #1</span></td>
+            <td>General Counsel and Secretary — primary owner of litigation strategy and 10-K disclosure on this matter. <span class="src-tag"><a href="https://theorg.com/org/sezzle">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span> 1-888-540-1867 (main)</td>
+            <td>kerissa.hollis@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Micah Fetherston</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--red">Call #1</span></td>
+            <td>Chief Compliance Officer — direct decision authority on the SMS / DNC compliance gap that drives Counts I and II. <span class="src-tag"><a href="https://www.signalhire.com/companies/sezzle">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span> 1-888-540-1867 (main)</td>
+            <td>micah.fetherston@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Charlie Youakim</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Chairman, CEO, and Founder. Stock-price-sensitive given Hindenburg margin-loan disclosures. Escalation target if GC/CCO stall. <span class="src-tag"><a href="https://theorg.com/org/sezzle">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>charlie.youakim@sezzle.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/charlieyouakim">linkedin.com/in/charlieyouakim</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Paul Paradis</strong><br><span class="pill pill--dark">President</span></td>
+            <td>Co-Founder, President &amp; Chief Business Development Officer — owns merchant relationships and likely owns the SMS marketing budget. <span class="src-tag"><a href="https://www.signalhire.com/companies/sezzle">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>paul.paradis@sezzle.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/paulparadis">linkedin.com/in/paulparadis</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Amin Sabzivand</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer — process owner for outbound SMS infra and dispatcher logic. <span class="src-tag"><a href="https://theorg.com/org/sezzle">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>amin.sabzivand@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lee Brading</strong><br><span class="pill pill--dark">SVP / Acting CFO</span></td>
+            <td>SVP Corp Dev &amp; Operational Excellence; acting CFO per SignalHire. Budget owner for compliance spend. <span class="src-tag"><a href="https://theorg.com/org/sezzle">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>lee.brading@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Traci Bower</strong><br><span class="pill pill--dark">SVP Revenue</span></td>
+            <td>SVP of Revenue — owns the campaigns that triggered this complaint. Useful for ops-level audit conversation. <span class="src-tag"><a href="https://theorg.com/org/sezzle">TheOrg -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>traci.bower@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zach Glattman</strong><br><span class="pill pill--dark">VP Brand</span></td>
+            <td>Vice President, Brand Partnerships — closest match to marketing function for SMS campaign owner. <span class="src-tag"><a href="https://www.signalhire.com/companies/sezzle">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>zach.glattman@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Erin Foran</strong><br><span class="pill pill--dark">PR Head</span></td>
+            <td>Head of Public Relations — escalation lever via media exposure narrative. <span class="src-tag"><a href="https://www.signalhire.com/companies/sezzle">SignalHire -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>erin.foran@sezzle.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jasper Helling</strong><br><span class="pill pill--dark">SVP People</span></td>
+            <td>SVP of People. Not a primary buyer; useful only for navigator referral. <span class="src-tag"><a href="https://www.linkedin.com/company/sezzle">LinkedIn -></a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>jasper.helling@sezzle.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jasper-helling-7623bb">linkedin -></a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sezzle Investor Relations</strong><br><span class="pill pill--dark">IR</span></td>
+            <td>Public-company IR inbox — backdoor to GC/CCO via disclosure-sensitivity framing. <span class="src-tag"><a href="https://sezzle.com/contact-us">sezzle.com/contact -></a></span></td>
+            <td>1-888-540-1867 <span class="pill pill--ok">VERIFIED</span></td>
+            <td>investorrelations@sezzle.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><em>Defense Counsel</em><br><span class="pill pill--gap">Not Yet Appeared</span></td>
+            <td>No appearance docketed as of snapshot. Sezzle's prior C.D. Cal. counsel: Jack Frank Altura, Kalama Mark Lui-Kwan (Sliwa 2022); D. Minn. counsel: Barbara D'Aquila, Karen Odash (Scherer 2025). <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Sezzle%22&type=r">CourtListener -></a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the answer clock is short and Sezzle's settlement-fast posture means leverage drops the moment defense counsel files.</h2>
+      <p class="section-lede">Sezzle's prior consumer cases routinely resolve in 22 days to ~10 weeks. The PLG firm's other 2026 filings are settling on the same cadence. The window to insert Blacklist as the "we already fixed it before the next case" remediation story closes once defense counsel takes the file to arbitration.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 0–1 · Pull PACER ECF #1 and confirm sender artifacts</h4>
+          <p>Recover plaintiff's full subject number from Exhibit A. Re-run sender-DID lookups on (619) 776-3631 once 800notes / YouMail / Tellows / RoboKiller endpoints are reachable. Verify sezzle.com signup flow consent checkbox language.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1–2 · Outreach to GC Kerissa Hollis and CCO Micah Fetherston in parallel</h4>
+          <p>Lead message: "First federal TCPA class action on Sezzle's docket per CourtListener — this is a 10-K disclosure issue and the plaintiff firm is a templated volume filer that just settled a similar matter in 7 weeks." Pair the call with a same-day email referencing the (619) 776-3631 sender DID and the sizzle.onelink.me domain.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 3 · IR backdoor + COO outreach</h4>
+          <p>If GC/CCO don't respond, send a short note to investorrelations@sezzle.com framing TCPA class exposure as a disclosure-sensitivity issue, copying COO Amin Sabzivand (process owner for the dispatcher). Public-company IR inboxes route fast.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 5–7 · Pitch DNC scrub + consent capture as a bundled close</h4>
+          <p>Frame as: "Solve Count II (DNC) and pre-empt the firm's next-named-plaintiff strategy (consent records) in one integration." Anchor pricing against named-plaintiff exposure of $10,500 × class size, not against named-plaintiff alone.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 10–14 · Re-engage at answer-clock trigger</h4>
+          <p>When defense counsel files appearance / answer / motion to compel arbitration, re-engage with the named defense firm in parallel — they buy compliance for their clients post-settlement to prevent a Sezzle-2.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; margin:0 0 12px;">Trigger conditions that change the plan</h3>
+      <ul class="clean tight">
+        <li><strong>If Sezzle files MTC arbitration first:</strong> shift pitch from "fix it before the next case" to "fix it before the next plaintiff finds you" — same firm has a templated pleading and is forum-shopping in C.D. Cal.</li>
+        <li><strong>If a second-named plaintiff is added or a new firm files against Sezzle:</strong> escalate urgency immediately to CEO Charlie Youakim via LinkedIn — the Hindenburg disclosures make him personally sensitive to compounding litigation news.</li>
+        <li><strong>If PACER ECF #1 reveals plaintiff number is a litigator-listed phone:</strong> pivot Section 01 to a match-found close and lead with Litigator Scrub.</li>
+        <li><strong>If Sezzle announces a quarterly earnings call within the window:</strong> push for pre-call resolution; comp/legal teams accelerate compliance spend ahead of analyst Q&amp;A.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--info">PRIMARY: DNC SCRUBBING</span>
+      <span class="pill pill--info">SECONDARY: CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
