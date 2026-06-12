@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaplin v. United Mommas — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); margin-bottom:8px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-weight="700" font-size="20" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <text x="118" y="18" font-family="General Sans, sans-serif" font-weight="400" font-size="20" fill="#A50100" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC SMS MARKETER · POST-OPT-OUT TEXT BLAST · DNC + INTERNAL DNC CLASS ACTION · D. MASS.</p>
+      <h1 class="hero-tagline">Chaplin v.<br>United Mommas LLC</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-12649-MPK</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">D. Mass. (Boston)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 10, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">M. Page Kelley<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Magistrate</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">§ 64.1200(c) + (d)</span></div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"tens of thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Omer Kremer <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Edelsberg Law, P.A.</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed — scrub deferred, but plaintiff's firm is a top-tier serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("3710 Number") of Tara Chaplin's residential cell, so we cannot run a litigator-list match. However, the firm-side signal is overwhelming: Edelsberg Law has 407+ TCPA filings on record.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">XXX-XXX-3710</div>
+        <div class="scrub-number-sub">Complaint pleads only the last four digits. Plaintiff resides in Wayne County, KY and registered the number on the National DNC Registry on January 10, 2009.</div>
+      </div>
+      <p class="scrub-body-text">A blacklistBulk lookup was not run because the full 10-digit number is not in the four corners of the complaint. The plaintiff's residence is Kentucky but the case is filed in D. Mass. (defendant's home forum). Recovery requires either a PACER pull of the unredacted complaint exhibits or a Rule 26 / discovery request once defendant appears.</p>
+    </div>
+
+    <div style="margin-top:24px" class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sending Channel</div>
+        <h3 class="card-title">SMS Short Code 67252</h3>
+        <p class="card-body">All 19 alleged messages were sent from short code <strong>67252</strong> with branded tracking domain <strong>umm1.co</strong>. Short codes are leased per-campaign and require CTIA/TCR registration — usage alone is strong mass-send evidence. No 800notes / YouMail / Tellows / RoboKiller hits because those boards do not index 5-digit short codes. <span class="src-tag"><a href="https://usshortcodedirectory.com/lookup/67252">usshortcodedirectory →</a></span> <span class="src-tag"><a href="https://lookup.icann.org/lookup/umm1.co">ICANN RDAP umm1.co →</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull PACER ECF #1 Exhibits</h3>
+        <p class="card-body">The screenshot exhibits attached to Doc #1 may contain visible sender/recipient metadata that survives the complaint's "3710" redaction. Cost ~$1.20 via PACER. <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-12649&type=r">CourtListener docket →</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Await Defense Counsel Notice</h3>
+        <p class="card-body">No defense appearance yet — answer due 21 days after service; Rule 4(m) service window closes ~Sep 9, 2026. Once counsel appears, request the full plaintiff number via informal Rule 26(f) exchange.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">PLAINTIFF FIRM: 407+ TCPA FILINGS</span>
+      <span class="pill pill--warn">KY PLAINTIFF · MA DEFENDANT · CROSS-STATE</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Fresh-filed class action against an under-resourced MA SMS shop with zero public compliance footprint — lead with Internal DNC.</h2>
+      <p class="section-lede">United Mommas LLC was hit with a TCPA class complaint 2 days ago alleging 19 post-opt-out texts to a DNC-registered number. Defendant's website returns 404/500, there is no visible privacy policy, and no compliance officer can be identified. This is a textbook "scrub or get sued again" pitch — lead with Internal DNC + Policies & Procedures, anchor on Federal DNC scrubbing.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD</div>
+        <h3 class="card-title">Internal DNC + Policies &amp; Procedures</h3>
+        <p class="card-body">The core allegation is § 64.1200(d) — defendant has no internal DNC list, no written policy, no training. 19 texts sent after the first "Stop." This is the wedge: written P&amp;P + internal DNC plumbing they can stand up in a week.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">SECONDARY</div>
+        <h3 class="card-title">Federal DNC Scrubbing</h3>
+        <p class="card-body">Plaintiff's number was on the National DNC Registry since Jan 10, 2009. § 64.1200(c) violation pled. If UMM is texting "tens of thousands" without nightly DNC scrub, that's the recurring revenue hook.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">TERTIARY</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Once we recover the full plaintiff number, run it through blacklistBulk. Edelsberg Law is on every serial-filer list — UMM's outbound list is almost certainly seeded with more of their clients.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">"You were sued two days ago in your home court — D. Mass. — by Edelsberg Law, a firm that has filed 407+ TCPA cases. The complaint alleges 19 separate texts after the consumer hit 'STOP' on April 6. At $500–$1,500 per text, that's $9,500–$28,500 per class member — and they're pleading a class of tens of thousands. The fastest way to stop the bleeding is to plug the internal-DNC hole today, scrub against the federal DNC tonight, and document a written P&amp;P that gives your defense counsel a § 64.1200(d) safe-harbor argument when they file the answer. We can have you scrub-current by end of week."</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">Secondary hook: the LinkedIn footprint shows 2 employees and a virtual office at 265 Franklin St — this is a thinly-staffed shop that almost certainly has no in-house compliance counsel <span class="src-tag"><a href="https://www.linkedin.com/company/united-mommas">LinkedIn →</a></span>. Position the rep as the compliance partner they don't currently have, not as a vendor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A low-profile Massachusetts SMS shop with no public website, no BBB profile, and a virtual Boston office.</h2>
+      <p class="section-lede">United Mommas LLC operates under the brand "UMM" in the health/wellness/savings vertical. Public corporate footprint is near-zero — the primary domain umm1.co returns HTTP 404, the LinkedIn page has 4 followers, and the Boston HQ address is consistent with a virtual/shared-office suite.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>United Mommas LLC</dd>
+          <dt>Entity Type</dt><dd>Massachusetts LLC</dd>
+          <dt>HQ</dt><dd>265 Franklin Street, Suite 1702, Boston, MA 02110 <span class="pill pill--warn">Likely Virtual Office</span></dd>
+          <dt>Vertical</dt><dd>Health / wellness / savings offers to consumers (inferred from brand "United Mommas")</dd>
+          <dt>Web Presence</dt><dd>umm1.co (HTTP 404 on root; /about, /privacy, /terms HTTP 500)</dd>
+          <dt>LinkedIn</dt><dd>2 employees listed, 4 followers <span class="src-tag"><a href="https://www.linkedin.com/company/united-mommas">→</a></span></dd>
+          <dt>Public Filings</dt><dd>MA Sec. of State CorpSearch fetch failed; entity not yet verified via primary source</dd>
+          <dt>BBB / Trustpilot</dt><dd>No accessible profile</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">No public privacy policy or terms of service.</h3>
+        <p class="card-body">Defendant's website returns HTTP 500 on /privacy and /terms-of-service. There is no published opt-out mechanism, no SMS consent disclosure, no DNC handling language anywhere on the public web. Combined with the 19 alleged post-opt-out texts, this is the entire § 64.1200(d) case in a nutshell — defendant cannot point to a "written policy, available upon demand" because no such policy is published.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="card card--accent">
+      <h3 class="card-title">Strategic Timing</h3>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>Filed</dt><dd>June 10, 2026 (2 days ago)</dd>
+        <dt>Summons Issued</dt><dd>June 11, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-12649&type=r">CourtListener →</a></span></dd>
+        <dt>Service Deadline</dt><dd>~September 9, 2026 (Rule 4(m), 90 days)</dd>
+        <dt>Answer Window</dt><dd>21 days after service</dd>
+        <dt>Magistrate Consent</dt><dd>Case assigned to Mag. J. M. Page Kelley — consent of all parties required for magistrate to retain; absent consent, reassignment to Article III judge</dd>
+        <dt>Outreach Window</dt><dd><span class="pill pill--red">CLOSE BEFORE DEFENSE COUNSEL APPEARS</span></dd>
+      </dl>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Related Entities (Cross-Sell Candidates)</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>AlertzPro LLC<br><span class="src-tag">D. Md. 8:25-cv-02312</span></td>
+              <td>Same lead-gen ecosystem (UMM/United Mommas referenced in AlertzPro's arbitration exhibit alongside TRN/True North, ZIP, Better Vida, Veteran Support Partners) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22United+Mommas%22&type=r">CourtListener →</a></span></td>
+              <td>Lead generation</td>
+              <td>Already sued for TCPA</td>
+              <td><span class="pill pill--danger">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>TRN / True North</td>
+              <td>Co-listed affiliate brand in AlertzPro arbitration filing</td>
+              <td>Lead gen</td>
+              <td>Same SMS infrastructure ecosystem</td>
+              <td><span class="pill pill--warn">MEDIUM</span></td>
+            </tr>
+            <tr>
+              <td>Better Vida</td>
+              <td>Co-listed affiliate brand in AlertzPro arbitration filing</td>
+              <td>Health / wellness</td>
+              <td>Adjacent vertical, shared ecosystem</td>
+              <td><span class="pill pill--warn">MEDIUM</span></td>
+            </tr>
+            <tr>
+              <td>ZIP</td>
+              <td>Co-listed affiliate brand in AlertzPro arbitration filing</td>
+              <td>Lead gen / offers</td>
+              <td>Shared ecosystem</td>
+              <td><span class="pill pill--info">LOW</span></td>
+            </tr>
+            <tr>
+              <td>Veteran Support Partners</td>
+              <td>Co-listed affiliate brand in AlertzPro arbitration filing</td>
+              <td>Veteran offers</td>
+              <td>Shared ecosystem</td>
+              <td><span class="pill pill--info">LOW</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-ever TCPA case against UMM — but the plaintiff firm has filed 407+ and is actively targeting D. Mass.</h2>
+      <p class="section-lede">No prior TCPA cases against United Mommas LLC surface on CourtListener. The pressure comes from the plaintiff side: Edelsberg Law is a high-volume TCPA filer that just filed Koontz v. Insurify in this same district in April 2026 — they are hunting MA-based companies.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <h3 class="card-title">Case Card — Chaplin v. United Mommas LLC</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>1:26-cv-12649-MPK</dd>
+          <dt>Filed</dt><dd>June 10, 2026</dd>
+          <dt>Court</dt><dd>D. Mass. (Boston)</dd>
+          <dt>Magistrate</dt><dd>M. Page Kelley</dd>
+          <dt>Plaintiff</dt><dd>Tara Chaplin (Wayne County, KY)</dd>
+          <dt>Counsel</dt><dd>Omer Kremer (MA Bar #712514), Edelsberg Law, P.A.</dd>
+          <dt>Class</dt><dd>Yes — Two classes pled: (1) DNC Registry Class; (2) National Internal DNC Class</dd>
+          <dt>Class Size</dt><dd>"Tens of thousands" alleged; CAFA $5M threshold pled</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c); 47 CFR § 64.1200(d)</dd>
+          <dt>Theory</dt><dd>Post-opt-out SMS + DNC Registry violation + no internal DNC policy</dd>
+          <dt>Violations</dt><dd>19 alleged texts to named plaintiff after Apr 6 "STOP"</dd>
+          <dt>Damages</dt><dd>$500 (negligent) to $1,500 (willful) per text → <strong>$9,500–$28,500</strong> per named plaintiff; class aggregate &gt; $5M CAFA threshold</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span></dd>
+          <dt>Docket Source</dt><dd><span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-12649&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <h3 class="card-title">Plaintiff Counsel — Omer Kremer / Edelsberg Law</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Lead Attorney</dt><dd>Omer Kremer, Esq.</dd>
+          <dt>MA Bar #</dt><dd>712514</dd>
+          <dt>Email</dt><dd>omer@edelsberglaw.com</dd>
+          <dt>Firm</dt><dd>Edelsberg Law, P.A.</dd>
+          <dt>Firm Address</dt><dd>20900 NE 30th Ave, Suite 417, Aventura, FL 33180 <span class="pill pill--warn">FL firm, MA admission</span></dd>
+          <dt>Firm Phone</dt><dd>(305) 975-3320 / (786) 289-9471</dd>
+          <dt>Firm Website</dt><dd>edelsberglaw.com <span class="src-tag"><a href="https://edelsberglaw.com/">→</a></span></dd>
+          <dt>Firm Size</dt><dd>6 attorneys; dedicated TCPA/"Spam Text Message" practice</dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">HIGH</span> — 407+ TCPA filings firm-wide <span class="src-tag"><a href="https://tcpaworld.com/?s=Edelsberg">TCPAWorld →</a></span></dd>
+          <dt>Firm Marketing</dt><dd>"Nearly $100 Million Recovered on Behalf of Consumers"</dd>
+          <dt>Notable Wins</dt><dd>DeFranks v. NastyGal ($5M); Picton v. Greenway Dodge ($2.745M); Banks v. Fuccillo ($1.864M)</dd>
+          <dt>Discipline</dt><dd>None found (MA BBO directory fetch failed)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Plaintiff Firm Template — Edelsberg Law DNC + Internal DNC</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">Edelsberg Law's template targets DTC SMS marketers using short codes. The playbook: identify a consumer with a long-standing DNC registration, document multiple "STOP" replies in screenshot exhibits, plead § 64.1200(c) (DNC Registry) and § 64.1200(d) (Internal DNC P&amp;P) as parallel counts, and define a four-year nationwide class. The firm has used this template against Betterwell LLC, Kinetic Brands, Pro Genitor, Tomocredit, TA Fintech, and Insurify — all SMS-heavy DTC/lead-gen operators <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">CourtListener →</a></span>.</p>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+          <tbody>
+            <tr style="background:var(--bl-red-tint);">
+              <td><strong>Chaplin v. United Mommas LLC</strong> <span class="pill pill--red">CURRENT</span></td>
+              <td>1:26-cv-12649-MPK</td>
+              <td>D. Mass.</td>
+              <td>2026-06-10</td>
+              <td><span class="pill pill--red">Active · Pre-answer</span></td>
+              <td>DNC Registry + Internal DNC</td>
+            </tr>
+            <tr>
+              <td>Hightower v. AlertzPro LLC <span class="src-tag">(UMM referenced in arbitration ex.)</span></td>
+              <td>8:25-cv-02312</td>
+              <td>D. Md.</td>
+              <td>2025</td>
+              <td><span class="pill pill--warn">MTC Arbitration</span></td>
+              <td>Lead-gen TCPA; UMM listed as affiliated brand <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22United+Mommas%22&type=r">→</a></span></td>
+            </tr>
+            <tr>
+              <td>Koontz v. Insurify, Inc. <span class="src-tag">(same firm, same district)</span></td>
+              <td>—</td>
+              <td>D. Mass.</td>
+              <td>2026-04</td>
+              <td><span class="pill pill--info">Active</span></td>
+              <td>Edelsberg Law targeting MA defendants <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Omer+Kremer%22&type=r">→</a></span></td>
+            </tr>
+            <tr>
+              <td>Silveira v. Kinetic Brands LLC <span class="src-tag">(same firm, similar vertical)</span></td>
+              <td>—</td>
+              <td>S.D. Fla.</td>
+              <td>2022</td>
+              <td><span class="pill pill--gap">Unknown</span></td>
+              <td>SMS marketing TCPA</td>
+            </tr>
+            <tr>
+              <td>Steele v. Betterwell LLC <span class="src-tag">(same firm, wellness vertical)</span></td>
+              <td>—</td>
+              <td>N.D. Cal.</td>
+              <td>2020</td>
+              <td><span class="pill pill--gap">Unknown</span></td>
+              <td>SMS marketing TCPA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;display:inline-block;vertical-align:middle"></i> Open intel gaps to close before first dial</div>
+      <ul style="margin:8px 0 0; padding-left:18px; font-size:14px; line-height:1.6;">
+        <li>Full 10-digit plaintiff number (only "3710" disclosed) — pull PACER ECF #1 exhibits</li>
+        <li>MA Sec. of State CorpSearch on United Mommas LLC — registered agent, manager, formation date (all fetches failed)</li>
+        <li>Defense counsel — not yet appeared; check PACER weekly</li>
+        <li>Hightower v. AlertzPro arbitration ruling — confirm scope of "UMM" reference and whether an arbitration clause flows to United Mommas</li>
+        <li>Omer Kremer MA Bar status confirmation (BBO directory fetch returned 404)</li>
+        <li>Short code 67252 CSP/TCR campaign owner — confirms whether 67252 is dedicated to UMM or shared</li>
+        <li>WHOIS registrant on umm1.co — corroborate UMM ownership of the tracking domain</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Thin contact surface — go through the registered agent and the firm phone. LinkedIn surfaces one employee only.</h2>
+      <p class="section-lede">United Mommas LLC has near-zero public contact data. The website returns 404/500 across all pages, no email pattern can be inferred, and the LinkedIn company page lists only 2 employees with 1 visible. Highest-probability path: warm-call the registered office and use Edelsberg Law's MA filing as the talking point.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Maleia King</strong><br>
+              <span class="pill pill--dark">EMPLOYEE</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>Only publicly identified employee of United Mommas on LinkedIn. Title undisclosed. <span class="src-tag"><a href="https://www.linkedin.com/in/maleia-king-87040440a">LinkedIn →</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><a href="https://www.linkedin.com/in/maleia-king-87040440a">Profile →</a></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>United Mommas LLC (Main)</strong><br>
+              <span class="pill pill--dark">COMPANY</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>HQ: 265 Franklin Street, Suite 1702, Boston, MA 02110 (likely virtual office). LinkedIn page <span class="src-tag"><a href="https://www.linkedin.com/company/united-mommas">→</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td><a href="https://www.linkedin.com/company/united-mommas">Company →</a></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Registered Agent</strong><br>
+              <span class="pill pill--dark">SOS RECORD</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td>MA Sec. of State CorpSearch fetch failed — registered agent not yet recovered. Pull manually before first dial.</td>
+            <td><span class="pill pill--gap">Pending SoS pull</span></td>
+            <td><span class="pill pill--gap">Pending SoS pull</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Defense Counsel</strong><br>
+              <span class="pill pill--dark">DEFENSE</span> <span class="pill pill--gap">GAP</span>
+            </td>
+            <td><span class="pill pill--warn">Not yet appeared</span> — 21-day answer clock starts at service; check PACER weekly.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Email pattern: <strong>unknown</strong> — no emails (not even generic info@ / support@) surfaced anywhere in fetched content. Recommend MA SoS pull to identify the manager-of-record, then run LinkedIn Sales Nav on that name.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The 21-day answer clock starts the moment they're served.</h2>
+      <p class="section-lede">Filed June 10. Summons issued June 11. The defendant is small, has no in-house compliance, and almost certainly has not yet retained defense counsel. The window to be the compliance vendor of record — before the lawyer tells them to "wait and see" — is now.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 0 — Today</div>
+        <h3 class="card-title">1. Pull MA SoS filing</h3>
+        <p class="card-body">Get the registered agent, manager, and principal address from massachusetts.gov CorpSearch. That name is the dial target.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 0 — Today</div>
+        <h3 class="card-title">2. Pull PACER ECF #1</h3>
+        <p class="card-body">Cost ~$1.20. Confirm the full 10-digit plaintiff number from the unredacted exhibits and run blacklistBulk.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 1–2</div>
+        <h3 class="card-title">3. Cold outreach to manager-of-record</h3>
+        <p class="card-body">Open with: "You were sued on June 10 by Edelsberg Law — a firm with 407+ TCPA cases. The complaint alleges 19 texts after STOP. Have you retained counsel yet?" Lead with Internal DNC + written P&amp;P.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">4. Second touch — Federal DNC</h3>
+        <p class="card-body">If first call connects, follow up with the federal DNC scrubbing pitch. Plaintiff was DNC-registered since 2009 — UMM has clearly never scrubbed.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Week 2</div>
+        <h3 class="card-title">5. Monitor PACER for appearance</h3>
+        <p class="card-body">Once defense counsel appears, pivot — defense lawyer becomes the new gatekeeper. Send the lawyer the Blacklist compliance brief by email.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Week 3–4</div>
+        <h3 class="card-title">6. Cross-sell ecosystem brands</h3>
+        <p class="card-body">Open parallel outreach to AlertzPro, TRN/True North, Better Vida — all named alongside UMM in the AlertzPro arbitration filing. Same SMS infrastructure ecosystem.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px;">Trigger Conditions</h3>
+      <ul class="clean tight">
+        <li><strong>If defense counsel files MTC arbitration</strong> (like AlertzPro did) — pivot pitch to "even arbitration outcomes don't fix your forward-looking compliance gap; one new plaintiff = one new arbitration."</li>
+        <li><strong>If plaintiff amends</strong> to add additional defendants from the ecosystem — expand outreach immediately to the named entities.</li>
+        <li><strong>If UMM's website comes back online</strong> with a privacy policy — that's evidence they're scrambling; close fast on the P&amp;P + retention pitch.</li>
+        <li><strong>If a second TCPA case is filed against UMM</strong> — urgency goes to red; quote multi-case exposure.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · STARTS AT SERVICE</span>
+      <span class="pill pill--warn">SERVICE DEADLINE ~SEP 9, 2026</span>
+      <span class="pill pill--info">CROSS-SELL: 4 ECOSYSTEM BRANDS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
