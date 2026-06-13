@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taylor v. Empify — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); }
+.row-current{ background:var(--bl-red-tint); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.02em">BLACKLIST</text>
+          <text x="120" y="18" fill="#A50100" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-11</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Financial-Education SMS Marketer · Quiet-Hours Class Action · No Visible Consent Infrastructure · C.D. Cal.</p>
+      <h1 class="hero-tagline">Taylor v.<br>Empify Inc</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">2:26-cv-06354</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Los Angeles)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(today)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — only last four ("0184") disclosed. Scrub deferred.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits of Krisandra Taylor's wireless number. Until the full 10-digit number is recovered, no scrub can be run.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Wireless Number (Subject Number)</div>
+        <div class="scrub-number">(XXX) XXX-0184</div>
+        <div class="scrub-number-sub">Complaint ¶17 discloses only last four digits. Full 10-digit number is not pled.</div>
+      </div>
+      <p class="scrub-body-text">Krisandra Taylor (Los Angeles County, CA) is the alleged regular user/subscriber of a wireless number ending in 0184, used as a residential-line replacement. Three solicitation texts were received on May 5, 2026 at 9:20 PM, May 5 at 11:20 PM, and May 7 at 7:00 AM — all outside the 8 AM–9 PM quiet-hours window. The full callback number was not disclosed in any complaint paragraph or exhibit, so a Blacklist litigator-list match cannot be confirmed.</p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px;">Sending DID — Identified in Exhibit A</h3>
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card card--accent">
+        <div class="card-meta">SENDER DID · TOLL-FREE</div>
+        <h4 class="card-title">+1 (855) 923-4489</h4>
+        <p class="card-body">Toll-free 855 DID used to deliver three quiet-hours messages signed "Ashley Fox" (Empify CEO) promoting an Investor Starter Kit and May 13, 2026 free class. Messages embed <code>redirect.empify.com/starter-kit</code> link-tracking URLs — infrastructure consistent with a centralized mass-SMS dialer platform.</p>
+        <p style="margin-top:12px;"><span class="pill pill--info">SMS dialer / link-tracking</span> <span class="pill pill--gap">No external consumer-aggregator hits</span></p>
+        <p style="margin-top:8px;" class="src-tag">Sender identification — complaint Exhibit A screenshot. External validation via 800notes / YouMail / Tellows / RoboKiller was not retrievable (all four sources returned 403/404 during enrichment).</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px;">Recovery Path</h3>
+    <div class="card-grid" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-meta">OPTION 1</div>
+        <h4 class="card-title">Pull ECF #1 from PACER</h4>
+        <p class="card-body">Civil cover sheet (ECF #1-1) often contains plaintiff's full number. ~$1.20. Fastest path. Also check ECF #4 (Summons Request) for service address detail.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">OPTION 2</div>
+        <h4 class="card-title">Wait for defense appearance</h4>
+        <p class="card-body">Defense counsel typically subpoenas Plaintiff's carrier records within the first 30 days. Number surfaces in Rule 26 initial disclosures.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">OPTION 3</div>
+        <h4 class="card-title">Skip-trace last-four + Los Angeles</h4>
+        <p class="card-body">"Krisandra Taylor" + LA County + wireless ending 0184 is a narrow universe. Standard people-search yields the full number quickly.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF NOT IN COURTLISTENER PRIOR FILINGS</span>
+    </p>
+    <p class="src-tag" style="margin-top:8px;">No prior TCPA filings by Krisandra Taylor located. <a href="https://www.courtlistener.com/?q=%22Krisandra+Taylor%22&type=r">CourtListener RECAP -></a></p>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Inc. 5000 fintech-ed brand, first-time TCPA defendant, zero visible compliance infrastructure — textbook greenfield close.</h2>
+      <p class="section-lede">Empify is a fast-growing, founder-led financial-education company (Inc. 5000 #145 in 2025) that runs SMS as a core marketing channel and just got hit with its first TCPA class action. There is no compliance officer, no TCPA policy page, no DNC scrub language — and the plaintiff firm is a confirmed volume filer with a quiet-hours template. Lead with consent capture; layer in DNC scrubbing and litigator scrub.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">RECOMMENDED LEAD PRODUCT</div>
+        <h4 class="card-title">Consent Capture &amp; Record Retention</h4>
+        <p class="card-body">Complaint pleads no prior express invitation or permission (¶18). Empify's public site has no discoverable signup or terms-of-service URL <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">concurrent-litigation recon -></a></span> — meaning there is likely no evidence-ready consent record. Sell e-signature-grade consent capture as the foundation that makes every other defense possible.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">CROSS-SELL #1</div>
+        <h4 class="card-title">DNC Scrubbing + Quiet-Hours Suppression</h4>
+        <p class="card-body">All three texts were sent at 9:20 PM, 11:20 PM, and 7:00 AM PT — outside the 8 AM–9 PM window. A scrub that enforces time-of-day windows and DNC suppression directly neutralizes 47 CFR § 64.1200(c)(1) claims.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">CROSS-SELL #2</div>
+        <h4 class="card-title">Litigator Scrub</h4>
+        <p class="card-body">PLG Damage is a confirmed volume filer (12+ TCPA suits in 2026) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span>. Same template, same theory, rotating plaintiffs. Litigator scrub stops the next Krisandra Taylor before the text goes out.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;">Pitch Angle</h3>
+    <p>Open with a posture of urgency, not panic. Empify just got sued in C.D. Cal. by a serial-template plaintiff firm (PLG Damage Attorneys / Vinit R. Venkatesh) that has filed at least 12 substantially similar TCPA suits in 2026 alone, including five in C.D. Cal. in the last 60 days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener firm scan -></a></span>. The complaint template is portable: quiet-hours violation + no express consent + Rule 23 class period of four years. The next plaintiff is already being recruited.</p>
+    <p>The wedge is the public-facing evidence Empify has already created against itself. Their <a href="https://empify.com/privacy-policy">privacy policy -></a> says "no mobile information will be shared with third parties for marketing purposes" but contains <em>no</em> time-of-day language, <em>no</em> DNC suppression process, <em>no</em> reference to TCPA or prior express written consent <span class="src-tag"><a href="https://empify.com/privacy">empify.com/privacy -></a></span>. Their SMS infrastructure (redirect.empify.com link-tracking + a toll-free 855 DID) is built for scale, not for compliance. The recommended product set is consent capture as the foundation, then a scrubbing layer that enforces both quiet hours and DNC. The close: "You are profitable enough to settle this case. You are not yet wired up to prevent the next one."</p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Founder-led fintech-ed company on the Inc. 5000, scaling SMS as a primary lead-gen channel.</h2>
+      <p class="section-lede">Empify is a private, Atlanta-based financial-education company founded by Ashley M. Fox, ranked #145 on the Inc. 5000 2025 list (#1 in Financial Services, #1 in Atlanta). It sells courses, community memberships, and corporate/institutional programming — with SMS marketing as a confirmed acquisition channel.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">DEFENDANT PROFILE</div>
+        <h3 class="card-title">Empify, Inc.</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal entity</dt><dd>Empify Inc (Delaware Domestic Corporation, authorized to do business in CA) <span class="src-tag">complaint ¶5</span></dd>
+          <dt>D/B/A</dt><dd>Empify · WealthBuilders Community <span class="src-tag"><a href="https://empify.com/about">empify.com/about -></a></span></dd>
+          <dt>HQ</dt><dd>Atlanta, GA <span class="src-tag"><a href="https://empify.com/about">empify.com/about -></a></span></dd>
+          <dt>Founder / CEO</dt><dd>Ashley M. Fox (founder since ~2014–2017) <span class="src-tag"><a href="https://empify.com/about">empify.com/about -></a></span></dd>
+          <dt>Vertical</dt><dd>Financial education / fintech (courses, memberships, B2B programs)</dd>
+          <dt>Revenue band</dt><dd>Inc. 5000 #145 in 2025 — consistent with $20M–$50M+ range</dd>
+          <dt>Employees</dt><dd>Small org; ~7 visible team members on SignalHire <span class="src-tag"><a href="https://www.signalhire.com/companies/empify">signalhire.com -></a></span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Website</dt><dd><a href="https://empify.com">empify.com</a></dd>
+          <dt>Sender domain</dt><dd>redirect.empify.com (link-tracking redirect — SMS infra)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">SMOKING-GUN COMPLIANCE GAP</div>
+        <h3 class="card-title">Privacy policy says "no sharing" — says nothing about consent, DNC, or quiet hours.</h3>
+        <p class="card-body">Empify's published privacy policy <span class="src-tag"><a href="https://empify.com/privacy">empify.com/privacy -></a></span> mentions only generic "Reply HELP for help, STOP to cancel" SMS disclaimers. It contains no quiet-hours policy, no time-zone send restrictions, no reference to TCPA, no prior express written consent flow, and no internal DNC procedure. Standard signup, register, and terms-of-service URLs return HTTP 404 — meaning there is likely no documented, evidence-ready consent record for the alleged class. This is the single most expensive gap to leave open in a TCPA defense.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+      <div class="card-meta">STRATEGIC TIMING</div>
+      <h3 class="card-title">Answer-deadline clock starts on service; class period reaches back four years.</h3>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>Filed</dt><dd>June 11, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06354&type=r">CourtListener RECAP -></a></span></dd>
+        <dt>Service</dt><dd>Summons requested ECF #4 on filing day — service is imminent</dd>
+        <dt>Answer window</dt><dd>21 days post-service under Fed. R. Civ. P. 12(a)(1)(A)</dd>
+        <dt>Class period</dt><dd>Four years preceding filing through certification (per ¶31)</dd>
+        <dt>Inc. 5000 cycle</dt><dd>Sept 2026 list refresh — reputational risk during PR window</dd>
+        <dt>Marketing season</dt><dd>"Free class May 13, 2026" — webinar funnel is actively running NOW</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:40px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>WealthBuilders Community</strong></td>
+            <td>Empify product/brand</td>
+            <td>Community membership app</td>
+            <td>Same SMS infra (redirect.empify.com); same opt-in funnel</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Passive Income Boot Camp / REIT Accelerator / Stock 101</strong></td>
+            <td>Empify product lines</td>
+            <td>Online courses</td>
+            <td>Each runs its own opt-in funnel feeding shared SMS list</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fortune 500 corporate programs</strong></td>
+            <td>B2B partnerships</td>
+            <td>Enterprise financial wellness</td>
+            <td>Brand-sensitive — class judgment threatens these contracts</td>
+            <td><span class="pill pill--warn">Medium (leverage)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ashley Fox (personal brand)</strong></td>
+            <td>Founder/principal</td>
+            <td>Speaking, content, media</td>
+            <td>SMS messages signed in her name — direct individual signature</td>
+            <td><span class="pill pill--info">Reputation leverage</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Sources: <a href="https://empify.com">empify.com</a>, <a href="https://empify.com/about">empify.com/about</a>, complaint Exhibit A (sender content).</p>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First-ever TCPA case against Empify, filed by a confirmed volume-template firm. No playbook on the defense side.</h2>
+      <p class="section-lede">Empify has no prior TCPA litigation on record. PLG Damage Attorneys — operating out of Miramar, FL with one CA-barred attorney handling its rapidly expanding TCPA docket — has filed at least 12 substantially similar suits in 2026 across CA and FL federal courts.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">CURRENT CASE</div>
+        <h3 class="card-title">Taylor v. Empify Inc</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>2:26-cv-06354 (C.D. Cal., Los Angeles) <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06354&type=r">CourtListener -></a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Plaintiff</dt><dd>Krisandra Taylor (LA County, CA)</dd>
+          <dt>Plaintiff counsel</dt><dd>Vinit R. Venkatesh (CA Bar #367857), PLG Damage Attorneys</dd>
+          <dt>Class action</dt><dd>Yes — Rule 23 putative "TCPA After-Hours Class"</dd>
+          <dt>Class definition</dt><dd>Nationwide; 4-yr lookback; wireless numbers used as residential lines; ≥1 message before 8 AM or after 9 PM local</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Quiet-hours SMS solicitations without prior express invitation or permission</dd>
+          <dt>Damages sought</dt><dd>$500 / violation (statutory) + treble for willful + injunctive relief</dd>
+          <dt>Per-plaintiff range</dt><dd>$1,500 (3 texts × $500) to $4,500 (treble); class exposure scales by class size</dd>
+          <dt>Defense counsel</dt><dd>Not yet appeared · 21-day answer deadline post-service <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06354&type=r">RECAP -></a></span></dd>
+          <dt>Docket entries</dt><dd>#1 Complaint · #2 Notice · #3 Notice of Interested Parties · #4 Summons Request — all 06/11/26 <span class="src-tag"><a href="https://www.courtlistener.com/?q=2%3A26-cv-06354&type=r">RECAP -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">PLAINTIFF COUNSEL</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Firm address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+          <dt>Firm phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+          <dt>Firm email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com (per complaint)</dd>
+          <dt>Lead attorney</dt><dd>Vinit R. Venkatesh, Esq.</dd>
+          <dt>Bar number</dt><dd>CA Bar #367857 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">calbar.ca.gov -></a></span></dd>
+          <dt>Bar address</dt><dd><span class="pill pill--warn">Mismatch flag</span> CA-barred attorney, FL-based firm. No CA office address disclosed.</dd>
+          <dt>Direct email</dt><dd>vv@plgdamage.com</dd>
+          <dt>Firm size</dt><dd>Small/mid; 4+ attorneys identified (Venkatesh, Suls, Floyd, "Adrien")</dd>
+          <dt>Primary practice</dt><dd>FL property damage / first-party insurance (~$100M reported recoveries)</dd>
+          <dt>TCPA posture</dt><dd>New practice-area pivot; "Consumer Protection Resources" added to website navigation</dd>
+          <dt>2026 TCPA volume</dt><dd>12+ filings YTD across CA, FL; ≥5 in C.D. Cal. in last 60 days <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Discipline</dt><dd>None of record. Note: firm was defendant in Ackerman v. PLG (S.D. Fla. 0:23-cv-61828, terminated 2024) — employment matter, not bar discipline. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -></a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;">Plaintiff Firm Template</h3>
+    <p>PLG Damage is running what is best characterized as the <strong>"PLG/Venkatesh quiet-hours pivot"</strong>: a Florida property-damage firm aggressively expanding into TCPA class actions in 2026 using a single CA-barred attorney to anchor C.D. Cal. filings. The template across at least 12 known 2026 cases features (a) Rule 23 nationwide class; (b) a 4-year lookback; (c) a quiet-hours fact pattern (texts before 8 AM or after 9 PM local); (d) the recurring 47 CFR § 64.1200(c)(1) + § 64.1200(e) statutory hooks; (e) a "wireless used as residential line" pleading. Targeted verticals to date include retail (7-Eleven, Rite Aid, Fashion Nova), fitness (Xercize Studio), mortgage (Rocket Mortgage), consumer tech (Guardio, Yesvideo), media/lead-gen (Centerfield), and now financial education (Empify). Notably, PLG's own website signup form uses dual TCPA-style consent checkboxes with clear STOP/HELP language — they know exactly what compliant consent looks like and will exploit every gap they find.</p>
+
+    <h3 style="margin-top:40px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Taylor v. Empify Inc</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td>2:26-cv-06354</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-11</td>
+            <td><span class="pill pill--red">Open</span></td>
+            <td>TCPA quiet-hours, no express consent</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Guardio LLC</td>
+            <td>2:26-cv-05313</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Long v. Rocket Mortgage, LLC</td>
+            <td>2:26-cv-05599</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Hughes v. Rite Aid Corporation</td>
+            <td>2:26-cv-04436</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Fasheh v. The Xercize Studio, LLC</td>
+            <td>8:26-cv-01231</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Rios v. Last Brand, Inc.</td>
+            <td>5:26-cv-02684</td>
+            <td>C.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven Inc</td>
+            <td>1:26-cv-00119</td>
+            <td>N.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Salcedo v. Fashion Nova, LLC</td>
+            <td>0:26-cv-61011</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Correa v. Fashion Nova, LLC</td>
+            <td>0:26-cv-60960</td>
+            <td>S.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo, Inc.</td>
+            <td>8:26-cv-01491</td>
+            <td>M.D. Fla.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+          <tr>
+            <td>Post v. Centerfield Media Parent, Inc.</td>
+            <td>4:26-cv-03524</td>
+            <td>N.D. Cal.</td>
+            <td>2026</td>
+            <td><span class="pill pill--info">Active (same firm)</span></td>
+            <td>TCPA — PLG template</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">All concurrent cases sourced from <a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener firm scan -></a></p>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>Plaintiff's full 10-digit number — only last four ("0184") pled. Pull PACER ECF #1-1 (civil cover sheet) to recover.</li>
+        <li>Judge assignment — not yet visible on RECAP. Re-check 24–72 hours after filing.</li>
+        <li>Defense counsel — none appeared yet. 21-day answer clock starts on service.</li>
+        <li>Empify corporate registration details — Delaware Div. of Corps lookup did not return entity record during enrichment; registered agent and officer list unconfirmed via SoS.</li>
+        <li>BBB / Trustpilot / Glassdoor consumer signals — all sources returned 403 during enrichment.</li>
+        <li>External sender-DID complaint counts — 800notes, YouMail, Tellows, RoboKiller all 403/404 during enrichment. Re-check before the call to fold in any new consumer reports on 855-923-4489.</li>
+        <li>Empify's actual signup / opt-in flow — public site returns 404 for /signup, /register, /terms-of-service. Recon via paid traffic landing pages and ad library before the call.</li>
+        <li>Whether Empify uses an outside SMS vendor (Twilio, Attentive, Klaviyo, etc.) vs. self-hosted dialer — informs vendor-indemnity angle.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Go straight to Ashley Fox. The founder signed the SMS in Exhibit A — she is the decision-maker.</h2>
+      <p class="section-lede">Empify is a small founder-led org with no GC and no compliance officer of record. The texts at issue are signed "Ashley Fox" personally; route through her or her executive consultant (J'mie Montgomery). Email pattern is confirmed: <code>{first}@empify.com</code>.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-meta">EMAIL PATTERN — CONFIRMED</div>
+      <h3 class="card-title" style="font-family:var(--font-mono); letter-spacing:0.02em;">{first}@empify.com</h3>
+      <p class="card-body">Pattern confirmed via SignalHire-published partial email strings for Ashley Fox, Nica Nicolas, and Dustin Lumna. General inbox: <code>hello@empify.com</code>. <span class="src-tag"><a href="https://www.signalhire.com/companies/empify">signalhire.com/companies/empify -></a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ashley M. Fox</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>CEO &amp; Founder. Signed the messages in Exhibit A personally ("Hey it's Ashley Fox the CEO of Empify"). Primary decision-maker.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>ashley@empify.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/ashleymfox">linkedin.com/in/ashleymfox</a></td>
+          </tr>
+          <tr>
+            <td><strong>J'mie Montgomery</strong><br><span class="pill pill--dark">EA · CEO Office</span></td>
+            <td>Executive Consultant / Executive Assistant to the CEO. Gatekeeper to Ashley.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>jmie@empify.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jmiemontgomery">linkedin.com/in/jmiemontgomery</a></td>
+          </tr>
+          <tr>
+            <td><strong>Carl Jibril Sulaiman II</strong><br><span class="pill pill--dark">MARTECH</span></td>
+            <td>Sr. Manager of Marketing Technology &amp; Revenue Systems. Owns the SMS stack — direct technical buyer for scrub / consent tooling.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>carl@empify.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rob Boyd</strong><br><span class="pill pill--dark">CONTENT</span></td>
+            <td>Head of Content &amp; Engagement. Owns marketing messaging and likely campaign approval.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>rob@empify.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mahailla Ricketts</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>Operations Lead. Process owner; useful for vendor onboarding.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>mahailla@empify.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nica Nicolas</strong><br><span class="pill pill--dark">INT OPS</span></td>
+            <td>Internal Operations Associate.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>nica@empify.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dustin Angelo Lumna</strong><br><span class="pill pill--dark">SUPPORT</span></td>
+            <td>Senior Support Manager.</td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>dustin@empify.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>General inbox</strong></td>
+            <td>Company-wide intake; OK for an opening note, not for the close.</td>
+            <td><span class="pill pill--gap">No main line published</span></td>
+            <td>hello@empify.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Empify — Registered Agent (DE)</strong></td>
+            <td>Delaware Domestic Corporation per complaint ¶5. Registered agent of record not retrieved during enrichment — pull from DE Div. of Corps before service.</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-tag" style="margin-top:8px;">Contact sources: <a href="https://www.signalhire.com/companies/empify">SignalHire</a> · <a href="https://theorg.com/org/empify">TheOrg</a> · <a href="https://www.linkedin.com/company/empify">LinkedIn (Empify)</a> · <a href="https://empify.com/contact">empify.com/contact</a></p>
+
+    <h3 style="margin-top:40px;">Plaintiff Counsel (reference only — do NOT pitch)</h3>
+    <div class="card">
+      <dl class="kv">
+        <dt>Lead attorney</dt><dd>Vinit R. Venkatesh, Esq. (CA Bar #367857) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">calbar.ca.gov -></a></span></dd>
+        <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC)</dd>
+        <dt>Address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+        <dt>Phone</dt><dd>(305) 506-4746 (per PACER / plgdamage.com) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+        <dt>Email</dt><dd>vv@plgdamage.com · tcpa-service@plgdamage.com (service)</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel is retained and the conversation gets filtered.</h2>
+      <p class="section-lede">Once outside counsel is hired, the rep loses direct access to Ashley and the marketing team. The window between filing and defense appearance is the only time to sell directly to the decision-maker without going through litigation-defense gatekeepers.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">DAY 0–1 · TODAY/TOMORROW</div>
+        <h4 class="card-title">1. Pull PACER ECF #1 + run scrub</h4>
+        <p class="card-body">Pay ~$1.20 for the civil cover sheet to recover Krisandra Taylor's full 10-digit number, then run the litigator scrub. If a match returns, lead with that fact. If clean, lead with the firm-template angle ("Vinit Venkatesh has filed at least 12 of these in 2026 — you are not his last").</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 1–2</div>
+        <h4 class="card-title">2. Direct outreach to Ashley Fox</h4>
+        <p class="card-body">Email <code>ashley@empify.com</code> with cc to <code>jmie@empify.com</code>. Subject line referencing 2:26-cv-06354 and the May 13 free-class campaign. Open with the smoking-gun gap: privacy policy has no quiet-hours or DNC language. Offer 15 minutes today.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">DAY 2–3</div>
+        <h4 class="card-title">3. Parallel technical touch to martech</h4>
+        <p class="card-body">Email <code>carl@empify.com</code> (Sr. Mgr MarTech &amp; Revenue Systems) with the technical pitch: API-based consent capture, DNC scrub, quiet-hours window enforcement. He owns the redirect.empify.com stack and can sponsor procurement.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 3–5</div>
+        <h4 class="card-title">4. Content / campaign owner touch</h4>
+        <p class="card-body">Email <code>rob@empify.com</code> (Head of Content &amp; Engagement). Frame as protecting the May 13 campaign and the next product launch from re-litigation. Loop in WealthBuilders Community as a parallel scrub target.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 5–10</div>
+        <h4 class="card-title">5. Pre-answer urgency push</h4>
+        <p class="card-body">Before the 21-day answer clock expires, send a closing summary: scrub status, exposure math, and the playbook PLG has run against 11 other defendants this year. Anchor on Inc. 5000 reputational exposure.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">DAY 10–21</div>
+        <h4 class="card-title">6. Bridge to defense counsel</h4>
+        <p class="card-body">If defense counsel appears, pivot the relationship to them. Offer Blacklist as the evidence-record vendor of choice for the consent-record discovery production they will need.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;">Trigger conditions</h3>
+    <ul class="clean tight">
+      <li><strong>Defense counsel files MTD or arbitration motion</strong> → shift narrative to "consent-record reconstruction" service for the production phase.</li>
+      <li><strong>Plaintiff amends to add additional counts</strong> (internal DNC, autodialer) → re-pitch broader scrub package.</li>
+      <li><strong>Inc. 5000 list refreshes (Sept 2026)</strong> → reputation-protection angle gets sharper; PR firms may also enter the conversation.</li>
+      <li><strong>Sender DID 855-923-4489 surfaces additional consumer complaints</strong> → urgency pill upgrades to red; PR-adjacent stakeholders enter the conversation.</li>
+      <li><strong>A second PLG-template suit lands against Empify or a sister product</strong> → escalate to enterprise tier and pull in Ashley directly via founder network.</li>
+    </ul>
+
+    <p style="margin-top:24px;">
+      <span class="pill pill--red">URGENCY: HIGH — FIRST-TIME DEFENDANT</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE DEFENSE COUNSEL APPEARS</span>
+      <span class="pill pill--info">SENDER STILL LIVE — MAY 13 FREE CLASS CAMPAIGN ACTIVE</span>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-11</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
