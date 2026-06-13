@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wohlstein v. USAHI — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.02em">BLACKLIST</text>
+          <rect x="128" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="138" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-size="20" font-weight="400" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">FL Home Improvement SMS Marketer · Federal DNC + Internal DNC · 2nd TCPA Class Action in 11 Weeks</p>
+      <h1 class="hero-tagline">Wohlstein v.<br>USA Home Improvement <span style="color:var(--bl-red); font-weight:500; font-size:0.7em;">d/b/a USAHI</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">9:26-cv-80696-EA</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">S.D. Fla. (West Palm Beach)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">"EA" initials<br><span style="font-weight:400; color:#A8A8A8; font-size:12px;">Article III unconfirmed</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; color:#A8A8A8; font-size:12px;">"Several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Berman / Edelsberg<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Shamis &amp; Gentile + Edelsberg Law</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's full number not disclosed in complaint — but Wohlstein is already a known repeat TCPA plaintiff.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits (<strong>...7454</strong>), so a litigator-list scrub has been deferred until the full 10-digit number is recovered. Independently, CourtListener confirms Wohlstein settled a TCPA case earlier this year — he is a returning filer, not a one-off.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+        <span class="pill pill--danger">Serial Plaintiff Flag</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Residential Cellular Number</div>
+        <div class="scrub-number">(XXX) XXX-7454</div>
+        <div class="scrub-number-sub">Last four digits only — disclosed at Compl. ¶ 10. Full 10-digit number must be pulled from PACER ECF #1 (sealed exhibits or discovery), defense counsel notice, or Rule 26(a) disclosures before any blacklistBulk lookup can be run.</div>
+      </div>
+      <p class="scrub-body-text">The complaint pleads that Wohlstein registered the 7454 number on the National Do Not Call Registry on <strong>December 30, 2014</strong> and is the sole subscriber. Until the full number is recovered, we cannot confirm whether it appears on any litigator list. However, CourtListener confirms Wohlstein filed and settled <em>Wohlstein v. BH NBV North Owner LLC</em> (S.D. Fla. 1:26-cv-20283) earlier in 2026 — voluntarily dismissed with prejudice within ~7 weeks of filing — using the same counsel team. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Daniel+Wohlstein%22&type=r">CourtListener — Wohlstein filings →</a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="card-meta">Sending DID</div>
+        <h3 class="card-title">(954) 884-8586</h3>
+        <p class="card-body" style="font-size:14px;">Broward County, FL geographic local-presence number. Aligns with defendant's Hallandale Beach HQ. Standard 10-digit number (likely 10DLC carrier-routed), not a vetted short code — a common signature of dialer/CRM SMS blasting rather than a vetted A2P platform. No third-party sender intel surfaced from 800notes / YouMail / Tellows / RoboKiller (all sources returned 403/404 during research).</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body" style="font-size:14px;">~$1.20 cost. Confirm full 7454 number is in any sealed exhibit, civil cover sheet, or summons. Highest-yield path. <span class="src-tag"><a href="https://www.courtlistener.com/?q=9%3A26-cv-80696&type=r">CourtListener docket →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Defense Counsel Notice</h3>
+        <p class="card-body" style="font-size:14px;">When USAHI's counsel appears (likely Ofer Moshe Amir, who is defending the parallel <em>Milton</em> case), the answer or initial discovery exchange will disclose the full plaintiff number. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22USA+Home+Improvement%22&type=r">CourtListener — USAHI cases →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Rule 26(a) Initial Disclosures</h3>
+        <p class="card-body" style="font-size:14px;">Typically due ~14 days after Rule 26(f) conference. Plaintiff must produce the full number with damages computation.</p>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL PLAINTIFF — 2 TCPA FILINGS IN 2026</span>
+      <span class="pill pill--warn">FIRM TIER: HIGH-VOLUME PLAINTIFFS' BAR</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">A Florida home-improvement defendant taking its second TCPA class action in 11 weeks — with no documented consent flow and a sender DID that screams "unscrubbed list".</h2>
+      <p class="section-lede">USAHI just got sued again. The first case (<em>Milton</em>) hasn't even cleared the pleadings — and the same theory is back at them in West Palm Beach. Lead with <strong>DNC scrubbing + Litigator Scrub</strong>. The compliance gap is documented, the plaintiff firm is among the most prolific TCPA filers in the country, and the answer clock starts now.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title"><i data-lucide="phone-call" style="width:18px;height:18px;vertical-align:-3px;"></i> DNC Scrubbing</h3>
+        <p class="card-body">Plaintiff's 7454 number was on the National DNC since 2014 — over a decade before USAHI texted it. The complaint pleads <strong>federal DNC (§ 64.1200(c))</strong> as the primary violation. Real-time DNC scrub against the National Registry + an internal DNC suppression list closes this gap immediately. <span class="src-tag"><a href="https://www.courtlistener.com/?q=9%3A26-cv-80696&type=r">PACER docket →</a></span></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Secondary</div>
+        <h3 class="card-title"><i data-lucide="user-check" style="width:18px;height:18px;vertical-align:-3px;"></i> Litigator Scrub</h3>
+        <p class="card-body">Wohlstein has already filed and settled one TCPA case in 2026 (<em>v. BH NBV North Owner</em>). Once we recover the 7454 number, it goes straight onto the litigator list. Pitch Litigator Scrub as the second layer of defense — block repeat plaintiffs before the next text fires. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Daniel+Wohlstein%22&type=r">CourtListener →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-sell Tier</div>
+        <h3 class="card-title"><i data-lucide="file-search" style="width:18px;height:18px;vertical-align:-3px;"></i> Consent Capture / Policies &amp; Procedures</h3>
+        <p class="card-body">Defendant's Privacy Policy was updated <strong>February 23, 2026</strong> — after the alleged texts but before this filing — and still fails to mention TCPA, DNC, or autodialer disclosures. Internal DNC (§ 64.1200(d)) requires a written policy and training. <span class="src-tag"><a href="https://usahomeimprovement.com/privacy-policy">USAHI Privacy Policy →</a></span></p>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Pitch Angle</div>
+      <h3 class="card-title">"You got sued for the same thing 11 weeks ago. The next one's already filed. Let's stop the third."</h3>
+      <p class="card-body">USAHI is in a pattern, not an accident. <em>Milton v. USA Home Improvement</em> (S.D. Fla. 1:26-cv-22028) was filed March 25, 2026 — that case is still in motion practice, with defense filing a Rule 12(b)(6) on April 17 and plaintiff amending May 1. <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.courtlistener.com/?q=%22USA+Home+Improvement%22+TCPA&type=r" style="color:#C9C9C9;">CourtListener →</a></span> Now Wohlstein hits them in West Palm Beach with the same DNC theory and a "several thousands" class. The plaintiff firm (Shamis &amp; Gentile + Edelsberg Law) just secured class certification in <em>Mason v. Spring EQ</em> in September 2025 on the identical DNC-Registry class theory — meaning they have a fresh certification playbook ready to deploy here.</p>
+      <p class="card-body" style="margin-top:12px;">The opening line writes itself: <em>"You're getting hit because the lists you're texting aren't scrubbed. We scrub them. Today. Before the third lawsuit lands."</em> Lead with DNC scrub, stack Litigator Scrub on top, then close the loop with a documented internal DNC policy — because § 64.1200(d) requires a written program, not just a clean list.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Privately-held South Florida home improvement contractor — SMS-heavy demand-gen, no visible compliance leadership.</h2>
+      <p class="section-lede">USAHI is a 15+ year old Florida LLC selling impact windows, doors, roofing, HVAC, and PACE-financed renovations to South Florida homeowners. Lead-driven, SMS-driven, Salesforce-based. Privately held. No public compliance officer. <span class="src-tag"><a href="https://usahomeimprovement.com/about">USAHI About →</a></span></p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">USA Home Improvement, LLC d/b/a USAHI</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>USA Home Improvement, LLC <span class="src-tag"><a href="https://usahomeimprovement.com">usahomeimprovement.com →</a></span></dd>
+          <dt>DBA</dt><dd>USAHI</dd>
+          <dt>Formation State</dt><dd>FL (Sunbiz lookup deferred — registry returned 403)</dd>
+          <dt>HQ Address</dt><dd>80 Ansin Blvd, Hallandale Beach, FL 33009 (per Compl. ¶ 11) <span class="src-tag">·</span> Alt: 2201 Griffin Rd, Fort Lauderdale (per SignalHire)</dd>
+          <dt>Founded</dt><dd>~2010 (15+ years per company About page) <span class="src-tag"><a href="https://usahomeimprovement.com/about">→</a></span></dd>
+          <dt>Vertical</dt><dd>Home improvement / impact windows / PACE-financed renovations</dd>
+          <dt>Main Phone</dt><dd>(877) 554-6373 <span class="src-tag"><a href="https://usahomeimprovement.com">→</a></span></dd>
+          <dt>Main Email</dt><dd>info@gousahi.com</dd>
+          <dt>Public/Private</dt><dd>Private LLC</dd>
+          <dt>Parent</dt><dd>None identified</dd>
+          <dt>CRM/Tech</dt><dd>Salesforce (confirmed in Privacy Policy) <span class="src-tag"><a href="https://usahomeimprovement.com/privacy-policy">→</a></span></dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Privacy Policy updated Feb 23, 2026 — and still fails to mention "TCPA", "Do Not Call", or DNC scrubbing.</h3>
+        <p class="card-body">The policy was rewritten just months after the alleged July–September 2025 texts — a textbook reactive cleanup. Yet it still doesn't reference the TCPA, the National DNC Registry, or any internal DNC list, and qualifies "data cleansing" as occurring "if applicable". The current site advertises <em>"By providing your phone number on our website, you will not be subscribed to any SMS communications unless you explicitly check one or both SMS opt-in boxes"</em> — yet plaintiff alleges he was texted without ever submitting a website form, suggesting the lead was purchased from Angie's List or a downstream aggregator. <span class="src-tag" style="color:#A8A8A8;"><a href="https://usahomeimprovement.com/privacy-policy" style="color:#C9C9C9;">USAHI Privacy Policy →</a></span></p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock starts on service · second TCPA case in 11 weeks · pre-hurricane-season demand peak</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 11, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=9%3A26-cv-80696&type=r">PACER →</a></span></dd>
+        <dt>Summons Issued</dt><dd>June 11, 2026 (Doc #4)</dd>
+        <dt>Answer Deadline</dt><dd>21 days after service (date TBD) — likely early July 2026</dd>
+        <dt>Parallel Case</dt><dd><em>Milton v. USAHI</em> (1:26-cv-22028) filed Mar 25, 2026 — MTD pending, plaintiff filed FAC May 1 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22USA+Home+Improvement%22+TCPA&type=r">→</a></span></dd>
+        <dt>Vertical Timing</dt><dd>Florida hurricane-prep impact-window demand peaks May–October — outbound SMS volume is at annual high right now</dd>
+        <dt>Compliance Window</dt><dd>Privacy Policy refresh Feb 2026 shows defendant is aware of the gap but hasn't operationalized scrubbing</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Related Entity</th>
+            <th>Relationship</th>
+            <th>Vertical</th>
+            <th>TCPA Relevance</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>gousahi.com</td>
+            <td>Alt domain / employee email domain</td>
+            <td>Same operating entity</td>
+            <td>Same SMS infra implied — single-buyer opportunity</td>
+            <td><span class="pill pill--info">Same Entity</span></td>
+          </tr>
+          <tr>
+            <td>Angie's List (Angi Inc.)</td>
+            <td>Upstream lead source (per Compl. ¶ 15–16)</td>
+            <td>Lead generation</td>
+            <td>Upstream consent gap — plaintiff alleges Angie's List sold his info to USAHI</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+          <tr>
+            <td>Salesforce</td>
+            <td>CRM vendor of record</td>
+            <td>SaaS</td>
+            <td>Confirms platform — integration target for real-time DNC scrub API</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+          <tr>
+            <td>Unknown SMS platform (954-884-8586)</td>
+            <td>Outbound SMS sender</td>
+            <td>A2P 10DLC / dialer</td>
+            <td>Vendor identity unknown — should be a discovery target</td>
+            <td><span class="pill pill--warn">Investigate</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Defendant is taking back-to-back TCPA class actions from two of Florida's most prolific plaintiff firms — and the second-filed case uses a theory the same firms just certified in California.</h2>
+      <p class="section-lede">In <em>Milton</em>, USAHI moved to dismiss rather than settle — signaling willingness to litigate. The plaintiff bar responded by amending. Now Wohlstein's case lands in the West Palm Beach division with a "several thousands" DNC class. The Mason v. Spring EQ class certification (Sept 2025) is the blueprint.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Wohlstein v. USA Home Improvement, LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>9:26-cv-80696-EA <span class="src-tag"><a href="https://www.courtlistener.com/?q=9%3A26-cv-80696&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Court</dt><dd>S.D. Fla. — West Palm Beach division</dd>
+          <dt>Judge</dt><dd>"EA" initials (Article III judge not confirmed)</dd>
+          <dt>Plaintiff</dt><dd>Daniel Wohlstein (Palm Beach County, FL)</dd>
+          <dt>Lead Counsel</dt><dd>Christopher Berman (FL Bar 1010654, Shamis &amp; Gentile P.A.) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1010654">FL Bar →</a></span></dd>
+          <dt>Co-Counsel</dt><dd>Scott Edelsberg (FL Bar 0100537, Edelsberg Law P.A.) <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=0100537">FL Bar →</a></span></dd>
+          <dt>Class</dt><dd>Putative Rule 23 — "Do Not Call Registry Class" — "several thousands" pled</dd>
+          <dt>Primary Claim</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c) (Federal DNC)</dd>
+          <dt>Secondary Claims</dt><dd>47 CFR § 64.1200(d) (Internal DNC) · 47 CFR § 64.1200(e)</dd>
+          <dt>Theory</dt><dd>Telemarketing SMS to DNC-registered residential cell without prior express written consent; lead purchased from Angie's List</dd>
+          <dt>Channel</dt><dd>SMS only (from 954-884-8586)</dd>
+          <dt>Damages Sought</dt><dd>$500 per text (statutory) · up to $1,500 per text (treble for willful)</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer clock</span></dd>
+          <dt>Likely Defense</dt><dd>Ofer Moshe Amir (per parallel <em>Milton</em> case)</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Shamis &amp; Gentile P.A. + Edelsberg Law P.A.</h3>
+        <dl class="kv">
+          <dt>Lead Firm</dt><dd>Shamis &amp; Gentile, P.A. <span class="src-tag"><a href="https://www.shamisgentile.com">shamisgentile.com →</a></span></dd>
+          <dt>Address</dt><dd>14 NE 1st Avenue, Suite 705, Miami, FL 33132</dd>
+          <dt>Phone</dt><dd>(305) 479-2299</dd>
+          <dt>Co-Firm</dt><dd>Edelsberg Law, P.A. — 20900 NE 30th Ave #417, Aventura, FL 33180 <span class="src-tag"><a href="https://edelsberglaw.com">edelsberglaw.com →</a></span></dd>
+          <dt>Co-Firm Phone</dt><dd>(305) 975-3320</dd>
+          <dt>Berman Bar #</dt><dd>FL 1010654 — cberman@shamisgentile.com</dd>
+          <dt>Edelsberg Bar #</dt><dd>FL 0100537 — scott@edelsberglaw.com</dd>
+          <dt>Bar Status</dt><dd><span class="pill pill--ok">Active</span> · No discipline found</dd>
+          <dt>TCPA Power Ranking</dt><dd>Andrew Shamis (founding partner) named in TCPAWorld Power Rankings 2023 &amp; 2025 <span class="src-tag"><a href="https://tcpaworld.com/?s=Shamis+Gentile">TCPAWorld →</a></span></dd>
+          <dt>Filing Volume</dt><dd>Edelsberg Law: 400+ TCPA cases on CourtListener · Shamis &amp; Gentile: 73+ <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Edelsberg+Law%22+TCPA&type=r">→</a></span></dd>
+          <dt>Notable Recoveries</dt><dd>DeFranks v. NastyGal $5M · Picton v. Greenway Dodge $2.745M · Banks v. Fuccillo $1.864M · Toyota of North Miami $889K <span class="src-tag"><a href="https://tcpaworld.com/?s=Edelsberg">→</a></span></dd>
+          <dt>Recent Certification</dt><dd>Mason v. Spring EQ LLC — DNC class certified Sept 2025 (C.D. Cal.) with both firms as class counsel <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">→</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">Extreme</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff/Firm Template</div>
+      <h3 class="card-title">The Shamis/Edelsberg DNC-Registry Class Template</h3>
+      <p class="card-body">This is the same theory the firm pair just got certified in <em>Mason v. Spring EQ LLC</em> (C.D. Cal., Sept 2025) — a "DNC Registry Class" capturing everyone who received more than one telemarketing text in a 12-month window while their number was on the National DNC for 30+ days. The template requires: (1) DNC-registered plaintiff (Wohlstein since 2014), (2) two or more texts in 12 months (July 28 and Sept 18, 2025 pled), (3) telemarketing content (impact windows + promo codes), and (4) lack of EBR or express written consent. Discovery focuses on the defendant's SMS sending records — which makes class identification "ministerial" (per Compl. ¶ 38) and certification highly tractable. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Shamis+%26+Gentile%22+TCPA&type=r">CourtListener — Shamis &amp; Gentile →</a></span></p>
+    </div>
+
+    <h3 style="font-size:20px; font-weight:600; margin:32px 0 16px;">Concurrent &amp; Recent Litigation</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Case Name</th>
+            <th>Docket</th>
+            <th>Court</th>
+            <th>Filed</th>
+            <th>Status</th>
+            <th>Theory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Wohlstein v. USA Home Improvement</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+            <td class="num">9:26-cv-80696</td>
+            <td>S.D. Fla.</td>
+            <td class="num">2026-06-11</td>
+            <td><span class="pill pill--red">Active · Just Filed</span></td>
+            <td>Federal DNC + Internal DNC (SMS)</td>
+          </tr>
+          <tr>
+            <td>Milton v. USA Home Improvement LLC</td>
+            <td class="num">1:26-cv-22028</td>
+            <td>S.D. Fla.</td>
+            <td class="num">2026-03-25</td>
+            <td><span class="pill pill--warn">MTD Pending · FAC Filed</span></td>
+            <td>TCPA — defense filed Rule 12(b)(6) 4/17; plaintiff amended 5/1 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22USA+Home+Improvement%22+TCPA&type=r">→</a></span></td>
+          </tr>
+          <tr>
+            <td>Wohlstein v. BH NBV North Owner LLC (same plaintiff)</td>
+            <td class="num">1:26-cv-20283</td>
+            <td>S.D. Fla.</td>
+            <td class="num">2026-01-15</td>
+            <td><span class="pill pill--ok">Settled · Voluntary Dismissal w/ Prejudice</span></td>
+            <td>TCPA — dismissed 2026-03-03 (settled in ~7 weeks) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Daniel+Wohlstein%22&type=r">→</a></span></td>
+          </tr>
+          <tr>
+            <td>Mason v. Spring EQ LLC (same firm, blueprint)</td>
+            <td class="num">—</td>
+            <td>C.D. Cal.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--danger">DNC Class Certified · Sept 2025</span></td>
+            <td>DNC Registry Class — Shamis &amp; Edelsberg as class counsel</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#A8A8A8;">Open intel gaps to close before first dial</div>
+      <h3 class="card-title">What the rep should resolve before opening the call</h3>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li>✗ <strong>Full plaintiff 7454 number</strong> — needed for litigator scrub. Pull ECF #1 from PACER (~$1.20) or wait for Rule 26(a) disclosures.</li>
+        <li>✗ <strong>USAHI corporate registry data</strong> — Sunbiz returned 403; Bizapedia / OpenCorporates blocked. Need registered agent, formation date, officers via direct Sunbiz lookup.</li>
+        <li>✗ <strong>Defense counsel</strong> — not yet appeared. Likely Ofer Moshe Amir (defended <em>Milton</em>) but unconfirmed for this case.</li>
+        <li>✗ <strong>Article III judge identity</strong> — "EA" initials behind the case number; PACER docket sheet will reveal full assignment.</li>
+        <li>✗ <strong>Owner / C-suite</strong> — no founder, owner, GC, CMO, CCO, or COO names identified across TheOrg, SignalHire, LinkedIn, ZoomInfo. Critical decision-maker gap.</li>
+        <li>✗ <strong>SMS platform vendor</strong> — 954-884-8586 is a 10DLC-style local number; carrier and provider unidentified.</li>
+        <li>✗ <strong>Sender DID consumer reports</strong> — 800notes/YouMail/Tellows/RoboKiller all returned 403/404; no third-party complaint data on this DID.</li>
+        <li>✗ <strong>Milton case current posture</strong> — confirm MTD ruling or settlement status to inform Wohlstein defense posture prediction.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call the main line first. The C-suite is invisible — work the gatekeeper to the GC or marketing owner.</h2>
+      <p class="section-lede">USAHI publishes no executive names. No GC, CMO, CCO, or owner is identified on the company website, TheOrg, SignalHire, or LinkedIn. The fastest path in is the main line at (877) 554-6373 or info@gousahi.com — ask for the General Counsel or "whoever handles the Wohlstein lawsuit just filed in West Palm Beach". Operational contacts below are inferred from SignalHire and follow the {first-initial}{last}@gousahi.com pattern.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px; background:var(--gray-05);">
+      <div class="card-meta">Inferred Email Pattern</div>
+      <h3 class="card-title" style="font-family:var(--font-mono); font-size:18px;">{first_initial}{last}@gousahi.com</h3>
+      <p class="card-body" style="font-size:14px;">Pattern derived from SignalHire-listed staff emails (e.g., bcrespo@, cbaldridge@, kmahbub@, cvasquez@). Only the generic info@gousahi.com is published. All individual emails carry a <span class="pill pill--warn">PATTERN</span> confidence pill until verified. <span class="src-tag"><a href="https://www.signalhire.com/companies/usa-home-improvement">SignalHire →</a></span></p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Name &amp; Role</th>
+            <th>Title &amp; Context</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>USA Home Improvement</strong><br><span class="pill pill--dark">MAIN LINE</span></td>
+            <td>Company switchboard — ask for GC or "whoever owns the marketing texts". <span class="src-tag"><a href="https://usahomeimprovement.com">→</a></span></td>
+            <td>(877) 554-6373</td>
+            <td>info@gousahi.com<br><span class="pill pill--ok">VERIFIED</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel</strong><br><span class="pill pill--dark">GC</span></td>
+            <td>Identity unknown — not published. Primary TCPA decision-maker. Critical gap.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Marketing Officer</strong><br><span class="pill pill--dark">CMO</span></td>
+            <td>Identity unknown — owns SMS demand-gen budget. Critical gap.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Chief Compliance Officer</strong><br><span class="pill pill--dark">CCO</span></td>
+            <td>Identity unknown — no compliance officer surfaced. Likely role does not exist at this org size.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Kabir Mahbub</strong><br><span class="pill pill--dark">SEO / DIGITAL</span></td>
+            <td>SEO Specialist — closest identified individual to marketing/lead-gen operations. Likely warm referral to CMO/marketing owner. <span class="src-tag"><a href="https://www.signalhire.com/companies/usa-home-improvement">SignalHire →</a></span></td>
+            <td>—</td>
+            <td>kmahbub@gousahi.com<br><span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Cristel Vasquez</strong><br><span class="pill pill--dark">APPOINTMENTS</span></td>
+            <td>Appointment Setter — likely on the receiving end of inbound SMS replies. Useful operational source. <span class="src-tag"><a href="https://www.signalhire.com/companies/usa-home-improvement">SignalHire →</a></span></td>
+            <td>—</td>
+            <td>cvasquez@gousahi.com<br><span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Brenda Crespo</strong><br><span class="pill pill--dark">OPS</span></td>
+            <td>Permit Coordinator — administrative gateway. Not a decision-maker but may route to ops leadership. <span class="src-tag"><a href="https://www.signalhire.com/companies/usa-home-improvement">SignalHire →</a></span></td>
+            <td>—</td>
+            <td>bcrespo@gousahi.com<br><span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Christine Baldridge</strong><br><span class="pill pill--dark">ENGINEERING</span></td>
+            <td>Field Engineer — installation-side ops. <span class="src-tag"><a href="https://www.signalhire.com/companies/usa-home-improvement">SignalHire →</a></span></td>
+            <td>—</td>
+            <td>cbaldridge@gousahi.com<br><span class="pill pill--warn">PATTERN</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">OUTSIDE</span></td>
+            <td>Not yet appeared in Wohlstein. Likely <strong>Ofer Moshe Amir</strong> (defended <em>Milton v. USAHI</em>). Confirm via PACER once notice of appearance is filed. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22USA+Home+Improvement%22+TCPA&type=r">→</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:24px; background:var(--gray-05);">
+      <div class="card-meta">Plaintiff Counsel (Reference Only — Do Not Outreach)</div>
+      <h3 class="card-title">Berman &amp; Edelsberg</h3>
+      <p class="card-body" style="font-size:14px;">Christopher Berman (FL Bar 1010654) — Shamis &amp; Gentile P.A., 14 NE 1st Ave Ste 705, Miami FL 33132 · (305) 479-2299 (per PACER) · cberman@shamisgentile.com. Scott Edelsberg (FL Bar 0100537) — Edelsberg Law P.A., 20900 NE 30th Ave #417, Aventura FL 33180 · (305) 975-3320 (per PACER) · scott@edelsberglaw.com. Listed for situational awareness only — this is the opposing bar. <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=1010654">FL Bar Berman →</a></span> <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/profile/?num=0100537">FL Bar Edelsberg →</a></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The answer clock is the lever — and the second TCPA case in 11 weeks is the wedge.</h2>
+      <p class="section-lede">Defendant has a 21-day answer clock that started June 11 on filing (running from service date). The parallel <em>Milton</em> case is already costing them defense fees. Get in before they pick defense counsel and lock in the budget conversation.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px;">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 — Today</div>
+        <h3 class="card-title">1. PACER pull + main-line cold call</h3>
+        <p class="card-body" style="font-size:14px;">Pull ECF #1 from PACER (~$1.20) to recover the full 7454 number for litigator scrub. Simultaneously call (877) 554-6373 and ask for the General Counsel — opening line: <em>"I'm calling about the lawsuit filed against you yesterday in West Palm Beach federal court. Wohlstein. This is the second one this quarter."</em></p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2–3</div>
+        <h3 class="card-title">2. Email cadence to GC + marketing</h3>
+        <p class="card-body" style="font-size:14px;">If main-line call doesn't route, send email to info@gousahi.com AND kmahbub@gousahi.com (SEO/digital — closest to marketing ops). Subject: <em>"Wohlstein DNC class action — same theory as Milton — let's stop case #3"</em>. Reference Case No. 9:26-cv-80696 and the pending Milton MTD.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 4–7</div>
+        <h3 class="card-title">3. Run litigator scrub once number recovered</h3>
+        <p class="card-body" style="font-size:14px;">When the 7454 number is in hand, run blacklistBulk lookup. Whatever the result, use it as the second-call proof-point: <em>"Your sending list still has the plaintiff on it / has people just like him on it. Let me show you what real-time scrub looks like."</em></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7–14</div>
+        <h3 class="card-title">4. Monitor PACER for defense counsel</h3>
+        <p class="card-body" style="font-size:14px;">Once defense counsel files notice of appearance (likely Ofer Moshe Amir), pivot the pitch — defense counsel is the gatekeeper to a settlement-tied compliance overhaul. Position Blacklist as part of the remediation package.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14–21</div>
+        <h3 class="card-title">5. Close before answer is filed</h3>
+        <p class="card-body" style="font-size:14px;">The cleanest close happens BEFORE the answer is filed, while the budget conversation is still active. Reference the AEP-equivalent hurricane season SMS surge as the operational reason to scrub yesterday.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Cross-sell Path</div>
+        <h3 class="card-title">6. Internal DNC policy + training</h3>
+        <p class="card-body" style="font-size:14px;">After scrub is sold, layer in written internal DNC policy + training (§ 64.1200(d) requires it). Defendant's Privacy Policy refresh in Feb 2026 shows they're trying — give them the playbook.</p>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:32px;">
+      <div class="card-meta" style="color:#A8A8A8;">Trigger Conditions That Change The Plan</div>
+      <ul class="clean tight" style="color:#E0E0E0;">
+        <li><strong>Milton MTD granted</strong> — defendant becomes emboldened; pitch shifts to "you got lucky once, here's why Wohlstein is different".</li>
+        <li><strong>Wohlstein voluntarily dismissed / settled fast</strong> — given Wohlstein's BH NBV settlement history (~7 weeks), this is plausible; pitch shifts to "the next plaintiff is already out there".</li>
+        <li><strong>Defense counsel files MTC arbitration</strong> — pivot to consent-capture pitch (no arbitration clause if no signed agreement).</li>
+        <li><strong>Class certified</strong> — exposure math goes nuclear; budget conversation moves from procurement to GC/CFO/board.</li>
+        <li><strong>Third TCPA case filed</strong> — call it: "told you so" — close immediately on multi-year contract.</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--warn">2ND TCPA CASE IN 11 WEEKS — PATTERN ESTABLISHED</span>
+      <span class="pill pill--info">SCRUB DEFERRED — PULL PACER #1 FIRST</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
