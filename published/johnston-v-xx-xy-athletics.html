@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnston v. XX-XY Athletics — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case td{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin:0 0 12px; }
+.callout ul{ margin:0; padding-left:20px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+.step{ display:grid; grid-template-columns:60px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:32px; font-weight:600; color:var(--bl-red); line-height:1; }
+.step-body h4{ font-size:17px; margin:0 0 6px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Caller-ID Class Action · DTC SMS Marketer · Jibrael Hindi Filing · No Visible Privacy Policy</p>
+      <h1 class="hero-tagline">Johnston v.<br>XX-XY Athletics</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03234</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1601(e)(1)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Gerald D. Lane Jr. <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Law Offices of Jibrael S. Hindi</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Bianca Johnston is already a confirmed serial filer.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Johnston complaint screenshots show the <em>sender</em> DID (833-369-9966) and message content, but redact the plaintiff's own number. Scrub is deferred pending PACER pull or discovery — however, plaintiff-name cross-check on CourtListener confirms Johnston has 10+ prior/concurrent TCPA filings, which is its own pitch trigger.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--danger">Serial Filer Confirmed · 10+ Cases</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint paragraph 15-16 alleges plaintiff is "regular user" of the receiving cellular number used for "personal purposes" and as a "residential telephone line," but the 10-digit number itself is not pled and the screenshot exhibits (page 4) redact the To: field.</div>
+      </div>
+      <p class="scrub-body-text">No <code>blacklistBulk</code> lookup was run because no plaintiff number is available. The visible numbers in the complaint are the <strong>sender</strong> DID (+1 833-369-9966) and the SMS link-tracker domain <strong>0snd.com</strong> — both attributable to XX-XY Athletics's marketing infrastructure, not to the plaintiff. CourtListener cross-check of plaintiff "Bianca Johnston" returned 10+ prior/concurrent TCPA filings in C.D. Cal. (Riverside seat), confirming serial-filer status even without the phone. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px">Sending DID #1</div>
+        <h3 class="card-title">+1 (833) 369-9966</h3>
+        <p class="card-body">Toll-free 833 prefix, consistent with outbound SMS marketing dialer infrastructure. The 800notes / YouMail / Tellows / RoboKiller crowdsource sites all returned 403/404 during enrichment — no consumer sender-identification reports retrievable today. SMS link-shortener domain <code>0snd.com</code> appears in the screenshot bodies and is consistent with an Attentive/Postscript-class aggregator footprint.</p>
+        <div style="margin-top:12px">
+          <span class="pill pill--info">Sender DID</span>
+          <span class="pill pill--gap">No Consumer Reports Retrieved</span>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px">Recovery Path #1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">The unredacted complaint (≈$1.20 on PACER) may surface the plaintiff number if it appears in an exhibit or civil cover sheet. The publicly available copy used for this report is the filed PDF.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px">Recovery Path #2</div>
+        <h3 class="card-title">Wait for defense-counsel notice</h3>
+        <p class="card-body">Once defense counsel appears and serves Rule 26 initial disclosures, the plaintiff number will be disclosed. Use the answer-deadline window to pitch first.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta" style="margin-bottom:6px">Recovery Path #3</div>
+        <h3 class="card-title">Discovery — Interrogatory #1</h3>
+        <p class="card-body">A targeted interrogatory will surface the recipient number plus any other class-class numbers Defendant transmitted to. Defendant gets the scrub product as part of the response workflow.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED · PULL PACER OR AWAIT DISCOVERY</span>
+      <span class="pill pill--danger">SERIAL FILER: 10+ PRIOR/CONCURRENT TCPA SUITS</span>
+      <span class="pill pill--warn">PLAINTIFF FIRM ON TCPAWORLD 2026 POWER RANKINGS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Two-year-old DTC apparel startup with a 404'd privacy policy, a polarizing founder, and a Jibrael Hindi class action on day one of discovery.</h2>
+      <p class="section-lede">Committee of Five Inc. (d/b/a XX-XY Athletics) launched in March 2024, scaled SMS-first DTC acquisition with no visible compliance scaffolding, and got hit by the most prolific TCPA plaintiff's firm in the country before its second birthday. Lead with <strong>Consent Capture / Record Retention</strong> — the privacy policy and TOS URLs both return 404, which is a smoking gun the firm will exploit at deposition. Pair with <strong>Litigator Scrub</strong> on a forward-looking basis to stop the next Johnston-style copycat suit.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <p class="card-body">Defendant's signup flow promotes "20% off + free shipping" with no visible TCPA consent language, and standard Shopify legal paths (<code>/pages/privacy-policy</code>, <code>/pages/terms-of-service</code>) return HTTP 404. Blacklist's consent-capture product fixes the front-end disclosure and back-end retention in one pass. <span class="src-tag"><a href="https://xx-xyathletics.com">xx-xyathletics.com →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Plaintiff Bianca Johnston is a confirmed serial filer with 10+ C.D. Cal. cases against DTC e-commerce defendants. Scrubbing the active SMS list against Blacklist's litigator database prevents the next Johnston (or the next Hindi-firm plaintiff) from being on it. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener →</a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Pitch</div>
+        <h3 class="card-title">Compliance Audit / Policies &amp; Procedures</h3>
+        <p class="card-body">Company is &lt;2 years old with 1-10 employees per SignalHire — no in-house General Counsel or CCO identified. A packaged P&amp;P audit lets the COO/CFO bolt on a compliance posture without hiring legal. <span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></p>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#C9C9C9; margin-bottom:8px">Pitch Angle</div>
+      <h3 class="card-title">"Your privacy policy URL returns a 404. So does your TOS. That's the first slide in their summary judgment deck."</h3>
+      <div class="card-body" style="margin-top:12px">
+        <p style="margin-top:0">XX-XY Athletics is a politically loud, culture-war-adjacent DTC brand whose founder (Jennifer Sey, ex-Levi's Brand President) has a giant public profile and a habit of inviting controversy. That makes them a magnet for plaintiff's firms — and Jibrael Hindi's office, which filed this case, is on the TCPAWorld 2026 Power Rankings of "most dangerous TCPA plaintiff's lawyers." The angle on the first call is not to debate the merits — it's to point out that the defendant is currently shipping SMS marketing with no published privacy policy, no published TOS, and a sender DID/aggregator (<code>0snd.com</code>) that the complaint already has the screenshots of.</p>
+        <p>Anchor on the COO (Josh Sims) or the CFO (Cindy Bedard). The founder/CEO is too busy fighting public-policy fights to take a vendor call cold; the COO owns vendor relationships at a 10-person startup. Frame Blacklist as a turnkey "compliance scaffolding" — litigator scrub on the outbound list, consent capture on the signup flow, policies and procedures published at the standard URLs — that turns a $1M-$5M class-damages exposure into a defensible posture before the 21-day answer clock runs out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Sub-2-year-old Denver-based activist DTC apparel brand built around a polarizing founder.</h2>
+      <p class="section-lede">Committee of Five Inc. is a small (1-10 headcount on SignalHire / 2-10 on LinkedIn), founder-led startup that sells performance activewear under the XX-XY Athletics brand and uses culture-war positioning as a primary acquisition channel. The business model is high-velocity DTC e-commerce on Shopify with SMS and email at the top of funnel.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile — Committee of Five Inc.</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Committee of Five Inc. (d/b/a XX-XY Athletics) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/XX-XY_Athletics">Wikipedia →</a></span></dd>
+          <dt>Entity Type</dt><dd>Corporation (formation state unconfirmed — CO SoS lookup blocked 403)</dd>
+          <dt>HQ</dt><dd>Denver, Colorado <span class="src-tag"><a href="https://en.wikipedia.org/wiki/XX-XY_Athletics">Wikipedia →</a></span></dd>
+          <dt>Founded</dt><dd>March 2024</dd>
+          <dt>Founder / CEO</dt><dd>Jennifer Sey (ex-Levi Strauss Brand President; NY Post columnist) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/XX-XY_Athletics">Wikipedia →</a></span></dd>
+          <dt>Employees</dt><dd>1-10 (SignalHire) / 2-10 (LinkedIn) <span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></dd>
+          <dt>Revenue</dt><dd>Private; no public estimate</dd>
+          <dt>Vertical</dt><dd>DTC athletic apparel / activewear</dd>
+          <dt>Website</dt><dd>xx-xyathletics.com (Shopify-hosted) <span class="src-tag"><a href="https://xx-xyathletics.com">xx-xyathletics.com →</a></span></dd>
+          <dt>Public Statements</dt><dd>Brand positioning is openly anti-trans-in-women's-sports; founder is a vocal cultural commentator. Brand cause-marketing partners include Riley Gaines, Dakota Meyer, Brooke Slusser.</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#C9C9C9">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">No published privacy policy. No published TOS. Active SMS marketing.</h3>
+        <div class="card-body" style="margin-top:12px">
+          <p style="margin-top:0">Both <code>xx-xyathletics.com/pages/privacy-policy</code> and <code>xx-xyathletics.com/pages/terms-of-service</code> — the default Shopify legal-page paths — return HTTP 404. Meanwhile, the homepage signup banner promises "20% off + free shipping" on email capture with no TCPA disclosure language at the point of submission. The complaint cites <strong>47 C.F.R. § 64.1601(e)(1)</strong>, the caller-ID transmission rule, which is a near-default-grade technical violation when paired with the absent disclosure framework.</p>
+          <p style="margin-bottom:0"><span class="src-tag"><a href="https://xx-xyathletics.com">xx-xyathletics.com →</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Window: 21-day answer clock starts on service.</h3>
+      <div class="card-body" style="margin-top:12px">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 11, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03234&type=r">CourtListener →</a></span></dd>
+          <dt>Service Status</dt><dd>Summons requested 06/11/2026; service status not yet visible on CourtListener</dd>
+          <dt>Answer Deadline</dt><dd>21 days post-service (likely early-to-mid July 2026)</dd>
+          <dt>Concurrent Heat</dt><dd>Defendant is also active plaintiff in two civil-rights matters (D. Colo. 1:25-cv-01668 + 10th Cir. 26-1103) represented by Alliance Defending Freedom — legal bandwidth and attention are already split.</dd>
+          <dt>Seasonal Driver</dt><dd>DTC apparel — peak SMS volume Q3/Q4 (back-to-school + holiday). Scrub onboarding before August protects the highest-volume quarter.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px">Related Entities &amp; Cross-Sell Candidates</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>XX-XY Athletics</td>
+              <td>d/b/a of Committee of Five Inc.</td>
+              <td>DTC athletic apparel</td>
+              <td>Primary defendant — active SMS/email marketing on 0snd.com aggregator</td>
+              <td><span class="pill pill--red">Primary</span></td>
+            </tr>
+            <tr>
+              <td>0snd.com (SMS aggregator)</td>
+              <td>Marketing vendor (link-tracker domain)</td>
+              <td>SMS marketing tech</td>
+              <td>Vendor footprint cited in complaint screenshots — Blacklist scrub can plug at the aggregator layer for upstream defense</td>
+              <td><span class="pill pill--warn">Medium — Vendor Layer</span></td>
+            </tr>
+            <tr>
+              <td>Jennifer Sey (founder, prior employer)</td>
+              <td>Former Brand President, Levi Strauss &amp; Co.</td>
+              <td>Apparel / consumer goods</td>
+              <td>Founder network — Sey has portable C-suite credibility into other DTC apparel ventures</td>
+              <td><span class="pill pill--info">Low — Network Play</span></td>
+            </tr>
+            <tr>
+              <td>Athlete-ambassador brands</td>
+              <td>Cause-marketing partners (Gaines, Meyer, Slusser, etc.)</td>
+              <td>Athlete-endorsed merchandise</td>
+              <td>Adjacent SMS-marketing DTC brands in the same ambassador network</td>
+              <td><span class="pill pill--gap">Not in Scope</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit against the defendant, but the eleventh against this plaintiff in C.D. Cal. — and the firm files in waves.</h2>
+      <p class="section-lede">Defendant has no prior TCPA history (litigation heat is "cold"). The plaintiff and the firm, however, are running an active C.D. Cal. Riverside-seat campaign against DTC e-commerce brands. The Hindi/Lane template has been deployed against Fashion Nova, Tracksmith, Sneaker Politics, Seido Knives, ThirdLove, and others in the last 14 months.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Johnston v. Committee of Five Inc. d/b/a XX-XY Athletics</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>5:26-cv-03234 (C.D. Cal., Riverside Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03234&type=r">CourtListener →</a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Plaintiff</dt><dd>Bianca Johnston (San Bernardino County, CA)</dd>
+          <dt>Lead Counsel</dt><dd>Gerald D. Lane Jr. — CA Bar #352470 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CA Bar →</a></span></dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">Yes — Rule 23</span></dd>
+          <dt>Class Definition</dt><dd>All U.S. persons who received 2+ telemarketing calls in a 12-month period without CPN/ANI or telemarketer-name transmission (4-year lookback)</dd>
+          <dt>Statutes</dt><dd>47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1601(e)(1)</dd>
+          <dt>Theory</dt><dd>Caller-ID transmission failure — SMS solicitations did not transmit a telemarketer name as required by the rule</dd>
+          <dt>Channel</dt><dd>SMS only (screenshots from +1 833-369-9966 with 0snd.com links)</dd>
+          <dt>Class Size Pled</dt><dd>"Several thousands," "at least 50 persons"</dd>
+          <dt>Damages</dt><dd>$500/violation (negligent) · $1,500/violation (willful) · injunctive relief + fees</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> — 21-day answer clock starts on service</dd>
+          <dt>Docket Visibility</dt><dd>4 entries visible on CourtListener (complaint, summons request, NOIP, civil cover sheet); no judge assigned yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03234&type=r">CourtListener →</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h3 class="card-title">Gerald D. Lane Jr. — Law Offices of Jibrael S. Hindi</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm Address</dt><dd>1515 NE 26th Street, Wilton Manors, FL 33305</dd>
+          <dt>Firm Phone</dt><dd>754-444-7539 / 844-542-7235 <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Firm Email</dt><dd>jibrael@jibraellaw.com</dd>
+          <dt>Lead Counsel</dt><dd>Gerald D. Lane Jr. — gerald@jibraellaw.com</dd>
+          <dt>CA Bar #</dt><dd>352470 — active <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CA Bar →</a></span></dd>
+          <dt>Bar Address</dt><dd><span class="pill pill--warn">Cross-Jurisdiction Flag</span> CA-admitted attorney signing on behalf of a Florida-headquartered firm — standard plaintiff's-side pattern but worth noting</dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPAWorld Ranking</dt><dd><span class="pill pill--danger">2026 Power Rankings — Most Dangerous TCPA Plaintiff's Lawyers</span> <span class="src-tag"><a href="https://tcpaworld.com/?s=Jibrael+Hindi">TCPAWorld →</a></span></dd>
+          <dt>Self-Reported Results</dt><dd>$30M+ TCPA settlements · $200M+ class settlements · $15M+ FDCPA · $10M+ mass arbitration <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">Extreme</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <h3 class="card-title">Plaintiff / Firm Template — "Hindi/Lane DTC E-Commerce Sweep"</h3>
+      <p class="card-body" style="margin-top:8px">The Jibrael Hindi firm operates a recurring template against California-based DTC e-commerce brands: file a putative Rule 23 class action in C.D. Cal. (Riverside) under § 227(c)(5) / § 64.1601(e), screenshot the SMS exhibit, plead "several thousands" class size, and pressure the defendant toward early voluntary dismissal or class settlement. The firm cycles between Gerald D. Lane Jr. (Hindi firm) and Ignacio J. Hiraldo (IJH Law) as named counsel. Bianca Johnston has been the named plaintiff in at least 10 of these in the past 14 months, with documented voluntary dismissals against Seido Knives (Nov 2025) and Tracksmith (May 2026) suggesting an early-settlement pattern. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener →</a></span></p>
+    </div>
+
+    <div style="margin-bottom:24px">
+      <h3 style="font-size:20px; font-weight:600; margin:0 0 12px">Concurrent &amp; Recent Litigation</h3>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr><th>Case</th><th>Docket</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+          </thead>
+          <tbody>
+            <tr class="current-case">
+              <td><strong>Johnston v. Committee of Five Inc. (XX-XY Athletics)</strong></td>
+              <td>5:26-cv-03234 (C.D. Cal.)</td>
+              <td>2026-06-11</td>
+              <td><span class="pill pill--red">Active · This Case</span></td>
+              <td>§ 64.1601(e)(1) caller-ID transmission</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Thirdlove Inc.</td>
+              <td>5:26-cv-01173 (C.D. Cal.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Answer filed 05/21/2026</span></td>
+              <td>TCPA — same plaintiff</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Tracksmith Corporation</td>
+              <td>5:25-cv-03215 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--ok">Voluntarily dismissed 05/19/2026</span></td>
+              <td>TCPA — same plaintiff (early-settlement pattern)</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Lucky Color, Inc.</td>
+              <td>5:25-cv-03259 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--warn">OSC issued (Judge Kato)</span></td>
+              <td>TCPA — same plaintiff</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Seido Knives</td>
+              <td>5:25-cv-02612 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--ok">Voluntarily dismissed 11/20/2025</span></td>
+              <td>TCPA — same plaintiff (early-settlement pattern)</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Frontier Cooperative</td>
+              <td>5:25-cv-02574 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--warn">OSC re service</span></td>
+              <td>TCPA — same plaintiff</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Sneaker Politics LLC</td>
+              <td>5:25-cv-02488 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--gap">Dismissed for failure to prosecute 01/28/2026</span></td>
+              <td>TCPA — same plaintiff</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Slashop Inc.</td>
+              <td>5:25-cv-02449 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Closed</span></td>
+              <td>TCPA — same plaintiff</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Fashion Nova, LLC</td>
+              <td>5:25-cv-01699 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Active (Hiraldo counsel)</span></td>
+              <td>TCPA — same plaintiff</td>
+            </tr>
+            <tr>
+              <td>Johnston v. Seeding, Inc.</td>
+              <td>5:25-cv-00716 (C.D. Cal.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--ok">Terminated 04/16/2025</span></td>
+              <td>TCPA — same plaintiff (Lane counsel)</td>
+            </tr>
+            <tr>
+              <td>Committee of Five, Inc. v. Sullivan (defendant as plaintiff)</td>
+              <td>1:25-cv-01668 (D. Colo.)</td>
+              <td>2025</td>
+              <td><span class="pill pill--info">Active · on appeal</span></td>
+              <td>Civil rights / ADF representation</td>
+            </tr>
+            <tr>
+              <td>Committee of Five v. Sullivan (10th Cir.)</td>
+              <td>26-1103 (10th Cir.)</td>
+              <td>2026</td>
+              <td><span class="pill pill--info">Active appeal</span></td>
+              <td>Civil rights appeal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:8px"><span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Bianca+Johnston%22&type=r">CourtListener — Johnston filings →</a></span> &nbsp;<span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Committee+of+Five%22&type=r">CourtListener — Committee of Five →</a></span></div>
+    </div>
+
+    <div class="callout">
+      <h4 class="callout-title">Open intel gaps to close before first dial</h4>
+      <ul>
+        <li><strong>Plaintiff phone number not pled.</strong> Litigator scrub deferred — recover via PACER pull of ECF #1 or initial-disclosure exchange.</li>
+        <li><strong>Assigned judge / magistrate not yet visible.</strong> Case freshly filed; CourtListener has not yet shown judge assignment for 5:26-cv-03234.</li>
+        <li><strong>Defense counsel not yet appeared.</strong> 21-day answer clock starts on service. Expect ADF coordination or referral given defendant's other matters in D. Colo. / 10th Cir.</li>
+        <li><strong>Corporate registry record not retrieved.</strong> CO SoS, Bizapedia, OpenCorporates, Sunbiz, and CA SoS all returned 403/DNS errors. Formation state, registered agent, and officer names are not registry-confirmed (officer names below are from LinkedIn / SignalHire).</li>
+        <li><strong>No sender-DID consumer reports retrievable.</strong> 800notes, YouMail, Tellows, RoboKiller all returned 403/404 — cannot independently corroborate sender identity or call-volume estimate for 833-369-9966 today.</li>
+        <li><strong>Privacy policy &amp; TOS return 404.</strong> Can't quote actual language; can only document the absence. Worth a fresh check before first dial — defendant may publish in response to suit.</li>
+        <li><strong>No public settlement amounts for prior Hindi-firm TCPA cases.</strong> Self-reported aggregate figures only.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Anchor on the COO. The founder is too publicly busy to take a vendor call cold.</h2>
+      <p class="section-lede">XX-XY Athletics is a 1-10 person org with no in-house GC and no identified CCO. Vendor decisions at this stage default to the COO (Josh Sims) or CFO (Cindy Bedard). The Chief Product Officer and Director of Ecommerce both touch the SMS marketing infrastructure and are useful technical-buyer beachheads. Email pattern is mixed: <code>{first}@xx-xyathletics.com</code> for short first names, <code>{first.last}@xx-xyathletics.com</code> for longer — confidence pills below reflect SignalHire masked-preview evidence vs. pure inference.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name / Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Josh Sims</strong><br><span class="pill pill--dark">COO</span> <span class="pill pill--red">Call First</span></td>
+            <td>Chief Operating Officer · Vendor &amp; ops owner at a 10-person startup — the realistic decision-maker for compliance vendor onboarding.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>josh@xx-xyathletics.com <span class="pill pill--warn">PATTERN</span><br><span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cindy Bedard</strong><br><span class="pill pill--dark">CFO</span> <span class="pill pill--red">Budget Owner</span></td>
+            <td>Chief Financial Officer · Approves vendor spend; class-damages math ($1M-$5M exposure) lands here.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>cindy.bedard@xx-xyathletics.com <span class="pill pill--warn">PATTERN</span><br><span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jennifer Sey</strong><br><span class="pill pill--dark">Founder / CEO</span></td>
+            <td>Founder &amp; CEO since March 2024 · Ex-Levi's Brand President; high-profile public figure. Use as escalation lever, not first dial. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/XX-XY_Athletics">Wikipedia →</a></span></td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>jennifer@xx-xyathletics.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jennifer-sey-6516731">linkedin.com/in/jennifer-sey-6516731</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Krista Wiskow</strong><br><span class="pill pill--dark">CPO</span></td>
+            <td>Chief Product Officer · Owns product/catalog and likely touches the SMS-to-product-link flow that's in the complaint screenshots.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>krista.wiskow@xx-xyathletics.com <span class="pill pill--warn">PATTERN</span><br><span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brooke Reed</strong><br><span class="pill pill--dark">Director of Ecommerce</span> <span class="pill pill--info">Technical Buyer</span></td>
+            <td>Director of Ecommerce · Owns the Shopify storefront, signup popup, and SMS aggregator integration. Best technical buyer for consent-capture pitch.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>brooke@xx-xyathletics.com <span class="pill pill--warn">PATTERN</span><br><span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sarika Prakash</strong><br><span class="pill pill--dark">Head of Strategic Marketing</span></td>
+            <td>Head of Strategic Marketing · Sets SMS/email cadence and content; cares about not losing the channel.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>sarika@xx-xyathletics.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brett Craig</strong><br><span class="pill pill--dark">CCO (Creative)</span></td>
+            <td>Chief Creative Officer · Owns brand voice on outbound creative; not a primary buyer for compliance but a useful internal champion.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>brett@xx-xyathletics.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sarah Culvahouse Mills</strong><br><span class="pill pill--dark">Head of PR &amp; Comms</span></td>
+            <td>Heads PR/Comms · Useful for understanding how defendant will frame the suit publicly; not a buyer.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>sarah@xx-xyathletics.com <span class="pill pill--warn">PATTERN</span><br><span class="src-tag"><a href="https://www.signalhire.com/companies/xx-xy-athletics">SignalHire →</a></span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Josette Anderson</strong><br><span class="pill pill--dark">Sales &amp; Marketing Mgr</span></td>
+            <td>Sales &amp; Marketing Manager · Day-to-day SMS/email campaign operator.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>josette@xx-xyathletics.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Milagros Flores Arroyo</strong><br><span class="pill pill--dark">Product Manager</span></td>
+            <td>Product Manager.</td>
+            <td><span class="pill pill--gap">Not Published</span></td>
+            <td>milagros@xx-xyathletics.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not Found</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Counsel / CCO</strong><br><span class="pill pill--gap">Role Unfilled</span></td>
+            <td>No in-house GC or Chief Compliance Officer identified at a 1-10 person org — Blacklist is selling into the gap.</td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+            <td><span class="pill pill--gap">N/A</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">Not Yet Appeared</span></td>
+            <td>21-day answer clock runs from service. Watch for ADF-coordinated referral given defendant's existing ADF representation in D. Colo. / 10th Cir.</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">Plaintiff Counsel (Reference Only — Do Not Pitch)</h3>
+      <p class="card-body" style="margin-top:8px">Gerald D. Lane Jr. (CA #352470, gerald@jibraellaw.com) at <strong>The Law Offices of Jibrael S. Hindi</strong>, 1515 NE 26th Street, Wilton Manors, FL 33305, phone 754-444-7539 (per PACER signature block). Firm is on the TCPAWorld 2026 Power Rankings. Listed here for reference only — do not contact in connection with sales outreach. <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/352470">CA Bar →</a></span> <span class="src-tag"><a href="https://jibraellaw.com">jibraellaw.com →</a></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. The 21-day answer window is the close.</h2>
+      <p class="section-lede">Service is requested but not yet completed. The earlier the assigned rep makes contact — before defense counsel appears and locks down vendor evaluations — the warmer the audience for a turnkey scrub + consent-capture package. Round-robin owner takes the first call.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Day 1 — Email Josh Sims (COO) + Cindy Bedard (CFO) in parallel.</h4>
+          <p>Reference the docket number (5:26-cv-03234) in subject. Lead with the 404'd privacy policy and TOS URLs — that's the wedge. Offer a 15-minute call to walk through a one-page exposure model and the scrub-plus-consent-capture package. Bcc Brooke Reed (Ecom Director) so the technical buyer is in the loop from minute one.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Day 2 — LinkedIn touch to Jennifer Sey (CEO).</h4>
+          <p>Short, founder-to-founder-tone message. Do not engage the political content. Frame: "Saw the Johnston filing. We help DTC brands close caller-ID and consent gaps before the next copycat suit. Worth 10 minutes with whoever owns vendor on your side?" Sey's LinkedIn is the only verified contact channel for her.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Day 3-5 — Call cadence to COO/CFO, then Brooke Reed.</h4>
+          <p>Two calls per day, alternating times. When you reach Brooke Reed, pitch consent capture and litigator scrub as a Shopify-compatible plug-in — that lands. When you reach Sims or Bedard, pitch packaged policies-and-procedures + scrub as "answer-clock insurance."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Day 7 — Send the exposure memo.</h4>
+          <p>One-pager with: Hindi-firm TCPAWorld ranking, Johnston's 10+ prior C.D. Cal. filings, the early-settlement pattern from Seido/Tracksmith, the math on "several thousands × $500-$1,500 = $1M-$5M+" statutory exposure, and a single-line ask: "Let us scrub your current list before the next filer is on it."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Day 10-14 — Watch for defense-counsel notice of appearance.</h4>
+          <p>As soon as defense counsel files, pivot messaging to "we work with your litigation counsel, not around them" — vendor evaluations get harder once outside counsel is in the room. If ADF or an ADF-referred firm appears, expect a slower-moving evaluation. Time pressure is on the defendant side.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Day 14-21 — Last window before answer deadline.</h4>
+          <p>If no engagement yet, escalate via PR/Comms (Sarah Culvahouse Mills) framing the offer as a "compliance posture story" — defendant's brand voice cares about being on the right side of public narrative. This is a creative play, not a sales one, but it has worked into politically-positioned brands before.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px">
+      <h3 class="card-title">Trigger conditions that change the plan</h3>
+      <ul class="clean tight">
+        <li><strong>Defense counsel files MTC arbitration:</strong> pivot to consent-capture-only pitch (arbitration record-retention angle).</li>
+        <li><strong>Plaintiff voluntarily dismisses or amends down to individual claim:</strong> opportunity widens — defendant relieved, more receptive to forward-looking scrub.</li>
+        <li><strong>Second copycat suit filed by Hindi firm against XX-XY Athletics:</strong> drop everything, re-pitch as emergency.</li>
+        <li><strong>Plaintiff number surfaces in PACER/discovery:</strong> run blacklistBulk immediately; if hit, lead with the match on the next call.</li>
+        <li><strong>Defendant publishes a privacy policy / TOS at standard URLs:</strong> wedge softens — pivot to litigator scrub + record-retention pitch.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:24px">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--warn">SERIAL-FILER PLAINTIFF · EXPECT COPYCATS</span>
+      <span class="pill pill--info">RECOMMENDED LEAD: CONSENT CAPTURE + LITIGATOR SCRUB</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
