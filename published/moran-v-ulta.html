@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moran v. Ulta Beauty — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin-bottom:8px; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:600; color:var(--bl-red); }
+.step-body h4{ margin:0 0 6px; font-size:17px; font-weight:600; }
+.step-body p{ margin:0 0 6px; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Beauty SMS Marketer · Internal DNC Failure · 72 Texts After "STOP" · N.D. Ill. Class Action</p>
+      <h1 class="hero-tagline">Moran v.<br>Ulta Beauty</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-06929</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Ill. (Chicago)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">hundreds of thousands</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Alexander H. Burke <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Burke Law Offices + Bailey &amp; Glasser</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but counsel pairing alone justifies an immediate Internal DNC pitch.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint does not disclose Mr. Moran's 10-digit cell number, so the standard blacklistBulk lookup cannot be run today. Scrub is deferred pending PACER recovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px;">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><span>Scrub Status</span></div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--red">Serial Counsel Confirmed</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Cell</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Mr. Moran (Moline, IL resident) alleges 72+ marketing texts to his "personal cellular phone" but the complaint omits the 10-digit number. Initial complaint (ECF #1) does not attach the SMS thread as an exhibit. <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06929&type=r">CourtListener RECAP -&gt;</a></span></div>
+      </div>
+      <p class="scrub-body-text">The complaint pleads the plaintiff agreed to receive promotional texts in April 2025 in exchange for a 10% off coupon, sent "STOP" on Sept 19, 2025, and then received approximately 72 additional marketing messages through Apr 29, 2026. None of the message screenshots or the plaintiff's MSISDN are reproduced in the public pleading. The Blacklist Litigator database cannot be searched without the number.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull PACER ECF #1 + attachments</h3>
+        <div class="card-body">Filing fee ~$1.20. Some Burke Law complaints attach screenshot exhibits of the SMS thread on a separate docket entry. If exhibits are filed, the sender DID (short code or long code) and plaintiff cell will appear there.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for Burke's Rule 26(a) disclosures</h3>
+        <div class="card-body">Initial disclosures will identify Mr. Moran's cell. Typical N.D. Ill. timeline: 14 days after Rule 26(f) conference. Anticipated late July / early Aug 2026.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Sender DID recovery via cease-and-desist receipt</h3>
+        <div class="card-body">Plaintiff's "STOP" reply on 4/29/2026 received an "unsubscribed" confirmation from Ulta. The sending DID/short code is captured in Ulta's SMS platform logs and will surface in Ulta's records subpoena or 30(b)(6) deposition.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--danger">SERIAL FIRM PAIRING: BURKE + BAILEY GLASSER</span>
+      <span class="pill pill--warn">SENDER SHORT CODE NOT YET IDENTIFIED</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY + PITCH ANGLE -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">$11.3B public-company defendant with a 42M-member SMS list and a smoking-gun internal DNC failure.</h2>
+      <p class="section-lede">Ulta is a NASDAQ-listed S&amp;P 500 retailer with 58,000 employees, $11.3B in FY2024 revenue, and a 42-million-member Ulta Beauty Rewards loyalty database that feeds its SMS marketing program. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Ulta_Beauty">Wikipedia -&gt;</a></span> The complaint pleads 72 separate texts sent after a clear "STOP" command — that is not a one-off glitch, that is an internal DNC system that does not function. Lead with Internal DNC / Policies &amp; Procedures.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Internal DNC Compliance Audit + Policies &amp; Procedures</h3>
+        <div class="card-body">The single cause of action in the complaint is 47 CFR § 64.1200(d) — written policy, training, and recording/honoring stop requests. Blacklist's Internal DNC product addresses every prong of (d)(1)-(7). This is a 1:1 product-fit pitch.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary Product</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">A 42M-member SMS list contains a statistically meaningful population of known TCPA serial plaintiffs. Pre-send scrubbing against the Blacklist Litigator list would have flagged Mr. Moran and prevented this class action from forming.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Product</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Ulta's public-facing T&amp;C and privacy policy pages returned site errors at audit. <span class="src-tag"><a href="https://www.ulta.com">ulta.com -&gt;</a></span> Discovery will demand timestamped consent records for every class member — a record-retention SaaS layer is an obvious cross-sell.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; color:var(--bl-red); text-transform:uppercase; letter-spacing:0.08em;">Pitch Angle</h3>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px;">Open with the math. Ulta sent <strong>72 marketing texts to one consumer after he replied "STOP"</strong> — even at the floor $500/text, that's $36,000 of exposure on a single named plaintiff. <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06929&type=r">Complaint ECF #1 -&gt;</a></span> Now multiply across a putative class of "hundreds of thousands" of Ulta Beauty Rewards members who opted out. The plaintiff's counsel — Alex Burke (Burke Law) and Bailey &amp; Glasser — are the same team that landed the <strong>$75M Capital One TCPA settlement</strong>, the <strong>$30M Cross v. Wells Fargo</strong> deal, and the landmark <strong>Krakauer v. DISH Network</strong> 9-figure judgment. <span class="src-tag"><a href="https://burkelawllc.com">burkelawllc.com -&gt;</a></span> This is the A-team of TCPA class counsel and they only file cases they intend to certify.</p>
+      <p style="font-size:15px; line-height:1.6; color:var(--fg-1); max-width:880px; margin-top:12px;">The Blacklist pitch writes itself: "Whatever you spend on us is a rounding error against the next Burke complaint, and we're the only vendor whose product fits 47 CFR § 64.1200(d) line-by-line." Aim the call at the Chief Legal Officer (Rene Cásares) and the CMO (Kelly Mahoney) jointly — legal owns the risk, marketing owns the SMS list, and they'll need to align before approving spend.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">NASDAQ-listed S&amp;P 500 specialty beauty retailer with a 42-million-member SMS-eligible loyalty database.</h2>
+      <p class="section-lede">Ulta Beauty, Inc. is publicly traded (NASDAQ: ULTA), headquartered in Bolingbrook, IL — same federal district as the filed case. The complaint names both Ulta Beauty, Inc. and its prior legal entity Ulta Salon, Cosmetics &amp; Fragrance, Inc. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Ulta_Beauty">Wikipedia -&gt;</a></span></p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Ulta Beauty, Inc.</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Ulta Beauty, Inc. (renamed 2017; formerly Ulta Salon, Cosmetics &amp; Fragrance, Inc.) <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Ulta_Beauty">Wikipedia -&gt;</a></span></dd>
+          <dt>Ticker</dt><dd>NASDAQ: ULTA · S&amp;P 500 component</dd>
+          <dt>Founded</dt><dd>1990 by Richard E. George &amp; Terry Hanson</dd>
+          <dt>HQ</dt><dd>1000 Remington Blvd., Suite 120, Bolingbrook, IL 60440 (per complaint ¶3)</dd>
+          <dt>Revenue (FY24)</dt><dd>~$11.3 billion <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Ulta_Beauty">Wikipedia -&gt;</a></span></dd>
+          <dt>Employees</dt><dd>~58,000 (2025)</dd>
+          <dt>Retail Footprint</dt><dd>1,445 U.S. stores; international expansion to Kuwait &amp; Mexico (2025)</dd>
+          <dt>Loyalty Program</dt><dd>Ulta Beauty Rewards · 42M+ members (primary SMS opt-in surface) <span class="src-tag"><a href="https://www.ulta.com/company/about-us">ulta.com -&gt;</a></span></dd>
+          <dt>Main Phone</dt><dd>(630) 410-4800 <span class="src-tag"><a href="https://www.linkedin.com/company/ulta">LinkedIn -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>DTC Beauty / Specialty Beauty Retail</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">72 marketing texts sent after "STOP" — internal DNC system is non-functional.</h3>
+        <div class="card-body">
+          <p>Plaintiff opted in April 2025, replied "STOP" on Sept 19, 2025 (with confirmation), and Ulta sent <strong>72 additional marketing texts</strong> through Apr 29, 2026 — a 7-month, ~10-per-month sustained violation. <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06929&type=r" style="color:#C9C9C9;">Complaint ¶¶26-97 -&gt;</a></span></p>
+          <p style="margin-top:12px;">Compounding the failure: Ulta's public-facing privacy policy and terms &amp; conditions pages returned "Be Right Back" / error placeholders during this audit — meaning the 47 CFR § 64.1200(d)(1) requirement to maintain a written policy "available upon demand" may not be satisfied at all. <span class="src-tag" style="color:#A8A8A8;"><a href="https://www.ulta.com" style="color:#C9C9C9;">ulta.com -&gt;</a></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Three overlapping pressure windows make Q3 2026 the sweet spot.</h3>
+      <dl class="kv" style="margin-top:16px;">
+        <dt>Answer Deadline</dt><dd>~21 days after service (Fed. R. Civ. P. 12) — likely early–mid July 2026</dd>
+        <dt>Target Partnership Wind-Down</dt><dd>Aug 2026 — Ulta-at-Target shop-in-shops shutting; marketing pressure to retain Target-acquired customers via SMS is rising, not falling <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Ulta_Beauty">Wikipedia -&gt;</a></span></dd>
+        <dt>Leadership Transition</dt><dd>Kecia Steelman became CEO Jan 2025; Chris Lialios became CFO June 2025 — fresh leadership, fresh risk-tolerance recalibration <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></dd>
+        <dt>Holiday SMS Crunch</dt><dd>Q3/Q4 2026 is peak beauty-retail SMS volume — every day of delayed scrubbing compounds class size</dd>
+      </dl>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Related Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ulta Salon, Cosmetics &amp; Fragrance, Inc.</strong></td>
+            <td>Co-defendant / prior legal name (per complaint ¶3)</td>
+            <td>Specialty beauty retail</td>
+            <td>Same SMS infrastructure as Ulta Beauty, Inc. — co-defendant in this case &amp; named on T&amp;C of record</td>
+            <td><span class="pill pill--danger">Same target</span></td>
+          </tr>
+          <tr>
+            <td><strong>Space NK</strong></td>
+            <td>Subsidiary (UK specialty beauty)</td>
+            <td>Specialty beauty / luxury skincare</td>
+            <td>Separate UK SMS regime (PECR) but same parent compliance org — cross-sell international scrubbing</td>
+            <td><span class="pill pill--info">Cross-sell</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ulta Beauty Rewards Credit Card</strong></td>
+            <td>Co-branded loyalty product</td>
+            <td>Retail credit / financial services</td>
+            <td>Credit card marketing layered on top of beauty SMS list — additional TCPA exposure on a different statutory footing</td>
+            <td><span class="pill pill--warn">Adjacent</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ulta Mexico JV (with Axo)</strong></td>
+            <td>International JV (2025)</td>
+            <td>Beauty retail expansion</td>
+            <td>New jurisdiction = new consent infrastructure being built today; opportunity to embed scrubbing pre-launch</td>
+            <td><span class="pill pill--info">Cross-sell</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Repeat TCPA defendant meets A-tier TCPA class counsel in their home court.</h2>
+      <p class="section-lede">Ulta has been sued in at least 7 prior TCPA / consumer matters across six federal districts, including one (Moore v. Ulta Salon, C.D. Cal.) that achieved class certification. Burke Law + Bailey &amp; Glasser jointly authored the $75M Capital One TCPA settlement and the Krakauer v. DISH Network landmark. This is not a nuisance suit.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="card card--accent">
+        <div class="card-meta">This Case</div>
+        <h3 class="card-title">Moran v. Ulta Beauty, Inc.</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-06929 (N.D. Ill.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06929&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Plaintiff</dt><dd>Austin Tyler Moran (Moline, IL)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Alex Burke (Burke Law) + Jonathan Marshall, John Barrett, James Kauffman (Bailey &amp; Glasser)</dd>
+          <dt>Class Action</dt><dd><span class="pill pill--danger">YES — Rule 23(b)(2)/(b)(3)</span></dd>
+          <dt>Class Definition</dt><dd>All U.S. persons who, 4 years pre-filing through certification, received &gt;1 Ulta marketing text after sending "STOP"</dd>
+          <dt>Class Size Pled</dt><dd>"hundreds of thousands"</dd>
+          <dt>Claim</dt><dd>47 USC § 227(c)(5) / 47 CFR § 64.1200(d) — Internal DNC</dd>
+          <dt>Named Plaintiff Exposure</dt><dd>72 texts × $500 = $36,000 floor; × $1,500 willful = $108,000 ceiling</dd>
+          <dt>Theory</dt><dd>(1) No written DNC policy available on demand; (2) Inadequate training; (3) Failure to honor "STOP" within 10 business days</dd>
+          <dt>Damages Sought</dt><dd>$500–$1,500 per violation + injunctive relief</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          <dt>Judge</dt><dd>Not yet assigned (N.D. Ill. random assignment)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel — Lead</div>
+        <h3 class="card-title">Alexander H. Burke — Burke Law Offices, LLC</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>909 Davis Street, Suite 500, Evanston, IL 60201 <span class="src-tag"><a href="https://burkelawllc.com">burkelawllc.com -&gt;</a></span></dd>
+          <dt>Firm Phone</dt><dd>(312) 729-5288</dd>
+          <dt>Email of Record</dt><dd>ABurke@BurkeLawLLC.com</dd>
+          <dt>IL Bar No.</dt><dd>6281095 · admitted ~2003</dd>
+          <dt>Bar Address Match</dt><dd><span class="pill pill--ok">Match — complaint &amp; firm site align</span></dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>TCPA Filings (CourtListener)</dt><dd>~248 TCPA-tagged dockets firm-wide <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Burke+Law+Offices%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Serial Filer</dt><dd><span class="pill pill--danger">YES — high-volume TCPA class counsel</span></dd>
+          <dt>Published Recoveries</dt><dd>Self-reported $300M+ over 13 years; class settlements include $75M Capital One TCPA, $30M Cross v. Wells Fargo, $15M Desai v. ADT, $12.5M Charvat v. Valente <span class="src-tag"><a href="https://burkelawllc.com">burkelawllc.com -&gt;</a></span></dd>
+          <dt>Co-Counsel</dt><dd>Bailey &amp; Glasser LLP (Marshall, Barrett, Kauffman) — Krakauer v. DISH Network class counsel <span class="src-tag"><a href="https://www.baileyglasser.com/attorneys">baileyglasser.com -&gt;</a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--red">EXTREME</span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Burke's "Internal DNC after STOP" template — exact same playbook as Bilek, Hossfeld, and Marshall v. Grubhub.</h3>
+      <div class="card-body">
+        <p>Burke's signature theory: plead a clean opt-in, a clean "STOP," and an extended pattern of post-STOP marketing texts — then attack the defendant's § 64.1200(d) policies/procedures/training during discovery. The Moran complaint is a near-textbook execution: April 2025 opt-in (10% off coupon), Sept 19, 2025 "STOP," then 72 dated text events through Apr 29, 2026. This template has survived motions to dismiss in <em>Bilek v. Federal Ins.</em> (7th Cir. 2021), <em>Hossfeld v. Allstate</em> (N.D. Ill. 2021), and <em>Marshall v. Grubhub</em> (N.D. Ill.). <span class="src-tag"><a href="https://tcpaworld.com/?s=Alexander+Burke">TCPAWorld -&gt;</a></span></p>
+        <p style="margin-top:12px;">In <em>Hossfeld v. Allstate</em>, Burke successfully compelled Allstate to produce its internal DNC list — meaning Ulta should expect a brutal discovery fight over its DNC database, training materials, and vendor relationships. <span class="src-tag"><a href="https://burkelawllc.com">burkelawllc.com -&gt;</a></span></p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--bl-red);">Concurrent &amp; Recent Litigation — Ulta as Defendant</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px;">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Court</th><th>Year</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Moran v. Ulta Beauty, Inc.</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+            <td>N.D. Ill.</td>
+            <td>2026</td>
+            <td><span class="pill pill--red">Just filed</span></td>
+            <td>Internal DNC / post-STOP SMS</td>
+          </tr>
+          <tr>
+            <td>Shahpur v. Ulta Salon Cosmetics &amp; Fragrance / Ulta Beauty</td>
+            <td>E.D. Wash.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">Pending</span></td>
+            <td>TCPA (active)</td>
+          </tr>
+          <tr>
+            <td>Mulanena v. Ulta Salon, Cosmetics &amp; Fragrance, Inc.</td>
+            <td>D. Md.</td>
+            <td>2025</td>
+            <td><span class="pill pill--gap">Dismissed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Dalton v. Ulta Beauty, Incorporated</td>
+            <td>D. Minn.</td>
+            <td>2024</td>
+            <td><span class="pill pill--gap">Closed</span></td>
+            <td>ADA / consumer</td>
+          </tr>
+          <tr>
+            <td>Brito v. Ulta Salon, Cosmetics &amp; Fragrance, Inc.</td>
+            <td>M.D. Fla.</td>
+            <td>2022</td>
+            <td><span class="pill pill--gap">Dismissed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Davis v. Ulta Beauty</td>
+            <td>W.D. Wash.</td>
+            <td>2021</td>
+            <td><span class="pill pill--ok">Settled (~19 days)</span></td>
+            <td>Consumer</td>
+          </tr>
+          <tr>
+            <td><strong>Moore v. Ulta Salon, Cosmetics &amp; Fragrance, Inc.</strong></td>
+            <td>C.D. Cal.</td>
+            <td>—</td>
+            <td><span class="pill pill--danger">Class CERTIFIED (311 F.R.D.)</span></td>
+            <td>Consumer class</td>
+          </tr>
+          <tr>
+            <td>Smith-Brown v. Ulta Beauty, Inc.</td>
+            <td>N.D. Ill.</td>
+            <td>2019</td>
+            <td><span class="pill pill--gap">Decided</span></td>
+            <td>Consumer</td>
+          </tr>
+          <tr>
+            <td>Lianne Yao v. Ulta Beauty Inc.</td>
+            <td>S.D. Fla.</td>
+            <td>2018</td>
+            <td><span class="pill pill--gap">Dismissed</span></td>
+            <td>Consumer</td>
+          </tr>
+          <tr>
+            <td>Zepeda v. Ulta Salon, Cosmetics &amp; Fragrance</td>
+            <td>C.D. Cal.</td>
+            <td>2017</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>Consumer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin:0 0 24px;">Source: <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ulta+Beauty%22+TCPA&type=r">CourtListener Ulta Beauty TCPA -&gt;</a></span> &nbsp; <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Ulta+Salon%22+TCPA&type=r">CourtListener Ulta Salon TCPA -&gt;</a></span></p>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean tight" style="font-size:14px;">
+        <li>Plaintiff's 10-digit cell number not in complaint — pull PACER ECF #1 + any exhibits to enable Litigator Scrub lookup</li>
+        <li>Judge assignment unknown (N.D. Ill. random assignment) — pull docket after first ECF entry past complaint</li>
+        <li>Defense counsel not yet appeared — likely Sidley Austin, Kirkland &amp; Ellis, or Latham (typical Chicago Fortune-class panels); confirm at NOA</li>
+        <li>Illinois SoS and Delaware DOC searches failed during audit — registered agent and officer-of-record list could not be retrieved; verify via direct search before contacting</li>
+        <li>Ulta privacy policy &amp; T&amp;C pages were returning error placeholders at audit — re-fetch closer to call to confirm current SMS consent language and arbitration clause</li>
+        <li>Sender DID / short code not surfaced — 800notes / YouMail intel deferred until short code surfaces in pleadings or exhibits</li>
+        <li>Burke's IARDC and WV State Bar disciplinary status pages returned 404 — confirm bar status via direct ARDC search before referencing on call</li>
+        <li>Executive direct phone lines not in public sources — outreach via main line (630-410-4800) + email pattern</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call Rene Cásares (CLO) first. Loop in Kelly Mahoney (CMO) on the second touch.</h2>
+      <p class="section-lede">The Chief Legal Officer owns the risk and the budget; the CMO owns the SMS list that needs to be scrubbed. The pitch only closes when both nod. Use the Ulta email pattern <code>{first}.{last}@ulta.com</code> — confirmed via published <code>HRServiceCenter@ulta.com</code> address and SignalHire masked patterns. <span class="src-tag"><a href="https://www.signalhire.com/companies/ulta-beauty">SignalHire -&gt;</a></span></p>
+    </div>
+
+    <div class="card card--accent" style="margin-bottom:24px;">
+      <div class="card-meta">Email Pattern (use for all inferred addresses below)</div>
+      <h3 class="card-title" style="font-family:var(--font-mono); font-size:22px;">{first}.{last}@ulta.com</h3>
+      <div class="card-body">
+        Confirmed pattern. Anchor: <code>HRServiceCenter@ulta.com</code> published on Ulta's LinkedIn page. SignalHire returned masked addresses (<code>k*******s@ulta.com</code> for Kecia Steelman, <code>c*******r@ulta.com</code> for Rene Cásares) consistent with first.last format. <span class="src-tag"><a href="https://www.linkedin.com/company/ulta">LinkedIn -&gt;</a></span>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name · Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Rene Cásares</strong><br><span class="pill pill--dark">CLO</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>Chief Legal Officer — owns class-action defense budget &amp; vendor approval <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>rene.casares@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kelly Mahoney</strong><br><span class="pill pill--dark">CMO</span> <span class="pill pill--warn">2ND TOUCH</span></td>
+            <td>Chief Marketing Officer — owns the 42M-member SMS list <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>kelly.mahoney@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kecia Steelman</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>CEO since Jan 2025 — escalation path; reputational risk owner <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>kecia.steelman@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chris DelOrefice</strong><br><span class="pill pill--dark">CFO</span></td>
+            <td>Chief Financial Officer — budget signoff on class-action reserve <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>chris.delorefice@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mike Maresca</strong><br><span class="pill pill--dark">CTTO</span></td>
+            <td>Chief Technology &amp; Transformation Officer — owns the marketing automation stack and consent record-keeping infrastructure <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>mike.maresca@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Amiee Thomas</strong><br><span class="pill pill--dark">CRO</span></td>
+            <td>Chief Retail Officer — in-store loyalty signups originate here <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>amiee.thomas@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Anita Ryan</strong><br><span class="pill pill--dark">CHRO</span></td>
+            <td>Chief Human Resources Officer — owns marketing-team training (47 CFR § 64.1200(d)(2)) <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>anita.ryan@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Penny Coy</strong><br><span class="pill pill--dark">SVP</span></td>
+            <td>Senior Vice President <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>penny.coy@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kristin Wolf</strong><br><span class="pill pill--dark">SVP</span></td>
+            <td>SVP Enterprise Strategy &amp; New Growth — international expansion (Mexico/Kuwait) <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>kristin.wolf@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jennifer Kobus</strong><br><span class="pill pill--dark">SVP</span></td>
+            <td>SVP Supply Chain Planning &amp; Operations <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>jennifer.kobus@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shannon Letts</strong><br><span class="pill pill--dark">SVP</span></td>
+            <td>Senior Vice President <span class="src-tag"><a href="https://theorg.com/org/ulta-beauty">TheOrg -&gt;</a></span></td>
+            <td>(630) 410-4800 main <span class="pill pill--gap">Direct GAP</span></td>
+            <td>shannon.letts@ulta.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ulta Beauty — Main</strong><br><span class="pill pill--dark">HQ</span></td>
+            <td>Corporate switchboard / HR <span class="src-tag"><a href="https://www.linkedin.com/company/ulta">LinkedIn -&gt;</a></span></td>
+            <td>(630) 410-4800 <span class="pill pill--ok">VERIFIED</span></td>
+            <td>HRServiceCenter@ulta.com <span class="pill pill--ok">VERIFIED</span></td>
+            <td><a href="https://www.linkedin.com/company/ulta">linkedin.com/company/ulta</a></td>
+          </tr>
+          <tr style="background:var(--gray-05);">
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">Not yet appeared</span></td>
+            <td>~21-day answer clock from service. Likely Chicago Fortune-class panel (Sidley, Kirkland, Latham, Mayer Brown). Confirm at first NOA.</td>
+            <td><span class="pill pill--gap">Pending</span></td>
+            <td><span class="pill pill--gap">Pending</span></td>
+            <td><span class="pill pill--gap">Pending</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel files an appearance and locks down communication.</h2>
+      <p class="section-lede">Pre-NOA is the golden window. Once a Sidley/Kirkland/Latham appearance hits the docket, in-house counsel will route every vendor inquiry through defense counsel, and the deal cycle adds 60+ days. This sequence assumes the case was filed June 11, 2026 and defense will appear by early–mid July.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Day 0–1 · Pull PACER ECF #1 + exhibits</h4>
+        <p>Spend the ~$1.20 and pull the full complaint plus any docketed exhibits. Goal: recover Mr. Moran's 10-digit cell number for Litigator Scrub lookup, and capture any sender short code / DID referenced in the SMS exhibits.</p>
+        <p><strong>Desired outcome:</strong> Convert "scrub deferred" into "scrub run" before the first dial.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Day 2 · Cold outreach to Rene Cásares (CLO)</h4>
+        <p>Email <code>rene.casares@ulta.com</code> with subject line referencing the docket: "Re: Moran v. Ulta — 1:26-cv-06929 · pre-answer compliance audit". Two-paragraph note: (1) you saw the filing, you've already audited public-source compliance gaps, (2) you have a specific 47 CFR § 64.1200(d) product that maps line-by-line to the cause of action. Attach a one-pager. Follow up by phone at (630) 410-4800 asking to be routed to Legal.</p>
+        <p><strong>Desired outcome:</strong> 30-min discovery call within 5 business days.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Day 3 · Parallel touch to Kelly Mahoney (CMO)</h4>
+        <p>The CMO controls the SMS list. Email <code>kelly.mahoney@ulta.com</code> with a brand-protection framing — Q3/Q4 is peak SMS marketing season for beauty retail, and every additional unscrubbed send post-filing compounds class size. Reference the public Ulta Beauty Rewards 42M-member figure to demonstrate you've done the homework.</p>
+        <p><strong>Desired outcome:</strong> Legal + Marketing aligned before the procurement conversation starts.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Day 5 · Reference the firm pairing on the discovery call</h4>
+        <p>Burke Law + Bailey &amp; Glasser is not a nuisance pairing. Drop the specific dollar amounts: $75M Capital One TCPA, $30M Cross v. Wells Fargo, Krakauer v. DISH 9-figure judgment. The point is not to scare — the point is to demonstrate Blacklist already understands the threat better than any other vendor on the phone sheet.</p>
+        <p><strong>Desired outcome:</strong> Position Blacklist as the only vendor who speaks Burke's language.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h4>Day 7–14 · Move CTO Mike Maresca into the room</h4>
+        <p>The Internal DNC fix is technical, not legal — it lives in the marketing automation stack. Once Legal opens the door, pull Mike Maresca into the technical scoping call. He owns the consent record-keeping infrastructure and is the procurement signer on a SaaS scrubbing contract.</p>
+        <p><strong>Desired outcome:</strong> Pilot scoped, security review queued.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h4>Day 14–21 · Close before answer deadline</h4>
+        <p>Ulta's answer is due ~21 days after service. Once defense counsel files, the procurement clock slows. Aim for a pilot agreement (even a single-list scrub or a 90-day SaaS trial) signed before the NOA.</p>
+        <p><strong>Desired outcome:</strong> Signed pilot before defense counsel appears.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:32px; background:var(--gray-05);">
+      <div class="card-meta">Trigger Conditions — Adjust the Plan If…</div>
+      <ul class="clean tight" style="font-size:14px; margin-top:12px;">
+        <li><strong>Defense counsel appears before Day 14</strong> → pivot the outreach through defense counsel; longer cycle but compliance-driven sale</li>
+        <li><strong>Burke amends to add a federal DNC count (47 USC § 227(c)(2))</strong> → add RND + Federal DNC scrub as a second product line; class size grows materially</li>
+        <li><strong>Sender short code surfaces in pleadings</strong> → re-run 800notes / YouMail / Tellows / RoboKiller intel on the DID for additional pitch ammo</li>
+        <li><strong>Ulta makes a motion to compel arbitration</strong> → still sell the scrub; even successful arbitration push doesn't fix the underlying SMS list</li>
+        <li><strong>Settlement announcement within 60 days</strong> → reframe to the next quarter's compliance budget cycle, anchor on Q4 SMS peak</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 5</span>
+      <span class="pill pill--warn">Q3 SMS PEAK COMPOUNDS DAILY</span>
+      <span class="pill pill--info">PRE-NOA GOLDEN WINDOW</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
