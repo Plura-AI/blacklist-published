@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murphy v. Remedy Meds — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h4{ margin:0 0 8px; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); }
+.row-highlight{ background:var(--bl-red-tint); }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="700" font-size="20" letter-spacing="0.04em">BLACKLIST</text>
+          <rect x="125" y="4" width="2" height="16" fill="#A50100"/>
+          <text x="135" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-weight="400" font-size="20" letter-spacing="0.04em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Telehealth GLP-1 SMS Marketer · Quiet-Hours + Federal DNC · Class Action · PLG Damage Template · 3rd TCPA Hit in 2026</p>
+      <h1 class="hero-tagline">Murphy v.<br>Remedy Meds <span style="color:var(--bl-red); font-weight:500; font-size:0.55em; display:block; margin-top:8px;">(d/b/a of OpenLoop Health, Inc.)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03217</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">Jun 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03217&type=r">CourtListener -&gt;</a></span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">2 sub-classes</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys (Miramar, FL)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted to last-four (8527) — scrub deferred until recipient DID is recovered.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The Murphy complaint deliberately pleads only the last four digits ("ending in 8527") and never discloses the full 10-digit recipient number. Litigator-list lookup cannot be performed on a partial number — no scrub was run.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (Lena Murphy)</div>
+        <div class="scrub-number">XXX-XXX-8527</div>
+        <div class="scrub-number-sub">Complaint ¶20: "wireless telephone number ending in 8527." San Bernardino County, CA. Listed on the National DNC Registry since at least June 23, 2003 per ¶21.</div>
+      </div>
+      <p class="scrub-body-text">The full 10-digit recipient DID is not pled. Blacklist's litigator-bulk endpoint requires a 10-digit number; we will not run a partial query. Recovery options are listed below.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:18px;">Sending DID intel</h3>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID</div>
+        <div class="card-title" style="font-family:var(--font-mono);">+1 (833) 234-1834</div>
+        <p class="card-body">Toll-free 833 number used to send the two challenged messages (¶26-27). Sender identified itself as "Remedy Meds" in-message. Shortlink subdomain <code>remedymeds.attn.tv</code> confirms <strong>Attentive Mobile</strong> as the SMS platform — an enterprise A2P stack typically used for high-volume programmatic campaigns. Consumer-reputation sources (800notes, YouMail, Tellows, RoboKiller) returned HTTP 403/404 on this fetch — no third-party consumer-tag data captured. Sender-identification is inferred from complaint text and Exhibit A screenshots, not from reputation aggregators.</p>
+        <div style="margin-top:12px;">
+          <span class="pill pill--warn">Attentive Mobile (attn.tv)</span>
+          <span class="pill pill--info">Toll-Free A2P</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:18px;">Recovery path for the plaintiff DID</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Option A · Fastest</div>
+        <div class="card-title">Pull ECF #1 from PACER</div>
+        <p class="card-body">The unredacted complaint is on PACER (~$1.20). Plaintiff disclosure of the full number in the complaint is hit-or-miss; PLG sometimes redacts. If redacted, escalate to Option B.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Option B · Reliable</div>
+        <div class="card-title">Wait for defense counsel notice</div>
+        <p class="card-body">Once Remedy Meds appears (no deadline visible yet — case is 1 day old), defense will move for early Rule 26(f) disclosures. Plaintiff DID typically surfaces in initial disclosures or pre-mediation exchanges.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Option C · Pre-suit</div>
+        <div class="card-title">Reverse-lookup from sender logs</div>
+        <p class="card-body">If Blacklist's prospect is Remedy Meds itself, the cleanest path is asking them to pull March 8 &amp; March 10, 2026 9:53 PM PT outbound logs from Attentive for any 8527-suffix DID in San Bernardino County rate centers.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — RECOVER FULL DID</span>
+      <span class="pill pill--warn">SERIAL-FIRM TEMPLATE FLAG — PLG DAMAGE</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Hot-vertical telehealth defendant on its 3rd TCPA hit in 5 months — sell DNC scrubbing + quiet-hours suppression as the bleeding-control package.</h2>
+      <p class="section-lede">Remedy Meds is a GLP-1 weight-loss telehealth operator running mass SMS via Attentive. This is the third TCPA action against the brand in 2026 (Savage in Feb, Sanchez in Apr, Murphy today) plus a related action against parent OpenLoop Health in D. Del. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span> The pattern is platform-level — no time-zone-aware quiet-hours enforcement, no federal DNC scrub. Lead with <strong>DNC Scrubbing + Quiet-Hours Suppression</strong>. The buyer is the GC.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <div class="card-title">DNC Scrubbing (Federal + State)</div>
+        <p class="card-body">Murphy alleges her cell has been on the federal DNC registry since 2003. The fix is a pre-send registry scrub against Blacklist's daily-refreshed federal+state DNC file. One-line integration into Attentive's send pipeline.</p>
+        <div style="margin-top:12px;"><span class="pill pill--red">LEAD WITH THIS</span></div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Strong Cross-Sell</div>
+        <div class="card-title">Litigator Scrub</div>
+        <p class="card-body">PLG Damage is filing 12+ TCPA cases in ~2 months <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span> — Blacklist's litigator list catches their plaintiff roster before send. High-confidence ROI given Remedy Meds has been hit 3x.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Compliance Backstop</div>
+        <div class="card-title">Consent Capture &amp; Quiet-Hours Engine</div>
+        <p class="card-body">Both Murphy messages went out at 9:53 PM local — 53 minutes after the 9:00 PM federal quiet-hours cutoff (¶26, ¶30). Time-zone-aware suppression and signed-written-agreement consent capture per 47 CFR § 64.1200(c)(2)(ii) close the smoking gun.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 12px; font-size:22px;">Pitch Angle</h3>
+    <div class="card">
+      <p class="card-body">"You've been sued three times in five months on the same theory — quiet hours and federal DNC — and the messages all came off the same Attentive instance. That's not a one-off, that's a platform configuration problem, and the next 12 plaintiffs PLG Damage Attorneys files against you will allege the exact same thing. Blacklist's daily-refreshed federal+state DNC file and time-zone-aware quiet-hours engine drop in as a pre-send check at the Attentive webhook layer — no engineering rewrite. You stop the bleeding tonight; we'll talk about consent-capture upgrades when the answer date in Murphy gets close."</p>
+      <p class="card-body" style="margin-top:12px;">The OpenLoop parent action in D. Del. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span> means defense costs are already compounding across two corporate layers. The GC (Sarah Persinger) is the buyer; the CMO (Matthew Dobson) and the Attentive admin are the implementers. Open with the GC, copy the CMO.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A 300K-member, ~$100M-ARR DTC GLP-1 telehealth brand operating under OpenLoop Health's roof — heavy SMS dependence, thin compliance disclosure.</h2>
+      <p class="section-lede">Remedy Meds LLC is a Delaware LLC; per the D. Del. RICO action against the parent, Remedy Meds is alleged to be a d/b/a of OpenLoop Health, Inc., alongside sister brands Intimate Rose, Lovely Meds, MyStart Health, and Prime Health <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span>. Public-facing site discloses 300,000+ members and 1.2M+ prescriptions written <span class="src-tag"><a href="https://remedymeds.com">remedymeds.com -&gt;</a></span>.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <div class="card-title">Remedy Meds LLC</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Legal Entity</dt><dd>Remedy Meds LLC</dd>
+          <dt>Formation State</dt><dd>Delaware (per complaint ¶6) <span class="pill pill--gap" style="margin-left:6px;">Sunbiz / DE SoS — fetch blocked</span></dd>
+          <dt>Parent (Alleged)</dt><dd>OpenLoop Health, Inc. — alleged d/b/a per D. Del. complaint <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Sister Brands</dt><dd>Intimate Rose · Lovely Meds · MyStart Health · Prime Health <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Vertical</dt><dd>Telehealth — GLP-1 weight loss (compounded semaglutide, tirzepatide; resale of Ozempic / Zepbound) <span class="src-tag"><a href="https://remedymeds.com">remedymeds.com -&gt;</a></span></dd>
+          <dt>Members</dt><dd>300,000+ (per company site) <span class="src-tag"><a href="https://remedymeds.com">remedymeds.com -&gt;</a></span></dd>
+          <dt>Prescriptions</dt><dd>1,200,000+ written</dd>
+          <dt>Revenue Band</dt><dd>~$100M+ ARR (estimated: 300K members × ~$200–400/mo subscription)</dd>
+          <dt>Main Phone</dt><dd>+1-551-239-9025</dd>
+          <dt>Main Email</dt><dd>support@remedymeds.com · careers@remedymeds.com</dd>
+          <dt>SMS Vendor</dt><dd>Attentive Mobile (sender subdomain remedymeds.attn.tv)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <div class="card-title">No DNC policy. No quiet-hours suppression. Privacy policy disclaims partner conduct.</div>
+        <p class="card-body">The Remedy Meds privacy policy <span class="src-tag"><a href="https://remedymeds.com/privacy-policy">remedymeds.com/privacy-policy -&gt;</a></span> mentions data collection "by phone, by text" but contains no TCPA-compliant consent procedures, no internal DNC list disclosure, no quiet-hours language, and explicitly states "We do not control our business partners' use of Personal Data." That's a public admission that vendor-driven SMS is unmanaged — which is exactly the gap Murphy's complaint exploits. Combined with two 9:53 PM PT messages to a 23-year-old DNC registrant (¶21, ¶26), the systemic failure narrative writes itself.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px;">Strategic Timing</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Answer Window</div>
+        <div class="card-title">21 days post-service</div>
+        <p class="card-body">Standard FRCP 12(a)(1)(A). Complaint filed 6/11/2026; service typically lands 1-3 weeks out. <strong>Soft deadline: early-to-mid July 2026.</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Parent-Co Pressure</div>
+        <div class="card-title">D. Del. RICO MTD pending</div>
+        <p class="card-body">Day v. OpenLoop (1:25-cv-01418) opposition to MTD/compel-arbitration filed 03/26/2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span>. Parent is already burning defense budget — Remedy Meds GC is fee-conscious right now.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Filing Cadence</div>
+        <div class="card-title">3rd TCPA hit in 5 months</div>
+        <p class="card-body">Savage (Feb), Sanchez (Apr), Murphy (Jun). Next hit is statistically due in Aug. Window to close before the 4th case lands is 60 days.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>OpenLoop Health, Inc.</strong></td>
+            <td>Alleged parent / control person</td>
+            <td>Telehealth platform</td>
+            <td>Already a TCPA-adjacent defendant in D. Del. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span></td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Intimate Rose</td>
+            <td>Sister brand under OpenLoop</td>
+            <td>Pelvic-health DTC</td>
+            <td>Likely same SMS stack — Attentive cross-pollination risk</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Lovely Meds</td>
+            <td>Sister brand under OpenLoop</td>
+            <td>Telehealth Rx DTC</td>
+            <td>Same parent compliance gap profile</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>MyStart Health</td>
+            <td>Sister brand under OpenLoop</td>
+            <td>Telehealth DTC</td>
+            <td>Same parent compliance gap profile</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td>Prime Health</td>
+            <td>Sister brand under OpenLoop</td>
+            <td>Telehealth DTC</td>
+            <td>Named alongside Remedy Meds in D. Del. RICO action</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PLG Damage's "Gutierrez quiet-hours" template, recycled against telehealth — Remedy Meds is now the named defendant on three of these in C.D. Cal. and S.D. Cal.</h2>
+      <p class="section-lede">Murphy v. Remedy Meds runs the same boilerplate PLG Damage uses against Fashion Nova, Rocket Mortgage, Rite Aid, 7-Eleven, Guardio, Yesvideo, Centerfield, Xercize Studio, and Last Brand — quiet-hours + federal DNC, ~12-14 page complaint, two-class structure, $500/text statutory damages with treble. The firm settles in 7-8 weeks.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <div class="card-title">Murphy v. Remedy Meds LLC</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Docket</dt><dd>5:26-cv-03217 (C.D. Cal., Riverside Div.)</dd>
+          <dt>Filed</dt><dd>June 11, 2026 (1 day ago)</dd>
+          <dt>Plaintiff</dt><dd>Lena Murphy — San Bernardino County, CA (Yucca Valley)</dd>
+          <dt>Counsel</dt><dd>Vinit R. Venkatesh (CA Bar 367857) — PLG Damage Attorneys</dd>
+          <dt>Class</dt><dd>Putative Rule 23 — TWO sub-classes (After-Hours + Federal DNC)</dd>
+          <dt>Class Size Pled</dt><dd>"Dozens to hundreds or thousands" (¶40)</dd>
+          <dt>Claims</dt><dd>47 USC § 227(c) · 47 CFR § 64.1200(c)(1) · 47 CFR § 64.1200(c)(2)</dd>
+          <dt>Theory</dt><dd>Two SMS sent 3/8 &amp; 3/10/2026 at 9:53 PM PT — after 9 PM quiet-hours cutoff, to DNC-listed cell</dd>
+          <dt>Channel</dt><dd>SMS — sent via Attentive (remedymeds.attn.tv) from 833-234-1834</dd>
+          <dt>Damages Sought</dt><dd>$500/violation + treble for willful; injunctive relief; fees + costs</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer clock</span></dd>
+          <dt>Judge</dt><dd>Not yet assigned <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03217&type=r">CourtListener -&gt;</a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <div class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</div>
+        <dl class="kv" style="margin-top:16px;">
+          <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+          <dt>Firm Address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746</dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com</dd>
+          <dt>Address Mismatch</dt><dd><span class="pill pill--warn">FL HQ filing in C.D. Cal.</span> — no California office disclosed despite class action filing in CA federal court</dd>
+          <dt>CA Bar Number</dt><dd>367857 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">calbar.ca.gov -&gt;</a></span></dd>
+          <dt>Bar Status</dt><dd>Active (CA)</dd>
+          <dt>Discipline</dt><dd>None located</dd>
+          <dt>Attorney Email</dt><dd>vv@plgdamage.com</dd>
+          <dt>Firm Practice</dt><dd>Historically property-damage / insurance claims; consumer protection / TCPA is an emerging line</dd>
+          <dt>TCPAWorld</dt><dd>Zero hits for "Venkatesh" or "PLG Damage" <span class="src-tag"><a href="https://tcpaworld.com/?s=Venkatesh">tcpaworld.com -&gt;</a></span> — not on power-rankings; firm is a new TCPA entrant</dd>
+          <dt>Volume (last ~2 mos)</dt><dd>12+ TCPA filings across C.D. Cal., N.D. Cal., S.D. Fla., M.D. Fla., N.D. Fla., S.D. Tex.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px;">Plaintiff firm template</h3>
+    <div class="card">
+      <div class="card-meta">Pattern · "Gutierrez Quiet-Hours" boilerplate</div>
+      <div class="card-title" style="margin-top:8px;">Two-class quiet-hours + federal DNC complaint, ~12 pages, identical paragraph structure across at least 8 active 2026 filings.</div>
+      <p class="card-body" style="margin-top:12px;">PLG Damage runs the same complaint structure (¶¶ 1-44 boilerplate, then count-specific allegations) against retail/telehealth/mortgage/fitness defendants. Sister cases include Cummings v. 7-Eleven (N.D. Fla.), Hughes v. Guardio (C.D. Cal.), Long v. Rocket Mortgage (C.D. Cal.), Flottman v. Yesvideo (M.D. Fla.), Post v. Centerfield (N.D. Cal.), Fasheh v. Xercize Studio (C.D. Cal.), and the rapidly-resolved Fashion Nova twin-suits (Correa &amp; Salcedo, both terminated within 7-8 weeks of filing) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span>. PLG-affiliated lead attorneys include Faythe Gutierrez (CA Bar 310430) and Joseph A. Varona (FL Bar 119812). The settlement rhythm — 7-8 weeks from filing to termination on Fashion Nova matters — strongly suggests a nuisance-value resolution strategy. Defense theory of choice should be early MTD on standing + early settlement leverage.</p>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px;">Concurrent &amp; recent litigation involving Remedy Meds / parent</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td><strong>Murphy v. Remedy Meds LLC</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+            <td>5:26-cv-03217</td>
+            <td>C.D. Cal.</td>
+            <td>2026-06-11</td>
+            <td><span class="pill pill--red">Just filed</span></td>
+            <td>Quiet hours + Federal DNC (SMS)</td>
+          </tr>
+          <tr>
+            <td>Savage v. Remedy Meds LLC</td>
+            <td>8:26-cv-00282</td>
+            <td>C.D. Cal.</td>
+            <td>2026-02-06</td>
+            <td><span class="pill pill--warn">Pending</span></td>
+            <td>TCPA (NOS 485) — Gerald Donald Lane, Jr. counsel</td>
+          </tr>
+          <tr>
+            <td>Sanchez v. Remedy Meds LLC</td>
+            <td>3:26-cv-02695</td>
+            <td>S.D. Cal.</td>
+            <td>2026-04-28</td>
+            <td><span class="pill pill--warn">Pending — Order on EOT to answer 5/26/2026</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Day v. OpenLoop Health Inc. (d/b/a Remedy Meds)</td>
+            <td>1:25-cv-01418</td>
+            <td>D. Del.</td>
+            <td>2025</td>
+            <td><span class="pill pill--warn">MTD/Compel-Arb pending · Opp. filed 3/26/2026</span></td>
+            <td>RICO + consumer claims against parent</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px; font-size:12px; color:var(--fg-3);">Source: CourtListener docket search <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Remedy+Meds%22&type=r">CourtListener -&gt;</a></span></div>
+    </div>
+
+    <div class="callout">
+      <h4>Open intel gaps to close before first dial</h4>
+      <ul class="clean tight" style="margin-top:8px;">
+        <li>• <strong>Plaintiff DID</strong> — only "ending in 8527" is pled; pull PACER ECF #1 to confirm whether the full number is disclosed in an unredacted version.</li>
+        <li>• <strong>Judge assignment</strong> — case is 1 day old; CourtListener has no Article III or Magistrate assignment yet for 5:26-cv-03217.</li>
+        <li>• <strong>Defense counsel</strong> — no appearance yet. Check Savage (8:26-cv-00282) docket for who Remedy Meds retained there; likely same firm.</li>
+        <li>• <strong>Delaware SoS / California SoS</strong> — registered agent, officer roster, formation date, and operating-status confirmation all failed on this run (Sunbiz/OpenCorporates/Bizapedia returned 403/CAPTCHA). Re-run before first contact.</li>
+        <li>• <strong>Executive emails</strong> — full {first}@remedymeds.com pattern is inferred from generic mailboxes only. Could also be {first.last}@. Verify before sending outreach.</li>
+        <li>• <strong>Arbitration clause</strong> — remedymeds.com/terms returns 404. Pull from Wayback or via PACER (parent OpenLoop has an arbitration MTD pending in D. Del. — same TOS may apply).</li>
+        <li>• <strong>FDA / FTC posture</strong> — compounded GLP-1s are under regulatory pressure; no FDA action surfaced on this run but worth a follow-up check.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Open with the GC (Sarah Persinger) and the CMO (Matthew Dobson). The CEO is the escalation path.</h2>
+      <p class="section-lede">Email pattern <code>{first}@remedymeds.com</code> is <strong>inferred</strong> from the published <code>support@</code> and <code>careers@</code> mailboxes <span class="src-tag"><a href="https://remedymeds.com">remedymeds.com -&gt;</a></span> and the executive roster published on TheOrg <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg.com -&gt;</a></span>. No individual executive email has been verified — every row below carries a PATTERN or INFERRED pill until confirmed.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Sarah Persinger</strong><br>
+              <span class="pill pill--dark" style="margin-top:4px;">GC</span>
+              <span class="pill pill--red" style="margin-top:4px;">CALL 1ST</span>
+            </td>
+            <td>General Counsel. The buyer. Answers the lawsuit, signs the vendor contract. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>sarah@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Matthew Dobson</strong><br>
+              <span class="pill pill--dark" style="margin-top:4px;">CMO</span>
+              <span class="pill pill--red" style="margin-top:4px;">CALL 2ND</span>
+            </td>
+            <td>Chief Marketing Officer. Owns the Attentive instance. The implementer. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>matthew@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Haris Memon</strong><br>
+              <span class="pill pill--dark" style="margin-top:4px;">CEO / Founder</span>
+            </td>
+            <td>Founder &amp; CEO. Escalation path if GC stalls. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>haris@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/harismemon">linkedin.com/in/harismemon</a> <br><span class="pill pill--ok" style="margin-top:4px;">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Christian Rome Lansang</strong><br><span class="pill pill--dark" style="margin-top:4px;">COO</span></td>
+            <td>Chief Operating Officer — operations / vendor relationships. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>christian@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Yousef Janajri</strong><br><span class="pill pill--dark" style="margin-top:4px;">CTO</span></td>
+            <td>Chief Technology Officer — Attentive webhook integration sits in his org. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>yousef@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Timothy S. Kim</strong><br><span class="pill pill--dark" style="margin-top:4px;">VP Growth</span></td>
+            <td>VP of Growth — owns paid + lifecycle marketing including SMS re-engagement. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>timothy@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mahmoud Soliman</strong><br><span class="pill pill--dark" style="margin-top:4px;">VP Finance</span></td>
+            <td>VP of Finance — signs the PO. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>mahmoud@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hasan Syed</strong><br><span class="pill pill--dark" style="margin-top:4px;">VP Corp Dev</span></td>
+            <td>VP of Corporate Development. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>hasan@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Paul Carmola</strong><br><span class="pill pill--dark" style="margin-top:4px;">Head Pharmacy/Clinical</span></td>
+            <td>Head of Pharmacy &amp; Clinical Operations. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>paul@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Aaron Hong</strong><br><span class="pill pill--dark" style="margin-top:4px;">Dir. Product</span></td>
+            <td>Director of Product Management. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>aaron@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Callie Taylor Azer</strong><br><span class="pill pill--dark" style="margin-top:4px;">Sr. PM</span></td>
+            <td>Senior Product Manager. <span class="src-tag"><a href="https://theorg.com/org/remedy-meds">theorg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>callie@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Troy Young</strong><br><span class="pill pill--dark" style="margin-top:4px;">Employee</span></td>
+            <td>LinkedIn-listed Remedy Meds employee — role unconfirmed. <span class="src-tag"><a href="https://www.linkedin.com/company/remedy-meds">linkedin -&gt;</a></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>troy@remedymeds.com <br><span class="pill pill--warn" style="margin-top:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/troyyoung">linkedin.com/in/troyyoung</a> <br><span class="pill pill--info" style="margin-top:4px;">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Main Switchboard</strong><br><span class="pill pill--dark" style="margin-top:4px;">Company Line</span></td>
+            <td>Main support number and general inbox.</td>
+            <td>+1-551-239-9025 <br><span class="pill pill--ok" style="margin-top:4px;">VERIFIED</span></td>
+            <td>support@remedymeds.com <br><span class="pill pill--ok" style="margin-top:4px;">VERIFIED</span></td>
+            <td>n/a</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark" style="margin-top:4px;">Defense</span></td>
+            <td>Not yet appeared. Check Savage (8:26-cv-00282) for likely repeat retention.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px;">Plaintiff counsel (separate from defendant contacts above — for reference only, do not pitch)</h3>
+    <div class="card">
+      <dl class="kv">
+        <dt>Lead Counsel</dt><dd>Vinit R. Venkatesh, Esq. (CA Bar #367857 · Active) <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">calbar -&gt;</a></span></dd>
+        <dt>Firm</dt><dd>PLG Damage Attorneys, 2750 SW 145th Ave #509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+        <dt>Firm Phone</dt><dd>(305) 506-4746</dd>
+        <dt>Attorney Email</dt><dd>vv@plgdamage.com · tcpa-service@plgdamage.com (per complaint caption)</dd>
+        <dt>Address Mismatch</dt><dd><span class="pill pill--warn">Florida firm filing class action in C.D. Cal.</span> — no California office disclosed</dd>
+        <dt>TCPAWorld Rank</dt><dd>None — zero hits for "Venkatesh" / "PLG Damage" <span class="src-tag"><a href="https://tcpaworld.com/?s=Venkatesh">tcpaworld.com -&gt;</a></span></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 72 hours. Three TCPA hits in five months means the next plaintiff is already in PLG's intake queue.</h2>
+      <p class="section-lede">Defendant has roughly a 21-day answer clock from service of process. The realistic close window is 30-60 days — long enough for the GC to assign defense counsel, see the bill, and authorize a prevention spend, but short enough that a 4th filing hasn't yet landed. The rep's job: get the GC on the phone before defense counsel does.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <div class="card-title">Cold-call the GC</div>
+        <p class="card-body">Call +1-551-239-9025, ask for Sarah Persinger. If gated, email sarah@remedymeds.com (PATTERN) with subject: <em>"Murphy v. Remedy Meds 5:26-cv-03217 — preventing the 4th filing."</em> Reference Savage and Sanchez by docket number to prove this is the 3rd, not the 1st. Copy haris@remedymeds.com.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 2-3</div>
+        <div class="card-title">Pull PACER ECF #1</div>
+        <p class="card-body">Recover the full plaintiff DID; run litigator-list scrub. If it matches, lead the next call with that result. If it doesn't match, the value prop shifts to "this plaintiff was not on our list, so the next one might be — let us scrub before send."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 3-5</div>
+        <div class="card-title">Loop in the CMO</div>
+        <p class="card-body">Email Matthew Dobson (CMO) with the Attentive integration spec — one-line webhook into Blacklist's federal DNC + litigator list. Position as "your existing stack gets safer in 48 hours; no engineering rewrite."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7-10</div>
+        <div class="card-title">Escalate to CEO if no GC response</div>
+        <p class="card-body">Haris Memon (Founder/CEO) via LinkedIn DM <span class="src-tag"><a href="https://www.linkedin.com/in/harismemon">linkedin -&gt;</a></span> + haris@remedymeds.com. Frame: three federal lawsuits compounding while parent OpenLoop fights a RICO MTD in D. Del. — the platform is the problem.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 10-21</div>
+        <div class="card-title">Cross-sell the parent</div>
+        <p class="card-body">Once Remedy Meds is in motion, pivot to OpenLoop Health and sister brands (Intimate Rose, Prime Health, Lovely Meds, MyStart Health). Same parent, same SMS stack risk — single enterprise contract closes the whole portfolio.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 21-30</div>
+        <div class="card-title">Defense-counsel follow-up</div>
+        <p class="card-body">By day 21 defense counsel will be on the docket. Pivot the conversation from "prevention" to "litigation-support DNC evidence" — Blacklist's logs become a 12(b)(6) / MTD safe-harbor exhibit in the firm's hands.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:22px;">Trigger conditions that change the plan</h3>
+    <ul class="clean tight" style="background:var(--bg-surface); border:1px solid var(--border-1); padding:16px 24px;">
+      <li>→ <strong>Remedy Meds files a Motion to Compel Arbitration.</strong> If the TOS arbitration clause survives (parent OpenLoop is currently fighting this same battle in D. Del.), urgency drops — pivot to prevention-only framing instead of litigation-cost framing.</li>
+      <li>→ <strong>PLG Damage files a 4th TCPA suit against Remedy Meds.</strong> Urgency spikes to maximum — re-engage GC same day with the new docket number.</li>
+      <li>→ <strong>Plaintiff voluntarily dismisses Murphy.</strong> Indicates a quick PLG nuisance settlement (consistent with their Fashion Nova / Wolverine pattern of 7-8 week resolutions). The compliance gap remains — keep selling, but the urgency hook softens.</li>
+      <li>→ <strong>Defense counsel appears from a known TCPA defense shop (e.g., Manatt, Eversheds, Troutman).</strong> They'll likely already have a Blacklist relationship — coordinate through the firm, not direct to GC.</li>
+    </ul>
+
+    <div style="margin-top:32px;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY</span>
+      <span class="pill pill--danger">3RD TCPA HIT IN 5 MONTHS</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
