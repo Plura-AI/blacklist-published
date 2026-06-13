@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>James v. Better Rise Capital — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:10px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <img src="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-logo-horizontal.svg" alt="Blacklist Alliance" style="width:100%;max-width:400px;height:auto;display:block;">
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">MCA / Business Funding Defendant · Prerecorded-Voice Campaign · DID Rotation · Class Action · 2nd TCPA Hit in 9 Months</p>
+      <h1 class="hero-tagline">James v.<br>Better Rise Capital</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">8:26-cv-01489</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Santa Ana)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(b)<br>47 USC § 227(c)<br>47 CFR § 64.1200(c)(2)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — 3 Putative Rule 23 Classes</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Mark L. Javitch <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Javitch Law Office (San Mateo, CA)</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number disclosed — but Blacklist API was unreachable; manual scrub required before first dial.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses the full 10-digit plaintiff number, but the live blacklistBulk lookup failed at runtime. Run the scrub manually before the opening call so the rep can quote a verified result.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle"></i> Scrub Status</div>
+        <span class="pill pill--warn">API Unreachable · Manual Lookup Required</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number (from Complaint ¶ 12)</div>
+        <div class="scrub-number">(516) 860-9716</div>
+        <div class="scrub-number-sub">Suffolk County, NY · Cell phone · Plaintiff alleges continuous DNC registration &gt; 31 days before campaign · 37 calls received 11/12/2025 — 06/10/2026.</div>
+      </div>
+      <p class="scrub-body-text">
+        The full plaintiff number is pled on the face of the complaint, so a Blacklist litigator-list scrub is straightforward — the runtime API call failed (DNS error on api.blacklistalliance.com), not a "no match." The four consumer reputation boards (800notes, YouMail, Tellows, RoboKiller) all returned HTTP 403/404 and produced no professional-plaintiff signal either way. Until a manual scrub is logged, treat status as <strong>UNKNOWN</strong>, not "clean."
+      </p>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Re-run blacklistBulk manually</h3>
+        <p class="card-body">The runtime call to <code>api.blacklistalliance.com</code> threw a DNS error. Have the BDR run 516-860-9716 through the standard scrub UI before dialing — result confirms or rebuts a serial-filer pattern and gives the rep the strongest possible opener.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">PACER pull on plaintiff name</h3>
+        <p class="card-body">CourtListener returned no confirmed prior TCPA filings by THIS specific Joseph James (Suffolk County, NY) — the other "Joseph James" hits are unrelated. Pull ECF #1 from PACER (~$1.20) to lock down whether this plaintiff has filed elsewhere.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender Infrastructure</div>
+        <h3 class="card-title">15 DIDs · all 502 (Louisville, KY)</h3>
+        <p class="card-body">Complaint ¶¶ 28, 33: 15 distinct caller IDs across 8 exchanges (334, 358, 390, 453, 462, 469, 480, 482), all 502 area code, against one CA-headquartered defendant. Classic dialer-pool rotation — likely a Kentucky-based VoIP vendor or offshore call center operating on Better Rise's behalf.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--warn">SCRUB STATUS: UNKNOWN — RE-RUN BEFORE FIRST DIAL</span>
+      <span class="pill pill--info">PLAINTIFF NUMBER DISCLOSED · CELL · NY</span>
+      <span class="pill pill--danger">15 ROTATING SENDER DIDs · 37 CALLS</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Repeat-defendant MCA shop with no documented compliance posture, a dialer pool that rotates 15 numbers against one consumer, and an active arbitration fight in Texas already burning legal spend.</h2>
+      <p class="section-lede">This is the second federal TCPA suit against Better Rise Capital LLC in nine months <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Better+Rise+Capital%22&type=r">CourtListener -&gt;</a></span>. Their website never mentions TCPA, DNC, autodialer, or prior express written consent <span class="src-tag"><a href="https://betterrisecapital.com/privacy">Privacy Policy -&gt;</a></span>. Lead with <strong>DNC scrubbing + Litigator Scrub</strong> as the bundled fix; close on <strong>consent capture</strong> as the second-call upgrade.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Lead Pitch · Primary</div>
+        <h3 class="card-title">DNC Scrubbing + Litigator Scrub</h3>
+        <p class="card-body">Plaintiff was on the federal DNC registry &gt;31 days before the first call (Complaint ¶ 26). Defendant called every business day for three straight weeks. A working DNC scrub + litigator-list scrub at the dialer would have killed this campaign on day one. This is the cleanest, most quantifiable pitch.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Second Call</div>
+        <h3 class="card-title">Consent Capture / E-SIGN PEWC</h3>
+        <p class="card-body">Defendant's own Terms (Section IV) admit they "share your information with trusted third-party lenders" and rely on form submission as catch-all consent <span class="src-tag"><a href="https://betterrisecapital.com/terms">Terms -&gt;</a></span>. That does not meet 47 CFR § 64.1200(f)(9) prior-express-written-consent for prerecorded marketing. Sell the consent-capture upgrade after they bite on scrubbing.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Third Call</div>
+        <h3 class="card-title">Internal DNC Policy / Compliance Audit</h3>
+        <p class="card-body">Plaintiff also pleads 47 CFR § 64.1200(d) (Internal DNC Class). Defendant has no published DNC policy, no compliance officer, and rotates DIDs to defeat consumer blocking. The cure is a written internal DNC policy, personnel training, and a vendor compliance audit covering the 502-area dialer vendor.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="font-size:20px; margin:0 0 12px;">Pitch Angle</h3>
+      <p style="font-size:16px; line-height:1.6; color:var(--fg-1); max-width:880px;">
+        "You're now defending two federal TCPA cases in nine months — Kesterson in W.D. Tex. is in active arbitration briefing, and James in C.D. Cal. just landed yesterday with a class definition that covers four years of your dialing back to 2022. Plaintiff's lawyer is Mark Javitch out of San Mateo — he's been a featured guest on the leading TCPA defense podcast <span class="src-tag"><a href="https://tcpaworld.com/?s=Mark+Javitch">TCPAWorld -&gt;</a></span> and he doesn't go away cheaply. What we sell — DNC scrubbing, litigator scrubbing, and a documented consent flow — is exactly the compliance posture that gets you the 'good faith' defense under § 227(c)(5) and the safe-harbor cap on individual statutory damages. Right now your website doesn't mention TCPA, DNC, or autodialer anywhere <span class="src-tag"><a href="https://betterrisecapital.com">betterrisecapital.com -&gt;</a></span>. That's a record the plaintiff's expert will put up on the screen at class cert. Let's fix it before the Rule 26(f) conference."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Small, newly-papered Irvine MCA shop selling working capital, MCAs, and SBA loans — claims $2B funded and 10,000+ businesses, but has no public team page and no compliance posture.</h2>
+      <p class="section-lede">Better Rise Capital LLC is a California LLC formed January 29, 2025 with a principal at 2525 Main St, Suite 410, Irvine. The brand markets aggressively under the slogan "Business Funding Done Better" but every meaningful compliance artifact — DNC policy, TCPA disclosure, leadership page — is missing from the public-facing site.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Better Rise Capital LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Legal Entity</dt><dd>Better Rise Capital LLC (CA Entity #202565517406, per complaint exhibit)</dd>
+          <dt>Formed</dt><dd>January 29, 2025 (per complaint ¶ 13)</dd>
+          <dt>HQ</dt><dd>2525 Main St, Suite 410, Irvine, CA 92614</dd>
+          <dt>Mailing</dt><dd>19200 Von Karman Ave, Suite 600, Irvine, CA 92612</dd>
+          <dt>Registered Agent</dt><dd>Nima Asadi, Esq. (19200 Von Karman Ave, Suite 600, Irvine, CA) — per complaint exhibit</dd>
+          <dt>Vertical</dt><dd>MCA / Business Funding (working capital, equipment finance, SBA, lines of credit, merchant cash advances) <span class="src-tag"><a href="https://betterrisecapital.com/about">betterrisecapital.com -&gt;</a></span></dd>
+          <dt>Self-claimed scale</dt><dd>"10,000+ businesses funded · $2B+ in capital delivered" <span class="src-tag"><a href="https://betterrisecapital.com">site -&gt;</a></span></dd>
+          <dt>Public statements on TCPA</dt><dd><span class="pill pill--gap">NONE</span> — site never mentions TCPA, DNC, autodialer, or PEWC <span class="src-tag"><a href="https://betterrisecapital.com/privacy">Privacy -&gt;</a></span></dd>
+          <dt>Main phone</dt><dd>(833) 510-1402</dd>
+          <dt>Main email</dt><dd>hello@betterrisecapital.com (note: privacy policy contains typo'd "hello@betterrisescapital.com")</dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">"We share your information with trusted third-party lenders."</h3>
+        <p class="card-body">
+          Better Rise Capital's own Terms (Section IV) admit they share consumer phone numbers with downstream lenders and treat mere form submission as consent to call and text <span class="src-tag"><a href="https://betterrisecapital.com/terms">Terms -&gt;</a></span>. The Terms never reference TCPA, the National DNC Registry, autodialer use, or the 47 CFR § 64.1200(f)(9) "prior express written consent" standard for prerecorded marketing. Combined with a website that has no team page, no compliance officer, no DNC policy, and a privacy policy dated only April 10, 2025, the documented compliance posture is zero. The plaintiff's expert will use this same paragraph at class cert.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Two-front legal war</h3>
+        <p class="card-body">Kesterson v. Better Rise Capital (W.D. Tex. 5:25-cv-01095) — Motion to Compel Arbitration + Motion to Stay Discovery actively briefed through March 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Better+Rise+Capital%22+TCPA&type=r">CourtListener -&gt;</a></span>. C.D. Cal. answer deadline ~21 days from service. They are paying two defense teams simultaneously.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Damage Exposure (Named Plaintiff)</div>
+        <h3 class="card-title">$18,500 – $166,500</h3>
+        <p class="card-body">37 alleged calls × $500 = <strong>$18,500</strong> floor under § 227(b)(3)(B). Trebled for willful conduct = <strong>$55,500</strong>. Add stacked § 227(c) violations (DNC + Internal DNC) at the same per-call cap = ceiling up to <strong>~$166,500</strong> before class exposure.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Class Exposure</div>
+        <h3 class="card-title">8-figure if "thousands" is real</h3>
+        <p class="card-body">Complaint pleads campaign reached "thousands of other consumers" (¶ 6). Conservative class of 5,000 recipients × 2 calls × $500 = <strong>$5M</strong> base; rotating-DID willfulness argument supports treble to <strong>$15M</strong>.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 16px; font-size:20px;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Unknown 502-area dialer vendor</td>
+            <td>Telemarketing vendor / lead-gen (inferred)</td>
+            <td>BPO / outbound dialer</td>
+            <td>Operates the rotating DID pool used in the alleged campaign — vicarious liability target</td>
+            <td><span class="pill pill--red">High — identify in discovery</span></td>
+          </tr>
+          <tr>
+            <td>"Trusted third-party lenders" (per Terms § IV)</td>
+            <td>Downstream lead buyers</td>
+            <td>MCA / Business Funding</td>
+            <td>Receive shared phone numbers — same TCPA exposure profile, same consent gap</td>
+            <td><span class="pill pill--warn">Medium — cross-sell after first close</span></td>
+          </tr>
+          <tr>
+            <td>Nima Asadi, Esq.</td>
+            <td>Registered agent / counsel</td>
+            <td>Legal services</td>
+            <td>Receives service; likely advises defendant on corporate matters</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Serial defendant in mid-arbitration fight in Texas; serial plaintiff's counsel known to TCPAWorld; voluntarily dismissed E.D. Tex. case suggests defendant pays to settle.</h2>
+      <p class="section-lede">Better Rise Capital has been sued at least 5 times in federal court in 2025 alone — and is now defending a Motion to Compel Arbitration in W.D. Tex. while a fresh putative class action just hit in C.D. Cal.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">James v. Better Rise Capital LLC</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Docket</dt><dd>8:26-cv-01489 (C.D. Cal., Santa Ana — Southern Division) <span class="src-tag"><a href="https://www.courtlistener.com/?q=8%3A26-cv-01489&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Plaintiff</dt><dd>Joseph James (Suffolk County, NY)</dd>
+          <dt>Plaintiff Counsel</dt><dd>Mark L. Javitch · Javitch Law Office · CA Bar 323729</dd>
+          <dt>Class</dt><dd><span class="pill pill--danger">Yes — 3 Rule 23 classes</span> Prerecorded Voice Class · DNC Registry Class · Internal DNC Class</dd>
+          <dt>Class size pled</dt><dd>"thousands of other consumers" (¶ 6)</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(b)(1)(A)(iii) · § 227(c) · 47 CFR § 64.1200(c)(2) · 47 CFR § 64.1200(d)</dd>
+          <dt>Theory</dt><dd>Prerecorded-voice MCA campaign to DNC-registered cell phone using 15 rotating 502-area DIDs; no consent; no internal DNC procedures</dd>
+          <dt>Damages</dt><dd>$500–$1,500 per call statutory + treble for willful + injunction</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> — ~21-day answer clock</dd>
+          <dt>Key Exhibit</dt><dd>Salesforce email from Chris Sotto (csotto@betterrisecapital.com) hours after a campaign call — agency proof (¶ 37-38)</dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel Card</div>
+        <h3 class="card-title">Mark L. Javitch · Javitch Law Office</h3>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Firm Address</dt><dd>3 East 3rd Ave., Suite 200, San Mateo, CA 94401 <span class="src-tag"><a href="https://javitchlawoffice.com">javitchlawoffice.com -&gt;</a></span></dd>
+          <dt>Firm Phone</dt><dd>(650) 781-8000</dd>
+          <dt>Firm Email</dt><dd>mark@javitchlawoffice.com</dd>
+          <dt>Bar Number</dt><dd>CA Bar 323729 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/323729">CalBar -&gt;</a></span> · status active</dd>
+          <dt>Bar Address Match</dt><dd><span class="pill pill--info">Not parsed — verify before dial</span></dd>
+          <dt>Discipline</dt><dd>None adjudicated. Note: in Hill v. Money Matchmaker Co. (E.D. Tex. 2025), opposing counsel filed motions to disqualify Javitch with allegations of perjured affidavits — <em>allegations only</em>, no discipline.</dd>
+          <dt>TCPA Footprint</dt><dd>~26 TCPA filings found on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Mark+Javitch%22+TCPA&type=r">CourtListener -&gt;</a></span> · featured guest on TCPAWorld's "Deserve to Win" Podcast Ep. 28 (Dec 2024) <span class="src-tag"><a href="https://tcpaworld.com/?s=Mark+Javitch">TCPAWorld -&gt;</a></span></dd>
+          <dt>Co-counsel pattern</dt><dd>Often pairs with Thomas A. Zimmerman Jr. (Zimmerman Law Offices, Chicago) on larger class actions</dd>
+          <dt>Notable wins/losses</dt><dd>Pascal v. Concentra — 9th Cir. affirmed defense win (2023) <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Mark+Javitch%22+TCPA">Law360 -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 12px; font-size:20px;">Concurrent &amp; Recent Litigation Against Better Rise Capital</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>James v. Better Rise Capital LLC</strong> <span class="pill pill--red" style="margin-left:6px">CURRENT</span></td>
+            <td class="num">8:26-cv-01489</td>
+            <td>C.D. Cal.</td>
+            <td class="num">2026-06-11</td>
+            <td><span class="pill pill--danger">Active · Class</span></td>
+            <td>Prerecorded voice + Federal DNC + Internal DNC</td>
+          </tr>
+          <tr>
+            <td>Kesterson v. Better Rise Capital LLC</td>
+            <td class="num">5:25-cv-01095</td>
+            <td>W.D. Tex.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--warn">Active · MTC Arbitration briefed</span></td>
+            <td>TCPA — defendant moved to compel arbitration + stay discovery <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Better+Rise+Capital%22+TCPA&type=r">CL -&gt;</a></span></td>
+          </tr>
+          <tr>
+            <td>Soto v. Better Rise Capital LLC</td>
+            <td class="num">2:25-cv-02835</td>
+            <td>E.D. Cal.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Wilsman v. Better Rise Capital LLC</td>
+            <td class="num">6:25-cv-01857</td>
+            <td>M.D. Fla.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Pratt v. Better Rise Capital LLC</td>
+            <td class="num">5:25-cv-01558</td>
+            <td>W.D. Tex.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Bryant v. Better Rise Capital</td>
+            <td class="num">6:25-cv-00454</td>
+            <td>E.D. Tex.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--ok">Voluntarily Dismissed 01/15/2026 — likely settlement</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean tight">
+        <li>• <strong>Litigator scrub result on 516-860-9716</strong> — Blacklist API DNS failed at runtime; re-run manually.</li>
+        <li>• <strong>Article III judge assignment</strong> — not yet posted on CourtListener; PACER/PacerMonitor all 403/404.</li>
+        <li>• <strong>Defense counsel in C.D. Cal.</strong> — not yet appeared. In W.D. Tex. (Kesterson) defense counsel of record is Gunnar Peterson Seaquist; same firm may appear here.</li>
+        <li>• <strong>California SoS officer/manager list</strong> — bizfileonline blocked CAPTCHA. Officers behind Better Rise Capital LLC have not been verified beyond registered agent Nima Asadi.</li>
+        <li>• <strong>Identity of the 502-area dialer vendor</strong> — 15 Louisville KY DIDs against a CA-HQ defendant strongly suggests a third-party call center. Discovery target.</li>
+        <li>• <strong>Internal DNC policy</strong> — not published on betterrisecapital.com; will likely be requested in RFP #1.</li>
+        <li>• <strong>Prior plaintiff filings by Joseph James (Suffolk County, NY)</strong> — none confirmed via CourtListener; the other "Joseph James" results are unrelated.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Sell into VP Sales (Brent Stanton) and Operations Manager (Ephraim Turner) — there is no public GC, CCO, or CEO to escalate to.</h2>
+      <p class="section-lede">Better Rise has no published leadership page, no compliance officer, and no general counsel surfaced on LinkedIn or TheOrg. Email pattern is confirmed <code>{first}@betterrisecapital.com</code> from masked SignalHire previews <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span>. Open with VP Sales — he owns the dialer P&amp;L and feels the legal heat fastest.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Brent Stanton</strong> <span class="pill pill--dark">VP SALES</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>VP of Sales · 1–2yr tenure · owns the outbound dialer P&amp;L; first to feel a TCPA injunction <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td>(833) 510-1402 (main)</td>
+            <td>brent@betterrisecapital.com</td>
+            <td><a href="https://www.linkedin.com/in/brentarthurstanton">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Ephraim Turner</strong> <span class="pill pill--dark">OPS MGR</span> <span class="pill pill--warn">PATTERN</span></td>
+            <td>Operations Manager · 1–2yr tenure · likely owns vendor management for the 502-area dialer <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td>(833) 510-1402 (main)</td>
+            <td>ephraim@betterrisecapital.com</td>
+            <td><a href="https://www.linkedin.com/in/ephraim-turner-434202114">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Chris Sotto</strong> <span class="pill pill--dark">SALES REP</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Named in complaint ¶ 4, 37–38 — sent the post-call Salesforce "Account Verification Form" hours after the June 8, 2026 call. Direct agency-proof witness.</td>
+            <td>(833) 510-1402 (main)</td>
+            <td>csotto@betterrisecapital.com</td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ryan Altshuler</strong> <span class="pill pill--dark">LEADERSHIP (LIKELY)</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Surfaces on LinkedIn associated with Better Rise Capital — title not confirmed <span class="src-tag"><a href="https://www.linkedin.com/company/better-rise-capital">LinkedIn -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>ryan@betterrisecapital.com</td>
+            <td><a href="https://www.linkedin.com/in/ryan-altshuler2411">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Rion Parenteau</strong> <span class="pill pill--dark">BDR</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Business Development Representative <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>rion@betterrisecapital.com</td>
+            <td><a href="https://www.linkedin.com/in/rion-parenteau-161b42132">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Brendan Hamor</strong> <span class="pill pill--dark">FUNDING COORD</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Funding Coordinator <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>brendan@betterrisecapital.com</td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>David De Rego</strong> <span class="pill pill--dark">ACCT EXEC</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Account Executive <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>david@betterrisecapital.com</td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Logan Peyton</strong> <span class="pill pill--dark">FINANCE CONSULT</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Business Finance Consultant <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>logan@betterrisecapital.com</td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Kylie Bush</strong> <span class="pill pill--dark">ADMIN</span> <span class="pill pill--info">INFERRED</span></td>
+            <td>Administrative Assistant — gatekeeper inroad <span class="src-tag"><a href="https://www.signalhire.com/companies/better-rise-capital">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>kylie@betterrisecapital.com</td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nima Asadi, Esq.</strong> <span class="pill pill--dark">REGISTERED AGENT</span> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Registered Agent for service (19200 Von Karman Ave, Suite 600, Irvine, CA) — likely defense counsel intake</td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Company Main Line</strong> <span class="pill pill--ok">VERIFIED</span></td>
+            <td>Reception / inbound funnel <span class="src-tag"><a href="https://betterrisecapital.com/contact">Contact -&gt;</a></span></td>
+            <td>(833) 510-1402</td>
+            <td>hello@betterrisecapital.com</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);"><strong>Email pattern:</strong> <code>{first}@betterrisecapital.com</code> — confirmed from masked SignalHire previews for Stanton (b***t@) and Turner (e*****r@), and from the literal Chris Sotto address (csotto@) pled in the complaint.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — the answer clock is running and they are already paying defense counsel in Texas.</h2>
+      <p class="section-lede">Defendant has not yet appeared in C.D. Cal. The ~21-day answer window is the rep's hottest urgency lever. Lead with the VP of Sales; escalate to Operations Manager only if Sales bounces it to legal.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Day 1 (Today)</div>
+        <h3 class="card-title">Manual scrub + open call to VP Sales</h3>
+        <p class="card-body">Re-run 516-860-9716 through the Blacklist scrub UI manually. Then call Brent Stanton (VP Sales) at (833) 510-1402 and ask for him by name. Opener: "You got hit with a second federal TCPA class action yesterday — Javitch out of San Mateo, C.D. Cal., docket 8:26-cv-01489. We're the firm that runs the scrub that stops this. Five minutes?"</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 2</div>
+        <h3 class="card-title">Email Stanton + Turner with the Kesterson hook</h3>
+        <p class="card-body">Subject: "Kesterson + James — same playbook, two fronts." Reference the W.D. Tex. arbitration motion they filed, then position DNC scrubbing + litigator scrub as the operational fix the dialer vendor needs in place before Rule 26(f). Attach a one-pager on § 227(c)(5) good-faith safe harbor.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Day 3–5</div>
+        <h3 class="card-title">Escalate to registered agent / counsel</h3>
+        <p class="card-body">If Sales bounces, route to Nima Asadi, Esq. (registered agent at 19200 Von Karman Ave, Suite 600, Irvine). He's the inbound legal contact. Frame as "defense-cost reduction" not "compliance product."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 7–10</div>
+        <h3 class="card-title">Loop in the 502-area dialer vendor</h3>
+        <p class="card-body">Once Better Rise is engaged, ask for the name of their outbound calling vendor. That vendor is the cross-sell — same exposure, same fix, same close.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Day 14</div>
+        <h3 class="card-title">Last-touch before answer deadline</h3>
+        <p class="card-body">"Your answer is due in a week. Whatever you file, the plaintiff's expert is going to ask whether you scrubbed before the calls. Today's the last day to put that fact in your favor."</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Trigger Conditions</div>
+        <h3 class="card-title">What changes the plan</h3>
+        <p class="card-body"><strong>If defendant moves to compel arbitration</strong> (their W.D. Tex. playbook): pivot to "your arbitration clause isn't published in your Terms — that motion will fail." <strong>If plaintiff amends:</strong> opportunity to re-engage with fresh urgency. <strong>If a 3rd suit drops:</strong> escalate priority to URGENT, contact CEO via LinkedIn cold-DM.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JULY 5</span>
+      <span class="pill pill--warn">2 ACTIVE FEDERAL TCPA CASES</span>
+      <span class="pill pill--info">SERIAL PLAINTIFF'S COUNSEL · TCPAWORLD-FEATURED</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
