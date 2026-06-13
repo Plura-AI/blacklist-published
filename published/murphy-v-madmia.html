@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murphy v. Madmia International — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.row-current{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--warning); font-weight:700; margin-bottom:8px; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body{ font-size:15px; line-height:1.55; }
+.step-body strong{ display:block; font-size:16px; margin-bottom:4px; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" letter-spacing="0.02em">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#FFFFFF" letter-spacing="0.02em">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-13</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">DTC Kids-Apparel SMS Marketer · Quiet-Hours + Federal DNC · Attentive Platform · First-Time Defendant</p>
+      <h1 class="hero-tagline">Murphy v.<br>Madmia International</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03218</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(2 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned</div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Dozens to thousands</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's number masked to last four — scrub deferred. But the sender DID is fully exposed.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("ending in 8527"). The litigator scrub has been DEFERRED pending recovery of the full 10-digit number from PACER or discovery.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Partial · Lookup Deferred</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">(***) ***-8527</div>
+        <div class="scrub-number-sub">Only last four digits pled in Complaint ¶20 ("the wireless telephone number ending in 8527"). DNC-registered since June 23, 2003 per Complaint ¶21. San Bernardino County, CA residence (Yucca Valley area).</div>
+      </div>
+      <p class="scrub-body-text">Cannot run blacklistBulk against a 4-digit fragment. The full number must be recovered before scrub. Plaintiff Lena Murphy has <strong>no prior TCPA litigation history</strong> visible on CourtListener — she appears to be a first-time filer, not a serial plaintiff. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Lena+Murphy%22&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; font-weight:600;">Sender DID Identified (Defense-Side Intel)</h3>
+    <div class="card-grid" style="margin-top:12px;">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID #1</div>
+        <h3 class="card-title">+1 (833) 241-2496</h3>
+        <p class="card-body">Toll-free outbound SMS DID identified in Complaint ¶27 as the sender for all seven challenged messages. Confirmed via screenshot exhibits (Exhibit A). No third-party consumer-report data accessible — 800notes, YouMail, Tellows, RoboKiller all returned 403/404 during research. Sender identity confirmed via screenshots, not crowdsourced complaints.</p>
+        <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="pill pill--info">Toll-Free</span>
+          <span class="pill pill--dark">Attentive Mobile Stack</span>
+          <span class="pill pill--gap">No crowd intel</span>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Sender Domain</div>
+        <h3 class="card-title">madmia.attn.tv</h3>
+        <p class="card-body">Short-link domain disclosed in Complaint ¶27 (e.g., madmia.attn.tv/aX5neleiKIAk). The <code>attn.tv</code> suffix is Attentive Mobile's branded SMS link-shortener — an unmistakable fingerprint that Madmia uses Attentive as its SMS marketing platform. This is mass-broadcast infrastructure.</p>
+        <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+          <span class="pill pill--danger">Attentive Confirmed</span>
+          <span class="pill pill--dark">Mass-broadcast stack</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px; font-size:18px; font-weight:600;">Recovery Path to Run the Scrub</h3>
+    <div class="card-grid" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-meta">Path A</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <p class="card-body">Some plaintiff firms include the unredacted number in a civil cover sheet or interested-parties notice. Doc #3 (Certificate/Notice of Interested Parties) and Doc #4 (Notice) on the docket may contain the full number. <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03218&type=r">Docket -></a></span></p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path B</div>
+        <h3 class="card-title">Wait for defense counsel notice</h3>
+        <p class="card-body">Once Madmia retains counsel, the FRCP 26(a) initial disclosures (within 14 days of Rule 26(f) conference) will name the plaintiff's full number. ~30-45 day window.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path C</div>
+        <h3 class="card-title">Targeted discovery request</h3>
+        <p class="card-body">Defense interrogatory #1: "State the full 10-digit number receiving each text message identified in the Complaint." Plaintiff cannot refuse — her own pleading puts it in controversy.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER FIRST</span>
+      <span class="pill pill--info">PLAINTIFF: NO PRIOR TCPA FILINGS</span>
+      <span class="pill pill--ok">SENDER DID: FULLY DISCLOSED</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">First-time TCPA defendant, Attentive platform, no compliance infrastructure, volume-filer plaintiff firm. This is a high-probability close.</h2>
+      <p class="section-lede">Madmia has zero prior TCPA litigation history — they have no internal scars and almost certainly no DNC scrubbing, consent capture, or send-window logic in place. Plaintiff's firm PLG Damage Attorneys filed 12+ TCPA cases in roughly 60 days. Lead with DNC scrubbing + consent capture as a bundled compliance package; back-end with the litigator scrub once the plaintiff number surfaces.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">DNC Scrubbing</h3>
+        <p class="card-body">Plaintiff's number was DNC-registered since 2003 — 23 years before the texts <span class="src-tag">(Complaint ¶21)</span>. A federal-DNC scrub against the Madmia send list would have flagged Lena Murphy before message #1 went out. This is the cleanest, most direct value prop.</p>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Bundle With</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <p class="card-body">Complaint ¶17 + ¶23 directly attack the 47 CFR § 64.1200(c)(2)(ii) signed-written-agreement requirement. Madmia's signup page is a Shopify/Attentive JS flow with no inspectable consent checkbox. <span class="src-tag"><a href="https://madmia.com">madmia.com -></a></span> Blacklist consent-capture closes that gap permanently.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary / Closer</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <p class="card-body">Defer until the full plaintiff number is recovered from PACER. Then run blacklistBulk against the Madmia 90-day send list and quantify the "this would have caught Murphy" moment for defense counsel.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:22px; font-weight:600;">Pitch Angle</h3>
+    <div class="card" style="margin-top:12px;">
+      <p class="card-body">Madmia is a Sydney-based DTC kids-sock brand operating a US subsidiary (Madmia International LLC, Florida-formed) <span class="src-tag"><a href="https://madmia.com">madmia.com -></a></span>. They run SMS marketing through Attentive Mobile (madmia.attn.tv), pushed 7 messages to a DNC-registered California number between March and May 2026 — all sent at 7:00–7:01 AM Pacific, which is one minute before the federal quiet-hours window opens at 8:00 AM <span class="src-tag">(Complaint ¶26)</span>. That timing is not a coincidence. It's a misconfigured Attentive send-schedule with no time-zone awareness. Every defendant on the Attentive platform with the same misconfiguration is one CourtListener search away from being PLG's next target.</p>
+      <p class="card-body" style="margin-top:12px;">The opening line: "Madmia just got sued for seven 7 AM texts to a DNC-registered number — your Attentive schedule is the culprit. We sell the DNC scrub that would have caught Lena Murphy before message #1, plus the consent capture that fixes the 47 CFR § 64.1200(c)(2)(ii) defense gap her firm just exploited. Their firm filed 12+ of these in 60 days. You're now case #13 — or our next save." Lead with empathy (first-time defendant), pivot to fear (volume-filer plaintiff firm + Attentive stack ubiquity), close on the bundle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Australian-founded kids-sock DTC brand with a Florida LLC wrapper and a Shopify+Attentive stack. Mid-market revenue, high SMS cadence, zero visible compliance program.</h2>
+      <p class="section-lede">Madmia sells colorful mismatched socks for kids and adults under licensed properties (Disney, Sanrio, KPop Demon Hunters). The Florida LLC is the US legal/distribution vehicle for an Australian operating company headquartered in Sydney. No US-based GC or compliance officer is identifiable.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Madmia International LLC</h3>
+        <dl class="kv">
+          <dt>Legal Name</dt><dd>Madmia International LLC</dd>
+          <dt>Entity Type</dt><dd>Florida Limited Liability Company <span class="src-tag">(Complaint ¶6)</span></dd>
+          <dt>Formation State</dt><dd>Florida</dd>
+          <dt>HQ (Operations)</dt><dd>Sydney, Australia (parent brand); US fulfillment in Orlando, FL <span class="src-tag"><a href="https://madmia.com">madmia.com -></a></span></dd>
+          <dt>Brand DBAs</dt><dd>MADMIA · Madmia Socks</dd>
+          <dt>Vertical</dt><dd>DTC kids/family apparel · novelty socks</dd>
+          <dt>Founder/CEO</dt><dd>Tanja Filipovska (CEO and Creative Director) <span class="src-tag"><a href="https://www.signalhire.com/companies/madmia">SignalHire -></a></span></dd>
+          <dt>Public/Private</dt><dd>Private</dd>
+          <dt>Customer Claim</dt><dd>"1 Million Happy Customers" (per site marketing) <span class="src-tag"><a href="https://madmia.com">madmia.com -></a></span></dd>
+          <dt>SMS Platform</dt><dd>Attentive Mobile (madmia.attn.tv confirmed)</dd>
+          <dt>Ecommerce Stack</dt><dd>Shopify</dd>
+        </dl>
+      </div>
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#C9C9C9;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Seven 7:00–7:01 AM Pacific sends. Quiet-hours window opens at 8:00 AM.</h3>
+        <p class="card-body">The Complaint pleads seven distinct SMS sends — March 21, March 25, March 28, April 9, May 10, May 22, May 27, 2026 — all timestamped at either 7:00 AM or 7:01 AM Pacific to a recipient in Yucca Valley, California <span class="src-tag" style="color:#C9C9C9;">(Complaint ¶26)</span>. That is not random. It is an Attentive Mobile send schedule that was set to "7:00 AM local" but configured against the sender's time zone (likely Eastern or Australian) rather than the recipient's — a textbook 47 CFR § 64.1200(c)(1) failure mode. Additionally, the madmia.com Terms of Service URL returns a 404 <span class="src-tag" style="color:#C9C9C9;"><a href="https://madmia.com" style="color:#fff;">madmia.com -></a></span>, meaning no arbitration clause or class waiver is publicly accessible as a defense.</p>
+      </div>
+    </div>
+
+    <div class="card card--accent" style="margin-top:24px;">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer clock running from service. Settlement velocity in this firm's docket is 6–10 weeks.</h3>
+      <dl class="kv">
+        <dt>Filed</dt><dd>June 11, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03218&type=r">Docket -></a></span></dd>
+        <dt>Service Window</dt><dd>FRCP 4(m): 90 days from filing — through ~September 9, 2026</dd>
+        <dt>Answer Deadline</dt><dd>FRCP 12(a)(1)(A): 21 days from service (estimated late June / early July 2026)</dd>
+        <dt>Firm Settlement Pattern</dt><dd>Sister case <em>Sloss v. Wolverine</em> (S.D. Tex.) settled June 10, 2026; <em>Salcedo v. Fashion Nova</em> (S.D. Fla.) terminated within ~7 weeks of filing; <em>Correa v. Fashion Nova</em> terminated within ~2 months <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></dd>
+        <dt>Optimal Close Window</dt><dd>Before defense counsel appears (~14–21 days post-service). Madmia's first call to outside counsel is the moment Blacklist needs to be in the conversation.</dd>
+      </dl>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:22px; font-weight:600;">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Madmia (Australia)</strong></td>
+            <td>Operating parent / brand owner</td>
+            <td>DTC apparel</td>
+            <td>Controls Attentive account &amp; send schedule that triggered this suit</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Attentive Mobile (vendor)</strong></td>
+            <td>SMS platform vendor (not a defendant)</td>
+            <td>SaaS / MarTech</td>
+            <td>Vendor-level — every Madmia-like Attentive client is a Blacklist prospect</td>
+            <td><span class="pill pill--info">Channel Partner Angle</span></td>
+          </tr>
+          <tr>
+            <td><em>Officer/registered-agent affiliates</em></td>
+            <td>Unknown — Sunbiz fetch blocked</td>
+            <td>—</td>
+            <td>Unable to map sister LLCs through registered-agent overlap</td>
+            <td><span class="pill pill--gap">Intel Gap</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA suit ever filed against Madmia. Plaintiff firm is a Florida property-damage shop pivoting into TCPA volume filings — 12 cases in 60 days.</h2>
+      <p class="section-lede">Madmia has no prior TCPA defense history. PLG Damage Attorneys is a 30+ attorney Miramar, FL firm whose core practice is hurricane/insurance bad-faith litigation. Their TCPA practice is brand new, suggesting they're testing the boilerplate Quiet-Hours + DNC template across DTC verticals nationwide.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Murphy v. Madmia International LLC</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>5:26-cv-03218 (C.D. Cal., Eastern Div. - Riverside) <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03218&type=r">CourtListener -></a></span></dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Judge</dt><dd>Not yet assigned</dd>
+          <dt>Plaintiff</dt><dd>Lena Murphy (San Bernardino County, CA — Yucca Valley)</dd>
+          <dt>Class Status</dt><dd><span class="pill pill--danger">Putative Rule 23 Class</span></dd>
+          <dt>Classes Pled</dt><dd>(1) TCPA After-Hours Class; (2) TCPA National DNC Class</dd>
+          <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); 47 CFR § 64.1200(c)(2)</dd>
+          <dt>Theory</dt><dd>Quiet-hours (7 AM Pacific sends) + Federal DNC (number registered since 2003)</dd>
+          <dt>Channel</dt><dd>SMS · 7 messages between Mar 21 – May 27, 2026</dd>
+          <dt>Sender DID</dt><dd>+1 (833) 241-2496 via Attentive (madmia.attn.tv)</dd>
+          <dt>Damages Sought</dt><dd>$500/violation statutory + treble for willful + injunctive relief. Named-plaintiff floor ~$3,500; treble ~$10,500. Class exposure depends on send-list size.</dd>
+          <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared</span> · ~21-day answer clock from service</dd>
+          <dt>Docket Visibility</dt><dd>Doc #1 Complaint, Doc #3 Interested Parties, Doc #4 Notice, Doc #5 Summons Request — no aggregator coverage yet</dd>
+        </dl>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>2750 SW 145th Avenue #509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+          <dt>Firm Phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -></a></span></dd>
+          <dt>Firm Email</dt><dd>info@plgdamage.com · tcpa-service@plgdamage.com (Complaint caption)</dd>
+          <dt>Lead Atty Email</dt><dd>vv@plgdamage.com (Complaint caption)</dd>
+          <dt>CA Bar Number</dt><dd>367857 — active, no discipline <span class="src-tag"><a href="https://apps.calbar.ca.gov/attorney/Licensee/Detail/367857">CalBar -></a></span></dd>
+          <dt>Bar Address</dt><dd><span class="pill pill--warn">Address Mismatch</span> — CA-barred, no CA office disclosed</dd>
+          <dt>Discipline</dt><dd>None found</dd>
+          <dt>Firm Size</dt><dd>30+ attorneys (large boutique) <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -></a></span></dd>
+          <dt>Firm Core Practice</dt><dd>Property damage / insurance bad-faith — NOT historically TCPA <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -></a></span></dd>
+          <dt>TCPA Filings (60d)</dt><dd><strong>12+</strong> across C.D. Cal., N.D. Cal., S.D. Fla., M.D. Fla., N.D. Fla., S.D. Tex. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>TCPAWorld Ranking</dt><dd>Not ranked — firm is new to TCPA <span class="src-tag"><a href="https://tcpaworld.com/?s=Venkatesh">TCPAWorld -></a></span></dd>
+          <dt>Other Firm Attys</dt><dd>Mario I. Molina, Michelle L. Molina, Matthew S. Suls, Joseph A. Varona, Faythe Gutierrez</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:22px; font-weight:600;">Plaintiff Firm Template — "PLG/Venkatesh DTC Quiet-Hours+DNC"</h3>
+    <div class="card" style="margin-top:12px;">
+      <p class="card-body">PLG is running an industrial template: <strong>(1)</strong> single named plaintiff with a long-DNC-registered number, <strong>(2)</strong> 4–8 alleged SMS sends across a multi-month window, <strong>(3)</strong> screenshot exhibit attached, <strong>(4)</strong> dual-count complaint citing both 47 CFR § 64.1200(c)(1) (quiet hours) and (c)(2) (DNC), <strong>(5)</strong> putative Rule 23 class with national scope. The firm is filing roughly one TCPA case per week. Their property-damage practice was decimated by Florida's 2022–2023 insurance reform laws — TCPA is their pivot. They have <strong>no published TCPA opinions</strong>, no TCPAWorld presence, no WebRecon footprint — meaning they're settling, not litigating. Sister cases <em>Sloss v. Wolverine</em>, <em>Salcedo v. Fashion Nova</em>, and <em>Correa v. Fashion Nova</em> all resolved in 6–10 weeks. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22+TCPA&type=r">CourtListener -></a></span></p>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:22px; font-weight:600;">Concurrent &amp; Recent Litigation — PLG Damage TCPA Docket</h3>
+    <div class="tbl-wrap" style="margin-top:12px;">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="row-current">
+            <td><strong>Murphy v. Madmia International LLC</strong> <span class="pill pill--red" style="margin-left:6px;">CURRENT</span></td>
+            <td class="num">5:26-cv-03218</td>
+            <td>C.D. Cal.</td>
+            <td><span class="pill pill--red">Active · 2 days</span></td>
+            <td>Quiet-hours + DNC (SMS)</td>
+          </tr>
+          <tr>
+            <td>Bennea Hughes v. Guardio LLC</td>
+            <td class="num">2:26-cv-05313</td>
+            <td>C.D. Cal.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Shannel Long v. Rocket Mortgage, LLC</td>
+            <td class="num">2:26-cv-05599</td>
+            <td>C.D. Cal.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Lina Fasheh v. The Xercize Studio, LLC</td>
+            <td class="num">8:26-cv-01231</td>
+            <td>C.D. Cal.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Bennea Hughes v. Rite Aid Corporation</td>
+            <td class="num">2:26-cv-04436</td>
+            <td>C.D. Cal.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Joan Rios v. Last Brand, Inc.</td>
+            <td class="num">5:26-cv-02684</td>
+            <td>C.D. Cal.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA (DTC apparel)</td>
+          </tr>
+          <tr>
+            <td>Post v. Centerfield Media Parent, Inc.</td>
+            <td class="num">4:26-cv-03524</td>
+            <td>N.D. Cal.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA (lead gen)</td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven Inc</td>
+            <td class="num">1:26-cv-00119</td>
+            <td>N.D. Fla.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo, Inc.</td>
+            <td class="num">8:26-cv-01491</td>
+            <td>M.D. Fla.</td>
+            <td><span class="pill">Active</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Sloss v. Wolverine World Wide, Inc.</td>
+            <td class="num">4:26-cv-03277</td>
+            <td>S.D. Tex.</td>
+            <td><span class="pill pill--ok">Notice of Settlement 06/10/26</span></td>
+            <td>TCPA (DTC footwear)</td>
+          </tr>
+          <tr>
+            <td>Correa v. Fashion Nova, LLC</td>
+            <td class="num">0:26-cv-60960</td>
+            <td>S.D. Fla.</td>
+            <td><span class="pill pill--ok">Terminated 06/03/26</span></td>
+            <td>TCPA (DTC apparel)</td>
+          </tr>
+          <tr>
+            <td>Salcedo v. Fashion Nova, LLC</td>
+            <td class="num">0:26-cv-61011</td>
+            <td>S.D. Fla.</td>
+            <td><span class="pill pill--ok">Terminated 05/29/26</span></td>
+            <td>TCPA (DTC apparel)</td>
+          </tr>
+          <tr>
+            <td>Dolls Kill, Inc. v. Madmia International LLC</td>
+            <td class="num">6:24-cv-00151</td>
+            <td>M.D. Fla.</td>
+            <td><span class="pill pill--ok">Terminated 05/15/24</span></td>
+            <td>Copyright (likely settled) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Madmia+International%22&type=r">CourtListener -></a></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open Intel Gaps to Close Before First Dial</div>
+      <ul class="clean tight">
+        <li>Full 10-digit plaintiff number (currently masked "ending in 8527") — pull PACER ECF #1 + #3 + #4</li>
+        <li>Sunbiz / FL SoS profile blocked (HTTP 403) — registered agent, formation date, member/manager names unknown</li>
+        <li>California SoS foreign-qualification record — could not confirm Madmia is registered to do business in CA (per Complaint ¶6 they claim authorization)</li>
+        <li>Judge assignment — not yet posted on CourtListener; could shape strategic timing</li>
+        <li>Defense counsel — not yet appeared; first appearance is the inflection point for outreach</li>
+        <li>Privacy policy and SMS terms on madmia.com return 404 — no inspectable consent language</li>
+        <li>800notes / YouMail / Tellows / RoboKiller — all blocked; no third-party complaint volume on the 833 DID</li>
+        <li>No US-based GC or Chief Compliance Officer identifiable in any public source — US entity appears to be managed from Australia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Call CEO Tanja Filipovska first. There is no US GC — every decision routes through Sydney.</h2>
+      <p class="section-lede">Madmia's US entity is a legal/distribution vehicle managed by the Australian operating company. CEO and Creative Director Tanja Filipovska is the highest-authority decision-maker reachable. The email pattern <code>{first}@madmia.com</code> is confirmed from two published addresses. Time-zone window: Sydney is UTC+11 — call between 3:00 PM and 7:00 PM Pacific to reach business hours in Australia.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Tanja Filipovska</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--dark">FOUNDER</span></td>
+            <td>CEO and Creative Director · Sydney · highest-authority decision-maker, controls Attentive account</td>
+            <td>+61 *** *** 6888 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>tanja@madmia.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/tanja-filipovska">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Bella McLeod</strong><br><span class="pill pill--dark">DESIGN MGR</span></td>
+            <td>Design Manager · operational lieutenant; can route to CEO and ops</td>
+            <td>+61 428 *** *30 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>bella@madmia.com <span class="pill pill--ok" style="margin-left:4px;">VERIFIED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ljiljana Matovic</strong><br><span class="pill pill--dark">BIZ DEV</span></td>
+            <td>Business Development Manager · the ONLY US phone (+1 323) — likely US distribution lead</td>
+            <td>+1 323 *** **54 <span class="pill pill--info" style="margin-left:4px;">US-BASED</span></td>
+            <td>ljiljana@madmia.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Crystal Tsoi</strong><br><span class="pill pill--dark">PRODUCTION</span></td>
+            <td>Production Manager</td>
+            <td>+61 *** *** 8111 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>crystal@madmia.com <span class="pill pill--warn" style="margin-left:4px;">PATTERN</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Stephanie Salmon</strong><br><span class="pill pill--dark">DESIGNER</span></td>
+            <td>Designer</td>
+            <td>+61 466 *** *93 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>stephanie@madmia.com <span class="pill pill--ok" style="margin-left:4px;">VERIFIED</span></td>
+            <td><a href="https://www.linkedin.com/in/stephanie-salmon">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td><strong>Biljana Davidovska Krstevski</strong><br><span class="pill pill--dark">MARKETING</span></td>
+            <td>Marketing Assistant · likely closest to the Attentive send-schedule that triggered the suit</td>
+            <td>+61 *** *** 7348 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>biljana@madmia.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Vanessa Espinosa Cofré</strong><br><span class="pill pill--dark">BRAND/MKTG</span></td>
+            <td>"Magic Maker" (brand/marketing role)</td>
+            <td>+61 *** *** 2827 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>vanessa@madmia.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Julia van Oppen</strong><br><span class="pill pill--dark">DESIGN</span></td>
+            <td>Fashion/Graphic Designer</td>
+            <td>+61 434 *** *69 <span class="pill pill--gap" style="margin-left:4px;">PARTIAL</span></td>
+            <td>julia@madmia.com <span class="pill pill--info" style="margin-left:4px;">INFERRED</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>US General Counsel</strong><br><span class="pill pill--gap">ROLE ONLY</span></td>
+            <td>No US GC identifiable in public sources — defense referrals likely route to outside FL counsel given FL formation</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">NOT YET APPEARED</span></td>
+            <td>~21-day answer clock from service. Monitor PACER for first Notice of Appearance.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:24px; padding:16px 20px; background:var(--info-bg); border-left:4px solid var(--info);">
+      <strong style="color:var(--info); font-size:13px; letter-spacing:0.08em; text-transform:uppercase;">Email Pattern:</strong> <code style="font-size:15px; font-weight:600;">{first}@madmia.com</code> — confirmed from two published email addresses (Bella McLeod and Stephanie Salmon) via SignalHire masking pattern. <span class="src-tag"><a href="https://www.signalhire.com/companies/madmia">SignalHire -></a></span> <span class="src-tag"><a href="https://www.linkedin.com/company/madmia">LinkedIn -></a></span>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 5 business days. Defense counsel appearance is the inflection point.</h2>
+      <p class="section-lede">Once Madmia retains outside counsel, the conversation shifts from "let's prevent the next suit" to "we already have someone handling this." Hit the CEO before that happens. Sister cases in this firm's docket are settling in 6–10 weeks — the window for Blacklist to be in the budget conversation closes quickly.</p>
+    </div>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <strong>Day 1 — Pull PACER ECF #1, #3, #4 to recover the full plaintiff number.</strong>
+          ~$3 total. Once the 10-digit Murphy number is in hand, run blacklistBulk. If she hits the litigator list, that becomes the lead artifact for the CEO email. If she doesn't, the DNC-registration date (2003 per Complaint ¶21) is your wedge.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <strong>Day 1–2 — Send the CEO email to tanja@madmia.com.</strong>
+          Subject: "Murphy v. Madmia (5:26-cv-03218) — your Attentive send schedule." Body: 4 sentences. Lead with the 7 AM timestamp anomaly. Name Attentive. Offer the 20-minute call. CC ljiljana@madmia.com (US business dev) so it doesn't get lost in Sydney inbox triage.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <strong>Day 2 — Call the US number (+1 323) on Ljiljana Matovic's LinkedIn.</strong>
+          She's the only US-phone contact and likely the US distribution lead. She is NOT the decision-maker — she's the bridge to Tanja. Goal: get warm-intro to the CEO before defense counsel is selected.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <strong>Day 3 — Call Sydney during the 3:00–7:00 PM PT window (business hours in Australia).</strong>
+          Direct-dial Tanja Filipovska. If gated, ask for "the person handling the California TCPA matter" — that phrasing forces routing even if reception doesn't know what TCPA means.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <strong>Day 5–10 — Monitor PACER daily for defense counsel Notice of Appearance.</strong>
+          When it appears, immediately add defense counsel to the outreach loop with the litigator-scrub + RND value prop framed around discovery cost reduction.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <strong>Day 10–21 — Pitch the bundled package: DNC scrubbing + consent capture + record retention.</strong>
+          Frame as a single annual subscription. PLG has 12+ active TCPA suits and counting — Madmia needs to be off the easy-target list before PLG circles back for a second filing.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">07</div>
+        <div class="step-body">
+          <strong>Day 21+ — Close on the litigator-scrub upsell once the plaintiff number is verified.</strong>
+          Run blacklistBulk against Madmia's 90-day Attentive send list and show them the "would-have-caught" list. That demonstration is the single most effective Blacklist close mechanism.
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-size:22px; font-weight:600;">Trigger Conditions</h3>
+    <div class="card-grid" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-meta">Trigger</div>
+        <h3 class="card-title">Notice of Settlement Filed</h3>
+        <p class="card-body">If a notice of settlement appears in the next 6 weeks (matching the Fashion Nova / Wolverine pattern), pivot pitch from "save the case" to "prevent the next one." The post-settlement window is actually a stronger Blacklist close — the wound is fresh.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Trigger</div>
+        <h3 class="card-title">Second PLG Suit Filed Against Madmia</h3>
+        <p class="card-body">If PLG files a tag-along suit (different plaintiff, same defendant) — this firm has done this against Fashion Nova — escalation tier. CEO call moves to same day.</p>
+      </div>
+      <div class="card">
+        <div class="card-meta">Trigger</div>
+        <h3 class="card-title">Defense Counsel Files MTD or Compels Arbitration</h3>
+        <p class="card-body">Madmia's TOS URL is 404 — they have no public arbitration clause. If defense counsel manages to compel arbitration anyway, that's a leverage point — they need consent-capture infrastructure to make those motions stick in the future.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--warn">SETTLEMENT VELOCITY: 6–10 WEEKS</span>
+      <span class="pill pill--info">LEAD PRODUCT: DNC SCRUBBING + CONSENT CAPTURE</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-13</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
