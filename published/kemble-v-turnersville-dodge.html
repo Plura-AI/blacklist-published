@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kemble v. Turnersville Dodge — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:170px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout-title{ font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--warning); margin-bottom:8px; }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--bl-red); }
+.step-body h4{ margin:0 0 6px; font-size:16px; font-weight:600; }
+.step-body p{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-2); }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="135" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="145" y="18" fill="#ffffff" font-family="General Sans, sans-serif" font-size="20" font-weight="400" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-15</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Auto Dealer SMS/Voice Marketer · STOP-Ignored · Internal DNC + Federal DNC · Marcus &amp; Zelman Filing</p>
+      <h1 class="hero-tagline">Kemble v.<br>Turnersville Dodge</h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">1:26-cv-06939-ESK-SAK</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">D.N.J. (Camden)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(4 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Edward S. Kiel <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Mag. Sharon A. King</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)(5)<br>47 CFR § 64.1200(c)<br>47 CFR § 64.1200(d)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class</div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Ari Marcus <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Marcus &amp; Zelman, LLC</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff number redacted to last-four "6274" — litigator scrub deferred until full number recovered.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint discloses only the last four digits ("***-***-6274"), so a litigator-list scrub cannot be run on this filing today. The recovery path is straightforward: pull ECF #1 from PACER (it may not be redacted in the filed PDF), and/or wait for defense counsel notice.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">Recovery Path: PACER #1</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number ("6274 Number")</div>
+        <div class="scrub-number">***-***-6274</div>
+        <div class="scrub-number-sub">Cellular line. Registered on the National DNC Registry on or about May 9, 2012 (per Complaint ¶ 8). Full 10 digits NOT pled.</div>
+      </div>
+      <p class="scrub-body-text">Plaintiff Stephen Kemble of Hammonton, NJ is the sole and primary subscriber of a cellular line ending 6274 (Compl. ¶ 14). The complaint alleges both SMS and voice solicitations from Defendant after Plaintiff replied "STOP" on or about April 20, 2026 — confirmed in a screenshot exhibit showing Defendant's auto-response "you have successfully been removed from Turnersville Chrysler Jeep Dodge Ram text messages" followed by another marketing text the same afternoon (Compl. ¶ 29-30). Because the recipient number is redacted to last-four, blacklistBulk cannot be queried. A cross-check of plaintiff name "Stephen Kemble" against CourtListener returned only unrelated individuals (Hawaii physician, Indiana bankruptcy debtor) — no prior TCPA filings located <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Stephen+Kemble%22&type=r">CourtListener -></a></span>, but absence of indexed results does not rule out state-court or non-RECAP federal activity.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sending DID · 856-406-2005</div>
+        <h3 class="card-title">NJ 856 local-presence line</h3>
+        <div class="card-body">Screenshot exhibit (Compl. p. 6) shows outbound SMS originating from <strong>(856) 406-2005</strong>, a local-presence number matching the Turnersville, NJ dealership area code. Sender-ID directories (800notes, YouMail, Tellows, RoboKiller) all returned HTTP 403/404 during enrichment — no third-party complaint corroboration available at this time. The text identifies the sender as "Abigail with Turnersville Jeep" with content advertising "0% financing, super low $0 down lease specials, bonus cash/dealer cash, up to $3,000 over KBB for trades."</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path A</div>
+        <h3 class="card-title">Pull ECF #1 from PACER (~$1.20)</h3>
+        <div class="card-body">The filed Complaint may or may not preserve the last-four redaction in the as-filed PDF. PACER docket entry confirms only "Document 1 — Complaint filed June 11, 2026" <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06939&type=r">CourtListener RECAP -></a></span>. Once the full 10-digit number is recovered, run blacklistBulk and re-issue the scrub.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path B</div>
+        <h3 class="card-title">Wait for defense counsel appearance</h3>
+        <div class="card-body">Defense counsel will likely have the unredacted number in their first 26(a) disclosure or Rule 12 motion exhibits. No appearance has been entered yet — the docket reflects only the initial assignment to Judge Kiel and Magistrate King.</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF: NO PRIOR TCPA FILINGS LOCATED</span>
+      <span class="pill pill--warn">FIRM: SERIAL TCPA FILER (MARCUS &amp; ZELMAN)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Single-rooftop NJ dealer with a smoking-gun "STOP-then-text-again" screenshot and zero visible compliance program — textbook internal DNC pitch.</h2>
+      <p class="section-lede">This is one of the cleanest internal-DNC fact patterns Blacklist sees: plaintiff replied "STOP," the dealer's own system replied "you have successfully been removed," and then another marketing text arrived the same day. Lead with Compliance Audit / Policies &amp; Procedures (the 47 CFR § 64.1200(d) gap is the entire complaint), bundle DNC scrubbing, and tee up Consent Capture for the long-tail fix.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Compliance Audit · Policies &amp; Procedures</h3>
+        <div class="card-body">The complaint alleges Defendant has no written internal DNC policy, no personnel training, and no recordkeeping — the exact triad required by 47 CFR § 64.1200(d)(1), (d)(2), (d)(3) and (d)(6). Blacklist's compliance audit closes all three gaps in a single SOW. This is the path of least resistance and the highest urgency given the 21-day answer clock.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Bundle #2</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <div class="card-body">Plaintiff registered the 6274 line on the National DNC on May 9, 2012 (Compl. ¶ 8) and Defendant solicited anyway — a federal DNC violation under § 64.1200(c) layered on top of the internal-DNC theory. Federal DNC scrubbing on every outbound list is the operational fix that prevents the next Kemble.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Bundle #3</div>
+        <h3 class="card-title">Consent Capture / Record Retention</h3>
+        <div class="card-body">Defendant's website was offline during research <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Turnersville,_New_Jersey">Background -></a></span> — no visible TCPA disclosure, no SMS opt-in language, no privacy policy reachable. When Marcus &amp; Zelman serves discovery on opt-in records, Defendant will have nothing to produce. Consent Capture installs an auditable record from this point forward.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px; font-weight:600; margin:0 0 12px">Pitch Angle</h3>
+    <p style="font-size:15px; line-height:1.7; color:var(--fg-1); max-width:880px">"Your dealership is being sued in federal court in Camden as of June 11 by Ari Marcus at Marcus &amp; Zelman — the same firm that ran Susinno v. Work Out World in this same district for six years. The screenshot attached to the complaint shows your system told this consumer 'you have successfully been removed' and then your system sent him another sales text the same afternoon. That single screenshot is the entire case against you. The plaintiff bar is now going to ask, in discovery, for your written internal DNC policy, your training records, and your suppression list export. If those don't exist — and dealerships almost never have them — your exposure on a 'several thousands' class is statutory damages of $500 to $1,500 per violation."</p>
+    <p style="font-size:15px; line-height:1.7; color:var(--fg-1); max-width:880px; margin-top:12px">"Blacklist's compliance audit gives you the policy, the training, and the suppression-list mechanics in one engagement — and our DNC scrubbing API stops the next Kemble before he hits send on a STOP reply. We can have you compliant before your answer is due."</p>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Single-rooftop Stellantis (Dodge / Chrysler / Jeep / Ram) franchise dealer in Washington Township, Gloucester County, NJ — likely operating under a parent "Turnersville Auto Mall" umbrella.</h2>
+      <p class="section-lede">"Turnersville Dodge Chrysler Jeep Ram" is the customer-facing trade name; the underlying legal entity could not be confirmed via NJ DOR or OpenCorporates during research (both blocked). The dealership sits within the Turnersville Auto Mall complex on Route 42 in Washington Township <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Turnersville,_New_Jersey">Wikipedia -></a></span>, which is one of the largest multi-franchise auto-mall complexes in South Jersey.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <h3 class="card-title">Defendant Profile</h3>
+        <dl class="kv">
+          <dt>Legal Entity</dt><dd>Unconfirmed — d/b/a "Turnersville Dodge Chrysler Jeep Ram" <span class="pill pill--gap" style="margin-left:6px">GAP</span></dd>
+          <dt>Trade Name</dt><dd>Turnersville Dodge Chrysler Jeep Ram</dd>
+          <dt>Parent / Umbrella</dt><dd>Likely Turnersville Auto Mall complex <span class="pill pill--gap" style="margin-left:6px">UNCONFIRMED</span></dd>
+          <dt>Formation State</dt><dd>New Jersey</dd>
+          <dt>HQ</dt><dd>Turnersville, NJ (Washington Township, Gloucester County)</dd>
+          <dt>Area Code</dt><dd>856 (matches sending DID)</dd>
+          <dt>Vertical</dt><dd>Auto dealership · Stellantis franchise (Dodge / Chrysler / Jeep / Ram)</dd>
+          <dt>Ownership</dt><dd>Private · single-rooftop or small group</dd>
+          <dt>Website</dt><dd>turnersvilleautomall.com <span class="pill pill--warn" style="margin-left:6px">OFFLINE DURING RESEARCH</span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#A8A8A8">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">The auto-response screenshot is dispositive.</h3>
+        <div class="card-body">
+          <p>The complaint's Exhibit (Compl. p. 6 screenshot) shows the dealer's own system text-confirming Plaintiff's STOP request: <em>"You have successfully been removed from Turnersville Chrysler Jeep Dodge Ram text messages."</em></p>
+          <p style="margin-top:8px">The very next message, timestamped the same day (3:33 PM), reads: <em>"Hey Stephen, it's Abigail with Turnersville Jeep Chrysler Dodge Ram! It's the last day of the month and we need to get as many vehicles out as possible! Don't miss out on 0% financing..."</em></p>
+          <p style="margin-top:8px">That sequence — system acknowledges STOP, then sends marketing text the same afternoon — is the textbook 47 CFR § 64.1200(d)(3) violation. No reasonable factfinder reads that screenshot any other way.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">21-day answer window from service · close before defense counsel appears</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Filed</dt><dd>June 11, 2026 (4 days ago)</dd>
+          <dt>Answer Deadline</dt><dd>~21 days from service per FRCP 12(a)(1)(A) — likely early July 2026 <span class="pill pill--warn" style="margin-left:6px">EST.</span></dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared</dd>
+          <dt>Sales Window</dt><dd>Best chance to close is BEFORE defense counsel circles wagons and the dealer's broker/captive insurer takes over compliance decisions.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Turnersville Auto Mall (umbrella)</td>
+            <td>Likely parent / co-located franchise complex</td>
+            <td>Multi-franchise auto retail</td>
+            <td>If the SMS dialer is shared across rooftops, the policy gap is enterprise-wide.</td>
+            <td><span class="pill pill--red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Co-located franchises (Honda, Hyundai, Kia, Nissan, etc. at Turnersville Auto Mall)</td>
+            <td>Sister rooftops at same complex</td>
+            <td>Auto retail</td>
+            <td>If a shared CRM/dialer (DealerSocket, VinSolutions, Elead) services the mall, all rooftops carry the same exposure.</td>
+            <td><span class="pill pill--warn">MEDIUM — confirm shared infra first</span></td>
+          </tr>
+          <tr>
+            <td>Dealer CRM vendor (DealerSocket / VinSolutions / Elead — TBD)</td>
+            <td>Outbound dialer platform</td>
+            <td>MarTech</td>
+            <td>Many dealer CRMs include compliance modules. Scrub-API integration sells across the vendor's book.</td>
+            <td><span class="pill pill--info">LOW — channel play</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">Marcus &amp; Zelman is a long-running NJ/PA/NY consumer-rights shop with Third Circuit precedent — not a one-off filer.</h2>
+      <p class="section-lede">Ari Marcus personally appeared in Susinno v. Work Out World in this same district. The firm has 8 attorneys, advertises "millions in settlements since 2012," and runs cases in D.N.J., E.D. Pa., E.D. Cal., M.D. Pa., and the Third Circuit <span class="src-tag"><a href="https://marcuszelman.com/about">marcuszelman.com -></a></span>.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Current Case</div>
+        <h3 class="card-title">Kemble v. Turnersville Dodge Chrysler Jeep Ram</h3>
+        <dl class="kv">
+          <dt>Docket</dt><dd>1:26-cv-06939-ESK-SAK</dd>
+          <dt>Court</dt><dd>D.N.J., Camden Vicinage</dd>
+          <dt>Filed</dt><dd>June 11, 2026</dd>
+          <dt>Judges</dt><dd>Edward S. Kiel (Article III) · Sharon A. King (Magistrate) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06939&type=r">CourtListener -></a></span></dd>
+          <dt>Plaintiff</dt><dd>Stephen Kemble (Hammonton, NJ)</dd>
+          <dt>Class</dt><dd>Putative Rule 23(b)(2) and (b)(3) · "several thousands" alleged (Compl. ¶ 50)</dd>
+          <dt>Class Period</dt><dd>4 years prior to filing (June 2022 – June 2026)</dd>
+          <dt>Class Definition</dt><dd>All persons sent 2+ solicitations within 12 months after communicating a request to stop (Compl. ¶ 48)</dd>
+          <dt>Primary Theory</dt><dd>Internal DNC under 47 CFR § 64.1200(d)(1)-(6)</dd>
+          <dt>Secondary Theories</dt><dd>Federal DNC § 64.1200(c); prior express written consent absent</dd>
+          <dt>Channels</dt><dd>SMS + voice</dd>
+          <dt>Damages</dt><dd>$500/violation (negligent) up to $1,500/violation (willful) · injunctive relief · attorney fees</dd>
+          <dt>Defense Counsel</dt><dd>Not yet appeared · ~21-day answer clock <span class="pill pill--red" style="margin-left:6px">PENDING</span></dd>
+          <dt>Aggregator Visibility</dt><dd>CourtListener RECAP confirmed; PacerMonitor + UniCourt 404 (too new) <span class="src-tag"><a href="https://www.courtlistener.com/?q=1%3A26-cv-06939&type=r">CL -></a></span></dd>
+        </dl>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Ari Marcus · Marcus &amp; Zelman, LLC</h3>
+        <dl class="kv">
+          <dt>Firm Address</dt><dd>701 Cookman Ave, Suite 300, Asbury Park, NJ 07712</dd>
+          <dt>Firm Phone</dt><dd>(732) 695-3282</dd>
+          <dt>Firm Email</dt><dd>info@marcuszelman.com · ari@marcuszelman.com</dd>
+          <dt>Bar State</dt><dd>NJ (admit date and bar number not confirmed — NJ Bar lookup returned 404) <span class="pill pill--gap" style="margin-left:6px">GAP</span></dd>
+          <dt>Discipline</dt><dd>None found in available sources</dd>
+          <dt>Firm Size</dt><dd>8 attorneys · small boutique consumer-rights firm (formerly Marcus Law LLC)</dd>
+          <dt>Practice Areas</dt><dd>TCPA · FCRA · unlawful repossessions · consumer class actions</dd>
+          <dt>Offices</dt><dd>NJ (Asbury Park) · NY (Pomona) · FL (Fort Lauderdale)</dd>
+          <dt>TCPA Posture</dt><dd>Serial filer · active in D.N.J., E.D. Pa., E.D. Cal., M.D. Pa., 3rd Cir. <span class="src-tag"><a href="https://tcpaworld.com/?s=Marcus+Zelman">TCPAWorld -></a></span></dd>
+          <dt>Notable Cases</dt><dd>Susinno v. Work Out World (D.N.J. 2015-2021, 3rd Cir.) · Huber v. Simon's Agency (E.D. Pa.) · Ballard v. Navient (M.D. Pa.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Marcus+%26+Zelman%22+TCPA&type=r">CourtListener -></a></span></dd>
+          <dt>Threat Level</dt><dd><span class="pill pill--danger">HIGH</span> — grinds cases out, doesn't fold quickly</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">Marcus &amp; Zelman "Internal DNC + STOP-screenshot" template</h3>
+      <div class="card-body">
+        <p>The complaint follows a clean Marcus &amp; Zelman pattern: (1) plead National DNC registration with a specific 2012 date; (2) plead an explicit "STOP" reply with a specific 2026 date; (3) attach a screenshot showing the dealer's own auto-confirmation followed by a same-day continued marketing text; (4) bring the case under § 227(c)(5) using both § 64.1200(c) (federal DNC) and § 64.1200(d) (internal DNC) as the regulatory hooks; (5) plead a 4-year class period and "several thousands" of class members for numerosity. The firm has reused this template across debt-collection, financial-services, and consumer-services defendants since 2015.</p>
+        <p style="margin-top:8px">This is the firm's <strong>seventh+ TCPA filing</strong> visible on CourtListener and Law360 returns 71 articles mentioning the firm <span class="src-tag"><a href="https://www.law360.com/search/articles?q=%22Marcus+%26+Zelman%22">Law360 -></a></span>. The actual filing volume is almost certainly higher — full PACER party search would surface state-court matters and non-RECAP federal cases.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:0 0 12px">Concurrent &amp; Recent Litigation (Marcus &amp; Zelman TCPA filings)</h3>
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket / Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Kemble v. Turnersville Dodge Chrysler Jeep Ram</strong></td>
+            <td>1:26-cv-06939 · D.N.J.</td>
+            <td>2026-06-11</td>
+            <td><span class="pill pill--red">CURRENT · ACTIVE</span></td>
+            <td>Internal DNC + Federal DNC (SMS + voice)</td>
+          </tr>
+          <tr>
+            <td>Susinno v. Work Out World, Inc.</td>
+            <td>D.N.J. · 3rd Cir. appeal</td>
+            <td>2015</td>
+            <td><span class="pill pill--ok">Terminated 2021</span></td>
+            <td>TCPA — Third Circuit precedent on text-as-call</td>
+          </tr>
+          <tr>
+            <td>Huber v. Simon's Agency, Inc.</td>
+            <td>E.D. Pa. · 3rd Cir.</td>
+            <td>2019</td>
+            <td><span class="pill pill--ok">Fee-shifting opinion June 2025</span></td>
+            <td>FDCPA / TCPA</td>
+          </tr>
+          <tr>
+            <td>N.L. v. Credit One Bank, N.A.</td>
+            <td>E.D. Cal.</td>
+            <td>2017</td>
+            <td><span class="pill pill--ok">Terminated May 2019 · fees motion</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Ballard v. Navient Corporation</td>
+            <td>M.D. Pa.</td>
+            <td>2018</td>
+            <td><span class="pill pill--info">Resolved</span></td>
+            <td>TCPA — student loan dialer</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:10px 12px; font-size:12px; color:var(--fg-3)">Sources: <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Marcus+%26+Zelman%22+TCPA&type=r">CourtListener -></a></span> · <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Turnersville+Dodge%22+TCPA&type=r">CL Turnersville check -></a></span> · <span class="src-tag"><a href="https://tcpaworld.com/?s=Marcus+Zelman">TCPAWorld -></a></span></div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul class="clean tight">
+        <li>Plaintiff's full 10-digit number — pull ECF #1 from PACER to run blacklistBulk</li>
+        <li>Legal entity name behind "Turnersville Dodge Chrysler Jeep Ram" — NJ DOR Business Records Service lookup (NJ portal returned only form HTML; Bizapedia + OpenCorporates blocked)</li>
+        <li>Registered agent and officers — Sunbiz-equivalent lookup via NJ DOR or PACER corporate disclosure statement once filed</li>
+        <li>Parent dealer group affiliation — is the rooftop independent or part of Group 1 / Penske / a regional consolidator?</li>
+        <li>Ari Marcus NJ bar number and admit date — NJ Bar attorney search URLs returned 404</li>
+        <li>Defense counsel — none appeared as of 2026-06-15; monitor docket for first appearance</li>
+        <li>CRM / dialer vendor — confirm whether DealerSocket, VinSolutions, Elead, or other</li>
+        <li>Sender-DID corroboration — 800notes / YouMail / Tellows / RoboKiller all returned 403/404; retry via residential IP</li>
+        <li>Defendant website (turnersvilleautomall.com) — was refusing connections during research; verify privacy policy, SMS terms, opt-in flow once back online</li>
+        <li>Whether Stephen Kemble has prior TCPA filings under variant spellings — CourtListener returned no relevant hits but PACER party search would be more authoritative</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">No named decision-makers surfaced — open with the dealership main line, ask for the GM or Internet/BDC Director by title.</h2>
+      <p class="section-lede">TheOrg, LinkedIn, ZoomInfo, SignalHire, Apollo, RocketReach, and Hunter all returned 403/404/blocked during enrichment. The defendant website (turnersvilleautomall.com) was refusing connections, so the staff/leadership page could not be read. The opening play is a cold dial to the main dealership line asking for the General Manager and the Internet/BDC Director — both roles own the SMS marketing program at a single-rooftop store.</p>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:16px">
+      <table class="tbl">
+        <thead><tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>General Manager</strong><br><span class="pill pill--dark" style="margin-top:4px">GM</span> <span class="pill pill--gap">NAME UNKNOWN</span></td>
+            <td>Final decision-maker on vendor purchases and compliance posture at a single-rooftop dealership. Owns the answer-deadline call with defense counsel.</td>
+            <td><span class="pill pill--gap">Call dealership main line</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Internet / BDC Director</strong><br><span class="pill pill--dark" style="margin-top:4px">DIGITAL / MARKETING</span> <span class="pill pill--gap">NAME UNKNOWN</span></td>
+            <td>Owns the SMS/CRM platform that sent the messages to Plaintiff. The actual operator of the violation. "Abigail" in the screenshot is likely a BDC agent reporting to this role.</td>
+            <td><span class="pill pill--gap">Call dealership main line</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>"Abigail"</strong><br><span class="pill pill--dark" style="margin-top:4px">BDC AGENT</span> <span class="pill pill--info">NAMED IN EXHIBIT</span></td>
+            <td>Identified in the screenshot exhibit as the apparent SMS sender ("Hi Stephen. This is Abigail with Turnersville Jeep"). Likely a BDC/Internet sales rep. Useful as a fact-pattern reference, not a sales target.</td>
+            <td><span class="pill pill--info">(856) 406-2005 <br><span style="font-size:11px; color:var(--fg-3)">sending DID</span></span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+          </tr>
+          <tr>
+            <td><strong>Registered Agent</strong><br><span class="pill pill--dark" style="margin-top:4px">CORPORATE</span> <span class="pill pill--gap">UNKNOWN</span></td>
+            <td>Would be listed on the NJ DOR Business Records Service status report. NJ portal returned only form HTML during research; OpenCorporates returned 403.</td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark" style="margin-top:4px">OUTSIDE COUNSEL</span></td>
+            <td>No appearance entered as of 2026-06-15. Watch docket for first filing.</td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td><span class="pill pill--gap">Not yet appeared</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:var(--info-bg); border-left:4px solid var(--info); padding:16px 20px; font-size:14px; color:var(--fg-1)">
+      <strong>Email pattern:</strong> Not yet discoverable — Hunter returned no domain data for turnersvilleautomall.com and the site itself was refusing connections during research. Once the site is back online, scrape the staff page for a sample address and infer the pattern (most NJ dealerships use <code>firstname@dealership.com</code> or <code>firstinitiallastname@dealership.com</code>).
+    </div>
+
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px">Plaintiff Counsel (reference only — do not contact)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Name</th><th>Firm</th><th>Phone</th><th>Email</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Ari Marcus, Esq.</td>
+            <td>Marcus &amp; Zelman, LLC · 701 Cookman Ave, Suite 300, Asbury Park, NJ 07712</td>
+            <td>(732) 695-3282 <span style="font-size:11px; color:var(--fg-3)">(per PACER)</span></td>
+            <td>ari@marcuszelman.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — before defense counsel appears and the dealer's compliance authority shifts to outside counsel.</h2>
+      <p class="section-lede">The window is small. The dealership is 4 days into a 21-day answer clock. Once defense counsel enters, vendor decisions get frozen pending litigation strategy. The cleanest sale is to the GM right now, while the screenshot is still fresh in their inbox.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Day 1 · Pull ECF #1 from PACER (~$1.20) and recover the full plaintiff number</h4>
+          <p>Run blacklistBulk against the unredacted 6274 number. If MATCH FOUND, lead the outreach with the litigator-list hit. If NO MATCH, lead with the compliance-audit pitch and the screenshot.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Day 1-2 · Confirm legal entity + GM name</h4>
+          <p>NJ DOR Business Records Service status report (paid) to confirm registered agent and officers. Cross-check against the Turnersville Auto Mall website (once back online) for GM name and Internet/BDC Director. If still blocked, cold-call the dealership main line and ask for the General Manager by title.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Day 2-3 · Cold call the GM</h4>
+          <p>Opening line references the case number (1:26-cv-06939), the filing date (June 11), the firm (Marcus &amp; Zelman), and the screenshot. Frame: "Your system told this consumer 'you have successfully been removed' and then sent him another sales text the same afternoon. That screenshot is the entire case against you. We have a fix that closes the gap before your answer is due." Lead with Compliance Audit; bundle DNC scrubbing.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Day 4-7 · Email follow-up with one-pager</h4>
+          <p>If the GM doesn't pick up, send a follow-up email referencing the case docket and the answer-clock timing. Attach the Blacklist compliance-audit one-pager and the DNC-scrubbing-API spec. Copy the Internet/BDC Director once their email is known.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Day 7-14 · Cross-sell pitch to the Turnersville Auto Mall umbrella</h4>
+          <p>If the dealership shares a CRM/dialer across the multi-franchise complex, the policy gap is enterprise-wide. Sequence a separate call to the auto-mall operations lead with an enterprise-pricing framing — one engagement covers all rooftops, all brands.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h4>Day 14-21 · Last-chance close before answer deadline</h4>
+          <p>If defense counsel hasn't appeared yet, the GM still owns the decision. Once an Answer or Rule 12 motion is filed, the conversation shifts to outside counsel and the deal cycle stretches by months.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <div class="card-meta" style="color:#A8A8A8">Trigger Conditions — re-plan if any of these fire</div>
+      <ul class="clean tight" style="color:#E0E0E0">
+        <li>Defense counsel appears and files a Rule 12 motion or Answer → shift pitch from GM to outside counsel; lengthen cycle to 60-90 days</li>
+        <li>Plaintiff voluntarily dismisses without prejudice → likely a quick individual settlement; cross-sell window narrows but Compliance Audit still in play</li>
+        <li>Class certification motion filed → urgency compounds; lead with statutory-damages math on "several thousands" class size</li>
+        <li>Discovery requests served on opt-in records → defendant will desperately need Consent Capture; reposition pitch immediately</li>
+        <li>blacklistBulk returns MATCH FOUND on the recovered plaintiff number → flip Day-1 pitch to litigator-scrub-first</li>
+      </ul>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--warn">~21-DAY ANSWER WINDOW · CLOSE BEFORE EARLY JULY 2026</span>
+      <span class="pill pill--danger">CLASS ACTION · SEVERAL THOUSANDS ALLEGED</span>
+      <span class="pill pill--info">LEAD PITCH: COMPLIANCE AUDIT + DNC SCRUBBING</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-15</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
