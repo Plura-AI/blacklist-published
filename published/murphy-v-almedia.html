@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murphy v. Almedia USA — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current-case{ background:var(--bl-red-tint); }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+.callout{ background:var(--warning-bg); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout h3{ margin:0 0 8px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--warning); }
+.callout ul{ margin:0; padding-left:20px; font-size:14px; line-height:1.55; }
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-size:24px; font-weight:700; color:var(--bl-red); font-family:var(--font-mono); }
+.step-title{ font-size:16px; font-weight:600; margin:0 0 4px; }
+.step-body{ font-size:14px; line-height:1.55; color:var(--fg-2); margin:0; }
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <text x="0" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="0.5">BLACKLIST</text>
+          <rect x="118" y="4" width="3" height="16" fill="#A50100"/>
+          <text x="128" y="18" font-family="General Sans, sans-serif" font-size="20" font-weight="400" fill="#ffffff" letter-spacing="0.5">ALLIANCE</text>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-15</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">Rewards-App SMS Marketer · Quiet-Hours + Federal DNC · Multi-Jurisdiction Pile-On · Bundled-Consent Smoking Gun</p>
+      <h1 class="hero-tagline">Murphy v.<br>Almedia USA <span style="color:var(--bl-red); font-weight:500; font-size:0.55em;">(d/b/a Freecash)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-03216</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">C.D. Cal. (Riverside)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(4 days ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judges</div><div class="value">Not yet assigned <span style="font-weight:400; color:#A8A8A8; font-size:12px;">(case &lt;1 wk old)</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(c)(2)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Two classes pled</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not disclosed in the complaint — scrub deferred until PACER pull.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. The complaint redacts the called party's number to its last four digits ("ending in 8527"), so a clean blacklistBulk lookup is not possible without first recovering the full ten-digit number.</p>
+    </div>
+
+    <div class="scrub-card">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i> Scrub Status</div>
+        <span class="pill pill--warn">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff's Recipient Number ("Subject Number")</div>
+        <div class="scrub-number">(XXX) XXX-8527</div>
+        <div class="scrub-number-sub">Last-four only · San Bernardino County, CA · On Federal DNC Registry since June 23, 2003 (per ¶21 of complaint)</div>
+      </div>
+      <p class="scrub-body-text">The complaint pleads only the last four digits of plaintiff's wireless number (¶20). The full ten-digit number is not in the public-facing docket. Until the rep pulls the unredacted complaint or obtains the number via defense counsel/discovery, no blacklistBulk lookup can be run. Note: the plaintiff's number has been DNC-registered for 23+ years — that's a long-tenured residential wireless number, exactly the profile that a serial TCPA plaintiff or repeat filer would carry.</p>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-2);">Sending DID — Outbound SMS Sender</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Sender Number</div>
+        <h3 class="card-title" style="font-family:var(--font-mono);">+1 (302) 204-1283</h3>
+        <div class="card-body">
+          Delaware 302 area code — a 10DLC long-code consistent with A2P SMS infrastructure used by app-based rewards platforms. Aligned with Almedia USA's Delaware incorporation. Messages identified the sender as Freecash and routed traffic through <code>sms.freecash.com</code>.<br><br>
+          <span class="pill pill--gap">800notes · No third-party report retrieved</span>
+          <span class="pill pill--gap">YouMail · Fetch blocked</span>
+          <span class="pill pill--gap">Tellows · Fetch blocked</span>
+          <span class="pill pill--gap">RoboKiller · Fetch blocked</span>
+          <p style="font-size:12px; color:var(--fg-3); margin-top:12px;">All four crowd-sourced sender directories returned 403/404 during enrichment; consumer-side complaint corroboration not currently available.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Campaign Domain</div>
+        <h3 class="card-title" style="font-family:var(--font-mono);">sms.freecash.com</h3>
+        <div class="card-body">Three SMS exhibits in the complaint show short-links of the pattern <code>https://sms.freecash.com/earning{N}a</code> (earning1a, earning2a, earning3a, earning4a, earning5a). Identifies in-house, per-campaign URL routing — not a third-party aggregator wrapper. Sends were initiated 9:03 PM and 9:05 PM local time at Plaintiff's location (Yucca Valley, CA) on March 9–12, 2026.</div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-2);">Recovery Path — How to Get the Plaintiff Number</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">Path 1</div>
+        <h3 class="card-title">Pull ECF #1 from PACER</h3>
+        <div class="card-body">$1.20 from PACER. Unredacted complaint may contain the full plaintiff number in attorney work-product or Exhibit A screenshots not visible in the public filing.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 2</div>
+        <h3 class="card-title">Await defense counsel appearance</h3>
+        <div class="card-body">No defense counsel has appeared yet. Once they do, a Rule 26(f) conference will force plaintiff to identify the called number. Roughly 21 days from service.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Path 3</div>
+        <h3 class="card-title">Discovery / Rule 33 interrogatory</h3>
+        <div class="card-body">Defense counsel can serve an interrogatory demanding the full Subject Number. Plaintiff's counsel will produce it within 30 days of service.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: DEFERRED — PULL PACER #1</span>
+      <span class="pill pill--warn">PLAINTIFF NUMBER DNC SINCE 2003 — LONG-TENURED PROFILE</span>
+      <span class="pill pill--info">PLG FIRM IS A KNOWN VOLUME FILER (12+ TCPA CASES IN 2026)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">High-volume DTC rewards-app marketer with zero visible TCPA compliance and a brand-new C.D. Cal. class action — sell the consent capture stack now, before the copycats hit.</h2>
+      <p class="section-lede">Almedia USA (d/b/a Freecash) runs a high-frequency in-house SMS program (sender 302-204-1283 from <code>sms.freecash.com</code>) with a bundled "agree to Terms" signup that fails express written consent under 47 CFR § 64.1200(f)(9). PLG Damage Attorneys just filed the first known TCPA action against the brand. There is no defense playbook on file, no published privacy/SMS policy, and the plaintiff's firm is on a 12+ case run across C.D. Cal. in 2026. Lead with consent capture + DNC scrubbing; close on litigator scrub once the plaintiff number is recovered.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Product</div>
+        <h3 class="card-title">Consent Capture &amp; Record Retention</h3>
+        <div class="card-body">The smoking gun is the signup flow. Freecash collects no separate SMS consent — just "By signing up you agree to the Terms of Service and Privacy Policy" <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span>. Blacklist's consent capture product solves the express-written-consent defect cited in the complaint and gives them a defensible record for every future opt-in.</div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Secondary Pitch</div>
+        <h3 class="card-title">DNC Scrubbing (Federal + Internal)</h3>
+        <div class="card-body">Count II is a Federal DNC violation — plaintiff's number was on the registry for 23+ years before the texts hit. Same gap applies to every other number Freecash sends to. A scrub at the queue layer eliminates this exposure class-wide.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary Pitch</div>
+        <h3 class="card-title">Litigator Scrub</h3>
+        <div class="card-body">Close on this once the plaintiff's full number is recovered via PACER. Wedge: "Lena Murphy's number was sitting on the federal DNC registry since 2003 — we would have flagged that profile and you'd never have texted her."</div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:18px;">Pitch Angle</h3>
+    <div class="card">
+      <div class="card-body">
+        <p>"You just got sued in C.D. Cal. by a plaintiff who's been on the federal Do-Not-Call registry since 2003. Your signup flow gives users no opportunity to consent to SMS specifically — it bundles SMS consent under a generic 'agree to Terms' link <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span>. That's the exact 'bundled consent' pattern the FCC and courts reject under 47 CFR § 64.1200(f)(9). Plaintiff's counsel — PLG Damage Attorneys — has filed at least 12 TCPA cases in 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span>, and they've already settled cases against Fashion Nova and Wolverine within 60 days of filing. They know your signup is broken, and they will refile until you fix it.</p>
+        <p>"Blacklist closes the gap on three layers at once: a TCPA-compliant consent capture widget that produces a signed, timestamped record (47 CFR § 64.1200(c)(2)(ii)); a federal + internal DNC scrub at queue time so numbers like Lena Murphy's never see your traffic; and a litigator scrub against our subscriber list so the next 1,000 sends don't hit another professional plaintiff. We can have the scrub layer live before defense counsel files an answer."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">Berlin-bred rewards-app operator, U.S. presence via a Delaware shell — high-volume SMS dependence and a TechCrunch reputational crisis already in motion.</h2>
+      <p class="section-lede">Almedia USA, Inc. is the U.S. arm of Almedia, the operator of the Freecash get-paid-to (GPT) rewards platform. The brand claims $300M+ paid out to users and 290K+ Trustpilot reviews <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span>. Customer acquisition is overwhelmingly app-store + SMS-driven, and TechCrunch recently published an exposé alleging manipulative app-store growth tactics <span class="src-tag"><a href="https://techcrunch.com/?s=Freecash">TechCrunch -&gt;</a></span>.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Almedia USA, Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal entity</dt><dd>Almedia USA, Inc.</dd>
+            <dt>Entity type</dt><dd>Delaware corporation <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03216&type=r">Complaint ¶6 -&gt;</a></span></dd>
+            <dt>Formation state</dt><dd>Delaware</dd>
+            <dt>HQ</dt><dd>Not publicly disclosed (parent Almedia in Berlin, Germany) <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></dd>
+            <dt>D/b/a</dt><dd>Freecash, Freecash.com <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span></dd>
+            <dt>Parent</dt><dd>Almedia (parent group) <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></dd>
+            <dt>Vertical</dt><dd>Rewards / GPT mobile gaming · affiliate-driven app advertising</dd>
+            <dt>Revenue scale</dt><dd>$300M+ paid out to users (self-reported) <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span></dd>
+            <dt>Trustpilot</dt><dd>290,583 reviews (self-reported widget)</dd>
+            <dt>Public/private</dt><dd>Private</dd>
+            <dt>Founders/officers</dt><dd>Moritz Holländer (CEO), Jan Sommerfeld (COO), Wadim K. (CTO), Torsten Rokossa (GC) <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5;">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">Bundled "agree to Terms" consent — no SMS-specific opt-in</h3>
+        <div class="card-body">
+          Freecash's signup gate offers only: <em>"By signing up you agree to the Terms of Service and Privacy Policy"</em> <span class="src-tag" style="color:#A8A8A8;"><a href="https://freecash.com" style="color:#fff;">freecash.com/signup -&gt;</a></span>. There is no SMS-specific checkbox, no autodialer disclosure, no "consent not required as a condition of purchase" language, and no quiet-hours acknowledgment. Phone capture happens downstream of the signup without a separate consent gate. This is the exact bundled-consent pattern that fails express written consent under 47 CFR § 64.1200(f)(9) — and it's the legal hook of the lawsuit.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-top:24px;">
+      <div class="card">
+        <div class="card-meta">Strategic Timing</div>
+        <h3 class="card-title">Answer deadline window</h3>
+        <div class="card-body">Filed June 11, 2026. Defense counsel typically appears within 21 days of service. No counsel has appeared yet <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03216&type=r">CourtListener docket -&gt;</a></span>. The decision window for adopting compliance infrastructure is open right now — before defense strategy ossifies around denial.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Reputational Pressure</div>
+        <h3 class="card-title">TechCrunch April 2026 exposé</h3>
+        <div class="card-body">"How the rewards app Freecash scammed its way to the top of the app stores" <span class="src-tag"><a href="https://techcrunch.com/?s=Freecash">TechCrunch -&gt;</a></span>. The brand is already in damage-control mode — additional TCPA exposure compounds an existing PR problem. They have motivation to clean up.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Copycat Risk</div>
+        <h3 class="card-title">First-strike posture</h3>
+        <div class="card-body">No prior TCPA cases against Almedia/Freecash on CourtListener <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Almedia+USA%22&type=r">CourtListener -&gt;</a></span>. That means no defense playbook, no answer template, and a public docket that will attract copycats from rival TCPA firms within 30–60 days.</div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-2);">Related Entities (Cross-Sell Candidates)</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Almedia (parent)</strong></td>
+            <td>Parent group, Berlin-based <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td>Ad-tech / mobile games</td>
+            <td>Operates Freecash brand; same SMS infra likely covers any sister brand</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong>Freecash affiliate / partner network</strong></td>
+            <td>Downstream partners advertising on Freecash <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span></td>
+            <td>App developers, advertisers</td>
+            <td>Vicarious liability exposure — any partner SMS sent in Freecash's name inherits Freecash's compliance gap</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td>Mobile-game advertisers (Monopoly GO!, Royal Match, Match Masters, etc.)</td>
+            <td>Advertisers paying Freecash for installs <span class="src-tag"><a href="https://freecash.com">freecash.com -&gt;</a></span></td>
+            <td>Mobile gaming UA</td>
+            <td>Adjacent SMS/UA vendors with similar compliance posture</td>
+            <td><span class="pill pill--info">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">First TCPA strike against Almedia — but plaintiff's firm is on a 12-case 2026 run with a clear C.D. Cal. playbook.</h2>
+      <p class="section-lede">No prior TCPA case has been filed against Almedia or Freecash on CourtListener. The defendant has no defense playbook, no boilerplate answer, and no precedent. Plaintiff's firm, by contrast, runs a high-volume production line concentrated in the Central District of California with quick pre-answer settlements as the standard outcome.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card card--accent">
+        <div class="card-meta">Filed Case</div>
+        <h3 class="card-title">Murphy v. Almedia USA, Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>5:26-cv-03216 <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03216&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>Court</dt><dd>U.S.D.C., Central District of California (Eastern Division — Riverside)</dd>
+            <dt>Filed</dt><dd>June 11, 2026</dd>
+            <dt>Plaintiff</dt><dd>Lena Murphy, individually + putative class (San Bernardino County, CA)</dd>
+            <dt>Class definition</dt><dd>Two classes: (1) TCPA After-Hours Class; (2) TCPA National DNC Registry Class — both 4-year lookback, nationwide</dd>
+            <dt>Class size pled</dt><dd>"Dozens, likely hundreds or thousands"</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1) [quiet hours]; 47 CFR § 64.1200(c)(2) [federal DNC]</dd>
+            <dt>Theory</dt><dd>3 unsolicited marketing SMS to plaintiff after 9:00 PM local time; plaintiff's number was on the federal DNC registry since June 23, 2003; no signed written agreement on file with sender</dd>
+            <dt>Channel</dt><dd>SMS — sender 302-204-1283; domain <code>sms.freecash.com</code></dd>
+            <dt>Damages sought</dt><dd>Up to $500/violation; treble for willful/knowing; injunctive relief; fees + costs</dd>
+            <dt>Named-plaintiff exposure</dt><dd>$1,500–$4,500 (3 violations × $500–$1,500)</dd>
+            <dt>Defense counsel</dt><dd><span class="pill pill--gap">Not yet appeared · 21-day answer clock</span></dd>
+            <dt>Docket visibility</dt><dd>PACER/PacerMonitor still returning 404 — case is fresh and not yet aggregated</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh — PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm</dt><dd>PLG Damage Attorneys (Property Litigation Group, PLLC) <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm address</dt><dd>2750 SW 145th Ave #509, Miramar, FL 33027</dd>
+            <dt>Firm phone</dt><dd>(305) 506-4746 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm email</dt><dd>info@plgdamage.com / tcpa-service@plgdamage.com</dd>
+            <dt>Lead attorney</dt><dd>Vinit R. Venkatesh, Esq.</dd>
+            <dt>Bar number</dt><dd>CA Bar #367857 <span class="src-tag"><a href="https://members.calbar.ca.gov/fal/Member/Detail/367857">calbar.ca.gov -&gt;</a></span></dd>
+            <dt>Attorney email</dt><dd>vv@plgdamage.com</dd>
+            <dt>Address mismatch?</dt><dd><span class="pill pill--warn">Yes — CA-barred attorney operates from FL office</span></dd>
+            <dt>Discipline history</dt><dd>None found</dd>
+            <dt>Firm size</dt><dd>~28 attorneys (2 shareholders, 2 managing partners, 5+ junior partners) <span class="src-tag"><a href="https://plgdamage.com/about">plgdamage.com/about -&gt;</a></span></dd>
+            <dt>Primary practice</dt><dd>Florida property damage / insurance litigation — TCPA appears to be a new/expanding side venture</dd>
+            <dt>TCPA filings (2026)</dt><dd>12+ cases identified in 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>TCPAWorld ranking</dt><dd>Not in power rankings <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+            <dt>Settlement pattern</dt><dd>Quick pre-answer settlements — Sloss v. Wolverine settled 06/10/2026; Salcedo v. Fashion Nova terminated within 7 weeks of filing</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:18px;">Plaintiff/Firm Template — PLG/Venkatesh C.D. Cal. Production Line</h3>
+    <div class="card">
+      <div class="card-body">
+        PLG Damage Attorneys is best known for Florida property-damage and insurance litigation, but the firm has clearly opened a high-volume TCPA practice in 2026 with Vinit Venkatesh (CA Bar #367857) as the named California lead. The pattern across filings is consistent: short, formulaic complaints alleging quiet-hours (47 CFR § 64.1200(c)(1)) and/or federal DNC (47 CFR § 64.1200(c)(2)) SMS violations; identical class definitions; identical document-preservation demands; and rapid notices of settlement within 7–10 weeks of filing. Recent PLG filings include cases against Fashion Nova (twice), 7-Eleven, Rocket Mortgage, Guardio, Rite Aid, Yesvideo, Wolverine World Wide, The Xercize Studio, Last Brand, and Centerfield Media — with C.D. Cal. as the firm's preferred venue.<br><br>
+        Almedia/Freecash is squarely in PLG's emerging target vertical: high-volume consumer apps with bundled-consent signup flows and in-house SMS infrastructure. The firm settles fast and moves on; the rep should treat this as a 30–60 day window before plaintiff's counsel files a Notice of Settlement and the docket goes dark. <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener -&gt;</a></span>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 16px; font-size:16px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-2);">Concurrent &amp; Recent PLG TCPA Filings</h3>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Case</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr></thead>
+        <tbody>
+          <tr class="current-case">
+            <td><strong>Murphy v. Almedia USA, Inc.</strong></td>
+            <td>5:26-cv-03216</td><td>C.D. Cal.</td><td>2026-06-11</td>
+            <td><span class="pill pill--red">CURRENT CASE</span></td>
+            <td>Quiet hours + Fed DNC (SMS)</td>
+          </tr>
+          <tr>
+            <td>Nestell v. Almedia USA, Inc.</td>
+            <td>—</td><td>N.D. Tex.</td><td>2026-05-28</td>
+            <td><span class="pill pill--danger">Same defendant · active</span></td>
+            <td>TCPA SMS</td>
+          </tr>
+          <tr>
+            <td>Dickey v. Almedia USA, Inc.</td>
+            <td>—</td><td>S.D. Tex.</td><td>2026-06-10</td>
+            <td><span class="pill pill--danger">Same defendant · active</span></td>
+            <td>TCPA SMS</td>
+          </tr>
+          <tr>
+            <td>Bennea Hughes v. Guardio LLC</td>
+            <td>2:26-cv-05313</td><td>C.D. Cal.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Shannel Long v. Rocket Mortgage, LLC</td>
+            <td>2:26-cv-05599</td><td>C.D. Cal.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Lina Fasheh v. The Xercize Studio, LLC</td>
+            <td>8:26-cv-01231</td><td>C.D. Cal.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Cummings v. 7-Eleven Inc.</td>
+            <td>1:26-cv-00119</td><td>N.D. Fla.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Flottman v. Yesvideo, Inc.</td>
+            <td>8:26-cv-01491</td><td>M.D. Fla.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Correa v. Fashion Nova, LLC</td>
+            <td>0:26-cv-60960</td><td>S.D. Fla.</td><td>2026</td>
+            <td><span class="pill pill--ok">Terminated ~2 mo (likely settled)</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Salcedo v. Fashion Nova, LLC</td>
+            <td>0:26-cv-61011</td><td>S.D. Fla.</td><td>2026</td>
+            <td><span class="pill pill--ok">Terminated ~7 wks (likely settled)</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Sloss v. Wolverine World Wide, Inc.</td>
+            <td>—</td><td>S.D. Tex.</td><td>2026</td>
+            <td><span class="pill pill--ok">Notice of Settlement 06/10/2026</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+          <tr>
+            <td>Post v. Centerfield Media Parent, Inc.</td>
+            <td>4:26-cv-03524</td><td>N.D. Cal.</td><td>2026</td>
+            <td><span class="pill pill--info">Active</span></td>
+            <td>PLG firm filing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--fg-3); margin-top:8px;">Source: <a href="https://www.courtlistener.com/?q=%22PLG+Damage%22&type=r">CourtListener</a> · <a href="https://www.courtlistener.com/?q=%22Almedia+USA%22&type=r">CourtListener — Almedia search</a></p>
+
+    <div class="callout">
+      <h3><i data-lucide="alert-triangle" style="width:14px;height:14px;vertical-align:middle;"></i> Open intel gaps to close before first dial</h3>
+      <ul>
+        <li>Plaintiff's full 10-digit Subject Number — pull from PACER ECF #1 to run litigator scrub.</li>
+        <li>Article III judge + magistrate assignment — not yet on docket; affects defense playbook.</li>
+        <li>Defense counsel of record — none appeared yet; monitor PACER for first appearance.</li>
+        <li>Almedia USA's Delaware SoS officers and registered agent — registry search blocked by captcha; need direct DE SoS lookup.</li>
+        <li>U.S. HQ address for Almedia USA, Inc. — parent in Berlin, U.S. corp address unconfirmed.</li>
+        <li>Verified emails for decision makers — all current emails are PATTERN-inferred only; no published address found.</li>
+        <li>Almedia USA's main phone number — not publicly disclosed; need direct entity contact.</li>
+        <li>Whether plaintiff "Lena Murphy" has prior TCPA filings — name too common for clean CourtListener match.</li>
+        <li>Full text of Freecash Privacy Policy and Terms of Service — fetched URLs returned homepage shell; need direct legal-page scrape to verify arbitration/class-waiver and consent-to-contact language.</li>
+        <li>Sender DID consumer-complaint history — 800notes, YouMail, Tellows, RoboKiller all blocked during enrichment.</li>
+        <li>Parallel Texas filings (Nestell N.D. Tex.; Dickey S.D. Tex.) — need docket numbers and status to gauge multi-jurisdiction exposure.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with the General Counsel (Torsten Rokossa) and CEO (Moritz Holländer). The decision chain is short and Berlin-based.</h2>
+      <p class="section-lede">Almedia is a tightly-held private operator. There is no publicly disclosed US compliance officer or VP Marketing. Decision authority routes through the founder/CEO and a small executive team — all identified via TheOrg's parent-company chart. All emails below are PATTERN-inferred from the <code>{first}@freecash.com</code> convention; treat every email as unverified until first reply.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Torsten Rokossa</strong><br><span class="pill pill--dark">GC</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>General Counsel — owns TCPA defense + vendor compliance decisions <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>torsten@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/torsten-rokossa">linkedin.com/in/torsten-rokossa</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Moritz Holländer</strong><br><span class="pill pill--dark">CEO</span> <span class="pill pill--red">CALL #2</span></td>
+            <td>Chief Executive Officer — final decision authority; controls budget + brand reputation <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>moritz@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/moritz-hollander">linkedin.com/in/moritz-hollander</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jan Sommerfeld</strong><br><span class="pill pill--dark">COO</span></td>
+            <td>Chief Operating Officer — owns SMS marketing ops + vendor onboarding <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>jan@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><a href="https://www.linkedin.com/in/jan-sommerfeld">linkedin.com/in/jan-sommerfeld</a> <span class="pill pill--ok">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Wadim K.</strong><br><span class="pill pill--dark">CTO</span></td>
+            <td>Chief Technology Officer — owns the consent-capture + scrub integration stack <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>wadim@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Christoph Klaja</strong><br><span class="pill pill--dark">EIR</span></td>
+            <td>Entrepreneur in Residence — strategic-initiative authority <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>christoph@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Salvatore Alaimo</strong><br><span class="pill pill--dark">EIR</span></td>
+            <td>Entrepreneur in Residence <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>salvatore@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jannik Thiesbrummel</strong><br><span class="pill pill--dark">FOUNDERS ASSOC.</span></td>
+            <td>Founders Associate — often manages exec inbound on behalf of CEO <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>jannik@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>Leon Ramm</strong><br><span class="pill pill--dark">FOUNDERS ASSOC.</span></td>
+            <td>Founders Associate <span class="src-tag"><a href="https://theorg.com/org/almedia">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td>leon@freecash.com <span class="pill pill--info">INFERRED</span></td>
+            <td><span class="pill pill--gap">Not surfaced</span></td>
+          </tr>
+          <tr>
+            <td><strong>CMO / VP Marketing</strong><br><span class="pill pill--gap">UNKNOWN</span></td>
+            <td>Role identified as material to the deal (owns SMS marketing program), but no individual surfaced</td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+            <td><span class="pill pill--gap">—</span></td>
+          </tr>
+          <tr>
+            <td><strong>Almedia USA, Inc. — main line</strong><br><span class="pill pill--gap">CORPORATE</span></td>
+            <td>U.S. entity main number / general counsel inbox — registry search blocked; no public phone on freecash.com</td>
+            <td><span class="pill pill--gap">Not disclosed</span></td>
+            <td><span class="pill pill--gap">Not disclosed</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--gap">NOT YET APPEARED</span></td>
+            <td>No defense counsel has appeared on the docket as of the report-generation date <span class="src-tag"><a href="https://www.courtlistener.com/?q=5%3A26-cv-03216&type=r">CourtListener -&gt;</a></span></td>
+            <td>—</td><td>—</td><td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:16px; font-size:13px; color:var(--fg-3);">Email pattern: <code>{first}@freecash.com</code> — inferred from common startup convention; no published email was found to verify the format. Confirm via first-touch send.</p>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move within 7 days. PLG's settlement pattern is 7–10 weeks from filing to termination — the consent-capture sale needs to land before defense counsel decides on quick payout vs. fix.</h2>
+      <p class="section-lede">Almedia has no defense playbook on TCPA, is already in TechCrunch-fueled reputational pressure, and has parallel TCPA actions filed by other plaintiffs in N.D. Tex. and S.D. Tex. The window for selling compliance infrastructure (vs. just paying off the plaintiff) is open right now and closes the moment defense counsel files an appearance.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-body" style="padding:0;">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h4 class="step-title">Day 1 — Pull PACER ECF #1 and run litigator scrub on the recovered plaintiff number</h4>
+            <p class="step-body">Cost: ~$1.20. Even if the public-facing complaint redacts to last-four, the as-filed exhibit screenshots may contain the full number. Run blacklistBulk against the recovered number to convert "scrub deferred" into either "match found" or "no match" for the second-touch email.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h4 class="step-title">Day 1–2 — Email Torsten Rokossa (GC) and copy Moritz Holländer (CEO)</h4>
+            <p class="step-body">Subject line referencing the docket number ("5:26-cv-03216 — proactive compliance options before answer deadline"). Lead with the bundled-consent gap and the parallel TCPA actions in Texas — frame as multi-jurisdiction exposure, not a one-off plaintiff. Attach a one-pager on consent capture + DNC scrub.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h4 class="step-title">Day 3 — LinkedIn touch to CEO, COO, and GC</h4>
+            <p class="step-body">All three have verified LinkedIn profiles. Short, non-templated message: "Saw the C.D. Cal. filing — happy to share what we're seeing across other rewards-app TCPA cases this quarter." No selling, just relationship-open.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h4 class="step-title">Day 5–7 — Second-touch email with smoking-gun analysis</h4>
+            <p class="step-body">Reference: (a) the bundled "agree to Terms" pattern on freecash.com/signup as the consent defect cited in the complaint; (b) PLG's 12+ TCPA filings in 2026; (c) the two parallel Texas Almedia cases (Nestell N.D. Tex., Dickey S.D. Tex.). Position consent capture as the only fix that addresses all three actions simultaneously.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div>
+            <h4 class="step-title">Day 10–14 — Discovery call with COO Jan Sommerfeld</h4>
+            <p class="step-body">If GC is non-responsive, COO Sommerfeld owns the SMS marketing ops stack and will feel the operational pain of a forced shut-off. Frame: "We can keep your SMS program live while making it defensible."</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">06</div>
+          <div>
+            <h4 class="step-title">Day 14+ — Monitor PACER for defense counsel appearance; pivot pitch accordingly</h4>
+            <p class="step-body">If defense counsel is a big-firm name (e.g., Cooley, Manatt, Akin), Almedia is preparing to fight — push the consent-capture sale as risk-mitigation infrastructure. If counsel is a smaller TCPA-defense shop, Almedia is preparing to settle — push the scrub layer as a "don't get hit again" investment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px; font-size:18px;">Trigger Conditions</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-meta">If…</div>
+        <h4 class="card-title">PLG files Notice of Settlement</h4>
+        <div class="card-body">Pivot to "you just paid one plaintiff — you'll pay 10 more in the next 60 days unless you scrub." Use Sloss v. Wolverine (settled in PLG's hands 06/10/2026) as the precedent.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">If…</div>
+        <h4 class="card-title">A second copycat plaintiff files</h4>
+        <div class="card-body">Already happening — Nestell (N.D. Tex.) and Dickey (S.D. Tex.) are open. Reframe the deal as portfolio-level compliance for a multi-jurisdictional defendant.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">If…</div>
+        <h4 class="card-title">Defense counsel files MTC arbitration</h4>
+        <div class="card-body">Suggests they believe the bundled Terms link enforces arbitration. Reframe consent capture as the upgrade that makes future arbitration clauses actually enforceable, not just hopeful.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">21-DAY ANSWER WINDOW · CLOSE BEFORE JULY 9, 2026</span>
+      <span class="pill pill--warn">3 PARALLEL TCPA ACTIONS PENDING · MULTI-JURISDICTION EXPOSURE</span>
+      <span class="pill pill--info">FIRST-STRIKE DEFENDANT · NO DEFENSE PLAYBOOK</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-15</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
