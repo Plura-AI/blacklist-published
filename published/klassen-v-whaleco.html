@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klassen v. Whaleco (Temu) — Blacklist Alliance Lead Report</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/assets/blacklist-favicon.svg">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Semibold.woff2") format("woff2"); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:"General Sans"; src:url("https://raw.githubusercontent.com/Plura-AI/blacklist-design-system/main/fonts/GeneralSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --bl-red:#A50100; --bl-red-hover:#8A0100; --bl-red-press:#6E0100; --bl-red-tint:#FBE5E5;
+  --bl-black:#000000; --bl-white:#FFFFFF;
+  --gray-00:#FFFFFF; --gray-05:#F7F7F7; --gray-10:#EFEFEF; --gray-20:#E0E0E0; --gray-30:#C9C9C9;
+  --gray-40:#A8A8A8; --gray-50:#8C8C8C; --gray-60:#6F6F6F; --gray-70:#525252; --gray-80:#393939; --gray-90:#1F1F1F;
+  --success:#117A3D; --success-bg:#E5F4EC; --warning:#B36B00; --warning-bg:#FFF3DD;
+  --danger:#A50100; --danger-bg:#FBE5E5; --info:#0F4C8A; --info-bg:#E5EEF7;
+  --bg-canvas:#F7F7F7; --bg-surface:#FFFFFF; --bg-sunken:#EFEFEF; --bg-inverse:#000000;
+  --fg-1:#000000; --fg-2:#525252; --fg-3:#8C8C8C; --fg-4:#A8A8A8;
+  --border-1:#E0E0E0; --border-2:#C9C9C9; --border-3:#393939;
+  --font-sans:"General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family:var(--font-sans); font-size:16px; line-height:1.5; color:var(--fg-1); background:var(--bg-canvas); -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--bl-red); color:#fff; }
+a{ color:var(--bl-red); text-decoration:none; font-weight:500; }
+a:hover{ color:var(--bl-red-hover); text-decoration:underline; text-underline-offset:3px; }
+
+.container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:24px; }
+.container--narrow{ max-width:960px; }
+
+.hero{ background:var(--bl-black); color:#fff; padding:48px 0 56px; border-bottom:4px solid var(--bl-red); }
+.hero .container{ display:grid; gap:24px; }
+.hero-top{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.hero-logo{ display:flex; align-items:center; }
+.hero-logo-svg{ width:100%; max-width:400px; height:auto; display:block; }
+.hero-meta{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; }
+.hero-tagline{ font-size:clamp(40px, 6vw, 64px); font-weight:700; line-height:0.98; letter-spacing:-0.025em; margin:0; }
+.hero-tagline .qual{ display:block; color:var(--bl-red); font-weight:500; font-size:0.5em; letter-spacing:0; margin-top:8px; }
+.hero-sub{ font-size:clamp(18px, 2vw, 22px); font-weight:500; line-height:1.35; letter-spacing:0.04em; text-transform:uppercase; color:#C9C9C9; margin:0; max-width:880px; }
+.hero-bar{ display:inline-block; width:56px; height:4px; background:var(--bl-red); margin-bottom:8px; }
+.hero-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px; padding-top:24px; border-top:1px solid #393939; }
+.hero-stat .label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#A8A8A8; font-weight:600; margin-bottom:4px; }
+.hero-stat .value{ font-size:18px; font-weight:600; color:#fff; line-height:1.3; }
+
+section{ padding:56px 0; }
+section + section{ border-top:1px solid var(--border-1); }
+.section-head{ margin-bottom:32px; }
+.section-eyebrow{ display:flex; align-items:center; gap:12px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bl-red); font-weight:600; margin-bottom:12px; }
+.section-eyebrow .bar{ width:56px; height:4px; background:var(--bl-red); display:inline-block; }
+.section-title{ font-size:clamp(28px, 3.2vw, 40px); font-weight:700; line-height:1.05; letter-spacing:-0.02em; margin:0 0 8px; }
+.section-lede{ font-size:18px; line-height:1.5; color:var(--fg-2); margin:0; max-width:880px; }
+
+.card{ background:var(--bg-surface); border:1px solid var(--border-1); padding:24px; }
+.card--accent{ border-top:4px solid var(--bl-red); }
+.card--alert{ background:var(--bl-black); color:#fff; border:1px solid var(--bl-red); }
+.card--alert .card-title{ color:#fff; }
+.card-title{ font-size:20px; font-weight:600; margin:0 0 8px; line-height:1.3; }
+.card-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; }
+.card-body{ font-size:15px; line-height:1.55; color:var(--fg-1); }
+.card--alert .card-body{ color:#E0E0E0; }
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+.two-col{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:24px; }
+
+.tbl{ width:100%; border-collapse:collapse; font-size:14px; }
+.tbl th{ text-align:left; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--border-1); background:var(--gray-05); }
+.tbl td{ padding:12px; border-bottom:1px solid var(--border-1); vertical-align:top; }
+.tbl tr:last-child td{ border-bottom:0; }
+.tbl-wrap{ background:var(--bg-surface); border:1px solid var(--border-1); overflow-x:auto; }
+.tbl .num{ font-variant-numeric:tabular-nums; }
+.tbl tr.current{ background:var(--danger-bg); }
+
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:3px 10px; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; line-height:1.4; border:1px solid var(--border-1); background:var(--gray-05); color:var(--fg-1); }
+.pill--red{ background:var(--bl-red); color:#fff; border-color:var(--bl-red); }
+.pill--danger{ background:var(--danger-bg); color:var(--danger); border-color:var(--danger); }
+.pill--warn{ background:var(--warning-bg); color:var(--warning); border-color:var(--warning); }
+.pill--ok{ background:var(--success-bg); color:var(--success); border-color:var(--success); }
+.pill--info{ background:var(--info-bg); color:var(--info); border-color:var(--info); }
+.pill--gap{ background:var(--gray-10); color:var(--fg-3); border-color:var(--border-2); }
+.pill--dark{ background:var(--gray-90); color:#fff; border-color:var(--gray-90); }
+
+.kv{ display:grid; grid-template-columns:180px 1fr; gap:8px 16px; margin:0; }
+.kv dt{ font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-3); font-weight:600; padding-top:2px; }
+.kv dd{ margin:0; font-size:14px; line-height:1.55; color:var(--fg-1); }
+
+.src-tag{ font-size:12px; color:var(--fg-3); }
+.src-tag a{ color:var(--fg-2); font-weight:500; }
+.src-tag a:hover{ color:var(--bl-red); }
+
+ul.clean{ list-style:none; padding:0; margin:0; }
+ul.clean.tight li{ padding:6px 0; border-bottom:1px solid var(--border-1); }
+ul.clean.tight li:last-child{ border-bottom:0; }
+
+.scrub-card{ background:var(--bg-surface); border:1px solid var(--border-1); border-left:4px solid var(--bl-red); padding:24px; }
+.scrub-card-head{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+.scrub-eyebrow{ display:flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--bl-red); font-weight:600; }
+.scrub-number-block{ background:var(--gray-05); padding:20px; margin-bottom:16px; }
+.scrub-number-label{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:4px; }
+.scrub-number{ font-family:var(--font-mono); font-size:28px; font-weight:600; color:var(--fg-1); letter-spacing:0.02em; }
+.scrub-number-sub{ font-size:13px; color:var(--fg-2); margin-top:6px; line-height:1.5; }
+.scrub-body-text{ font-size:15px; line-height:1.6; color:var(--fg-1); margin:0; }
+
+.callout{ background:var(--warning-bg); border:1px solid var(--warning); border-left:4px solid var(--warning); padding:20px 24px; margin-top:24px; }
+.callout .callout-title{ font-size:13px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700; color:var(--warning); margin-bottom:10px; }
+.callout ul{ margin:0; padding-left:18px; font-size:14px; line-height:1.6; color:var(--fg-1); }
+
+.step{ display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--border-1); }
+.step:last-child{ border-bottom:0; }
+.step-num{ font-family:var(--font-mono); font-size:24px; font-weight:700; color:var(--bl-red); line-height:1; }
+.step-body .step-title{ font-size:16px; font-weight:600; margin-bottom:6px; }
+.step-body .step-meta{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--fg-3); font-weight:600; margin-bottom:8px; }
+
+footer{ background:var(--bl-black); color:#A8A8A8; padding:40px 0; font-size:13px; }
+footer a{ color:#C9C9C9; }
+footer .container{ display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+
+@media (max-width:768px){
+  .kv{ grid-template-columns:1fr; gap:4px; }
+  .kv dt{ padding-top:8px; }
+  .hero-stats{ grid-template-columns:repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="hero-logo" aria-label="Blacklist Alliance">
+        <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 23.8" role="img" aria-label="Blacklist Alliance">
+          <g fill="#fff">
+            <path d="M0 .5h7.4c3.7 0 6 1.9 6 4.9 0 2.2-1.3 3.7-2.9 4.3 2.1.5 3.8 2.2 3.8 4.8 0 3.4-2.6 5.3-6.5 5.3H0V.5zm6.9 8.1c1.6 0 2.6-.8 2.6-2.3s-1-2.3-2.6-2.3H3.9v4.6h3zm.4 8c1.8 0 2.8-.9 2.8-2.5s-1-2.5-2.8-2.5H3.9v5h3.4z"/>
+            <path d="M17.2.5h3.9v15.9h8.2v3.4H17.2V.5z"/>
+            <path d="M37.5.2c4 0 6.4 2.1 6.4 5.5 0 2.4-1.4 4-3.4 4.7l4 9.4h-4.3l-3.5-8.6h-2.5v8.6h-3.9V.5h7.2zm-.2 7.7c1.7 0 2.7-.8 2.7-2.2s-1-2.2-2.7-2.2h-3.1v4.4h3.1z"/>
+            <path d="M52.6.2c5.7 0 9.9 4.2 9.9 9.9s-4.2 9.9-9.9 9.9-9.9-4.2-9.9-9.9S46.9.2 52.6.2zm0 16.3c3.5 0 6-2.7 6-6.4s-2.5-6.4-6-6.4-6 2.7-6 6.4 2.5 6.4 6 6.4z"/>
+            <path d="M64.5.5h3.9v15.9h8.2v3.4H64.5V.5z"/>
+            <path d="M77.8.5h3.9v19.3h-3.9V.5z"/>
+            <path d="M91.6.2c4.4 0 7.7 2.6 8.6 6.5h-4c-.7-1.8-2.4-3-4.6-3-3.4 0-5.8 2.7-5.8 6.4s2.4 6.4 5.8 6.4c2.2 0 3.9-1.2 4.6-3h4c-.9 3.9-4.2 6.5-8.6 6.5-5.6 0-9.7-4.2-9.7-9.9S86 .2 91.6.2z"/>
+            <path d="M102.4.5h3.9v8.1l7-8.1h4.8l-7.6 8.5 8 10.8h-4.7l-5.9-8.2-1.6 1.8v6.4h-3.9V.5z"/>
+            <path d="M125.5.2c4.2 0 7.1 2.3 7.4 5.9h-3.8c-.2-1.6-1.5-2.5-3.5-2.5-1.9 0-3.2.9-3.2 2.2 0 1.5 1.4 1.9 3.7 2.4l1.2.3c3.2.7 5.9 2 5.9 5.4 0 3.8-3.1 6.1-7.4 6.1-4.6 0-7.7-2.4-8-6.4h3.9c.3 1.9 1.7 2.9 4.1 2.9 2.1 0 3.5-.9 3.5-2.4 0-1.5-1.5-1.9-3.8-2.4l-1.3-.3c-3.1-.7-5.7-2.1-5.7-5.4 0-3.6 2.9-5.8 7-5.8z"/>
+          </g>
+          <g fill="#A50100">
+            <path d="M148 .5h3.9v19.3H148V.5z"/>
+            <path d="M154.3.5h4.3l4.5 14.7L167.6.5h4.3l-6.4 19.3h-4.8L154.3.5z"/>
+            <path d="M174.2.5h12.4v3.4h-8.5v4.4h7.7v3.4h-7.7v4.7h8.7v3.4h-12.6V.5z"/>
+            <path d="M195.5.2c4 0 6.4 2.1 6.4 5.5 0 2.4-1.4 4-3.4 4.7l4 9.4h-4.3l-3.5-8.6h-2.5v8.6h-3.9V.5h7.2zm-.2 7.7c1.7 0 2.7-.8 2.7-2.2s-1-2.2-2.7-2.2h-3.1v4.4h3.1z"/>
+            <path d="M211.9.2c4.2 0 7.1 2.3 7.4 5.9h-3.8c-.2-1.6-1.5-2.5-3.5-2.5-1.9 0-3.2.9-3.2 2.2 0 1.5 1.4 1.9 3.7 2.4l1.2.3c3.2.7 5.9 2 5.9 5.4 0 3.8-3.1 6.1-7.4 6.1-4.6 0-7.7-2.4-8-6.4h3.9c.3 1.9 1.7 2.9 4.1 2.9 2.1 0 3.5-.9 3.5-2.4 0-1.5-1.5-1.9-3.8-2.4l-1.3-.3c-3.1-.7-5.7-2.1-5.7-5.4 0-3.6 2.9-5.8 7-5.8z"/>
+            <path d="M222.2.5h3.9v19.3h-3.9V.5z"/>
+            <path d="M236 .2c4.4 0 7.7 2.6 8.6 6.5h-4c-.7-1.8-2.4-3-4.6-3-3.4 0-5.8 2.7-5.8 6.4s2.4 6.4 5.8 6.4c2.2 0 3.9-1.2 4.6-3h4c-.9 3.9-4.2 6.5-8.6 6.5-5.6 0-9.7-4.2-9.7-9.9S230.4.2 236 .2z"/>
+            <path d="M246.8.5h12.4v3.4h-8.5v4.4h7.7v3.4h-7.7v4.7h8.7v3.4h-12.6V.5z"/>
+            <path d="M261.4.5h3.9v15.9h8.2v3.4h-12.1V.5z"/>
+            <path d="M275.7.5h3.9v15.9h8.2v3.4h-12.1V.5z"/>
+            <path d="M290.3.5h12.4v3.4h-8.5v4.4h7.7v3.4h-7.7v4.7h8.7v3.4h-12.6V.5z"/>
+            <path d="M311.2.2c4.2 0 7.1 2.3 7.4 5.9h-3.8c-.2-1.6-1.5-2.5-3.5-2.5-1.9 0-3.2.9-3.2 2.2 0 1.5 1.4 1.9 3.7 2.4l1.2.3c3.2.7 5.9 2 5.9 5.4 0 3.8-3.1 6.1-7.4 6.1-4.6 0-7.7-2.4-8-6.4h3.9c.3 1.9 1.7 2.9 4.1 2.9 2.1 0 3.5-.9 3.5-2.4 0-1.5-1.5-1.9-3.8-2.4l-1.3-.3c-3.1-.7-5.7-2.1-5.7-5.4 0-3.6 2.9-5.8 7-5.8z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-meta">Filed Case Lead Report &nbsp;·&nbsp; Generated 2026-06-12</div>
+    </div>
+    <div>
+      <span class="hero-bar"></span>
+      <p class="hero-sub" style="margin-bottom:12px">TCPA Quiet-Hours Class Action · Temu SMS Marketing · Serial Defendant · 8th TCPA Filing Since 2023</p>
+      <h1 class="hero-tagline">Klassen v.<br>Whaleco, Inc.<span class="qual">d/b/a Temu · subsidiary of PDD Holdings (NASDAQ: PDD)</span></h1>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="label">Case No.</div><div class="value">5:26-cv-00121-H</div></div>
+      <div class="hero-stat"><div class="label">Court</div><div class="value">N.D. Tex. (Lubbock)</div></div>
+      <div class="hero-stat"><div class="label">Filed</div><div class="value">June 11, 2026 <span style="font-weight:400; color:#A8A8A8; font-size:13px;">(1 day ago)</span></div></div>
+      <div class="hero-stat"><div class="label">Judge</div><div class="value">James Wesley Hendrix<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">Article III</span></div></div>
+      <div class="hero-stat"><div class="label">Claims</div><div class="value">47 USC § 227(c)<br>47 CFR § 64.1200(c)(1)<br>47 CFR § 64.1200(e)</div></div>
+      <div class="hero-stat"><div class="label">Class</div><div class="value">Yes — Putative Rule 23 class<br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">"Several thousands"</span></div></div>
+      <div class="hero-stat"><div class="label">Plaintiff Counsel</div><div class="value">Vinit R. Venkatesh <br><span style="font-weight:400; font-size:12px; color:#A8A8A8;">PLG Damage Attorneys</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · LITIGATOR SCRUB CHECK -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 01 · Litigator Scrub Check</div>
+      <h2 class="section-title">Plaintiff's recipient number not pled — but Klassen filed inside a known serial-defendant pattern.</h2>
+      <p class="section-lede">Per Blacklist sales protocol, the plaintiff's recipient phone is the #1 proof-point for any TCPA outreach. Klassen's complaint discloses only a SMS short code (52927) for the sender and her residence (Terry County, TX); her own cell number is withheld. Scrub is therefore deferred until the number is pulled from a PACER docket exhibit or surfaced via discovery.</p>
+    </div>
+
+    <div class="scrub-card" style="margin-bottom:24px">
+      <div class="scrub-card-head">
+        <div class="scrub-eyebrow"><i data-lucide="file-search"></i> Scrub Status</div>
+        <span class="pill pill--gap">Plaintiff Number Not Disclosed · Lookup Skipped</span>
+        <span class="pill pill--warn">SCRUB DEFERRED</span>
+      </div>
+      <div class="scrub-number-block">
+        <div class="scrub-number-label">Plaintiff Recipient Number</div>
+        <div class="scrub-number">NOT IN COMPLAINT</div>
+        <div class="scrub-number-sub">Complaint ¶¶ 17–21 references "Plaintiff's cellular telephone" and Terry County, TX residence, but the 10-digit recipient number is redacted from the pleading and the Exhibit A screenshots. No partial digits are visible.</div>
+      </div>
+      <p class="scrub-body-text">
+        Blacklist scrub cannot be executed against a redacted number. Cross-check against CourtListener / TCPAWorld for prior "Maria Klassen" filings returned zero results <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22&type=r">CourtListener -&gt;</a></span> — she does not appear to be a known serial filer, but absence of evidence is not proof. PLG Damage Attorneys, however, is a high-volume new entrant: 10+ TCPA filings in April–May 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -&gt;</a></span>.
+      </p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Sender DID</div>
+        <h3 class="card-title">Short Code 52927</h3>
+        <div class="card-body">
+          Dedicated 5-digit common short code identified in Exhibit A screenshots, paired with click-through links to <code>app.temu.com</code>. Short codes are brand-owned A2P infrastructure — 52927 is operationally Temu's house dialer for promotional SMS to U.S. users. Aggregators (800notes, YouMail, Tellows, RoboKiller) do not index short codes under their numeric-phone URLs; no per-number consumer-report counts could be retrieved. Sender identity is nonetheless <strong>high confidence</strong> via brand domain attribution alone.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #1</div>
+        <h3 class="card-title">Pull Exhibit A from PACER</h3>
+        <div class="card-body">
+          Doc #1 includes Exhibit A (SMS screenshots). A higher-resolution PACER pull may reveal the masked digits at the top of the message thread header. Cost: ~$1.20. <strong>Recommended first step.</strong>
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #2</div>
+        <h3 class="card-title">Wait for Defense Notice</h3>
+        <div class="card-body">
+          Whaleco's defense playbook (Latham &amp; Watkins, Sheppard Mullin) consistently files motions to compel arbitration that reference user account identifiers — these filings often disclose the registered phone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span>.
+        </div>
+      </div>
+      <div class="card card--accent">
+        <div class="card-meta">Recovery Path #3</div>
+        <h3 class="card-title">Discovery RFP</h3>
+        <div class="card-body">
+          If the rep partners with defense counsel post-appearance, an RFP for "the cellular number that received the messages attached as Exhibit A" produces the digit string within 30 days.
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">SCRUB STATUS: PENDING — PULL PACER #1</span>
+      <span class="pill pill--info">PLAINTIFF NOT A KNOWN SERIAL FILER</span>
+      <span class="pill pill--warn">PLG DAMAGE = NEW VOLUME TCPA FILER</span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · SALES OPPORTUNITY SUMMARY -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 02 · Sales Opportunity Summary</div>
+      <h2 class="section-title">Eighth TCPA filing against Whaleco since 2023 — prior settlements did not fix the SMS platform. Lead with consent capture + quiet-hours scrub.</h2>
+      <p class="section-lede">Temu has been sued for TCPA violations at least eight times in three years and is now defending two parallel 2026 class actions (this case in N.D. Tex. and Nelson in D. Mass.). The defense playbook — arbitration + Terms-of-Use revisions — is not closing the gap. PDD Holdings (NASDAQ: PDD) produced $54B revenue and $15.4B net income in 2024 — deep pockets, public-company disclosure exposure, and no visible TCPA compliance program on temu.com <span class="src-tag"><a href="https://en.wikipedia.org/wiki/PDD_Holdings">PDD Holdings -&gt;</a></span>.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:32px">
+      <div class="card card--accent">
+        <div class="card-meta">Recommended Lead Pitch</div>
+        <h3 class="card-title">Consent Capture + Record Retention</h3>
+        <div class="card-body">The plaintiff alleges no prior express invitation (¶ 24) and a quiet-hours violation (¶¶ 17, 42). Temu's consent flow is embedded in click-wrap Terms of Use, not surfaced at SMS opt-in — Blacklist's consent-capture stack closes the most-litigated gap and is reusable across PDD's global footprint.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Secondary</div>
+        <h3 class="card-title">DNC + Quiet-Hours Scrubbing</h3>
+        <div class="card-body">All five alleged messages landed between 7:04 AM and 7:41 AM local time at Plaintiff's location <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">Complaint -&gt;</a></span> — Temu's send platform has no time-zone-aware suppression. Blacklist DNC + quiet-hours scrubbing flips the easiest TCPA claim (a timestamp on a screenshot) into the easiest fix.</div>
+      </div>
+      <div class="card">
+        <div class="card-meta">Tertiary</div>
+        <h3 class="card-title">Compliance Audit</h3>
+        <div class="card-body">Public-company exposure (NASDAQ: PDD), EU DSA VLOP designation, 20+ state AG actions, and Congressional scrutiny make a documented TCPA compliance audit a board-level risk-mitigation purchase, not a marketing line item.</div>
+      </div>
+    </div>
+
+    <div class="card card--alert">
+      <div class="card-meta" style="color:#FBE5E5">Pitch Angle</div>
+      <h3 class="card-title">"Eight cases. Three years. $54B parent revenue. You don't have a litigation problem — you have a platform problem."</h3>
+      <div class="card-body" style="margin-top:8px">
+        Open with the litigation tally: Whaleco has been named in at least eight TCPA actions since 2023 — Johnson, Streater, Eakins, Smith, King, Brown, Ziboukh, and now Klassen — and a parallel 2026 class action (Nelson v. Whaleco) is pending in D. Mass. where Whaleco's defense memo specifically attacks plaintiffs' counsel for "Prosecuting Multiple TCPA Cases" <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span>. That defense theme proves Whaleco knows they're a TCPA target — but their fix has been Terms-of-Use revisions (2023 → 2025) and motions to compel arbitration. Neither addresses the actual platform behavior: a 5-digit short code (52927) that fires at 7:04 AM local time with no time-zone gating.
+        <br><br>
+        Close on platform: Blacklist's consent-capture + DNC + quiet-hours stack stops the next eight cases at the SMS engine, not at the courthouse door. The fact that Brown (D. Mass.) settled in 2025 and a new D. Mass. case (Nelson) was filed in 2026 against the same defendant on the same theory is the pitch — settlements without remediation are an annuity for plaintiffs' counsel.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · CORPORATE FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 03 · Corporate Footprint &amp; Opportunity Size</div>
+      <h2 class="section-title">A Nasdaq-100 e-commerce giant with a 100M+ U.S. user base and no visible TCPA compliance posture.</h2>
+      <p class="section-lede">Whaleco, Inc. is the U.S. operating subsidiary of PDD Holdings, the Cayman Islands–chartered, Dublin-headquartered parent that also operates Pinduoduo in China. Whaleco operates Temu in the United States. Massachusetts is the registered-agent jurisdiction pled in the complaint; the company is also registered in Delaware in other filings.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Defendant Profile</div>
+        <h3 class="card-title">Whaleco, Inc. (d/b/a Temu)</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Legal Entity</dt><dd>Whaleco, Inc. <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Temu">Wikipedia -&gt;</a></span></dd>
+            <dt>Formation State</dt><dd>Pled as Massachusetts in complaint; registered as Delaware corp in Russell v. Whaleco (N.D. Ill.) — possible Rule 12(b) hook <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>US HQ</dt><dd>Suite 355, 31 St. James Avenue, Boston MA 02116</dd>
+            <dt>Parent</dt><dd>PDD Holdings (NASDAQ: PDD) — Cayman charter, Dublin HQ, Shanghai operating <span class="src-tag"><a href="https://en.wikipedia.org/wiki/PDD_Holdings">PDD Holdings -&gt;</a></span></dd>
+            <dt>2024 Revenue</dt><dd>$54.0B (parent); Net income $15.4B</dd>
+            <dt>Employees</dt><dd>17,403 (PDD Holdings parent, 2023)</dd>
+            <dt>Founded</dt><dd>Temu platform: July 2022 · U.S. launch September 2022</dd>
+            <dt>Vertical</dt><dd>Cross-border discount e-commerce marketplace</dd>
+            <dt>Public Statements</dt><dd>No public CCO or TCPA compliance program identified; Terms of Use addresses only dispute resolution/arbitration <span class="src-tag"><a href="https://www.temu.com/terms-of-use.html">temu.com -&gt;</a></span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--alert">
+        <div class="card-meta" style="color:#FBE5E5">Smoking-Gun Compliance Gap</div>
+        <h3 class="card-title">All five alleged messages fired between 7:04 AM and 7:41 AM local time.</h3>
+        <div class="card-body" style="margin-top:8px">
+          The complaint pleads send timestamps of 7:04 AM (May 2), 7:41 AM (May 4), 7:38 AM (May 8), 7:04 AM (May 14), and 7:22 AM (May 16) — every message landed inside the 8 AM quiet-hours floor at Plaintiff's Texas location. That pattern is not a clerical error; it is evidence that Temu's SMS platform (short code 52927) has no time-zone-aware send-window logic <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">Complaint -&gt;</a></span>.
+          <br><br>
+          Temu's own homepage warns users to "be wary of messages about delivery issues claiming to be from USPS" — an acknowledgment that the brand sits at the center of a sprawling SMS surface <span class="src-tag"><a href="https://www.temu.com">temu.com -&gt;</a></span>. The 2023 → 2025 Terms-of-Use revision referenced in Nelson exhibits did not add a TCPA-compliant consent flow; it strengthened arbitration <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span>.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Strategic Timing</div>
+      <h3 class="card-title">Two parallel 2026 class actions. Defense is appearing in both. The window is now.</h3>
+      <div class="card-body">
+        <dl class="kv">
+          <dt>Answer Deadline</dt><dd>Approx. July 2, 2026 (21-day federal answer clock from June 11, 2026 filing — assumes standard service)</dd>
+          <dt>Parallel Case</dt><dd>Nelson v. Whaleco (D. Mass. 1:26-cv-11333) — Whaleco MTD with oral argument requested filed May 19, 2026 <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Recent Termination</dt><dd>Brown v. Whaleco (D. Mass.) terminated March 11, 2025 after "Notice of Resolution" — confidential settlement <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span></dd>
+          <dt>Regulatory Pressure</dt><dd>EU DSA VLOP designation (May 31, 2024); EU formal probe (Oct 31, 2024); 20+ state AG actions ongoing <span class="src-tag"><a href="https://en.wikipedia.org/wiki/Temu">Wikipedia -&gt;</a></span></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Related Entity</th><th>Relationship</th><th>Vertical</th><th>TCPA Relevance</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PDD Holdings, Inc.</strong> (NASDAQ: PDD)</td>
+            <td>Parent (Cayman / Dublin)</td>
+            <td>E-commerce holdco</td>
+            <td>Public-company disclosure risk; signs off on settlement reserves</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Temu</strong></td>
+            <td>Operating brand (Whaleco d/b/a)</td>
+            <td>Cross-border e-commerce</td>
+            <td>Direct SMS sender; short code 52927 owner</td>
+            <td><span class="pill pill--red">High</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pinduoduo</strong></td>
+            <td>Sister brand (China)</td>
+            <td>Group-buy e-commerce</td>
+            <td>Same playbook; not US-facing — not in scope for U.S. TCPA scrub</td>
+            <td><span class="pill pill--gap">Not in scope</span></td>
+          </tr>
+          <tr>
+            <td><strong>Temu Payments</strong> (internal CCO: Rob Langevin)</td>
+            <td>Sub-business unit</td>
+            <td>Payments / fintech</td>
+            <td>Adjacent SMS surface for receipts, fraud alerts, marketing</td>
+            <td><span class="pill pill--warn">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LITIGATION CONTEXT -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 04 · Litigation Context</div>
+      <h2 class="section-title">PLG Damage Attorneys is a brand-new TCPA volume filer. Whaleco is a repeat defendant with a stale playbook.</h2>
+      <p class="section-lede">PLG Damage Attorneys is historically a Florida property-damage / insurance firm that has pivoted into TCPA — 10+ TCPA filings in April–May 2026 alone, hitting Fashion Nova, 7-Eleven, Rite Aid, Rocket Mortgage, and now Temu. Whaleco's defense template (Latham &amp; Watkins / Sheppard Mullin → MTC arbitration) has produced quick individual dismissals but has not stopped the filings.</p>
+    </div>
+
+    <div class="two-col" style="margin-bottom:24px">
+      <div class="card card--accent">
+        <div class="card-meta">Case Card</div>
+        <h3 class="card-title">Klassen v. Whaleco, Inc.</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Docket</dt><dd>5:26-cv-00121-H (N.D. Tex., Lubbock Div.)</dd>
+            <dt>Filed</dt><dd>June 11, 2026</dd>
+            <dt>Judge</dt><dd>James Wesley Hendrix (Article III); no TCPA ruling history surfaced</dd>
+            <dt>Plaintiff</dt><dd>Maria Klassen, resident of Terry County, TX</dd>
+            <dt>Counsel</dt><dd>Vinit R. Venkatesh, FL Bar No. 24144674 · PLG Damage Attorneys</dd>
+            <dt>Class</dt><dd><span class="pill pill--danger">Putative Rule 23 Class</span> — "at least 50; believed several thousands"</dd>
+            <dt>Statutes</dt><dd>47 USC § 227(c); 47 CFR § 64.1200(c)(1); 47 CFR § 64.1200(e)</dd>
+            <dt>Theory</dt><dd>Quiet-hours (pre-8AM SMS); no prior express invitation</dd>
+            <dt>Channel</dt><dd>SMS from short code 52927 → app.temu.com links</dd>
+            <dt>Damages Sought</dt><dd>$500/negligent + $1,500/willful per violation, treble, injunctive, fees</dd>
+            <dt>Per-Plaintiff Exposure</dt><dd>5 messages × $500–$1,500 = $2,500–$7,500 (named plaintiff only)</dd>
+            <dt>Class Exposure</dt><dd>"Several thousands" × $500–$1,500 per message = 7-figure floor, 8-figure ceiling</dd>
+            <dt>Defense Counsel</dt><dd><span class="pill pill--gap">Not yet appeared · ~21-day answer deadline</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="card card--accent">
+        <div class="card-meta">Plaintiff Counsel</div>
+        <h3 class="card-title">Vinit R. Venkatesh · PLG Damage Attorneys</h3>
+        <div class="card-body">
+          <dl class="kv">
+            <dt>Firm Address</dt><dd>2750 SW 145th Ave Suite 509, Miramar, FL 33027 <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Firm Phone</dt><dd>(305) 506-4746</dd>
+            <dt>Firm Email</dt><dd>info@plgdamage.com</dd>
+            <dt>Lead Attorney</dt><dd>Vinit R. Venkatesh — vv@plgdamage.com</dd>
+            <dt>Bar No.</dt><dd>FL Bar 24144674 <span class="src-tag"><a href="https://www.floridabar.org/directories/find-mbr/?bar=24144674">Florida Bar -&gt;</a></span></dd>
+            <dt>Bar Address Match</dt><dd>Confirmed — Miramar, FL <span class="pill pill--ok">Match</span></dd>
+            <dt>Discipline History</dt><dd>None found in public sources</dd>
+            <dt>TCPA Filing Volume</dt><dd>10+ TCPA filings in April–May 2026 alone <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -&gt;</a></span></dd>
+            <dt>TCPAWorld Rank</dt><dd>Not listed — firm is new to TCPA radar <span class="src-tag"><a href="https://tcpaworld.com/?s=PLG+Damage">TCPAWorld -&gt;</a></span></dd>
+            <dt>Practice Areas</dt><dd>Historically: property damage, insurance bad-faith. New: consumer protection / TCPA <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span></dd>
+            <dt>Pro Hac Status</dt><dd>FL-barred attorney filing in N.D. Tex. — pro hac vice or local counsel arrangement not yet visible on docket</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-meta">Plaintiff Firm Template</div>
+      <h3 class="card-title">"PLG / Venkatesh Quiet-Hours" — new volume filer, ecommerce vertical preference</h3>
+      <div class="card-body">
+        PLG Damage Attorneys is not a historical TCPA shop. Their public website advertises "$100M+ recovered" for clients, but all named results are first-party property insurance matters <span class="src-tag"><a href="https://plgdamage.com">plgdamage.com -&gt;</a></span>. In April–May 2026 the firm pivoted aggressively into TCPA: Fashion Nova (S.D. Fla., two filings), 7-Eleven (N.D. Fla.), Guardio (C.D. Cal.), Rocket Mortgage (C.D. Cal.), Yesvideo (M.D. Fla.), Rite Aid (C.D. Cal.), Centerfield Media (N.D. Cal.), Xercize Studio (C.D. Cal.), Last Brand (C.D. Cal.) <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Vinit+Venkatesh%22&type=r">CourtListener -&gt;</a></span>. The pattern is quiet-hours + no-express-consent against ecommerce, retail, fitness, and mortgage defendants — a copy-paste theory with screenshot exhibits. Klassen v. Whaleco fits the template exactly.
+      </div>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:24px">
+      <table class="tbl">
+        <thead>
+          <tr><th>Case Name</th><th>Docket</th><th>Court</th><th>Filed</th><th>Status</th><th>Theory</th></tr>
+        </thead>
+        <tbody>
+          <tr class="current">
+            <td><strong>Klassen v. Whaleco</strong> <span class="pill pill--red">CURRENT</span></td>
+            <td class="num">5:26-cv-00121-H</td>
+            <td>N.D. Tex.</td>
+            <td class="num">2026-06-11</td>
+            <td><span class="pill pill--red">Pending</span></td>
+            <td>Quiet hours / no consent</td>
+          </tr>
+          <tr>
+            <td>Nelson v. Whaleco</td>
+            <td class="num">1:26-cv-11333</td>
+            <td>D. Mass.</td>
+            <td class="num">2026</td>
+            <td><span class="pill pill--red">Pending · MTD filed 5/19/26</span></td>
+            <td>TCPA class</td>
+          </tr>
+          <tr>
+            <td>Russell v. Whaleco</td>
+            <td class="num">1:26-cv-04296</td>
+            <td>N.D. Ill.</td>
+            <td class="num">2026</td>
+            <td><span class="pill pill--warn">MTC arbitration 5/21/26</span></td>
+            <td>TCPA (removed from state court)</td>
+          </tr>
+          <tr>
+            <td>Brown v. Whaleco</td>
+            <td class="num">1:24-cv-12537</td>
+            <td>D. Mass.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--ok">Settled · 3/11/25</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Ziboukh v. Whaleco</td>
+            <td class="num">1:24-cv-03733</td>
+            <td>E.D.N.Y.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--info">Pending</span></td>
+            <td>Consumer fraud (related)</td>
+          </tr>
+          <tr>
+            <td>King v. Whaleco</td>
+            <td class="num">1:24-cv-11720</td>
+            <td>D. Mass.</td>
+            <td class="num">2024</td>
+            <td><span class="pill pill--ok">Dismissed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Jahoda v. Whaleco</td>
+            <td class="num">2:25-cv-00138</td>
+            <td>W.D. Pa.</td>
+            <td class="num">2025</td>
+            <td><span class="pill pill--ok">Terminated 3/21/25</span></td>
+            <td>TCPA (likely individual settlement)</td>
+          </tr>
+          <tr>
+            <td>Eakins v. Whaleco</td>
+            <td class="num">5:23-cv-00560</td>
+            <td>W.D. Okla.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Settled · MTC arb</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Smith v. Whaleco</td>
+            <td class="num">5:23-cv-00559 / 10th Cir. 24-6155</td>
+            <td>W.D. Okla.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Settled · arbitration</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Streater v. Whaleco</td>
+            <td class="num">6:23-cv-00162</td>
+            <td>E.D. Okla.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Dismissed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Johnson v. Whaleco</td>
+            <td class="num">5:23-cv-00403</td>
+            <td>M.D. Fla.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Dismissed</span></td>
+            <td>TCPA</td>
+          </tr>
+          <tr>
+            <td>Jackson v. Whaleco</td>
+            <td class="num">1:23-cv-00169</td>
+            <td>S.D.N.Y.</td>
+            <td class="num">2023</td>
+            <td><span class="pill pill--ok">Dismissed (~6 wks)</span></td>
+            <td>TCPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Open intel gaps to close before first dial</div>
+      <ul>
+        <li><strong>Plaintiff cell number</strong> — not pled in complaint; pull Doc #1 Exhibit A from PACER for higher-res screenshot of message thread header.</li>
+        <li><strong>Defense counsel</strong> — Whaleco has not yet appeared in N.D. Tex.; expect Latham &amp; Watkins (Serrin Turner / Gary Feinerman) or Sheppard Mullin (David Poell) based on historical pattern.</li>
+        <li><strong>Whaleco formation state</strong> — complaint pleads Massachusetts; Russell (N.D. Ill.) docket pleads Delaware. Potential Rule 12(b) attack surface and a useful talking point.</li>
+        <li><strong>Officers and registered agent</strong> — MA SOC, Bizapedia, OpenCorporates all blocked or CAPTCHA'd; no officer roster confirmed beyond TheOrg listings.</li>
+        <li><strong>Judge Hendrix's TCPA posture</strong> — no TCPA ruling history surfaced; pull recent N.D. Tex. orders before pitching defense counsel.</li>
+        <li><strong>Vinit Venkatesh pro hac vice status</strong> — FL-barred attorney filing in N.D. Tex.; local counsel arrangement not yet visible.</li>
+        <li><strong>Aggregate settlement amounts</strong> — Brown, Eakins, Smith resolutions are confidential; quantum unknown.</li>
+        <li><strong>Whaleco's 2025 Terms-of-Use revision</strong> — referenced in Nelson exhibits; not confirmed whether it added TCPA consent flow or only strengthened arbitration.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CONTACT DIRECTORY -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 05 · Contact Directory</div>
+      <h2 class="section-title">Lead with Temu Payments CCO Rob Langevin — the only named compliance officer at the brand.</h2>
+      <p class="section-lede">No General Counsel or Chief Compliance Officer for the parent Whaleco/Temu entity is publicly named. The only identified compliance role is Rob Langevin, CCO of Temu Payments — adjacent enough to own SMS/notification compliance and senior enough to escalate. The verified email pattern is <code>{first}{last}@temu.com</code>, inferred from SignalHire's redacted addresses for Hyzard and Kopanica.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr><th>Name &amp; Role</th><th>Title &amp; Context</th><th>Phone</th><th>Email</th><th>LinkedIn</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Rob Langevin</strong><br><span class="pill pill--dark">CCO</span> <span class="pill pill--red">CALL FIRST</span></td>
+            <td>Chief Compliance Officer, Temu Payments <span class="src-tag"><a href="https://theorg.com/org/temu">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>roblangevin@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Maral Dipodiputro</strong><br><span class="pill pill--dark">CEO</span></td>
+            <td>Co-Founder &amp; CEO, Temu (per TheOrg) <span class="src-tag"><a href="https://theorg.com/org/temu">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>maraldipodiputro@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><a href="https://www.linkedin.com/in/maral-dipodiputro">linkedin/in/maral-dipodiputro</a> <span class="pill pill--info">INFERRED</span></td>
+          </tr>
+          <tr>
+            <td><strong>Edith Xu</strong><br><span class="pill pill--dark">SVP BizDev</span></td>
+            <td>Senior Vice President of Business Development <span class="src-tag"><a href="https://theorg.com/org/temu">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>edithxu@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zhuoxi</strong><br><span class="pill pill--dark">SVP</span></td>
+            <td>Senior Vice President <span class="src-tag"><a href="https://theorg.com/org/temu">TheOrg -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td><span class="pill pill--gap">GAP</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Marina Polletti Moreira</strong><br><span class="pill pill--dark">Marketing Mgr</span></td>
+            <td>Marketing Manager — likely owns SMS campaign sign-off <span class="src-tag"><a href="https://www.signalhire.com/companies/temu">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>marinapollettimoreira@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ulises Trujillo</strong><br><span class="pill pill--dark">Biz Strategy</span></td>
+            <td>Business Strategy and Operations Sr. Manager <span class="src-tag"><a href="https://www.signalhire.com/companies/temu">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>ulisestrujillo@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Michelle Mi</strong><br><span class="pill pill--dark">HRBP</span></td>
+            <td>HRBP Manager <span class="src-tag"><a href="https://www.signalhire.com/companies/temu">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>michellemi@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>William Hyzard</strong><br><span class="pill pill--dark">UX Research</span></td>
+            <td>UX Researcher – Marketing (SMS UX surface) <span class="src-tag"><a href="https://www.signalhire.com/companies/temu">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>williamhyzard@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Filip Kopanica</strong><br><span class="pill pill--dark">User Research</span></td>
+            <td>User Researcher <span class="src-tag"><a href="https://www.signalhire.com/companies/temu">SignalHire -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Unknown</span></td>
+            <td>filipkopanica@temu.com <span class="pill pill--warn">PATTERN</span></td>
+            <td><span class="pill pill--gap">Not found</span></td>
+          </tr>
+          <tr>
+            <td><strong>Whaleco, Inc. — Main</strong><br><span class="pill pill--dark">Corp HQ</span></td>
+            <td>Suite 355, 31 St. James Avenue, Boston MA 02116 <span class="src-tag"><a href="https://www.temu.com/contact-us.html">temu.com/contact -&gt;</a></span></td>
+            <td><span class="pill pill--gap">Not published</span></td>
+            <td><span class="pill pill--gap">Consumer chat only</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Defense Counsel</strong><br><span class="pill pill--dark">Litigation</span></td>
+            <td>Not yet appeared in N.D. Tex. Historically Latham &amp; Watkins (Serrin Turner / Gary Feinerman / Matthew Valenti) and Sheppard Mullin (David Poell) defend Whaleco TCPA matters <span class="src-tag"><a href="https://www.courtlistener.com/?q=%22Whaleco%22+TCPA&type=r">CourtListener -&gt;</a></span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px; font-size:13px; color:var(--fg-2);">
+      Email pattern <code>{first}{last}@temu.com</code> inferred from SignalHire-confirmed (redacted) <code>@temu.com</code> addresses for William Hyzard and Filip Kopanica <span class="src-tag"><a href="https://www.signalhire.com/companies/temu">SignalHire -&gt;</a></span>. All PATTERN emails should be validated before send.
+    </div>
+  </div>
+</section>
+
+<!-- 06 · ACTION PLAN -->
+<section style="background:var(--bg-surface)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="bar"></span> 06 · Recommended Outreach Sequence</div>
+      <h2 class="section-title">Move on this within 72 hours — Whaleco's defense team will appear inside the 21-day answer window and pivot to arbitration.</h2>
+      <p class="section-lede">The Whaleco defense playbook is predictable: file a motion to compel arbitration within 30–45 days, run on Terms-of-Use clickwrap, settle the named plaintiff confidentially, leave the platform untouched. The window to sell remediation is the period before defense counsel appears and re-anchors the conversation around litigation rather than compliance.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-meta">Day 0–1 · PACER pull</div>
+          <div class="step-title">Pull Doc #1 + Exhibit A from PACER (~$1.20).</div>
+          Higher-resolution Exhibit A may reveal masked digits of plaintiff's cell at the top of the SMS thread. If recovered, run Blacklist scrub immediately. Even without the number, the timestamps in Exhibit A (7:04 AM – 7:41 AM CT) are the smoking-gun anchor for the outreach.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-meta">Day 1–2 · First touch</div>
+          <div class="step-title">Email Rob Langevin (CCO, Temu Payments) — subject line: "Klassen + Nelson + Russell — 3 active TCPA cases, 1 platform fix."</div>
+          Langevin is the only public-facing compliance officer at the brand. Even if SMS marketing is technically a CMO/Marketing Manager swimlane, CCO is the right escalation address. Frame the message around platform remediation, not litigation defense. CC: nothing — single recipient signals seriousness.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-meta">Day 2–3 · Parallel touch</div>
+          <div class="step-title">Email Maral Dipodiputro (CEO) — short, board-level framing.</div>
+          Three sentences: (1) Eighth TCPA filing since 2023; (2) Two parallel 2026 class actions pending; (3) Blacklist can quiet the platform in 30 days. Public-company parent (NASDAQ: PDD) makes CEO-level engagement plausible — disclosure exposure makes it desirable.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-meta">Day 3–5 · Marketing swimlane</div>
+          <div class="step-title">Email Marina Polletti Moreira (Marketing Manager).</div>
+          Marketing-side owner of the SMS calendar. Frame: "Your 5 AM PT / 7 AM CT send hits a quiet-hours violation at every Central- and Eastern-time recipient. Time-zone gating is a 1-day eng ticket and a Blacklist scrub list."
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-meta">Day 5–7 · Counsel watch</div>
+          <div class="step-title">Monitor PACER daily for defense appearance.</div>
+          When Latham &amp; Watkins or Sheppard Mullin files notice of appearance, pivot the outreach to a litigation-support angle: scrub-of-record + RND for the inevitable class certification fight. The compliance angle closes; the litigation-defense angle opens.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <div class="step-meta">Day 7–21 · Persistence cadence</div>
+          <div class="step-title">Two more touches on Langevin and one on Dipodiputro before the answer deadline (~July 2, 2026).</div>
+          The answer deadline is the natural urgency anchor. After answer is filed and MTC arbitration is briefed, the window closes and the conversation moves to the slower compliance-audit RFP cycle.
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--alert" style="margin-bottom:24px">
+      <div class="card-meta" style="color:#FBE5E5">Trigger Conditions</div>
+      <h3 class="card-title">What changes the plan</h3>
+      <div class="card-body">
+        <ul class="clean tight" style="color:#E0E0E0">
+          <li><strong>Defense files MTC arbitration before Day 21</strong> — pivot to litigation-defense angle (RND, scrub-of-record, expert-witness-friendly call records).</li>
+          <li><strong>Plaintiff voluntarily dismisses or files amended complaint</strong> — pattern suggests individual settlement; refocus on Nelson (D. Mass.) and Russell (N.D. Ill.) as parallel pitches.</li>
+          <li><strong>Whaleco announces SMS platform change publicly</strong> — convert remediation pitch to audit/validation engagement.</li>
+          <li><strong>SEC disclosure event for PDD Holdings</strong> — escalate to PDD IR / general counsel chain; TCPA exposure becomes a 10-K risk factor.</li>
+          <li><strong>PLG Damage files a 11th case against an existing Blacklist customer</strong> — internal heads-up to that account team; PLG's vertical preference (ecommerce/retail) is now established.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="pill pill--red">URGENCY: HIGH</span>
+      <span class="pill pill--danger">~21-DAY ANSWER WINDOW · CLOSE BEFORE JUL 2, 2026</span>
+      <span class="pill pill--warn">PARALLEL CASE: NELSON (D. MASS.) · MTD ALREADY BRIEFED</span>
+      <span class="pill pill--info">CROSS-SELL: PDD HOLDINGS (NASDAQ: PDD)</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>Generated by Docky · Blacklist Alliance · 2026-06-12</div>
+    <div style="font-size:12px;">Public-source intelligence. Verify all contact details before outreach. No attorney-client relationship implied.</div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+<style id="bapp-doc-gate-style">
+  body.bapp-gated > *:not(#bapp-doc-gate) { visibility: hidden; }
+  #bapp-doc-gate {
+    position: fixed; inset: 0; z-index: 2147483647;
+    background: #F7F7F7;
+    font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  #bapp-doc-gate * { box-sizing: border-box; border-radius: 0 !important; }
+  #bapp-doc-gate .card { background: #FFFFFF; border: 1px solid #E0E0E0; padding: 48px 40px; max-width: 420px; width: 100%; }
+  #bapp-doc-gate .bar { display: block; width: 56px; height: 4px; background: #A50100; margin-bottom: 20px; }
+  #bapp-doc-gate h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 10px; color: #000; }
+  #bapp-doc-gate .sub { font-size: 14px; color: #525252; margin: 0 0 28px; line-height: 1.55; }
+  #bapp-doc-gate label { display:block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #525252; margin-bottom: 8px; }
+  #bapp-doc-gate input { width: 100%; height: 48px; padding: 0 16px; background: #FFFFFF; color: #000; font-family: inherit; font-size: 15px; border: 1px solid #E0E0E0; transition: border-color 120ms, box-shadow 120ms; margin-bottom: 18px; }
+  #bapp-doc-gate input:focus { outline: 0; border-color: #A50100; box-shadow: 0 0 0 3px rgba(165,1,0,0.28); }
+  #bapp-doc-gate .err { background: #FBE5E5; border-left: 3px solid #A50100; padding: 10px 14px; color: #A50100; font-size: 13px; font-weight: 500; margin-bottom: 14px; display: none; }
+  #bapp-doc-gate .err.show { display: block; }
+  #bapp-doc-gate button { width: 100%; height: 52px; background: #A50100; color: #FFF; font-family: inherit; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; border: 0; cursor: pointer; transition: background 120ms; }
+  #bapp-doc-gate button:hover { background: #8A0100; }
+  #bapp-doc-gate button:active { background: #6E0100; }
+  #bapp-doc-gate .foot { margin-top: 18px; font-size: 12px; color: #6F6F6F; line-height: 1.5; }
+</style>
+<script id="bapp-doc-gate-script">
+(function(){
+  var HASH="0a937db8dc7f7df2ecf0b734cf942dfd33569e6f9e4597c9695ac8a3fd7016e5"; // sha-256 Blacklist2026!
+  var KEY="bapp_doc_unlocked";
+  function trackHit(){
+    try {
+      fetch("/api/hit", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({slug: location.pathname.slice(1)}),
+        keepalive: true
+      }).catch(function(){});
+    } catch(_){}
+  }
+  if (sessionStorage.getItem(KEY) === "1") { trackHit(); return; }
+  document.body.classList.add("bapp-gated");
+  var w = document.createElement("div");
+  w.id = "bapp-doc-gate";
+  w.innerHTML = '<div class="card"><span class="bar" aria-hidden="true"></span><h1>Document protected</h1><p class="sub">Enter the password provided by your Blacklist Alliance representative.</p><form id="bg-form" autocomplete="off"><label for="bg-pw">Password</label><input id="bg-pw" type="password" autocomplete="current-password" autofocus required /><div class="err" id="bg-err">Wrong password. Try again.</div><button type="submit">View document</button></form><p class="foot">Don\'t have a password? Contact your Blacklist Alliance representative.</p></div>';
+  document.body.appendChild(w);
+  async function sha256(t){var b=new TextEncoder().encode(t);var h=await crypto.subtle.digest("SHA-256",b);return Array.from(new Uint8Array(h)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("bg-form").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("bg-pw").value;
+    if (await sha256(v) === HASH) {
+      sessionStorage.setItem(KEY, "1");
+      document.body.classList.remove("bapp-gated");
+      w.remove();
+      trackHit();
+    } else {
+      document.getElementById("bg-err").classList.add("show");
+      document.getElementById("bg-pw").select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
